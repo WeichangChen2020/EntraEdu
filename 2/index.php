@@ -30,9 +30,9 @@ if(!mysql_num_rows($result)){
 ?>
 
 <form method='post' action=''>
-<table width='400' border='1'>
+<table width='400' border='0'>
 <tr>
-<td>课程名称：<input type="text" name="course_name" size=32> ></td>
+<td>课程名称：<input type="text" name="course_name" size=32 ></td>
 </tr>
 <tr>
 <td>课程地址：<input type="text" name="course_url" size=32></td>
