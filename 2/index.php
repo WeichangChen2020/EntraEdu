@@ -1,5 +1,6 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <center>
 <?php 
 include 'connect_database.php';
 
@@ -36,4 +37,5 @@ if(!mysql_num_rows($result)){
 </tr>
 </table>
 </form>
+    </center>
 </html>
