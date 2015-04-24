@@ -33,7 +33,4 @@ if(!mysql_num_rows($result)){
 </tr>
 </table>
 </form>
-
-
-
-</html>>
+</html>
