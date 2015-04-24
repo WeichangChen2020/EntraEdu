@@ -18,7 +18,7 @@ if(!mysql_num_rows($result)){
 }else{
 	$course_arr = mysql_fetch_array($result);
 	for($i=0;$i<mysql_num_rows($result);$i++){
-		echo "<h2><a href=\"http://$course_arr[0]/manage/manage_student.php?id='admin'\">$course_arr[1]</a></h2>";
+		echo "<h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id='admin'\">$course_arr[0]</a></h2>";
 	}
 }
 
