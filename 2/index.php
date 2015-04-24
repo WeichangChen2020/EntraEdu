@@ -35,10 +35,10 @@ if(!mysql_num_rows($result)){
 <td>课程名称：<input type="text" name="course_name" ></td>
 </tr>
 <tr>
-<td>课程地址：<input type="text" name="course_url"></td>
+<td>课程地址：<input type="text" name="course_url" size=30></td>
 </tr>
 <tr>
-<td  align="center"><input type="submit" value="提交">
+<td  ><input type="submit" value="提交">
 </tr>
 </table>
 </form>   
