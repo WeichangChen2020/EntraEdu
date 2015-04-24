@@ -1,6 +1,8 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <center>
+        <h2>各课程列表</h2>
+        <hr/>
 <?php 
 include 'connect_database.php';
 
