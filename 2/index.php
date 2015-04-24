@@ -1,7 +1,8 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <body bgcolor="#AFEEEE">
     <center>
-        <h2>各课程列表</h2>
+        <h1>各课程列表</h1>
         <hr/>
 <?php 
 include 'connect_database.php';
@@ -40,4 +41,5 @@ if(!mysql_num_rows($result)){
 </table>
 </form>
     </center>
+    </body>
 </html>
