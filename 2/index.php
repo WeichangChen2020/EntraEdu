@@ -1,6 +1,6 @@
 <html>
 <?php 
-include 'conect_database.php';
+include 'connect_database.php';
 
 if($_POST){
 	$course_name=$_POST['course_name'];
