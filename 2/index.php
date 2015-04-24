@@ -33,6 +33,8 @@ if(!mysql_num_rows($result)){
 <table width='500' border='0'>
 <tr>
 <td>课程名称：<input type="text" name="course_name"></td>
+</tr>
+<tr>
 <td>课程地址：<input type="text" name="course_url"></td>
 </tr>
 <tr>
