@@ -44,8 +44,9 @@ if(!mysql_num_rows($result)){
 <td>课程名称：<input type="text" name="course_name" size=32 ></td>
 </tr>
 <tr>
-<td>课程地址：<input type="text" name="course_url" size=32>（如：cprogramplatform.sinaapp.com）</td>
+<td>课程地址：<input type="text" name="course_url" size=32></td>
 </tr>
+    <tr>（如：cprogramplatform.sinaapp.com）</tr>
 <tr>
 <td  ><input type="submit" value="提交">
 </tr>
