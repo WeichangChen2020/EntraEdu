@@ -1,7 +1,7 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <body bgcolor="#AFEEEE">
-    <center>
+    
         <h1>各课程列表</h1>
         <hr/>
 <?php 
@@ -36,10 +36,10 @@ if(!mysql_num_rows($result)){
 <td>课程地址：<input type="text" name="course_url"></td>
 </tr>
 <tr>
-<td><input type="submit" value="提交">
+<td colspan='2'><input type="submit" value="提交">
 </tr>
 </table>
 </form>
-    </center>
+    
     </body>
 </html>
