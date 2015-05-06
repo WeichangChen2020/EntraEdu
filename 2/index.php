@@ -37,8 +37,9 @@ if(!mysql_num_rows($result)){
 
 
 ?>
-新增课程名称
-        <hr/>
+
+<hr/>
+<h3>新增课程名称</h3>
 <form method='post' action=''>
 <table width='400' border='0'>
 <tr>
