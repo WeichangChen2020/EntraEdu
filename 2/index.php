@@ -2,7 +2,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <body bgcolor="#AFEEEE">
     
-        <h1>各课程列表</h1>
+        <h1>教学互动平台列表</h1>
         <hr/>
 <style type="text/css">
 a:link,a:visited{
