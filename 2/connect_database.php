@@ -11,7 +11,7 @@
 $mysql_database = "app_testroom";
 $mysql_database1 = "app_cprogramplatform";
 $link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
-mysql_select_db("$mysql_database",$link);//选择数据库
+//mysql_select_db("$mysql_database",$link);//选择数据库
 mysql_select_db("$mysql_database1",$link);
 $mysql  =   new SaeMysql();
 mysql_query("set names 'utf-8'");
