@@ -88,8 +88,7 @@ if(!mysql_num_rows($result)){
             //$content=file_get_contents('test.jpg');
             // echo $content;
             
-            //echo "<td> <img src='$application/$course_arr[4]' />  </td>";
-            echo "<td> <img src='testroom-upload.stor.sinaapp.com/c.jpg' />  </td>";
+            echo "<td> <img src='http://$application/$course_arr[4]' />  </td>";
             echo "</tr>";
 	}
 }
