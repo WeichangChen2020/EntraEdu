@@ -20,7 +20,7 @@ $app = array();
 
 
 $sql="select * from `app_cprogramplatform`.`classes`";
-$result=mysql_query($sql,$link1);
+$result=mysql_query($sql,$linkk);
 $row=mysql_fetch_array($result); 
 $count=count($row);//或者$count=mysql_num_rows($result); 
 echo $count;
