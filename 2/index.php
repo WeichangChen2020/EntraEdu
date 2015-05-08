@@ -41,7 +41,7 @@ if($_POST){
     //echo $app[0];
     $app = $word.$app[0];
     $sql="select * from $app.`classes`";
-	$result=mysql_query($sql,$linkk);
+	$result=mysql_query($sql,$link1);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
     $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
