@@ -30,7 +30,6 @@ echo $count;
 
 
 
-
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
@@ -54,6 +53,10 @@ if($_POST){
 	$time=date("Y-m-d H:i:s",time());
     $app = explode('.',$course_url);     
     //echo $app[0];
+    $sql="select * from $app[0].`classes`";
+	$result=mysql_query($sql,$link1);
+	$row=mysql_fetch_array($result);
+	$count=count($row);//或者$count=mysql_num_rows($result);
     
     //$sql_insert="insert into course values ('$course_name','$course_url','$time')";
     //$result=mysql_query($sql_insert);
