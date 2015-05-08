@@ -28,7 +28,7 @@ $word = 'app_';
     $stu_count=mysql_num_rows($result); //计算平台的人数
     echo $stu_count;*/    
 
-
+echo "<input type='button'onclick=\"window.location.href='http://$application/c.jpg'\" value=\"下载\">";
     
 
 if($_POST){
