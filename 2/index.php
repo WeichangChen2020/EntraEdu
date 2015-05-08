@@ -34,7 +34,9 @@ if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
     $course_introduce=$_POST['course_introduce'];
-   
+    echo $course_name;
+   echo $course_url;
+    echo $course_introduce;
     if(!empty($_FILES))
     {
 	  if($_FILES["file"]["error"] == 0)
