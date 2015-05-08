@@ -40,8 +40,8 @@ if(!mysql_num_rows($result)){
 
 <hr/>
 <h3>新增课程名称</h3>
-<form method='post' action='' border='1'>
-<table width='400' border='0'>
+<form method='post' action='' >
+<table width='400' border='1'>
 <tr>
     <td>课程名称：</td><td><input type="text" name="course_name" size=32 ></td>
 </tr>
