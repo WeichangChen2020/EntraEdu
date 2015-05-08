@@ -37,6 +37,7 @@ if($_POST){
     //echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
     
 	$time=date("Y-m-d H:i:s",time());
+    $app = substr($a,0,strrpos($course_url,'.'));     //新的$a值
 	$sql_insert="insert into course values ('$course_name','$course_url','$time')";
 	$result=mysql_query($sql_insert);
     
