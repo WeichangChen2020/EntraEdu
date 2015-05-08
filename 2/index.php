@@ -17,7 +17,7 @@ include 'connect_database.php';
 $folder_name='upload';
 $application='testroom';
 $app = array();
-
+$storage = 'testroom-task.stor.sinaapp.com';
 
 
 
