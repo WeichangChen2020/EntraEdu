@@ -19,7 +19,7 @@ $application='testroom';
 $app = array();
 $storage = 'testroom-task.stor.sinaapp.com';
 
-$t='cprogramplatform';
+$t='app_cprogramplatform';
  $sql="select * from 'app_'.$t.`classes`";
 	$result=mysql_query($sql,$linkk);
 	$row=mysql_fetch_array($result);
