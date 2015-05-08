@@ -83,9 +83,9 @@ if(!mysql_num_rows($result)){
             echo "<td> $course_arr[3]</td>";
             echo "<td> $course_arr[2]</td>";
             
-            header('content-type:$storage/$course_arr[4];');
-            $content=file_get_contents('test.jpg');
-            echo $content;
+            //header('content-type:$storage/$course_arr[4];');
+            //$content=file_get_contents('test.jpg');
+            // echo $content;
             
             echo "<td> <img src='$storage/$course_arr[4]' />  </td>";
             echo "</tr>";
