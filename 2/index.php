@@ -61,9 +61,14 @@ if(!mysql_num_rows($result)){
 	echo "还未添加课程";
 }else{
 	
-	for($i=0;$i<mysql_num_rows($result);$i++){
-        $course_arr = mysql_fetch_array($result);
-		echo "<h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id=admin\">$course_arr[0]</a></h2>";
+	
+?>
+        
+<table border='1'>        
+<?
+        for($i=0;$i<mysql_num_rows($result);$i++){
+            $course_arr = mysql_fetch_array($result);
+		   echo "<h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id=admin\">$course_arr[0]</a></h2>";
 	}
 }
 
