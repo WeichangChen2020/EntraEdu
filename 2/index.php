@@ -15,6 +15,7 @@ a:hover{
 <?php 
 include 'connect_database.php';
 $folder_name='upload';
+$application='testroom';
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
@@ -23,21 +24,17 @@ if($_POST){
     if(!empty($_FILES))
     {
 	  if($_FILES["file"]["error"] == 0)
-        {
-          //move_uploaded_file($_FILES["file"]["tmp_name"],$_FILES["file"]["name"]);
-			//echo $_FILES['file']['name'];
-          //move_uploaded_file($_FILES["file"]["tmp_name"],
-          //"adsweixin/task/" . $_FILES["file"]["name"]);
+        {          
             $file = new SaeStorage();
 			$filename=$_FILES['file']['name'];
             $file->upload($folder_name,$filename,$_FILES['file']['tmp_name']);//把用户传到SAE的文件转存到名为test的storage
          
 		}
 	}
-	$sql_file="insert into task_menu values ('$id','$time','$filename','$task_lab','$que_nums')";
-	$result=mysql_query($sql_file,$link);
-	echo "任务".$task_lab."—".$filename;
-    echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
+    //$sql_file="insert into task_menu values ('$id','$time','$filename','$task_lab','$que_nums')";
+    //$result=mysql_query($sql_file,$link);
+    //echo "任务".$task_lab."—".$filename;
+    //echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
     
 	$time=date("Y-m-d H:i:s",time());
 	$sql_insert="insert into course values ('$course_name','$course_url','$time')";
