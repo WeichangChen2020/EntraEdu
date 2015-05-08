@@ -52,7 +52,7 @@ if(!mysql_num_rows($result)){
     <td colspan="2">（如：cprogramplatform.sinaapp.com）</td>
 </tr>
 <tr>
-    <td rowspan="4">课程简介：</td>
+    <td rowspan="1">课程简介：</td>
     <td><textarea name="course_intorduce "cols="33"rows="4"></textarea> </td>
 </tr>
 <tr>
