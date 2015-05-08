@@ -42,6 +42,7 @@ if($_POST){
             $file = new SaeStorage();
 			$filename=$_FILES['file']['name'];
             $file->upload($folder_name,$filename,$_FILES['file']['tmp_name']);//把用户传到SAE的文件转存到名为test的storage
+          echo $filename;
          
 		}
 	}
