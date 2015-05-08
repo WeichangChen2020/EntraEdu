@@ -20,7 +20,7 @@ $app = array();
 $storage = 'testroom-task.stor.sinaapp.com';
 
 $t='app_cprogramplatform';
- $sql="select * from $t.`classes`";
+ $sql="select * from `app_cprogramplatform`.`classes`";
 	$result=mysql_query($sql,$link1);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
