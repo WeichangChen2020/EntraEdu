@@ -63,7 +63,7 @@ if($_POST){
     echo $time;
     $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
     // $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
-    $result=mysql_query($sql_insert);
+    $result=mysql_query($sql_insert,$link);
     
 }
 
