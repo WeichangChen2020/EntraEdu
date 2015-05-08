@@ -21,12 +21,12 @@ $storage = 'testroom-task.stor.sinaapp.com';
 $word = 'app_';
 
 
-$t=$word.'cprogramplatform';
+/*$t=$word.'cprogramplatform';
  $sql="select * from $t.`classes`";
 	$result=mysql_query($sql,$linkk);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
-    echo $stu_count;    
+    echo $stu_count;*/    
 
 
 
