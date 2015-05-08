@@ -76,7 +76,9 @@ if(!mysql_num_rows($result)){
             $course_arr = mysql_fetch_array($result);
             echo "<tr>";
             echo "<td><h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id=admin\">$course_arr[0]</a></h2></td>";
-            echo "<td> $course_arr[1]</td>";
+            echo "<td> $course_arr[3]</td>";
+            echo "<td> $course_arr[2]</td>";
+            echo "<td> <img src=’../manage/$course_arr[4]' />  </td>";
             echo "</tr>";
 	}
 }
