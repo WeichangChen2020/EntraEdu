@@ -88,7 +88,7 @@ if(!mysql_num_rows($result)){
             //$content=file_get_contents('test.jpg');
             // echo $content;
             
-            echo "<td> <img style='width:50px;' src='http://$application/$course_arr[4]' />  </td>";
+            echo "<td> <img style='width:150px;' src='http://$application/$course_arr[4]' />  </td>";
             echo "</tr>";
 	}
 }
