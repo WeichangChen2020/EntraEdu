@@ -95,7 +95,7 @@ if(!mysql_num_rows($result)){
 
 ?>
         
-    <img src='testroom-upload.stor.sinaapp.com/c.jpg' />    
+    <img src='../c.jpg' />    
         
         </table>
 <hr/>
