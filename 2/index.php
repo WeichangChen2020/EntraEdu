@@ -19,15 +19,6 @@ $application='testroom';
 $app = array();
 
 
-$sql="select * from `app_cprogramplatform`.`classes`";
-$result=mysql_query($sql,$linkk);
-$row=mysql_fetch_array($result); 
-$count=mysql_num_rows($result); 
-echo $count;
-
-
-
-
 
 
 if($_POST){
@@ -56,7 +47,8 @@ if($_POST){
     $sql="select * from $app[0].`classes`";
 	$result=mysql_query($sql,$link1);
 	$row=mysql_fetch_array($result);
-	$count=count($row);//或者$count=mysql_num_rows($result);
+    $count=mysql_num_rows($result); //计算平台的人数
+    echo $count;
     
     //$sql_insert="insert into course values ('$course_name','$course_url','$time')";
     //$result=mysql_query($sql_insert);
