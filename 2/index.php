@@ -21,15 +21,6 @@ $application='testroom-upload.stor.sinaapp.com';
 $word = 'app_';
 
 
-/*$t=$word.'cprogramplatform';
- $sql="select * from $t.`classes`";
-	$result=mysql_query($sql,$linkk);
-	$row=mysql_fetch_array($result);
-    $stu_count=mysql_num_rows($result); //计算平台的人数
-    echo $stu_count;*/    
-
-    
-
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
@@ -73,8 +64,6 @@ if(!mysql_num_rows($result)){
     <th> 平台简介</th>
     <th> 关注人数</th>
     <th> 二维码</th>
-<!--</tr>
-    <tr><td><img src='../c.jpg' />  </td></tr>-->
 <?
         for($i=0;$i<mysql_num_rows($result);$i++){
             $course_arr = mysql_fetch_array($result);
