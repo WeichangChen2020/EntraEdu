@@ -21,7 +21,7 @@ if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
     $course_introduce=$_POST['course_introduce'];
-    echo $course_url=$_POST['course_url'];
+    // echo $course_url=$_POST['course_url'];
     $app = explode($course_url,'.');     
     echo $app[0];
     if(!empty($_FILES))
