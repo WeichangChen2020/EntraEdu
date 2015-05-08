@@ -17,6 +17,17 @@ include 'connect_database.php';
 $folder_name='upload';
 $application='testroom';
 $app = array();
+
+
+$sql="select * from 'app_cprogramplatform'.'classes'";
+
+
+
+
+
+
+
+
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
