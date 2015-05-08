@@ -64,11 +64,20 @@ if(!mysql_num_rows($result)){
 	
 ?>
         
-<table border='1'>        
+<table border='1'>   
+<tr>
+    <th> 平台名称</th>
+    <th> 平台简介</th>
+    <th> 关注人数</th>
+    <th> 二维码</th>
+</tr>
 <?
         for($i=0;$i<mysql_num_rows($result);$i++){
             $course_arr = mysql_fetch_array($result);
-            echo "<tr><td><h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id=admin\">$course_arr[0]</a></h2></td></tr>";
+            echo "<tr>";
+            echo "<td><h2><a href=\"http://$course_arr[1]/manage/manage_student.php?id=admin\">$course_arr[0]</a></h2></td>";
+            echo "<td> $course_arr[1]</td>";
+            echo "</tr>";
 	}
 }
 
