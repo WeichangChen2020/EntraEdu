@@ -95,9 +95,8 @@ if(!mysql_num_rows($result)){
 
 
 ?>
-        
-    <img src='../c.jpg' />    
-        
+         
+  <input type='button'onclick="window.location.href='http://$storage/c.jpg'" value="下载">      
         </table>
 <hr/>
 <h3>新增课程名称</h3>
