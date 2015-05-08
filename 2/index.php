@@ -35,9 +35,6 @@ if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
     $course_introduce=$_POST['course_introduce'];
-    echo $course_name;
-   echo $course_url;
-    echo $course_introduce;
     if(!empty($_FILES))
     {
 	  if($_FILES["file"]["error"] == 0)
@@ -45,12 +42,10 @@ if($_POST){
             $file = new SaeStorage();
 			$filename=$_FILES['file']['name'];
             $file->upload($folder_name,$filename,$_FILES['file']['tmp_name']);//把用户传到SAE的文件转存到名为test的storage
-          //    echo $filename;
          
 		}
 	}
-    
-    
+        
 	$time=date("Y-m-d H:i:s",time());
     $app = explode('.',$course_url);     
     //echo $app[0];
@@ -59,10 +54,7 @@ if($_POST){
 	$result=mysql_query($sql,$linkk);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
-    echo $stu_count;
-    echo $time;
     $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
-    // $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
     $result=mysql_query($sql_insert,$link);
     
 }
