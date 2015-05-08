@@ -22,8 +22,7 @@ if($_POST){
 	$course_url=$_POST['course_url'];
     $course_introduce=$_POST['course_introduce'];
     // echo $course_url=$_POST['course_url'];
-    $app = explode($course_url,'.');     
-    echo $app[0];
+   
     if(!empty($_FILES))
     {
 	  if($_FILES["file"]["error"] == 0)
@@ -40,7 +39,7 @@ if($_POST){
     //echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
     
 	$time=date("Y-m-d H:i:s",time());
-    $app = explode($course_url,'.');     
+    $app = explode('.',$course_url);     
     echo $app[0];
     //$sql_insert="insert into course values ('$course_name','$course_url','$time')";
     //$result=mysql_query($sql_insert);
