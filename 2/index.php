@@ -18,9 +18,11 @@ include 'connect_database.php';
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
+    $course_introduce=$_POST['course_introduce'];
 	$time=date("Y-m-d H:i:s",time());
 	$sql_insert="insert into course values ('$course_name','$course_url','$time')";
 	$result=mysql_query($sql_insert);
+    
 }
 
 $sql = "select * from course";
@@ -53,7 +55,7 @@ if(!mysql_num_rows($result)){
 </tr>
 <tr>
     <td rowspan="1">课程简介：</td>
-    <td><textarea name="course_intorduce "cols="33"rows="4"></textarea> </td>
+    <td><textarea name="course_introduce "cols="33"rows="4"></textarea> </td>
 </tr>
 <tr>
     <td> <label for='file'>文件名:</label></td>
