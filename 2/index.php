@@ -46,10 +46,7 @@ if($_POST){
          
 		}
 	}
-    //$sql_file="insert into task_menu values ('$id','$time','$filename','$task_lab','$que_nums')";
-    //$result=mysql_query($sql_file,$link);
-    //echo "任务".$task_lab."—".$filename;
-    //echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
+    
     
 	$time=date("Y-m-d H:i:s",time());
     $app = explode('.',$course_url);     
