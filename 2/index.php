@@ -24,7 +24,7 @@ $t='app_cprogramplatform';
 	$result=mysql_query($sql,$linkk);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
-    //echo $stu_count;    
+    echo $stu_count;    
 
 
 
