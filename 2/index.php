@@ -74,8 +74,8 @@ if(!mysql_num_rows($result)){
     <th> 平台简介</th>
     <th> 关注人数</th>
     <th> 二维码</th>
-</tr>
-    <tr><td><img src='../c.jpg' />  </td></tr>
+<!--</tr>
+    <tr><td><img src='../c.jpg' />  </td></tr>-->
 <?
         for($i=0;$i<mysql_num_rows($result);$i++){
             $course_arr = mysql_fetch_array($result);
