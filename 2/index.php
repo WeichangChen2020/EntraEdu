@@ -19,7 +19,7 @@ $application='testroom';
 $app = array();
 
 
-$sql="select * from 'app_cprogramplatform'.'classes'";
+$sql="select * from `app_cprogramplatform`.`classes`";
 $result=mysql_fetch_array(mysql_query($sql)); 
 $count=count($result);//或者$count=mysql_num_rows($result); 
 echo $count;
