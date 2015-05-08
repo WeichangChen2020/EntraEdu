@@ -56,8 +56,8 @@ if(!mysql_num_rows($result)){
     <td><textarea name="course_intorduce "cols="33"rows="4"></textarea> </td>
 </tr>
 <tr>
-     <label for='file'>文件名:</label>
-<input type='file' name='file' id='file' />    
+    <td> <label for='file'>文件名:</label></td>
+    <td><input type='file' name='file' id='file' /></td>    
 </tr>
 <tr>
 <td colspan="2" align="center" ><input type="submit" value="提交">
