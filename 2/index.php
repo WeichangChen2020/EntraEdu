@@ -60,7 +60,7 @@ if(!mysql_num_rows($result)){
 <input type='file' name='file' id='file' />    
 </tr>
 <tr>
-<td  ><input type="submit" value="提交">
+<td colspan="2" ><input type="submit" value="提交">
 </tr>
 </table>
 </form>   
