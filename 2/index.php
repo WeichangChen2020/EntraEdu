@@ -53,7 +53,8 @@ if($_POST){
 	$time=date("Y-m-d H:i:s",time());
     $app = explode('.',$course_url);     
     //echo $app[0];
-    $sql="select * from $app[0].`classes`";
+    $app = $word.$app[0];
+    $sql="select * from $app.`classes`";
 	$result=mysql_query($sql,$linkk);
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
