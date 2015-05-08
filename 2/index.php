@@ -96,7 +96,7 @@ if(!mysql_num_rows($result)){
         </table>
 <hr/>
 <h3>新增课程名称</h3>
-<form method='post' action='' >
+<form method='post' action='' enctype='multipart/form-data'>
 <table width='400' border='1'>
 <tr>
     <td>课程名称：</td><td><input type="text" name="course_name" size=32 ></td>
