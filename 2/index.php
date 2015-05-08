@@ -60,7 +60,7 @@ if($_POST){
 	$row=mysql_fetch_array($result);
     $stu_count=mysql_num_rows($result); //计算平台的人数
     //echo $stu_count;
-    $sql_insert="insert into $mysql_database.course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
+    $sql_insert="insert into $mysql_database.`classes` values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
     $result=mysql_query($sql_insert);
     
 }
