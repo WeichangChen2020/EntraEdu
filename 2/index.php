@@ -43,16 +43,17 @@ if(!mysql_num_rows($result)){
 <form method='post' action=''>
 <table width='400' border='0'>
 <tr>
-     <td>课程名称：<input type="text" name="course_name" size=32 ></td>
+    <td>课程名称：</td><td><input type="text" name="course_name" size=32 ></td>
 </tr>
 <tr>
-     <td>课程地址：<input type="text" name="course_url" size=32></td>
+     <td>课程地址：</td><td><input type="text" name="course_url" size=32></td>
 </tr>
 <tr>
     <td>（如：cprogramplatform.sinaapp.com）</td>
 </tr>
 <tr>
-    <td>课程简介：<textarea name="course_intorduce "cols="33"rows="4"></textarea> </td>
+    <td rowspan="4">课程简介：</td>
+    <td><textarea name="course_intorduce "cols="33"rows="4"></textarea> </td>
 </tr>
 <tr>
      <label for='file'>文件名:</label>
