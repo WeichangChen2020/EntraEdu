@@ -28,7 +28,9 @@ $word = 'app_';
     $stu_count=mysql_num_rows($result); //计算平台的人数
     echo $stu_count;*/    
 
-
+$sql_insert="insert into course values ('course_name','course_url','26','course_introduce','filename','2015')";
+    $result=mysql_query($sql_insert);
+    
 
 if($_POST){
 	$course_name=$_POST['course_name'];
