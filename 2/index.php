@@ -58,7 +58,7 @@ if(!mysql_num_rows($result)){
 	
 ?>
         
-<table border='0'>   
+<table border='0' cellpadding="10">   
 <tr>
     <th> 平台名称</th>
     <th> 平台简介</th>
