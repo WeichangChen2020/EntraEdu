@@ -16,6 +16,7 @@ a:hover{
 include 'connect_database.php';
 $folder_name='upload';
 $application='testroom';
+$app = array();
 if($_POST){
 	$course_name=$_POST['course_name'];
 	$course_url=$_POST['course_url'];
@@ -37,8 +38,8 @@ if($_POST){
     //echo "<input type=\"button\"onclick=\"window.location.href='http://$application/$filename'\" value=\"下载\">";
     
 	$time=date("Y-m-d H:i:s",time());
-    $app = substr($a,0,strrpos($course_url,'.'));     //新的$app值
-    echo $app;
+    $app = explode($course_url,'.');     //新的$app值
+    echo $app[0];
     //$sql_insert="insert into course values ('$course_name','$course_url','$time')";
     //$result=mysql_query($sql_insert);
     
