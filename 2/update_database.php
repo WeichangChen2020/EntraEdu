@@ -23,7 +23,7 @@ if(!mysql_num_rows($result)){
         //$row=mysql_fetch_array($result_count);
         $stu_count=mysql_num_rows($result_count); //计算平台的人数
          echo $stu_count;
-        $sql_update = "update course set course_participants = '$stu_count' where id=$id";
+        $sql_update = "update course set course_participants = '$stu_count' where id='$id'";
         $result_up = mysql_query($sql_update);
     
     }
