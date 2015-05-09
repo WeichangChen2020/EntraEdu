@@ -10,9 +10,7 @@ if(!mysql_num_rows($result)){
         $app = mysql_fetch_array($result);
         $application = 'app_'.$app['app'];
         $id = $app['id'];
-        $user = $app['user'];
-        $password = $app['password'];
-        $links[$i]=mysql_connect('w.rdc.sae.sina.com.cn.'.':'.'3307',$user,$password); 
+        $links[$i]=mysql_connect('w.rdc.sae.sina.com.cn.'.':'.'3307',$app['user'],$app['password']); 
         mysql_select_db($mysql_database1,$links[$i]);//选择其他应用数据库
         $sql_count="select * from $application.`classes`";
         $result_count=mysql_query($sql_count,$links[$i]);
