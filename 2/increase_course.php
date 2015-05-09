@@ -1,6 +1,6 @@
 ﻿<html>
      <center>
-<h3 >新增课程名称</h3>
+<h1 >新增课程名称</h1>
 <form method='post' action='index.php' enctype='multipart/form-data'>
 <table width='500' height ='400'border='0' >
 <tr>
