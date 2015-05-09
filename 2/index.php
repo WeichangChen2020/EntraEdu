@@ -37,7 +37,7 @@ if($_POST){
 	}
         
 	$time=date("Y-m-d H:i:s",time());
-    $app = explode('.',$course_url);     
+    //$app = explode('.',$course_url);     
     //echo $app[0];
     // $app = $word.$app[0];
     //$sql="select * from $app.`classes`";
