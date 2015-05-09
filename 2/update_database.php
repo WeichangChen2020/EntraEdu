@@ -1,5 +1,10 @@
 ﻿<?php
 include 'connect_database.php';
+
+$sql_update = "update course set course_participants = 260 ";
+        $result_up = mysql_query($sql_update);
+
+
 $word = "app_";
 $links = array();
 $sql = "select * from app_database";
