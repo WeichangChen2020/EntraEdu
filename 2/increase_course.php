@@ -1,76 +1,27 @@
-﻿<?php
-/*
-    方倍工作室 http://www.cnblogs.com/txw1958/
-    CopyRight 2013 www.doucube.com  All Rights Reserved
-*/
-
-define("TOKEN", "weixin");
-$wechatObj = new wechatCallbackapiTest();
-if (isset($_GET['echostr'])) {
-    $wechatObj->valid();
-}else{
-    $wechatObj->responseMsg();
-}
-
-class wechatCallbackapiTest
-{
-    public function valid()
-    {
-        $echoStr = $_GET["echostr"];
-        if($this->checkSignature()){
-            echo $echoStr;
-            exit;
-        }
-    }
-
-    private function checkSignature()
-    {
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-
-        $token = TOKEN;
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode( $tmpArr );
-        $tmpStr = sha1( $tmpStr );
-
-        if( $tmpStr == $signature ){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public function responseMsg()
-    {
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
-        if (!empty($postStr)){
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $fromUsername = $postObj->FromUserName;
-            $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
-            $textTpl = "<xml>
-                        <ToUserName><![CDATA[%s]]></ToUserName>
-                        <FromUserName><![CDATA[%s]]></FromUserName>
-                        <CreateTime>%s</CreateTime>
-                        <MsgType><![CDATA[%s]]></MsgType>
-                        <Content><![CDATA[%s]]></Content>
-                        <FuncFlag>0</FuncFlag>
-                        </xml>";
-            if($keyword == "?" || $keyword == "？")
-            {
-                $msgType = "text";
-                $contentStr = date("Y-m-d H:i:s",time());
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
-            }
-        }else{
-            echo "";
-            exit;
-        }
-    }
-}
-?>
+﻿<html>
+<h3 >新增课程名称</h3>
+<form method='post' action='' enctype='multipart/form-data'>
+<table width='400' border='1'>
+<tr>
+    <td>课程名称：</td><td><input type="text" name="course_name" size=32 ></td>
+</tr>
+<tr>
+     <td>课程地址：</td><td><input type="text" name="course_url" size=32></td>
+</tr>
+<tr>
+    <td colspan="2">（如：cprogramplatform.sinaapp.com）</td>
+</tr>
+<tr>
+    <td rowspan="1">课程简介：</td>
+    <td><textarea name="course_introduce" cols="33" rows="4"></textarea> </td>
+</tr>
+<tr>
+    <td> 文件名:</td>
+    <td><input type='file' name='file'  /></td>    
+</tr>
+<tr>
+<td colspan="2" align="center" ><input type="submit" value="提交">
+</tr>
+</table>
+</form>   
+</html>
