@@ -17,7 +17,7 @@
     <td><textarea name="course_introduce" cols="47" rows="4"></textarea> </td>
 </tr>
 <tr>
-    <td align='right'> 文件名:</td>
+    <td align='right'> 课程二维码:</td>
     <td><input type='file' name='file'  /></td>    
 </tr>
 <tr>
