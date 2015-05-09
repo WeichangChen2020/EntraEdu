@@ -12,7 +12,7 @@
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);
    width:500px;
-   height:250px;
+   height:500px;
    box-shadow:  
           0 0 2px rgba(0, 0, 0, 0.2),  
           0 1px 30px rgba(0, 0, 0, .2),  
