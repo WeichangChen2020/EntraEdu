@@ -4,7 +4,7 @@
 <form method='post' action='index.php' enctype='multipart/form-data'>
 <table width='500' height ='500'border='1' >
 <tr>
-    <td align='right'width:300px;>课程名称：</td><td><input type="text" name="course_name" size=45 ></td>
+    <td align='right'>课程名称：</td><td><input type="text" name="course_name" size=45 ></td>
 </tr>
 <tr>
      <td align='right'>课程地址：</td><td><input type="text" name="course_url" size=45></td>
