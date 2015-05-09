@@ -12,6 +12,7 @@ a:hover{
  text-decoration:underline;  /*鼠标放上去有下划线*/
 }
 </style>
+        
 <?php 
 include 'connect_database.php';
 include 'update_database.php';
@@ -62,7 +63,7 @@ if(!mysql_num_rows($result)){
 	
 ?>
         
-<table border='1' cellpadding="20">   
+<table border='1' cellpadding="20" align='center'>   
 <tr>
     <th > 平台名称</th>
     <th> 平台简介</th>
