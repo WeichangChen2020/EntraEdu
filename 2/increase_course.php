@@ -10,7 +10,7 @@
      <td align='right'>课程地址：</td><td><input type="text" name="course_url" size=32></td>
 </tr>
 <tr>
-    <td colspan="2">（如：cprogramplatform.sinaapp.com）</td>
+    <td align='right'colspan="2">（如：cprogramplatform.sinaapp.com）</td>
 </tr>
 <tr>
     <td align='right' rowspan="1">课程简介：</td>
