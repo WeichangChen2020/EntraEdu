@@ -13,7 +13,7 @@ if(!mysql_num_rows($result)){
         $links[$i]=mysql_connect('w.rdc.sae.sina.com.cn.'.':'.'3307',$app['user'],$app['password']); 
         mysql_select_db($mysql_database1,$links[$i]);//选择其他应用数据库
         
-        if($link[$i]){
+        if($links[$i]){
         echo "hello";
           }
         
