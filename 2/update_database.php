@@ -26,6 +26,9 @@ if(!mysql_num_rows($result)){
          echo $stu_count;
         $sql_update = "update course set course_participants = '$stu_count' where id='$id'";
         $result_up = mysql_query($sql_update);
+        if($result_up){
+        echo "success";
+          }
     
     }
 
