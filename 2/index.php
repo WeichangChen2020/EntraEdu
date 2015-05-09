@@ -47,7 +47,7 @@ if($_POST){
     //$sql_insert="insert into course(coures_name,course_url,course_introduce,picture_url,time) values ('$course_name','$course_url','$course_introduce','$filename','$time')";
     $sql_insert = "INSERT INTO `course` (`course_name`, `course_url`, `course_introduce`, `picture_url`, `time`) VALUES ('$course_name','$course_url','$course_introduce','$filename','$time')";
     $result=mysql_query($sql_insert,$link);
-      echo"<script type='text/javascript'>alert('登陆成功');location='../index.php';</script>";  
+      echo"<script type='text/javascript'>alert('提交成功，等待管理员的审核');location='../index.php';</script>";  
     
 }
 
