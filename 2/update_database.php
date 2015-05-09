@@ -1,7 +1,7 @@
 ﻿<?php
 include 'connect_database.php';
-
-$sql_update = "update course set course_participants = 260 ";
+$stu_count = 261;
+$sql_update = "update course set course_participants = '$stu_count' ";
         $result_up = mysql_query($sql_update);
 
 
