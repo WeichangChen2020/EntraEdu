@@ -14,7 +14,7 @@
 </tr>
 <tr>
     <td align='right' rowspan="1">课程简介：</td>
-    <td><textarea name="course_introduce" cols="45" rows="4"></textarea> </td>
+    <td><textarea name="course_introduce" cols="47" rows="4"></textarea> </td>
 </tr>
 <tr>
     <td align='right'> 文件名:</td>
