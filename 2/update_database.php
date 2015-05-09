@@ -1,8 +1,5 @@
 ﻿<?php
 include 'connect_database.php';
-$stu_count = 261;
-$sql_update = "update course set course_participants = '$stu_count' ";
-        $result_up = mysql_query($sql_update);
 
 
 $word = "app_";
