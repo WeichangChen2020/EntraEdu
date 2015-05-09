@@ -1,6 +1,6 @@
 ﻿<html>
-     {background-color:#00FFFF}
-     
+     <body bgcolor="#00FFFF">
+    
      <style> 
  
 #increase  
@@ -52,4 +52,5 @@
 </table>
 </form>  
      </center>
+     </body>
 </html>
