@@ -2,7 +2,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <body bgcolor="#AFEEEE">
     
-        <h1>教学互动平台列表</h1>
+        <h1 align='center'>教学互动平台列表</h1>
         <hr/>
 <style type="text/css">
 a:link,a:visited{
@@ -86,7 +86,7 @@ if(!mysql_num_rows($result)){
       
         </table>
 <hr/>
-<h3 align='center'>新增课程名称</h3>
+<h3 >新增课程名称</h3>
 <form method='post' action='' enctype='multipart/form-data'>
 <table width='400' border='1'>
 <tr>
