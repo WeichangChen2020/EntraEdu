@@ -1,4 +1,5 @@
 ﻿<html>
+     <center>
 <h3 >新增课程名称</h3>
 <form method='post' action='index.php' enctype='multipart/form-data'>
 <table width='400' border='1' align='center'>
@@ -23,5 +24,6 @@
 <td colspan="2" align="center" ><input type="submit" value="提交">
 </tr>
 </table>
-</form>   
+</form>  
+     </center>
 </html>
