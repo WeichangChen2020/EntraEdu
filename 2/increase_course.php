@@ -2,7 +2,7 @@
      <center>
 <h3 >新增课程名称</h3>
 <form method='post' action='index.php' enctype='multipart/form-data'>
-<table width='500' height ='400'border='1' >
+<table width='500' height ='400'border='0' >
 <tr>
     <td align='right'>课程名称：</td><td><input type="text" name="course_name" size=45 ></td>
 </tr>
