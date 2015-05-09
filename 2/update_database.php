@@ -17,7 +17,7 @@ if(!mysql_num_rows($result)){
         echo "hello";
           }
         
-        
+        echo $application;
         $sql_count="select * from $application.`classes`";
         $result_count=mysql_query($sql_count,$links[$i]);
         //$row=mysql_fetch_array($result_count);
