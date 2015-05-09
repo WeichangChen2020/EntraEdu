@@ -64,7 +64,7 @@ if(!mysql_num_rows($result)){
         
 <table border='1' cellpadding="20">   
 <tr>
-    <th align='center'> 平台名称</th>
+    <th > 平台名称</th>
     <th> 平台简介</th>
     <th> 关注人数</th>
     <th> 二维码</th>
@@ -72,7 +72,7 @@ if(!mysql_num_rows($result)){
         for($i=0;$i<mysql_num_rows($result);$i++){
             $course_arr = mysql_fetch_array($result);
             echo "<tr>";
-            echo "<td style='width:300px;'><h2><a href=\"http://$course_arr[2]/manage/manage_student.php?id=admin\">$course_arr[1]</a></h2></td>";
+            echo "<td align='center' style='width:300px;'><h2><a href=\"http://$course_arr[2]/manage/manage_student.php?id=admin\">$course_arr[1]</a></h2></td>";
             echo "<td style='width:350px;'><h3> $course_arr[4]</h3></td>";
             echo "<td style='width:100px;'><h3> $course_arr[3]</h3></td>";
             echo "<td> <img style='width:150px;' src='http://$application/$course_arr[5]' />  </td>";
