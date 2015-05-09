@@ -51,7 +51,7 @@ if($_POST){
     
 }
 
-$sql = "select * from course";
+$sql = "select * from course where course_participants != 0";
 $result = mysql_query($sql,$link);
 if(!mysql_num_rows($result)){
 	echo "还未添加课程";
