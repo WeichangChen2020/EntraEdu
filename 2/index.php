@@ -87,6 +87,6 @@ if(!mysql_num_rows($result)){
       
         </table>
 <hr/>
-<p align ='center'><a href='increase_course.php'>新增课程</a></p>
+<p align ='right'><a href='increase_course.php'>新增课程</a></p>
 </body>
 </html>
