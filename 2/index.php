@@ -18,7 +18,7 @@ $folder_name='upload';
 $application='testroom';
 $app = array();
 $application='testroom-upload.stor.sinaapp.com';
-$word = 'app_';
+//$word = 'app_';
 
 
 if($_POST){
@@ -39,12 +39,12 @@ if($_POST){
 	$time=date("Y-m-d H:i:s",time());
     $app = explode('.',$course_url);     
     //echo $app[0];
-    $app = $word.$app[0];
-    $sql="select * from $app.`classes`";
-	$result=mysql_query($sql,$link1);
-	$row=mysql_fetch_array($result);
-    $stu_count=mysql_num_rows($result); //计算平台的人数
-    $sql_insert="insert into course values ('$course_name','$course_url','$stu_count','$course_introduce','$filename','$time')";
+    // $app = $word.$app[0];
+    //$sql="select * from $app.`classes`";
+    //$result=mysql_query($sql,$link1);
+    //$row=mysql_fetch_array($result);
+    //$stu_count=mysql_num_rows($result); //计算平台的人数
+    $sql_insert="insert into course('couesr_name','course_url','course_introduce','picture_url','time') values ('$course_name','$course_url','$course_introduce','$filename','$time')";
     $result=mysql_query($sql_insert,$link);
     
 }
