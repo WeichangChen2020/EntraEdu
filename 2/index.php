@@ -7,6 +7,7 @@
         <hr/>
 <style type="text/css">
 a:link,a:visited{
+        color:#8A2BE2;
  text-decoration:none;  /*超链接无下划线*/
 }
 a:hover{
