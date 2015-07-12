@@ -1,6 +1,7 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <body bgcolor="#AFEEEE">
+  <!--  <body bgcolor="#AFEEEE"> -->
+    <body>
     
         <h1 align='center'>教学互动平台列表</h1>
         <hr/>
