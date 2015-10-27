@@ -72,8 +72,8 @@ if(!mysql_num_rows($result)){
     <th> 关注人数</th>
     <th> 二维码</th>
 <?
-    // for($i=0;$i<mysql_num_rows($result);$i++){
-      for($i=0;$i<1;$i++)      
+     for($i=0;$i<mysql_num_rows($result)-2;$i++){
+    //for($i=0;$i< 1;$i++)      
             $course_arr = mysql_fetch_array($result);
             echo "<tr>";
             echo "<td align='center' style='width:300px;'><h2><a href=\"http://$course_arr[2]/manage/manage_student.php?id=admin\">$course_arr[1]</a></h2></td>";
