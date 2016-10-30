@@ -33,13 +33,13 @@ class WeichatController extends Controller{
             $wechat = new Wechat($token, $appid, $crypt);
             $user   = new UserController();
 
-           
+            /*
             if(!empty($data['Content']))  $record['messageContent'] = $data['Content'];
             if(!empty($userInfo['name'])) $record['name'] = $userInfo['name'];
             if(!empty($userInfo['class'])) $record['class'] = $userInfo['class'];
             if(!empty($userInfo['number'])) $record['number'] = $userInfo['number'];
 
-            /*if($data && is_array($data)){
+           if($data && is_array($data)){
                 file_put_contents('./data.json', json_encode($data));
                 //判断是否注册
                 if($user->isRegister($data['FromUserName']))
