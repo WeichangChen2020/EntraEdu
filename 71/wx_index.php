@@ -57,7 +57,7 @@ class wechatCallbackapiTest
                 {
               		if($keyword == '1'){
 						$msgType = "text";
-						$contentStr = "http://8080.dataplatform.applinzi.com/index.php/Home/team";
+						$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
