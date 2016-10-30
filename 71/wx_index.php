@@ -4,9 +4,9 @@
   */
 
 //define your token
-define("TOKEN", "weiphp");//改成自己的TOKEN 
-define('APP_ID', 'wxf6f0d8764ddf2176');//改成自己的APPID 
-define('APP_SECRET', '03d684e2d937a9df9fd0f94df9c901b3');//改成自己的APPSECRET 
+define("TOKEN", "qyh");//改成自己的TOKEN 
+define('APP_ID', 'wx035846a807521cd0');//改成自己的APPID 
+define('APP_SECRET', 'yIimR2UShx2uDVbgJq7fofjQnCuAXs0Js0UBJmVpva8');//改成自己的APPSECRET 
 
 //$wechatObj = new wechatCallbackapiTest();
 $wechatObj = new wechatCallbackapiTest(APP_ID,APP_SECRET); 
