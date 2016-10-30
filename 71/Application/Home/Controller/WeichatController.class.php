@@ -25,9 +25,9 @@ class WeichatController extends Controller{
     public function index($id = ''){
         //调试
         try{
-            $appid = ''; //AppID(应用ID)
-            $token = ''; //微信后台填写的TOKEN
-            $crypt = ''; //消息加密KEY（EncodingAESKey）
+            $appid = 'wx035846a807521cd0'; //AppID(应用ID)
+            $token = 'qyh'; //微信后台填写的TOKEN
+            $crypt = 'yIimR2UShx2uDVbgJq7fofjQnCuAXs0Js0UBJmVpva8'; //消息加密KEY（EncodingAESKey）
             
             /* 加载微信SDK */
             $wechat = new Wechat($token, $appid, $crypt);
