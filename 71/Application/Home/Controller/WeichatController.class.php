@@ -39,14 +39,14 @@ class WeichatController extends Controller{
             if(!empty($userInfo['class'])) $record['class'] = $userInfo['class'];
             if(!empty($userInfo['number'])) $record['number'] = $userInfo['number'];
 
-            if($data && is_array($data)){
+            /*if($data && is_array($data)){
                 file_put_contents('./data.json', json_encode($data));
                 //判断是否注册
                 if($user->isRegister($data['FromUserName']))
                     $this->user($wechat, $data);
                 else 
                     $this->passer($wechat,$data);
-            }
+            }*/
         } catch(\Exception $e){
             file_put_contents('./error.json', json_encode($e->getMessage()));
         }
