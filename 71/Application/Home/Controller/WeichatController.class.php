@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // | Time: 2016-07-16  19:33
 // +----------------------------------------------------------------------
-namespace Student\Controller;
+namespace Home\Controller;
 use Think\Controller;
 use Com\Wechat;
 use Com\WechatAuth;
