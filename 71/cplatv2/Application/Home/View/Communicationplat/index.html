@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>互动平台</title>
+</head>
+<body>
+
+<div class="content">
+	<volist name="table" id="tab">
+	{$i}.{$tab.name}({$tab.time})</br>{$tab.content}</br>{$tab.r1}</br>
+	<a href="{:U('replay',array('num'=>$i))}" >回复</a></br></br><hr>
+
+
+	</volist>
+
+	
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
