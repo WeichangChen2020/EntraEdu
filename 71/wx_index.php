@@ -36,10 +36,10 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-		
+
       	//extract post data
 		if (!empty($postStr)){
-                echo "欢迎关注qyh的微信公众号";
+                
               	$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
                 $fromUsername = $postObj->FromUserName;
                 $toUsername = $postObj->ToUserName;
@@ -87,6 +87,7 @@ class wechatCallbackapiTest
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
+					else echo "欢迎关注qyh的微信公众号";
                 }else{
                 	echo "Input something...";
                 }
