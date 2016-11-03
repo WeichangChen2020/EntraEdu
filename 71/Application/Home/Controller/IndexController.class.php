@@ -7,12 +7,35 @@ class IndexController extends Controller {
 
 	public function login (){
 		layout(false);
+		/*$openid = I('get.openid');*/
+		$openid=isset($_GET['openid'])?I('get.openid'):session('openid');
+        //echo 'a'.$openid;
+        session('openid',$openid);
 		$this->display();	
-	}
+
+		
+        	}
 
 
 
     public function index(){
+		$openid = I('get.openid');
+        //echo 'a'.$openid;
+        session('openid',$openid);
+
+        $Info=M('user');
+        $data= $Info->where("openid='{$openid}'")->find();
+        if($data)
+        {
+            $this->success('充电成功！退出并前往其他页面',$this->display(),3);//不确定这样display行不行
+                //session('class',$data['class']);
+                //session('number',$data['number']);
+                //session('perimission',$data['perimission']);
+        }
+        else
+        {
+            $this->success('未注册，请完成注册',U('Register/register'));
+        }
 
 		$this->display();
     }
