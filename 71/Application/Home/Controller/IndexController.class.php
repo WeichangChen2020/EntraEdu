@@ -23,9 +23,9 @@ class IndexController extends Controller {
         //echo 'a'.$openid;
         session('openid',$openid);
 
-        $Info=M('user');
-        $data= $Info->where("openid='{$openid}'")->find();
-        if($data)
+        /*$Info=M('user');
+        $data= $Info->where("id='{$openid}'")->find();*/
+        if(1)
         {
             $this->success('充电成功！退出并前往其他页面',$this->display(),3);//不确定这样display行不行
                 //session('class',$data['class']);
