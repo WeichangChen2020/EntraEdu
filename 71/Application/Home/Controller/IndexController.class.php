@@ -25,7 +25,7 @@ class IndexController extends Controller {
 
         /*$Info=M('user');
         $data= $Info->where("id='{$openid}'")->find();*/
-        if(1)
+      /*  if(1)
         {
             $this->success('充电成功！退出并前往其他页面',$this->display(),3);//不确定这样display行不行
                 //session('class',$data['class']);
@@ -35,7 +35,7 @@ class IndexController extends Controller {
         else
         {
             $this->success('未注册，请完成注册',U('Register/register'));
-        }
+        }*/
 
 		$this->display();
     }
