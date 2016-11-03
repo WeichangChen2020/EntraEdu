@@ -61,6 +61,8 @@ class wechatCallbackapiTest
 						 $contentStr = "<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/login/openid/$postObj->FromUserName\">初始界面</a>";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
+						echo "</br>";
+						echo "$postObj->FromUserName";
 					}
 					if($keyword == '2'){
 						$msgType = "text";
