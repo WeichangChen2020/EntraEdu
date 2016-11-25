@@ -9,8 +9,11 @@ class IndexController extends Controller {
 		layout(false);
 		/*$openid = I('get.openid');*/
 		$openid=isset($_GET['openid'])?I('get.openid'):session('openid');
+		session('openid',$openid);
+		
+
         //echo 'a'.$openid;
-        session('openid',$openid);
+        /*session('openid',$openid);*/
 		$this->display();	
 
 		
@@ -39,6 +42,29 @@ class IndexController extends Controller {
 
 		$this->display();
     }
+
+
+    public function add(){
+    	$user=I('post.');
+    	$Db=M('user');
+    	$data['id']=session.openid;
+    	$data['name']=$user.name;
+    	$data['password']=$user.password;
+    	$Db->add($data);
+
+
+
+
+
+
+
+    }
+    
+
+
+
+
+
 
 
     public function check(){

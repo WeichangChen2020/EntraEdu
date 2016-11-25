@@ -4,13 +4,13 @@
 	<title></title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- bootstrap-css -->
-<link href="/cplatv2/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="/71/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- //bootstrap-css -->
 <!-- css -->
-<link href="/cplatv2/Public/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/71/Public/css/style.css" rel='stylesheet' type='text/css' />
 <!-- //css -->
-<script src="/cplatv2/Public/js/jquery-1.11.1.min.js"> </script>	
-<script src="/cplatv2/Public/js/bootstrap.js"></script>
+<script src="/71/Public/js/jquery-1.11.1.min.js"> </script>	
+<script src="/71/Public/js/bootstrap.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -82,9 +82,9 @@
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 ">
 
-<link rel="stylesheet" href="/cplatv2/Public/css/weui.min.css">
-<link rel="stylesheet" href="/cplatv2/Public/css/jquery-weui.css">
-<link rel="stylesheet" href="/cplatv2/Public/css/demos.css">
+<link rel="stylesheet" href="/71/Public/css/weui.min.css">
+<link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
+<link rel="stylesheet" href="/71/Public/css/demos.css">
 
   </head>
 
@@ -96,12 +96,9 @@
     </header>
 
     <div class="weui_grids">
-      <a href="/cplatv2/index.php/Home/Communicationplat/index
-
-
-      " class="weui_grid js_grid">
+      <a href="<?php echo U('Home/Communicationplat/index');?>" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_button.png" alt="">
+          <img src="/71/Public/images/icon_nav_button.png" alt="">
         </div>
         <p class="weui_grid_label">
           互动平台
@@ -109,7 +106,7 @@
       </a>
       <a href="cell.html" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_cell.png" alt="">
+          <img src="/71/Public/images/icon_nav_cell.png" alt="">
         </div>
         <p class="weui_grid_label">
           List
@@ -117,7 +114,7 @@
       </a>
       <a href="index.php?p=admin&c=user&a=add" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_cell.png" alt="">
+          <img src="/71/Public/images/icon_nav_cell.png" alt="">
         </div>
         <p class="weui_grid_label">
           Form
@@ -125,7 +122,7 @@
       </a>
       <a href="toast.html" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_toast.png" alt="">
+          <img src="/71/Public/images/icon_nav_toast.png" alt="">
         </div>
         <p class="weui_grid_label">
           Toast
@@ -133,7 +130,7 @@
       </a>
       <a href="dialog.html" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_dialog.png" alt="">
+          <img src="/71/Public/images/icon_nav_dialog.png" alt="">
         </div>
         <p class="weui_grid_label">
           Dialog
@@ -141,23 +138,23 @@
       </a>
       <a href="index.php?p=admin&c=user&a=show" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_article.png" alt="">
+          <img src="/71/Public/images/icon_nav_article.png" alt="">
         </div>
         <p class="weui_grid_label">
           Show
         </p>
       </a>
-      <a href="index.php?p=admin&c=user&a=panel" class="weui_grid js_grid">
+      <a href="<?php echo U('Home/Game/index');?>" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_panel.png" alt="">
+          <img src="/71/Public/images/icon_nav_panel.png" alt="">
         </div>
         <p class="weui_grid_label">
-          Panel
+          狼人杀
         </p>
       </a>
       <a href="index.php?p=admin&c=user&a=ptr" class="weui_grid js_grid">
         <div class="weui_grid_icon">
-          <img src="/cplatv2/Public/images/icon_nav_ptr.png" alt="">
+          <img src="/71/Public/images/icon_nav_ptr.png" alt="">
         </div>
         <p class="weui_grid_label">
           下拉刷新
@@ -171,8 +168,8 @@
         color: #09BB07;
       }
     </style>
-    <script src="/cplatv2/Public/js/jquery-2.1.4.js"></script>
-<script src="/cplatv2/Public/js/jquery-weui.js"></script>
+    <script src="/71/Public/js/jquery-2.1.4.js"></script>
+<script src="/71/Public/js/jquery-weui.js"></script>
 
     </body>
 
