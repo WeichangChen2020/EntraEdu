@@ -84,6 +84,12 @@ class wechatCallbackapiTest
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
+					if($keyword == '5'){
+						$msgType = "text";
+						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/Index/index";
+						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						echo $resultStr;
+					}
 					if($keyword == 'cd'){
 						$msgType = "text";
 
