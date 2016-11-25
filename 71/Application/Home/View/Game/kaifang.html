@@ -1,0 +1,344 @@
+
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+<title>狼人</title>
+<style type="text/css">
+
+.gridContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+#LayoutDiv1 {
+  clear: both;
+  float: left;
+  margin-left: 0;
+  width: 100%;
+  display: block;
+}
+
+body {
+  background-color:#f8e6ca;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.box {
+  border:2px #b08023 solid;
+  background-color:#f8e6ca;
+  box-shadow:0 2px #fbf4eb;
+  border-radius:5px;
+  }
+#top_box {
+  margin:10px auto;
+  width:100%;}
+h1 {
+  height:35px;
+  margin:15px auto;
+  display:block;
+  font-size:28px;
+  text-align:center;
+  color:#824818;
+  line-height:33px;}
+.b_form{
+  display:block;
+  float:left;
+  line-height:33px;
+  margin-left:0px;
+  border:none}
+  
+.b_select{
+  width:100px;
+  background:#fff;
+  height:33px;
+  font-size:18px;
+  text-align:center;
+  line-height:33px;
+  border:2px #b08023 solid;} 
+  
+.gallery {
+  margin:5px auto 5px auto;
+  font-size:22px;
+  color:#824818;
+}
+#k_gallery {width:95%;}
+#k_gallery td {width:33%; text-align:center; vertical-align:central}
+
+.main_btn { 
+  background-color:#B08023; 
+  border:2px #b08023 solid; 
+  box-shadow:0 1px 2px #fbf4eb; 
+  border-radius:10px; 
+  text-align:center; 
+  color:#FFFFFF;
+  display:block;
+  font-size:22px;
+  -webkit-appearance: none;
+}
+
+#creategame {margin:10px auto 0 auto;width:100%; height:60px;font-size:32px; line-height:100%;margin-bottom:30px }
+#middle_box {width:100%}
+#w_btn {margin:10px auto 0 auto;width:100%; height:60px;font-size:32px; line-height:100%; margin-bottom:30px}
+#w_gallery  {width:100%}
+#w_gallery td {width:50%; text-align:center; vertical-align:central}
+
+.input_table{width:95%; margin:5px auto;
+  font-size:22px;
+  color:#824818}
+.input_table td{  height:45px; line-height:45px; vertical-align:central; margin:10px auto}
+.random{width:85%; height:45px;}
+.text_input{
+  border:2px #b08023 solid; 
+  width:85%; 
+  margin-right:5px; 
+  height:35px;
+  background-color:#fff;
+  box-shadow:0 2px #fbf4eb;
+  border-radius:5px;
+  font-size: 22px;
+}
+  
+.pic_box {
+  width:100%; 
+  text-align:center; 
+  font-size:28px; 
+  color:#824818;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  }
+.info_box {text-align:center; font-size:22px; color:#824818}
+
+.room_info {text-align:center; margin:10px auto;font-size:22px; color:#824818; line-height:32px}
+.room_info p{height:32px}
+ hr {
+ background-color:#c49e6a; 
+ height:2px; 
+ box-shadow:0 2px #faefdc; 
+ border:none; 
+ width:100%; 
+ margin:20px auto
+ } 
+.about_info {width:90%; margin:auto;text-align:center; font-size:19px; color:#824818; line-height:32px}
+
+
+.info_table {width:100%; line-height:40px}
+.red {color:#F00; font-style:italic}
+.refresh {width:90%; height:45px; margin:auto;  font-size:22px; font-weight:700; line-height:40px}
+
+.langrensha_select {
+  width:95%;
+  background:#fff;
+  height:33px;
+  font-size:18px;
+  line-height:33px;
+  border:2px #b08023 solid;
+  text-align: center;
+  /*padding: 5px 18px;*/
+  padding-right: 2px;
+  -webkit-appearance: none;
+  vertical-align: middle;
+}
+
+.am_tab{font-size:22px; color:#F00!important; text-decoration:underline}
+.small {
+  font-size:18px;
+}
+.tips
+{
+  width:100%;
+  font-size: 18px;
+  margin:auto;
+  text-align:center; 
+  color:#824818; 
+  line-height:32px
+}
+a.ads
+{
+  font-size:18px;
+  color:#2d64b3;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="gridContainer clearfix">
+<form action="http://zhuoyouwx.weapp.me//game/create_lr_manual_submit" method="post">
+<input type="hidden" name="wx_userid" value="oOWHXjrtTI80zwnROS18OwLekWZw" />
+  <div id="top_box" class="box clearfix">
+    <table class="input_table">
+      <tr>
+        <td colspan="3">
+          <span style="display:inline-block; margin-right:1%;  text-align:right">人数：</span>
+          <select class="langrensha_select" style="margin-right:5%; width:80px;" name="people" id="people" onchange="changeAll(this.value)">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+          </select><a class="am_tab" href="#" onclick="changeAuto();" id="sdpz">自动配置</a></td>
+      </tr>
+      <tr align="center" valign="middle" >
+        <td height="50" colspan="3"><hr/></td>
+      </tr>
+      <tr>
+        <td align="left" width="42%">狼人数：</td>
+        <td><select class="langrensha_select" style="width:80px;" name="langren" id="langren" onchange="changeLr(this.value)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select></td>
+          <td></td>
+      </tr>
+      <tr>
+        <td align="left">村民数：</td>
+        <td colspan="2"><input type="text" style="width: 50px;border:0;background-color: #f8e6ca;font-size:22px;" class="red" value="2" id="cunmin" name="cunmin" readonly="readonly"/></td>
+      </tr>
+      <tr class="small">
+        <td width="33%" ><input type="checkbox" name="yyj" id="yyj" value="1" checked="checked" /> 预言家</td>
+        <td width="33%" ><input type="checkbox" name="nvwu" id="nvwu" value="1" checked="checked" /> 女巫</td>
+        <td width="33%" ><input type="checkbox" name="lieren" id="lieren" value="1"  /> 猎人</td>
+      </tr>
+      <tr class="small">
+       <td width="33%" ><input type="checkbox" name="qbt" id="qbt" value="1" checked="checked" /> 丘比特</td>
+        <td width="33%" ><input type="checkbox" name="shouwei" id="shouwei" value="1" /> 守卫</td>
+        <td width="33%" ><input type="checkbox" name="baichi" id="baichi" value="1"  /> 白痴</td>
+      </tr>
+      
+    </table>
+  </div>
+  <input id="creategame" type="submit" class="main_btn" value="创建游戏" />
+</form></div>
+
+<script type="text/javascript" src="http://zhuoyouwx.weapp.me/resource/js/jquery.min.js" ></script>
+<script type="text/javascript">
+<!--
+var people = 6;
+
+if(people > 6) {
+  $("#people").get(0).selectedIndex = people - 6;
+  changeAll(people);
+}
+
+$(":checkbox").click(function(v) {
+  var cm = parseInt($("#cunmin").val());
+  if($(this).attr("checked")) {
+    if(cm <= 1) {
+      err("人数超过上限");
+      $(this).removeAttr("checked");
+    }
+    else $("#cunmin").val(cm-1);
+  }
+  else $("#cunmin").val(cm+1);
+});
+
+
+function changeAll(people) {
+  if(people >= 8) {
+    $("#lieren").attr("checked","checked");
+  }
+  else $("#lieren").removeAttr("checked");
+
+  if(people >= 10) {
+    $("#shouwei").attr("checked","checked");
+  }
+  else $("#shouwei").removeAttr("checked");
+
+  if(people >= 11) {
+    $("#baichi").attr("checked","checked");
+  }
+  else $("#baichi").removeAttr("checked");
+
+  count = 0;
+  $(":checkbox[checked]").each(function() {
+    count = count + 1;
+  });
+  
+  var lr = 0;
+  if(people >= 6 && people <=  7) {
+    lr = 1;
+  }
+
+  if(people >= 8 && people <=  11) {
+    lr = 2;
+  }
+
+  if(people >= 12 && people <=  15) {
+    lr = 3;
+  }
+
+  if(people >= 16 && people <= 19) {
+    lr = 4;
+  }
+
+  if(people >=  20 && people <= 23) {
+    lr = 5;
+  }
+
+  if(people >= 24 && people <= 27) {
+    lr = 6;
+  }
+
+  if(people >= 28)
+    lr = 7;
+  
+  $("#langren").get(0).selectedIndex = lr - 1;
+  
+  var cunmin = people-count-$("#langren").val();
+  if(cunmin > 0) {
+    $("#cunmin").val(cunmin);
+  }
+  else {
+    err("总人数错误");
+    $("#cunmin").val(people-count-1);
+    $("#langren").get(0).selectedIndex=0
+  }
+}
+
+function changeLr(lr) {
+  count = 0;
+  $(":checkbox[checked]").each(function() {
+    count = count + 1;
+  });
+
+  people = $("#people").val();
+
+  var cunmin = people - lr - count;
+  if(cunmin > 0) {
+    $("#cunmin").val(cunmin);
+  }
+  else {
+    err("人数超过上限");
+    $("#cunmin").val(people-count-1);
+    $("#langren").get(0).selectedIndex=0
+  }
+}
+
+function changeAuto() {
+  href = "http://zhuoyouwx.weapp.me/game/create_lr_auto/oOWHXjrtTI80zwnROS18OwLekWZw";
+  href += "?people="+$("#people").val();
+  window.location.href = href;
+}
+function err(info) {
+  alert(info);
+}
+
+//-->
+</script></body>
+</html>
