@@ -68,7 +68,7 @@ class wechatCallbackapiTest
 					}
 					if($keyword == '2'){
 						$msgType = "text";
-						$contentStr = "<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">初始界面</a>";
+						$contentStr = "<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">游客</a>";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
