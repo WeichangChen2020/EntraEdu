@@ -14,7 +14,7 @@ return array(
 	'SESSION_AUTO_START' => true, //是否开启session
 	'TMPL_PARSE_STRING'  =>array(
 		'__LOGPUB__'     => __ROOT__.'/Public/Login/',    
-		'__PUBLIC__'     => '71/Public/Home/', // 增加新的images类库路径替换规则    
+		'__PUBLIC__'     => '/Public/Home/', // 增加新的images类库路径替换规则    
 		'__UPLOAD__'  	 => '/Public/Upload', //上传路径
 		'__TEST__'       => '/Public/Test/',
 		'/Public/Upload' => $st->getUrl('public','Upload'),
