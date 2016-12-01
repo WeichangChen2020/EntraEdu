@@ -1,16 +1,16 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title><?php echo ($title); ?> </title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- bootstrap-css -->
-<link href="/cplatv2/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="/71/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- //bootstrap-css -->
 <!-- css -->
-<link href="/cplatv2/Public/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/71/Public/css/style.css" rel='stylesheet' type='text/css' />
 <!-- //css -->
-<script src="/cplatv2/Public/js/jquery-1.11.1.min.js"> </script>	
-<script src="/cplatv2/Public/js/bootstrap.js"></script>
+<script src="/71/Public/js/jquery-1.11.1.min.js"> </script>	
+<script src="/71/Public/js/bootstrap.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -74,8 +74,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>互动平台</title>
+  
+    <title>互动平台</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+<link rel="stylesheet" href="/71/Public/css/weui.min.css">
+<link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
+<link rel="stylesheet" href="/71/Public/css/demos.css">
+
 </head>
+	
+
 <body>
 
 <div class="content">

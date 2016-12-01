@@ -4,6 +4,7 @@ return array(
 	'TMPL_PARSE_STRING'  =>array(    
 	
 	'__BASEURL__'=>'cplatv2/index.php'
+
 	),
 	
 );

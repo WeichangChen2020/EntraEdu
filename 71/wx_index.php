@@ -55,9 +55,6 @@ class wechatCallbackapiTest
 							</xml>";             
 				if(!empty($keyword))
                 {
-              		
-				
-
               		if($keyword == '1'){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
@@ -68,7 +65,7 @@ class wechatCallbackapiTest
 					}
 					if($keyword == '2'){
 						$msgType = "text";
-						$contentStr = "<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">游客</a>";
+						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
@@ -81,12 +78,6 @@ class wechatCallbackapiTest
 					if($keyword == '4'){
 						$msgType = "text";
 						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/wrong";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-					}
-					if($keyword == '5'){
-						$msgType = "text";
-						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/Index/index";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}

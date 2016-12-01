@@ -1,7 +1,7 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title><?php echo ($title); ?> </title>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- bootstrap-css -->
 <link href="/71/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
