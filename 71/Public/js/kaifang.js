@@ -19,10 +19,7 @@ $(":checkbox").click(function(v) {
 
 
 function changeAll(people) {
-  if(people >= 8) {
-    $("#qbt").attr("checked",true);
-  }
-  else $("#lieren").removeAttr("checked");
+ 
 
   if(people >= 10) {
     $("#shouwei").attr("checked","checked");
