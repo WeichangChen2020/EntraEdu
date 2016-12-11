@@ -66,17 +66,10 @@ class wechatCallbackapiTest
            	 		if($link)
            			{	
                         	//mysql_select_db('app_cprogramplatform',$link);
-              			$mysql  =   new SaeMysql();
-              			$sql="select * from `$_classes` where id ='$postObj->FromUserName'";
-             			$result=mysql_query($sql,$link);
-              			$name=mysql_result($result,0,1);
-              			$number=mysql_result($result,0,2);
-              			$class=mysql_result($result,0,3);
-                            /*    $content = "欢迎".$name."同学关注C语言教学互动平台!\n班级：".$class."，学号：".$number." \n发送1：注册个人信息 \n发送2：查询课程安排、资料上传下载 \n发送3：做习题 \n发送4：课下提问 \n发送5：进入教学互动平台 \n发送5：查看平时表现成绩  \n发送7：领任务 \n发送8：问卷调查 \n发送9：大作业上传下载 \n发送10：知识点学习\n发送地理位置信息：点名 \n发送？：平台使用菜单 
-                 				 \n网页版平台登陆地址：http://cprogramplatform.sinaapp.com/login.php";
-               				*/
+              		
+               				
                             
-             			$content = "欢迎".$name."同学关注C语言教学互动平台!\n班级：".$class."，学号：".$number." \n 直接点击链接即可获取相关内容
+             			$content = "
 						发送1：<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">初始界面</a> 
 						发送2：<a href=\"http://".$app_name.".sinaapp.com/communication/documents.php\">资料下载</a>
 						发送3：<a href=\"http://".$app_name.".sinaapp.com/test/ceshi.php?id=$postObj->FromUserName\">习题练习</a>
@@ -85,7 +78,7 @@ class wechatCallbackapiTest
 						发送6：<a href=\"http://".$app_name.".sinaapp.com/score_ex/mid_term.php?id=$postObj->FromUserName\">查期中考试成绩</a>
 						发送地理位置信息：点名
 						发送？：平台使用菜单 
-						网页版平台登陆地址：http://".$app_name.".sinaapp.com/Login.php";        
+						";        
             			$result = $this->transmitText($postObj, $content);
                
         				// $resultstr = sprintf($xmlTpl, $postObj->FromUserName, $postObj->ToUserName, time(), $str);
