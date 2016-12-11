@@ -60,16 +60,8 @@ class wechatCallbackapiTest
 
                 	if( $keyword == "?" || $keyword == "？")
           			{ 
-            			$content = "";
-              
-              		 // $link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
-           	 		if($link)
-           			{	
-                        	//mysql_select_db('app_cprogramplatform',$link);
-              		
-               				
-                            
-             			$content = "
+            		        
+                        $content = "
 						发送1：<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">初始界面</a> 
 						发送2：<a href=\"http://".$app_name.".sinaapp.com/communication/documents.php\">资料下载</a>
 						发送3：<a href=\"http://".$app_name.".sinaapp.com/test/ceshi.php?id=$postObj->FromUserName\">习题练习</a>
@@ -85,7 +77,7 @@ class wechatCallbackapiTest
           		 		//  echo $resultstr;//输出
            
              			echo $result;
-            			} 
+            			
          			} 
 
               		if($keyword == '1'){
