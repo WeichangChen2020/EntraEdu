@@ -60,8 +60,8 @@ class wechatCallbackapiTest
 
                 	if( $keyword == "?" || $keyword == "？")
           			{ 
-            		        
-                        $content = "
+            		    $msgType = "text";
+                        $contentStr = "
 						发送1：<a href=\"http://71.testroom.applinzi.com/index.php/Home/Index/index\">初始界面</a> 
 						发送2：<a href=\"http://".$app_name.".sinaapp.com/communication/documents.php\">资料下载</a>
 						发送3：<a href=\"http://".$app_name.".sinaapp.com/test/ceshi.php?id=$postObj->FromUserName\">习题练习</a>
@@ -71,12 +71,12 @@ class wechatCallbackapiTest
 						发送地理位置信息：点名
 						发送？：平台使用菜单 
 						";        
-            			$result = $this->transmitText($postObj, $content);
+            			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                
         				// $resultstr = sprintf($xmlTpl, $postObj->FromUserName, $postObj->ToUserName, time(), $str);
           		 		//  echo $resultstr;//输出
            
-             			echo $result;
+             			echo $resultStr;
             			
          			} 
 
