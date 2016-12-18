@@ -62,7 +62,7 @@
 									</ul>
 								</li>	
 								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="<?php echo U('Communicationplat/index');?>}">Contact</a></li>
 							</ul>	
 							<div class="clearfix"> </div>
 						</div>	
@@ -109,7 +109,7 @@
           <img src="/71/Public/images/icon_nav_cell.png" alt="">
         </div>
         <p class="weui_grid_label">
-          List
+          随机练习
         </p>
       </a>
       <a href="index.php?p=admin&c=user&a=add" class="weui_grid js_grid">

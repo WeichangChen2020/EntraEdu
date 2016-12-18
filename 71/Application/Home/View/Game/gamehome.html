@@ -2,11 +2,29 @@
 <html>
 <head>
 	<title>{$title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
 <body>
-这里是{$title}</br>
-你是{$jiaose}</br>
-test<audio src="__PUBLIC__/audio/test.mp3" controls="controls"></audio>
+<span>这里是{$title}</span></br>
+<span>你是{$jiaose}</span></br>
+
+<!-- test<audio src="__PUBLIC__/audio/test.mp3" controls="controls"></audio> -->
+
+
+<span>输入你的座位号（以开房者为1）</span></br>
+
+
+
+<form method="post" action="{:U('shenfen')}">
+	
+	<input type="hidden" name="jiaose" value="{$jiaose}">
+	<input type="hidden" name="Ejiaose" value="{$Ejiaose}">
+	<input type="text" name="zuoweihao">
+	<input type="hidden" name="flag" value="{$flag}">
+
+	<button type="submit">开杀</button>
+</form>
+
+
 </body>
 </html>

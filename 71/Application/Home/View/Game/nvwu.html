@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<script src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+
+</head>
+<body>
+nvwu
+
+
+
+<span>今夜死的人是</span>
+
+
+
+<button id="shuisi">查看</button>
+
+<script type="text/javascript">
+	$("#shuisi").click(function(event){
+		$.ajax({
+			url:"{:U('Game/langren2')}"
+		});
+	});
+
+</script>
+<span hidden="hidden">今晚死的人是{$siren}</span>
+
+
+
+</body>
+</html>

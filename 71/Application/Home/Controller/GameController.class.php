@@ -19,6 +19,8 @@ class GameController extends Controller {
     public function fangjiannum()
     {
     	$Database=M('langrensha');
+        $Database2=M('shenfen');
+        $Database3=M('siren');
     	/*var_dump($Database);
     	die();*/
     	$information=I('post.flag');
@@ -31,25 +33,7 @@ class GameController extends Controller {
     	$baichi=I('post.baichi');
     	$cunmin=$people-$langren-$nvwu-$yyj-$lieren-$shouwei-$baichi;
 
-/*    	$jiaose=array();                                             //角色数组
-    	for($i=0;$i<$langren;$i++)
-    	{
-    		$jiaose[]='狼人';
-    	}
 
-    	for($i=0;$i<$cunmin;$i++)
-    	{
-    		$jiaose[]='村民';
-    	}
-   		$jiaose[]='女巫';
-   		$jiaose[]='预言家';
-   		$jiaose[]='猎人';
-
-   		$jiaose[rand(0,$people)];
-
-   		
-    	
-   		session('jiaose',$jiaose);*/
 
     	if ($information=='1') {                                   //是房主
     		$fangjianhao=rand(1000,9999);
@@ -77,9 +61,14 @@ class GameController extends Controller {
 				$Database->rbaichi=$baichi;
 			}
 			$Database->add();
+            $Database2->fangjianhao=$fangjianhao;
+            $Database2->add();
+            $Database3->fangjianhao=$fangjianhao;
+            $Database3->add();
 			$this->assign('fangjianhao',$fangjianhao);
 			session('fangjianhao',$fangjianhao);
 			$this->assign('title',$fangjianhao);
+
 			/*$jiaose=rand(1,7);
 			$Database[$jiaose]*/
 			$number=$Database->where("fangjianhao='$fangjianhao'")->find();
@@ -99,8 +88,9 @@ class GameController extends Controller {
     	$flag=I('post.flag');           //是否是组员身份（非房主）    
         
   
-    	if ($flag) { 
+    	if ($flag) {                  //非房主
     		$fangjianhao=I('post.fangjianhao');
+
     	} else {
     		$fangjianhao=I('get.fangjianhao');
     	}
@@ -176,43 +166,49 @@ class GameController extends Controller {
              /*  var_dump($data['rcunmin']);
                die();*/
                $Database->save($data);
-              
+               $Ejiaose='cunmin';
                 break;
             
             case '狼人':
                 $data['fangjianhao']=$fangjianhao;      
                 $data['rlangren']=$number[rlangren]-1;
                 $Database->save($data);
+                $Ejiaose='langren';
                 break;     
 
             case '女巫':
                 $data['fangjianhao']=$fangjianhao;
                 $data['rnvwu']=$number[rnvwu]-1; 
                 $Database->save($data);
+                $Ejiaose='nvwu';
                 break;
 
             case '预言家':
                 $data['fangjianhao']=$fangjianhao;
                 $data['ryyj']=$number[ryyj]-1;
                 $Database->save($data);
+                $Ejiaose='yyj';
                 break;
 
             case '猎人':
                 $data['fangjianhao']=$fangjianhao;
                 $data['rlieren']=$number[rlieren]-1;
                 $Database->save($data);
+                $Ejiaose='lieren';
                 break;
 
             case '守卫':
                 $data['fangjianhao']=$fangjianhao;
                 $data['rshouwei']=$number[rshouwei]-1;
                 $Database->save($data);
+                $Ejiaose='shouwei';
                 break;
 
             case '白痴':
                 $data['fangjianhao']=$fangjianhao;
                 $data['rbaichi']=$number[rbaichi]-1;
                 $Database->save($data);
+                $Ejiaose='baichi';
                 break;
             default:
            
@@ -231,8 +227,10 @@ class GameController extends Controller {
         
         /*var_dump(!$flag);
         die();*/
+        $this->assign('Ejiaose',$Ejiaose);
         $this->assign('jiaose',$fenpei);
     	$this->assign('title',$fangjianhao.号房);
+        $this->assign('flag',$flag);               //0房主，1非房主
     	$this->display();
 
 
@@ -247,6 +245,72 @@ class GameController extends Controller {
     	$this->redirect("Game/gamehome");
     }
 
+        public function shenfen()
+        {
 
+            $Database=M('shenfen');
+            $information=I('post.');
+            $jiaose=$information['jiaose'];
+            $zuoweihao=$information['zuoweihao'];
+            $Ejiaose=$information['Ejiaose'];
+            $flag=$information['flag'];                 //0房主，1非房主
+            if ($flag) {
+                $this->assign('flag','none');
+            } else {
+                $this->assign('flag','display');
+            }
+            
+            $fangjianhao=session('fangjianhao');
+
+          
+           
+            //$data=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data['fangjianhao']=$fangjianhao;          //要提示主键
+            $data['['.$zuoweihao.']']=$jiaose;
+            $Database->save($data);
+
+
+
+
+            $this->assign('title',$jiaose);
+       /*     var_dump($Ejiaose);
+            die();*/
+            $this->display("$Ejiaose");                //英语名称的角色
+
+
+        }
+
+        /*public function panduan()                      //执行功能（杀，救，守，毒）
+        {
+            
+
+            $information=I('post.');
+            $siren=$information['siren'];         //死人序号
+
+            
+
+
+            $Database=M('shenfen');
+
+
+
+            $fangjianhao=session('fangjianhao');
+            $data['fangjianhao']=$fangjianhao;
+
+
+        }*/
+
+        public function langren2()           //存储狼人杀人，给女巫判断
+        {
+            $siren=I('post.data1');
+                       
+            $fangjianhao=session('fangjianhao');
+            $Database3=M('siren');
+
+            $data['fangjianhao']=$fangjianhao;
+            $data['['.$siren.']']='死';
+            $Database3->save($data);
+             
+        }
    
 }

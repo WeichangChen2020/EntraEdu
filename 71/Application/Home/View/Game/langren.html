@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+</head>
+<body>
+
+
+
+
+
+<span>请杀人（一只狼输入即可）</span>
+
+	填写要杀人的序号：
+	<input type="text" name="siren" id="siren">
+	<button type="submit" id="sha">杀！</button>
+	<script type="text/javascript">
+	
+	$("#sha").click(function(event){
+		var siren=$("#siren").val();
+
+
+		$.ajax({
+			type:"POST",
+			data:{data1:siren},
+			url:"{:U('Game/langren2')}"
+			
+		});
+		alert("已杀人");
+
+
+
+
+
+	});
+
+
+
+
+
+
+
+	</script>
+
+
+</form>
+
+
+</body>
+</html>
