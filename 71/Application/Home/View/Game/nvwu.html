@@ -19,13 +19,77 @@ nvwu
 
 <script type="text/javascript">
 	$("#shuisi").click(function(event){
+		
 		$.ajax({
-			url:"{:U('Game/langren2')}"
+			type:"POST",
+			url:"{:U('Game/nvwu2')}",
+
+			success:function(sss)
+			{
+				$("#si").show();	
+				$("#si").html("今晚死的人是"+sss+"号");
+				$("#xuanze").show();
+			}
 		});
 	});
 
 </script>
-<span hidden="hidden">今晚死的人是{$siren}</span>
+
+<span hidden="hidden" id="si"></span>
+<div id="xuanze" hidden="hidden">
+	<input name="yongyao" type="radio" value="救" id="jiu"><span id="J">救</span>
+	<input name="yongyao" type="radio" value="毒" id="du"><span id="D">毒</span>
+	<input name="du" id="dujihao" hidden="hidden">
+	<input name="yongyao" type="radio" value="什么也不做" id="buzuo">什么也不做
+	
+	<button id="queding">确定</button>
+</div>
+
+<script type="text/javascript">
+	$("#du").click(function(event)
+	{
+		$("#dujihao").show();
+
+	});
+	$("#jiu").click(function(event)
+	{
+		$("#dujihao").hide();
+
+
+	});
+	$("#buzuo").click(function(event)
+	{
+		$("#dujihao").hide();
+
+
+	});
+	$("#queding").click(function(event)
+	{
+
+		$.ajax({
+			type:"POST",
+			url:"{:U('Game/nvwu3')}",
+			data:{caozuo:$("input[name='yongyao']:checked").val(),dujihao:$("#dujihao").val()},
+			success:function(disable)      //禁止以上的救，毒按钮
+			{
+				switch(disable)
+				{
+					case '救': $('#jiu').hide(); $('#J').hide();
+						break;
+					case '毒': $('#du').hide(); $('#dujihao').hide(); $("#D").hide();
+						break;
+					default:
+						break;
+				}
+			}
+
+		});
+		alert("操作成功");
+	});
+
+</script>
+
+
 
 
 

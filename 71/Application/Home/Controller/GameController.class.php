@@ -4,6 +4,7 @@ use Think\Controller;
 class GameController extends Controller {
     public function index(){	
 		$this->display();
+
     }
         
     public function kaifang(){
@@ -151,13 +152,7 @@ class GameController extends Controller {
             $fenpei=$jiaose[rand(0,$people-1)];             //分配的角色
         } else {
            $fenpei=$jiaose[0];
-        }
-        
-       /* var_dump($jiaose);
-            die();
-*/
-  /*      var_dump($fenpei);
-        die();*/
+        }   
         
         switch ($fenpei) {
             case '村民':
@@ -181,6 +176,8 @@ class GameController extends Controller {
                 $data['rnvwu']=$number[rnvwu]-1; 
                 $Database->save($data);
                 $Ejiaose='nvwu';
+                session('jieyao',1);
+                session('duyao',1);
                 break;
 
             case '预言家':
@@ -216,17 +213,6 @@ class GameController extends Controller {
                 break;
         }
 
-            /*if ($flag) {
-                $this->assign('flag','0');
-            } else {
-                $this->assign('flag','hidden');
-            }*/
-            
-
-
-        
-        /*var_dump(!$flag);
-        die();*/
         $this->assign('Ejiaose',$Ejiaose);
         $this->assign('jiaose',$fenpei);
     	$this->assign('title',$fangjianhao.号房);
@@ -261,44 +247,17 @@ class GameController extends Controller {
             }
             
             $fangjianhao=session('fangjianhao');
-
-          
-           
             //$data=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data['fangjianhao']=$fangjianhao;          //要提示主键
             $data['['.$zuoweihao.']']=$jiaose;
             $Database->save($data);
-
-
-
-
-            $this->assign('title',$jiaose);
-       /*     var_dump($Ejiaose);
-            die();*/
+            $this->assign('title',$jiaose);    
             $this->display("$Ejiaose");                //英语名称的角色
 
 
         }
 
-        /*public function panduan()                      //执行功能（杀，救，守，毒）
-        {
-            
-
-            $information=I('post.');
-            $siren=$information['siren'];         //死人序号
-
-            
-
-
-            $Database=M('shenfen');
-
-
-
-            $fangjianhao=session('fangjianhao');
-            $data['fangjianhao']=$fangjianhao;
-
-
-        }*/
+  
 
         public function langren2()           //存储狼人杀人，给女巫判断
         {
@@ -310,7 +269,148 @@ class GameController extends Controller {
             $data['fangjianhao']=$fangjianhao;
             $data['['.$siren.']']='死';
             $Database3->save($data);
+
+        }
+
+
+
+        public function nvwu2()        //看昨夜是谁死了
+        {
+            if (session('jieyao'))     //有解药可以查看昨晚死的人
+            {
+                $Database3=M('siren');
+                $fangjianhao=session('fangjianhao');
+
+                $data=$Database3->where("fangjianhao='$fangjianhao'")->find();
+
+                for ($id=1; $id < 13; $id++) 
+                { 
+                    if($data['['.$id.']']=='死')
+                        {   
+                            session('siren',$siren);
+                            $siren=$id;
+                            break;
+                        }
+                }
+           
+                $this->ajaxReturn($siren);
+            // echo $siren;
+            }
+            else
+            {
+                $siren='无法查看';
+                $this->ajaxReturn($siren);
+            }
              
+        }
+
+        public function nvwu3()                                    //女巫功能
+        {
+            $Database=M('langrensha');
+            $Database2=M('shenfen');
+            $Database3=M('siren');
+            $fangjianhao=session('fangjianhao');
+            $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
+            $caozuo=I('post.caozuo');
+
+            if ($caozuo=='救') 
+            {
+                $jieyao=0;         //没有解药了
+                session('jieyao',$jieyao);
+            
+                for ($id=1; $id < 13; $id++) 
+                { 
+                    if($data3['['.$id.']']=='死')
+                    {   
+                        $data3['['.$id.']']='0';
+                        $Database3->save($data3);
+                        break;
+                    }
+                }
+            }
+
+            if ($caozuo=='毒') 
+            {
+                $duyao=0;
+                session('duyao',$duyao);
+                $dujihao=I('post.dujihao');
+                $data3['['.$dujihao.']']='1';                   //1代表确定死了
+                $Database3->save($data3);
+
+                $sf=$data2['['.$dujihao.']'];
+                for ($id=1; $id < 13; $id++) 
+                { 
+                    if($data3['['.$id.']']=='死')
+                    {   
+                        $data3['['.$id.']']='1';
+                        $Database3->save($data3);
+                        break;
+                    }
+                }
+                $data1[$Ejiaose]--;
+                $Database->save($data1);
+            }
+
+            if ($caozuo=='什么也不做')      //把狼杀的人确定为死人了
+            {
+                for ($id=1; $id < 13; $id++) 
+                { 
+                    if($data3['['.$id.']']=='死')
+                    {   
+                        $data3['['.$id.']']='1';
+                        $Database3->save($data3);
+                        break;
+                    }
+                }           
+            }
+            for ($i=1; $i<13 ; $i++) 
+            {
+                if ($data3['['.$i.']']=='1') 
+                {
+                    
+                switch ($data2['['.$i.']']) {
+                    case '村民':
+                    $Ejiaose='cunmin';
+                    break;
+                
+                    case '狼人':
+                    $Ejiaose='langren';
+                    break;     
+
+                    case '女巫':
+                    $Ejiaose='nvwu';
+                    break;
+
+                    case '预言家':
+                    $Ejiaose='yyj';
+                    break;
+
+                    case '猎人':
+                    $Ejiaose='lieren';
+                    break;
+
+                    case '守卫':
+                    $Ejiaose='shouwei';
+                    break;
+
+                    case '白痴':
+                    $Ejiaose='baichi';
+                    break;
+
+                    default:
+                    echo '???';
+                    break;
+                }
+
+                    $data1[$Ejiaose]--;
+                }
+            }
+            $Database->save($data1);
+            $this->ajaxReturn($caozuo);
+            
+
         }
    
 }
