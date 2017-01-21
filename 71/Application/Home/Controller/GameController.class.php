@@ -1,7 +1,10 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+//use Common\Controller\ConnectController;
 class GameController extends Controller {
+    
+
     public function index(){	
 		$this->display();
 
@@ -22,8 +25,8 @@ class GameController extends Controller {
     	$Database=M('langrensha');
         $Database2=M('shenfen');
         $Database3=M('siren');
-    	/*var_dump($Database);
-    	die();*/
+        $Database4=M('meiyesiren');
+    	
     	$information=I('post.flag');
     	$people=I('post.people');
     	$langren=I('post.langren');
@@ -66,12 +69,11 @@ class GameController extends Controller {
             $Database2->add();
             $Database3->fangjianhao=$fangjianhao;
             $Database3->add();
+            $Database4->fangjianhao=$fangjianhao;
+            $Database4->add();
 			$this->assign('fangjianhao',$fangjianhao);
 			session('fangjianhao',$fangjianhao);
 			$this->assign('title',$fangjianhao);
-
-			/*$jiaose=rand(1,7);
-			$Database[$jiaose]*/
 			$number=$Database->where("fangjianhao='$fangjianhao'")->find();
 			
 			
@@ -89,10 +91,13 @@ class GameController extends Controller {
     	$flag=I('post.flag');           //是否是组员身份（非房主）    
         
   
-    	if ($flag) {                  //非房主
+    	if ($flag) 
+        {                  //非房主
     		$fangjianhao=I('post.fangjianhao');
 
-    	} else {
+    	} 
+        else 
+        {
     		$fangjianhao=I('get.fangjianhao');
     	}
 
@@ -218,22 +223,23 @@ class GameController extends Controller {
     	$this->assign('title',$fangjianhao.号房);
         $this->assign('flag',$flag);               //0房主，1非房主
     	$this->display();
+    }
 
 
-    }
-   		public function jinqu()
-    {
-    	$fangjianhao=I('post.fangjianhao');
-    	var_dump(U('Game/gamehome'));
-    	die();
-    	$this->redirect('71/index.php/Home/Game/gamehome.html');
-    	$thid->success('成功',U('Game/gamehome'),1);
-    	$this->redirect("Game/gamehome");
-    }
+   	    public function jinqu()
+        {
+        	$fangjianhao=I('post.fangjianhao');
+        	var_dump(U('Game/gamehome'));
+        	die();
+        	$this->redirect('71/index.php/Home/Game/gamehome.html');
+        	$thid->success('成功',U('Game/gamehome'),1);
+        	$this->redirect("Game/gamehome");
+
+        }
 
         public function shenfen()
         {
-
+            session('day',0);
             $Database=M('shenfen');
             $information=I('post.');
             $jiaose=$information['jiaose'];
@@ -254,13 +260,15 @@ class GameController extends Controller {
             $this->assign('title',$jiaose);    
             $this->display("$Ejiaose");                //英语名称的角色
 
-
         }
 
   
 
         public function langren2()           //存储狼人杀人，给女巫判断
         {
+            $day=session('day');
+            $day++;
+            session('day',$day);
             $siren=I('post.data1');
                        
             $fangjianhao=session('fangjianhao');
@@ -309,11 +317,14 @@ class GameController extends Controller {
             $Database=M('langrensha');
             $Database2=M('shenfen');
             $Database3=M('siren');
+            $Database4=M('meiyesiren');
             $fangjianhao=session('fangjianhao');
             $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
+            $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
             $caozuo=I('post.caozuo');
+            $day=session('day');
 
             if ($caozuo=='救') 
             {
@@ -346,6 +357,18 @@ class GameController extends Controller {
                     {   
                         $data3['['.$id.']']='1';
                         $Database3->save($data3);
+
+                        if ($dujihao<$id) {
+                            $data4['['.$day.']']=$dujihao.','.$id;
+                        } 
+                        elseif ($dujihao>$id) {
+                            $data4['['.$day.']']=$id.','.$dujihao;
+                        } 
+                        else {
+                            $data4['['.$day.']']=$dujihao;
+                        }
+                        
+                        $Database4->save($data4);
                         break;
                     }
                 }
@@ -361,6 +384,8 @@ class GameController extends Controller {
                     {   
                         $data3['['.$id.']']='1';
                         $Database3->save($data3);
+                        $data4['['.$day.']']=$id;
+                        $Database4->save($data4);
                         break;
                     }
                 }           
@@ -410,7 +435,35 @@ class GameController extends Controller {
             $Database->save($data1);
             $this->ajaxReturn($caozuo);
             
+        }
+
+        public function yyj()
+        {
+            $yanjihao=I('post.yan1');
+            $Database2=M('shenfen');
+            $fangjianhao=session('fangjianhao');
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            if ($data2['['.$yanjihao.']']=='狼人') {
+                $shenfen='坏人';
+            } else {
+                $shenfen='好人';
+            }
+            $this->ajaxReturn($shenfen);
+            
+        }
+
+        public function zuowansideshi()
+        {
+            $fangjianhao=session('fangjianhao');
+            $Database4=M('meiyesiren');
+            $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
+           
+            $Database3=M('siren');
+            $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
+            
 
         }
+
+     
    
 }

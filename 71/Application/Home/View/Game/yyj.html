@@ -6,6 +6,44 @@
 
 </head>
 <body>
+<div class="yuyin" style="display:{$flag}">
+
+	<span>第一夜</span>
+	<audio></audio>                <!-- 黑闭，狼杀，女巫，预言家，天亮睁眼，竞选警长 -->
+
+
+
+	<audio></audio>                     <!-- 今晚死的人是 -->
+
+
+</div>
+<span>请验人</span></br>
+<input type="text" id="yanren" name="yanren">
+<button id="yan">验!</button>
+<span id="shenfen"></span>
+
+<script type="text/javascript">
+	$("#yan").click(function(event){
+		var yanren=$("#yanren").val();
+		$.ajax({
+			type:"POST",
+			url:"{:U('Game/yyj')}",
+			data:{yan1:yanren},
+
+			success:function(shenfen){
+				$("#shenfen").html("他是个"+shenfen);
+				
+				$("#yan").hide();
+			}
+
+
+		});
+	})
+</script>
+
+
+
+
 
 </body>
 </html>

@@ -8,7 +8,7 @@ return array(
 	//'URL_HTML_SUFFIX'    => '',  //伪静态设置为空  
 	'DB_TYPE'=>'mysql',// 数据库类型
 	'DB_HOST'=>'127.0.0.1',// 服务器地址
-	'DB_NAME'=>'cplatv2',// 数据库名
+	'DB_NAME'=>'cprogramplatform',// 数据库名
 	'DB_USER'=>'root',// 用户名
 	'DB_PWD'=>'',// 密码
 	//'DB_PWD'=>'111222',// 密码
