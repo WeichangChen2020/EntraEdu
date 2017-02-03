@@ -26,6 +26,7 @@ class GameController extends Controller {
         $Database2=M('shenfen');
         $Database3=M('siren');
         $Database4=M('meiyesiren');
+        $Database5=M('dijitian');
     	
     	$information=I('post.flag');
     	$people=I('post.people');
@@ -71,6 +72,8 @@ class GameController extends Controller {
             $Database3->add();
             $Database4->fangjianhao=$fangjianhao;
             $Database4->add();
+            $Database5->fangjianhao=$fangjianhao;
+            $Database5->add();
 			$this->assign('fangjianhao',$fangjianhao);
 			session('fangjianhao',$fangjianhao);
 			$this->assign('title',$fangjianhao);
@@ -98,7 +101,13 @@ class GameController extends Controller {
     	} 
         else 
         {
+            
     		$fangjianhao=I('get.fangjianhao');
+            $fangjianhao=session('fangjianhao');
+            $Database5=M('dijitian');
+            $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
+            $data5['day']=0;
+            $Database5->save($data5);
     	}
 
         
@@ -226,7 +235,7 @@ class GameController extends Controller {
     }
 
 
-   	    public function jinqu()
+   	    /*public function jinqu()
         {
         	$fangjianhao=I('post.fangjianhao');
         	var_dump(U('Game/gamehome'));
@@ -235,11 +244,11 @@ class GameController extends Controller {
         	$thid->success('成功',U('Game/gamehome'),1);
         	$this->redirect("Game/gamehome");
 
-        }
+        }*/
 
         public function shenfen()
         {
-            session('day',0);
+            
             $Database=M('shenfen');
             $information=I('post.');
             $jiaose=$information['jiaose'];
@@ -266,12 +275,16 @@ class GameController extends Controller {
 
         public function langren2()           //存储狼人杀人，给女巫判断
         {
-            $day=session('day');
-            $day++;
-            session('day',$day);
+            $fangjianhao=session('fangjianhao');
+            $Database5=M('dijitian');
+            $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
+            $data5['day']++;
+            $Database5->save($data5);
+
+            
             $siren=I('post.data1');
                        
-            $fangjianhao=session('fangjianhao');
+            
             $Database3=M('siren');
 
             $data['fangjianhao']=$fangjianhao;
@@ -318,13 +331,16 @@ class GameController extends Controller {
             $Database2=M('shenfen');
             $Database3=M('siren');
             $Database4=M('meiyesiren');
+            $Database5=M('dijitian');
             $fangjianhao=session('fangjianhao');
             $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
             $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
+            $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
+            $day=$data5['day'];
             $caozuo=I('post.caozuo');
-            $day=session('day');
+            
 
             if ($caozuo=='救') 
             {
@@ -355,14 +371,14 @@ class GameController extends Controller {
                 { 
                     if($data3['['.$id.']']=='死')
                     {   
-                        $data3['['.$id.']']='1';
+                        $data3['['.$id.']']='1'; //被狼杀的确定死了
                         $Database3->save($data3);
 
                         if ($dujihao<$id) {
                             $data4['['.$day.']']=$dujihao.','.$id;
                         } 
                         elseif ($dujihao>$id) {
-                            $data4['['.$day.']']=$id.','.$dujihao;
+                            $data4['['.$day.']']=$id.','.$dujihao;    //第几夜死的是谁
                         } 
                         else {
                             $data4['['.$day.']']=$dujihao;
@@ -372,8 +388,7 @@ class GameController extends Controller {
                         break;
                     }
                 }
-                $data1[$Ejiaose]--;
-                $Database->save($data1);
+                
             }
 
             if ($caozuo=='什么也不做')      //把狼杀的人确定为死人了
@@ -395,39 +410,41 @@ class GameController extends Controller {
                 if ($data3['['.$i.']']=='1') 
                 {
                     
-                switch ($data2['['.$i.']']) {
-                    case '村民':
-                    $Ejiaose='cunmin';
-                    break;
-                
-                    case '狼人':
-                    $Ejiaose='langren';
-                    break;     
+                    switch ($data2['['.$i.']']) 
+                    {
+                        case '村民':
+                        $Ejiaose='cunmin';
+                        break;
+                    
+                        case '狼人':
+                        $Ejiaose='langren';
+                        break;     
 
-                    case '女巫':
-                    $Ejiaose='nvwu';
-                    break;
+                        case '女巫':
+                        $Ejiaose='nvwu';
+                        break;
 
-                    case '预言家':
-                    $Ejiaose='yyj';
-                    break;
+                        case '预言家':
+                        $Ejiaose='yyj';
+                        break;
 
-                    case '猎人':
-                    $Ejiaose='lieren';
-                    break;
+                        case '猎人':
+                        $Ejiaose='lieren';
+                        break;
 
-                    case '守卫':
-                    $Ejiaose='shouwei';
-                    break;
+                        case '守卫':
+                        $Ejiaose='shouwei';
+                        break;
 
-                    case '白痴':
-                    $Ejiaose='baichi';
-                    break;
+                        case '白痴':
+                        $Ejiaose='baichi';
+                        break;
 
-                    default:
-                    echo '???';
-                    break;
-                }
+                        default:
+                        echo '???';
+                        break;
+
+                    }
 
                     $data1[$Ejiaose]--;
                 }
@@ -460,10 +477,44 @@ class GameController extends Controller {
            
             $Database3=M('siren');
             $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
-            
+        
+        }
+
+        public function tianliangle()
+        {
+            $fangjianhao=session('fangjianhao');
+            $Database4=M('meiyesiren');
+            $Database5=M('dijitian');
+            $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
+            $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
+            $day=$data5['day'];
+            $siderenshi=$data4['['.$day.']'];
+            $this->ajaxReturn($siderenshi);
+        }
+
+        public function toupiao()
+        {
+            $fangzhutoupiao=I('post.fangzhutoupiao');
 
         }
 
+        /*public function test()
+        {
+            echo 2233;
+            
+            $Daa=M('test');
+            $data=$Daa->where("a=7")->find();
+            var_dump($data);
+            die();
+            $data['b']=888;
+           /* var_dump($data['a']);
+            die();
+            $Daa->save($data);
+           
+
+        }*/
      
-   
+
+
+
 }

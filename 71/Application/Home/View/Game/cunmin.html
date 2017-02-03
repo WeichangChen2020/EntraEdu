@@ -10,19 +10,43 @@
 cunmin
 <div class="yuyin" style="display:{$flag}">
 
-	<span>第一夜</span>
-	<audio></audio>                 
-	<!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
+	<span>房主操作</span>
+	<audio></audio> 
+	<button id="tianliangle">天亮了（先竞选警长），查看昨晚情况</button></br> 
+	<span id="zuowansideshi"></span>  
+
+	<audio></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
 	
 	
+	<script type="text/javascript">
+	$("#tianliangle").click(function(event){
+		$.ajax({
+			type:"POST",
+			url:"{:U('Game/tianliangle')}",
+			success:function(siderenshi)
+			{
+				$("#zuowansideshi").html("昨晚死的人是"+siderenshi+"号");
+			}
+		});
+	});
 
+	</script>
+	</br>
 
+	<input type="text" id="fangzhutoupiao">
+	<button type="submit" id="piao">票他出去</button>
+	<script type="text/javascript">
+		$("#piao").click(function(event){
+			$.ajax({
+				url:"{:U('Game/toupiao')}",
+				type:"POST",
+				data:{fangzhutoupiao:$("#fangzhutoupiao").val()}
+				
+			});
+			alert("已投");
+		});
 
-
-
-
-	<audio></audio>                     <!-- 今晚死的人是 -->
-
+	</script>
 
 </div>
 
