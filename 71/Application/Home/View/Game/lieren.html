@@ -6,14 +6,34 @@
 
 </head>
 <body>
+
+
+
+<span>死了以后带走几号（也可不带走人）</span>
+<input type="text" id="daizoujihao">
+<button id="daizou">带走</button>
+
+<script type="text/javascript">
+	$("#daizou").click(function(event){
+		$.ajax({
+			url:"{:U('Game/lieren')}",
+			type:"POST",
+			data:{daizou:$("#daizoujihao").val()},
+			success:function(daizou)
+			{
+				alert("带走成功");
+			}
+		});
+	});
+</script>
 <div class="yuyin" style="display:{$flag}">
 
 	<span>房主操作</span>
-	<audio></audio> 
+	
 	<button id="tianliangle">天亮了（先竞选警长），查看昨晚情况</button></br> 
 	<span id="zuowansideshi"></span>  
 
-	<audio></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
+	
 	
 	
 	<script type="text/javascript">
@@ -45,14 +65,9 @@
 		});
 
 	</script>
+	</br>
+	<audio src="__PUBLIC__/music/langrensha.wav" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
 </div>
-
-
-<span>死了以后带走几号（也可不带走人）</span>
-<input type="text" id="daizoujihao">
-<button id="daizou">带走</button>
-
-
 
 </body>
 </html>

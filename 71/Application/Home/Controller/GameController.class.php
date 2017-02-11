@@ -92,12 +92,9 @@ class GameController extends Controller {
     {
     	    //人数
     	$flag=I('post.flag');           //是否是组员身份（非房主）    
-        
-  
-    	if ($flag) 
+    	if($flag) 
         {                  //非房主
     		$fangjianhao=I('post.fangjianhao');
-
     	} 
         else 
         {
@@ -109,14 +106,9 @@ class GameController extends Controller {
             $data5['day']=0;
             $Database5->save($data5);
     	}
-
-        
-    	
     	$Database=M("langrensha");
     	$jiaose=array();
     	$number=$Database->where("fangjianhao='$fangjianhao'")->find();
-
-  
 
     	$cunmin=$number[rcunmin];
     	$langren=$number[rlangren];
@@ -133,7 +125,6 @@ class GameController extends Controller {
     		$jiaose[]='村民';
             $people++;
     		}
-            
     	}
     	if ($langren) {
     		for($i=0;$i<$langren;$i++){
@@ -280,16 +271,21 @@ class GameController extends Controller {
             $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
             $data5['day']++;
             $Database5->save($data5);
-
-            
             $siren=I('post.data1');
-                       
-            
             $Database3=M('siren');
+            $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
 
-            $data['fangjianhao']=$fangjianhao;
-            $data['['.$siren.']']='死';
-            $Database3->save($data);
+            if ($data3['['.$siren.']']=='守') 
+            {
+                $data3['['.$siren.']']='守死';
+            } 
+            else 
+            {
+                $data3['['.$siren.']']='死';
+            }
+            
+            
+            $Database3->save($data3);
 
         }
 
@@ -306,7 +302,7 @@ class GameController extends Controller {
 
                 for ($id=1; $id < 13; $id++) 
                 { 
-                    if($data['['.$id.']']=='死')
+                    if($data['['.$id.']']=='死'||$data['['.$id.']']=='守死')
                         {   
                             session('siren',$siren);
                             $siren=$id;
@@ -355,6 +351,16 @@ class GameController extends Controller {
                         $Database3->save($data3);
                         break;
                     }
+
+                    if($data3['['.$id.']']=='守死')
+                    {   
+                        $data3['['.$id.']']='1';
+                        $Database3->save($data3);
+                        $data4['['.$day.']']=$id;
+                        $Database4->save($data4);
+                        break;
+                    }
+
                 }
             }
 
@@ -387,8 +393,15 @@ class GameController extends Controller {
                         $Database4->save($data4);
                         break;
                     }
+
+                    if ($data3['['.$id.']']=='守死') 
+                    {
+                        $data3['['.$id.']']='0';
+                        $Database3->save($data3);
+                        $data4['['.$day.']']=$dujihao;
+                        $Database4->save($data4);
+                    }
                 }
-                
             }
 
             if ($caozuo=='什么也不做')      //把狼杀的人确定为死人了
@@ -402,6 +415,11 @@ class GameController extends Controller {
                         $data4['['.$day.']']=$id;
                         $Database4->save($data4);
                         break;
+                    }
+
+                    if ($data3['['.$id.']']=='守死') {
+                        $data3['['.$id.']']='0';
+                        $Database3->save($data3);
                     }
                 }           
             }
@@ -469,6 +487,90 @@ class GameController extends Controller {
             
         }
 
+        public function shouwei()
+        {
+            $shoushui=I('post.shoushui');
+            $fangjianhao=session('fangjianhao');
+            $Database=M('langrensha');
+            $Database2=M('shenfen');
+            $Database3=M('siren');
+            $Database4=M('meiyesiren');
+            $Database5=M('dijitian');
+            $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
+            $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
+            $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
+            $day=$data5['day'];
+
+            $data3['['.$shoushui.']']='守';
+            $Database3->save($data3);
+            /*if($data3['['.$shoushui.']']=='死')
+            {   
+                $data3['['.$shoushui.']']='';
+                $Database3->save($data3);
+                
+            }
+            if ($data3['['.$shoushui.']']==$day+1) 
+            {
+                $data3['['.$shoushui.']']=1;
+                    
+            }   */ 
+
+
+            
+        }
+
+        public function lieren()
+        {
+            $daizou=I('post.daizou');
+            $Database=M('langrensha');
+            $Database2=M('shenfen');
+            $fangjianhao=session('fangjianhao');
+            $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            
+            switch ($data2['['.$daizou.']']) 
+                    {
+                        case '村民':
+                        $Ejiaose='cunmin';
+                        break;
+                    
+                        case '狼人':
+                        $Ejiaose='langren';
+                        break;     
+
+                        case '女巫':
+                        $Ejiaose='nvwu';
+                        break;
+
+                        case '预言家':
+                        $Ejiaose='yyj';
+                        break;
+
+                        case '猎人':
+                        $Ejiaose='lieren';
+                        break;
+
+                        case '守卫':
+                        $Ejiaose='shouwei';
+                        break;
+
+                        case '白痴':
+                        $Ejiaose='baichi';
+                        break;
+
+                        default:
+                        echo '???';
+                        break;
+
+                    }
+
+                    $data1[$Ejiaose]--;
+                    $Database->save($data1);
+
+        }
+
         public function zuowansideshi()
         {
             $fangjianhao=session('fangjianhao');
@@ -495,6 +597,49 @@ class GameController extends Controller {
         public function toupiao()
         {
             $fangzhutoupiao=I('post.fangzhutoupiao');
+            $fangjianhao=session('fangjianhao');
+            $Database=M('langrensha');
+            $Database2=M('shenfen');
+            $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            switch ($data2['['.$fangzhutoupiao.']']) 
+                    {
+                        case '村民':
+                        $Ejiaose='cunmin';
+                        break;
+                    
+                        case '狼人':
+                        $Ejiaose='langren';
+                        break;     
+
+                        case '女巫':
+                        $Ejiaose='nvwu';
+                        break;
+
+                        case '预言家':
+                        $Ejiaose='yyj';
+                        break;
+
+                        case '猎人':
+                        $Ejiaose='lieren';
+                        break;
+
+                        case '守卫':
+                        $Ejiaose='shouwei';
+                        break;
+
+                        case '白痴':
+                        $Ejiaose='baichi';
+                        break;
+
+                        default:
+                        echo '???';
+                        break;
+
+                    }
+
+                    $data1[$Ejiaose]--;
+                    $Database->save($data1);
 
         }
 
