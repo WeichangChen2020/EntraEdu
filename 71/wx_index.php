@@ -36,6 +36,13 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+		$content = "欢迎关注qyh的微信公众号，发送？获取帮助";
+		echo $content;
+
+
+
+
+
 
       	//extract post data
 		if (!empty($postStr)){
@@ -123,6 +130,7 @@ class wechatCallbackapiTest
         	echo "";
         	exit;
         }
+
     }
 		
 
