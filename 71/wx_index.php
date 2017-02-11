@@ -36,13 +36,6 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-		$content = "欢迎关注qyh的微信公众号，发送？获取帮助";
-		echo $content;
-
-
-
-
-
 
       	//extract post data
 		if (!empty($postStr)){
@@ -51,6 +44,9 @@ class wechatCallbackapiTest
                 $fromUsername = $postObj->FromUserName;
                 $toUsername = $postObj->ToUserName;
                 $keyword = trim($postObj->Content);
+
+                $ev = $postObj->Event;
+
                 $time = time();
                 $textTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
@@ -59,7 +55,18 @@ class wechatCallbackapiTest
 							<MsgType><![CDATA[%s]]></MsgType>
 							<Content><![CDATA[%s]]></Content>
 							<FuncFlag>0</FuncFlag>
-							</xml>";             
+							</xml>";   
+
+				if ($ev == "subscribe")
+				{
+					  $msgType = "text";
+					  $contentStr = "欢迎关注qyh的微信公众号！";
+					  $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					  echo $resultStr;
+				}
+
+
+
 				if(!empty($keyword))
                 {
 
