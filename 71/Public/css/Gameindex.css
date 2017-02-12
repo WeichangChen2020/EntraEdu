@@ -1,0 +1,13 @@
+body {
+	background-color: black;
+	background-image: url(/71/Public/images/background.jpg);
+	background-repeat: no-repeat;
+	background-size: 235px 230px;
+	background-position: 102px 128px;
+}
+
+#kaifang,#jinfang{
+	border-radius: 80px;
+	width: ;
+	height: ;
+}
