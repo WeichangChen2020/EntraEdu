@@ -34,7 +34,7 @@ body {
 
 body #gameplace{
 	background-color: black;
-	background-image: url(/71/Public/images/background.jpg);
+	background-image: url(/Public/images/background.jpg);
 	background-repeat: no-repeat;
 	background-size: 235px 230px;
 	background-position: 100px 40px;
