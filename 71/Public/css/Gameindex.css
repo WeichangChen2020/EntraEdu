@@ -1,13 +1,50 @@
-#gameplace {
+/*html {
+
 	background-color: black;
-	background-image: url(/Public/images/background.jpg);
+	background-image: url(/71/Public/images/background.jpg);
 	background-repeat: no-repeat;
 	background-size: 235px 230px;
 	background-position: 102px 128px;
 }
 
-#kaifang,#jinfang{
+body {
+	opacity:1;
+}
+
+#gameplace {
+	background:transparent !important; 
+	background-color:rgba(255,255,255,0.15);
+	opacity: 1;
+	
+}
+#kaifang {
 	border-radius: 80px;
-	width: 260px;
-	height: 290px;
+	width: 50px;
+	height: 50px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+#jinfang {
+	border-radius: 80px;
+	width: 50px;
+	height: 50px;
+	margin-top: 10px;
+	margin-left: 10px;
+}*/
+
+body #gameplace{
+	background-color: black;
+	background-image: url(/71/Public/images/background.jpg);
+	background-repeat: no-repeat;
+	background-size: 235px 230px;
+	background-position: 100px 40px;
+	height:100%;
+}
+
+body #gameplace img{
+	width: 125px;
+	height:125px;
+	margin-top: 297px;
+	margin-left:36px;
+	border-radius: 80px;
 }

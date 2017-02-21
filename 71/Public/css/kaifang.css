@@ -79,7 +79,7 @@ h1 {
 .input_table{width:95%; margin:5px auto;
   font-size:22px;
   color:#824818}
-.input_table td{  height:45px; line-height:45px; vertical-align:central; margin:10px auto}
+.input_table td{ width: 80px; height:45px; line-height:70px; vertical-align:central; margin:10px auto}
 .random{width:85%; height:45px;}
 .text_input{
   border:2px #b08023 solid; 
