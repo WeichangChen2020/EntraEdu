@@ -8,10 +8,17 @@
 
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 ">
-<title><?php echo ($title); ?> </title>
+
+<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script> -->
+
 <link rel="stylesheet" href="/71/Public/css/weui.min.css">
 <link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
 <link rel="stylesheet" href="/71/Public/css/demos.css">
+
+<title><?php echo ($title); ?> </title>
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- bootstrap-css -->
 <link href="/71/Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -98,6 +105,9 @@
 <link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
 <link rel="stylesheet" href="/71/Public/css/demos.css">
 
+
+
+
   </head>
 
   <body ontouchstart>
@@ -164,7 +174,7 @@
           狼人杀
         </p>
       </a>
-      <a href="index.php?p=admin&c=user&a=ptr" class="weui_grid js_grid">
+      <a href="index.php?p=admin&c=user&a=ptr" class="weui_grid js_grid" >
         <div class="weui_grid_icon">
           <img src="/71/Public/images/icon_nav_ptr.png" alt="">
         </div>
@@ -180,7 +190,7 @@
         color: #09BB07;
       }
     </style>
-    <script src="/71/Public/js/jquery-2.1.4.js"></script>
+
 <script src="/71/Public/js/jquery-weui.js"></script>
 
     </body>

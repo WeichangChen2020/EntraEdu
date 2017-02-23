@@ -41,10 +41,62 @@ body #gameplace{
 	height:100%;
 }
 
-body #gameplace img{
-	width: 125px;
+
+body #gameplace #kaifang{
+
+	width:125px;
 	height:125px;
 	margin-top: 297px;
 	margin-left:36px;
 	border-radius: 80px;
+	-webkit-animation:kaifang 1.5s;
+	
 }
+
+body #gameplace #jinfang{
+
+	width:125px;
+	height:125px;
+	margin-top: 297px;
+	margin-left:36px;
+	border-radius: 80px;
+	-webkit-animation:jinfang 1.5s;
+	
+}
+
+@-webkit-keyframes kaifang{
+
+	from{
+		width:1px;
+		height:1px;
+		margin-top: 359px;
+		margin-left:98px;
+}
+	to{
+		width: 125px;
+		height:125px;
+		margin-top: 297px;
+		margin-left:36px;
+	}
+	
+}
+
+@-webkit-keyframes jinfang{
+
+	from{
+		width:1px;
+		height:1px;
+		margin-top: 359px;
+		margin-left:98px;
+}
+	to{
+		width: 125px;
+		height:125px;
+		margin-top: 297px;
+		margin-left:36px;
+	}
+	
+}
+
+
+
