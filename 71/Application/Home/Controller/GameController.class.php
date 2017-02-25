@@ -222,6 +222,7 @@ class GameController extends Controller {
         $this->assign('jiaose',$fenpei);
     	$this->assign('title',$fangjianhao.号房);
         $this->assign('flag',$flag);               //0房主，1非房主
+        $this->assign('fangjianhao',$fangjianhao);
     	$this->display();
     }
 
@@ -246,17 +247,19 @@ class GameController extends Controller {
             $zuoweihao=$information['zuoweihao'];
             $Ejiaose=$information['Ejiaose'];
             $flag=$information['flag'];                 //0房主，1非房主
+            $fangjianhao=$information['fangjianhao'];
             if ($flag) {
                 $this->assign('flag','none');
             } else {
                 $this->assign('flag','display');
             }
             
-            $fangjianhao=session('fangjianhao');
-            //$data=$Database->where("fangjianhao='$fangjianhao'")->find();
-            $data['fangjianhao']=$fangjianhao;          //要提示主键
-            $data['['.$zuoweihao.']']=$jiaose;
-            $Database2->save($data);
+           
+         /*   var_dump($fangjianhao);
+            die();*/
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            $data2['['.$zuoweihao.']']=$jiaose;
+            $Database2->save($data2);
             $this->assign('title',$jiaose);    
             $this->display("$Ejiaose");                //英语名称的角色
 
