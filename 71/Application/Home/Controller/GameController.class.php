@@ -240,7 +240,7 @@ class GameController extends Controller {
         public function shenfen()
         {
             
-            $Database=M('shenfen');
+            $Database2=M('shenfen');
             $information=I('post.');
             $jiaose=$information['jiaose'];
             $zuoweihao=$information['zuoweihao'];
@@ -256,7 +256,7 @@ class GameController extends Controller {
             //$data=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data['fangjianhao']=$fangjianhao;          //要提示主键
             $data['['.$zuoweihao.']']=$jiaose;
-            $Database->save($data);
+            $Database2->save($data);
             $this->assign('title',$jiaose);    
             $this->display("$Ejiaose");                //英语名称的角色
 
@@ -304,8 +304,9 @@ class GameController extends Controller {
                 { 
                     if($data['['.$id.']']=='死'||$data['['.$id.']']=='守死')
                         {   
-                            session('siren',$siren);
+                            
                             $siren=$id;
+                            session('siren',$siren);
                             break;
                         }
                 }
