@@ -53,6 +53,7 @@
 
 
 </br>
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
 <span>今夜死的人是</span>
 
 
@@ -61,11 +62,12 @@
 
 <script type="text/javascript">
 	$("#shuisi").click(function(event){
-		
+		var fangjianhao=$("#fangjianhao").val();
+
 		$.ajax({
 			type:"POST",
 			url:"{:U('Game/nvwu2')}",
-
+			data:{fangjianhao1:fangjianhao},
 			success:function(sss)
 			{
 				$("#si").show();	

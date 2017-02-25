@@ -6,7 +6,7 @@
 
 </head>
 <body>
-
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
 
 <span>请验人</span></br>
 <input type="text" id="yanren" name="yanren">
@@ -16,10 +16,11 @@
 <script type="text/javascript">
 	$("#yan").click(function(event){
 		var yanren=$("#yanren").val();
+		var fangjianhao=$("#fangjianhao").val();
 		$.ajax({
 			type:"POST",
 			url:"{:U('Game/yyj')}",
-			data:{yan1:yanren},
+			data:{yan1:yanren,fangjianhao1:fangjianhao},
 
 			success:function(shenfen){
 				$("#shenfen").html("他是个"+shenfen);

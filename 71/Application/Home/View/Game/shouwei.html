@@ -9,16 +9,19 @@
 
 
 </br>
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
+
 <span>请选择今晚要守护的人</span>
 </br>
 <input type="text" id="shouhu">
 <button id="shou">守</button>
 <script type="text/javascript">
 	$("#shou").click(function(event){
+		var fangjianhao=$("#fangjianhao").val();
 		$.ajax({
 			url:"{:U('Game/shouwei')}",
 			type:"POST",
-			data:{shoushui:$("#shouhu").val()},
+			data:{shoushui:$("#shouhu").val(),fangjianhao1:fangjianhao},
 			success:function(){
 				alert("操作成功");
 			}

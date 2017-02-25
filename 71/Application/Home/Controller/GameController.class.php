@@ -260,7 +260,8 @@ class GameController extends Controller {
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             $data2['['.$zuoweihao.']']=$jiaose;
             $Database2->save($data2);
-            $this->assign('title',$jiaose);    
+            $this->assign('title',$jiaose); 
+            $this->assign('fangjianhao',$fangjianhao);   
             $this->display("$Ejiaose");                //英语名称的角色
 
         }
@@ -269,7 +270,8 @@ class GameController extends Controller {
 
         public function langren2()           //存储狼人杀人，给女巫判断
         {
-            $fangjianhao=session('fangjianhao');
+            $fangjianhao=I('post.fangjianhao1');
+            
             $Database5=M('dijitian');
             $data5=$Database5->where("fangjianhao='$fangjianhao'")->find();
             $data5['day']++;
@@ -296,31 +298,38 @@ class GameController extends Controller {
 
         public function nvwu2()        //看昨夜是谁死了
         {
+            $fangjianhao=I('post.fangjianhao1');
+            
+            session('fangjianhao',$fangjianhao);
+
+           /* $this->ajaxReturn(333);*/
             if (session('jieyao'))     //有解药可以查看昨晚死的人
             {
                 $Database3=M('siren');
-                $fangjianhao=session('fangjianhao');
+               
+                
 
-                $data=$Database3->where("fangjianhao='$fangjianhao'")->find();
+                $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
 
-                for ($id=1; $id < 13; $id++) 
+                for ($id=1; $id<13; $id++) 
                 { 
-                    if($data['['.$id.']']=='死'||$data['['.$id.']']=='守死')
+                    if($data3['['.$id.']']=='死'||$data3['['.$id.']']=='守死')
                         {   
-                            session('siren',$siren);
+                            
                             $siren=$id;
                             break;
                         }
                 }
            
                 $this->ajaxReturn($siren);
-            // echo $siren;
+           
             }
             else
             {
                 $siren='无法查看';
                 $this->ajaxReturn($siren);
             }
+           
              
         }
 
@@ -479,7 +488,8 @@ class GameController extends Controller {
         {
             $yanjihao=I('post.yan1');
             $Database2=M('shenfen');
-            $fangjianhao=session('fangjianhao');
+            $fangjianhao=I('post.fangjianhao1');
+           /* $fangjianhao=session('fangjianhao');*/
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             if ($data2['['.$yanjihao.']']=='狼人') {
                 $shenfen='坏人';
@@ -493,7 +503,8 @@ class GameController extends Controller {
         public function shouwei()
         {
             $shoushui=I('post.shoushui');
-            $fangjianhao=session('fangjianhao');
+            $fangjianhao=I('post.fangjianhao1');
+            /*$fangjianhao=session('fangjianhao');*/
             $Database=M('langrensha');
             $Database2=M('shenfen');
             $Database3=M('siren');
@@ -529,7 +540,8 @@ class GameController extends Controller {
             $daizou=I('post.daizou');
             $Database=M('langrensha');
             $Database2=M('shenfen');
-            $fangjianhao=session('fangjianhao');
+            $fangjianhao=I('post.fangjianhao1');
+            /*$fangjianhao=session('fangjianhao');*/
             $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             

@@ -8,6 +8,7 @@
 <body>
 
 
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
 
 
 
@@ -21,11 +22,11 @@
 	
 	$("#sha").click(function(event){
 		var siren=$("#siren").val();
-
+		var fangjianhao=$("#fangjianhao").val();
 
 		$.ajax({
 			type:"POST",
-			data:{data1:siren},
+			data:{data1:siren,fangjianhao1:fangjianhao},
 			url:"{:U('Game/langren2')}"
 			
 		});

@@ -8,6 +8,7 @@
 <body>
 
 
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
 
 <span>死了以后带走几号（也可不带走人）</span>
 <input type="text" id="daizoujihao">
@@ -15,10 +16,11 @@
 
 <script type="text/javascript">
 	$("#daizou").click(function(event){
+		var fangjianhao=$("#fangjianhao").val();
 		$.ajax({
 			url:"{:U('Game/lieren')}",
 			type:"POST",
-			data:{daizou:$("#daizoujihao").val()},
+			data:{daizou:$("#daizoujihao").val(),fangjianhao1:fangjianhao},
 			success:function(daizou)
 			{
 				alert("带走成功");
