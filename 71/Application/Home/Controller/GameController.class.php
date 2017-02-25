@@ -304,9 +304,8 @@ class GameController extends Controller {
                 { 
                     if($data['['.$id.']']=='死'||$data['['.$id.']']=='守死')
                         {   
-                            
-                            $siren=$id;
                             session('siren',$siren);
+                            $siren=$id;
                             break;
                         }
                 }
