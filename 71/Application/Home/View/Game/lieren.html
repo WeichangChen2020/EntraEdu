@@ -8,7 +8,30 @@
 <body>
 
 
-<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
+<input type="text" id="fangjianhao1" value="{$fangjianhao}" hidden="hidden">
+<button id="kaiqiangzhuangtai">查看今晚开枪状态</button>
+<span hidden="hidden" id="zhuangtai"></span>
+</br>
+
+<script type="text/javascript">
+	$("#kaiqiangzhuangtai").click(function(event){
+		$.ajax({
+			url:"{:U('Game/lieren2')}",
+			type:"POST",
+			data:{fangjianhao:$("#fangjianhao").val()},
+			success:function(flag){
+				if (flag) 
+				{
+					$("#zhuangtai").show();$("#zhuangtai").html("死后可以开枪");
+				} 
+				else{
+					$("#zhuangtai").show();$("#zhuangtai").html("死后不能开枪");
+					$("#daizou").attr({"disabled":"disabled"});
+				}
+			}
+		});
+	});	
+</script>
 
 <span>死了以后带走几号（也可不带走人）</span>
 <input type="text" id="daizoujihao">

@@ -381,8 +381,15 @@ class GameController extends Controller {
                 $duyao=0;
                 session('duyao',$duyao);
                 $dujihao=I('post.dujihao');
-                $data3['['.$dujihao.']']='1';                   //1代表确定死了
+                $data3['['.$dujihao.']']='毒';                   //1代表确定死了
                 $Database3->save($data3);
+                if ($data2['['.$dujihao.']']=='猎人') {
+                    $data2['['.$dujihao.']']='毒';
+                    $Database2->save($data2);
+                }
+                               
+                
+
 
                 $sf=$data2['['.$dujihao.']'];
                 for ($id=1; $id < 13; $id++) 
@@ -435,9 +442,10 @@ class GameController extends Controller {
                     }
                 }           
             }
+
             for ($i=1; $i<13 ; $i++) 
             {
-                if ($data3['['.$i.']']=='1') 
+                if ($data3['['.$i.']']=='1'||$data3['['.$i.']']=='毒') 
                 {
                     
                     switch ($data2['['.$i.']']) 
@@ -477,6 +485,9 @@ class GameController extends Controller {
                     }
 
                     $data1[$Ejiaose]--;
+                    $data3['['.$i.']']='';
+                    $Database3->save($data3);
+                   
                 }
             }
             $Database->save($data1);
@@ -585,6 +596,33 @@ class GameController extends Controller {
                     $Database->save($data1);
 
         }
+
+        public function lieren2()
+        {
+            $Database=M('langrensha');
+            $Database2=M('shenfen');
+            $Database3=M('siren');
+            $Database4=M('meiyesiren');
+           
+            $fangjianhao=I('post.fangjianhao');
+            $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
+            $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
+            $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
+            $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
+
+            for ($i=1; $i < 13 ; $i++) { 
+                if ($data2['['.$i.']']=='毒') {
+                    $flag=1;
+                }
+                else{
+                    $flag=0;
+                }
+                $this->ajaxReturn($flag);
+            }
+            
+
+        }
+
 
         public function zuowansideshi()
         {
