@@ -17,7 +17,9 @@
 <link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
 <link rel="stylesheet" href="/71/Public/css/demos.css">
 
-<title><?php echo ($title); ?> </title>
+
+
+<title><?php echo ($title); ?></title>
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- bootstrap-css -->

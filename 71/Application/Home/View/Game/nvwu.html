@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    
 	<script src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
 
-</head>
-<body>
+
 <div class="yuyin" style="display:{$flag}">
 
-	<span>房主操作</span>
+	<span class="weui_btn weui_btn_warn">房主操作</span>
 	
-	<button id="tianliangle">天亮了（先竞选警长），查看昨晚情况</button></br> 
-	<span id="zuowansideshi"></span>  
+	<button id="tianliangle" class="weui_btn weui_btn_primary">天亮了（先竞选警长），查看昨晚情况</button></br> 
+	<span id="zuowansideshi" class="weui_btn weui_btn_plain_default"></span>  
 
 	
 	
@@ -33,7 +30,8 @@
 	</br>
 
 	<input type="text" id="fangzhutoupiao">
-	<button type="submit" id="piao">票他出去</button>
+	<button type="submit" id="piao" class="weui_btn weui_btn_mini weui_btn_primary">票他出去</button>
+	</br>
 	<script type="text/javascript">
 		$("#piao").click(function(event){
 			$.ajax({
@@ -48,7 +46,7 @@
 	</script>
 	</br>
 	<audio src="__PUBLIC__/music/langrensha.mp3" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
-
+    <div style="border-top:2px solid #F00"></div>
 </div>
 
 
@@ -137,5 +135,3 @@
 
 
 
-</body>
-</html>

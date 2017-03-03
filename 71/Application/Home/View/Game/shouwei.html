@@ -6,7 +6,50 @@
 
 </head>
 <body>
+<div class="yuyin" style="display:{$flag}">
 
+	<span class="weui_btn weui_btn_warn">房主操作</span>
+	
+	<button id="tianliangle" class="weui_btn weui_btn_primary">天亮了（先竞选警长），查看昨晚情况</button></br> 
+	<span id="zuowansideshi" class="weui_btn weui_btn_plain_default"></span>  
+
+	
+	
+	
+	<script type="text/javascript">
+	$("#tianliangle").click(function(event){
+		$.ajax({
+			type:"POST",
+			url:"{:U('Game/tianliangle')}",
+			success:function(siderenshi)
+			{
+				$("#zuowansideshi").html("昨晚死的人是"+siderenshi+"号");
+			}
+		});
+	});
+
+	</script>
+	</br>
+
+	<input type="text" id="fangzhutoupiao">
+	<button type="submit" id="piao" class="weui_btn weui_btn_mini weui_btn_primary">票他出去</button>
+	</br>
+	<script type="text/javascript">
+		$("#piao").click(function(event){
+			$.ajax({
+				url:"{:U('Game/toupiao')}",
+				type:"POST",
+				data:{fangzhutoupiao:$("#fangzhutoupiao").val()}
+				
+			});
+			alert("已投");
+		});
+
+	</script>
+	</br>
+	<audio src="__PUBLIC__/music/langrensha.mp3" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
+    <div style="border-top:2px solid #F00"></div>
+</div>
 
 </br>
 <input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
@@ -29,49 +72,6 @@
 	});
 </script>
 
-<div class="yuyin" style="display:{$flag}">
-
-	<span>房主操作</span>
-	<audio src="__PUBLIC__/music/langrensha.wav"></audio> 
-	<button id="tianliangle">天亮了（先竞选警长），查看昨晚情况</button></br> 
-	<span id="zuowansideshi"></span>  
-
-	
-	
-	
-	<script type="text/javascript">
-	$("#tianliangle").click(function(event){
-		$.ajax({
-			type:"POST",
-			url:"{:U('Game/tianliangle')}",
-			success:function(siderenshi)
-			{
-				$("#zuowansideshi").html("昨晚死的人是"+siderenshi+"号");
-			}
-		});
-	});
-
-	</script>
-	</br>
-
-	<input type="text" id="fangzhutoupiao">
-	<button type="submit" id="piao">票他出去</button>
-	<script type="text/javascript">
-		$("#piao").click(function(event){
-			$.ajax({
-				url:"{:U('Game/toupiao')}",
-				type:"POST",
-				data:{fangzhutoupiao:$("#fangzhutoupiao").val()}
-				
-			});
-			alert("已投");
-		});
-
-	</script>
-	</br>
-	<audio src="__PUBLIC__/music/langrensha.mp3" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
-
-</div>
 
 </body>
 </html>
