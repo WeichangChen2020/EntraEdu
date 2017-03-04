@@ -64,7 +64,7 @@
 			type:"POST",
 			data:{fangjianhao:$("#fangjianhao").val()},
 			success:function(flag){
-				if (flag) 
+				if (flag==0) 
 				{
 					$("#zhuangtai").show();$("#zhuangtai").html("死后可以开枪");
 				} 
