@@ -5,7 +5,8 @@
 
 
 
-<input type="text" id="fangjianhao1" value="{$fangjianhao}" hidden="hidden">
+<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
+
 <div class="background">
 	<div class="yuyin" style="display:{$flag}">
 
@@ -60,15 +61,14 @@
 			$.ajax({
 				url:"{:U('Game/lieren2')}",
 				type:"POST",
-				data:{fangjianhao:$("#fangjianhao").val()},
+				data:{fangjianhao1:$("#fangjianhao").val()},
 				success:function(flag){
-					if (flag==0) 
-					{
-						$("#zhuangtai").show();$("#zhuangtai").html("死后可以开枪");
-					} 
-					else{
+					
+					if (flag==1) {
 						$("#zhuangtai").show();$("#zhuangtai").html("死后不能开枪");
 						$("#daizou").attr({"disabled":"disabled"});
+					}else{
+						$("#zhuangtai").show();$("#zhuangtai").html("死后可以开枪");
 					}
 				}
 			});

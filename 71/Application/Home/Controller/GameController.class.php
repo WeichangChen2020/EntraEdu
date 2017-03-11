@@ -381,20 +381,17 @@ class GameController extends Controller {
                 $duyao=0;
                 session('duyao',$duyao);
                 $dujihao=I('post.dujihao');
-                $data3['['.$dujihao.']']='毒';                   //1代表确定死了
-                $Database3->save($data3);
-                if ($data2['['.$dujihao.']']=='猎人') {
+               // $data3['['.$dujihao.']']='毒';                   //1代表确定死了
+               // $Database3->save($data3);
+                if ($data2['['.$dujihao.']']=='猎人') {           //判断毒的是不是猎人
                     $data2['['.$dujihao.']']='毒';
                     $Database2->save($data2);
                 }
-                               
-                
-
 
                 $sf=$data2['['.$dujihao.']'];
                 for ($id=1; $id < 13; $id++) 
                 { 
-                    if($data3['['.$id.']']=='死')
+                    if($data3['['.$id.']']=='死'/*||$data3['['.$id.']']=='毒'*/)
                     {   
                         $data3['['.$id.']']='1'; //被狼杀的确定死了
                         $Database3->save($data3);
@@ -415,10 +412,28 @@ class GameController extends Controller {
 
                     if ($data3['['.$id.']']=='守死') 
                     {
-                        $data3['['.$id.']']='0';
+                        
+                        
+                        if ($dujihao<$id) {
+                            $data3['['.$dujihao.']']='毒';
+                            $data3['['.$id.']']='1';
+                            $data4['['.$day.']']=$dujihao.','.$id;
+                        } 
+                        elseif ($dujihao>$id) {
+                            $data3['['.$dujihao.']']='毒';
+                            $data3['['.$id.']']='1';
+                            $data4['['.$day.']']=$id.','.$dujihao;    //第几夜死的是谁
+                        } 
+                        else {
+                            $data3['['.$dujihao.']']='毒';
+                            $Database3->save($data3);
+                            $data4['['.$day.']']=$dujihao;
+                            $Database4->save($data4);
+                        }
                         $Database3->save($data3);
-                        $data4['['.$day.']']=$dujihao;
                         $Database4->save($data4);
+                        break;
+                      
                     }
                 }
             }
@@ -604,21 +619,33 @@ class GameController extends Controller {
             $Database3=M('siren');
             $Database4=M('meiyesiren');
            
-            $fangjianhao=I('post.fangjianhao');
+            $fangjianhao=I('post.fangjianhao1');
             $data1=$Database->where("fangjianhao='$fangjianhao'")->find();
             $data2=$Database2->where("fangjianhao='$fangjianhao'")->find();
             $data3=$Database3->where("fangjianhao='$fangjianhao'")->find();
             $data4=$Database4->where("fangjianhao='$fangjianhao'")->find();
 
-            for ($i=1; $i < 13 ; $i++) { 
-                if ($data2['['.$i.']']=='毒') {
+            $flag=0;
+            for ($k=1; $k<13 ; $k++) { 
+
+                if ($data2['['.$k.']']=='毒') 
+                {
                     $flag=1;
+                    
                 }
-                else{
-                    $flag=0;
-                }
-                $this->ajaxReturn($flag);
+
+                //$flag=1;
+
             }
+            /*$cc=$data2['[3]'];
+            var_dump($cc);
+            die();*/
+            
+            $this->ajaxReturn($flag);
+            
+            
+            
+            
             
 
         }

@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/71/Public/css/weui.min.css">
 <link rel="stylesheet" href="/71/Public/css/jquery-weui.css">
 <link rel="stylesheet" href="/71/Public/css/demos.css">
+<link rel="stylesheet" type="text/css" href="/71/Public/css/background.css">
 
 
 
