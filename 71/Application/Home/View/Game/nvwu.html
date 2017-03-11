@@ -3,133 +3,134 @@
     
 	<script src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
 
+<div class="background">
+	<div class="yuyin" style="display:{$flag}">
 
-<div class="yuyin" style="display:{$flag}">
+		<span class="weui_btn weui_btn_warn">房主操作</span>
+		
+		<button id="tianliangle" class="weui_btn weui_btn_primary">天亮了（先竞选警长），查看昨晚情况</button></br> 
+		<span id="zuowansideshi" class="weui_btn weui_btn_plain_default"></span>  
 
-	<span class="weui_btn weui_btn_warn">房主操作</span>
-	
-	<button id="tianliangle" class="weui_btn weui_btn_primary">天亮了（先竞选警长），查看昨晚情况</button></br> 
-	<span id="zuowansideshi" class="weui_btn weui_btn_plain_default"></span>  
-
-	
-	
-	
-	<script type="text/javascript">
-	$("#tianliangle").click(function(event){
-		$.ajax({
-			type:"POST",
-			url:"{:U('Game/tianliangle')}",
-			success:function(siderenshi)
-			{
-				$("#zuowansideshi").html("昨晚死的人是"+siderenshi+"号");
-			}
-		});
-	});
-
-	</script>
-	</br>
-
-	<input type="text" id="fangzhutoupiao">
-	<button type="submit" id="piao" class="weui_btn weui_btn_mini weui_btn_primary">票他出去</button>
-	</br>
-	<script type="text/javascript">
-		$("#piao").click(function(event){
+		
+		
+		
+		<script type="text/javascript">
+		$("#tianliangle").click(function(event){
 			$.ajax({
-				url:"{:U('Game/toupiao')}",
 				type:"POST",
-				data:{fangzhutoupiao:$("#fangzhutoupiao").val()}
-				
+				url:"{:U('Game/tianliangle')}",
+				success:function(siderenshi)
+				{
+					$("#zuowansideshi").html("昨晚死的人是"+siderenshi+"号");
+				}
 			});
-			alert("已投");
+		});
+
+		</script>
+		</br>
+
+		<input type="text" id="fangzhutoupiao">
+		<button type="submit" id="piao" class="weui_btn weui_btn_mini weui_btn_primary">票他出去(别输入白痴)</button>
+		</br>
+		<script type="text/javascript">
+			$("#piao").click(function(event){
+				$.ajax({
+					url:"{:U('Game/toupiao')}",
+					type:"POST",
+					data:{fangzhutoupiao:$("#fangzhutoupiao").val()}
+					
+				});
+				alert("已投");
+			});
+
+		</script>
+		</br>
+		<audio src="__PUBLIC__/music/langrensha.mp3" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
+	    <div style="border-top:2px solid #F00"></div>
+	</div>
+
+
+	</br>
+	<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
+	<span>今夜死的人是</span>
+
+
+
+	<button id="shuisi">查看</button>
+
+	<script type="text/javascript">
+		$("#shuisi").click(function(event){
+			var fangjianhao=$("#fangjianhao").val();
+
+			$.ajax({
+				type:"POST",
+				url:"{:U('Game/nvwu2')}",
+				data:{fangjianhao1:fangjianhao},
+				success:function(sss)
+				{
+					$("#si").show();	
+					$("#si").html("今晚死的人是"+sss+"号");
+					$("#xuanze").show();
+				}
+			});
 		});
 
 	</script>
-	</br>
-	<audio src="__PUBLIC__/music/langrensha.mp3" controls="controls"></audio>  <!--黑闭，狼杀,女巫，预言家，天亮睁眼，竞选警长，昨晚 -->
-    <div style="border-top:2px solid #F00"></div>
-</div>
 
+	<span hidden="hidden" id="si"></span>
+	<div id="xuanze" hidden="hidden">
+		<input name="yongyao" type="radio" value="救" id="jiu"><span id="J">救</span>
+		<input name="yongyao" type="radio" value="毒" id="du"><span id="D">毒</span>
+		<input name="du" id="dujihao" hidden="hidden">
+		<input name="yongyao" type="radio" value="什么也不做" id="buzuo">什么也不做
+		
+		<button id="queding">确定</button>
+	</div>
 
-</br>
-<input type="text" id="fangjianhao" value="{$fangjianhao}" hidden="hidden">
-<span>今夜死的人是</span>
+	<script type="text/javascript">
+		$("#du").click(function(event)
+		{
+			$("#dujihao").show();
 
-
-
-<button id="shuisi">查看</button>
-
-<script type="text/javascript">
-	$("#shuisi").click(function(event){
-		var fangjianhao=$("#fangjianhao").val();
-
-		$.ajax({
-			type:"POST",
-			url:"{:U('Game/nvwu2')}",
-			data:{fangjianhao1:fangjianhao},
-			success:function(sss)
-			{
-				$("#si").show();	
-				$("#si").html("今晚死的人是"+sss+"号");
-				$("#xuanze").show();
-			}
 		});
-	});
-
-</script>
-
-<span hidden="hidden" id="si"></span>
-<div id="xuanze" hidden="hidden">
-	<input name="yongyao" type="radio" value="救" id="jiu"><span id="J">救</span>
-	<input name="yongyao" type="radio" value="毒" id="du"><span id="D">毒</span>
-	<input name="du" id="dujihao" hidden="hidden">
-	<input name="yongyao" type="radio" value="什么也不做" id="buzuo">什么也不做
-	
-	<button id="queding">确定</button>
-</div>
-
-<script type="text/javascript">
-	$("#du").click(function(event)
-	{
-		$("#dujihao").show();
-
-	});
-	$("#jiu").click(function(event)
-	{
-		$("#dujihao").hide();
+		$("#jiu").click(function(event)
+		{
+			$("#dujihao").hide();
 
 
-	});
-	$("#buzuo").click(function(event)
-	{
-		$("#dujihao").hide();
+		});
+		$("#buzuo").click(function(event)
+		{
+			$("#dujihao").hide();
 
 
-	});
-	$("#queding").click(function(event)
-	{
+		});
+		$("#queding").click(function(event)
+		{
 
-		$.ajax({
-			type:"POST",
-			url:"{:U('Game/nvwu3')}",
-			data:{caozuo:$("input[name='yongyao']:checked").val(),dujihao:$("#dujihao").val()},
-			success:function(disable)      //禁止以上的救，毒按钮
-			{
-				switch(disable)
+			$.ajax({
+				type:"POST",
+				url:"{:U('Game/nvwu3')}",
+				data:{caozuo:$("input[name='yongyao']:checked").val(),dujihao:$("#dujihao").val()},
+				success:function(disable)      //禁止以上的救，毒按钮
 				{
-					case '救': $('#jiu').hide(); $('#J').hide();
-						break;
-					case '毒': $('#du').hide(); $('#dujihao').hide(); $("#D").hide();
-						break;
-					default:
-						break;
+					switch(disable)
+					{
+						case '救': $('#jiu').hide(); $('#J').hide();
+							break;
+						case '毒': $('#du').hide(); $('#dujihao').hide(); $("#D").hide();
+							break;
+						default:
+							break;
+					}
 				}
-			}
 
+			});
+			alert("操作成功");
 		});
-		alert("操作成功");
-	});
 
-</script>
+	</script>
+</div>
 
 
 
