@@ -723,21 +723,36 @@ class GameController extends Controller {
 
         }
 
-        /*public function test()
-        {
-            echo 2233;
-            
-            $Daa=M('test');
-            $data=$Daa->where("a=7")->find();
-            var_dump($data);
-            die();
-            $data['b']=888;
-           /* var_dump($data['a']);
-            die();
-            $Daa->save($data);
-           
+        public function test1(){
+            $this->display();
+        }
 
-        }*/
+
+
+
+        public function test()
+        {   
+            $fangjianhao2=I('post.testcontent');
+            //$database2=M('shenfen');
+            /*var_dump($fangjianhao2);
+            die();*/
+           //$data2=$database2->where("fangjianhao='$fangjianhao2'")->find();
+            
+            $k=5;
+            
+
+            for ($i=1; $i<10 ; $i++) { 
+                if ($k<$i) {
+                    $q='xiaoyu';
+                    $this->ajaxReturn($q);
+                    //break;
+                }
+                $q='dayu';
+            }
+            $this->ajaxReturn($q);
+
+
+        }
      
 
 
