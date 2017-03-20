@@ -1,14 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>房间</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-</head>
-<body>
-<span><h1>房间号为{$fangjianhao}</h1></span>
 
+<style type="text/css">
+	body {
+    background-color: #f8e6ca;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+	.box {
+    border: 2px #b08023 solid;
+    background-color: rgba(54, 85, 222, 0.26);
+    box-shadow: 0 2px #fbf4eb;
+    border-radius: 5px;
+    text-align: center;
+    margin:0 auto;
+    margin-top:43%;
+    left: 50%;
+}
+	.orange {
+	color: #fef4e9;
+	width: 200px;
+	height: 50px;
+	border-radius: 30px;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
 
+	.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+</style>
 
-<button onclick="javascript:window.location.href='{:U('Game/gamehome',array('fangjianhao'=>$fangjianhao))}'">进入房间</button>
-</body>
-</html>
+<div class="box">
+	</br>
+	</br>
+	<span><h1>房间号为{$fangjianhao}</h1></span>
+	</br>
+	</br>
+	</br>
+	</br>
+	
+	<input type="button" value="进入房间" onclick="javascript:window.location.href='{:U('Game/gamehome',array('fangjianhao'=>$fangjianhao))}'" class="orange" >
+	</br>
+	</br>
+</div>
