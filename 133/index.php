@@ -1,1 +1,45 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>欢迎使用新浪云</title></head><body><h4>欢迎使用新浪云</h4><p>技术领先的新浪云正为您提供稳定的云计算服务。</p><p>使用中遇到问题欢迎提<a href="http://www.sinacloud.com/ucenter/workorderadd.html"target="_blank">工单</a>咨询，您会在第一时间得到专业的回答。</p><p>您可能需要了解以下内容：</p><ul><li><a href="http://www.sinacloud.com/doc/sae/tutorial/index.html?from=app_index"target="_blank">入门指南</a></li><li><a href="http://www.sinacloud.com/index/apply_ospace.html?from=app_index"target="_blank">免费申请成为合作伙伴</a></li><li><a href="http://www.sinacloud.com/index/applyqy.html?from=app_index"target="_blank">免费申请迁移指导</a></li><li><a href="http://www.sinacloud.com/index/faq/sort_id/1.html?from=app_index"target="_blank">常见问题</a></li><li><a href="http://weibo.com/saet"target="_blank">新浪云官方微博</a></li></ul><p>新浪云产品动态：</p><span id="news">加载中...</span><p><a href="http://www.sinacloud.com/news.html?from=app_index"target="_blank">更多>></a></p></body><script type="text/javascript"src="http://cdn.static.sinacloud.com/public/sinacloud_news.js"></script><p><b>提示：</b>此页面是默认首页 index.html、index.php 如果您不需要可以删除或修改。</p></html>
+<?php
+$cache_time=60;
+$OJ_CACHE_SHARE=false;
+ require_once("oj-header.php");
+	require_once("./include/db_info.inc.php");
+	echo "<title>Welcome To Online Judge</title>";
+	$sql=	"SELECT * "
+			."FROM `news` "
+			."WHERE `defunct`!='Y'"
+			."ORDER BY `importance` ASC,`time` DESC "
+			."LIMIT 5";
+	$result=mysql_query($sql);//mysql_escape_string($sql));
+	if (!$result){
+		echo "<h3>No News Now!</h3>";
+		echo mysql_error();
+	}else{
+		echo "<table width=96%>";
+		
+		while ($row=mysql_fetch_object($result)){
+			echo "<tr><td><td><big><b>".$row->title."</b></big>-<small>[".$row->user_id."]</small></tr>";
+			echo "<tr><td><td>".$row->content."</tr>";
+		}
+		mysql_free_result($result);
+		echo "<tr><td width=20%><td>This <a href=http://cm.baylor.edu/welcome.icpc>ACM/ICPC</a> OnlineJudge is a GPL product from <a href=http://code.google.com/p/hustoj>hustoj</a></tr>";
+		echo "</table>";
+	}
+?>
+<?php if(function_exists('apc_cache_info')): ?>
+<?php $_apc_cache_info = apc_cache_info(); ?>
+<div style="text-align:center">
+<div style="margin: auto; width:400px; text-align:left">
+<h4>Alternative PHP Cache:<strong>ACTIVE</strong></h4>
+<strong>Performace Data<strong>
+<ul id="apc">
+	<li><span>Hits: </span><?php echo $_apc_cache_info['num_hits']?></li>
+	<li><span>Misses: </span><?php echo $_apc_cache_info['num_misses']?></li>
+	<li><span>Entries: </span><?php echo $_apc_cache_info['num_entries']?></li>
+	<li><span>Inserts: </span><?php echo $_apc_cache_info['num_inserts']?></li>
+	<li><span>Cached Files: </span><?php echo $_apc_cache_info['mem_size']/1024?>KB</li>
+</ul>
+</div>
+</div>
+<?php endif;?>
+
+<?php require('oj-footer.php');?>

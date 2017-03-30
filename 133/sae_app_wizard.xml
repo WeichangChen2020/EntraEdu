@@ -1,0 +1,4 @@
+<appwizard><introduction><name></name><author>hustojsae</author><icon></icon><homepage></homepage><description><![CDATA[]]></description></introduction><platform><services><service></service><service name="data"  params="数据存储">Storage</service><service name="web"  params="数据存储">Storage</service><service size="30M">Memcache</service><service>Mysql</service></services><appconfig><tpl><![CDATA[
+name: <<appname>>
+version: <<version>>
+]]></tpl></appconfig></platform><code><initScript>sae/install.php</initScript></code></appwizard>
