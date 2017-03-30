@@ -1,6 +1,6 @@
 <?php @session_start();
 	ini_set("display_errors","Off");
-static 	$DB_HOST="w.rdc.sae.sina.com.cn:3307";
+static 	$DB_HOST="r.rdc.sae.sina.com.cn:3307";
 static 	$DB_NAME="app_testtest11";
 static 	$DB_USER=SAE_MYSQL_USER;
 static 	$DB_PASS=SAE_MYSQL_PASS;
