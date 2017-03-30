@@ -2,8 +2,8 @@
 	ini_set("display_errors","Off");
 static 	$DB_HOST="w.rdc.sae.sina.com.cn:3307";
 static 	$DB_NAME="app_testtest11";
-static 	$DB_USER="ylm2jlwxmm";
-static 	$DB_PASS="2y5jjyhxwj13xm2i5kwxz3ykwlj4542i022lwlhy";
+static 	$DB_USER=SAE_MYSQL_USER;
+static 	$DB_PASS=SAE_MYSQL_PASS";
 	// connect db 
 static 	$OJ_NAME="浙江工商大学程序设计平台";
 static 	$OJ_HOME="./";
