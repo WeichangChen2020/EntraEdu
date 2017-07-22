@@ -33,13 +33,13 @@ class UserController extends Controller {
     public function index(){
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
         //session('openId',null);
-        //$openId = getOpenId(); //
+        $openId = getOpenId(); //
 
-        $openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0';//session('openId')
-        echo session('openId');
+        //$openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0';//session('openId')
+        //echo session('openId');
         echo "<br>";
-        //echo $openId;
-        echo $_COOKIE["openId"];
+        echo $openId;
+        //echo $_COOKIE["openId"];
         die();
 
 		if($this->isRegister($openId)){
