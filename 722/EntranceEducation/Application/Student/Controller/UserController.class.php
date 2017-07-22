@@ -34,7 +34,7 @@ class UserController extends Controller {
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
         //session('openId',null);
         //$openId = getOpenId(); //
-        $openId = session('openId');
+        $openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0';//session('openId')
 
 		if($this->isRegister($openId)){
 
