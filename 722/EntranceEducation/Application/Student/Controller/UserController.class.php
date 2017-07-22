@@ -32,9 +32,9 @@ class UserController extends Controller {
 
     public function index(){
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
-        session('openId',null);
-        $openId = getOpenId(); //
-        session('openId',$openId);
+        //session('openId',null);
+        //$openId = getOpenId(); //
+        $openId = session('openId');
 
 		if($this->isRegister($openId)){
 
