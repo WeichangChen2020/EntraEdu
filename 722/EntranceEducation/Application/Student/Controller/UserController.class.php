@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | 概率论与数理统计教学互动平台
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: lijj <hello_lijj@qq.com>
-// +----------------------------------------------------------------------
-// | Time: 2016-07-16  19:33
-// +----------------------------------------------------------------------
+
 namespace Student\Controller;
 use Think\Controller;
 use Think\Model;
@@ -92,7 +82,7 @@ class UserController extends Controller {
     public function index(){
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
         session('openId',null);
-        $openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0'; //getOpenId()
+        $openId = getOpenId(); //
         session('openId',$openId);
 
 		if($this->isRegister($openId)){
