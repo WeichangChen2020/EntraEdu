@@ -29,55 +29,6 @@ class UserController extends Controller {
 			return false;
 	}
 
-    //判断是否为教师
-    public function isTeacher($openId){
-        if(M('teacher_info')->where(array('openId' => $openId))->find())
-            return true;
-        else
-            return false;
-    }
-
-    //添加为教师
-    public function teacherAdd($openId){
-        if($this->isTeacher($openId))
-            return '你的账号已是教师账号，不用再添加';
-        $userInfo = $this->getUserInfo($openId);
-        $info     = array(
-            'openId' => $openId,
-            'name'   => $userInfo['name'],
-            'time'   => date('Y-m-d H:i:s',time())
-            );
-        if(M('teacher_info')->add($info))
-            return '教师账号添加成功，发送？尝试教师端端功能';
-        else
-            return '添加失败';
-    }
-
-    //添加为教师, 由社会上认识成为教师
-    public function teacherAddFromPasser($openId){
-        if($this->isTeacher($openId))
-            return '你的账号已是教师账号，不用再添加';
-        $info     = array(
-            'openId' => $openId,
-            'name'   => '体验者',
-            'time'   => date('Y-m-d H:i:s',time())
-            );
-        D('StudentInfo')->add($info);
-        if(M('teacher_info')->add($info))
-            return '教师账号添加成功，发送？尝试教师端端功能';
-        else
-            return '添加失败';
-    }
-
-    //取消为老师
-    public function teacherDelete($openId){
-        if(!$this->isTeacher($openId))
-            return '你的账号不是教师账号，取消失败';
-        if(M('teacher_info')->where(array('openId' => $openId))->delete())
-            return '教师账号添加成功';
-        else
-            return '取消失败';
-    }
 
     public function index(){
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
@@ -94,9 +45,9 @@ class UserController extends Controller {
             $stu_info         = $STU->where($con)->find();
            // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
 			
-            $this->assign('stu_info',$stu_info)->display('Index/index');
+            $this->assign('stu_info',$stu_info)->display('Index/index');//如果已经注册，直接跳转到欢迎界面
 		}else{
-			$this->display('register');
+			$this->display('register');//否则就到注册页面填写信息
 		}
     }
 
