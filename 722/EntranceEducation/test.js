@@ -138,7 +138,7 @@
 		txtCtx.font = 'bold 150px Sans-serif';
 		txtCtx.textAlign = 'center';
 		txtCtx.baseline = 'middle';
-		txtCtx.fillText('S E E   Y O U', WIDTH / 2, HEIGHT / 2);
+		txtCtx.fillText('W E L C O M E', WIDTH / 2, HEIGHT / 2);
 
 		ctx.font = 'bold 24px Monospace';
 		ctx.textAlign = 'center';
