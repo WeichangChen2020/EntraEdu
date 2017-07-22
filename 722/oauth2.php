@@ -10,8 +10,9 @@ if (isset($_GET['code'])){
 	$count_json = count($de_json);
 
 	$openid = $de_json['openid'];
-	session_start();
-	$_SESSION['openId']=$openid;
+	//session_start();
+	//$_SESSION['openId']=$openid;
+	setcookie("openId",$openid, time()+3600);
 	header("Location: http://722.testroom.applinzi.com/EntranceEducation/entrance.html"); 
 	//echo $openid;
 }else{
