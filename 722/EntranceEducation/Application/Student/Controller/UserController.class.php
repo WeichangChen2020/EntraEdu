@@ -38,7 +38,8 @@ class UserController extends Controller {
         $openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0';//session('openId')
         echo session('openId');
         echo "<br>";
-        echo $openId;
+        //echo $openId;
+        echo $_COOKIE["openId"];
         die();
 
 		if($this->isRegister($openId)){
