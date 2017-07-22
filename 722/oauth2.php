@@ -12,8 +12,8 @@ if (isset($_GET['code'])){
 	$openid = $de_json['openid'];
 	//session_start();
 	//$_SESSION['openId']=$openid;
-	setcookie("openId",$openid, time()+3600);
-	header("Location: http://722.testroom.applinzi.com/EntranceEducation/entrance.html"); 
+	//setcookie("openId",$openid, time()+3600);
+	header("Location: http://722.testroom.applinzi.com/EntranceEducation/entrance.html?openId=$openid"); 
 	//echo $openid;
 }else{
     echo "NO CODE";
