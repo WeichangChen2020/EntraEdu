@@ -221,7 +221,7 @@ class SimulateController extends Controller {
 		$class = $DOER->where('openId="'.$openId.'"')->getField('class');
 		$testId = session('testId');
 		$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
 		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
