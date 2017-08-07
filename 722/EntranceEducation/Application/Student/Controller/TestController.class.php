@@ -21,7 +21,10 @@ class TestController extends Controller{
   
 
     public function index(){
-        echo "默认页面";
+        //echo "默认页面";
+        $openId=session('openId');
+        session('openId',$openId);
+        $this->display();
     }
     public function testList(){
         //session('openId',null);
