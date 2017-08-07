@@ -11,8 +11,8 @@ class CollectController extends Controller {
         $openId=session('openId');
         session('openId',$openId);
 		//echo $openId;
-		echo "< script language=\"JavaScript\">alert(\"还没写\");< /script>";
-		die();
+		echo "< script language=\"JavaScript\">\r\n"; echo " alert(\"你好\");\r\n"; echo " history.back();\r\n"; echo "< /script>"; 
+		exit;
 		$this->display();
 	}
 	public function review(){
