@@ -23,7 +23,11 @@ class ReviewController extends Controller {
 
 		/*======获取错题数量======*/
 			
-		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count(); //
+		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count();
+		if ($wrongNum==0) {
+		 	echo "恭喜你错题已做完！";
+		 	die();
+		 } 
 		
 		/*======读取错题======*/
 
