@@ -5,7 +5,7 @@ namespace Student\Controller;
 use Think\Controller;
 use Think\Model;
 
-class ReviewController extends Controller {
+class CollectController extends Controller {
 	public function index(){
 
         $openId=session('openId');
