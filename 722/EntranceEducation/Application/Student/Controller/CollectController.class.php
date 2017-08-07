@@ -11,7 +11,7 @@ class CollectController extends Controller {
         $openId=session('openId');
         session('openId',$openId);
 		//echo $openId;
-		echo "还没写！";
+		echo "< script language=\"JavaScript\">alert(\"还没写\");< /script>";
 		die();
 		$this->display();
 	}
