@@ -262,6 +262,12 @@ class SimulateController extends Controller {
 		//$ANSWER -> add($record);
 		//$this->simulateFinish($openId,$testId);
 
+		//如果回答错误，把答题信息记录到错题回顾表
+		if ($answerResult == "WRONG") {
+			$WRONG = M('wrong_review_record');
+			$WRONG->data($record)->add();
+		}
+
 	}
 
 	//判断是否完成所有题目

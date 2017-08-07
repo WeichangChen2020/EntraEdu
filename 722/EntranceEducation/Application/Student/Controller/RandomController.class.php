@@ -161,6 +161,12 @@ class RandomController extends Controller {
 		$ANSWER->data($record)->add();
 		//$ANSWER -> add($record);
 
+		//如果回答错误，把答题信息记录到错题回顾表
+		if ($answerResult == "WRONG") {
+			$WRONG = M('wrong_review_record');
+			$WRONG->data($record)->add();
+		}
+
 	}
 
 	// public function commentArea(){
