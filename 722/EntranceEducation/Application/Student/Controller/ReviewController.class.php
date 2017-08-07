@@ -25,7 +25,8 @@ class ReviewController extends Controller {
 			
 		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count();
 		if ($wrongNum==0) {
-		 	echo "恭喜你错题已做完！";
+		 	//echo "恭喜你错题已做完！";
+		 	echo "  <script language=\"JavaScript\"> alert(\"恭喜你错题已做完！\");history.go(-1);</script>";
 		 	die();
 		 } 
 		
