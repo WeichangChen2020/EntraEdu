@@ -23,16 +23,25 @@ class ReviewController extends Controller {
 
 		/*======获取错题数量======*/
 			
-		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count();
-		if ($wrongNum==0) {
-		 	//echo "恭喜你错题已做完！";
-		 	echo "  <script language=\"JavaScript\"> alert(\"恭喜你错题已做完！\");history.go(-1);</script>";
-		 	die();
-		 } 
+		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count(); //
 		
 		/*======读取错题======*/
 
-		$wrongId = $RECORD->where('openId="'.$openId.'" AND answerResult = "WRONG"' )->getField('questionId');	
+		$wrongArray = $RECORD->where('openId="'.$openId.'" AND answerResult = "WRONG"' )->select();
+		//var_dump($wrongArray);//错题的二维数组
+		for ($i=0; $i < $wrongNum; $i++) { 
+			$wrong_array = $wrongArray[$i];//某一题的一维数组
+			$wrongId = $wrong_array['questionId'];
+			//echo $wrongId;
+			$wrongId_array[] = $wrongId;//错误题号数组
+		}
+		//var_dump($wrongId_array);
+		$id = rand(0,$wrongNum-1);//生成随机数
+		//echo $id."<br/>";
+		$wrongId = $wrongId_array[$id];//随机取一个错题，否则每次都是同一题
+		//echo $wrongId;
+		//die();
+
 
 		$item  = $QUESTION->where("id=".$wrongId)->find();
 		//echo $item['id'];
@@ -46,6 +55,7 @@ class ReviewController extends Controller {
 		$this->assign('wrongId',$wrongId);
 		//$this->assign('answerRecord',$answerRecord);
 		//$this->assign('sumNum',$sumNum);
+	
 		$type = 1;
 		session('type',$type);
 		if ($type=='2') {
@@ -57,6 +67,7 @@ class ReviewController extends Controller {
 			//$this->display('randomMultiple');
 			//$this->display('randomJudge');
 		}
+		
 		
     }
 
