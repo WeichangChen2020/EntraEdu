@@ -5,11 +5,15 @@
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 		<title></title>
 		<link rel="stylesheet" href="__PUBLIC__/doExercise/css/jqmobo.css">
+		<link rel="stylesheet" href="__PUBLIC__/doExercise/css/collect.css">
 		<script src="__PUBLIC__/doExercise/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/js/collect.js"></script>
 		<script type="text/javascript">
 			k = "0";
+			//c = "0";
 			var enterTime = "{$enterTime}";
 		</script>
+
 	</head>
 	<body>
 		<form id="form1" method="post" action="">
@@ -40,6 +44,8 @@
 						</div>
 						<div id="answerAera" name="answerAera">
 						</div>
+						<div id="collectAera" name="collectAera">
+						</div>
 						<div id="explainAera" name="explainAera">
 						</div>
 					</div>
@@ -51,15 +57,30 @@
 					<a id="ctlNext1" class="button blue" href="#answerAera">提交 </a>
 				</div>
 			</div>
-			<div style="margin-top:10px"></div>
-			<div class="footer">
-				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
-					<a class="button white" href="{:U('Random/random')}/chapter/{$_GET['chapter']}">下一题</a>
-				</div>
 
+			<!-- <div style="margin-top:10px"></div> -->
+
+			<!-- <div id="divSubmit" style="padding: 10px; margin-top: -15px;">
+					<a class="butto white" href="{:U('Random/commentArea')}/questionItem={$itemid}">评论</a>
+			</div> -->
+			
+<!-- 				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
+					<a id="ctlNext1" class="button yellow" href="#collectArea">收藏</a>
+				</div> -->
+			<div id="main" class="main">
+				<div id="divSubmit2" class="zan" style="padding: 10px; margin-top: -15px;">
+					<a id="ctlNext2" class="button yellow" href="#collectAera">收藏</a>
+				</div>
 			</div>
-<!-- 			<include file="{:U('/Random/commentArea')}?questionItem={$itemid}">
-			<div style="height:40px"></div> -->
+			
+			<div id="divSubmit3" style="padding: 10px; margin-top: -15px;">
+				<a class="button white" href="{:U('Random/random')}/chapter/{$_GET['chapter']}">下一题</a>
+			</div>
+
+			<!-- <include file="{:U('commentArea')}?questionItem={$itemid}"> -->
+			<!-- <a class="butto white" href="{:U('Random/commentArea')}/questionItem={$itemid}">评论</a> -->
+
+			<div style="height:40px"></div>
 		</form>
 
 
@@ -83,7 +104,8 @@
 				ajaxData['itemid'] = "{$itemid}"; //题目的id
 				ajaxData['enterTime'] = "{$enterTime}";
 				ajaxData['answer'] = k; //用户选择的答案
-				ajaxData['lefeTime'] = "setInServer";
+				ajaxData['leftTime'] = "setInServer";
+				//ajaxData['collect'] = c;//是否收藏
 				$.ajax({
 					cache: false,
 					type: "POST",
@@ -109,8 +131,12 @@
 						var opDNum = jsApiParameters['opDNum'];
 						var opAllNum = jsApiParameters['opAllNum'];
 						document.getElementById('answerAera').innerHTML = "标准答案：" + rightAnswer;
+										
 						!analysisPicPath ? "" : document.getElementById('explainAera').innerHTML = "<img src=http://testet-public.stor.sinaapp.com" + analysisPicPath.slice(7) + analysisPicName + ">";
 						$('#footer').hide();
+						$('#main').show();
+
+
 
 						/*============ show option ==============*/
 						// document.getElementById('opA').innerHTML = "<progress value='" + opANum + "' max='" + opAllNum + "' class='piao'></progress>" + opANum + "人";
@@ -123,11 +149,31 @@
 						// document.getElementById('answerRightNum').innerHTML = rightAnswerNum;
 						// document.getElementById('answerNum').innerHTML = {$answerRecord.answerNum} + 1;
 					}
+
+				});
+			});
+			$("#divSubmit2").click(function(e){
+
+				var ajaxData = {};
+				ajaxData['openid'] = "{$openid}"; //用户id	
+				ajaxData['itemid'] = "{$itemid}"; //题目的id
+				ajaxData['enterTime'] = "{$enterTime}";
+				ajaxData['answer'] = k; //用户选择的答案
+				ajaxData['lefeTime'] = "setInServer";
+				//ajaxData['collect'] = 1;//是否收藏
+				$.ajax({
+					cache: false,
+					type: "POST",
+					url: "{:U('Random/collect')}",
+					dataType: "json",
+					data: ajaxData,
+
 				});
 			});
 		</script>
 		<script>
 		</script>
+
 	</body>
 
 </html>
