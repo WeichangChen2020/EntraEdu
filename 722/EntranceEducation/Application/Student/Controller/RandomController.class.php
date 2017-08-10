@@ -161,11 +161,65 @@ class RandomController extends Controller {
 		$ANSWER->data($record)->add();
 		//$ANSWER -> add($record);
 
-		//如果回答错误，把答题信息记录到错题回顾表
-		if ($answerResult == "WRONG") {
-			$WRONG = M('wrong_review_record');
+		//如果回答错误，并且表里没有这题，把答题信息记录到错题回顾表
+		$WRONG = M('wrong_review_record');
+		$exsit_wrong = $WRONG->where(array('openId' => $openid , 'questionId' => $itemid))->find();
+		if ($answerResult == "WRONG" && !$exsit_wrong) {
+			
 			$WRONG->data($record)->add();
 		}
+
+	}
+
+	public function collect(){
+		/*==========定义变量=============*/
+        $itemid   = I('post.itemid');
+        $openid   = I('post.openid');
+        //$answer   = I('post.answer');
+        $enterTime = I('enterTime');
+        if ($type == '2') {
+			$answer1 = I('post.answer1');
+			$answer2 = I('post.answer2');
+			$answer3 = I('post.answer3');
+			$answer4 = I('post.answer4');
+			$answer = $answer1.$answer2.$answer3.$answer4;
+				//echo $answer;
+		}else{
+			$answer  = I('post.answer');
+		}
+        $leaveTime = time();
+		$ANSWER = M('collect_record');
+		$QUESTION = M('questionbank');
+		$DOER = M('student_info');
+		$name = $DOER->where('openId="'.$openid.'"')->getField('name');
+		$class = $DOER->where('openId="'.$openid.'"')->getField('class');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
+		$rightans = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
+		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
+		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
+		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
+		/*=======构造插入数据库答题信息数组======*/
+		$record = array(
+			'openId' => $openid, 
+			'name' => $name,
+			'class' => $class,
+			'questionId' => $itemid,
+			'questionType' => $questionType,
+			'answer' => $answer,
+			'rightAnswer' => $rightans,
+			'answerResult' => $answerResult,
+			'enterPageTime' => date("Y-m-d H:i:s",$enterTime),
+			'leavePageTime' => date("Y-m-d H:i:s",$leaveTime),
+			'answerTime' => $answerTime,
+		);
+		//var_dump($record);
+		//die();
+		$exsit = $ANSWER->where(array('openId' => $openid , 'questionId' => $itemid))->find();
+		if (!$exsit) { //如果没有收藏过才插入表中
+			$ANSWER->data($record)->add();
+		}
+		
+		//$ANSWER -> add($record);
 
 	}
 
