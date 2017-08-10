@@ -193,7 +193,7 @@ class RandomController extends Controller {
 		$DOER = M('student_info');
 		$name = $DOER->where('openId="'.$openid.'"')->getField('name');
 		$class = $DOER->where('openId="'.$openid.'"')->getField('class');
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
 		$rightans = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
