@@ -27,9 +27,9 @@ class SimulateController extends Controller {
 			'6' => 'unit6',
 			'7' => 'unit7',
 		);
-		$count_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->count();
-		$min_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->min('id');
-		$max_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->max('id');		
+		$count_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->count();
+		$min_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->min('id');
+		$max_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->max('id');		
 		//echo $count_unit1;
 		//echo $min_unit1;
 		//echo $max_unit1;
@@ -39,8 +39,8 @@ class SimulateController extends Controller {
 		shuffle ($numbers_unit1); //将数组随机打乱
 		$result_unit1 = array_slice($numbers_unit1,0,8);//取其中的8个数
 		//print_r($result);
-		$min_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->min('id');
-		$max_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->max('id');
+		$min_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->min('id');
+		$max_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->max('id');
 		$numbers_rest = range ($min_rest,$max_rest); //排列成数组
 		shuffle ($numbers_rest); //将数组随机打乱
 		$result_rest = array_slice($numbers_rest,0,2);//取其中的2个数		
@@ -219,9 +219,10 @@ class SimulateController extends Controller {
 
 		$name = $DOER->where('openId="'.$openId.'"')->getField('name');
 		$class = $DOER->where('openId="'.$openId.'"')->getField('class');
+		$number = $DOER->where('openId="'.$openId.'"')->getField('number');
 		$testId = session('testId');
 		$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
 		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
@@ -232,6 +233,7 @@ class SimulateController extends Controller {
 			'openId' => $openId, 
 			'name' => $name,
 			'class' => $class,
+			'number' => $number,
 			'testId' => $testId,//测试id
 			'proId' => $proId+1, //题目在该套卷子中是第几题
 			'questionId' => $itemid,//题目在题库中的id
@@ -262,12 +264,6 @@ class SimulateController extends Controller {
 		//$ANSWER -> add($record);
 		//$this->simulateFinish($openId,$testId);
 
-		//如果回答错误，把答题信息记录到错题回顾表
-		if ($answerResult == "WRONG") {
-			$WRONG = M('wrong_review_record');
-			$WRONG->data($record)->add();
-		}
-
 	}
 
 	//判断是否完成所有题目
@@ -287,24 +283,45 @@ class SimulateController extends Controller {
     	$openId = I('openId');
     	$testId = I('testId');
         $RECORD = M('simulate_answer_record');
-		$name = $RECORD->where('openId="'.$openId.'"')->getField('name');
+        $RESULT = M('simulate_result_record');
+		$name = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('name');
+		$class = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('class');
+		$number = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('number');
+		//echo $number;die();
 		$answerNum = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->count();
 		$answerRightNum = $RECORD->where(array('openId' => $openId , 'testId' => $testId, 'answerResult' => "RIGHT"))->count();
+		$startTime = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->min('enterPageTime');
 		$submitTime = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->max('leavePageTime');
+		$answerTimeSecond = strtotime($submitTime) - strtotime($startTime);    //回答时间的秒数int型
+		//$answerTime = ceil(abs($submitTime - $startTime)/86400); 	
+		$answerTime = (ceil($answerTimeSecond / 3600)-1).'小时'.(ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
+		// echo $startTime."<br/>";
+		// echo $submitTime."<br/>";
+		// echo $answerTimeSecond."<br/>";
+		// echo $answerTime;
+		// die();
 		if ($answerRightNum>=9) {
-			$grade = 'pass';//判断是否通过
+			$simulateResult = 'pass';//判断是否通过
 		}else{
-			$grade = 'fail';
+			$simulateResult = 'fail';
 		}
 		$answerRecord = array(
+			'openId' => $openId,
 			'name' => $name,
-			'answerNum' => $answerNum, //已经作答的题数
+			'class' => $class,
+			'number' => $number,
+			'testId' => $testId,//测试id			
+			//'answerNum' => $answerNum, //已经作答的题数
 			'answerRightNum' => $answerRightNum,//答对的题数
 			'answerWrongNum' => $answerNum - $answerRightNum,
+			'simulateResult' => $simulateResult,
+			'startTime' => $startTime,
 			'submitTime' => $submitTime,
-			'grade' => $grade,
+			'answerTime' => $answerTime,
 		);        
-
+		if( !$RESULT->where(array('openId' => $openId , 'testId' => $testId ))->find()){
+			$RESULT->data($answerRecord)->add();
+		}
         $this->assign('answerRecord',$answerRecord)->display();
     }
 
