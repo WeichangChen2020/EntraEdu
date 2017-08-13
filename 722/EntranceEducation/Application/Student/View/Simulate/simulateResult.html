@@ -37,14 +37,14 @@
       <div class="weui-col-20">姓名</div>
       <div class="weui-col-20">得分</div>
       <div class="weui-col-20">成绩</div>      
-      <div class="weui-col-40">提交时间</div>
+      <div class="weui-col-40">用时</div>
     </div>
 
     <div class="weui-row weui-no-gutter">
       <div class="weui-col-20">{$answerRecord.name|default='null'}</div>
       <div class="weui-col-20">{$answerRecord.answerRightNum|default='null'}</div>
-      <div class="weui-col-20"><if condition="$answerRecord.grade eq pass"><img src="/EntranceEducation/Public/images/pass.png"  alt="通过" /> <else /> <img src="/EntranceEducation/Public/images/fail.png"  alt="未通过" /></if></div>      
-      <div class="weui-col-40">{$answerRecord.submitTime|default='null'}</div>
+      <div class="weui-col-20"><if condition="$answerRecord.simulateResult eq pass"><img src="/EntranceEducation/Public/images/pass.png"  alt="通过" /> <else /> <img src="/EntranceEducation/Public/images/fail.png"  alt="未通过" /></if></div>      
+      <div class="weui-col-40">{$answerRecord.answerTime|default='null'}</div>
     </div>
 
     <div class="weui_icon_area">
