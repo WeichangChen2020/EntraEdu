@@ -27,9 +27,9 @@ class SimulateController extends Controller {
 			'6' => 'unit6',
 			'7' => 'unit7',
 		);
-		$count_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->count();
-		$min_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->min('id');
-		$max_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->max('id');		
+		$count_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->count();
+		$min_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->min('id');
+		$max_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->max('id');		
 		//echo $count_unit1;
 		//echo $min_unit1;
 		//echo $max_unit1;
@@ -39,8 +39,8 @@ class SimulateController extends Controller {
 		shuffle ($numbers_unit1); //将数组随机打乱
 		$result_unit1 = array_slice($numbers_unit1,0,8);//取其中的8个数
 		//print_r($result);
-		$min_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->min('id');
-		$max_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->max('id');
+		$min_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->min('id');
+		$max_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->max('id');
 		$numbers_rest = range ($min_rest,$max_rest); //排列成数组
 		shuffle ($numbers_rest); //将数组随机打乱
 		$result_rest = array_slice($numbers_rest,0,2);//取其中的2个数		
@@ -221,7 +221,7 @@ class SimulateController extends Controller {
 		$class = $DOER->where('openId="'.$openId.'"')->getField('class');
 		$testId = session('testId');
 		$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
 		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
