@@ -287,24 +287,45 @@ class SimulateController extends Controller {
     	$openId = I('openId');
     	$testId = I('testId');
         $RECORD = M('simulate_answer_record');
-		$name = $RECORD->where('openId="'.$openId.'"')->getField('name');
+        $RESULT = M('simulate_result_record');
+		$name = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('name');
+		$class = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('class');
+		$number = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('number');
+		//echo $number;die();
 		$answerNum = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->count();
 		$answerRightNum = $RECORD->where(array('openId' => $openId , 'testId' => $testId, 'answerResult' => "RIGHT"))->count();
+		$startTime = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->min('enterPageTime');
 		$submitTime = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->max('leavePageTime');
+		$answerTimeSecond = strtotime($submitTime) - strtotime($startTime);    //回答时间的秒数int型
+		//$answerTime = ceil(abs($submitTime - $startTime)/86400); 	
+		$answerTime = (ceil($answerTimeSecond / 3600)-1).'小时'.(ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
+		// echo $startTime."<br/>";
+		// echo $submitTime."<br/>";
+		// echo $answerTimeSecond."<br/>";
+		// echo $answerTime;
+		// die();
 		if ($answerRightNum>=9) {
-			$grade = 'pass';//判断是否通过
+			$simulateResult = 'pass';//判断是否通过
 		}else{
-			$grade = 'fail';
+			$simulateResult = 'fail';
 		}
 		$answerRecord = array(
+			'openId' => $openId,
 			'name' => $name,
-			'answerNum' => $answerNum, //已经作答的题数
+			'class' => $class,
+			'number' => $number,
+			'testId' => $testId,//测试id			
+			//'answerNum' => $answerNum, //已经作答的题数
 			'answerRightNum' => $answerRightNum,//答对的题数
 			'answerWrongNum' => $answerNum - $answerRightNum,
+			'simulateResult' => $simulateResult,
+			'startTime' => $startTime,
 			'submitTime' => $submitTime,
-			'grade' => $grade,
+			'answerTime' => $answerTime,
 		);        
-
+		if( !$RESULT->where(array('openId' => $openId , 'testId' => $testId ))->find()){
+			$RESULT->data($answerRecord)->add();
+		}
         $this->assign('answerRecord',$answerRecord)->display();
     }
 
