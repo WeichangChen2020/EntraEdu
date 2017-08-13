@@ -219,6 +219,7 @@ class SimulateController extends Controller {
 
 		$name = $DOER->where('openId="'.$openId.'"')->getField('name');
 		$class = $DOER->where('openId="'.$openId.'"')->getField('class');
+		$number = $DOER->where('openId="'.$openId.'"')->getField('number');
 		$testId = session('testId');
 		$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
 		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
@@ -232,6 +233,7 @@ class SimulateController extends Controller {
 			'openId' => $openId, 
 			'name' => $name,
 			'class' => $class,
+			'number' => $number,
 			'testId' => $testId,//测试id
 			'proId' => $proId+1, //题目在该套卷子中是第几题
 			'questionId' => $itemid,//题目在题库中的id
