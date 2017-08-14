@@ -290,6 +290,7 @@ class SimulateController extends Controller {
     	$testId = I('testId');
         $RECORD = M('simulate_answer_record');
         $RESULT = M('simulate_result_record');
+        $GRADE = M('simulate_grade_record');
 		$name = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('name');
 		$class = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('class');
 		$number = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('number');
@@ -324,9 +325,26 @@ class SimulateController extends Controller {
 			'startTime' => $startTime,
 			'submitTime' => $submitTime,
 			'answerTime' => $answerTime,
-		);        
+		); 
+
+		//将答题结果同步记录到答题结果表中       
 		if( !$RESULT->where(array('openId' => $openId , 'testId' => $testId ))->find()){
-			$RESULT->data($answerRecord)->add();
+			$RESULT->data($answerRecord)->add();//如果答题结果表中没有记录则插入
+		}
+
+		//将答题成绩记录到答题成绩表中，只存最好成绩（分数高，用时短）       
+		if (!$GRADE->where(array('openId' => $openId))->find()) {
+			$GRADE->data($answerRecord)->add();//如果答题成绩表中没有记录则插入
+		}else{
+			$gradeBest = $GRADE->where(array('openId' => $openId))->getField('answerRightNum');
+			$timeBest = $GRADE->where(array('openId' => $openId))->getField('answerTime');
+			//echo $gradeBest;
+			//die();
+			//如果新分数更高，则更新；如果分数一样，但用时更短，则更新
+			if ($answerRightNum > $gradeBest || ($answerRightNum > $gradeBest && $answerTime < $timeBest)) {
+				$GRADE->where(array('openId' => $openId))->save($answerRecord);
+				//echo "恭喜你获得更好成绩，已更新";
+			}			
 		}
         $this->assign('answerRecord',$answerRecord)->display();
     }
