@@ -1,0 +1,41 @@
+<!-- 成绩列表 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <include file="./Public/html/_head.html"/>
+    <style>
+      [class*="weui-col-"] {
+        border: 1px solid #ccc;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body ontouchstart>
+    <include file="./Public/html/_refresh.html"/>
+    <header class='demos-header'>
+      <h1 class="demos-title">班级成绩与排名</h1>
+    </header>
+
+    <div class="weui-row weui-no-gutter"> 
+      <div class="weui-col-20">姓名</div>
+      <div class="weui-col-20">学号</div>
+      <div class="weui-col-20">班级</div>
+      <div class="weui-col-20">最高得分</div>
+      <div class="weui-col-20">用时</div> 
+    </div>
+    <volist name="gradeList" id="gradeList" key="k" empty="没有查到信息">
+      <div class="weui-row weui-no-gutter">      
+        <div class="weui-col-20">{$gradeList.name}</div>
+        <div class="weui-col-20">{$gradeList.number}</div>
+        <div class="weui-col-20">{$gradeList.class}</div>
+        <div class="weui-col-20">{$gradeList.answerRightNum}</div>
+        <div class="weui-col-20">{$gradeList.answerTime}</div>
+      </div>
+    </volist>
+  </body>
+</html>
+<include file="./Public/html/_foot.html"/>
+<include file="./Public/html/_refreshJs.html"/>
