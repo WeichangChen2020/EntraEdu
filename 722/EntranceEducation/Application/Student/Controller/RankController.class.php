@@ -14,141 +14,84 @@ class RankController extends Controller {
 
 		$this->display();
 	}
-	public function collect(){
-		/*=========定义变量=======*/
-		$QUESTION = M('questionbank');
-		$RECORD = M('wrong_review_record');
-		
-		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
-		//echo $openid;	
-
-		/*======获取错题数量======*/
-			
-		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count(); //
-		
-		/*======读取错题======*/
-
-		$wrongId = $RECORD->where('openId="'.$openId.'" AND answerResult = "WRONG"' )->getField('questionId');	
-
-		$item  = $QUESTION->where("id=".$wrongId)->find();
-		//echo $item['id'];
-		//die(); 
-		/*======将题目分配到html页面中=====*/
-		$this->assign('item',$item);
-		$this->assign('enterTime',time());
-		$this->assign('openId',$openId);
-		$this->assign('itemId',$item['id']);
-		$this->assign('wrongNum',$wrongNum);
-		$this->assign('wrongId',$wrongId);
-		//$this->assign('answerRecord',$answerRecord);
-		//$this->assign('sumNum',$sumNum);
-		$type = 1;
-		session('type',$type);
-		if ($type=='2') {
-			$this->display('reviewMultiple');
-		}elseif ($type=='3') {
-			$this->display('reviewJudge');
-		}else{
-			$this->display();
-			//$this->display('randomMultiple');
-			//$this->display('randomJudge');
-		}
-		
+	public function rankMenu(){
+		$openId=session('openId');
+        session('openId',$openId);
+		$this -> display();
+	}
+	// +++++++我的详情+++++++++++++++
+    public function rankDetails(){
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        // $grade     = new gradeController();
+        // $gradeInfo = $grade->getDetails($openId);
+        // $gradeInfo['commu']= $gradeInfo['comCommentNum']+$gradeInfo['comReplyNum']+$gradeInfo['ranCommentNum']+$gradeInfo['ranReplyNum'];
+        // $this->assign('gradeInfo',$gradeInfo)->display();
+        $USER = M('student_info');
+        $RECORD = M('random_answer_record');
+        $SIMULATE = M('simulate_answer_record');
+        $GRADE = M('simulate_grade_record');
+        $student_info = $USER->where('openId="'.$openId.'"')->find();//学生信息数组
+        //var_dump($student_info);
+        //die();
+        $answerNum = $RECORD->where('openId="'.$openId.'"')->count();
+		$answerRightNum = $RECORD->where('openId="'.$openId.'" AND answerResult = "RIGHT"' )->count();
+        $simulateArray = $SIMULATE->distinct(true)->field('testId')->where('openId="'.$openId.'"')->select();
+        //var_dump($simulateNum);
+        $simulateNum = count($simulateArray);
+        $grade_info = $GRADE->where('openId="'.$openId.'"')->find();
+        $this->assign('student_info',$student_info);
+        $this->assign('answerNum',$answerNum);
+        $this->assign('answerRightNum',$answerRightNum);
+        $this->assign('simulateNum',$simulateNum);
+        $this->assign('grade_info',$grade_info);        
+        $this->display();
+    	
     }
 
 
-    public function getRightAns(){
-		/*=========判断是否通过ajax方式传输数据=======*/
-		//var_dump(23333);
-		// echo 2333;
-		// die();
-		if(IS_AJAX){
-			//echo "3333";
-			/*=========定义变量=======*/
-            $itemId   = I('post.itemId');
-            $openId   = I('post.openId');
-            //echo $itemId;
-            //die();
-            //$answer   = I('post.answer');
-            $enterTime = I('enterTime');
-            $leaveTime = time();
-			$QUESTION = M('questionbank');
-			$RECORD = M('wrong_review_record');
-			$type=session('type');
-			//echo $chapter;
-			if ($type == '2') {
-				$answer1 = I('post.answer1');
-				$answer2 = I('post.answer2');
-				$answer3 = I('post.answer3');
-				$answer4 = I('post.answer4');
-				$answer = $answer1.$answer2.$answer3.$answer4;
-				//echo $answer;
-			}else{
-				$answer  = I('post.answer');
-			}
+    //+++++++++班级排名
+    public function rankClass(){
+    	$openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+		$USER = M('student_info');
+		//$RECORD = M('random_answer_record');
+        $SIMULATE = M('simulate_answer_record');
+		$student_info = $USER->where('openId="'.$openId.'"')->find();
+        $class = $student_info['class'];
+        //echo $class;
+		//$classArray = array('0'=>"$class");
+        $gradeList = array();
+            //====循环输出？？====//
+            // foreach ($classArray as $value) {
+            //     //$bestGrade = M('simulate_result_record')->where('openId="'.$openId.'"')->max('answerRightNum');
+            // 	   $grade1 = M('simulate_grade_record')->where(array('class' => $value))->order('answerRightNum desc,answerTime asc')->select();
+            //     $gradeList = array_merge($gradeList,$grade1);
+            //     // var_dump($gradeList);                
+            // }
+        $grade1 = M('simulate_grade_record')->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();
+        $gradeList = array_merge($gradeList,$grade1);
 
-			/*=======获取正确答案=======*/	
-			$ajaxreturn['rightAnswer']     = $QUESTION->where("id=".$itemId)->getField("rightAnswer");
-			$ajaxreturn['analysisPicPath'] = $QUESTION->where("id=".$itemId)->getField("analysisPicPath");
-			$ajaxreturn['analysisPicName'] = $QUESTION->where("id=".$itemId)->getField("analysisPicName");
-			//var_dump($ajaxreturn);
-		//echo "sss";
-		//die();
-			/*=======记录答题情况=====*/
-			$this->recordOption($answer,$openId,$itemId,$enterTime,$leaveTime,$ajaxreturn['rightAnswer']);
-		
-			/*========获取各个选项的数量*/			
-			// $ajaxreturn['opANum'] = $RECORD->where('questionId="'.$itemId.'" AND answer="A"')->count();
-			// $ajaxreturn['opBNum'] = $RECORD->where('questionId="'.$itemId.'" AND answer="B"')->count();
-			// $ajaxreturn['opCNum'] = $RECORD->where('questionId="'.$itemId.'" AND answer="C"')->count();
-			// $ajaxreturn['opDNum'] = $RECORD->where('questionId="'.$itemId.'" AND answer="D"')->count();
-			// $ajaxreturn['opAllNum'] = $RECORD->where('questionId="'.$itemId.'" ')->count();
-			// $ajaxreturn['opANum'] = "A选项的数量";
-			
-			/*====返回答案解析到前台==*/
-			$this->ajaxReturn($ajaxreturn);     
-        }else 
-			$this->ajaxReturn('非法的请求方式'); 	
-	}
+        $this->assign('gradeList',$gradeList)->display();
+		// $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+		// $USER = M('student_info');
+		// $RECORD = M('random_answer_record');
+  //       $SIMULATE = M('simulate_answer_record');
+		// $student_info = $USER->where('openId="'.$openId.'"')->find();
+		// $answerNum = $RECORD->where('openId="'.$openId.'"')->count();
+		// $answerRightNum = $RECORD->where('openId="'.$openId.'" AND answerResult = "RIGHT"' )->count();
+  //       $simulateArray = $SIMULATE->distinct(true)->field('testId')->where('openId="'.$openId.'"')->select();
+  //       //var_dump($simulateNum);
+  //       $simulateNum = count($simulateArray);
+  //       $this->assign('student_info',$student_info);
+  //       $this->assign('answerNum',$answerNum);
+  //       $this->assign('answerRightNum',$answerRightNum);
+  //       $this->assign('simulateNum',$simulateNum);    	
+    }
 
-	public function recordOption($answer,$openId,$itemId,$enterTime,$leaveTime,$rightans){
-		/*==========定义变量=============*/
-		$ANSWER = M('wrong_review_record');
-		$QUESTION = M('questionbank');
+    public function rankSchool(){
 
-		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;
-		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
-		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
-		/*=======构造插入数据库答题信息数组======*/
+        $gradeList = M('simulate_grade_record')->order('answerRightNum desc,answerTime asc')->select();
 
-
-		//如果回答错误，只需更新答题时间
-		if( $answerResult == "WRONG"){
-
-			$record = array(
-				'enterPageTime' => date("Y-m-d H:i:s",$enterTime),
-				'leavePageTime' => date("Y-m-d H:i:s",$leaveTime),
-				'answerTime' => $answerTime,
-			);
-			$ANSWER->where(array('openId' => $openId , 'questionId' => $itemId))->save($record);
-		}
-		else{
-
-			//如果回答正确，用save来更新结果和时间，
-			// $record = array(
-			// 	'answer' => $answer,
-			// 	'answerResult' => $answerResult,
-			// 	'enterPageTime' => date("Y-m-d H:i:s",$enterTime),
-			// 	'leavePageTime' => date("Y-m-d H:i:s",$leaveTime),
-			// 	'answerTime' => $answerTime,
-			// );
-			// $ANSWER->where(array('openId' => $openId , 'questionId' => $itemId))->save($record);
-			//如果回答正确，直接删除该条错题记录
-			$ANSWER->where(array('openId' => $openId , 'questionId' => $itemId))->delete();
-		}
-		
-
-	}
-
+        $this->assign('gradeList',$gradeList)->display();
+    }
 
 }
