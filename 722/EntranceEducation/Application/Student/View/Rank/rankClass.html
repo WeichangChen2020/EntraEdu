@@ -21,17 +21,17 @@
 
     <div class="weui-row weui-no-gutter"> 
       <div class="weui-col-20">姓名</div>
-      <div class="weui-col-30">学号</div>
+      <div class="weui-col-25">学号</div>
 <!--       <div class="weui-col-25">班级</div>-->
-      <div class="weui-col-10">得分</div>
+      <div class="weui-col-15">得分</div>
       <div class="weui-col-40">用时</div> 
     </div>
     <volist name="gradeList" id="gradeList" key="k" empty="没有查到信息">
       <div class="weui-row weui-no-gutter">      
         <div class="weui-col-20">{$gradeList.name}</div>
-        <div class="weui-col-30">{$gradeList.number}</div>
+        <div class="weui-col-25">{$gradeList.number}</div>
 <!--         <div class="weui-col-25">{$gradeList.class}</div> -->
-        <div class="weui-col-10">{$gradeList.answerRightNum}</div>
+        <div class="weui-col-15">{$gradeList.answerRightNum}</div>
         <div class="weui-col-40">{$gradeList.answerTime}</div>
       </div>
     </volist>
