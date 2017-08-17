@@ -18,7 +18,7 @@
     top: -15px;
     right: -13px;
     opacity: 0.5;
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 1px -310px;
     display: inline-block;
     width: 28px;
@@ -30,7 +30,7 @@
     width: 15px;
     height: 25px;
     margin-left: 10px;
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 0px -605px;
 }
    
@@ -77,54 +77,54 @@
     }
 
 .voice-recordstartbtn {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -113px -211px;
     width: 72px;
     height: 72px;
 }
 
     .voice-recordstartbtn:active {
-        background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+        background: url('../images/qqface/vzanback-xs11.png') no-repeat;
         background-position: -113px -370px;
         width: 72px;
         height: 72px;
     }
 
 .voice-recordplaybtn {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -113px -866px;
     width: 72px;
     height: 72px;
 }
     .voice-recordplaybtn:active {
-        background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+        background: url('../images/qqface/vzanback-xs11.png') no-repeat;
         background-position: -113px -1037px;
         width: 72px;
         height: 72px;
     }
 
 .voice-recordstopbtn {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -111px -1213px;
     width: 72px;
     height: 72px;
 }
 
     .voice-recordstopbtn:active {
-        background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+        background: url('../images/qqface/vzanback-xs11.png') no-repeat;
         background-position: -111px -1378px;
         width: 72px;
         height: 72px;
     }
 .voice-recordendbtn {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -113px -541px;
     width: 72px;
     height: 72px;
 }
 
     .voice-recordendbtn:active {
-        background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+        background: url('../images/qqface/vzanback-xs11.png') no-repeat;
         background-position: -113px -699px;
         width: 72px;
         height: 72px;
@@ -179,7 +179,7 @@
     top: -8px;
     right: 0;
     opacity: 0.5;
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 1px -310px;
     display: inline-block;
     width: 28px;
@@ -209,31 +209,31 @@
     width: 30px;
 }
 .btnlblface {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -32px 0px;
 }
 .btnlblemimg {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -32px -28px;
 }
 
 .btnimgemimg {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -34px -89px;
 }
 
 .btnvoiceemimg {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 5px -105px;
 }
 
 .btnvideoemimg {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -34px -148px;
 }
 
 .btnguerdonmimg {
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: -32px -179px;
 }
 
@@ -252,7 +252,7 @@
 
 .btnaddressemimg1 {
     display: inline-block;
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 0px -192px;
     width: 24px;
     height: 30px;
@@ -262,7 +262,7 @@
 
 .btnaddressemimg2 {
     display: inline-block;
-    background: url(http://i.pengxun.cn/content/images/vzanback-xs11.png) no-repeat;
+    background: url('../images/qqface/vzanback-xs11.png') no-repeat;
     background-position: 2px -244px;
     width: 20px;
     height: 30px;
