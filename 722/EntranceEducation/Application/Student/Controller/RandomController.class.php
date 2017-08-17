@@ -223,89 +223,95 @@ class RandomController extends Controller {
 
 	}
 
-	// public function commentArea(){
-	// 	/*======定义一些变量=======*/
-	// 	$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
-	// 	$questionId = I('questionItem');
-	// 	$COMMENT = D('Student/RandomComment');
-	// 	$REPLY = D('Student/RandomReply');
-	// 	$comment = $COMMENT->where('questionId="'.$questionId.'"')->select();
-	// 	$reply = $REPLY->where('questionId="'.$questionId.'"')->select();
-	// 	$this->assign('comment',$comment);
-	// 	$this->assign('reply',$reply);
-	// 	$this->display();
-	// }
+	public function commentArea(){
+		/*======定义一些变量=======*/
+		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
+		$questionId = I('questionItem');
+		$COMMENT = D('RandomComment');
+		$REPLY = D('RandomReply');
+		$comment = $COMMENT->where('questionId="'.$questionId.'"')->select();
+		$reply = $REPLY->where('questionId="'.$questionId.'"')->select();
+		//var_dump($comment);
+		//var_dump($reply);
+		//die();
+		$this->assign('comment',$comment);
+		$this->assign('reply',$reply);
+		$this->display();
+	}
 
-	// public function handComment(){
-	// 	/*=======定义一些原始变量======*/
-	// 	if(!IS_AJAX)
-	// 		$this->error('你访问的页面不存在！');
-	// 	$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
-	// 	$questionId = I('questionId');
-	// 	$comment = I('comment');
-	// 	$STU = D('Student/StudentInfo');
-	// 	$COMMENT = D('Student/RandomComment');
+	public function handComment(){
+		/*=======定义一些原始变量======*/
+		if(!IS_AJAX)
+			$this->error('你访问的页面不存在！');
+		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
+		$questionId = I('questionId');
+		$comment = I('comment');
+		$STU = D('StudentInfo');
+		$COMMENT = D('RandomComment');
 
-	// 	$name = $STU->getName($openId);
-	// 	$class = $STU->getClass($openId);
+		$name = $STU->getName($openId);
+		$class = $STU->getClass($openId);
+		//echo $name;
+		//die();
+		/*====定义储存数据数组=======*/
+		$comment = array(
+				'openId'     => $openId,
+				'name'       => $name,
+				'class'      => $class,
+				'questionId' => $questionId,
+				'comment'    => $comment,
+				'time'       => date("Y-m-d H-i-s")   
+				);
+		/*=======将数据存入数据库======*/
+		if($COMMENT->data($comment)->add())
+        	$this->ajaxReturn(array('status' => 'success'),'json');
+        else
+        	$this->ajaxReturn(array('status' => 'failure'),'json');
+	}
 
-	// 	/*====定义储存数据数组=======*/
-	// 	$comment = array(
-	// 			'openId'     => $openId,
-	// 			'name'       => $name,
-	// 			'class'      => $class,
-	// 			'questionId' => $questionId,
-	// 			'comment'    => $comment,
-	// 			'time'       => date("Y-m-d H-i-s")   
-	// 			);
-	// 	/*=======将数据存入数据库======*/
-	// 	if($COMMENT->data($comment)->add())
- //        	$this->ajaxReturn(array('status' => 'success'),'json');
- //        else
- //        	$this->ajaxReturn(array('status' => 'failure'),'json');
-	// }
+	public function reply(){
+		/*======定义初始变量======*/
+		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
+		$commentId = I('commentId');
+		$commentInfo = D('RandomComment')->where('id="'.$commentId.'"')->find();
+		$this->assign('commentId',$commentId);
+		$this->assign('commentInfo',$commentInfo);
+		$this->display();
+	}
 
-	// public function reply(){
-	// 	/*======定义初始变量======*/
-	// 	$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
-	// 	$commentId = I('commentId');
-	// 	$commentInfo = D('Student/RandomComment')->where('id="'.$commentId.'"')->find();
-	// 	$this->assign('commentId',$commentId);
-	// 	$this->assign('commentInfo',$commentInfo);
-	// 	$this->display();
-	// }
+	public function handReply(){
+		/*if(!IS_AJAX)
+			$this->error('你访问的页面不存在！');*/
 
-	// public function handReply(){
-	// 	/*if(!IS_AJAX)
-	// 		$this->error('你访问的页面不存在！');*/
-
-	// 	/*=======定义一些原始变量======*/
-	// 	$openId = session('?openId')? : $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
-	// 	$commentId = I('commentId');
-	// 	$replyContent = I('reply');
-	// 	$STU = D('Student/StudentInfo');
-	// 	$COMMENT = D('Student/RandomComment');
-	// 	$REPLY = D('Student/RandomReply');
-	// 	$author = $COMMENT->getName($commentId);         //发帖的那个人
-	// 	$name = $STU->getName($openId);           //回帖的那个人
-	// 	$class = $STU->getClass($openId);
-	// 	$questionId = $COMMENT->getQuestionId($commentId);
-	// 	/*====定义储存数据数组=======*/
-	// 	$reply = array(
-	// 			'openId'      => $openId,
-	// 			'name'        => $name,
-	// 			'class'       => $class,
-	// 			'questionId'  => $questionId,
-	// 			'commentId'   => $commentId,
-	// 			'replyContent'=> $replyContent,
-	// 			'time'        => date("Y-m-d H-i-s")   
-	// 			);
- //        // $this->ajaxReturn($reply,'json');
-	// 	// p($reply);
-	// 	/*=======将数据存入数据库======*/
-	// 	if($REPLY->data($reply)->add())
- //        	$this->ajaxReturn(array('status' => 'success'),'json');
- //        else
- //        	$this->ajaxReturn(array('status' => 'failure'),'json');
-	// }
+		/*=======定义一些原始变量======*/
+		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
+		$commentId = I('commentId');
+		$replyContent = I('reply');
+		$STU = D('StudentInfo');
+		$COMMENT = D('RandomComment');
+		$REPLY = D('RandomReply');
+		$author = $COMMENT->getName($commentId);         //评论的那个人
+		$name = $STU->getName($openId);           //回复的那个人
+		$class = $STU->getClass($openId);
+		$questionId = $COMMENT->getQuestionId($commentId);
+		/*====定义储存数据数组=======*/
+		$reply = array(
+				'openId'      => $openId,
+				'name'        => $name,
+				'class'       => $class,
+				'questionId'  => $questionId,
+				'commentId'   => $commentId,
+				'replyContent'=> $replyContent,
+				'time'        => date("Y-m-d H-i-s")   
+		);
+        // $this->ajaxReturn($reply,'json');
+		//print_r($reply);
+		//die();
+		/*=======将数据存入数据库======*/
+		if($REPLY->data($reply)->add()){
+        	$this->ajaxReturn(array('status' => 'success'),'json');
+		}else{
+        	$this->ajaxReturn(array('status' => 'failure'),'json');
+        }
+	}
 }
