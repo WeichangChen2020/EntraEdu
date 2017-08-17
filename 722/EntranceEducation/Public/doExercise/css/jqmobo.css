@@ -98,7 +98,20 @@ a,a:visited,a:active{ text-decoration:none; color:#45AFE3;}
 }
 .white
 {
-    background:White;color:#333;color:#000;box-shadow:none; border-radius:16px;border:1px solid #ccc;
+    background:white;
+    color:#333;
+    color:#000;
+    box-shadow:none; 
+    border-radius:16px;
+    border:1px solid #ccc;
+}
+
+.black
+{
+    background:white;
+    box-shadow:none; 
+    border-radius:12px;
+    border:1px solid #ccc;
 }
 
 .logofooter
@@ -649,7 +662,7 @@ img
     color: #999999;
     font-weight: normal;
 }
-a.sumitbutton, a.sumitbutton:visited
+a.submitbutton, a.submitbutton:visited
 {
     background: #f17819;
     color: #ffffff !important;
@@ -669,7 +682,7 @@ a.sumitbutton, a.sumitbutton:visited
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-a.sumitbutton:hover
+a.submitbutton:hover
 {
     background: #fda420;
     color: #fff !important;

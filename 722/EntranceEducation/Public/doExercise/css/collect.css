@@ -2,6 +2,10 @@
     display: none;/*控制收藏先不显示，提交后显示*/
     margin-bottom: 2px;
 }
+#divSubmit4{
+    display: none;/*控制先不显示，提交后显示*/
+    margin-bottom: -52px;   
+}
 .main { 
     position: relative; 
     font-size: 1.0em; 
