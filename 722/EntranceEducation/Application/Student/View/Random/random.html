@@ -60,9 +60,9 @@
 
 			<!-- <div style="margin-top:10px"></div> -->
 
-			<!-- <div id="divSubmit" style="padding: 10px; margin-top: -15px;">
-					<a class="butto white" href="{:U('Random/commentArea')}/questionItem={$itemid}">评论</a>
-			</div> -->
+			<div id="divSubmit4" style="padding: 10px; margin-top: -15px;">
+				<a class="button black" href="{:U('Random/comment')}/questionItem/{$itemid}">评论</a>
+			</div>
 			
 <!-- 				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
 					<a id="ctlNext1" class="button yellow" href="#collectArea">收藏</a>
@@ -77,7 +77,7 @@
 				<a class="button white" href="{:U('Random/random')}/chapter/{$_GET['chapter']}">下一题</a>
 			</div>
 
-			<!-- <include file="{:U('commentArea')}?questionItem={$itemid}"> -->
+			<!-- <include file="{:U('commentArea.html')}?questionItem={$itemid}"> -->
 			<!-- <a class="butto white" href="{:U('Random/commentArea')}/questionItem={$itemid}">评论</a> -->
 
 			<div style="height:40px"></div>
@@ -134,8 +134,9 @@
 										
 						!analysisPicPath ? "" : document.getElementById('explainAera').innerHTML = "<img src=http://testet-public.stor.sinaapp.com" + analysisPicPath.slice(7) + analysisPicName + ">";
 						$('#footer').hide();
+						$('#divSubmit4').show();
 						$('#main').show();
-
+						
 
 
 						/*============ show option ==============*/
