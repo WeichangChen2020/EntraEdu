@@ -71,6 +71,12 @@
 				$(this).toggleClass('focuschoice');
 				$(this).find('.jqradio').toggleClass('jqchecked');
 			});
+			$("#divSubmit").click(function(){
+				if (k == 0) {
+					alert('不会做的话不如先蒙一个？');
+					return false;
+				}
+			});
 			$("#divSubmit1").click(function(e){
 				if (k == 0) {
 					alert('你还没有选择答案！');
