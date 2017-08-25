@@ -7,7 +7,7 @@ if (isset($_GET['code'])){
     //这个url是为了获取access_token
     
 	$content =file_get_contents($url);
-	
+	获取json数据
 	$de_json = json_decode($content,TRUE);
 	$count_json = count($de_json);
 
