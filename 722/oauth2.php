@@ -14,6 +14,7 @@ if (isset($_GET['code'])){
 	//$_SESSION['openId']=$openid;
 	//setcookie("openId",$openid, time()+3600);
     echo $openid;
+    die;
 	header("Location: http://722.testroom.applinzi.com/EntranceEducation/index.php/User/index?openId=$openid"); 
 	
 }else{
