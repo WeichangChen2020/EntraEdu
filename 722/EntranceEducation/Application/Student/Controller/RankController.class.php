@@ -69,6 +69,8 @@ class RankController extends Controller {
             // }
         $grade1 = M('simulate_grade_record')->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();
         $gradeList = array_merge($gradeList,$grade1);
+        var_dump($gradeList);
+        die();
 
         $this->assign('gradeList',$gradeList)->display();
 		// $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
