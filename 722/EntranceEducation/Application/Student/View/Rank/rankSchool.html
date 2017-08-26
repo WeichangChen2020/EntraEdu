@@ -20,8 +20,8 @@
   <include file="./Public/html/_refresh.html"/>
   <header class='demos-header'>
     <h1 class="demos-title">学校成绩与排名</h1>
-    <if condition="$answerRightNum neq null"> 
-      <div class="defen">我的得分：{$answerRightNum}</div>
+    <if condition="$grade_info.answerRightNum neq null"> 
+      <div class="defen">我的得分：{$grade_info.answerRightNum}&nbsp;&nbsp;&nbsp;排名：{$rank}</div>
     <else />
       <div class="defen">您还没有得分</div>
     </if>
