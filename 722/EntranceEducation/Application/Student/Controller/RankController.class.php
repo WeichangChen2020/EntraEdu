@@ -58,8 +58,9 @@ class RankController extends Controller {
         $GRADE = M('simulate_grade_record');
 		$student_info = $USER->where('openId="'.$openId.'"')->find();
         $class = $student_info['class'];
-        $answerRightNum = $GRADE->where('openId="'.$openId.'"')->getfield('answerRightNum');
+        //$answerRightNum = $GRADE->where('openId="'.$openId.'"')->getfield('answerRightNum');
         //echo $class;
+        
 		//$classArray = array('0'=>"$class");
         //$gradeList = array();
             //====循环输出？？====//
@@ -68,11 +69,20 @@ class RankController extends Controller {
             //     $gradeList = array_merge($gradeList,$grade1);
             //     var_dump($gradeList);                
             // }
-        $gradeList = $GRADE->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();
+        //var_dump($grade1);
         //$gradeList = array_merge($gradeList,$grade1);
-        //var_dump($gradeList);//这™是个二维数组！
 
-        $this->assign('answerRightNum',$answerRightNum);
+        $grade_info = $GRADE->where('openId="'.$openId.'"')->find();//个人的记录数组
+        //var_dump($grade_info);
+        $gradeList = $GRADE->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();     
+        //var_dump($gradeList);//整个班级记录数组，这™是个二维数组！
+        $rankArray = array_keys($gradeList,$grade_info,true);
+        //找到$gradeList中$grade_info的位置，严格匹配模式，以数组形式返回，里面只有一个元素
+        $rank = $rankArray[0]+1;//排名
+        //echo $rank; 
+        //die();
+        $this->assign('rank',$rank);
+        $this->assign('grade_info',$grade_info);
         $this->assign('gradeList',$gradeList)->display();
   	
     }
@@ -80,11 +90,13 @@ class RankController extends Controller {
     public function rankSchool(){
         $openId = session('?openId') ? session('openId') : $this->error('请重新获取改页面');       
         $GRADE = M('simulate_grade_record');
+        $grade_info = $GRADE->where('openId="'.$openId.'"')->find();//个人的记录数组
 
-        $answerRightNum = $GRADE->where('openId="'.$openId.'"')->getfield('answerRightNum');
-        $gradeList = $GRADE->order('answerRightNum desc,answerTime asc')->select();
-
-        $this->assign('answerRightNum',$answerRightNum);
+        $gradeList = $GRADE->order('answerRightNum desc,answerTime asc')->select();//所有学生记录数组
+        $rankArray = array_keys($gradeList,$grade_info,true);
+        $rank = $rankArray[0]+1;//排名        
+        $this->assign('rank',$rank);
+        $this->assign('grade_info',$grade_info);
         $this->assign('gradeList',$gradeList)->display();
     }
 
