@@ -21,24 +21,24 @@ class RankController extends Controller {
 	}
 	// +++++++我的详情+++++++++++++++
     public function rankDetails(){
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        // $grade     = new gradeController();
-        // $gradeInfo = $grade->getDetails($openId);
-        // $gradeInfo['commu']= $gradeInfo['comCommentNum']+$gradeInfo['comReplyNum']+$gradeInfo['ranCommentNum']+$gradeInfo['ranReplyNum'];
-        // $this->assign('gradeInfo',$gradeInfo)->display();
+        $openId = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $USER = M('student_info');
         $RECORD = M('random_answer_record');
-        $SIMULATE = M('simulate_answer_record');
+        //$SIMULATE = M('simulate_answer_record');
+        $RESULT = M('simulate_result_record');
         $GRADE = M('simulate_grade_record');
         $student_info = $USER->where('openId="'.$openId.'"')->find();//学生信息数组
-        //var_dump($student_info);
-        //die();
-        $answerNum = $RECORD->where('openId="'.$openId.'"')->count();
+
+        $answerNum = $RECORD->where('openId="'.$openId.'"')->count();//自由练习答题数
 		$answerRightNum = $RECORD->where('openId="'.$openId.'" AND answerResult = "RIGHT"' )->count();
-        $simulateArray = $SIMULATE->distinct(true)->field('testId')->where('openId="'.$openId.'"')->select();
-        //var_dump($simulateNum);
-        $simulateNum = count($simulateArray);
+        
+        //$simulateArray = $SIMULATE->distinct(true)->field('testId')->where('openId="'.$openId.'"')->select();
+        //var_dump($simulateArray);
+        //$simulateNum = count($simulateArray);
+        $simulateNum = $RESULT->where('openId="'.$openId.'"')->count();
+
         $grade_info = $GRADE->where('openId="'.$openId.'"')->find();
+        //var_dump($grade_info);
         $this->assign('student_info',$student_info);
         $this->assign('answerNum',$answerNum);
         $this->assign('answerRightNum',$answerRightNum);
@@ -51,48 +51,40 @@ class RankController extends Controller {
 
     //+++++++++班级排名
     public function rankClass(){
-    	$openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+    	$openId = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
 		$USER = M('student_info');
 		//$RECORD = M('random_answer_record');
         $SIMULATE = M('simulate_answer_record');
+        $GRADE = M('simulate_grade_record');
 		$student_info = $USER->where('openId="'.$openId.'"')->find();
         $class = $student_info['class'];
+        $answerRightNum = $GRADE->where('openId="'.$openId.'"')->getfield('answerRightNum');
         //echo $class;
 		//$classArray = array('0'=>"$class");
-        $gradeList = array();
+        //$gradeList = array();
             //====循环输出？？====//
-            // foreach ($classArray as $value) {
-            //     //$bestGrade = M('simulate_result_record')->where('openId="'.$openId.'"')->max('answerRightNum');
-            // 	   $grade1 = M('simulate_grade_record')->where(array('class' => $value))->order('answerRightNum desc,answerTime asc')->select();
+            // foreach ($classArray as $value) {               
+            // 	$grade1 = M('simulate_grade_record')->where(array('class' => $value))->order('answerRightNum desc,answerTime asc')->select();
             //     $gradeList = array_merge($gradeList,$grade1);
-            //     // var_dump($gradeList);                
+            //     var_dump($gradeList);                
             // }
-        $grade1 = M('simulate_grade_record')->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();
-        $gradeList = array_merge($gradeList,$grade1);
-        //var_dump($gradeList);
-        //die();
+        $gradeList = $GRADE->where(array('class' => $class))->order('answerRightNum desc,answerTime asc')->select();
+        //$gradeList = array_merge($gradeList,$grade1);
+        //var_dump($gradeList);//这™是个二维数组！
 
+        $this->assign('answerRightNum',$answerRightNum);
         $this->assign('gradeList',$gradeList)->display();
-		// $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-		// $USER = M('student_info');
-		// $RECORD = M('random_answer_record');
-  //       $SIMULATE = M('simulate_answer_record');
-		// $student_info = $USER->where('openId="'.$openId.'"')->find();
-		// $answerNum = $RECORD->where('openId="'.$openId.'"')->count();
-		// $answerRightNum = $RECORD->where('openId="'.$openId.'" AND answerResult = "RIGHT"' )->count();
-  //       $simulateArray = $SIMULATE->distinct(true)->field('testId')->where('openId="'.$openId.'"')->select();
-  //       //var_dump($simulateNum);
-  //       $simulateNum = count($simulateArray);
-  //       $this->assign('student_info',$student_info);
-  //       $this->assign('answerNum',$answerNum);
-  //       $this->assign('answerRightNum',$answerRightNum);
-  //       $this->assign('simulateNum',$simulateNum);    	
+  	
     }
 
     public function rankSchool(){
+        $openId = session('?openId') ? session('openId') : $this->error('请重新获取改页面');       
+        $GRADE = M('simulate_grade_record');
 
-        $gradeList = M('simulate_grade_record')->order('answerRightNum desc,answerTime asc')->select();
+        $answerRightNum = $GRADE->where('openId="'.$openId.'"')->getfield('answerRightNum');
+        $gradeList = $GRADE->order('answerRightNum desc,answerTime asc')->select();
 
+        $this->assign('answerRightNum',$answerRightNum);
         $this->assign('gradeList',$gradeList)->display();
     }
 
