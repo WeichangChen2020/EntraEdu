@@ -60,7 +60,7 @@ class ReviewController extends Controller {
 		//$this->assign('answerRecord',$answerRecord);
 		//$this->assign('sumNum',$sumNum);
 		$type = $QUESTION->where("id=".$wrongId)->getField('type');//单选多选和判断？
-		$type = 1;
+		
 		session('type',$type);
 		if ($type=='2') {
 			$this->display('reviewMultiple');
