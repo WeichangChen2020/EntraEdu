@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 		<title></title>
 		<link rel="stylesheet" href="__PUBLIC__/doExercise/css/jqmobo.css">
-		<link rel="stylesheet" href="__PUBLIC__/doExercise/css/collect.css">
+        <link rel="stylesheet" href="__PUBLIC__/doExercise/css/collect.css">
 		<script src="__PUBLIC__/doExercise/js/jquery.min.js"></script>
-		<script src="__PUBLIC__/js/collect.js"></script>
+        <script src="__PUBLIC__/js/collect.js"></script>
 		<script type="text/javascript">
 			k = "0";
 			var enterTime = "{$enterTime}";
@@ -54,20 +54,6 @@
 				</div>
 			</div>
 			<div style="margin-top:10px"></div>
-
-			<div id="divSubmit4" style="padding: 10px; margin-top: -15px;display:none;" >
-				<a class="button black" href="{:U('Random/comment')}/questionItem/{$itemid}">评论</a>
-			</div>
-			
-<!-- 				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
-					<a id="ctlNext1" class="button yellow" href="#collectArea">收藏</a>
-				</div> -->
-			<div id="main" class="main">
-				<div id="divSubmit2" class="zan" style="padding: 10px; margin-top: -15px;">
-					<a id="ctlNext2" class="button yellow" href="#collectAera">收藏</a>
-				</div>
-			</div>
-
 			<div class="footer">
 				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
 					<a class="button white" href="{:U('Random/random')}/chapter/{$_GET['chapter']}">下一题</a>
@@ -127,8 +113,6 @@
 						document.getElementById('answerAera').innerHTML = "标准答案：" + rightAnswer;
 						!analysisPicPath ? "" : document.getElementById('explainAera').innerHTML = "<img src=http://testet-public.stor.sinaapp.com" + analysisPicPath.slice(7) + analysisPicName + ">";
 						$('#footer').hide();
-						$('#divSubmit4').show();
-						$('#main').show();//控制收藏按钮出现
 
 						/*============ show option ==============*/
 						// document.getElementById('opA').innerHTML = "<progress value='" + opANum + "' max='" + opAllNum + "' class='piao'></progress>" + opANum + "人";
@@ -141,24 +125,6 @@
 						// document.getElementById('answerRightNum').innerHTML = rightAnswerNum;
 						// document.getElementById('answerNum').innerHTML = {$answerRecord.answerNum} + 1;
 					}
-				});
-			});
-			$("#divSubmit2").click(function(e){
-
-				var ajaxData = {};
-				ajaxData['openid'] = "{$openid}"; //用户id	
-				ajaxData['itemid'] = "{$itemid}"; //题目的id
-				ajaxData['enterTime'] = "{$enterTime}";
-				ajaxData['answer'] = k; //用户选择的答案
-				ajaxData['lefeTime'] = "setInServer";
-				//ajaxData['collect'] = 1;//是否收藏
-				$.ajax({
-					cache: false,
-					type: "POST",
-					url: "{:U('Random/collect')}",
-					dataType: "json",
-					data: ajaxData,
-
 				});
 			});
 		</script>
