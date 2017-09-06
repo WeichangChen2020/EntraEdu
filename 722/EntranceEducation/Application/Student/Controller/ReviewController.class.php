@@ -15,7 +15,7 @@ class ReviewController extends Controller {
 	}
 	public function review(){
 		/*=========定义变量=======*/
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$RECORD = M('wrong_review_record');
 		
 		$openId = session('?openId')? session('openId'): $this->error('由于某种原因，您的某些关键数据丢失，请在微信端发送0重新授权登录,然后再获取该链接');
@@ -24,6 +24,10 @@ class ReviewController extends Controller {
 		/*======获取错题数量======*/
 			
 		$wrongNum  =  $RECORD->where('openId="'.$openId.'"')->count(); //
+		if ($wrongNum==0) {
+			$this->display('noWrong');
+			die();
+		}
 		
 		/*======读取错题======*/
 
@@ -55,7 +59,7 @@ class ReviewController extends Controller {
 		$this->assign('wrongId',$wrongId);
 		//$this->assign('answerRecord',$answerRecord);
 		//$this->assign('sumNum',$sumNum);
-	
+		$type = $QUESTION->where("id=".$wrongId)->getField('type');//单选多选和判断？
 		$type = 1;
 		session('type',$type);
 		if ($type=='2') {
@@ -87,7 +91,7 @@ class ReviewController extends Controller {
             //$answer   = I('post.answer');
             $enterTime = I('enterTime');
             $leaveTime = time();
-			$QUESTION = M('questionbank');
+			$QUESTION = M('question');
 			$RECORD = M('wrong_review_record');
 			$type=session('type');
 			//echo $chapter;
@@ -129,7 +133,7 @@ class ReviewController extends Controller {
 	public function recordOption($answer,$openId,$itemId,$enterTime,$leaveTime,$rightans){
 		/*==========定义变量=============*/
 		$ANSWER = M('wrong_review_record');
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型

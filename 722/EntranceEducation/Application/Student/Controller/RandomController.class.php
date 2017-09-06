@@ -18,7 +18,7 @@ class RandomController extends Controller {
 	}
 	public function random(){
 		/*=========定义变量=======*/
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$RECORD = M('random_answer_record');
 		//$COMMENT = D('Student/RandomComment');
 		//$REPLY = D('Student/RandomReply');
@@ -32,13 +32,14 @@ class RandomController extends Controller {
 		/*======读取随机试题======*/
 		$chapter = I('chapter');
 		if($chapter){
-			$count = $QUESTION->where('type="'.$chapter.'"')->count();
-			$min = $QUESTION->where('type="'.$chapter.'"')->min('id');		
+			$count = $QUESTION->where('chapter="'.$chapter.'"')->count();
+			$min = $QUESTION->where('chapter="'.$chapter.'"')->min('id');		
 		}else{
 			$count = $QUESTION->count();
 			$min = $QUESTION->min('id');		
 		}
 		$pro_id = rand($min,$min+$count-1);
+		//echo $pro_id;
 		$item  = $QUESTION->where("id=".$pro_id)->find();
 		 
 
@@ -66,7 +67,8 @@ class RandomController extends Controller {
 		$this->assign('itemid',$item['id']);
 		$this->assign('answerRecord',$answerRecord);
 		//$this->assign('sumNum',$sumNum);
-		$type = 1;
+		$type = $QUESTION->where("id=".$pro_id)->getField('type');//单选多选和判断？
+		//echo $type;
 		session('type',$type);
 		if ($type=='2') {
 			$this->display('randomMultiple');
@@ -94,7 +96,7 @@ class RandomController extends Controller {
             //$answer   = I('post.answer');
             $enterTime = I('enterTime');
             $leaveTime = time();
-			$QUESTION = M('questionbank');
+			$QUESTION = M('question');
 			$RECORD = M('random_answer_record');
 			$type=session('type');
 			//echo $type;
@@ -134,11 +136,11 @@ class RandomController extends Controller {
 	public function recordOption($answer,$openid,$itemid,$enterTime,$leaveTime,$rightans){
 		/*==========定义变量=============*/
 		$ANSWER = M('random_answer_record');
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$DOER = M('student_info');
 		$name = $DOER->where('openId="'.$openid.'"')->getField('name');
 		$class = $DOER->where('openId="'.$openid.'"')->getField('class');
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
 		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
@@ -189,11 +191,11 @@ class RandomController extends Controller {
 		}
         $leaveTime = time();
 		$ANSWER = M('collect_record');
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$DOER = M('student_info');
 		$name = $DOER->where('openId="'.$openid.'"')->getField('name');
 		$class = $DOER->where('openId="'.$openid.'"')->getField('class');
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
 		$rightans = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型

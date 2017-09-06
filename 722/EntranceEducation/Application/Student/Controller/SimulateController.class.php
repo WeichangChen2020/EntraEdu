@@ -17,7 +17,7 @@ class SimulateController extends Controller {
 		//echo session('testId');
 		//die();
 
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$chapter = array(
 			'1' => 'unit1',
 			'2' => 'unit2',
@@ -27,9 +27,9 @@ class SimulateController extends Controller {
 			'6' => 'unit6',
 			'7' => 'unit7',
 		);
-		$count_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->count();
-		$min_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->min('id');
-		$max_unit1 = $QUESTION->where('type="'.$chapter['1'].'"')->max('id');		
+		$count_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->count();
+		$min_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->min('id');
+		$max_unit1 = $QUESTION->where('chapter="'.$chapter['1'].'"')->max('id');		
 		//echo $count_unit1;
 		//echo $min_unit1;
 		//echo $max_unit1;
@@ -39,8 +39,8 @@ class SimulateController extends Controller {
 		shuffle ($numbers_unit1); //将数组随机打乱
 		$result_unit1 = array_slice($numbers_unit1,0,8);//取其中的8个数
 		//print_r($result);
-		$min_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->min('id');
-		$max_rest = $QUESTION->where('type!="'.$chapter['1'].'"')->max('id');
+		$min_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->min('id');
+		$max_rest = $QUESTION->where('chapter!="'.$chapter['1'].'"')->max('id');
 		$numbers_rest = range ($min_rest,$max_rest); //排列成数组
 		shuffle ($numbers_rest); //将数组随机打乱
 		$result_rest = array_slice($numbers_rest,0,2);//取其中的2个数		
@@ -59,7 +59,7 @@ class SimulateController extends Controller {
 
 	public function simulate(){
 		/*=========定义变量=======*/
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$RECORD = M('simulate_answer_record');
 		//$COMMENT = D('Student/RandomComment');
 		//$REPLY = D('Student/RandomReply');
@@ -81,15 +81,15 @@ class SimulateController extends Controller {
 		// }
 		$result = session('result');//存有题目id的数组
 		$next_id = I('next_id');
-		//echo "题目的id在数组中的下标：".$next_id;
+		// echo "题目的id在数组中的下标：".$next_id;
 		//echo "<br/>";
-		if ($next_id) {
+		if ($next_id) {//如果接收到下一题的id
 			//echo "fuck";
 			if ($next_id<10) {
-				$que_id = $result[$next_id];
+				$que_id = $result[$next_id];//在题库中的id
 				//$proid = $next_id;
 				$next_id++;
-				$proid = $next_id;
+				$proid = $next_id;//显示在做题页面,当前是第几题
 				//echo $que_id;
 				//die();
 			}else{
@@ -98,16 +98,33 @@ class SimulateController extends Controller {
 					
 					$this->assign('openId',$openId);
 					$this->assign('testId',$testId);
+					//$this->assign('next_id',$next_id);
 					$this->display('simulateFinish');
 					die();
 				}
+				//else{
+					//$this->display('submitConfirm');
+				// }
 				
 			}			
 		}else{
-			$que_id = $result[0];
-			$next_id = 1;
-			$proid = $next_id;
+
+			if(I('chooseId')){ 	//从答题卡页面传过来，如果接收到选择的某一题，则显示那一题
+				$proid = I('chooseId');
+				//echo $proid;
+				//die();
+				$que_id = $result[$proid-1];
+				//echo $que_id;
+				$next_id = $proid;
+				//echo $next_id;
+				//die();
+			}else{	//如果没有接收到下一题的id，又没有选择某一题，那就从第一题开始
+				$que_id = $result[0];
+				$next_id = 1;
+				$proid = $next_id;
+			}
 		}
+		session('proid',$proid);//这套试卷的第几题
 		//echo "题目的id:".$que_id;
 		$item  = $QUESTION->where("id=".$que_id)->find();
 		//die(); 
@@ -140,7 +157,7 @@ class SimulateController extends Controller {
 		$this->assign('answerRecord',$answerRecord);
 		$this->assign('next_id',$next_id);
 		//$this->assign('sumNum',$sumNum);
-		$type = 1;
+		$type = $QUESTION->where("id=".$pro_id)->getField('type');//单选多选和判断？
 		session('type',$type);
 		if ($type=='2') {
 			$this->display('simulateMultiple');
@@ -168,7 +185,7 @@ class SimulateController extends Controller {
             //$answer   = I('post.answer');
             $enterTime = I('enterTime');
             $leaveTime = time();
-			$QUESTION = M('questionbank');
+			$QUESTION = M('question');
 			$RECORD = M('simulate_answer_record');
 			$type=session('type');
 			//echo $type;
@@ -213,7 +230,7 @@ class SimulateController extends Controller {
 		
 		/*==========定义变量=============*/
 		$ANSWER = M('simulate_answer_record');
-		$QUESTION = M('questionbank');
+		$QUESTION = M('question');
 		$DOER = M('student_info');
 
 
@@ -221,8 +238,9 @@ class SimulateController extends Controller {
 		$class = $DOER->where('openId="'.$openId.'"')->getField('class');
 		$number = $DOER->where('openId="'.$openId.'"')->getField('number');
 		$testId = session('testId');
-		$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('type');
+		//$proId = $ANSWER->where(array('openId' => $openId , 'testId' => $testId))->count();
+		$proId = session('proid');
+		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
 		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
 		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
 		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
@@ -235,7 +253,7 @@ class SimulateController extends Controller {
 			'class' => $class,
 			'number' => $number,
 			'testId' => $testId,//测试id
-			'proId' => $proId+1, //题目在该套卷子中是第几题
+			'proId' => $proId, //题目在该套卷子中是第几题
 			'questionId' => $itemid,//题目在题库中的id
 			'questionType' => $questionType,
 			'answer' => $answer,
@@ -355,7 +373,7 @@ class SimulateController extends Controller {
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
 
         $RECORD = M('simulate_answer_record');
-        $QUESTION = M('questionbank');
+        $QUESTION = M('question');
         for ($i=1; $i <= 10; $i++) { 
         	$answerRecord = $RECORD->where(array('openId' => $openId , 'testId' => $testId , 'proId' => $i))->find();
 			//$proId = $RECORD->where(array('openId' => $openId , 'testId' => $testId))->getField('proId');
