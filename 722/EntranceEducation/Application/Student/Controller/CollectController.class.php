@@ -19,7 +19,7 @@ class CollectController extends Controller {
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
 
         $RECORD = M('collect_record');
-        $QUESTION = M('questionbank');
+        $QUESTION = M('question');
         $collectNum = $RECORD->where('openId="'.$openId.'"')->count();//收藏题数
         $collectArray = $RECORD->where('openId="'.$openId.'"')->select();//收藏的题目数组
         //var_dump($collectArray);
