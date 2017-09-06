@@ -321,4 +321,8 @@ class RandomController extends Controller {
         	$this->ajaxReturn(array('status' => 'failure'),'json');
         }
     }
+
+	public function answer(){
+		$this->display();
+	}
 }
