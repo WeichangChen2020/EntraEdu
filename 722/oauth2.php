@@ -2,6 +2,7 @@
 if (isset($_GET['code'])){
     //echo $_GET['code'];
     $code = $_GET['code'];
+    echo $code;die;
     $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx4fdbba9a5ca1c058&secret=c82945fc7ce8bfe136c11e8f37740cf9&code='.$code.'&grant_type=authorization_code';
 
     //这个url是为了获取access_token
