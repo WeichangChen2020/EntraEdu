@@ -15,7 +15,7 @@ class RandomController extends Controller {
 		//var_dump($_SESSION);
 		//echo $openId;
 		$this->display();
-	}
+    }
 	public function random(){
 		/*=========定义变量=======*/
 		$QUESTION = M('question');
@@ -37,7 +37,7 @@ class RandomController extends Controller {
 		}else{
 			$count = $QUESTION->count();
 			$min = $QUESTION->min('id');		
-		}
+        }
 		$pro_id = rand($min,$min+$count-1);
 		//echo $pro_id;
 		$item  = $QUESTION->where("id=".$pro_id)->find();
@@ -78,7 +78,7 @@ class RandomController extends Controller {
 			$this->display();
 			//$this->display('randomMultiple');
 			//$this->display('randomJudge');
-		}
+        }
 		
     }
 
@@ -109,7 +109,7 @@ class RandomController extends Controller {
 				//echo $answer;
 			}else{
 				$answer  = I('post.answer');
-			}
+            }
 			/*=======获取正确答案=======*/	
 			$ajaxreturn['rightAnswer']     = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
 			$ajaxreturn['analysisPicPath'] = $QUESTION->where("id=".$itemid)->getField("analysisPicPath");
@@ -131,7 +131,7 @@ class RandomController extends Controller {
 			$this->ajaxReturn($ajaxreturn);     
         }else 
 			$this->ajaxReturn('非法的请求方式'); 	
-	}
+    }
 
 	public function recordOption($answer,$openid,$itemid,$enterTime,$leaveTime,$rightans){
 		/*==========定义变量=============*/
@@ -169,61 +169,66 @@ class RandomController extends Controller {
 		if ($answerResult == "WRONG" && !$exsit_wrong) {
 			
 			$WRONG->data($record)->add();
-		}
+        }
 
-	}
+    }
 
 	public function collect(){
-		/*==========定义变量=============*/
-        $itemid   = I('post.itemid');
-        $openid   = I('post.openid');
-        //$answer   = I('post.answer');
-        $enterTime = I('enterTime');
-        if ($type == '2') {
-			$answer1 = I('post.answer1');
-			$answer2 = I('post.answer2');
-			$answer3 = I('post.answer3');
-			$answer4 = I('post.answer4');
-			$answer = $answer1.$answer2.$answer3.$answer4;
+		if(IS_AJAX){
+			/*==========定义变量=============*/
+	        $itemid   = I('post.itemid');
+	        $openid   = I('post.openid');
+	        //$answer   = I('post.answer');
+	        $enterTime = I('enterTime');
+	        $type=session('type');
+	        if ($type == '2') {
+				$answer1 = I('post.answer1');
+				$answer2 = I('post.answer2');
+				$answer3 = I('post.answer3');
+				$answer4 = I('post.answer4');
+				$answer = $answer1.$answer2.$answer3.$answer4;
 				//echo $answer;
-		}else{
-			$answer  = I('post.answer');
-		}
-        $leaveTime = time();
-		$ANSWER = M('collect_record');
-		$QUESTION = M('question');
-		$DOER = M('student_info');
-		$name = $DOER->where('openId="'.$openid.'"')->getField('name');
-		$class = $DOER->where('openId="'.$openid.'"')->getField('class');
-		$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
-		$rightans = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
-		$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
-		$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
-		$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
-		/*=======构造插入数据库答题信息数组======*/
-		$record = array(
-			'openId' => $openid, 
-			'name' => $name,
-			'class' => $class,
-			'questionId' => $itemid,
-			'questionType' => $questionType,
-			'answer' => $answer,
-			'rightAnswer' => $rightans,
-			'answerResult' => $answerResult,
-			'enterPageTime' => date("Y-m-d H:i:s",$enterTime),
-			'leavePageTime' => date("Y-m-d H:i:s",$leaveTime),
-			'answerTime' => $answerTime,
-		);
-		//var_dump($record);
-		//die();
-		$exsit = $ANSWER->where(array('openId' => $openid , 'questionId' => $itemid))->find();
-		if (!$exsit) { //如果没有收藏过才插入表中
-			$ANSWER->data($record)->add();
-		}
-		
+				//die();
+			}else{
+				$answer  = I('post.answer');
+            }
+
+	        $leaveTime = time();
+			$ANSWER = M('collect_record');
+			$QUESTION = M('question');
+			$DOER = M('student_info');
+			$name = $DOER->where('openId="'.$openid.'"')->getField('name');
+			$class = $DOER->where('openId="'.$openid.'"')->getField('class');
+			$questionType = $QUESTION->where('id="'.$itemid.'"')->getField('chapter');
+			$rightans = $QUESTION->where("id=".$itemid)->getField("rightAnswer");
+			$answerResult = $answer == $rightans? "RIGHT" : "WRONG" ;//多选题如何比较？？
+			$answerTimeSecond = $leaveTime - $enterTime;    //回答时间的秒数int型
+			$answerTime = (ceil($answerTimeSecond / 60)-1).'分'.($answerTimeSecond % 60).'秒';
+			/*=======构造插入数据库答题信息数组======*/
+			$record = array(
+				'openId' => $openid, 
+				'name' => $name,
+				'class' => $class,
+				'questionId' => $itemid,
+				'questionType' => $questionType,
+				'answer' => $answer,
+				'rightAnswer' => $rightans,
+				'answerResult' => $answerResult,
+				'enterPageTime' => date("Y-m-d H:i:s",$enterTime),
+				'leavePageTime' => date("Y-m-d H:i:s",$leaveTime),
+				'answerTime' => $answerTime,
+			);
+			//var_dump($record);
+			//die();
+			$exsit = $ANSWER->where(array('openId' => $openid , 'questionId' => $itemid))->find();
+			if (!$exsit) { //如果没有收藏过才插入表中
+				$ANSWER->data($record)->add();
+            }
+		}else 
+			$this->ajaxReturn('非法的请求方式');	
 		//$ANSWER -> add($record);
 
-	}
+    }
 
 	public function commentArea(){
 		/*======定义一些变量=======*/
@@ -239,7 +244,7 @@ class RandomController extends Controller {
 		$this->assign('comment',$comment);
 		$this->assign('reply',$reply);
 		$this->display();
-	}
+    }
 
 	public function handComment(){
 		/*=======定义一些原始变量======*/
@@ -269,7 +274,7 @@ class RandomController extends Controller {
         	$this->ajaxReturn(array('status' => 'success'),'json');
         else
         	$this->ajaxReturn(array('status' => 'failure'),'json');
-	}
+    }
 
 	public function reply(){
 		/*======定义初始变量======*/
@@ -279,7 +284,7 @@ class RandomController extends Controller {
 		$this->assign('commentId',$commentId);
 		$this->assign('commentInfo',$commentInfo);
 		$this->display();
-	}
+    }
 
 	public function handReply(){
 		/*if(!IS_AJAX)
@@ -315,5 +320,5 @@ class RandomController extends Controller {
 		}else{
         	$this->ajaxReturn(array('status' => 'failure'),'json');
         }
-	}
+    }
 }
