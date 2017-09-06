@@ -19,9 +19,7 @@ if (isset($_GET['code'])){
     echo $openid;
     die;
     header("Location: http://722.testroom.applinzi.com/EntranceEducation/index.php/User/index?openId=$openid"); 
-        
-    
-	
+
 }else{
     echo "NO CODE";
 }
