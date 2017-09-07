@@ -26,12 +26,22 @@
      <input class="weui_input" id="banji" type="text" placeholder="请输入班级"> 
     </div> 
    </div>
+   <div class="weui_cell">
+    <div class="weui_cell_hd">
+     <label for="home-city" class="weui_label">xuehao</label>
+    </div> 
+    <div class="weui_cell_bd weui_cell_primary"> 
+     <!-- <input class="weui_input" id="banji" type="text" placeholder="请输入班级">  -->
+     <input class="weui_input" id="home-city" type="text">
+    </div> 
+   </div>
    <div class="weui_cell"> 
     <div class="weui_cell_hd">
      <label class="weui_label">学号</label>
     </div> 
     <div class="weui_cell_bd weui_cell_primary"> 
      <input class="weui_input" id="number" type="number" maxlength="10" placeholder="请输入学号" required="required" />
+
     </div> 
    </div>
 
@@ -40,15 +50,7 @@
     <a class="weui_btn weui_btn_primary" href="javascript:" id="submit">确定</a>
   </div>
   
-  <h2 class="demos-second-title">只选择城市</h2>
-    <div class="weui-cells weui-cells_form">
-      <div class="weui-cell">
-        <div class="weui-cell__hd"><label for="home-city" class="weui-label">城市</label></div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" id="home-city" type="text">
-        </div>
-      </div>
-    </div>
+   
 
   <include file="./Public/html/_foot.html"/>
   <script src="__PUBLIC__/js/city-picker.js"></script>
@@ -60,7 +62,7 @@
         onChange: function (picker, values, displayValues) {
           console.log(values, displayValues);
         }
-      });
+        });
       // $("#banji").select({
       //   title: "选择班级",
       //   items: ["网络1501", "网络1502" ,"test","其他班级"],
