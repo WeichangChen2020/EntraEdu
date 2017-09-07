@@ -48,25 +48,12 @@
 
   <script>
        $("#home-city").cityPicker({
-        title: "选择目的地",
+        title: "请选择学院班级",
         showDistrict: false,
         onChange: function (picker, values, displayValues) {
-          console.log(values, displayValues);
+          console.log(displayValues);
         }
         });
-      // $("#banji").select({
-      //   title: "选择班级",
-      //   items: ["网络1501", "网络1502" ,"test","其他班级"],
-      //   onChange: function(d) {
-      //     console.log(this, d);
-      //   },
-      //   onClose: function() {
-      //     console.log("close");
-      //   },
-      //   onOpen: function() {
-      //     console.log("open");
-      //   },
-      // });
 
       $("#submit").click(function() {
         var name = $('#name').val();
