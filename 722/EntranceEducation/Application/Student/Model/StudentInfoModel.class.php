@@ -2,7 +2,7 @@
 namespace Student\Model;
 use Think\Model;
 class StudentInfoModel extends Model {
-	protected $tablePrefix = 'db_';
+	// protected $tablePrefix = 'db_';
 
 	public function getName($openid){
 		return  $this->where('openId="'.$openid.'"')->getField('name');
