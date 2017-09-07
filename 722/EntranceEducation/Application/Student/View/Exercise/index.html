@@ -6,53 +6,60 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<script src="__PUBLIC__/font/iconfont.js"></script>
-		<style type="text/css">
-			.icon {
-		       width: 25px;
-			    height: 25px;
-			    float: left;
-			    margin-top: 13px;
-			    margin-right: 11px;
-			   vertical-align: -0.15em;
-			   fill: currentColor;
-			   overflow: hidden;
-			}
-			.option-area {
-				border-bottom: 1px solid #ddd;
-			    color: #666;
-			    padding-left: 15px;
-			}
-			.option-contents {
-				display: block;
-			    margin-left: 40px;
-			    padding: 13px 10px 13px 0;
-			    line-height: 25px;
-			}
-		</style>
 	</head>
 	<body>
-		<!-- <div class="title">微信投票</div> -->
 		<div class="content">
 			<span class="c-title">李俊君</span>
-			<p class="c-time">当前答题56题,正确43题, 进度34/12345 2017-09-02 21:12:45</p>
-			<div class="c-pic">这是题干部分， 包含选择题，判断题，多选题，和包含图片的题目</div>
+			<p class="c-time">05-15 09:45 <label style=" margin-left: 60px;">正确34&nbsp;错误45&nbsp;进度23/34</label></p>
+			<div class="c-pic"><span class="weui-badge">单选题</span><span class="weui-badge" style="margin-left: 5px;">安全教育类</span>这是题干部分， 包含选择题，判断题，多选题，和包含图片的题目</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
 				<a href="javascript:;">
-					<div class="option-area">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-xuanxianga"></use></svg></span>
+					<div class="option-area" id="option-a">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
 					    <lable class="option-contents">我们都是公众股束带结发拉可见该发生啥都看飞机 按时贷款减肥 拉开水电费就</lable>
 					</div>
 				</a>
 				
 				<a href="javascript:;">
-					<div class="option-area">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-xuanxianga2"></use></svg></span>
+					<div class="option-area" id="option-b">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
 					    <lable class="option-contents">B选项的内容</lable>
 					</div>
 				</a>
-							
+
+				<a href="javascript:;">
+					<div class="option-area" id="option-c">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
+					    <lable class="option-contents">C选项的内容</lable>
+					</div>
+				</a>
+
+				<a href="javascript:;">
+					<div class="option-area" id="option-d">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
+					    <lable class="option-contents">D选项的内容</lable>
+					</div>
+				</a>
 			</div>
+			<a class="c-button" href="javascript:;">下一题</a>
 		</div>
 	</body>
 </html>
+<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+	$('.option-area').one('click',function(){
+		// 选择了之后正确
+		var use = $(this).find('use')[0];
+		var icon_attr = use.getAttribute('xlink:href');
+		var option = icon_attr.substring(13).toUpperCase();
+		if (option == "B") {
+			use.setAttribute('xlink:href', '#icon-option-right');
+		} else {
+			use.setAttribute('xlink:href', '#icon-option-wrong');
+			$('#option-b').find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+		}
+		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
+		$('.option-area').unbind(); //移除被选元素的事件处理程序
+	})	
+</script>
