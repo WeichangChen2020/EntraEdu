@@ -3,7 +3,7 @@
 return array(
     
     //SAE下的共享数据库配置
-    'DB_PREFIX' =>  'ee_',
+    'DB_PREFIX'         =>     'ee_',
     'DB_HOST'           =>  'w.rdc.sae.sina.com.cn'.','.'r.rdc.sae.sina.com.cn', // 服务器地址
     'DB_NAME'           =>  'app_cprogramplatform',        // 数据库名
     'DB_USER'           =>  'ylm2jlwxmm',    // 用户名
