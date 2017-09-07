@@ -63,12 +63,14 @@ class UserController extends Controller {
         $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $name          = I('name')?I('name'):$this->error('你访问的界面不存在');
         $number        = I('number')?I('number'):$this->error('你访问的界面不存在');
+        $college         = I('college')?I('college'):$this->error('你访问的界面不存在');
         $banji         = I('banji')?I('banji'):$this->error('你访问的界面不存在');
 
         $registerInfo  = array(
             'openId'   => $openId,
             'name'     => $name,
             'number'   => $number,
+            'academy'  => $college,
             'class'    => $banji,
             'time'     => date('Y-m-d H:i:s')
             );
