@@ -51,13 +51,15 @@
         title: "请选择学院班级",
         showDistrict: false,
         onChange: function (picker, values, displayValues) {
-          console.log(displayValues);
+          college = displayValues[0];
+          banji = displayValues[1];
+          // console.log(displayValues);
         }
         });
 
       $("#submit").click(function() {
         var name = $('#name').val();
-        var banji = $('#banji').val();
+        // var banji = $('#banji').val();
         var number = $('#number').val();
         if(!name) $.toptip('请输入姓名');
         else if(!banji) $.toptip('请选择班级');
