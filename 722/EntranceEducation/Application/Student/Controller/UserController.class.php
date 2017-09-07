@@ -63,22 +63,29 @@ class UserController extends Controller {
         $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $name          = I('name')?I('name'):$this->error('你访问的界面不存在');
         $number        = I('number')?I('number'):$this->error('你访问的界面不存在');
-        $college         = I('college')?I('college'):$this->error('你访问的界面不存在');
+        $college       = I('college')?I('college'):$this->error('你访问的界面不存在');
         $banji         = I('banji')?I('banji'):$this->error('你访问的界面不存在');
 
         $registerInfo  = array(
             'openId'   => $openId,
             'name'     => $name,
             'number'   => $number,
-            'academy'  => $college,
-            'class'    => $banji,
+            'academy'  => $college,//学院
+            'class'    => $banji,//班级
             'time'     => date('Y-m-d H:i:s')
             );
         $STU->create($registerInfo);
-        if($STU->data($registerInfo)->add())
-            $this->ajaxReturn(array('res' => '注册成功'));
-        else
-            $this->ajaxReturn(array('res' => '注册失败'));
+        $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+        if(!$stu_info){ //如果找不到，就插入数据
+        	$new = $STU->data($registerInfo)->add();
+            if($new)
+            	$this->ajaxReturn(array('res' => '注册成功'));
+        	else
+             	$this->ajaxReturn(array('res' => '注册失败'));
+        }else{ //如果找到就传递信息数组并跳转到系统首页
+        	$this->assign('stu_info',$stu_info)->display('Index/index');
+        }    
+
     }
 
     //获取用户信息
