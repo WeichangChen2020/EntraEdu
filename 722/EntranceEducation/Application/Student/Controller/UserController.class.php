@@ -53,7 +53,7 @@ class UserController extends Controller {
 			
             $this->assign('stu_info',$stu_info)->display('Index/index');//如果已经注册，直接跳转到欢迎界面
 		}else{
-			$this->display('register');//否则就到注册页面填写信息
+			$this->assign('openId',$openId)->display('register');//否则就到注册页面填写信息
 		}
     }
 
