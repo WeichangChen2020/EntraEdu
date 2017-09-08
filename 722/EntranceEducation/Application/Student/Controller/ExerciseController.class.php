@@ -48,7 +48,7 @@ class ExerciseController extends Controller{
 			}
 				 
 		} else {
-			echo "你做完了所欲题目";
+			echo "你已做完所有题目";
 		}
 		
 	}
