@@ -20,8 +20,10 @@ class ExerciseController extends Controller{
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
 
-		
+
 		$quesid = I('quesid');
+
+		// 判断，如果get方式获取到了quesid对应着用户是通过点击下一题进来的 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid) + 1;
 		}
@@ -30,9 +32,15 @@ class ExerciseController extends Controller{
 
 		$quesItem    = D('Questionbank')->getQuestion($quesid);
 
-		$this->assign('record', $record);
-		$this->assign('quesItem', $quesItem)
-			 ->display('index');
+		// 判断是否已经做完了最后一道题目
+		if ($quesItem) {
+			$this->assign('record', $record);
+			$this->assign('quesItem', $quesItem)
+				 ->display('index');
+		} else {
+			echo "你做完了所欲题目";
+		}
+		
 	}
 
 	/**
