@@ -70,19 +70,14 @@
 		var option    = icon_attr.substring(13,14).toUpperCase(); //选项
 		click_times[option] ++;
 
-		console.log(click_times);
-		console.log(icon_attr);
-
 		// 判断该选项是否选中
 		if(click_times[option] % 2 == 0) {
 			use.setAttribute('xlink:href', icon_attr.substring(0,14));
-			console.log(icon_attr.substring(0,14));
-
 		} else {
 			use.setAttribute('xlink:href', icon_attr + '-select');
-			console.log(icon_attr + '-select');
 		}
 
+		
 
 
     });
