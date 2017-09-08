@@ -62,7 +62,8 @@
 	// 获取页面加载的时间
     var start_time = new Date();  
 
-    $('.option-area').click(function(){
+$(document).ready(function(){
+  $('.option-area').click(function(){
     	$(this).toggle(
     		function(){
     			alert('1');
@@ -72,12 +73,15 @@
     		},
     		function(){
     			alert('2');
-
 	    		console.log('2');
 
     		}
     	);
     });
 
+
+  
+});
+    
 
 </script>
