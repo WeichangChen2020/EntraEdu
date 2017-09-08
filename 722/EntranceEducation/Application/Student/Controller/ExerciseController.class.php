@@ -17,10 +17,15 @@ class ExerciseController extends Controller{
 	 * @return 
 	 */
 	public function exercise() {
+		$openid = session('openId');
+		$record = D('exercise')->getExercseRecord($openid);
+
 		$Question    = D('Questionbank');
 		$quesid      = rand(1,15);
 		session('quesid', $quesid);
 		$quesItem    = $Question->getQuestion($quesid);
+
+		$this->assign('record', $record);
 		$this->assign('quesItem', $quesItem)
 			 ->display('index');
 	}
