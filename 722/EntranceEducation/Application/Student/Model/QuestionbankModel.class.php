@@ -37,7 +37,7 @@ class QuestionbankModel extends Model{
 	 */
 	protected function getQuesChapter($cp_id = 1) {
 
-		$Chapter = M('questionbank_chapter', 'ee_', $this->database_con);
+		$Chapter = M('question_chapter', 'ee_', $this->database_con);
 		$chapter = $Chapter->where(array('id' => $cp_id))->getField('chapter');
 
 		return $chapter;
