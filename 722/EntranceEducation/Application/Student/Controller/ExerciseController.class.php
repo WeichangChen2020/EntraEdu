@@ -21,7 +21,7 @@ class ExerciseController extends Controller{
 		$record = D('exercise')->getExercseRecord($openid);
 
 		$Question    = D('Questionbank');
-		$quesid      = rand(1,15);
+		$quesid      = $record['next_quesid'];
 		session('quesid', $quesid);
 		$quesItem    = $Question->getQuestion($quesid);
 

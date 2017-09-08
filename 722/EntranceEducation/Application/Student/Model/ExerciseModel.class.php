@@ -19,7 +19,10 @@ class ExerciseModel extends Model {
 	 */
 	public function getExercseRecord($openid = '') {
 
-		$record = array(
+		
+		$newest_id    = $this->where(array('openid'=>$openid)->max('id');
+		$next_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
+		$record       = array(
 			'name'    => D('student_info')->getName($openid),
 			'count'   => $this->where(array('openid'=>$openid))
 			                  ->count(), //答题量
@@ -27,6 +30,7 @@ class ExerciseModel extends Model {
 		                      ->count(),
 	        'wrg_cot' => $count - $rig_cot,
 			'sum'     => D('questionbank')->count(),
+			'next_quesid' => $next_quesid + 1;
 		);
 		
 		return $record;
