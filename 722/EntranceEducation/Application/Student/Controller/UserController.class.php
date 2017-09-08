@@ -74,15 +74,15 @@ class UserController extends Controller {
             'class'    => $banji,//班级
             'time'     => date('Y-m-d H:i:s')
             );
-        var_dump($registerInfo);
+        //var_dump($registerInfo);
         //die();
         $STU->create($registerInfo);
-        $stu_info = $STU->where(array('openId' => 'oIpKjs1TdcEZ0M0WN8TyEwWE9m-U'))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
-        var_dump($stu_info);
+        $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+        //var_dump($stu_info);
         if(!$stu_info){ //如果找不到，就插入数据
         	$new = $STU->data($registerInfo)->add();
-            var_dump($new);
-            die();
+            //var_dump($new);
+            //die();
             if($new)
             	$this->ajaxReturn(array('res' => '注册成功'));
         	else{
