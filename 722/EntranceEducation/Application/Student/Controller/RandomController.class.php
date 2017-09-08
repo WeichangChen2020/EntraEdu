@@ -6,6 +6,8 @@ use Think\Controller;
 use Think\Model;
 
 class RandomController extends Controller {
+    protected $database_con = 'mysql://lzyoo3jx2o:ik221mylmw4h1x0kyi51j32k01150hx0j4jk30x@w.rdc.sae.sina.com.cn/app_classtest#utf8';
+
 	public function index(){
 		//session('openId',null);
         $openId=session('openId');
@@ -19,6 +21,8 @@ class RandomController extends Controller {
 	public function random(){
 		/*=========定义变量=======*/
 		$QUESTION = M('question');
+		$QUESTION = M('questionbank', 'ee_', $this->database_con);
+
 		$RECORD = M('random_answer_record');
 		//$COMMENT = D('Student/RandomComment');
 		//$REPLY = D('Student/RandomReply');
