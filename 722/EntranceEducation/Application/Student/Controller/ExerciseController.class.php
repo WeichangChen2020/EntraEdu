@@ -50,8 +50,8 @@ class ExerciseController extends Controller{
 			'spend'  => time() - $start_time,
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
-		
-		$this->add($data);
+
+		D('Exercise')->add($data);
 		$this->ajaxReturn($right_answer);
 	}
 
