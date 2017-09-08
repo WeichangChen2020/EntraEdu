@@ -61,20 +61,17 @@
 <script type="text/javascript">
 	// 获取页面加载的时间
     var start_time = new Date();  
-    var click_times = [0,0,0,0]; //点击的次数
-    var optArr = {'A':0, 'B':1, 'C':2, 'D':3};
+    var click_times = {'A':0, 'B':0, 'C':0, 'D':0};
 
 
     $('.option-area').click(function(){
     	var use       = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
 		var option    = icon_attr.substring(13).toUpperCase(); //选项
-		console.log(option);
-		console.log(optArr);
-
-		click_times[optArr[option]] ++;
+		click_times[option] ++;
 
 		console.log(click_times);
+		// if()
 
 
 
