@@ -16,6 +16,12 @@ class ExerciseController extends Controller{
 		$this->assign('quesItem', $quesItem)->display('index');
 	}
 
+	public function test(){
+		$a = M('questionbank');
+		$b = $a->select();
+		var_dump($b);
+	}
+
 }
 
  ?>

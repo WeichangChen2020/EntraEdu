@@ -58,8 +58,6 @@ class QuestionbankModel extends Model{
 		return $quesArr;
 	}
 
-	public function test(){
-		echo "string";
-	}
+	
 
 }
