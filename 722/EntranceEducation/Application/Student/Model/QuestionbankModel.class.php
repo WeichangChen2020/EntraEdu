@@ -24,7 +24,7 @@ class QuestionbankModel extends Model{
 	protected function getQuesType($ty = 0) {
 
 		$typeArr = array('单选题', '判断题', '多选题');
-		return $typeArr[$ty + 1];
+		return $typeArr[$ty - 1];
 
 	}
 
