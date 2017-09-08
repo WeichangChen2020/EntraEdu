@@ -18,7 +18,7 @@ class ExerciseController extends Controller{
 	 */
 	public function exercise() {
 		$Question    = D('Questionbank');
-		$quesid      = 13;
+		$quesid      = rand(1,15);
 		session('quesid', $quesid);
 		$quesItem    = $Question->getQuestion($quesid);
 		$this->assign('quesItem', $quesItem)
@@ -36,7 +36,7 @@ class ExerciseController extends Controller{
 		if (!IS_AJAX) {
 			$this->error('你访问的页面不存在');
 		}
-		$openid       = 'oendi';
+		$openid       = session('quesid');
 		$quesid       = session('quesid');
 		$option       = I('option');
 		$start_time   = ceil(intval(trim(I('time'))) / 1000); //将毫秒转为秒并取整
