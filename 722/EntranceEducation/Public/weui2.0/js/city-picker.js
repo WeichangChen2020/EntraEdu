@@ -1,4 +1,4 @@
-﻿// jshint ignore: start
+// jshint ignore: start
 +function($){
 
 $.rawCitiesData = [
@@ -7,7 +7,7 @@ $.rawCitiesData = [
     "code":"110000",
     "sub": [
       {
-        "name": "网络1401网络",
+        "name": "网络1401",
         "code": "110000",
         "sub":[
             {
@@ -49,11 +49,11 @@ $.rawCitiesData = [
     ]
   },
   {
-    "name":"445rygfh",
+    "name":"信息学院",
     "code":"120000",
     "sub": [
       {
-        "name": "汉语言文学（专升本）1701",
+        "name": "计科1701",
         "sub":[
             {
               "name":"计科1701",
@@ -66,15 +66,6 @@ $.rawCitiesData = [
         "sub":[
             {
               "name":"计科1702",
-              "code":"w"
-            }
-        ]
-      },
-       {
-        "name": "计科1703",
-        "sub":[
-            {
-              "name":"计科1704",
               "code":"w"
             }
         ]
@@ -262,7 +253,7 @@ $.rawCitiesData = [
       var p = $.extend({}, params, config);
       //计算value
       var val = $(this).val();
-      if (!val) val = '';
+      if (!val) val = '北京 网络1401 东城区';
       currentProvince = val.split(" ")[0];
       currentCity = val.split(" ")[1];
       currentDistrict= val.split(" ")[2];
