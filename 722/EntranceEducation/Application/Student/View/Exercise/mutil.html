@@ -71,7 +71,13 @@
 		click_times[option] ++;
 
 		console.log(click_times);
-		// if()
+
+		// 判断该选项是否选中
+		if(click_times[option] / 2 == 1) {
+			use.setAttribute('xlink:href', icon_attr+'-select');
+		} else {
+			use.setAttribute('xlink:href', icon_attr.substring(0, 11));
+		}
 
 
 
