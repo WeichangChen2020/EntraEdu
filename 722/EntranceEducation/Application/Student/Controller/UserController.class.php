@@ -60,6 +60,7 @@ class UserController extends Controller {
     //注册信息
     public function register(){
     	$STU           = D('StudentInfo');       //实例化
+        $STUDENT       = M('student_info'); 
         $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $name          = I('name')?I('name'):$this->error('你访问的界面不存在');
         $number        = I('number')?I('number'):$this->error('你访问的界面不存在');
@@ -76,11 +77,11 @@ class UserController extends Controller {
             );
         var_dump($registerInfo);
         //die();
-        $STU->create($registerInfo);
-        $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+        $STUDENT->create($registerInfo);
+        $stu_info = $STUDENT->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
         //var_dump($stu_info);
         if(!$stu_info){ //如果找不到，就插入数据
-        	$new = $STU->data($registerInfo)->add();
+        	$new = $STUDENT->data($registerInfo)->add();
             var_dump($new);
             die();
             if($new)
