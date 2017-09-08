@@ -74,7 +74,7 @@
 		console.log(icon_attr);
 
 		// 判断该选项是否选中
-		if(click_times[option] / 2 == 0) {
+		if(click_times[option] % 2 == 0) {
 			use.setAttribute('xlink:href', icon_attr);
 			console.log(icon_attr);
 
