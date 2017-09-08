@@ -82,7 +82,7 @@
               $.toast("注册成功");
               $('#submit').hide(); //隐藏确定键
             }, 1000)
-             window.location.href="{:U('User/index')}";
+             window.location.href="{:U('User/index')}/openId/{$openId}";
           });
         }
       });
