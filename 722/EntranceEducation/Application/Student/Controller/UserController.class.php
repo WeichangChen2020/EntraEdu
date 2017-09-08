@@ -78,6 +78,7 @@ class UserController extends Controller {
         //die();
         $STU->create($registerInfo);
         $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+        var_dump($stu_info);
         if(!$stu_info){ //如果找不到，就插入数据
         	$new = $STU->data($registerInfo)->add();
             var_dump($new);
