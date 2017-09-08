@@ -67,7 +67,7 @@
     $('.option-area').click(function(){
     	var use       = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
-		var option    = icon_attr.substring(13).toUpperCase(); //选项
+		var option    = icon_attr.substring(13,14).toUpperCase(); //选项
 		click_times[option] ++;
 
 		console.log(click_times);
@@ -75,9 +75,9 @@
 
 		// 判断该选项是否选中
 		if(click_times[option] / 2 == 0) {
-			use.setAttribute('xlink:href', icon_attr.substring(0, 11));
-			console.log(icon_attr.substring(0, 11));
-			
+			use.setAttribute('xlink:href', icon_attr);
+			console.log(icon_attr);
+
 		} else {
 			use.setAttribute('xlink:href', icon_attr + '-select');
 			console.log(icon_attr + '-select');
