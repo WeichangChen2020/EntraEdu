@@ -18,7 +18,7 @@ class ExerciseController extends Controller{
 	 */
 	public function exercise() {
 		$Question    = D('Questionbank');
-		$quesid      = rand(1, 15);
+		$quesid      = 13;
 		session('quesid', $quesid);
 		$quesItem    = $Question->getQuestion($quesid);
 		$this->assign('quesItem', $quesItem)
