@@ -30,7 +30,7 @@ class ExerciseModel extends Model {
 		                      ->count(),
 	        'wrg_cot' => $count - $rig_cot,
 			'sum'     => D('questionbank')->count(),
-			'next_quesid' => $next_quesid + 1;
+			'next_quesid' => $next_quesid + 1,
 		);
 		
 		return $record;
