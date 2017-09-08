@@ -20,7 +20,7 @@ class ExerciseModel extends Model {
 	public function getExercseRecord($openid = '') {
 
 		
-		$newest_id    = $this->where(array('openid'=>$openid)->max('id');
+		$newest_id    = $this->where(array('openid'=>$openid))->max('id');
 		$next_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
 		$record       = array(
 			'name'    => D('student_info')->getName($openid),
