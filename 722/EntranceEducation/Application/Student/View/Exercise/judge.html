@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>随堂测试</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<script src="__PUBLIC__/font/iconfont.js"></script>
+	</head>
+	<body>
+		<div class="content">
+			<span class="c-title">record.name}</span>
+			<p class="c-time">{:date('m-d H:i', time())}<label style=" margin-left: 60px;">正确record.rig_cot}&nbsp;错误record.wrg_cot}&nbsp;进度record.count}/record.sum}</label></p>
+			<div class="c-pic"><span class="weui-badge">端选题</span><span class="weui-badge" style="margin-left: 5px;">是短发是</span>quesItem.contents}</div>
+			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
+			<div class="c-table">
+
+				<!-- option exit -->
+				
+					<a href="javascript:;">
+						<div class="option-area" id="option-right">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+						    <lable class="option-contents">对</lable>
+						</div>
+					</a>
+
+					<a href="javascript:;">
+						<div class="option-area" id="option-wrong">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+						    <lable class="option-contents">错</lable>
+						</div>
+					</a>
+
+				
+				
+			</div>
+			<a class="c-button" href="{:U('Exercise/exercise', array('quesid'=>session('quesid') + 1))}">下一题</a>
+		</div>
+	</body>
+</html>
+<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+	// 获取页面加载的时间
+    var start_time = new Date();  
+
+	$('.option-area').one('click',function(){
+		// 选择了之后正确
+		var use        = $(this).find('use')[0];
+		var lable      = $(this).find('lable')[0];
+		var option     = lable.innerHTML; //选项
+		var resArr     = {'对':'right', '错':'wrong'};
+		
+
+		var data = {
+			'option': option,
+			'time'  : start_time.getTime()
+		}
+
+		var url = "{:U('Exercise/submit')}";
+        $.post(url, data, function(res){
+          	if(option == res) {
+	      		use.setAttribute('xlink:href', '#icon-option-right');
+	      	} else {
+	      		use.setAttribute('xlink:href', '#icon-option-wrong');
+				$('#option-'+resArr[res]).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+	      	}
+        });
+
+		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
+		$('.option-area').unbind(); //移除被选元素的事件处理程序
+	})	
+</script>
