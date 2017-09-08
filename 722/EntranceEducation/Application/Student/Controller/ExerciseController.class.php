@@ -9,7 +9,7 @@ class ExerciseController extends Controller{
 	}
 
 	public function exercise() {
-		$QUESTION = M('questionbank', 'ee_', $this->database_con);
+		$QUESTION = M('questik', 'ee_', $this->database_con);
 		$quesArr = $QUESTION->select();
 		var_dump($quesArr);
 		
