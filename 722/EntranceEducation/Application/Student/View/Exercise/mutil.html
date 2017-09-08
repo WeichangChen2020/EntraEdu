@@ -61,27 +61,20 @@
 <script type="text/javascript">
 	// 获取页面加载的时间
     var start_time = new Date();  
-
-$(document).ready(function(){
-  $('.option-area').click(function(){
-    	$(this).toggle(
-    		function(){
-    			alert('1');
-	    		console.log('1');
+    var click_times = {0,0,0,0}; //点击的次数
+    var optArr = {'a':0, 'b':1, 'c':2, 'd':'3'};
 
 
-    		},
-    		function(){
-    			alert('2');
-	    		console.log('2');
+    $('.option-area').click(function(){
+    	var use       = $(this).find('use')[0];
+		var icon_attr = use.getAttribute('xlink:href');
+		var option    = icon_attr.substring(13).toUpperCase(); //选项
+		click_times[optArr[option]] ++;
+		console.log(click_times);
 
-    		}
-    	);
+
+
     });
-
-
-  
-});
     
 
 </script>
