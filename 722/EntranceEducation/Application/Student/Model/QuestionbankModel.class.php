@@ -56,7 +56,7 @@ class QuestionbankModel extends Model{
 
 		// 当用户做完了所有的题目
 		if (empty($quesArr)) {
-			return flase;
+			return false;
 		}
 
 		$quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
