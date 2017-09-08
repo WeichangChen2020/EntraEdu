@@ -44,7 +44,7 @@ class ExerciseController extends Controller{
 			} else if ($quesItem['type'] == '判断题') {
 				$this->display('judge');
 			} else if ($quesItem['type'] == '多选题') {
-				$this->display('multiply');
+				$this->display('mutil');
 			}
 				 
 		} else {
