@@ -28,19 +28,26 @@
 					</div>
 				</a>
 
-				<a href="javascript:;">
-					<div class="option-area" id="option-c">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
-					    <lable class="option-contents">{$quesItem.option_c}</lable>
-					</div>
-				</a>
+				
+				<if condition="$quesItem.option_c neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-c">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_c}</lable>
+						</div>
+					</a>
+				</if>
 
-				<a href="javascript:;">
-					<div class="option-area" id="option-d">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
-					    <lable class="option-contents">{$quesItem.option_d}</lable>
-					</div>
-				</a>
+				<if condition="$quesItem.option_d neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-d">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_d}</lable>
+						</div>
+					</a>
+				</if>
+				
+				
 			</div>
 			<a class="c-button" href="{:U('Exercise/exercise', array('time'=>time()))}">下一题</a>
 		</div>
