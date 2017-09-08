@@ -10,7 +10,7 @@
 	<body>
 		<div class="content">
 			<span class="c-title">{$record.name}</span>
-			<p class="c-time">{:date('m-d H:i', time())}<label style=" margin-left: 60px;">正确{$record.rig_cot}&nbsp;错误{$record.wrg_cot}&nbsp;进度{$record.count}/{$record.sum}</label></p>
+			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确{$record.rig_cot}&nbsp;错误{$record.wrg_cot}&nbsp;进度{$record.count}/{$record.sum}</label></p>
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
