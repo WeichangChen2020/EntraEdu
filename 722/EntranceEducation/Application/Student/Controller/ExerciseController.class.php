@@ -44,7 +44,7 @@ class ExerciseController extends Controller{
 		
 		$data = array(
 			'openid' => $openid,
-			'quesid' => $quesid
+			'quesid' => $quesid,
 			'result' => $option == $right_answer ? 1 : 0,			'spend'  => time() - $start_time,
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
