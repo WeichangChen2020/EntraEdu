@@ -62,7 +62,25 @@
 	// 获取页面加载的时间
     var start_time = new Date();  
 
-	$('.option-area').one('click',function(){
+
+    $('.option-area').toggle(
+    	function(){
+    		var use       = $(this).find('use')[0];
+			var icon_attr = use.getAttribute('xlink:href');
+			var option    = icon_attr.substring(13).toUpperCase(); //选项
+			use.setAttribute('xlink:href', icon_attr+'-select');
+    	},
+    	function(){
+    		var use       = $(this).find('use')[0];
+			var icon_attr = use.getAttribute('xlink:href');
+			var option    = icon_attr.substring(13).toUpperCase(); //选项
+			use.setAttribute('xlink:href', icon_attr.substring(0, 12));
+    	}
+    );
+
+
+
+	/*$('.option-area').click(function(){
 		// 选择了之后正确
 		var use       = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
@@ -73,17 +91,18 @@
 			'time'  : start_time.getTime()
 		}
 
-		var url = "{:U('Exercise/submit')}";
-        $.post(url, data, function(res){
-          	if(res == option) {
-          		use.setAttribute('xlink:href', '#icon-option-right');
-          	} else {
-          		use.setAttribute('xlink:href', '#icon-option-wrong');
-				$('#option-'+res.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
-          	}
-        });
+		use.setAttribute('xlink:href', '#icon-option-right');*/
 
-		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
-		$('.option-area').unbind(); //移除被选元素的事件处理程序
-	})	
+
+		// var url = "{:U('Exercise/submit')}";
+  //       $.post(url, data, function(res){
+  //         	if(res == option) {
+  //         		use.setAttribute('xlink:href', '#icon-option-right');
+  //         	} else {
+  //         		use.setAttribute('xlink:href', '#icon-option-wrong');
+		// 		$('#option-'+res.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+  //         	}
+  //       });
+
+	// })	
 </script>
