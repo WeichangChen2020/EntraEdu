@@ -36,7 +36,7 @@ class ExerciseController extends Controller{
 		if (!IS_AJAX) {
 			$this->error('你访问的页面不存在');
 		}
-		$openid       = session('quesid');
+		$openid       = session('openId');
 		$quesid       = session('quesid');
 		$option       = I('option');
 		$start_time   = ceil(intval(trim(I('time'))) / 1000); //将毫秒转为秒并取整
