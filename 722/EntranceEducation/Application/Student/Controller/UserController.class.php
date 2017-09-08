@@ -85,8 +85,10 @@ class UserController extends Controller {
             die();
             if($new)
             	$this->ajaxReturn(array('res' => '注册成功'));
-        	//else
+        	else{
              	//$this->ajaxReturn(array('res' => '注册失败'));
+                
+            }
         }else{ //如果找到就传递信息数组并跳转到系统首页
         	//$this->assign('stu_info',$stu_info)->display('Index/index');
             $this->ajaxReturn(array('res' => '你已注册！'));
