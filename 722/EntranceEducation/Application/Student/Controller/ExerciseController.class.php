@@ -12,7 +12,7 @@ class ExerciseController extends Controller{
 	}
 
 	public function exercise() {
-		$Question = D('Questionbank');
+		$Question = M('ee_questionbank');
 		p($Questionbank);
 		$Questionbank->test();
 		$quesId = rand(1, 15);
