@@ -21,10 +21,10 @@ class ExercsieModel extends Model {
 
 		$record = array(
 			'name'    => D('student_info')->getName($openid),
-			'count'   => $this->where('openid'=>$openid)
-		                     ->count(), //答题量
-			'rig_cot' => $this->where('openid'=>$openid, 'result' => 1)
-		                     ->count(),
+			'count'   => $this->where(array('openid'=>$openid))
+			                  ->count(), //答题量
+			'rig_cot' => $this->where(array('openid'=>$openid, 'result' => 1))
+		                      ->count(),
 	        'wrg_cot' => $count - $rig_cot,
 			'sum'     => D('questionbank')->count(),
 		);
