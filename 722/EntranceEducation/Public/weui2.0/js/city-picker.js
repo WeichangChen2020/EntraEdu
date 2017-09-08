@@ -49,7 +49,7 @@ $.rawCitiesData = [
     ]
   },
   {
-    "name":"管理工程与电子商务学院",
+    "name":"445rygfh",
     "code":"120000",
     "sub": [
       {
@@ -66,6 +66,15 @@ $.rawCitiesData = [
         "sub":[
             {
               "name":"计科1702",
+              "code":"w"
+            }
+        ]
+      },
+       {
+        "name": "计科1703",
+        "sub":[
+            {
+              "name":"计科1704",
               "code":"w"
             }
         ]
