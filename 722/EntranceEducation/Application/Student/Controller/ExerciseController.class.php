@@ -39,7 +39,7 @@ class ExerciseController extends Controller{
 		$openid       = 'oendi';
 		$quesid       = session('quesid');
 		$option       = I('option');
-		$start_time   = intval(trim(I('time'))) / 1000; //将毫秒转为秒
+		$start_time   = ceil(intval(trim(I('time'))) / 1000); //将毫秒转为秒并取整
 		$right_answer = D('Questionbank')->getRightAnswer($quesid);
 		
 		$data = array(
