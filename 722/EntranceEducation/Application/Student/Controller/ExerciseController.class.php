@@ -45,7 +45,7 @@ class ExerciseController extends Controller{
 		$option = I('option');
 		// $time = 
 
-		$this->ajaxReturn('A'.$spend.$option)
+		$this->ajaxReturn('A'.$spend.$option);
 		
 		
 	}
