@@ -36,18 +36,22 @@ class ExerciseController extends Controller{
 		if (!IS_AJAX) {
 			$this->error('你访问的页面不存在');
 		}
-
-		/*$openid = session('openId');
-		$quesid = session('quesid');
-		$right_answer = D('Questionbank')->getRightAnswer('quesid');
-		$result = 判断一下;*/
-		$spend = I('time');
-		$option = I('option');
-		// $time = 
-
-		$this->ajaxReturn('A'.$spend.$option);
+		$quesid       = session('quesid');
+		$option       = I('option');
+		$start_time   = I('time');
+		$right_answer = D('Questionbank')->getRightAnswer($quesid);
 		
+		$data = array(
+			'openid' => session('openId');
+			'quesid' => $quesid;
+			'result' => $option == $right_answer ? 1 : 0;
+			'spend'  => time() - $start_time;
+			'time'   => date('Y-m-d:H:i:s', time());
+		);
 		
+
+		$this->ajaxReturn($data);
+
 	}
 
 
