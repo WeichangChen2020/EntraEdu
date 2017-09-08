@@ -20,13 +20,13 @@ class ExercsieModel extends Model {
 	public function getExercseRecord($openid = '') {
 
 		$record = array(
-			$name    => D('student_info')->getName($openid),
-			$count   => $this->where('openid'=>$openid)
+			'name'    => D('student_info')->getName($openid),
+			'count'   => $this->where('openid'=>$openid)
 		                     ->count(), //答题量
-			$rig_cot => $this->where('openid'=>$openid, 'result' => 1)
+			'rig_cot' => $this->where('openid'=>$openid, 'result' => 1)
 		                     ->count(),
-	        $wrg_cot => $count - $rig_cot,
-			$sum     => D('questionbank')->count(),
+	        'wrg_cot' => $count - $rig_cot,
+			'sum'     => D('questionbank')->count(),
 		);
 		
 		return $record;
