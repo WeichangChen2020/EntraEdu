@@ -13,6 +13,8 @@ class ExerciseController extends Controller{
 
 	public function exercise() {
 		$Question = D('Questionbank');
+		p($Questionbank);
+		$Questionbank->test();
 		$quesId = rand(1, 15);
 		$quesItem = $Question->getQuestion($quesId);
 		var_dump($quesItem);
