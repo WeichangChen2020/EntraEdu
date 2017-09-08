@@ -11,8 +11,7 @@ use Think\Model;
 
 class QuestionbankModel extends Model{
 
-	// 链接数据库参数	
-	protected $database_con = 'mysql://lzyoo3jx2o:ik221mylmw4h1x0kyi51j32k01150hx0j4jk30xi@w.rdc.sae.sina.com.cn/app_classtest#utf8';
+
 	/**
 	 * getQuesType 获取题目类型
 	 * @author 李俊君<hello_lijj@qq.com>
@@ -51,11 +50,27 @@ class QuestionbankModel extends Model{
 	 * @return  多选题 判断题
 	 */
 	public function getQuestion($qs_id = 1) {
-		$Quse =  M('questionbank', 'ee_', $this->database_con);
+		
+		$Quse    =  M('questionbank', 'ee_', $this->database_con);
 		$quesArr = $Quse->find($qs_id);
 		$quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
-		$quesArr['type'] = $this->getQuesType($quesArr['type']);
+		$quesArr['type']    = $this->getQuesType($quesArr['type']);
+		
 		return $quesArr;
+	}
+
+	/**
+	 * getRightAnswer 获取正确答案
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 15:14 Authors
+	 * @var int quesid
+	 * @return string 正确答案
+	 */
+	public function getRightAnswer($qs_id = 1) {
+
+		$right_answer = $this->where(array('id'=>$qs_id))->getField('right_answer');
+
+		return $right_answer;
 	}
 
 	

@@ -61,13 +61,27 @@
 </html>
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
 <script type="text/javascript">
+	// 获取页面加载的时间
+    var start_time = new Date();  
+
 	$('.option-area').one('click',function(){
 		// 选择了之后正确
-		var use = $(this).find('use')[0];
+		var use       = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
-		var option = icon_attr.substring(13).toUpperCase();
+		var option    = icon_attr.substring(13).toUpperCase();
 		var right_answer = "{$quesItem.right_answer}";
-		if (option == right_answer) {
+
+		var data = {
+			'option': option,
+			'time'  : start_time.getTime()
+		}
+
+		var url = "{:U('Exercise/submit')}";
+        $.post(url, data, function(res){
+          alert(res);
+        });
+
+		/*if (option == right_answer) {
 			use.setAttribute('xlink:href', '#icon-option-right');
 		} else {
 			use.setAttribute('xlink:href', '#icon-option-wrong');
@@ -75,6 +89,6 @@
 			$('#option-'+right_answer.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
 		}
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
-		$('.option-area').unbind(); //移除被选元素的事件处理程序
+		$('.option-area').unbind(); //移除被选元素的事件处理程序*/
 	})	
 </script>
