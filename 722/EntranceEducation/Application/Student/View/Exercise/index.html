@@ -66,12 +66,13 @@
 		var use = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
 		var option = icon_attr.substring(13).toUpperCase();
-		console.log(option);
-		if (option == "{$quesItem.right_answer}") {
+		var right_answer = "{$quesItem.right_answer}";
+		if (option == right_answer) {
 			use.setAttribute('xlink:href', '#icon-option-right');
 		} else {
 			use.setAttribute('xlink:href', '#icon-option-wrong');
-			$('#option-b').find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+
+			$('#option-'+right_answer.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
 		}
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
