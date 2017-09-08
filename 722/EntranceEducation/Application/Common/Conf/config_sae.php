@@ -4,13 +4,13 @@ return array(
     
     //SAE下的共享数据库配置
 
-    'DB_PREFIX' =>  'ee_',
+    'DB_PREFIX'         =>  'ee_',
 
-    'DB_HOST'           =>  'w.rdc.sae.sina.com.cn'.','.'r.rdc.sae.sina.com.cn', // 服务器地址
+    'DB_HOST'           =>  'w.rdc.sae.sina.com.cn', // 服务器地址
     'DB_NAME'           =>  'app_classtest',        // 数据库名
-    'DB_USER'           =>  'ylm2jlwxmm',    // 用户名
-    'DB_PWD'            =>  '2y5jjyhxwj13xm2i5kwxz3ykwlj4542i022lwlhy',         // 密码
-    'DB_PORT'           =>  3307,        // 端口
+    'DB_USER'           =>  'lzyoo3jx2o',    // 用户名
+    'DB_PWD'            =>  'ik221mylmw4h1x0kyi51j32k01150hx0j4jk30xi',         // 密码
+    'DB_PORT'           =>  3306,        // 端口
     );
 
 
