@@ -9,7 +9,7 @@ use Think\Model;
  *
  */
 
-class ExercsieModel extends Model {
+class ExerciseModel extends Model {
 	/**
 	 * 获取用户的答题记录
 	 * @author 李俊君<hello_lijj@qq.com>
