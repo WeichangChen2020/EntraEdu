@@ -22,12 +22,14 @@ class ExerciseModel extends Model {
 		
 		$newest_id    = $this->where(array('openid'=>$openid))->max('id');
 		$next_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
+		$count        = $this->where(array('openid'=>$openid))
+			                 ->count(); //答题量
+		$rig_cot      = $this->where(array('openid'=>$openid, 'result' => 1))
+		                     ->count();
 		$record       = array(
 			'name'    => D('student_info')->getName($openid),
-			'count'   => $this->where(array('openid'=>$openid))
-			                  ->count(), //答题量
-			'rig_cot' => $this->where(array('openid'=>$openid, 'result' => 1))
-		                      ->count(),
+			'count'   => $count, //答题量
+			'rig_cot' => $rig_cot,
 	        'wrg_cot' => $count - $rig_cot,
 			'sum'     => D('questionbank')->count(),
 			'next_quesid' => $next_quesid + 1,
