@@ -57,10 +57,6 @@ class ExerciseController extends Controller{
 
 	}
 
-1504857160082
-1280977330748
-1504857172
-
 }
 
  ?>
