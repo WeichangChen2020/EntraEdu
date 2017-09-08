@@ -74,8 +74,8 @@ class UserController extends Controller {
             'class'    => $banji,//班级
             'time'     => date('Y-m-d H:i:s')
             );
-        echo "222";
-        die();
+        //echo "222";
+        //die();
         $STU->create($registerInfo);
         $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
         if(!$stu_info){ //如果找不到，就插入数据
