@@ -28,7 +28,7 @@ class ExerciseController extends Controller{
 
 		session('quesid', $quesid);
 
-		$quesItem    = D('Questionbank')->getNextQuesid($quesid);
+		$quesItem    = D('Questionbank')->getQuestion($quesid);
 
 		$this->assign('record', $record);
 		$this->assign('quesItem', $quesItem)
