@@ -20,10 +20,15 @@ class ExerciseController extends Controller{
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
 
-		$Question    = D('Questionbank');
-		$quesid      = $record['next_quesid'];
+		
+		$quesid = I('quesid');
+		if (empty($quesid)) {
+			$quesid = D('exercise')->getNewestQuesid($openid) + 1;
+		}
+
 		session('quesid', $quesid);
-		$quesItem    = $Question->getQuestion($quesid);
+
+		$quesItem    = D('Questionbank')->getNextQuesid($quesid);
 
 		$this->assign('record', $record);
 		$this->assign('quesItem', $quesItem)

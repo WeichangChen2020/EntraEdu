@@ -19,9 +19,6 @@ class ExerciseModel extends Model {
 	 */
 	public function getExercseRecord($openid = '') {
 
-		
-		$newest_id    = $this->where(array('openid'=>$openid))->max('id');
-		$next_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
 		$count        = $this->where(array('openid'=>$openid))
 			                 ->count(); //答题量
 		$rig_cot      = $this->where(array('openid'=>$openid, 'result' => 1))
@@ -36,5 +33,21 @@ class ExerciseModel extends Model {
 		);
 		
 		return $record;
+	}
+
+	/**
+	 * getNewestQuesid() 获取用户的最新的答题进度
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 18:14Authors
+	 * @var string openid
+	 * @return int 最新的答题ID
+	 */
+	public function getNewestQuesid($openid = '') {
+
+		$newest_id    = $this->where(array('openid'=>$openid))->max('id');
+		$newest_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
+
+		return $newest_quesid;
+
 	}
 }
