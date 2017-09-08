@@ -14,19 +14,25 @@
 			<div class="c-pic"><span class="weui-badge">单选题</span><span class="weui-badge" style="margin-left: 5px;">安全教育类</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
-				<a href="javascript:;">
-					<div class="option-area" id="option-a">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
-					    <lable class="option-contents">{$quesItem.option_a}</lable>
-					</div>
-				</a>
-				
-				<a href="javascript:;">
-					<div class="option-area" id="option-b">
-					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
-					    <lable class="option-contents">{$quesItem.option_b}</lable>
-					</div>
-				</a>
+
+				<!-- option exit -->
+				<if condition="$quesItem.option_a neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-a">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_a}</lable>
+						</div>
+					</a>
+				</if>
+
+				<if condition="$quesItem.option_b neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-b">
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_b}</lable>
+						</div>
+					</a>
+				</if>
 
 				
 				<if condition="$quesItem.option_c neq ''">

@@ -12,10 +12,10 @@ class ExerciseController extends Controller{
 	}
 
 	public function exercise() {
-		$Question = M('questionbank', 'ee_', $this->database_con);
-		$quesId = rand(1, 20);
-		$quesItem = $Question->find($quesId);
-		// var_dump($quesItem);
+		$Question = D('Questionbank');
+		$quesId = rand(1, 15);
+		$quesItem = $Question->getQuestion($quesId);
+		var_dump($quesItem);
 		$this->assign('quesItem', $quesItem)->display('index');
 	}
 
