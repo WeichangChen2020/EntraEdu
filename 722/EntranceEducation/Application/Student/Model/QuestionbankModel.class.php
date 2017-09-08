@@ -53,6 +53,12 @@ class QuestionbankModel extends Model{
 		
 		$Quse    =  M('questionbank', 'ee_', $this->database_con);
 		$quesArr = $Quse->find($qs_id);
+
+		// 当用户做完了所有的题目
+		if (empty($quesArr)) {
+			return flase;
+		}
+
 		$quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
 		$quesArr['type']    = $this->getQuesType($quesArr['type']);
 		
