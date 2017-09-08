@@ -78,6 +78,8 @@ class UserController extends Controller {
         $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
         if(!$stu_info){ //如果找不到，就插入数据
         	$new = $STU->data($registerInfo)->add();
+            var_dump($new);
+            die();
             if($new)
             	$this->ajaxReturn(array('res' => '注册成功'));
         	else
