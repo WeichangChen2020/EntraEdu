@@ -80,7 +80,8 @@ class ExerciseController extends Controller{
 		);
 
 		D('Exercise')->add($data);
-		$this->ajaxReturn($right_answer);
+
+		$this->ajaxReturn($right_answer, 'json');
 	}
 
 }
