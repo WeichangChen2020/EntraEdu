@@ -110,6 +110,8 @@ class QuestionbankModel extends Model{
 		);
 		foreach ($quesTypeArr as $key => $value) {
 			$value['num'] = $this->getQuesTypeNum($value['id']);
+
+		   var_dump($value['num']);
 		}
 
 		return $quesTypeArr;
