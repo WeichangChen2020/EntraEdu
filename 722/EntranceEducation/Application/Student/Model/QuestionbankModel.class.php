@@ -113,6 +113,9 @@ class QuestionbankModel extends Model{
 		foreach ($quesTypeArr as $key => $value) {
 			$value['num'] = 35;
 
+			echo $value['id'];
+			echo $value['type'];
+
 		   // var_dump($value);
 		}
 		p($quesTypeArr);
