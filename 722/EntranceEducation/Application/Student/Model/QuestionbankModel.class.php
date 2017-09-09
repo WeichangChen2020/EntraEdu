@@ -109,12 +109,13 @@ class QuestionbankModel extends Model{
 			array('id' => 3, 'type' => '多选题', 'num' => 0),
 		);
 
-		p($quesTypeArr);
+		
 		foreach ($quesTypeArr as $key => $value) {
 			$value['num'] = 35;
 
 		   // var_dump($value);
 		}
+		p($quesTypeArr);
 
 
 		return $quesTypeArr;
