@@ -11,7 +11,7 @@ class ExerciseController extends Controller{
 		p($quesTypeArr);
 
 
-		$this->display('list');
+		// $this->display('list');
 	}
 
 	/**

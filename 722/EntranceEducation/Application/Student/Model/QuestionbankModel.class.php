@@ -108,13 +108,14 @@ class QuestionbankModel extends Model{
 			array('id' => 2, 'type' => '判断题'),
 			array('id' => 3, 'type' => '多选题'),
 		);
-		foreach ($quesTypeArr as $key => $value) {
-			$value['num'] = $this->getQuesTypeNum($value['id']);
 
-		   var_dump($value['num']);
+		p($quesTypeArr);
+		foreach ($quesTypeArr as $key => $value) {
+			// $value['num'] = $this->getQuesTypeNum($value['id']);
+
+		   var_dump($value);
 		}
 
-		   var_dump($quesTypeArr);
 
 		return $quesTypeArr;
 	}
