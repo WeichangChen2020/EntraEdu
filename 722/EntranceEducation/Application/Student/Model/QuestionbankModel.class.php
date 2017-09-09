@@ -104,14 +104,14 @@ class QuestionbankModel extends Model{
 	public function getQuesAllType() {
 
 		$quesTypeArr = array(
-			array('id' => 1, 'type' => '单选题'),
-			array('id' => 2, 'type' => '判断题'),
-			array('id' => 3, 'type' => '多选题'),
+			array('id' => 1, 'type' => '单选题', 'num' => 0),
+			array('id' => 2, 'type' => '判断题', 'num' => 0),
+			array('id' => 3, 'type' => '多选题', 'num' => 0),
 		);
 
 		p($quesTypeArr);
 		foreach ($quesTypeArr as $key => $value) {
-			$quesTypeArr[$key]['num'] = $this->getQuesTypeNum($value['id']);
+			$value['num'] = 35;
 
 		   // var_dump($value);
 		}
