@@ -68,7 +68,6 @@ class ExerciseController extends Controller{
 		$chapid = I('chapid');
 
 		if (empty($quesid)) {
-			p($chapid);
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
 		}
 
