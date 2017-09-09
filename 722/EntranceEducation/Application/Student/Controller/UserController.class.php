@@ -69,42 +69,50 @@ class UserController extends Controller {
         $number        = I('number')?I('number'):$this->error('你访问的界面不存在');
         $college       = I('college')?I('college'):$this->error('你访问的界面不存在');
         $banji         = I('banji')?I('banji'):$this->error('你访问的界面不存在');
+        
+        $registerInfo  = array(
+            'openId'   => $openId,
+            'name'     => $name,
+            'number'   => $number,
+            'academy'  => $college,//学院
+            'class'    => $banji,//班级
+            'time'     => date('Y-m-d H:i:s')
+        );
+        //var_dump($registerInfo);
+        //die();
+        $STU->create($registerInfo);
+        
 		//这些是新生信息表中存有的信息
+        
         $student_info = $STUDENT->where(array('number'=>$number))->find();//在新生信息表中找是否存在某学号的记录
-        $name_exsit = $student_info['name'];
-        $academy_exsit = $student_info['academy'];
-        $class_exsit = $student_info['class'];
-        //以学号为准，核对姓名学院班级是否一致
-        if( $name==$name_exsit && $college==$academy_exsit && $banji==$class_exsit){
-            $registerInfo  = array(
-                'openId'   => $openId,
-                'name'     => $name,
-                'number'   => $number,
-                'academy'  => $college,//学院
-                'class'    => $banji,//班级
-                'time'     => date('Y-m-d H:i:s')
-                );
-            //var_dump($registerInfo);
-            //die();
-            $STU->create($registerInfo);
-            $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
-            //var_dump($stu_info);
-            if(!$stu_info){ //如果找不到，就插入数据
-                $new = $STU->data($registerInfo)->add();
-                //var_dump($new);
-                //die();
-                if($new)
-                    $this->ajaxReturn(array('res' => '注册成功'));
-                else{
-                    //$this->ajaxReturn(array('res' => '注册失败'));
+        if($student_info){//如果存在，则获取信息，和传递的参数进行核对
+            $name_exsit = $student_info['name'];
+            $academy_exsit = $student_info['academy'];
+            $class_exsit = $student_info['class'];
+            //以学号为准，核对姓名学院班级是否一致
+            if( $name==$name_exsit && $college==$academy_exsit && $banji==$class_exsit){
 
+                $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+                //var_dump($stu_info);
+                if(!$stu_info){ //如果找不到，就插入数据
+                    $new = $STU->data($registerInfo)->add();
+                    //var_dump($new);
+                    //die();
+                    if($new)
+                        $this->ajaxReturn(array('res' => '注册成功'));
+                    else{
+                        //$this->ajaxReturn(array('res' => '注册失败'));
+
+                    }
+                }else{ //如果找到就传递信息数组并跳转到系统首页
+                    //$this->assign('stu_info',$stu_info)->display('Index/index');
+                    $this->ajaxReturn(array('res' => '你已注册！'));
                 }
-            }else{ //如果找到就传递信息数组并跳转到系统首页
-                //$this->assign('stu_info',$stu_info)->display('Index/index');
-                $this->ajaxReturn(array('res' => '你已注册！'));
+            }else{
+                echo "请正确输入您的信息！";//信息错误提示如何写？
             }
-        }else{
-        	echo "请正确输入您的信息！";
+        }else{ //如果该学号不存在,即非新生的注册
+            $this->assign('openId',$openId)->display('register');
         }
 
     }
