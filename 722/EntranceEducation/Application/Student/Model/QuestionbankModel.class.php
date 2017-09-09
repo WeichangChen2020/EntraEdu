@@ -111,13 +111,9 @@ class QuestionbankModel extends Model{
 
 		
 		foreach ($quesTypeArr as $key => $value) {
-			// $value['num'] = 35;
 
 			$quesTypeArr[$key]['num'] = $this->getQuesTypeNum($value['id']);
 
-			
-
-		   // var_dump($value);
 		}
 
 		return $quesTypeArr;
@@ -149,7 +145,7 @@ class QuestionbankModel extends Model{
 		$quesChapterArr = D('QuestionChapter')->select();
 
 		foreach ($quesChapterArr as $key => $value) {
-			$value['num'] = $this->getQuesChapterNum($value['id']);
+			$quesChapterArr[$key]['num'] = $this->getQuesChapterNum($value['id']);
 		}
 
 		return $quesChapterArr;
