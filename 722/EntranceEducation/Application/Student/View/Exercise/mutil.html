@@ -85,10 +85,13 @@
 			use.setAttribute('xlink:href', icon_attr + '-select');
 		}
 
+		// $('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
+		// $('.option-area').unbind(); //移除被选元素的事件处理程序
+
     });
 
 
-    $('#submit').one('click', function(){
+    $('#submit').click(function(){
     	var option = "";
     	for (x in click_times)
 		{
@@ -139,7 +142,8 @@
 				}
 			}
 
-
+		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
+		$('.option-area').unbind(); //移除被选元素的事件处理程序
 
         });
 
