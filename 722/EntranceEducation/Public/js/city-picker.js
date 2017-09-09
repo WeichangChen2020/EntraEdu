@@ -253,7 +253,7 @@ $.rawCitiesData = [
       var p = $.extend({}, params, config);
       //计算value
       var val = $(this).val();
-      if (!val) val = '北京 工商 东城区';
+      if (!val) val = '北京 网络1401 东城区';
       currentProvince = val.split(" ")[0];
       currentCity = val.split(" ")[1];
       currentDistrict= val.split(" ")[2];
