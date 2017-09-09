@@ -51,14 +51,12 @@ class QuestionbankModel extends Model{
 	 */
 	public function getQuestion($qs_id = 1, $chap_id = '', $tp_id = '') {
 		
-		p($chap_id);
 		if(!empty($chap_id)) {
 			$quesArr = $this->where(array('chapter'=> $chap_id))->find($qs_id);
 		} else {
 			$quesArr = $this->find($qs_id);
 		}
 
-		p($quesArr);
 
 
 		$quesArr = $this->find($qs_id);
