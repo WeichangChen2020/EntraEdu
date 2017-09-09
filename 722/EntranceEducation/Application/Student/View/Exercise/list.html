@@ -20,14 +20,19 @@
 
                 <div class="weui-cells__title">按知识点分类</div>
                 <div class="weui-cells">
-                    <a class="weui-cell weui-cell_access" href="javascript:;">
-                        <div class="weui-cell__hd">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mutil"></use></svg></span>   
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p>cell standard</p>
-                        </div>
-                        <div class="weui-cell__ft">说明文字</div></a>
+                    <volist name="quesChapterArr" id="quesChapterArr">
+                        <a class="weui-cell weui-cell_access" href="javascript:;">
+                            <div class="weui-cell__hd">
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mutil"></use></svg></span>   
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p>{$quesChapterArr.chapter}</p>
+                            </div>
+                            <div class="weui-cell__ft">{$quesChapterArr.num}题</div></a>
+
+                    </volist>
+
+                    
                     <a class="weui-cell weui-cell_access" href="javascript:;">
                         <div class="weui-cell__hd">
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-judge"></use></svg></span>    
@@ -49,7 +54,7 @@
                         <div class="weui-cell__bd">
                             <p>单选题</p>
                         </div>
-                        <div class="weui-cell__ft">{quesTypeArr[0]['num']}题</div></a>
+                        <div class="weui-cell__ft">{$quesTypeArr[0]['num']}题</div></a>
                     <a class="weui-cell weui-cell_access" href="javascript:;">
                         <div class="weui-cell__hd">
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-judge"></use></svg></span>    
@@ -57,7 +62,7 @@
                         <div class="weui-cell__bd">
                             <p>判断题</p>
                         </div>
-                        <div class="weui-cell__ft">{quesTypeArr[1]['num']}题</div></a>
+                        <div class="weui-cell__ft">{$quesTypeArr[1]['num']}题</div></a>
                     <a class="weui-cell weui-cell_access" href="javascript:;">
                         <div class="weui-cell__hd">
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mutil"></use></svg></span>    
@@ -65,7 +70,7 @@
                         <div class="weui-cell__bd">
                             <p>多选题</p>
                         </div>
-                        <div class="weui-cell__ft">{quesTypeArr[2]['num']}题</div></a>
+                        <div class="weui-cell__ft">{$quesTypeArr[2]['num']}题</div></a>
                 </div>
             </div>
            
