@@ -92,6 +92,7 @@
 
 
     $('#submit').click(function(){
+    	//opyion储存用户选择的选项，格式例如ABD
     	var option = "";
     	for (x in click_times)
 		{
@@ -116,7 +117,7 @@
 		}
 
         $.post(url, data, function(res){
-
+        	//res为正确答案
         	$('#right_answer').html('正确选项：'+ res);
 
         	for (x in click_times)
@@ -125,19 +126,20 @@
 
 				if (res.indexOf(x) != -1) {
 					if (option.indexOf(x) != -1) {
-						// 打对勾
+						// 选择，正确答案：打对勾
 						use.setAttribute('xlink:href', '#icon-zhengque1');
 
 					} else {
+						// 不选择，正确答案：改底色
 						var icon_attr = use.getAttribute('xlink:href');
 						use.setAttribute('xlink:href', icon_attr + '-select');
 					}
 				} else {
 					if (option.indexOf(x) != -1) {
-						// 打错hao
+						// 选择，错误答案：打错号
 						use.setAttribute('xlink:href', '#icon-option-wrong');
 					} else {
-						// 不处理
+						// 不选择，错误答案：不处理
 					}
 				}
 			}
