@@ -49,6 +49,8 @@ class ExerciseModel extends Model {
 			$newest_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
 		} else {
 			$newest_id = $this->where(array('openid'=>$openid, 'chapter'=>$chap_id))->max('id');
+
+			p($newest_id);
 			$newest_quesid  = $this->where($cod)->getField('quesid');
 		}
 		
