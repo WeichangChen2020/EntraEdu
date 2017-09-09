@@ -119,8 +119,7 @@ class QuestionbankModel extends Model{
 		   // var_dump($value);
 		}
 		p($quesTypeArr);
-
-
+		
 		return $quesTypeArr;
 	}
 
