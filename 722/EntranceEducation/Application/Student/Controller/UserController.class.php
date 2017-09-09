@@ -59,7 +59,7 @@ class UserController extends Controller {
 		}
     }
 
-    //注册信息
+    //新生注册信息
     public function register(){
     	$STU           = D('StudentInfo');       //实例化
         $STUDENT       = M('student_list'); //实例化新生信息
@@ -113,44 +113,50 @@ class UserController extends Controller {
                 echo "姓名班级学号信息不一致！请正确输入您的信息！";//信息错误提示如何写？
             }
         }else{ //如果该学号不存在,即非新生的注册
-            //$this->assign('openId',$openId)->display('register');
+            $this->assign('openId',$openId)->display('register2');
         }
 
     }
 
-    //获取用户信息
-    public function getUserInfo($openId){
-        $STU           = D('StudentInfo');       //实例化
-        return $STU->where(array('openId' => $openId))->find();
-    }
+	//非新生注册信息
+    public function register2(){
+    	$STU           = D('StudentInfo');       //实例化
+        $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        //这些是注册页面传递过来的参数
+        $name          = I('name')?I('name'):$this->error('你访问的界面不存在');
+        $number        = I('number')?I('number'):$this->error('你访问的界面不存在');
+        $college       = I('college')?I('college'):$this->error('你访问的界面不存在');
+        $banji         = I('banji')?I('banji'):$this->error('你访问的界面不存在');
+        
+        $registerInfo  = array(
+            'openId'   => $openId,
+            'name'     => $name,
+            'number'   => $number,
+            'academy'  => $college,//学院
+            'class'    => $banji,//班级
+            'time'     => date('Y-m-d H:i:s')
+        );
+        //var_dump($registerInfo);
+        //die();
+        $STU->create($registerInfo);        
 
-    public function getTeacherInfo($openId){
-        return M('teacher_info')->where(array('openId' => $openId))->find();
-    }
+        $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+        //var_dump($stu_info);
+        if(!$stu_info){ //如果找不到，就插入数据
+            $new = $STU->data($registerInfo)->add();
+            //var_dump($new);
+            //die();
+            if($new)
+                $this->ajaxReturn(array('res' => '注册成功'));
+            else{
+                //$this->ajaxReturn(array('res' => '注册失败'));
 
-    // +++++++++++作为展示性页面+++++++++++++++
-    public function markDetails(){
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $mark     = new MarkController();
-        $markInfo = $mark->getDetails($openId);
-        $markInfo['commu']= $markInfo['comCommentNum']+$markInfo['comReplyNum']+$markInfo['ranCommentNum']+$markInfo['ranReplyNum'];
-        $this->assign('markInfo',$markInfo)->display();
-    }
-
-
-    //++++++++++++++++++++++++查看其他同学成绩
-    public function markClass(){
-        $classStr = I('class');
-        $classArray = explode('_', substr($classStr, 0,strlen($classStr)-1));
-        $markList = array();
-        if($classArray[0] == 'all'){
-            $markList = M('student_mark')->order('lastMark desc')->select();
-        }else{
-            foreach ($classArray as $value) {
-                $markList = array_merge($markList,M('student_mark')->where(array('class' => $value))->select());
             }
+        }else{ //如果找到就传递信息数组并跳转到系统首页
+            //$this->assign('stu_info',$stu_info)->display('Index/index');
+            $this->ajaxReturn(array('res' => '你已注册！'));
         }
-        $this->assign('markList',$markList)->display();
+              
     }
 
 }
