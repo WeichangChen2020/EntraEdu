@@ -6,8 +6,11 @@ class ExerciseController extends Controller{
 	
 
 	public function index() {
-		$quesTypeArr = D('QuestionChapter')->select();
+		$quesTypeArr = D('Questionbank')->getQuesAllType();
+		
 		p($quesTypeArr);
+
+
 		$this->display('list');
 	}
 

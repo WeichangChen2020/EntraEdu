@@ -79,6 +79,74 @@ class QuestionbankModel extends Model{
 		return $right_answer;
 	}
 
+	/**
+	 * getQuesTypeNum 获取不同类型的题目数量
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-9 20:14 Authors
+	 * @var int tyid
+	 * @return int 数量
+	 */
+	public function getQuesTypeNum($ty_id) {
+
+		$num = $this->where(array('type' => $ty_id))->count();
+
+		return $num;
+	}
+
+
+	/**
+	 * getQuesAllType 获取所有题目的类型信息
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-9 20:14 Authors
+	 * @var 
+	 * @return array {id type author num} 题目类型 题目来源 该类型题目
+	 */
+	public function getQuesAllType() {
+
+		$quesTypeArr = array(
+			array('id' => 1, 'type' => '单选题'),
+			array('id' => 2, 'type' => '判断题'),
+			array('id' => 3, 'type' => '多选题'),
+		);
+		foreach ($quesTypeArr as $key => $value) {
+			$value['num'] = $this->getQuesTypeNum($value['id']);
+		}
+
+		return $quesTypeArr;
+	}
+
+	/**
+	 * getQuesChapterNum 获取不同章节的题目数量
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-9 20:14 Authors
+	 * @var int cpid
+	 * @return string 正确答案
+	 */
+	public function getQuesChapterNum($cp_id) {
+		
+		$num = $this->where(array('chapter' => $cp_id))->count();
+
+		return $num;
+	}
+
+	/**
+	 * getQuesAllChapter 获取所有题目的章节信息
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-9 20:14 Authors
+	 * @var 
+	 * @return array {id type author num} 题目类型 题目来源 该类型题目
+	 */
+	public function getQuesAllChapter() {
+
+		$quesChapterArr = D('QuestionChapter')->select();
+
+		foreach ($quesChapterArr as $key => $value) {
+			$value['num'] = $this->getQuesChapterNum($value['id']);
+		}
+
+		return $quesChapterArr;
+	}
+
 	
 
 }
