@@ -113,11 +113,27 @@ class UserController extends Controller {
                 echo "姓名班级学号信息不一致！请正确输入您的信息！";//信息错误提示如何写？
             }
         }else{ //如果该学号不存在,即非新生的注册
-            $this->assign('openId',$openId)->display('register2');
+            //$this->assign('openId',$openId)->display('register2');
+            $stu_info = $STU->where(array('openId' => $openId))->find();//能否找到这条数据，找到返回信息数组，找不到返回null
+            //var_dump($stu_info);
+            if(!$stu_info){ //如果找不到，就插入数据
+                $new = $STU->data($registerInfo)->add();
+                //var_dump($new);
+                //die();
+                if($new)
+                    $this->ajaxReturn(array('res' => '注册成功'));
+                else{
+                    //$this->ajaxReturn(array('res' => '注册失败'));
+
+                }
+            }else{ //如果找到就传递信息数组并跳转到系统首页
+                //$this->assign('stu_info',$stu_info)->display('Index/index');
+                $this->ajaxReturn(array('res' => '你已注册！'));
+            }
         }
 
     }
-
+	/*
 	//非新生注册信息
     public function register2(){
     	$STU           = D('StudentInfo');       //实例化
@@ -158,5 +174,6 @@ class UserController extends Controller {
         }
               
     }
+    */
 
 }
