@@ -16,9 +16,9 @@ return array(
 	'DB_HOST' => '127.0.0.1',
 	'DB_USER' => 'root',
 	'DB_PWD' => '',
-	'DB_NAME'  => 'gailvlunpt',
+	'DB_NAME'  => 'newer',
 	'DB_PORT' => '', 
-	// 'DB_PREFIX' => 'db_', 
+	'DB_PREFIX' => 'ee_', 
 	
 	//解决了数据库默认小写问题
 	'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),   

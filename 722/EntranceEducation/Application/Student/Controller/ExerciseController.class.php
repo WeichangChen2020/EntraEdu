@@ -50,7 +50,8 @@ class ExerciseController extends Controller{
 			}
 				 
 		} else {
-			echo "你已做完所有题目";
+
+			$this->display('tip');
 		}
 		
 	}
