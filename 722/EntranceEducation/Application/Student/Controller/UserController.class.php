@@ -109,10 +109,11 @@ class UserController extends Controller {
                     $this->ajaxReturn(array('res' => '你已注册！'));
                 }
             }else{
-                echo "请正确输入您的信息！";//信息错误提示如何写？
+                $this->ajaxReturn(array('res' =>'姓名班级学号信息不一致！请正确输入您的信息！' ));
+                echo "姓名班级学号信息不一致！请正确输入您的信息！";//信息错误提示如何写？
             }
         }else{ //如果该学号不存在,即非新生的注册
-            $this->assign('openId',$openId)->display('register');
+            //$this->assign('openId',$openId)->display('register');
         }
 
     }
