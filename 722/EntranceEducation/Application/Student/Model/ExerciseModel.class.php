@@ -44,7 +44,6 @@ class ExerciseModel extends Model {
 	 */
 	public function getNewestQuesid($openid = '', $chap_id = 0, $tp_id = 0) {
 
-		p($chap_id);
 
 		$Model = new \Think\Model();
 		$newest_quesid = 0;
@@ -54,7 +53,7 @@ class ExerciseModel extends Model {
 			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chap_id")
 					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
 					-> max("exer.quesid");
-
+			p($newest_quesid);
 			return $newest_quesid;
 		}
 		 
