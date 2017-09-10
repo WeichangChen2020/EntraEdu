@@ -73,13 +73,14 @@ class ExerciseController extends Controller{
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
+			echo $quesid;
 		}
 
 		session('chapid', $chapid);
 
 		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid);
 		
-		
+
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
 			$this->assign('record', $record);
