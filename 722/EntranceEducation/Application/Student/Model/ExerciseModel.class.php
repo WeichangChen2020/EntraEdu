@@ -59,7 +59,6 @@ class ExerciseModel extends Model {
 				$newest_quesid = D('Questionbank')->where(array('chapter'=>$chap_id))
 				                                  ->min('id');
 			}
-			p($newest_quesid);
 			return $newest_quesid;
 		}
 		 
