@@ -51,12 +51,12 @@ class ExerciseModel extends Model {
 			/*$data = $this->join('ee_questionbank ON ee_questionbank.id = ee_exercise.quesid && ee_questionbank ON ee_questionbank.chapter = $chap_id')
 			             ->where(array('openid' => $openid))
 			             ->select();*/
-			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=1")
+			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chap_id")
 			->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-			->min("exer.quesid");
+			-> max("exer.quesid");
 			p($data);die;
 		}
-		
+		 
 		// 此时用户按类型选择题目
 		if($tp_id   != 0) {
 
