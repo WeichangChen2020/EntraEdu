@@ -92,8 +92,8 @@ class UserController extends Controller {
 
         } 
 
-
         if(true === $STU->isRegister($openId)) {
+
             $this->ajaxReturn('你已经注册过了');
         }
 
@@ -108,7 +108,8 @@ class UserController extends Controller {
         );
 
         if ($STU->add($registerInfo)) {
-             $this->ajaxReturn('success');
+
+            $this->ajaxReturn('success');
         } 
        
     }
