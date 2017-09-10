@@ -52,7 +52,7 @@ class QuestionbankModel extends Model{
 	public function getQuestion($qs_id = 0, $chap_id = 0, $tp_id = 0) {
 		
 		$param = array();
-		if($quesid  != 0) $param['id']      = $qs_id;
+		if($qs_id  != 0) $param['id']      = $qs_id;
 		if($chap_id != 0) $param['chapter'] = $chap_id;
 		if($tp_id   != 0) $param['type']    = $tp_id;
 
