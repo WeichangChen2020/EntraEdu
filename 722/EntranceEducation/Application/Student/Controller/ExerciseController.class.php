@@ -12,11 +12,14 @@ class ExerciseController extends Controller{
 	 * @return 
 	 */
 	public function index() {
-		$quesTypeArr = D('Questionbank')->getQuesAllType();
-		$quesChapterArr = D('Questionbank')->getQuesAllChapter();
+
+		$QUES           = D('Questionbank');
+		$quesTypeArr    = $QUES->getQuesAllType();
+		$quesChapterArr = $QUES->getQuesAllChapter();
 
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);
+		$this->assign('quesNum', $QUES->getQuesNum());
 		
 		$this->display('list');
 	}

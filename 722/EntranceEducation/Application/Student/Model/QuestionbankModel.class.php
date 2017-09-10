@@ -155,6 +155,19 @@ class QuestionbankModel extends Model{
 		return $quesChapterArr;
 	}
 
+	/**
+	 * getQuesAllChapter 获取所有题目的数量
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-10 14:20 Authors
+	 * @var 
+	 * @return int 题目总数量
+	 */
+	public function getQuesNum() {
+
+		return  $this->count();
+
+	}
+
 	
 
 }
