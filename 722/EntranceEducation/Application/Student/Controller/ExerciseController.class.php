@@ -74,10 +74,9 @@ class ExerciseController extends Controller{
 		}
 
 		session('chapid', $chapid);
-		p($quesid); p($chapid);
+
 		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid);
 
-		p($quesItem);
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
