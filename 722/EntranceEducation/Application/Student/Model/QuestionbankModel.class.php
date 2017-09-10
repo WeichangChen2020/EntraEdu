@@ -56,7 +56,7 @@ class QuestionbankModel extends Model{
 		if($chap_id != 0) $param['chapter'] = $chap_id;
 		if($tp_id   != 0) $param['type']    = $tp_id;
 
-
+		p($param);
 		$quesArr = $this->where($param)->find();
 
 		p($qs_id);
