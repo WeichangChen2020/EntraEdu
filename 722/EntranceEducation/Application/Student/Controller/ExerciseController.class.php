@@ -43,7 +43,7 @@ class ExerciseController extends Controller{
 		// p($quesItem); die;
 
 
-		$display('index');die;
+		$this->display('index');die;
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
