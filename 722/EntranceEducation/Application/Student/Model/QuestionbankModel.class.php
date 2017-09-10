@@ -49,17 +49,15 @@ class QuestionbankModel extends Model{
 	 * @var int 
 	 * @return  多选题 判断题
 	 */
-	public function getQuestion($qs_id = 1, $chap_id = '', $tp_id = '') {
+	public function getQuestion($qs_id = 0, $chap_id = 0, $tp_id = 0) {
 		
-		if(!empty($chap_id)) {
-			$quesArr = $this->where(array('chapter'=> $chap_id))->find($qs_id);
-		} else {
-			$quesArr = $this->find($qs_id);
-		}
+		$param = array();
+		if($quesid  != 0) $param['id']      = $qs_id;
+		if($chap_id != 0) $param['chapter'] = $chap_id;
+		if($tp_id   != 0) $param['type']    = $tp_id;
 
 
-
-		$quesArr = $this->find($qs_id);
+		$quesArr = $this->where($param)->find();
 
 		// 当用户做完了所有的题目
 		if (empty($quesArr)) {

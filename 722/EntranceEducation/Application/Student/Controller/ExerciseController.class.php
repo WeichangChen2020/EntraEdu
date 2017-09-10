@@ -4,7 +4,13 @@ use Think\Controller;
 
 class ExerciseController extends Controller{
 	
-
+	/**
+	 * index 自由练习主页面
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-10 9:39Authors
+	 * @var  
+	 * @return 
+	 */
 	public function index() {
 		$quesTypeArr = D('Questionbank')->getQuesAllType();
 		$quesChapterArr = D('Questionbank')->getQuesAllChapter();
@@ -26,11 +32,6 @@ class ExerciseController extends Controller{
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
 		$quesid = I('quesid');
-		// $tpid   = I('tpid'); //题目类型id
-		// $chapid = I('chapid');
-		// 判断，如果get方式获取到了quesid对应着用户是通过点击下一题进来的
-
-
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid) + 1;
@@ -64,6 +65,7 @@ class ExerciseController extends Controller{
 	public function exercise_chap() {
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
+		p($record);
 		$quesid = I('quesid');
 		$chapid = I('chapid');
 
