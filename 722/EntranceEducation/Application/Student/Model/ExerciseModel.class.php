@@ -54,7 +54,7 @@ class ExerciseModel extends Model {
 			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=1")
 			->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
 			->select();
-			// p($data);
+			p($data);die;
 		}
 		
 		// 此时用户按类型选择题目
