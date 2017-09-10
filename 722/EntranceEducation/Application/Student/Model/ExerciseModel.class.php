@@ -53,7 +53,7 @@ class ExerciseModel extends Model {
 			             ->select();*/
 			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=1")
 			->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-			->select();
+			->min("exer.quesid");
 			p($data);die;
 		}
 		
