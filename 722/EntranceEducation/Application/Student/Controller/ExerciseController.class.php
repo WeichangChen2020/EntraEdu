@@ -65,7 +65,7 @@ class ExerciseController extends Controller{
 	public function exercise_chap() {
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
-		p($record);
+
 		$quesid = I('quesid');
 		$chapid = I('chapid');
 
@@ -74,6 +74,7 @@ class ExerciseController extends Controller{
 		}
 
 		session('chapid', $chapid);
+		p($quesid); p($chapid);
 		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid);
 
 		p($quesItem);
