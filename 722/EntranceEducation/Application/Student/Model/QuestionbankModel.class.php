@@ -56,11 +56,7 @@ class QuestionbankModel extends Model{
 		if($chap_id != 0) $param['chapter'] = $chap_id;
 		if($tp_id   != 0) $param['type']    = $tp_id;
 
-		p($param);
 		$quesArr = $this->where($param)->find();
-
-		p($qs_id);
-		p($quesArr);
 
 		// 当用户做完了所有的题目
 		if (empty($quesArr)) {
