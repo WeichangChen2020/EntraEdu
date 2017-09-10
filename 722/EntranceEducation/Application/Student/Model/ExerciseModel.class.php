@@ -44,6 +44,8 @@ class ExerciseModel extends Model {
 	 */
 	public function getNewestQuesid($openid = '', $chap_id = 0, $tp_id = 0) {
 
+		p($chap_id);
+
 		$Model = new \Think\Model();
 		$newest_quesid = 0;
 
