@@ -56,7 +56,8 @@ class ExerciseModel extends Model {
 					-> max("exer.quesid");
 			// 如果没有查到结果
 			if (empty($newest_quesid)) {
-				$newest_quesid = D('Questionbank')->where(array('chapter'=>$chap_id))->min('quesid');
+				$newest_quesid = D('Questionbank')->where(array('chapter'=>$chap_id))
+				                                  ->min('id');
 			}
 			p($newest_quesid);
 			return $newest_quesid;
