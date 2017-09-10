@@ -51,7 +51,8 @@ class ExerciseModel extends Model {
 			/*$data = $this->join('ee_questionbank ON ee_questionbank.id = ee_exercise.quesid && ee_questionbank ON ee_questionbank.chapter = $chap_id')
 			             ->where(array('openid' => $openid))
 			             ->select();*/
-			$data = $Model->where("ee_exercise.openid='$openid' && ee_questionbank.id = ee_exercise.quesid && ee_questionbank.chapter=2")
+			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=2")
+			->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
 			->select();
 			p($data);
 		}
