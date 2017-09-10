@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title></title>
-    <link rel="stylesheet" href="/EntranceEducation/Public/css/weui.min.css"/>
-    <link rel="stylesheet" href="/EntranceEducation/Public/css/example.css"/>
+    <link rel="stylesheet" href="/722/Public/css/weui.min.css"/>
+    <link rel="stylesheet" href="/722/Public/css/example.css"/>
     <style type="text/css">
             .container {
                 overflow: visible;
@@ -40,7 +40,7 @@
         <div class="weui_grids">
             <a href="<?php echo U('Random/random',array('chapter'=>'unit1'));?>" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/rule.png" alt="">
+                    <img src="/722/Public/images/rule.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        学生手册制度类
@@ -48,7 +48,7 @@
             </a>
             <a href="<?php echo U('Random/random');?>/chapter/unit2" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/safety.png" alt="">
+                    <img src="/722/Public/images/safety.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        安全教育提醒
@@ -56,7 +56,7 @@
             </a>
             <a href="<?php echo U('Random/random');?>/chapter/unit3" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/psychological.png" alt="">
+                    <img src="/722/Public/images/psychological.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        心理健康教育
@@ -64,7 +64,7 @@
             </a>
             <a href="<?php echo U('Random/random');?>/chapter/unit4" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/infection.png" alt="">
+                    <img src="/722/Public/images/infection.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        防传染病、艾滋病
@@ -73,23 +73,23 @@
             <!-- 第五章的题目实际上是第七章的 -->
             <a href="<?php echo U('Random/random');?>/chapter/unit5" class="weui_grid js_grid">  
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/ideology.png" alt="">
+                    <img src="/722/Public/images/ideology.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        意识形态类
                 </p>
             </a>
-            <a href="<?php echo U('Random/random',array('chapter'=>'unit6'));?>" class="weui_grid js_grid">
+            <a href="<?php echo U('Exercise/index');?>" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/school.png" alt="">
+                    <img src="/722/Public/images/school.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        爱校荣校、生活化
                 </p>
             </a>
-            <a href="<?php echo U('Random/random');?>/chapter/unit7" class="weui_grid js_grid">
+            <a href="<?php echo U('Exercise/exercise');?>" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/student.png" alt="">
+                    <img src="/722/Public/images/student.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        学生工作、团学工作应知应会
@@ -97,7 +97,7 @@
             </a>
             <a href="<?php echo U('Random/random');?>" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/random.png" alt="">
+                    <img src="/722/Public/images/random.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                        任意章节
@@ -105,7 +105,7 @@
             </a>
 <!--             <a href="javascript:alert('该功能还没有开发');" class="weui_grid js_grid">
                 <div class="weui_grid_icon">
-                    <img src="/EntranceEducation/Public/images/icon_nav_actionSheet.png" alt="">
+                    <img src="/722/Public/images/icon_nav_actionSheet.png" alt="">
                 </div>
                 <p class="weui_grid_label">
                                                         更多

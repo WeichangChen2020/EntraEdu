@@ -4,12 +4,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 		<title></title>
-		<link rel="stylesheet" href="/EntranceEducation/Public/doExercise/css/jqmobo.css">
-		<script src="/EntranceEducation/Public/doExercise/js/jquery.min.js"></script>
+		<link rel="stylesheet" href="/722/Public/doExercise/css/jqmobo.css">
+		<link rel="stylesheet" href="/722/Public/doExercise/css/collect.css">
+		<script src="/722/Public/doExercise/js/jquery.min.js"></script>
+		<script src="/722/Public/js/collect.js"></script>
 		<script type="text/javascript">
 			k = "0";
+			//c = "0";
 			var enterTime = "<?php echo ($enterTime); ?>";
 		</script>
+
 	</head>
 	<body>
 		<form id="form1" method="post" action="">
@@ -40,6 +44,8 @@
 						</div>
 						<div id="answerAera" name="answerAera">
 						</div>
+						<div id="collectAera" name="collectAera">
+						</div>
 						<div id="explainAera" name="explainAera">
 						</div>
 					</div>
@@ -51,15 +57,30 @@
 					<a id="ctlNext1" class="button blue" href="#answerAera">提交 </a>
 				</div>
 			</div>
-			<div style="margin-top:10px"></div>
-			<div class="footer">
-				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
-					<a class="button white" href="<?php echo U('Random/random');?>/chapter/<?php echo ($_GET['chapter']); ?>">下一题</a>
-				</div>
 
+			<!-- <div style="margin-top:10px"></div> -->
+
+			<div id="divSubmit4" style="padding: 10px; margin-top: -15px;margin-bottom: -52px; display:none;">
+				<a class="button black" href="<?php echo U('Random/comment');?>/questionItem/<?php echo ($itemid); ?>">评论</a>
 			</div>
-<!-- 			<include file="<?php echo U('/Random/commentArea');?>?questionItem=<?php echo ($itemid); ?>">
-			<div style="height:40px"></div> -->
+			
+<!-- 				<div id="divSubmit" style="padding: 10px; margin-top: -15px;">
+					<a id="ctlNext1" class="button yellow" href="#collectArea">收藏</a>
+				</div> -->
+			<div id="main" class="main">
+				<div id="divSubmit2" class="zan" style="padding: 10px; margin-top: -15px;">
+					<a id="ctlNext2" class="button yellow" href="#collectAera">收藏</a>
+				</div>
+			</div>
+			
+			<div id="divSubmit3" style="padding: 10px; margin-top: -15px;">
+				<a class="button white" href="<?php echo U('Random/random');?>/chapter/<?php echo ($_GET['chapter']); ?>">下一题</a>
+			</div>
+
+			<!-- <include file="<?php echo U('commentArea.html');?>?questionItem=<?php echo ($itemid); ?>"> -->
+			<!-- <a class="butto white" href="<?php echo U('Random/commentArea');?>/questionItem=<?php echo ($itemid); ?>">评论</a> -->
+
+			<div style="height:40px"></div>
 		</form>
 
 
@@ -83,7 +104,8 @@
 				ajaxData['itemid'] = "<?php echo ($itemid); ?>"; //题目的id
 				ajaxData['enterTime'] = "<?php echo ($enterTime); ?>";
 				ajaxData['answer'] = k; //用户选择的答案
-				ajaxData['lefeTime'] = "setInServer";
+				ajaxData['leftTime'] = "setInServer";
+				//ajaxData['collect'] = c;//是否收藏
 				$.ajax({
 					cache: false,
 					type: "POST",
@@ -109,8 +131,13 @@
 						var opDNum = jsApiParameters['opDNum'];
 						var opAllNum = jsApiParameters['opAllNum'];
 						document.getElementById('answerAera').innerHTML = "标准答案：" + rightAnswer;
+										
 						!analysisPicPath ? "" : document.getElementById('explainAera').innerHTML = "<img src=http://testet-public.stor.sinaapp.com" + analysisPicPath.slice(7) + analysisPicName + ">";
 						$('#footer').hide();
+						$('#divSubmit4').show();
+						$('#main').show();
+						
+
 
 						/*============ show option ==============*/
 						// document.getElementById('opA').innerHTML = "<progress value='" + opANum + "' max='" + opAllNum + "' class='piao'></progress>" + opANum + "人";
@@ -123,11 +150,31 @@
 						// document.getElementById('answerRightNum').innerHTML = rightAnswerNum;
 						// document.getElementById('answerNum').innerHTML = <?php echo ($answerRecord["answerNum"]); ?> + 1;
 					}
+
+				});
+			});
+			$("#divSubmit2").click(function(e){
+
+				var ajaxData = {};
+				ajaxData['openid'] = "<?php echo ($openid); ?>"; //用户id	
+				ajaxData['itemid'] = "<?php echo ($itemid); ?>"; //题目的id
+				ajaxData['enterTime'] = "<?php echo ($enterTime); ?>";
+				ajaxData['answer'] = k; //用户选择的答案
+				ajaxData['lefeTime'] = "setInServer";
+				//ajaxData['collect'] = 1;//是否收藏
+				$.ajax({
+					cache: false,
+					type: "POST",
+					url: "<?php echo U('Random/collect');?>",
+					dataType: "json",
+					data: ajaxData,
+
 				});
 			});
 		</script>
 		<script>
 		</script>
+
 	</body>
 
 </html>

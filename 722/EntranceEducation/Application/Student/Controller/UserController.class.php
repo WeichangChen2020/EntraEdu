@@ -108,7 +108,6 @@ class UserController extends Controller {
         );
 
         if ($STU->add($registerInfo)) {
-
             $this->ajaxReturn('success');
         } 
        
