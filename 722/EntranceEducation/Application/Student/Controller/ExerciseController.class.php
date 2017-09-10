@@ -75,6 +75,7 @@ class ExerciseController extends Controller{
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
 		}
 
+		session('quesid', $quesid);
 		session('chapid', $chapid);
 
 		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid);
