@@ -62,7 +62,7 @@ class UserController extends Controller {
     
     
     //新生注册信息
-    public function register_new(){
+    public function register(){
        
 
 
