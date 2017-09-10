@@ -129,6 +129,10 @@ class ExerciseController extends Controller{
 		$this->ajaxReturn($right_answer, 'json');
 	}
 
+	public function test(){
+		echo "string";
+	}
+
 }
 
  ?>
