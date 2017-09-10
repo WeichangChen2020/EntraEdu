@@ -48,7 +48,7 @@ class ExerciseModel extends Model {
 
 		// 此时用户按章节选择题目
 		if($chap_id != 0) {
-			$data = $Model->where("exer.openid=$openid")
+			$data = $Model->where("exer.openid='$openid'")
 			   ->table(array('ee_questionbank'=>'quse','ee_exercise'=>'exer'))
 			   ->select();
 
