@@ -40,7 +40,10 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 
 		$quesItem    = D('Questionbank')->getQuestion($quesid);
-		p($quesItem); die;
+		// p($quesItem); die;
+
+
+		$display('index');die;
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
