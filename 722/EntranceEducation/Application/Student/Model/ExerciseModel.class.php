@@ -48,8 +48,7 @@ class ExerciseModel extends Model {
 
 		// 此时用户按章节选择题目
 		if($chap_id != 0) {
-			$data = $this->join('ee_questionbank ON ee_questionbank.id = ee_exercise.quesid')
-			             ->join('ee_questionbank ON ee_questionbank.chapter = $chap_id')
+			$data = $this->join('ee_questionbank ON ee_questionbank.id = ee_exercise.quesid && ee_questionbank ON ee_questionbank.chapter = $chap_id')
 			             ->where(array('openid' => $openid))
 			             ->select();
 			p($data);
