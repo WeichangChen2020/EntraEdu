@@ -26,4 +26,16 @@ class StudentInfoModel extends Model {
 		else
 			return false;
 	}
+
+	//返回新手列表里的信息
+	public function newerInfo($number) {
+		$info = D('student_list')->where(array('number'=>$number))->find();
+		
+		if (empty($info)) {
+			return false;
+		}
+
+		return $info;
+
+	}
 }

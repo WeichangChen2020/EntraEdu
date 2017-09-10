@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>跳转提示</title>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-<meta name="description" content="概率论与数理统计教学平台v3.0">
+<meta name="description" content="入学教育考试平台">
 
-<link rel="stylesheet" href="/EntranceEducation/Public/lib/weui.min.css">
-<link rel="stylesheet" href="/EntranceEducation/Public/css/jquery-weui.css">
-<link rel="stylesheet" href="/EntranceEducation/Public/css/demos.css">
+<link rel="stylesheet" href="/722/Public/lib/weui.min.css">
+<link rel="stylesheet" href="/722/Public/css/jquery-weui.css">
+<link rel="stylesheet" href="/722/Public/css/demos.css">
   </head>
 
   <body ontouchstart>

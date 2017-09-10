@@ -65,18 +65,22 @@
         var name = $('#name').val();
         // var banji = $('#banji').val();
         var number = $('#number').val();
-        if(!name) $.toptip('请输入姓名');
-        else if(!banji) $.toptip('请选择班级');
-        else if(!number) $.toptip('请输入学号');
-        else if(number.length > 10) $.toptip('学号不能超过10位数');
+        if(!name)
+          $.toptip('请输入姓名');
+        else if(!banji)
+          $.toptip('请选择班级');
+        else if(!number)
+          $.toptip('请输入学号');
+        else if(number.length != 10)
+          $.toptip('学号必须是10位数');
         else {
           /*=============上传数据==========*/
           url  = "{:U('User/register')}",
           data = {
-            name   : name,
-            college:college,
-            banji  : banji,
-            number : number
+            'name'   : name,
+            'college':college,
+            'banji'  : banji,
+            'number' : number
           }
           $.post(url,data,function(res){
             $.showLoading();
