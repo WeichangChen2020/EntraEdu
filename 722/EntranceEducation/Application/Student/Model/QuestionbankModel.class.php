@@ -59,6 +59,9 @@ class QuestionbankModel extends Model{
 
 		$quesArr = $this->where($param)->find();
 
+		p($qs_id);
+		p($quesArr);
+
 		// 当用户做完了所有的题目
 		if (empty($quesArr)) {
 			return false;
