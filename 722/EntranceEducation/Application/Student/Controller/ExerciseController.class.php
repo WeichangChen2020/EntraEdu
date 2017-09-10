@@ -67,7 +67,7 @@ class ExerciseController extends Controller{
 		$record = D('exercise')->getExercseRecord($openid);
 
 		$quesid = I('quesid');
-		$chapid = I('chapid');
+		$chapid = intval(trim(I('chapid')));
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
