@@ -45,39 +45,26 @@ class ExerciseModel extends Model {
 	public function getNewestQuesid($openid = '', $chap_id = 0, $tp_id = 0) {
 
 		$Model = new \Think\Model();
+		$newest_quesid = 0;
 
 		// 此时用户按章节选择题目
 		if($chap_id != 0) {
-			/*$data = $this->join('ee_questionbank ON ee_questionbank.id = ee_exercise.quesid && ee_questionbank ON ee_questionbank.chapter = $chap_id')
-			             ->where(array('openid' => $openid))
-			             ->select();*/
-			$data = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chap_id")
-			->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-			-> max("exer.quesid");
-			p($data);die;
+			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chap_id")
+					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
+					-> max("exer.quesid");
+
+			return $newest_quesid;
 		}
 		 
 		// 此时用户按类型选择题目
 		if($tp_id   != 0) {
 
 		}
-// where("exer.openid=$openid && ques.id = exer.quesid && ques.chapter=$chap_id")
-		// ques.id = exer.quesid&&ques.chapter=$chap_id&&type=$tpid
 
 
-
-
-		// if (empty($chap_id)) {
-		// 	$newest_id = $this->where(array('openid'=>$openid))->max('id');
-		// 	$newest_quesid  = $this->where(array('id'=>$newest_id))->getField('quesid');
-		// } else {
-		// 	$newest_id = $this->where(array('openid'=>$openid, 'chapter'=>$chap_id))->max('id');
-
-		// 	$newest_quesid  = $this->where($cod)->getField('quesid');
-		// }
-		
-
-		// return $newest_quesid;
+		// 此时用户按顺序练习选择题目
+		$newest_id = $this->where(array('openid'=>$openid))->max('quesid');
+		return $newest_quesid;
 
 	}
 }
