@@ -104,7 +104,6 @@ class ExerciseModel extends Model {
 					-> distinct(true)->field("exer.quesid")
 					-> count();
 			
-			p($finish_num);
 			return $finish_num;
 		}
 		 
