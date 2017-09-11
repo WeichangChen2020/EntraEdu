@@ -146,6 +146,7 @@ class QuestionbankModel extends Model{
 	 */
 	public function getQuesAllChapter($openid = '') {
 
+		p($openid);
 		$quesChapterArr = D('QuestionChapter')->select();
 
 		foreach ($quesChapterArr as $key => $value) {
