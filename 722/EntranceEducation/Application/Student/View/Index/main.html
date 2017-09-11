@@ -2,38 +2,31 @@
 <html>
     
     <head>
-        <title>信电微服务</title>
         <meta charset="utf-8">
 	    <include file="./Public/weui2.0/__head.html"/>
         
         <link rel="stylesheet" href="__PUBLIC__/css/style.css">
 	    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
     	<style type="text/css">
-			.weui-grid {
-				padding:14px 10px;
-			}
-			.weui-footer {
-			    margin: 15px 0;
-			}
-            .icon {
-              width: 50px; height: 50px;
-              vertical-align: -0.15em;
-              fill: currentColor;
-              overflow: hidden;
-            }
-    	</style>
+			.weui-grid {padding:14px 10px; } 
+			.weui-footer {margin: 15px 0; } 
+			.icon {width: 50px; height: 50px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; } 
+			.annoce {font-size: 14px; text-align: center;}
+			.separ {margin: 0 5px;}
+			.weui-cells__title {padding-top: 0.3em;margin-top: 0; color: #000; border-top: 1px solid #d9d9d9}
+		</style>
     <body ontouchstart>
        
        	<div class="jiben">
 		    <a class="" href="">
 		        <div class="tx_box">
 		            <div class="tx">
-		                <img class="tx" src="{$info.headimgurl|default='http://m.shensuantang.com/Public/images/default_avatar_128_128.jpg'}"></div>
+		                <img class="tx" src="{$stu_info.headimgurl|default='http://m.shensuantang.com/Public/images/default_avatar_128_128.jpg'}"></div>
 		            <ul>
-		            	<li>{$info.name|default='张电子'}</li>
+		            	<li>{$stu_info.name|default='张电子'}</li>
 		                <li class="info">
-		                	<span>{$info.class|default='浙江'}</span>
-		                	<span>{$info.number|default='杭州'}</span>
+		                	<span>{$stu_info.class|default='浙江'}</span>
+		                	<span>{$stu_info.number|default='杭州'}</span>
 		                </li>
 		            </ul>
 		            
@@ -41,63 +34,56 @@
 		    </a>
 		    <div class="clearfix"></div>
 		</div>
+		<div class="annoce">公告<span class="separ">|</span>距平台开放还有 02天23小时34分钟43秒</div>
+        
+<div class="weui-cells__title">考前练习</div>
 
         <div class="weui-grids">
-            <a href="http://3.testtest11.sinaapp.com/tea/wenjuan.php?openid={$info.openid}" class="weui-grid js_grid">
+            <a href="http://3.testtest11.sinaapp.com/tea/wenjuan.php?openid={$stu_info.openid}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-wodefudaoyuan"></use>
                     </svg></div>
-                <p class="weui-grid__label">辅导员评价</p></a>
-            <a href="http://3.testtest11.sinaapp.com/tea_bzr/wenjuan.php?openid={$info.openid}" class="weui-grid js_grid">
+                <p class="weui-grid__label">自由练习</p></a>
+            <a href="http://3.testtest11.sinaapp.com/tea_bzr/wenjuan.php?openid={$stu_info.openid}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-banzhuren"></use>
                     </svg></div>
-                <p class="weui-grid__label">班主任评价</p></a>
+                <p class="weui-grid__label">模拟考试</p></a>
             <a href="javascript:alert('该功能还未开发');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-dangjian"></use>
                     </svg></div>
-                <p class="weui-grid__label">智慧党建</p></a>
-            <a href="" class="weui-grid js_grid">
-               <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="" xlink:href="#icon-ketang"></use>
-                    </svg></div>
-                <p class="weui-grid__label">课堂评分</p></a>
-            <a href="{:U('Index/cplat', array('cplat_openid'=>$cplat_openid))}" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="#icon-c" xlink:href="#icon-c"></use>
-                    </svg></div>
-                <p class="weui-grid__label">C语言平台</p></a>
-            <a href="http://acm.gailvlunpt.com?openid={$info.openid}" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="" xlink:href="#icon-Programming"></use>
-                    </svg></div>
-                <p class="weui-grid__label">ACM平台</p></a>
-            <a href="" class="weui-grid js_grid">
-               <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="" xlink:href="#icon-jiaowu"></use>
-                    </svg></div>
-                <p class="weui-grid__label">教务信息</p></a>
-            <a href="" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="" xlink:href="#icon-kaifazhong"></use>
-                    </svg></div>
-                <p class="weui-grid__label">正在建设</p></a>
-            <a href="" class="weui-grid js_grid">
-               <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="" xlink:href="#icon-gengduo2"></use>
-                    </svg></div>
-                <p class="weui-grid__label">更多</p></a>
+                <p class="weui-grid__label">错题回顾</p></a>
         </div>
+
+
+		<div class="weui-cells__title" style="border: 0;">与我相关</div>
+        <div class="weui-grids">
+            <a href="http://3.testtest11.sinaapp.com/tea/wenjuan.php?openid={$stu_info.openid}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-wodefudaoyuan"></use>
+                    </svg></div>
+                <p class="weui-grid__label">我的收藏</p></a>
+            <a href="http://3.testtest11.sinaapp.com/tea_bzr/wenjuan.php?openid={$stu_info.openid}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-banzhuren"></use>
+                    </svg></div>
+                <p class="weui-grid__label">成绩与排名</p></a>
+            <a href="javascript:alert('该功能还未开发');" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-dangjian"></use>
+                    </svg></div>
+                <p class="weui-grid__label">考试</p></a>
+        </div>
+
+
+
         
         <div class="weui-footer">
             <p class="weui-footer__links">
