@@ -145,8 +145,8 @@ class SimulateController extends Controller {
 			'questionItem' => $proid,//当前题目是第几题
 			'queNum' => 10, //每套卷子10道题目
 		);
-		var_dump($answerRecord);
-		die();
+		//var_dump($answerRecord);
+
 		/*=========评论数量=======*/
 		// $commentNum = $COMMENT->where('questionId="'.$item['id'].'"')->count();
 		// $replyNum = $REPLY->where('questionId="'.$item['id'].'"')->count();
@@ -161,6 +161,8 @@ class SimulateController extends Controller {
 		$this->assign('next_id',$next_id);
 		//$this->assign('sumNum',$sumNum);
 		$type = $QUESTION->where("id=".$pro_id)->getField('type');//单选多选和判断？
+        echo $type;
+        		die();
 		session('type',$type);
 		if ($type=='2') {
 			$this->display('simulateMultiple');
