@@ -185,6 +185,32 @@ class QuestionbankModel extends Model{
 
 	}
 
+	/**
+	 * getUnfishRecord 获取用户跳做的题目
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-11 14:24 Authors
+	 * @var openid
+	 * @return int 题目总数量
+	 */
+	// public function getUnfishRecord($openid) {
+// SELECT DISTINCT 列名称 FROM 表名称
+
+// SELECT * FROM ee_questionbank WHERE NOT EXISTS (SELECT DISTINCT * FROM ee_exercise WHERE openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
+
+
+// select Sname from Student where not exists
+
+// (
+
+//      select *
+
+//      from SC
+
+//      where Sno=Student.Sno  AND   Cno='1'
+
+// );
+	
+
 	
 
 }
