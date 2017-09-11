@@ -19,10 +19,11 @@ class ExerciseModel extends Model {
 	 */
 	public function getExercseRecord($openid = '') {
 
-		$count        = $this->where(array('openid'=>$openid))
-			                 ->count(); //答题量
-		$rig_cot      = $this->where(array('openid'=>$openid, 'result' => 1))
-		                     ->count();
+		//答题量
+		$count        = count($this->where(array('openid'=>$openid))>group('quesid')->select());
+
+		$rig_cot      = count($this->where(array('openid'=>$openid, 'result' => 1))>group('quesid')->select());
+		
 		$record       = array(
 			'name'    => D('student_info')->getName($openid),
 			'count'   => $count, //答题量

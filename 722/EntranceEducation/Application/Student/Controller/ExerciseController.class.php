@@ -85,7 +85,6 @@ class ExerciseController extends Controller{
 		}
 
 		session('quesid', $quesid);
-
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 
 
