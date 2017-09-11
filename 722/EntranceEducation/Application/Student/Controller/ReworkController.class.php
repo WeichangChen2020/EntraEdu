@@ -22,16 +22,20 @@ class ReworkController extends Controller{
 
 		$HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
-
+		
 		$wrongNum  = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->count();//错误题目数量
-		$quesidArray = $HISTORY->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
+		$quesidArray = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
 
+		// dump($quesidArray);
 		$ques = $QUESTION->where(array('id' => $quesidArray[$WrongQuesid]['quesid']))->find();
 		session('quesid',$ques['id']);
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
-
-
+		// echo $quesidArray[$WrongQuesid]['quesid'];
+		if ($wrongNum == 0) {
+			$this->display('tip-none');
+			return false;
+		}
 		if ($ques) {
 			if ($ques['type'] == '1') {
 				$this->display('chose');
