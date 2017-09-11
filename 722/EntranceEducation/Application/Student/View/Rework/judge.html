@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>错题重做</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<script src="__PUBLIC__/font/iconfont.js"></script>
+		<style>
+		    .option-area{
+		    	margin-left: 20px;
+		    }
+		    .c-pic{
+		    	margin-top: 40px;
+		    }
+        </style>
+
+	</head>
+	<body>
+		<div class="content">
+			<div class="c-pic"><span class="weui-badge">
+				<if condition="$ques.type eq '1'">
+					单选题
+				<elseif condition="$ques.type eq 2"/>
+					判断题
+				<elseif condition="$ques.type eq 3"/>
+					多选题
+				</if>
+			</span>{$ques.contents}</div>
+		</div>
+				<a href="javascript:;">
+					<div class="option-area" id="option-right">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">对</lable>
+					</div>
+				</a>
+
+				<a href="javascript:;">
+					<div class="option-area" id="option-wrong">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">错</lable>
+					</div>
+				</a>
+			<a class="c-button" href="{:U('Rework/chose', array('WrongQuesid'=>session('WrongQuesid') + 1))}">下一题</a>
+		</div>
+
+	</body>
+</html>
+<include file="./Public/weui2.0/__foot.html"/>
+<script type="text/javascript">
+	// 获取页面加载的时间
+
+	$('.option-area').one('click',function(){
+		// 选择了之后正确
+		var use        = $(this).find('use')[0];
+		var lable      = $(this).find('lable')[0];
+		var option     = lable.innerHTML; //选项
+		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
+		
+
+		var data = {
+			'option': option,
+		}
+
+		var url = "{:U('Rework/submit')}";
+        $.post(url, data, function(res){
+        	console.log(res);
+          	if(option == res) {
+	      		use.setAttribute('xlink:href', '#icon-option-right');
+	      	} else {
+	      		use.setAttribute('xlink:href', '#icon-option-wrong');
+				$('#option-'+resArr[res]).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+	      	}
+        });
+
+        $('.c-table a').removeAttr('href'); 
+		$('.option-area').unbind(); 
+
+		
+	})	
+</script>
