@@ -20,10 +20,10 @@ class ExerciseModel extends Model {
 	public function getExercseRecord($openid = '') {
 
 		//答题量
-		$count        = count($this->where(array('openid'=>$openid))>group('quesid')->select());
+		$count        = count($this->where(array('openid'=>$openid))->group('quesid')->select());
 
-		$rig_cot      = count($this->where(array('openid'=>$openid, 'result' => 1))>group('quesid')->select());
-		
+		$rig_cot      = count($this->where(array('openid'=>$openid, 'result' => 1))->group('quesid')->select());
+
 		$record       = array(
 			'name'    => D('student_info')->getName($openid),
 			'count'   => $count, //答题量
