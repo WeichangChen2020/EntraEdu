@@ -20,7 +20,7 @@ class ExerciseController extends Controller{
 
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);
-		$this->assign('quesNum', $QUES->getQuesNum());
+		$this->assign('quesNum', $QUES->getQuesNum($openid));
 		
 		p($QUES->getQuesNum());die;
 		$this->display('list');
