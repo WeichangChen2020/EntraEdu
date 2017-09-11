@@ -64,6 +64,16 @@ class ExerciseModel extends Model {
 		 
 		// 此时用户按类型选择题目
 		if($tp_id   != 0) {
+			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$tp_id")
+					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
+					-> max("exer.quesid");
+			// 如果没有查到结果
+			if (empty($newest_quesid)) {
+				$newest_quesid = D('Questionbank')->where(array('type'=>$tp_id))
+				                                  ->min('id');
+			}
+			dump($newest_quesid);
+			return $newest_quesid;
 
 		}
 
