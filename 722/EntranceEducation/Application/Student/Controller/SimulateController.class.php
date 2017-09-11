@@ -160,10 +160,7 @@ class SimulateController extends Controller {
 		$this->assign('answerRecord',$answerRecord);
 		$this->assign('next_id',$next_id);
 		//$this->assign('sumNum',$sumNum);
-		$type = $QUESTION->where("id=".$pro_id)->getField('type');//单选多选和判断？
-        echo $pro_id;
-        echo $type;
-        die();
+		$type = $QUESTION->where("id=".$que_id)->getField('type');//单选多选和判断？
 		session('type',$type);
 		if ($type=='2') {
 			$this->display('simulateMultiple');
