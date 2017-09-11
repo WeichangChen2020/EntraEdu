@@ -16,6 +16,7 @@ class ExerciseController extends Controller{
 		$openid         = session('openId');
 		$QUES           = D('Questionbank');
 		$quesTypeArr    = $QUES->getQuesAllType();
+		p($quesTypeArr);die;
 
 		$quesChapterArr = $QUES->getQuesAllChapter($openid);
 

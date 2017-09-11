@@ -102,10 +102,10 @@ class QuestionbankModel extends Model{
 	 * getQuesAllType 获取所有题目的类型信息
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-9-9 20:14 Authors
-	 * @var 
-	 * @return array {id type author num} 题目类型 题目来源 该类型题目
+	 * @var (openid)
+	 * @return array {id type author num finsh_num 题目类型 题目来源 该类型题目 完成了的数量
 	 */
-	public function getQuesAllType() {
+	public function getQuesAllType($openid = '') {
 
 		$quesTypeArr = array(
 			array('id' => 1, 'type' => '单选题', 'num' => 0),
@@ -117,6 +117,11 @@ class QuestionbankModel extends Model{
 		foreach ($quesTypeArr as $key => $value) {
 
 			$quesTypeArr[$key]['num'] = $this->getQuesTypeNum($value['id']);
+			// 如果攒传了openid参数，则查询该openid的进度 
+			if (!empty($openid)) {
+				$quesTypeArr[$key]['finsh_num'] = D('exercise')->getCurrentProgress($openid, $value['id']);
+			}
+			
 
 		}
 

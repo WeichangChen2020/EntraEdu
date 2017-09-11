@@ -106,6 +106,17 @@ class ExerciseModel extends Model {
 			
 			return $finish_num;
 		}
+
+		// 此时用户按类型选择题目
+		if($typeid   != 0) {
+			$finish_num = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
+					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
+					-> distinct(true)->field("exer.quesid")
+					-> count();
+			
+			return $finish_num;
+
+		}
 		 
 		
 
