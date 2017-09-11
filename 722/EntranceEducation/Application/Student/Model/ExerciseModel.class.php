@@ -101,20 +101,20 @@ class ExerciseModel extends Model {
 
 			$finish_num = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
 					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-					-> distinct(true)->field("exer.quesid")
-					-> count();
+					->group("exer.quesid") 
+					->select();
 			
-			return $finish_num;
+			return count($finish_Arr);
 		}
 
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
-			$finish_num = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
+			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
 					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-					-> distinct(true)->field("exer.quesid")
-					-> count();
-			
-			return $finish_num;
+					->group("exer.quesid") 
+					->select();
+
+			return count($finish_Arr);
 
 		}
 
