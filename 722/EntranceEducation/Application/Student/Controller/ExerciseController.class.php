@@ -13,7 +13,7 @@ class ExerciseController extends Controller{
 	 */
 	public function index() {
 
-		$openid         = session('openid');
+		$openid         = session('openId');
 		$QUES           = D('Questionbank');
 		$quesTypeArr    = $QUES->getQuesAllType();
 
