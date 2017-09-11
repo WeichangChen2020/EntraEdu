@@ -129,8 +129,7 @@ class SimulateController extends Controller {
 		session('proid',$proid);//这套试卷的第几题
 		//echo "题目的id:".$que_id;
 		$item  = $QUESTION->where("id=".$que_id)->find();
-        var_dump($item);
-        die();
+        //var_dump($item);
 		//die(); 
 
 		// var_dump($item);	
@@ -146,8 +145,8 @@ class SimulateController extends Controller {
 			'questionItem' => $proid,//当前题目是第几题
 			'queNum' => 10, //每套卷子10道题目
 		);
-		//var_dump($answerRecord);
-		//die();
+		var_dump($answerRecord);
+		die();
 		/*=========评论数量=======*/
 		// $commentNum = $COMMENT->where('questionId="'.$item['id'].'"')->count();
 		// $replyNum = $REPLY->where('questionId="'.$item['id'].'"')->count();
