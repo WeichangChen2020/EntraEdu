@@ -197,9 +197,9 @@ class QuestionbankModel extends Model{
 		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
 
 		$Model = new \Think\Model();
-		$res = $Model->query($sql);
+		$res = $Model->query($sql)->;
 
-		p($res);
+		p($res[0]['id']);
 
 
 	}
