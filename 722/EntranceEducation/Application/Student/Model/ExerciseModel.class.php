@@ -48,7 +48,6 @@ class ExerciseModel extends Model {
 		$Model = new \Think\Model();
 		$newest_quesid = 0;
 
-		p($openid);p($chapid);p($typeid);
 
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
