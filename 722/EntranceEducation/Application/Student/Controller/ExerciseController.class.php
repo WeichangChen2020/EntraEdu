@@ -5,7 +5,7 @@ use Think\Controller;
 class ExerciseController extends Controller{
 	
 	/**
-	 * index 自由练习主页面
+	 * index 自由练习主页面 能显示当前进度，答题了多少道
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-9-10 9:39Authors
 	 * @var  
@@ -13,9 +13,12 @@ class ExerciseController extends Controller{
 	 */
 	public function index() {
 
+		$openid         = session('openid');
 		$QUES           = D('Questionbank');
 		$quesTypeArr    = $QUES->getQuesAllType();
-		$quesChapterArr = $QUES->getQuesAllChapter();
+		$quesChapterArr = $QUES->getQuesAllChapter($openid);
+
+		p($quesChapterArr);die;
 
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);

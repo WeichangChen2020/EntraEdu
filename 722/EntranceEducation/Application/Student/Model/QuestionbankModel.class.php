@@ -141,15 +141,21 @@ class QuestionbankModel extends Model{
 	 * getQuesAllChapter 获取所有题目的章节信息
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-9-9 20:14 Authors
-	 * @var 
-	 * @return array {id type author num} 题目类型 题目来源 该类型题目
+	 * @var openid 
+	 * @return array {id type author num finsh_num} 题目类型 题目来源 该类型题目
 	 */
-	public function getQuesAllChapter() {
+	public function getQuesAllChapter($openid = '') {
 
 		$quesChapterArr = D('QuestionChapter')->select();
 
 		foreach ($quesChapterArr as $key => $value) {
 			$quesChapterArr[$key]['num'] = $this->getQuesChapterNum($value['id']);
+
+			// 如果攒传了openid参数，则查询该openid的进度 
+			if (!empty($openid)) {
+				$quesChapterArr[$key]['finish_num'] = D('exercise')->getCurrentProgress($openid, $value['id']);
+			}
+			
 		}
 
 		return $quesChapterArr;

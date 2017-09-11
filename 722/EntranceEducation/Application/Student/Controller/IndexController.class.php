@@ -5,9 +5,9 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
 
-         $model      =   D('student_info');
-         $name       =   session('name');
-         $openId     =   session('openId');
+        $model      =   D('student_info');
+        $name       =   session('name');
+        $openId     =   session('openId');
 
         if(empty($openId)){
         	$this->redirect('User/index');
