@@ -38,6 +38,7 @@ class ExerciseController extends Controller{
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid) + 1;
+			p($quesid);
 		}
 
 		session('quesid', $quesid);
@@ -72,7 +73,6 @@ class ExerciseController extends Controller{
 
 		$quesid = I('quesid');
 		$chapid = I('chapid');
-		// $chapid = intval(trim($chapid));
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
