@@ -119,7 +119,7 @@ class QuestionbankModel extends Model{
 			$quesTypeArr[$key]['num'] = $this->getQuesTypeNum($value['id']);
 			// 如果攒传了openid参数，则查询该openid的进度 
 			if (!empty($openid)) {
-				$quesTypeArr[$key]['finsh_num'] = D('exercise')->getCurrentProgress($openid, ,0, $value['id']);
+				$quesTypeArr[$key]['finsh_num'] = D('exercise')->getCurrentProgress($openid, 0, $value['id']);
 			}
 			
 
