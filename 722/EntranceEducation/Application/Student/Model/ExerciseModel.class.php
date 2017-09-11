@@ -117,7 +117,14 @@ class ExerciseModel extends Model {
 			return $finish_num;
 
 		}
-		 
+
+
+
+		$finish_num = $this->where(array('openid' => $openid))
+					-> distinct(true)->field("quesid")
+					-> count();
+			
+		return $finish_num;
 		
 
 	}

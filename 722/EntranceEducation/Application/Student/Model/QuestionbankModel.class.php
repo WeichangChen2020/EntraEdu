@@ -158,7 +158,7 @@ class QuestionbankModel extends Model{
 
 			// 如果攒传了openid参数，则查询该openid的进度 
 			if (!empty($openid)) {
-				$quesChapterArr[$key]['finish_num'] = D('exercise')->getCurrentProgress($openid, $value['id']);
+				$quesChapterArr[$key]['finish_num'] = D('exercise')->getCurrentProgress($openid, $value['id'], 0);
 			}
 			
 		}
@@ -170,12 +170,18 @@ class QuestionbankModel extends Model{
 	 * getQuesAllChapter 获取所有题目的数量
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-9-10 14:20 Authors
-	 * @var 
+	 * @var openid
 	 * @return int 题目总数量
 	 */
-	public function getQuesNum() {
+	public function getQuesNum($openid = '') {
 
-		return  $this->count();
+		$quesNum = array();
+		$quesNum['num'] = $this->count();
+
+		if(!empty($openid))
+			$quesNum['finish_num'] = D('exercise')->getCurrentProgress($openid);
+
+		return  $quesNum;
 
 	}
 
