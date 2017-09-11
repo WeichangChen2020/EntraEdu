@@ -68,21 +68,21 @@ class ExerciseModel extends Model {
 		 
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
-			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
-					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-					-> max("exer.quesid");
-			// 如果没有查到结果
-			if (empty($newest_quesid)) {
-				$newest_quesid = D('Questionbank')->where(array('type'=>$typeid))
-				                                  ->min('id');
+			$sql = "SELECT * FROM ee_questionbank where type = '$typeid' AND NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
+
+			$res = $Model->query($sql);
+
+			if (empty($res)) {
+				return false;
 			}
+
+			$newest_quesid = $res[0]['id'];
 
 			return $newest_quesid;
 
 		}
 
 		// 此时用户按顺序练习选择题目
-		// $newest_quesid = $this->where(array('openid'=>$openid))->max('quesid');
 		$newest_quesid = D('questionbank')->getUnfishRecord($openid);
 		return $newest_quesid;
 
