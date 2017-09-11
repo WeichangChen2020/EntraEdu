@@ -1,1 +1,117 @@
-main.html
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>信电微服务</title>
+        <meta charset="utf-8">
+	    <include file="./Public/html/_head.html"/>
+        
+        <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+	    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    	<style type="text/css">
+			.weui-grid {
+				padding:14px 10px;
+			}
+			.weui-footer {
+			    margin: 15px 0;
+			}
+            .icon {
+              width: 50px; height: 50px;
+              vertical-align: -0.15em;
+              fill: currentColor;
+              overflow: hidden;
+            }
+    	</style>
+    <body ontouchstart>
+       
+       	<div class="jiben">
+		    <a class="" href="">
+		        <div class="tx_box">
+		            <div class="tx">
+		                <img class="tx" src="{$info.headimgurl|default='http://m.shensuantang.com/Public/images/default_avatar_128_128.jpg'}"></div>
+		            <ul>
+		            	<li>{$info.name|default='张电子'}</li>
+		                <li class="info">
+		                	<span>{$info.class|default='浙江'}</span>
+		                	<span>{$info.number|default='杭州'}</span>
+		                </li>
+		            </ul>
+		            
+		        </div>
+		    </a>
+		    <div class="clearfix"></div>
+		</div>
+
+        <div class="weui-grids">
+            <a href="http://3.testtest11.sinaapp.com/tea/wenjuan.php?openid={$info.openid}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-wodefudaoyuan"></use>
+                    </svg></div>
+                <p class="weui-grid__label">辅导员评价</p></a>
+            <a href="http://3.testtest11.sinaapp.com/tea_bzr/wenjuan.php?openid={$info.openid}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-banzhuren"></use>
+                    </svg></div>
+                <p class="weui-grid__label">班主任评价</p></a>
+            <a href="javascript:alert('该功能还未开发');" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-dangjian"></use>
+                    </svg></div>
+                <p class="weui-grid__label">智慧党建</p></a>
+            <a href="" class="weui-grid js_grid">
+               <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-ketang"></use>
+                    </svg></div>
+                <p class="weui-grid__label">课堂评分</p></a>
+            <a href="{:U('Index/cplat', array('cplat_openid'=>$cplat_openid))}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="#icon-c" xlink:href="#icon-c"></use>
+                    </svg></div>
+                <p class="weui-grid__label">C语言平台</p></a>
+            <a href="http://acm.gailvlunpt.com?openid={$info.openid}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-Programming"></use>
+                    </svg></div>
+                <p class="weui-grid__label">ACM平台</p></a>
+            <a href="" class="weui-grid js_grid">
+               <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-jiaowu"></use>
+                    </svg></div>
+                <p class="weui-grid__label">教务信息</p></a>
+            <a href="" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-kaifazhong"></use>
+                    </svg></div>
+                <p class="weui-grid__label">正在建设</p></a>
+            <a href="" class="weui-grid js_grid">
+               <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-gengduo2"></use>
+                    </svg></div>
+                <p class="weui-grid__label">更多</p></a>
+        </div>
+        
+        <div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="" class="weui-footer__link">信电微服务 首页</a></p>
+            <p class="weui-footer__text">Copyright © 2014-2017 浙江工商大学信电学院</p></div>
+        
+        
+        <include file="./Public/html/_foot.html"/>
+        <script>
+        	$(function() {
+                FastClick.attach(document.body);
+            });
+        </script>
+        <script src="__PUBLIC__/font/iconfont.js"></script>
+    </body>
+
+</html>
