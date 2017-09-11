@@ -69,9 +69,7 @@ class ExerciseModel extends Model {
 
 
 		// 此时用户按顺序练习选择题目
-		p($openid);
-		$newest_id = $this->where(array('openid'=>$openid))->max('quesid');
-		p($newest_id);
+		$newest_quesid = $this->where(array('openid'=>$openid))->max('quesid');
 		return $newest_quesid;
 
 	}
