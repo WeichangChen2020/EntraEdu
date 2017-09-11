@@ -79,7 +79,7 @@ class ExerciseController extends Controller{
 		
 		$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
 		if (false == $quesid) {
-			$this->display('tip');
+			$this->display('tip'); die;
 		}
 
 		
