@@ -119,10 +119,11 @@ class ExerciseModel extends Model {
 		}
 
 
-
-		$finish_num = $this->where(array('openid' => $openid))
-		            ->group('quesid')
-					-> count();
+		$finishArr = $this->where(array('openid' => $openid))
+				          ->group('quesid')
+						  ->select();
+		$finish_num =  count($finishArr);
+			
 			
 		return $finish_num;
 		
