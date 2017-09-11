@@ -69,6 +69,8 @@ class SimulateController extends Controller {
 		$testId = session('testId');
 		/*======获取答题数量======*/			
 		$itemnum  =   $QUESTION->count(); //
+        echo $itemnum;
+        die();
 
 		/*======读取出一套模拟试卷的试题======*/
 		// $chapter = I('chapter');
