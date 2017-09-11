@@ -26,7 +26,7 @@ class ReworkController extends Controller{
 		$wrongNum  = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->count();//错误题目数量
 		$quesidArray = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
 
-		dump($quesidArray);die;
+		// dump($quesidArray);die;
 		/**
 		*历史中错误----错题历史中正确->无视
 		*			|--错题历史中错误或不存在->加入数组
