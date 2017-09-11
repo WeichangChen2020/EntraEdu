@@ -99,7 +99,7 @@ class ExerciseModel extends Model {
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
 
-			$finish_num = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
+			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
 					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
 					->group("exer.quesid") 
 					->select();
