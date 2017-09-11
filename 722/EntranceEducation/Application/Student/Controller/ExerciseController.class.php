@@ -71,14 +71,13 @@ class ExerciseController extends Controller{
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
 
-		$quesid = I('quesid');
-		$chapid = I('chapid');
-		$typeid = I('typeid');
+		$chapid = I('chapid'); if(empty($chapid)) $chapid = 0;
+		$typeid = I('typeid'); if(empty($typeid)) $typeid = 0;
 
 		// 首次金进入，否则点击下一题进入
-		if (empty($quesid)) {
-			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
-		}
+		
+		$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
+		
 
 
 		session('quesid', $quesid);
@@ -87,7 +86,9 @@ class ExerciseController extends Controller{
 
 		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 
-		
+		p($quesItem);die;
+
+
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
