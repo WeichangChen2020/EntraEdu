@@ -193,22 +193,7 @@ class QuestionbankModel extends Model{
 	 * @return int 题目总数量
 	 */
 	// public function getUnfishRecord($openid) {
-// SELECT DISTINCT 列名称 FROM 表名称
-
-// SELECT * FROM ee_questionbank WHERE NOT EXISTS (SELECT DISTINCT * FROM ee_exercise WHERE openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
-
-
-// select Sname from Student where not exists
-
-// (
-
-//      select *
-
-//      from SC
-
-//      where Sno=Student.Sno  AND   Cno='1'
-
-// );
+// SELECT * FROM ee_exercise where = openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' GROUP BY quesid
 	
 
 	
