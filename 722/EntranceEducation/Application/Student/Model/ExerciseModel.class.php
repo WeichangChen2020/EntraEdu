@@ -57,7 +57,7 @@ class ExerciseModel extends Model {
 
 			$res = $Model->query($sql);
 			
-			p($res); die;
+			$newest_quesid = $res[0]['id'];
 
 			return $newest_quesid;
 		}
