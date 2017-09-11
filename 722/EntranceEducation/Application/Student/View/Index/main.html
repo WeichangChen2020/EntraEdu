@@ -37,7 +37,7 @@
 		    </a>
 		    <div class="clearfix"></div>
 		</div>
-		<div class="annoce">公告<span class="separ">|</span>距平台开放还有 02天23小时34分钟43秒</div>
+		<div class="annoce">公告<span class="separ">|</span>距平台开放还有<span id="t_d">00天</span> <span id="t_h">00时</span> <span id="t_m">00分</span><span id="t_s">00秒</span></div>
         
 		<div class="weui-cells__title">考前练习</div>
 
@@ -99,3 +99,27 @@
     </body>
 
 </html>
+
+<script>
+  function GetRTime(){
+    var EndTime= new Date('2017/09/20 00:00:00');
+    var NowTime = new Date();
+    var t =EndTime.getTime() - NowTime.getTime();
+    var d=0;
+    var h=0;
+    var m=0;
+    var s=0;
+    if(t>=0){
+      d=Math.floor(t/1000/60/60/24);
+      h=Math.floor(t/1000/60/60%24);
+      m=Math.floor(t/1000/60%60);
+      s=Math.floor(t/1000%60);
+    }
+ 
+    document.getElementById("t_d").innerHTML = d + "天";
+    document.getElementById("t_h").innerHTML = h + "时";
+    document.getElementById("t_m").innerHTML = m + "分";
+    document.getElementById("t_s").innerHTML = s + "秒";
+  }
+  setInterval(GetRTime,0);
+</script>
