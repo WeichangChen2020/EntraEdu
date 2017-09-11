@@ -71,24 +71,22 @@ class ExerciseController extends Controller{
 		$openid = session('openId');
 		$record = D('exercise')->getExercseRecord($openid);
 
-		$chapid = I('chapid'); if(empty($chapid)) {$chapid = 0; session('chapid', $chapid);}
-		$typeid = I('typeid'); if(empty($typeid)) {$typeid = 0; session('typeid', $typeid);}
+		$chapid = I('chapid'); if(empty($chapid)) {$chapid = 0; }
+		$typeid = I('typeid'); if(empty($typeid)) {$typeid = 0; }
 
-
+		session('chapid', $chapid);
+		session('typeid', $typeid);
 		// 首次金进入，否则点击下一题进入
 		
 		$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
+
 		if (false == $quesid) {
 			$this->display('tip'); die;
 		}
 
-		
 		session('quesid', $quesid);
 
-		
-
-		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
-
+		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 
 
 		// 判断是否已经做完了最后一道题目
