@@ -44,7 +44,7 @@
 
     <div class="weui_grids">
 
-      <a href="<?php echo U('Random/index');?>" class="weui_grid js_grid">
+      <a href="<?php echo U('Exercise/index');?>" class="weui_grid js_grid">
         <div class="weui_grid_icon">
           <img src="/722/Public/images/practice.png" alt="">
 <!--           <img src="/722/Public/images/pass.png" class="pass" style="display:<?php echo ($requirement1); ?>">
@@ -54,7 +54,7 @@
         </p>
       </a>
 
-      <a href="<?php echo U('Review/index');?>" class="weui_grid js_grid">
+      <a href="<?php echo U('Rework/chose');?>" class="weui_grid js_grid">
         <div class="weui_grid_icon">
           <img src="/722/Public/images/wrong.png" alt="">
           <!-- <img src="/722/Public/images/pass.png" class="pass" style="display:<?php echo ($requirement2); ?>"> -->
@@ -114,6 +114,15 @@
     </style>
 
 <!-- <img src="http://localhost/xsc/index.php/Student/Index/check.html"> -->
+<script src="/722/Public/weui2.0/lib/jquery-2.1.4.js"></script>
+<script src="/722/Public/weui2.0/lib/fastclick.js"></script>
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+</script>
+<script src="/722/Public/weui2.0/lib/jquery-weui.js"></script>
+
 <script src="/722/Public/js/jquery-weui.js"></script>
 
     </body> 

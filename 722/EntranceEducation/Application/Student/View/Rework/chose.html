@@ -69,15 +69,19 @@
 </html>
 <include file="./Public/weui2.0/__foot.html"/>
 <script type="text/javascript">
-
+	// 获取页面加载的时间
+    var start_time = new Date();  
 	$('.option-area').one('click',function(){
 		// 选择了之后正确
 		var use       = $(this).find('use')[0];
 		var icon_attr = use.getAttribute('xlink:href');
 		var option    = icon_attr.substring(13).toUpperCase(); //选项
-		
+		var now       = new Date();
+		var time      = Math.ceil((now.getTime() - start_time.getTime())/1000);
+
 		var data = {
 			'option': option,
+			'time'  : time,
 		}
 		var url = "{:U('Rework/submit')}";
         $.post(url, data, function(res){
