@@ -24,7 +24,7 @@
                 <div class="weui-cells">
                     <a class="weui-cell weui-cell_access" href="{:U('Exercise/exercise_chap')}">
                         <div class="weui-cell__hd">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-danxuan"></use></svg></span>
+                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-sequence"></use></svg></span>
 
                         </div>
                         <div class="weui-cell__bd">
@@ -35,10 +35,10 @@
 
                 <div class="weui-cells__title">按知识点分类</div>
                 <div class="weui-cells">
-                    <volist name="quesChapterArr" id="quesChapterArr">
+                    <volist name="quesChapterArr" id="quesChapterArr" key="k">
                         <a class="weui-cell weui-cell_access" href="{:U('Exercise/exercise_chap', array('chapid'=>$quesChapterArr['id']))}">
                             <div class="weui-cell__hd">
-                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mutil"></use></svg></span>   
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-{$icon[k]}"></use></svg></span>   
                             </div>
                             <div class="weui-cell__bd">
                                 <p>{$quesChapterArr.chapter}</p>

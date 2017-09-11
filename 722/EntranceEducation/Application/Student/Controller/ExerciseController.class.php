@@ -18,10 +18,16 @@ class ExerciseController extends Controller{
 		$quesTypeArr    = $QUES->getQuesAllType($openid);
 		$quesChapterArr = $QUES->getQuesAllChapter($openid);
 
+		$icon = array('bodygood', 'notebook', 'shenghuo', 'sate_edu', 'notebook', 'heartword', 'consciousness');
+
+
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);
 		$this->assign('quesNum', $QUES->getQuesNum($openid));
-		
+		$this->assign('icon', $icon);
+
+
+	
 		$this->display('list');
 	}
 
