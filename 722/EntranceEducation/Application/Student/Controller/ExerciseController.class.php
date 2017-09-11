@@ -19,8 +19,6 @@ class ExerciseController extends Controller{
 
 		$quesChapterArr = $QUES->getQuesAllChapter($openid);
 
-		p($quesChapterArr);die;
-
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);
 		$this->assign('quesNum', $QUES->getQuesNum());
