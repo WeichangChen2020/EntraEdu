@@ -77,7 +77,7 @@ class ExerciseController extends Controller{
 
 		// 首次金进入，否则点击下一题进入
 		if (empty($quesid)) {
-			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid) + 1;
+			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
 		}
 
 

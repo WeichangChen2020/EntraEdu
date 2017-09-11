@@ -186,21 +186,21 @@ class QuestionbankModel extends Model{
 	}
 
 	/**
-	 * getUnfishRecord 获取用户跳做的题目
+	 * getUnfishRecord 获取用用户没有做过的题目的最小的id
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-9-11 14:24 Authors
 	 * @var openid
 	 * @return int 题目总数量
 	 */
 	public function getUnfishRecord($openid) { 
-	    $openid = "ohd41t3hENwHiNZTFBlbsUaB-gGw";
+
 		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 
-		p($res[0]['id']);
-
+		$min_id = $res[0]['id'];
+		return $min_id;
 
 	}
 
