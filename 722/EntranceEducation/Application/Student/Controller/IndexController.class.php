@@ -67,7 +67,21 @@ class IndexController extends Controller {
                 $this -> redirect('Index/index');
             // }
         }
+
+
       
+    }
+
+
+    /**
+     * main 项目主页面
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-9-10 9:39Authors
+     * @var  
+     * @return 
+     */
+    public function main() {
+        $this->display();
     }
     
 }

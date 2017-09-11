@@ -204,7 +204,7 @@ class QuestionbankModel extends Model{
 
 	}
 
-// SELECT * FROM ee_questionbank where chapter = 2 AND  NOT EXISTS (SELECT * FROM ee_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid);
+// SELECT * FROM ee_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0' AND NOT EXISTS (SELECT * FROM ee_mistake_history where ee_exercise.quesid = ee_mistake_history.id AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw');
 
 
 	
