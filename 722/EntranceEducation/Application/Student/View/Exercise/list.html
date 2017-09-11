@@ -38,7 +38,7 @@
                     <volist name="quesChapterArr" id="quesChapterArr" key="k">
                         <a class="weui-cell weui-cell_access" href="{:U('Exercise/exercise_chap', array('chapid'=>$quesChapterArr['id']))}">
                             <div class="weui-cell__hd">
-                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-{$icon[$k+1]}"></use></svg></span>   
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-{$icon[$k-1]}"></use></svg></span>   
                             </div>                            
                             <div class="weui-cell__bd">
                                 <p>{$quesChapterArr.chapter}</p>
