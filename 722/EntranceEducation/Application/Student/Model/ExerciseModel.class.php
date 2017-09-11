@@ -51,8 +51,6 @@ class ExerciseModel extends Model {
 		// 此时用户按章节选择题目
 		if($chap_id != 0) {
 
-			
-			p($openid);
 			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chap_id")
 					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
 					-> max("exer.quesid");
@@ -71,7 +69,9 @@ class ExerciseModel extends Model {
 
 
 		// 此时用户按顺序练习选择题目
+		p($openid);
 		$newest_id = $this->where(array('openid'=>$openid))->max('quesid');
+		p($newest_id);
 		return $newest_quesid;
 
 	}
