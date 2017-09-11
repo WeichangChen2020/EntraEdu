@@ -51,14 +51,12 @@ class ExerciseModel extends Model {
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
 
-			$newest_quesid = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
-					->table(array('ee_exercise'=>'exer','ee_questionbank'=>'bank'))
-					-> max("exer.quesid");
-			// 如果没有查到结果
-			if (empty($newest_quesid)) {
-				$newest_quesid = D('Questionbank')->where(array('chapter'=>$chapid))
-				                                  ->min('id');
-			}
+			$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id AND ee_questionbank.chapter = "$chapid" GROUP BY quesid)";
+
+			$res = $Model->query($sql);
+			
+			p($res); die;
+
 			return $newest_quesid;
 		}
 		 
