@@ -72,7 +72,7 @@ class ExerciseModel extends Model {
 				$newest_quesid = D('Questionbank')->where(array('type'=>$tp_id))
 				                                  ->min('id');
 			}
-			dump($newest_quesid);
+			p($newest_quesid);
 			return $newest_quesid;
 
 		}
