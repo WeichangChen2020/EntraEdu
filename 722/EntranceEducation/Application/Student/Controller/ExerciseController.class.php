@@ -75,7 +75,7 @@ class ExerciseController extends Controller{
 		$typeid = I('typeid');
 
 		if (empty($quesid)) {
-			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
+			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid) + 1;
 		}
 
 		// p($quesid);
