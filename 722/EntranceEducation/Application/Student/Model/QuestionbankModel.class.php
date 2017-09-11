@@ -192,9 +192,19 @@ class QuestionbankModel extends Model{
 	 * @var openid
 	 * @return int 题目总数量
 	 */
-	// public function getUnfishRecord($openid) {
-// SELECT * FROM ee_exercise where = openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' GROUP BY quesid
-	
+	public function getUnfishRecord($openid) { 
+	    $openid = "ohd41t3hENwHiNZTFBlbsUaB-gGw";
+		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
+
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+
+		p($res);
+
+
+	}
+
+
 
 	
 
