@@ -72,6 +72,7 @@ class ExerciseController extends Controller{
 
 		$quesid = I('quesid');
 		$chapid = I('chapid');
+		$typeid = I('typeid');
 
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid) + 1;
@@ -81,8 +82,9 @@ class ExerciseController extends Controller{
 
 		session('quesid', $quesid);
 		session('chapid', $chapid);
+		session('typeid', $typeid);
 
-		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid);
+		$quesItem    = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		
 
 		// 判断是否已经做完了最后一道题目
