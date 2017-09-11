@@ -69,8 +69,8 @@ class SimulateController extends Controller {
 		$testId = session('testId');
 		/*======获取答题数量======*/			
 		$itemnum  =   $QUESTION->count(); //
-        echo $itemnum;
-        die();
+        //echo $itemnum;
+
 
 		/*======读取出一套模拟试卷的试题======*/
 		// $chapter = I('chapter');
@@ -129,6 +129,8 @@ class SimulateController extends Controller {
 		session('proid',$proid);//这套试卷的第几题
 		//echo "题目的id:".$que_id;
 		$item  = $QUESTION->where("id=".$que_id)->find();
+        var_dump($item);
+        die();
 		//die(); 
 
 		// var_dump($item);	
