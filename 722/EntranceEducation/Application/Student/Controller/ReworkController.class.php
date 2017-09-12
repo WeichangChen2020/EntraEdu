@@ -30,7 +30,7 @@ class ReworkController extends Controller{
 		*/
 		// $MISTAKE = M('mistake_history');
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
-		dump($quesid);
+		// dump($quesid);
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		session('quesid',$quesid);
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
