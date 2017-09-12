@@ -20,14 +20,14 @@
 				<a href="javascript:;">
 					<div class="option-area" id="option-right">
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
-					    <lable class="option-contents">对</lable>
+					    <lable class="option-contents">正确</lable>
 					</div>
 				</a>
 
 				<a href="javascript:;">
 					<div class="option-area" id="option-wrong">
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
-					    <lable class="option-contents">错</lable>
+					    <lable class="option-contents">错误</lable>
 					</div>
 				</a>
 				
@@ -45,7 +45,7 @@
 		// 选择了之后正确
 		var use        = $(this).find('use')[0];
 		var lable      = $(this).find('lable')[0];
-		var option     = lable.innerHTML; //选项
+		var option     = lable.innerHTML == '正确' ? '对' : '错'; //选项
 		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
 		
 
