@@ -15,16 +15,13 @@ class ReworkController extends Controller{
 	public function chose(){
 		$openId = session('openId');
 
-		$WrongQuesid = I('WrongQuesid');
-		if(empty($WrongQuesid))
-			$WrongQuesid=0;
 		session('WrongQuesid',$WrongQuesid);
 
-		$HISTORY = M('exercise');
+		// $HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
 
-		$wrongNum  = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->count();//错误题目数量
-		$quesidArray = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
+		// $wrongNum  = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->count();//错误题目数量
+		// $quesidArray = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
 
 		// dump($quesidArray);die;
 		/**
@@ -34,16 +31,18 @@ class ReworkController extends Controller{
 		*错题历史中正确->无视
 		*
 		*/
-		$MISTAKE = M('mistake_history');
-
-
-
-
-		// dump($quesidArray);
-		$ques = $QUESTION->where(array('id' => $quesidArray[$WrongQuesid]['quesid']))->find();
-		session('quesid',$ques['id']);
+		// $MISTAKE = M('mistake_history');
+		$quesid = D('MistakeHistory')->getMistakeData($openId);
+		session('quesid',$quesid);
+		// p($quesid);
+		// echo $quesidArray[$WrongQuesid]['quesid'];
+		$wrongNum    = count('$quesidArray');
+		dump($quesid);
+		$ques = $QUESTION->where(array('id' => $quesid))->find();
+		// p($ques);
+		
 		$this->assign('ques',$ques);
-		$this->assign('openId',$openId);
+		// $this->assign('openId',$openId);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
 		if ($wrongNum == 0) {
 			$this->display('tip-none');
@@ -86,20 +85,6 @@ class ReworkController extends Controller{
 		$this->ajaxReturn($right_answer, 'json');
 	}
 
-	public function getMistakeData($openid = '') { 
-
-		$openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw';
-		$sql = "SELECT * FROM ee_exercise where NOT EXISTS (SELECT * FROM ee_mistake_history where openid = '$openid' AND ee_exercise.quesid = ee_mistake_history.quesid)";
-
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-
-		dump($res);
-		// $min_id = $res[0]['id'];
-		// return $minid;
-		// SELECT * FROM ee_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result='0' AND NOT EXISTS (SELECT * FROM ee_mistake_history where ee_exercise.quesid = ee_mistake_history.quesid);
-
-	}
 
 
 }
