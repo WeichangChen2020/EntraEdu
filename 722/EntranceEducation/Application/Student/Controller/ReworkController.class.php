@@ -7,7 +7,7 @@ class ReworkController extends Controller{
 	public function index() {
 
 		$openid = session('openId');
-		echo $openid;
+		// echo $openid;
 		$this->assign('openId',$openid);
 		$this->display();
 	}
@@ -30,6 +30,7 @@ class ReworkController extends Controller{
 		*/
 		// $MISTAKE = M('mistake_history');
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
+		dump($quesid);
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		session('quesid',$quesid);
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
@@ -46,7 +47,7 @@ class ReworkController extends Controller{
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
-		echo $num;
+		// echo $num;
 		if ($num == 0) {
 			$this->display('tip-none');
 			return false;
