@@ -13,28 +13,6 @@ class MistakeHistoryModel extends Model {
 			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
 
 		$Model = new \Think\Model();
-		$num = $Model->query($sql);
-		// dump($res);
-		if (empty($res)) {
-			return false;
-		}
-		// SELECT DISTINCT quesid FROM ee_exercise
-		// where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0'
-		// AND NOT EXISTS (
-		// 	SELECT * FROM ee_mistake_history
-		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
-		return $num;
-	}
-
-	//获取错题数量
-	public function getNumberOfMistake($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_exercise
-		where openid = '$openid' AND result = '0'
-		AND NOT EXISTS (
-			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
-
-		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 		// dump($res);
 		if (empty($res)) {
@@ -46,6 +24,22 @@ class MistakeHistoryModel extends Model {
 		// 	SELECT * FROM ee_mistake_history
 		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
 		return $res[0]['quesid'];
+	}
+
+	//获取错题数量
+	public function getNumberOfMistake($openid = ''){
+		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_exercise
+		where openid = '$openid' AND result = '0'
+		AND NOT EXISTS (
+			SELECT * FROM ee_mistake_history
+			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
+
+		$Model = new \Think\Model();
+		$num = $Model->query($sql);
+		if (empty($num)) {
+			return false;
+		}
+		return $num;
 	}
 
 	//获取题目信息
