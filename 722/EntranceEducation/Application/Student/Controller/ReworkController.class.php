@@ -15,13 +15,10 @@ class ReworkController extends Controller{
 	public function chose(){
 		$openId = session('openId');
 
-		session('WrongQuesid',$WrongQuesid);
 
 		// $HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
 
-		// $wrongNum  = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->count();//错误题目数量
-		// $quesidArray = $HISTORY->where('openId="'.$openId.'" AND result = "0"' )->field('quesid')->distinct(true)->select();//错误题目编号数组，已合并重复数据
 
 		// dump($quesidArray);die;
 		/**
@@ -33,27 +30,33 @@ class ReworkController extends Controller{
 		*/
 		// $MISTAKE = M('mistake_history');
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
+		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		session('quesid',$quesid);
-		// p($quesid);
-		// echo $quesidArray[$WrongQuesid]['quesid'];
 		$wrongNum    = count('$quesidArray');
-		// dump($quesid);
-		$ques = $QUESTION->where(array('id' => $quesid))->find();
-		// p($ques);
-		
+		$ques = D('MistakeHistory')->getQuestionByid($quesid);
+		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
+
+
+		// $ques = $QUESTION->where(array('id' => $quesid))->find();
+		// $chapter=D('MistakeHistory')->getQuesChapter($ques['chapter']);
+		// $questype=D('MistakeHistory')->getQuesType($ques['type']);
+		// $this->assign('chapter',$chapter);
+		// $this->assign('questype',$questype);
+		$this->assign('num',$num);
+		$this->assign('name',$name);
 		$this->assign('ques',$ques);
-		// $this->assign('openId',$openId);
+		$this->assign('openId',$openId);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
 		if ($wrongNum == 0) {
 			$this->display('tip-none');
 			return false;
 		}
 		if ($ques) {
-			if ($ques['type'] == '1') {
+			if ($ques['type'] == '单选题') {
 				$this->display('chose');
-			} else if ($ques['type'] == '2') {
+			} else if ($ques['type'] == '判断题') {
 				$this->display('judge');
-			} else if ($ques['type'] == '3') {
+			} else if ($ques['type'] == '多选题') {
 				$this->display('mutil');
 			}
 		} else {
