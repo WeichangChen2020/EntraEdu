@@ -391,4 +391,93 @@ class WeichatController extends Controller{
         $jssdk = new Jssdk($appid, $appsecret);
         return $jssdk->GetSignPackage();
     }
+
+    /**
+     * 获取信电官微的用户头像
+     * 
+     * @param string $openid 用户的openid
+     * @return string $imgheadurl 用户头像url
+     */
+    public function getHeadimgurl ($openid = '') {
+
+        $accessTokenArr = M('access_token')->find(1);
+        $access_token   = $accessTokenArr['access_token'];
+        $now_time = time();
+
+        // 判断 access_token 是否过期
+        if ($now_time - $accessTokenArr['time'] > 7000) {
+            $appid        = 'wx1530ad1155dda9ad';
+            $appsecret    = '3fea03b8dd35b465c31b1c37e659cb66';
+            $wechatOauth  = new WechatAuth($appid, $appsecret);
+            $tokenArray   = $wechatOauth->getAccessToken();
+            $access_token = $tokenArray['access_token'];
+            $data = array('access_token' =>$access_token, 'time' => time(), 'id' => 1);
+            M('access_token')->where('id=1')->save($data);;
+        }
+
+
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+        $info = json_decode(file_get_contents($url));
+
+        $imgurl = $info->headimgurl;
+
+        return $imgurl;
+    }
+
+    public function pel() {
+        $data = D('student_info')->select();
+
+        foreach ($data as $key => $value) {
+            $imgurl = self::getHeadimgurl($value['openId']);
+            p($imgurl);
+            if (!empty($imgurl)) {
+                $data['id'] = $value['id'];
+                $data['headimgurl'] = $imgurl;
+                D('student_info')->save($data);
+            } else {
+                $data['id'] = $value['id'];
+                $data['headimgurl'] = '';
+                D('student_info')->save($data);
+            }
+        }
+
+       
+    }
+
+    /**
+     * POST 请求
+     * @param string $url
+     * @param array $param
+     * @param boolean $post_file 是否文件上传
+     * @return string content
+     */
+    private function http_post($url,$param,$post_file=false){
+        $oCurl = curl_init();
+        if(stripos($url,"https://")!==FALSE){
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+        }
+        if (is_string($param) || $post_file) {
+            $strPOST = $param;
+        } else {
+            $aPOST = array();
+            foreach($param as $key=>$val){
+                $aPOST[] = $key."=".urlencode($val);
+            }
+            $strPOST =  join("&", $aPOST);
+        }
+        curl_setopt($oCurl, CURLOPT_URL, $url);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($oCurl, CURLOPT_POST,true);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
+        $sContent = curl_exec($oCurl);
+        $aStatus = curl_getinfo($oCurl);
+        curl_close($oCurl);
+        if(intval($aStatus["http_code"])==200){
+            return $sContent;
+        }else{
+            return false;
+        }
+    }
 }

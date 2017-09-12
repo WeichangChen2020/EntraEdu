@@ -630,4 +630,6 @@ class WechatAuth {
         return $data;
     }
 
+  
+
 }
