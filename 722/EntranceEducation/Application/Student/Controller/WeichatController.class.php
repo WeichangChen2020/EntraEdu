@@ -424,6 +424,12 @@ class WeichatController extends Controller{
         return $imgurl;
     }
 
+    /**
+     * 用于批量获取并保存用户头像
+     * 
+     * @param string $openid 用户的openid
+     * @return string $imgheadurl 用户头像url
+     */
     public function pel() {
         $data = D('student_info')->select();
 

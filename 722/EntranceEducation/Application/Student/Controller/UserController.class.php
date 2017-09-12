@@ -61,13 +61,16 @@ class UserController extends Controller {
 
     
     
-    //新生注册信息
+    /**
+     * 处理用户注册传来的信息
+     * 
+     * @param string $openid 用户的openid
+     * @return string $imgheadurl 用户头像url
+     */
     public function register(){
-       
-
-
+        if(!IS_AJAX) $this->error('你访问的页面不存在');
     	$STU           = D('StudentInfo');       //实例化
-
+        $WeChat        = new WeichatController();
         $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         //这些是注册页面传递过来的参数
         $name          = I('name');
@@ -75,6 +78,10 @@ class UserController extends Controller {
         $college       = I('college');
         $banji         = I('banji'); 
         $isNewer       = 0;
+
+        // 用户注册的头像
+        $headimgurl    = $WeChat->getHeadimgurl($openId);
+        if(empty($headimgurl)) $headimgurl = '';
 
         // 新手的信息
         if (!empty($college) && !empty($banji)) {
@@ -97,14 +104,15 @@ class UserController extends Controller {
             $this->ajaxReturn('你已经注册过了');
         }
 
-        $registerInfo  = array(
-            'openId'   => $openId,
-            'name'     => $name,
-            'number'   => $number,
-            'academy'  => $college,//学院
-            'class'    => $banji,//班级
-            'is_newer' => $isNewer,
-            'time'     => date('Y-m-d H:i:s'),
+        $registerInfo   = array(
+            'openId'     => $openId,
+            'name'       => $name,
+            'number'     => $number,
+            'academy'    => $college,//学院
+            'class'      => $banji,//班级
+            'is_newer'   => $isNewer,
+            'headimgurl' => $headimgurl;
+            'time'       => date('Y-m-d H:i:s'),
         );
 
         if ($STU->add($registerInfo)) {
