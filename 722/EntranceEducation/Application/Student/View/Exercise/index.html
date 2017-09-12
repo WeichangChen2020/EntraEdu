@@ -69,7 +69,8 @@
 		var icon_attr = use.getAttribute('xlink:href');
 		var option    = icon_attr.substring(13).toUpperCase(); //选项
 		var now       = new Date();
-		var time      = Math.ceil((now.getTime() - start_time.getTime) / 1000);
+		var time      = Math.ceil((now.getTime() - start_time.getTime()) / 1000);
+		
 
 		var data = {
 			'option': option,
