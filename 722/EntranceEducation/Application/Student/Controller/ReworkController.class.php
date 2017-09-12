@@ -72,10 +72,9 @@ class ReworkController extends Controller{
 		}
 		$openid       = session('openId');
 		$quesid       = session('quesid');
-		$option       = I('option');
+		$option       = trim(I('option'));
 		$time     = I('time');
-		$right_answer = D('Questionbank')->getRightAnswer($quesid);
-
+		$right_answer = trim(D('Questionbank')->getRightAnswer($quesid));
 		$data = array(	
 			'openid' => $openid,
 			'quesid' => $quesid,
