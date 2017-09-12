@@ -39,7 +39,7 @@ class MistakeHistoryModel extends Model {
 		if (empty($num)) {
 			return false;
 		}
-		return $num;
+		return $num['quesid'];
 	}
 
 	//获取题目信息
