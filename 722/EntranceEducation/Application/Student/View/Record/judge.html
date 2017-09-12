@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>答题记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<script src="__PUBLIC__/font/iconfont.js"></script>
+	</head>
+	<body>
+		<div class="content">
+			<span class="c-title">{$record.name}</span>
+			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确&nbsp;{$record.rig_cot}&nbsp;错误&nbsp;{$record.wrg_cot}&nbsp;进度&nbsp;{$record.count}/{$record.sum}</label></p>
+			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
+			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
+			<div class="c-table">
+
+				<!-- option exit -->
+				
+				<a href="javascript:;">
+					<div class="option-area" id="option-right">
+					<if condition="$rightAns eq '对'">
+						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+					    <lable class="option-contents">正确</lable>
+					<else />
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">正确</lable>
+					</if>
+					</div>
+				</a>
+
+				<a href="javascript:;">
+					<div class="option-area" id="option-wrong">
+					<if condition="$rightAns eq '错'">
+						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+					    <lable class="option-contents">错误</lable>
+					<else />
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">错误</lable>
+					</if>    
+					</div>
+				</a>
+
+<!-- 				<div class="c-pic">
+				<span class="weui-badge">我的答案：{$rightAns}</span>
+				<span class="weui-badge" style="margin-left: 5px;">标准答案：{$rightAns}</span></div> -->
+				
+			</div>
+			<a class="c-button" href="{:U('Record/record',array('nextid'=>session('nextid')))}">下一题</a>
+		</div>
+	</body>
+</html>
+<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>答题记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<script src="__PUBLIC__/font/iconfont.js"></script>
+	</head>
+	<body>
+		<div class="content">
+			<span class="c-title">{$record.name}</span>
+			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确&nbsp;{$record.rig_cot}&nbsp;错误&nbsp;{$record.wrg_cot}&nbsp;进度&nbsp;{$record.count}/{$record.sum}</label></p>
+			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
+			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
+			<div class="c-table">
+
+				<!-- option exit -->
+				<if condition="$quesItem.option_a neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-a">
+						<if condition="$a eq '1'">
+						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_a}</lable>
+						<else />
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_a}</lable>
+						</if>
+						</div>
+					</a>
+				</if>
+
+				<if condition="$quesItem.option_b neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-b">
+						<if condition="$b eq '1'">
+							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_b}</lable>
+						<else />
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_b}</lable>
+						</if>
+						</div>
+					</a>
+				</if>
+
+				<if condition="$quesItem.option_c neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-c">
+						<if condition="$c eq '1'">
+							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_c}</lable>
+						<else />
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_c}</lable>
+						</if>
+						</div>
+					</a>
+				</if>
+
+				<if condition="$quesItem.option_d neq ''">
+					<a href="javascript:;">
+						<div class="option-area" id="option-d">
+						<if condition="$d eq '1'">
+							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_d}</lable>
+						<else />
+						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
+						    <lable class="option-contents">{$quesItem.option_d}</lable>
+						</if>
+						</div>
+					</a>
+				</if>
+
+<!-- 				<div class="c-pic"><span class="weui-badge">我的答案：{$rightAns}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span></div> -->
+
+				<div id="right_answer"></div>
+				
+			</div>
+
+
+			<!-- <a class="submit" href="{('Exercise/exercise')}">下一题</a> -->
+			<!-- <a class="c-button" id="submit" href="javascript:;">确定</a> -->
+
+			<a class="c-button" href="{:U('Record/record',array('nextid'=>session('nextid')))}">下一题</a>
+
+		</div>
+	</body>
+</html>
+<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
