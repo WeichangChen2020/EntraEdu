@@ -34,6 +34,7 @@ class ReworkController extends Controller{
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		session('quesid',$quesid);
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
+		dump($ques);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
 
