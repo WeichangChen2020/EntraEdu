@@ -113,7 +113,14 @@
 	  	}
 
 
-		var url = "{:U('Exercise/submit')}";
+		var url   = "{:U('Exercise/submit')}";
+		var now   = new Date();
+		var time  = Math.ceil((now.getTime() - start_time.getTime) / 1000);
+
+		var data = {
+			'option': option,
+			'time'  : time
+		}
 		var data = {
 			'option': option,
 			'time'  : start_time.getTime()
