@@ -47,7 +47,7 @@ class ReworkController extends Controller{
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
-		if ($wrongNum == 1) {
+		if ($wrongNum == 0) {
 			$this->display('tip-none');
 			return false;
 		}
