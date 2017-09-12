@@ -24,11 +24,6 @@ class MistakeHistoryModel extends Model {
 		// AND NOT EXISTS (
 		// 	SELECT * FROM ee_mistake_history
 		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
-		// SELECT DISTINCT quesid FROM ee_exercise
-		// where openid = 'ohd41t3hENwHiNZTFBlbs' AND result = '0'
-		// AND NOT EXISTS (
-		// 	SELECT * FROM ee_mistake_history
-		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbs');
 		return $res[0]['quesid'];
 	}
 
@@ -51,13 +46,13 @@ class MistakeHistoryModel extends Model {
 	}
 
 	//获取题目信息
-	public function getQuestionByid($qs_id = 0) {
+	public function getQuestionByid($quesid = 0) {
 		
 		$param = array();
-		if(!$qs_id)
-			$param['id']      = $qs_id;
+		if(!$quesid)
+			$param['id']      = $quesid;
 
-		$quesArr = M('Questionbank')->where(array('id' => $qs_id))->find();
+		$quesArr = M('Questionbank')->where(array('id' => $quesid))->find();
 
 		$quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
 		$quesArr['type']    = $this->getQuesType($quesArr['type']);
