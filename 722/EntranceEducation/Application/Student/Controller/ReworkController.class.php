@@ -32,7 +32,6 @@ class ReworkController extends Controller{
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		session('quesid',$quesid);
-		$wrongNum    = count('$quesidArray');
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
@@ -47,7 +46,8 @@ class ReworkController extends Controller{
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
-		if ($wrongNum == 0) {
+		echo $num;
+		if ($num == 0) {
 			$this->display('tip-none');
 			return false;
 		}
