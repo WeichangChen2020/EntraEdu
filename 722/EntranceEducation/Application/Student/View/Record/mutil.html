@@ -22,7 +22,7 @@
 						<if condition="$a eq '1'">
 							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_a}</lable>
-                        <elseif condition="$wrong eq '1'"/>
+                        <elseif condition="($wrong eq '1') AND ($a eq '1') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_a}</lable>                            
 						<else />
@@ -39,7 +39,7 @@
 						<if condition="$b eq '1'">
 							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_b}</lable>
-                        <elseif condition="$wrong eq '1'"/>
+                        <elseif condition="($wrong eq '1') AND ($b eq '1') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_b}</lable>     
 						<else />
@@ -56,7 +56,7 @@
 						<if condition="$c eq '1'">
 							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_c}</lable>
-                        <elseif condition="$wrong eq '1'"/>
+                        <elseif condition="($wrong eq '1') AND ($c eq '1') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_c}</lable> 
 						<else />
@@ -73,7 +73,7 @@
 						<if condition="$d eq '1'">
 							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_d}</lable>
-                        <elseif condition="$wrong eq '1'"/>
+                        <elseif condition="($wrong eq '1') AND ($d eq '1') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_d}</lable>                             
 						<else />
