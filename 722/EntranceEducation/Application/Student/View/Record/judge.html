@@ -22,7 +22,7 @@
 					<if condition="$rightAns eq '对'">
 						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 					    <lable class="option-contents">正确</lable>
-                    <elseif condition="$wrong eq '1'"/>
+                    <elseif condition="($wrong eq '1') AND ($userAns eq '对') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">正确</lable>                         
 					<else />
@@ -37,7 +37,7 @@
 					<if condition="$rightAns eq '错'">
 						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
 					    <lable class="option-contents">错误</lable>
-                    <elseif condition="$wrong eq '1'"/>
+                    <elseif condition="($wrong eq '1') AND ($userAns eq '错') "/>
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
 						    <lable class="option-contents">错误</lable>                         
 					<else />
