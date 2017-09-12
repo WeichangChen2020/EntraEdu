@@ -107,7 +107,10 @@
 	  		alert('你还没有选择答案');
 	  		return false;
 	  	}
-
+		if (option.length == 1) {
+	  		alert('至少选择2个选项！');
+	  		return false;
+	  	}
 
 
 		var url = "{:U('Exercise/submit')}";
