@@ -128,8 +128,9 @@
 
         $.post(url, data, function(res){
         	//res为正确答案
+        	// console.log(res);
         	$('#right_answer').html('正确选项：'+ res);
-
+        	// console.log(option);
         	for (x in click_times)
 			{
 				var use = $('#option-'+x.toLowerCase()).find('use')[0];
