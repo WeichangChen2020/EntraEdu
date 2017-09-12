@@ -58,11 +58,11 @@
 		// 选择了之后正确
 		var use        = $(this).find('use')[0];
 		var lable      = $(this).find('lable')[0];
-		var option     = lable.innerHTML; //选项
-		var resArr     = {'正确':'right', '错误':'wrong'}; //用于下面 对->right 的转换
+		var option     = lable.innerHTML == '正确' ? '对' : '错'; //选项
+		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
 		var now       = new Date();
 		var time      = Math.ceil((now.getTime() - start_time.getTime())/1000);
-		
+		console.log(option);
 
 		var data = {
 			'option': option,
