@@ -111,12 +111,16 @@
 	  		alert('你还没有选择答案');
 	  		return false;
 	  	}
+		if (option.length == 1) {
+	  		alert('至少选择2个选项！');
+	  		return false;
+	  	}
 
 
 		var now       = new Date();
 		var time      = Math.ceil((now.getTime() - start_time.getTime())/1000);
 
-		var url = "{:U('Exercise/submit')}";
+		var url = "{:U('Rework/submit')}";
 		var data = {
 			'option': option,
 			'time'  : time,
@@ -129,7 +133,6 @@
         	for (x in click_times)
 			{
 				var use = $('#option-'+x.toLowerCase()).find('use')[0];
-
 				if (res.indexOf(x) != -1) {
 					if (option.indexOf(x) != -1) {
 						// 选择，正确答案：打对勾
