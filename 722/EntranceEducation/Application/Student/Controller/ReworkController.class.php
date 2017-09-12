@@ -37,7 +37,7 @@ class ReworkController extends Controller{
 		// p($quesid);
 		// echo $quesidArray[$WrongQuesid]['quesid'];
 		$wrongNum    = count('$quesidArray');
-		dump($quesid);
+		// dump($quesid);
 		$ques = $QUESTION->where(array('id' => $quesid))->find();
 		// p($ques);
 		
