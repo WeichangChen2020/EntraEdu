@@ -32,7 +32,7 @@
     
     <body ontouchstart="">
         <header class="demos-header">
-            <h1 class="demos-title">用户注册</h1>
+            <h1 class="demos-title" id="title">用户绑定</h1>
         </header>
         <div class="weui-tab">
            
@@ -113,7 +113,7 @@
         </div>
            
         <div class="weui_btn_area">
-            <a href="javascript:" id="submit" class="weui-btn weui-btn_primary" >注册</a>
+            <a href="javascript:" id="submit" class="weui-btn weui-btn_primary" >绑定</a>
         </div>
 
 
@@ -133,7 +133,14 @@
         $('#lb2').click(function(){
             $('#div1')[0].style.display="none";
             $('#div2')[0].style.display="block";
+            var title=document.getElementById("title");
+            var submit=document.getElemantById("submit");
+            title.innerHTML = "用户注册";
+            submit.innerHTML = "注册";
         });
+        
+
+
 
         var college,banji;//定义全局变量
 
