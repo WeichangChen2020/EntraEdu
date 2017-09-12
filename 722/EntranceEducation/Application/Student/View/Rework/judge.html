@@ -21,14 +21,9 @@
 	</head>
 	<body>
 		<div class="content">
-			<div class="c-pic"><span class="weui-badge">
-				<if condition="$ques.type eq '1'">
-					单选题
-				<elseif condition="$ques.type eq 2"/>
-					判断题
-				<elseif condition="$ques.type eq 3"/>
-					多选题
-				</if>
+			<span class="c-title">{$name}</span>
+			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" float: right;">还剩{$num}道错题未复习</label></p>
+			<div class="c-pic"><span class="weui-badge">{$ques.type}</span><span class="weui-badge" style="margin-left: 5px;">{$ques.chapter}
 			</span>{$ques.contents}</div>
 		</div>
 				<a href="javascript:;">
