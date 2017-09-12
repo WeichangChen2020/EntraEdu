@@ -13,6 +13,9 @@
 		    .c-pic{
 		    	margin-top: 40px;
 		    }
+		    .content{
+		    	margin-left: 0;
+		    }
         </style>
 
 	</head>
@@ -31,17 +34,17 @@
 				<a href="javascript:;">
 					<div class="option-area" id="option-right">
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
-					    <lable class="option-contents">对</lable>
+					    <lable class="option-contents">正确</lable>
 					</div>
 				</a>
 
 				<a href="javascript:;">
 					<div class="option-area" id="option-wrong">
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
-					    <lable class="option-contents">错</lable>
+					    <lable class="option-contents">错误</lable>
 					</div>
 				</a>
-			<a class="c-button" href="{:U('Rework/chose', array('WrongQuesid'=>session('WrongQuesid') + 1))}">下一题</a>
+			<a class="c-button" href="{:U('Rework/chose')}">下一题</a>
 		</div>
 
 	</body>
@@ -56,7 +59,7 @@
 		var use        = $(this).find('use')[0];
 		var lable      = $(this).find('lable')[0];
 		var option     = lable.innerHTML; //选项
-		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
+		var resArr     = {'正确':'right', '错误':'wrong'}; //用于下面 对->right 的转换
 		var now       = new Date();
 		var time      = Math.ceil((now.getTime() - start_time.getTime())/1000);
 		

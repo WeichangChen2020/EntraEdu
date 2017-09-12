@@ -13,6 +13,9 @@
 		    .c-pic{
 		    	margin-top: 40px;
 		    }
+		    .content{
+		    	margin-left: 0;
+		    }
         </style>
 
 	</head>
@@ -65,7 +68,7 @@
 			<div id="right_answer"></div>
 
 			<a class="c-button" id="submit" href="javascript:;">确定</a>
-			<a class="c-button" href="{:U('Rework/chose', array('WrongQuesid'=>session('WrongQuesid') + 1))}">下一题</a>
+			<a class="c-button" href="{:U('Rework/chose')}>下一题</a>
 		</div>
 
 	</body>
