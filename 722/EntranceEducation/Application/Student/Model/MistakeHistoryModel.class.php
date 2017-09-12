@@ -36,10 +36,11 @@ class MistakeHistoryModel extends Model {
 
 		$Model = new \Think\Model();
 		$num = $Model->query($sql);
+		// dump($num);
 		if (empty($num)) {
 			return false;
 		}
-		return $num['quesid'];
+		return $num[0]['quesid'];
 	}
 
 	//获取题目信息
