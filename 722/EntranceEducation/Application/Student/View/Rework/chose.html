@@ -15,6 +15,7 @@
 		    }
 		    .content{
 		    	margin-left: 0;
+		    	margin-right: 0;
 		    }
         </style>
 
@@ -25,7 +26,6 @@
 			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" float: right;">还剩{$num}道错题未复习</label></p>
 			<div class="c-pic"><span class="weui-badge">{$ques.type}</span><span class="weui-badge" style="margin-left: 5px;">{$ques.chapter}
 			</span>{$ques.contents}</div>
-		</div>
 			<if condition="$ques.option_a neq ''">
 				<a href="javascript:;">
 					<div class="option-area" id="option-a">
@@ -60,6 +60,7 @@
 					</div>
 				</a>
 			</if>
+		</div>
 		<a class="c-button" href="{:U('Rework/chose')}">下一题</a>
 	</div>
 
