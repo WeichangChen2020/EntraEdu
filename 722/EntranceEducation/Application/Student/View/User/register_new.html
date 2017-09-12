@@ -125,16 +125,19 @@
     <script>
     var data = {};
 
-
+        var title=document.getElementById("title");
+        var submit=document.getElementById("submit");
+        
         $('#lb1').click(function(){
             $('#div2')[0].style.display="none";
             $('#div1')[0].style.display="block";
+            title.innerHTML = "用户绑定";
+            submit.innerHTML = "绑定";
+            
         });
         $('#lb2').click(function(){
             $('#div1')[0].style.display="none";
             $('#div2')[0].style.display="block";
-            var title=document.getElementById("title");
-            var submit=document.getElementById("submit");
             title.innerHTML = "用户注册";
             submit.innerHTML = "注册";
         });
