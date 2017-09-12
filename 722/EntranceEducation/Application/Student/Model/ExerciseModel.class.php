@@ -17,7 +17,7 @@ class ExerciseModel extends Model {
 	 * @var string openid
 	 * @return array(name, count, rig_cot, wrg_cot, sum)姓名,答题总数,正确数，错误数，题库总数
 	 */
-	public function getExercseRecord($openid = '') {
+	public function getExerciseRecord($openid = '') {
 
 		//答题量
 		$count        = count($this->where(array('openid'=>$openid))->group('quesid')->select());
