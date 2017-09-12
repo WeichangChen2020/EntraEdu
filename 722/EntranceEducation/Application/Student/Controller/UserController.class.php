@@ -111,7 +111,7 @@ class UserController extends Controller {
             'academy'    => $college,//学院
             'class'      => $banji,//班级
             'is_newer'   => $isNewer,
-            'headimgurl' => $headimgurl;
+            'headimgurl' => $headimgurl,
             'time'       => date('Y-m-d H:i:s'),
         );
 
