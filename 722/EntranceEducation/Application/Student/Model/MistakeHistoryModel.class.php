@@ -12,6 +12,7 @@ class MistakeHistoryModel extends Model {
 			SELECT * FROM ee_mistake_history
 			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
 
+		// dump($sql);die;	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 		// dump($res);
@@ -23,6 +24,11 @@ class MistakeHistoryModel extends Model {
 		// AND NOT EXISTS (
 		// 	SELECT * FROM ee_mistake_history
 		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
+		// SELECT DISTINCT quesid FROM ee_exercise
+		// where openid = 'ohd41t3hENwHiNZTFBlbs' AND result = '0'
+		// AND NOT EXISTS (
+		// 	SELECT * FROM ee_mistake_history
+		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbs');
 		return $res[0]['quesid'];
 	}
 
@@ -40,7 +46,8 @@ class MistakeHistoryModel extends Model {
 		if (empty($num)) {
 			return false;
 		}
-		return $num[0]['quesid'];
+		// echo $num[0]['COUNT(quesid)'];
+		return $num[0]['COUNT(quesid)'];
 	}
 
 	//获取题目信息
