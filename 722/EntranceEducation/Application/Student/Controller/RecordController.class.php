@@ -67,6 +67,8 @@ class RecordController extends Controller {
 		//echo $userAns;
 		//die();
 		$rightAns = $QUESTION->getRightAnswer($quesId);
+        $wrong = 0;
+        if($userAns!=$rightAns) $wrong = 1;
 		/*用于判断多选题的正确答案中是否包含某个选项，暂时只想到这个方法，代码显得繁琐*/
 		// $array = array(
 		// 	'a' => 0,
@@ -89,6 +91,7 @@ class RecordController extends Controller {
 			// $this->assign('nextid',$nextid);
 			$this->assign('userAns',$userAns);
 			$this->assign('rightAns',$rightAns);
+            $this->assign('wrong',$wrong);
 
 			// 对题目类型判断 不同类型进入不同的页面
 			if ($quesItem['type'] == '单选题') {
