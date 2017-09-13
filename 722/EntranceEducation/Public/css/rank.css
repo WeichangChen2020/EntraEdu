@@ -6,12 +6,10 @@
 	position: relative;
 }
 .column{
-	position: relative;
 	background-color: #fff;
 	/*border-radius: 3px;*/
 	border-top: 1px solid gray;
 	line-height: 1.5rem;
-	top: -1px;
 }
 .NAC,.GAT{
 	text-align: left;
