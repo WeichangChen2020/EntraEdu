@@ -37,3 +37,8 @@ margin-top:20px;
 ul li { list-style-type: none; width: 23%; display: inline-block; text-align: center;} 
 .icon_progress { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; margin-right: 6px} 
 .title-progerss {border-bottom:1px  solid #ddd; padding-bottom: 5px;}
+
+/*question Item index*/
+.placeholder {width:30px; height:30px; border-radius:30px; border:1px solid #4bc2ff; line-height: 30px; text-align: center; margin: auto;}
+.weui-flex { padding-top: 5px;height: 40px;}
+.helf-title {line-height: 2.2rem; font-size: 14px;text-align: center; margin: 0 20px;}
