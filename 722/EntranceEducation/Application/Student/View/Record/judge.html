@@ -16,34 +16,17 @@
 			<div class="c-table">
 
 				<!-- option exit -->
-				
 				<a href="javascript:;">
 					<div class="option-area" id="option-right">
-					<if condition="$rightAns eq '对'">
-						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-					    <lable class="option-contents">正确</lable>
-                    <elseif condition="($wrong eq '1') AND ($userAns eq '对') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">正确</lable>                         
-					<else />
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
 					    <lable class="option-contents">正确</lable>
-					</if>
 					</div>
 				</a>
 
 				<a href="javascript:;">
 					<div class="option-area" id="option-wrong">
-					<if condition="$rightAns eq '错'">
-						<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-					    <lable class="option-contents">错误</lable>
-                    <elseif condition="($wrong eq '1') AND ($userAns eq '错') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">错误</lable>                         
-					<else />
 					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
 					    <lable class="option-contents">错误</lable>
-					</if>    
 					</div>
 				</a>
 
@@ -57,3 +40,29 @@
 	</body>
 </html>
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+		<script type="text/javascript">
+			var res = "{$rightAns}";
+			var option = "{$recordArr.answer}";
+			//var use = document.getElementById("use");
+			var use = document.getElementsByTagName("use");
+			var myarray = new Array('对','错');
+			
+			for(var i=0;i<myarray.length;i++){
+				var x = myarray[i];
+				if (res.indexOf(x)!=-1) {
+					if(option.indexOf(x)!=-1){
+						//document.write(x);
+						use[i].setAttribute("xlink:href","#icon-zhengque1");
+					}else{
+						//var icon_attr = use.getAttribute('xlink:href');
+						use[i].setAttribute("xlink:href","#icon-option-right");
+					}
+				}else{
+					if(option.indexOf(x)!=-1) {
+						use[i].setAttribute("xlink:href","#icon-option-wrong");
+					}else{
+
+					}
+				}
+			}
+		</script>

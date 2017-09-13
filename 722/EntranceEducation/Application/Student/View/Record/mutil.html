@@ -19,16 +19,8 @@
 				<if condition="$quesItem.option_a neq ''">
 					<a href="javascript:;">
 						<div class="option-area" id="option-a">
-						<if condition="$a eq '1'">
-							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_a}</lable>
-                        <elseif condition="($wrong eq '1') AND ($a eq '1') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_a}</lable>                            
-						<else />
 						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_a}</lable>
-						</if>
 						</div>
 					</a>
 				</if>
@@ -36,16 +28,8 @@
 				<if condition="$quesItem.option_b neq ''">
 					<a href="javascript:;">
 						<div class="option-area" id="option-b">
-						<if condition="$b eq '1'">
-							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_b}</lable>
-                        <elseif condition="($wrong eq '1') AND ($b eq '1') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_b}</lable>     
-						<else />
 						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_b}</lable>
-						</if>
 						</div>
 					</a>
 				</if>
@@ -53,16 +37,8 @@
 				<if condition="$quesItem.option_c neq ''">
 					<a href="javascript:;">
 						<div class="option-area" id="option-c">
-						<if condition="$c eq '1'">
-							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_c}</lable>
-                        <elseif condition="($wrong eq '1') AND ($c eq '1') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_c}</lable> 
-						<else />
 						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_c}</lable>
-						</if>
 						</div>
 					</a>
 				</if>
@@ -70,21 +46,11 @@
 				<if condition="$quesItem.option_d neq ''">
 					<a href="javascript:;">
 						<div class="option-area" id="option-d">
-						<if condition="$d eq '1'">
-							<span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-right"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_d}</lable>
-                        <elseif condition="($wrong eq '1') AND ($d eq '1') "/>
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-wrong"></use></svg></span>
-						    <lable class="option-contents">{$quesItem.option_d}</lable>                             
-						<else />
 						    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
 						    <lable class="option-contents">{$quesItem.option_d}</lable>
-						</if>
 						</div>
 					</a>
 				</if>
-
-<!-- 				<div class="c-pic"><span class="weui-badge">我的答案：{$rightAns}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span></div> -->
 
 				<div id="right_answer"></div>
 				
@@ -100,3 +66,29 @@
 	</body>
 </html>
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+		<script type="text/javascript">
+			var res = "{$rightAns}";
+			var option = "{$recordArr.answer}";
+			//var use = document.getElementById("use");
+			var use = document.getElementsByTagName("use");
+			var myarray = new Array('A','B','C','D');
+			
+			for(var i=0;i<myarray.length;i++){
+				var x = myarray[i];
+				if (res.indexOf(x)!=-1) {
+					if(option.indexOf(x)!=-1){
+						//document.write(x);
+						use[i].setAttribute("xlink:href","#icon-zhengque1");
+					}else{
+						//var icon_attr = use.getAttribute('xlink:href');
+						use[i].setAttribute("xlink:href","#icon-option-right");
+					}
+				}else{
+					if(option.indexOf(x)!=-1) {
+						use[i].setAttribute("xlink:href","#icon-option-wrong");
+					}else{
+
+					}
+				}
+			}
+		</script>
