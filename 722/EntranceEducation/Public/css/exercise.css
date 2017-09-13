@@ -32,3 +32,8 @@ margin-top:20px;
 .option-area {color: #000; }
 .option-contents {display: block; margin-left: 40px; padding: 13px 10px 13px 0; line-height: 25px; } 
 .weui-badge {display: inline-block; padding: .15em .4em; min-width: 8px; border-radius: 18px; background-color: #4bc2ff; color: #fff; line-height: 1.2; text-align: center; font-size: 12px; vertical-align: middle; } 
+
+/*progress*/
+ul li { list-style-type: none; width: 23%; display: inline-block; text-align: center;} 
+.icon_progress { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; margin-right: 6px} 
+.open-popup {border-bottom:1px  solid #ddd; padding-bottom: 5px;}

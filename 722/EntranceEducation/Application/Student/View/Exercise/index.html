@@ -6,11 +6,33 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<script src="__PUBLIC__/font/iconfont.js"></script>
+		<style type="text/css">
+		ul li { list-style-type: none; width: auto;  display: inline-block;} 
+.icon_progress { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; margin-right: 6px} 
+.open-popup {border-bottom:1px  solid #ddd; padding-bottom: 5px;}
+		</style>
+
 	</head>
 	<body>
 		<div class="content">
-			<span class="c-title">{$record.name}</span>
-			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确{$record.rig_cot}&nbsp;错误{$record.wrg_cot}&nbsp;进度{$record.count}/{$record.sum}</label></p>
+			<span class="c-title">{$record.name|default="张三"}</span>
+			<div class="open-popup" data-target="#half" style="">
+				<ul>
+
+					<li style="width: 69%; text-align: left;">
+						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$record.count|default="24"}/{$record.sum|default='112'}
+						</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
+					</li>
+					<li style="width: 29%;text-align: right; ">
+						<!-- <span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span> -->
+					</li>
+					
+				</ul>
+			</div>
+
+			
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
