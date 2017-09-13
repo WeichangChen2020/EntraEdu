@@ -74,6 +74,97 @@
 			</div>
 			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'), 'typeid'=>session('typeid')))}">下一题</a>
 		</div>
+
+
+		<!-- 试题索引 -->
+		<div class='demos-content-padded'></div>
+
+		<div id="half" class='weui-popup__container popup-bottom'>
+		    <div class="weui-popup__overlay"></div>
+		    <div class="weui-popup__modal">
+		        <div class="toolbar">
+			        <div class="toolbar-inner" >
+				       <div class="helf-title">这是标题</div>				       
+				    </div>
+		            
+		        </div>
+		        <div class="modal-content">
+		            <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">1</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">2</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">3</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">8</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">9</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">10</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">11</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">12</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+				    <div class="weui-flex">
+				      <div class="weui-flex__item"><div class="placeholder">13</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
+				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				    </div>
+
+		        </div>
+		    </div>
+		</div>
+
 	</body>
 </html>
 
@@ -129,4 +220,14 @@
 			$('#collect_tip').html('收藏');
 		}
 	});
+
+
+	// 点击后monup 显示题目索引
+	$(document).on("click", ".weui-popup-modal", function() {
+        console.log("open popup");
+    }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+    });
+
+
 </script>
