@@ -15,7 +15,7 @@ a{text-decoration: none;}
 .c-select {float: left; margin-top: 20px; margin-right: 10px;}
 .c-introduce p{ text-indent: 24px; color: #666; font-size: 13px; line-height: 20px;}
 .c-inline{ width:20%; height: 10px; background: #cfcfcf; float: left; font-style: normal; margin-top: 20px;}
-.c-table span{ float: left; display: block; font-size: 12px;}
+.c-table span{ display: block; font-size: 14px;}
 .c-many{ margin-left: 10px;}
 .c-button{height: 42px; color: #fff; background: #4bc2ff; text-align: center; display: block; line-height: 42px; margin-top: 15px; border-radius: 5px;}
 .skillbar-bar{ height:10px; float:left; display:block;}
