@@ -10,7 +10,23 @@
 	<body>
 		<div class="content">
 			<span class="c-title">{$record.name}</span>
-			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确{$record.rig_cot}&nbsp;错误{$record.wrg_cot}&nbsp;进度{$record.count}/{$record.sum}</label></p>
+			
+			<div class="open-popup" data-target="#half" style="">
+				<ul>
+
+					<li style="width: 69%; text-align: left;">
+						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$record.count|default="24"}/{$record.sum|default='112'}
+						</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
+					</li>
+					<li style="width: 29%;text-align: right; ">
+						<!-- <span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span> -->
+					</li>
+					
+				</ul>
+			</div>
+			
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
