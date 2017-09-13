@@ -13,11 +13,10 @@
 	</head>
 	<body>
 		<div class="content">
-			<span class="c-title">{$record.name|default="张三"}</span>
-			<div class="open-popup" data-target="#half" style="">
+			<span class="c-title">{$record.name}</span>
+				<div class="title-progerss">
 				<ul>
-
-					<li style="width: 74%; text-align: left;">
+					<li class="open-popup" data-target="#half" style="width: 74%; text-align: left;">
 						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$record.count|default="24"}/{$record.sum|default='112'}
 						</span>
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
