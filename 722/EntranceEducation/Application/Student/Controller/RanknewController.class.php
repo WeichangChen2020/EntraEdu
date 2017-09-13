@@ -21,7 +21,7 @@ class RanknewController extends Controller {
         foreach($rankList as $key=>$value){
         	if ($value['openid']==$openId) {
         		$me['rank'] = $key +1;
-        		$me['grade'] = $value['COUNT(result)'];
+        		$me['grade'] = $value['SUM(result)'];
         		continue;
         	}
 		}
