@@ -26,7 +26,7 @@ class RecordController extends Controller {
 		$RECORD = D('exercise');
 		$QUESTION = D('Questionbank');
 		$record = $RECORD->getExerciseRecord($openId);
-		//var_dump($record);
+		// var_dump($record);
 		//die();
 		$num = $record['count'];//总答题数
 		//echo $num;
@@ -61,37 +61,20 @@ class RecordController extends Controller {
 		session('nextid',$nextid);
 		$quesItem  = $QUESTION->getQuestion($quesId);
 		//getQuestion方法当$quesId为空时，返回第一题
-		//$quesItem  = $QUESTION->where(array('id'=>$quesId))->find();
-		//var_dump($quesItem);
-		$userAns = $RECORD->where(array('openid'=>$openId,'quesid'=>$quesId))->getfield('answer');
-		//echo $userAns;
-		//die();
+		
 		$rightAns = $QUESTION->getRightAnswer($quesId);
-        $wrong = 0;
-        if($userAns!=$rightAns) $wrong = 1;
-		/*用于判断多选题的正确答案中是否包含某个选项，暂时只想到这个方法，代码显得繁琐*/
-		// $array = array(
-		// 	'a' => 0,
-		// 	'b' => 0,
-		// 	'c' => 0,
-		// 	'd' => 0,
-		// )
-		$a = $b = $c = $d =0; 
-		//var_dump($array);
-		//die(); 
-		if(strstr($rightAns,"A")) $a = 1;
-		if(strstr($rightAns,"B")) $b = 1;
-		if(strstr($rightAns,"C")) $c = 1;
-		if(strstr($rightAns,"D")) $d = 1;
+		$recordArr = $RECORD->where(array('openid'=>$openId,'quesid'=>$quesId))->find();
+		//var_dump($recordArr);
+		//echo "用户答案：".$recordArr['answer']."<br/>";
+		//echo "正确答案：".$rightAns."<br/>";
+		//echo $recordArr['result'];
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
 			$this->assign('record', $record);
 			$this->assign('quesItem', $quesItem);
-			// $this->assign('nextid',$nextid);
-			$this->assign('userAns',$userAns);
 			$this->assign('rightAns',$rightAns);
-            $this->assign('wrong',$wrong);
+			$this->assign('recordArr',$recordArr);
 
 			// 对题目类型判断 不同类型进入不同的页面
 			if ($quesItem['type'] == '单选题') {
@@ -99,10 +82,7 @@ class RecordController extends Controller {
 			} else if ($quesItem['type'] == '判断题') {
 				$this->display('judge');
 			} else if ($quesItem['type'] == '多选题') {
-				$this->assign('a',$a);
-				$this->assign('b',$b);
-				$this->assign('c',$c);
-				$this->assign('d',$d);
+
 				$this->display('mutil');
 			}
 				 
