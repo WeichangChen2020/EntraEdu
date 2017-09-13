@@ -12,7 +12,7 @@ class RecordController extends Controller {
         session('openId',$openId);
 		//echo $openId;
 
-		$this->display();
+		$this->display('explain');
 	}
 
 	/*
