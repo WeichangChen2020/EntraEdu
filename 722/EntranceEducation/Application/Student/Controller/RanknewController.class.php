@@ -32,7 +32,7 @@ class RanknewController extends Controller {
         	$rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
 
 		}
-		dump($rankList);
+		// dump($rankList);
 
 		$this->assign('me',$me);
 		$this->assign('rankList',$rankList);
