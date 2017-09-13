@@ -30,9 +30,6 @@ class RanknewController extends Controller {
         		break;
         	}
         	$rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-            if ($rankList[$key]['info']['class'] == null ) {
-                $rankList[$key]['info']['class'] = "非新生用户！";
-            }
 		}
 		// dump($rankList);
 
