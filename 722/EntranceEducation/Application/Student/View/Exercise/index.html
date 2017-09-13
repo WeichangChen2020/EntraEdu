@@ -17,14 +17,14 @@
 			<div class="open-popup" data-target="#half" style="">
 				<ul>
 
-					<li style="width: 69%; text-align: left;">
+					<li style="width: 64%; text-align: left;">
 						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$record.count|default="24"}/{$record.sum|default='112'}
 						</span>
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
 					</li>
-					<li style="width: 29%;text-align: right; ">
-						<!-- <span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span> -->
+					<li id ="collect" style="width: 24%;text-align: right; ">
+						<span ><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg><span id="collect_tip">收藏</span></span>
 					</li>
 					
 				</ul>
@@ -110,4 +110,21 @@
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
 	})	
+
+
+	// 点击后收藏
+    $('#collect').click(function (){
+		// 用点点击数次数 偶数次数来判定是否选择
+		click_select ++;
+		var selec_icon = $(this).find('use')[0];
+
+		
+		if (click_select % 2 == 1) {
+			selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
+			$('#collect_tip').html('已收藏');
+		} else {
+			selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
+			$('#collect_tip').html('收藏');
+		}
+	});
 </script>
