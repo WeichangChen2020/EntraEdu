@@ -15,7 +15,7 @@
 }
 .NAC,.GAT{
 	text-align: left;
-	padding-top: 2px;
+	padding-top: 8px;
 	line-height: 30px;
 }
 .NAC{
@@ -23,8 +23,9 @@
 	left:3rem;
 }
 .GAT{
+	width: 2.3rem;
 	position: relative;
-	top:4px;
+	top:13px;
 	text-align: center;
 }
 .name{
