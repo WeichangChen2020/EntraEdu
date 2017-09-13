@@ -3,13 +3,17 @@
 	<head>
 		<meta charset="utf-8">
 		<title>随堂测试</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<include file="./Public/weui2.0/__head.html"/>
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<script src="__PUBLIC__/font/iconfont.js"></script>
 		<style type="text/css">
-		
-		</style>
+			/*progress*/
+			.placeholder {width:30px; height:30px; border-radius:30px; border:1px solid #4bc2ff; line-height: 30px; text-align: center; margin: auto;}
+			.weui-flex { padding-top: 5px;height: 40px;}
+			.helf-title {line-height: 2.2rem; font-size: 14px;text-align: center; margin: 0 20px;}
+			.title-progerss {border-bottom:1px  solid #ddd; padding-bottom: 5px;}
 
+		</style>
 	</head>
 	<body>
 		<div class="content">
@@ -29,7 +33,6 @@
 				</ul>
 			</div>
 
-			
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
@@ -75,8 +78,6 @@
 			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'), 'typeid'=>session('typeid')))}">下一题</a>
 		</div>
 
-
-		<!-- 试题索引 -->
 		<div class='demos-content-padded'></div>
 
 		<div id="half" class='weui-popup__container popup-bottom'>
@@ -164,18 +165,22 @@
 		        </div>
 		    </div>
 		</div>
+    
 
+		
 	</body>
 </html>
 
 <include file="./Public/weui2.0/__foot.html"/>
 <script type="text/javascript">
 	// 获取页面加载的时间
-    var start_time = new Date(); 
+    var start_time = new Date();  
 
     // 定义收藏点击的次数
-    var click_select = 0; 
+    var click_select = 0;
 
+
+    // 点击选项后上传答案
 	$('.option-area').one('click',function(){
 		// 选择了之后正确
 		var use       = $(this).find('use')[0];
@@ -202,32 +207,35 @@
 
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
-	})	
+	})
 
 
-	// 点击后收藏
+	// 点击后monup
+	$(document).on("click", ".weui-popup-modal", function() {
+        console.log("open popup");
+    }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+    });
+
+    // 点击选项后上传答案
     $('#collect').click(function (){
-		// 用点点击数次数 偶数次数来判定是否选择
+		// 用点击基数次数 偶数次数来判定是否选择
 		click_select ++;
 		var selec_icon = $(this).find('use')[0];
 
-		
+
 		if (click_select % 2 == 1) {
+			// 收藏
 			selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
 			$('#collect_tip').html('已收藏');
 		} else {
+			// 取消收藏
 			selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
 			$('#collect_tip').html('收藏');
 		}
 	});
 
 
-	// 点击后monup 显示题目索引
-	$(document).on("click", ".weui-popup-modal", function() {
-        console.log("open popup");
-    }).on("close", ".weui-popup-modal", function() {
-        console.log("close popup");
-    });
 
 
 </script>
