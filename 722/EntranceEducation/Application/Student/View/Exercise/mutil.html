@@ -21,7 +21,7 @@
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
 					</li>
 					<li style="width: 29%;text-align: right; ">
-						<!-- <span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span> -->
+						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span>
 					</li>
 					
 				</ul>
@@ -179,6 +179,26 @@
         $(this).hide();
 
     });
+
+    // 定义收藏点击的次数
+    var click_select = 0;
+    // 点击选项后上传答案
+    $('#collect').click(function (){
+		// 用点击基数次数 偶数次数来判定是否选择
+		click_select ++;
+		var selec_icon = $(this).find('use')[0];
+
+		if (click_select % 2 == 1) {
+			// 收藏
+			selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
+			$('#collect_tip').html('已收藏');
+
+		} else {
+			// 取消收藏
+			selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
+			$('#collect_tip').html('收藏');
+		}
+	});
     
 
 </script>
