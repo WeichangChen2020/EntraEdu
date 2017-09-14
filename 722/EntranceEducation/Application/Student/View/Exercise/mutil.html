@@ -11,17 +11,16 @@
 		<div class="content">
 			<span class="c-title">{$record.name}</span>
 			
-			<div class="open-popup" data-target="#half" style="">
+			<div class="title-progerss">
 				<ul>
-
-					<li style="width: 69%; text-align: left;">
-						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$record.count|default="24"}/{$record.sum|default='112'}
+					<li class="open-popup" data-target="#half" style="width: 74%; text-align: left;">
+						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu"></use></svg>{$quesItem.id|default="24"}/{$record.sum|default='112'}
 						</span>
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
 						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
 					</li>
-					<li style="width: 29%;text-align: right; ">
-						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg>收藏</span>
+					<li id ="collect" style="width: 24%;text-align: right; ">
+						<span ><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg><span id="collect_tip">收藏</span></span>
 					</li>
 					
 				</ul>
