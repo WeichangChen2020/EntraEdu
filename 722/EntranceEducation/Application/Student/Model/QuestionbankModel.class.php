@@ -78,7 +78,7 @@ class QuestionbankModel extends Model{
 	 */
 	public function getRightAnswer($qs_id = 1) {
 
-		$right_answer = $this->where(array('id'=>$qs_id))->getField('right_answer');
+		$right_answer = trim($this->where(array('id'=>$qs_id))->getField('right_answer'));
 
 		return $right_answer;
 	}
