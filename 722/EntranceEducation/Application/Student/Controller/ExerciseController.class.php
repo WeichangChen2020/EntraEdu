@@ -58,12 +58,14 @@ class ExerciseController extends Controller{
 
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
+		$quesList  = D('Questionbank')->field('id')->select();
 
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
 			$this->assign('record', $record);
 			$this->assign('quesItem', $quesItem);
+			$this->assign('quesList', $quesList);
 
 			// 对题目类型判断 不同类型进入不同的页面
 			if ($quesItem['type'] == '单选题') {

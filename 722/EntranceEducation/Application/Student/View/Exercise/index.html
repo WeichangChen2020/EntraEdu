@@ -8,10 +8,15 @@
 		<script src="__PUBLIC__/font/iconfont.js"></script>
 		<style type="text/css">
 			/*progress*/
-			.placeholder {width:30px; height:30px; border-radius:30px; border:1px solid #4bc2ff; line-height: 30px; text-align: center; margin: auto;}
+			.placeholder {width:30px; height:30px; border-radius:30px; border:1px solid #4bc2ff; line-height: 30px; text-align: center; margin: auto; color: #353535;}
 			.weui-flex { padding-top: 5px;height: 40px;}
 			.helf-title {line-height: 2.2rem; font-size: 14px;text-align: center; margin: 0 20px;}
 			.title-progerss {border-bottom:1px  solid #ddd; padding-bottom: 5px;}
+			.weui-popup__modal {color: #000;}
+			/*在做 d8e1ef
+			对的 rgba(231,247,253,1)*/
+			/* 错的 boder #fac2c2/
+			/* 错的 backgroud-color #fce8e8	*/
 
 		</style>
 	</head>
@@ -89,85 +94,45 @@
 				    </div>
 		            
 		        </div>
-		        <div class="modal-content">
+		        <div class="modal-content" style="height: auto; max-height: 400px; color: #000;">
+
+		        <!-- sample -->
+					<!-- right c3edfd -->
+
 		            <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">1</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">2</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">3</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">2</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">3</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">4</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a>
+				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a>
 				    </div>
+
+					<!-- 分 首列 尾列 都不是 三种情况考虑 -->
+
+		        	<volist name="quesList" id="quesList" key="k" >
+		        		<if condition="($k)%7 eq 1">
+		        			<div class="weui-flex">
+							    <a class="weui-flex__item" href="javascript:;"><div class="placeholder">{$quesList.id}</div></a>
+						<elseif condition="($k)%7 eq 0"/>
+							<a class="weui-flex__item" href="javascript:;"><div class="placeholder">{$quesList.id}</div></a>
+							    </div>
+						<else /> 
+							<a class="weui-flex__item" href="javascript:;"><div class="placeholder">{$quesList.id}</div></a>
+						</if>
+					</volist>
+
+
+					
 
 				
 
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">8</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
-
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">9</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
-
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">10</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
-
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">11</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
-
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">12</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
-
-				    <div class="weui-flex">
-				      <div class="weui-flex__item"><div class="placeholder">13</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">222</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">33</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">4</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">5</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">6</div></div>
-				      <div class="weui-flex__item"><div class="placeholder">7</div></div>
-				    </div>
+				   
 
 		        </div>
 		    </div>
 		</div>
-    
-
-		
 	</body>
 </html>
 
@@ -223,18 +188,17 @@
 		click_select ++;
 		var selec_icon = $(this).find('use')[0];
 
-
 		if (click_select % 2 == 1) {
 			// 收藏
 			selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
 			$('#collect_tip').html('已收藏');
+
 		} else {
 			// 取消收藏
 			selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
 			$('#collect_tip').html('收藏');
 		}
 	});
-
 
 
 
