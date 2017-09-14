@@ -32,6 +32,7 @@ class RanknewController extends Controller {
 		}
 		// dump($rankList);
 
+        $this->assign('length',COUNT($rankList));
 		$this->assign('me',$me);
 		$this->assign('rankList',$rankList);
 		$this->display();
