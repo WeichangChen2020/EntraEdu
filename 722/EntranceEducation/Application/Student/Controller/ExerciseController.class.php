@@ -58,8 +58,8 @@ class ExerciseController extends Controller{
 
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
-		$quesList  = D('Questionbank')->field('id')->select();
-
+		$quesList  = D('Questionbank')->getQuesList($openid);
+		// p($quesList);
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
@@ -114,7 +114,7 @@ class ExerciseController extends Controller{
 	}
 
 	public function test() {
-		 D('Questionbank')->getUnfishRecord();
+		D('Questionbank')->getQuesList('ohd41t0Bx0TshKrf18RvG9PuH8DI');
 	}
 
 

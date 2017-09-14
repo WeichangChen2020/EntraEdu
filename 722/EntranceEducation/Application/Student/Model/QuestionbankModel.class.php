@@ -207,6 +207,36 @@ class QuestionbankModel extends Model{
 // SELECT * FROM ee_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0' AND NOT EXISTS (SELECT * FROM ee_mistake_history where ee_exercise.quesid = ee_mistake_history.id AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw');
 
 
+	/**
+	 * getQuesList 获取用题目列表
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-114 13:18 Authors
+	 * @var openid
+	 * @return arrayList( 'quesid', 'result')
+	 */
+	public function getQuesList($openid) {
+
+		$EXER = D('exercise');
+		$quesList = $this->field('id')->select();
+		foreach ($quesList as $key => $value) {
+			$res = $EXER->where(array('quesid'=>$value['id'], 'openid'=>$openid))->getField('result');
+			// 1 => 'placeholder-right' 
+			// 0 => 'placeholder-wrong' 
+			// else => 'placeholder' 
+			if(!isset($res)) {
+				$quesList[$key]['result'] = 'placeholder';	
+				$quesList[$key]['href'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));	
+			} else if($res == 0) {
+				$quesList[$key]['result'] = 'placeholder-wrong';
+			} else if($res == 1) {
+				$quesList[$key]['result'] = 'placeholder-right';
+			} 
+		}
+
+		return $quesList;
+	}
+
+
 	
 
 }
