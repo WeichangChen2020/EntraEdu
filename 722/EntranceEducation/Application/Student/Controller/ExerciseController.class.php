@@ -45,12 +45,16 @@ class ExerciseController extends Controller{
 
 		$chapid = I('chapid'); if(empty($chapid)) {$chapid = 0; }
 		$typeid = I('typeid'); if(empty($typeid)) {$typeid = 0; }
+		$quesid = I('quesid'); 
 
 		session('chapid', $chapid);
 		session('typeid', $typeid);
 		// 首次金进入，否则点击下一题进入
 		
-		$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
+		if (empty($quesid)) {
+			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
+		}		
+		
 
 		if (false == $quesid) {
 			$this->display('tip'); die;
