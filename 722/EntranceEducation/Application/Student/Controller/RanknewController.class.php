@@ -18,17 +18,16 @@ class RanknewController extends Controller {
         // dump($openId);
         $rankList = D('exercise')->getRankList();
         $me = array();
+  //       获取"我的成绩与排名"
+  //       foreach($rankList as $key=>$value){
+  //       	if ($value['openid']==$openId) {
+  //       		$me['rank'] = $key +1;
+  //       		$me['grade'] = $value['sum(result)'];
+  //       		break;
+  //       	}
+		// }
         foreach($rankList as $key=>$value){
-        	if ($value['openid']==$openId) {
-        		$me['rank'] = $key +1;
-        		$me['grade'] = $value['sum(result)'];
-        		continue;
-        	}
-		}
-        foreach($rankList as $key=>$value){
-        	if ($key == 10) {
-        		break;
-        	}
+
         	$rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
 		}
 		// dump($rankList);
