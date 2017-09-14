@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>随堂测试</title>
+		<title>自由练习</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<script src="__PUBLIC__/font/iconfont.js"></script>
@@ -189,13 +189,21 @@
 
 		if (click_select % 2 == 1) {
 			// 收藏
-			selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
-			$('#collect_tip').html('已收藏');
+			var url = "{:U('Collect/collect')}";
+			var data = {};
+			$.post(url, data, function(res){
+	          	selec_icon.setAttribute('xlink:href', '#icon-shoucang11');
+				$('#collect_tip').html('已收藏');
+	        });
 
 		} else {
 			// 取消收藏
-			selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
-			$('#collect_tip').html('收藏');
+			var url = "{:U('Collect/cancel')}";
+			var data = {};
+			$.post(url, data, function(res){
+				selec_icon.setAttribute('xlink:href', '#icon-shoucang1');
+				$('#collect_tip').html('收藏');
+			});
 		}
 	});
     
