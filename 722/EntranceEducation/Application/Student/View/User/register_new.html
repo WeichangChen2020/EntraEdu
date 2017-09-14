@@ -227,7 +227,7 @@
               $.post(url,data,function(res){
                 
                 if(res != 'success') {
-                    alert(res);
+                    $.alert(res,"确定");
                 } else {
                     $.showLoading();
                     setTimeout(function() {
