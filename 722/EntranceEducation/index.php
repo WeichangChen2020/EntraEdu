@@ -15,7 +15,7 @@ header("Content-Type:text/html;charset=utf-8");//字符编码
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 
-define('BUILD_MODEL_LIST','Student,Teacher,Admin');
+define('BUILD_MODEL_LIST','Student,Admin');
 //3个模块
 define('BIND_MODULE','Student');
 //默认模块
