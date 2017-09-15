@@ -31,7 +31,7 @@ class RecordController extends Controller {
 		$num = $record['count'];//总答题数
 		//echo $num;
 		//die();
-		$idArr = array(); 
+		$quesIdArr = array(); 
 		for ($i=0; $i < $num; $i++) { 
 			$quesArray = $RECORD->where(array('openid'=>$openId))->group('quesid')->select();
 			// var_dump($quesArr);//二维数组
