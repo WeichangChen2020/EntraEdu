@@ -50,4 +50,20 @@ class CollectRecordModel extends Model {
 			return false;//未收藏
 		}				
 	}
+
+	/**
+	 * 获取用户的收藏题数
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 16:36Authors
+	 * @var string openid
+	 * @return count 收藏数
+	 */
+	public function getCollectNum($openid = '') {
+
+		//收藏量
+		$collectNum = count($this->where(array('openid'=>$openid))->select());
+		
+		return $collectNum;
+	}
+
 }
