@@ -32,13 +32,8 @@ class RecordController extends Controller {
 		//echo $num;
 		//die();
 		$quesIdArr = array(); 
-		for ($i=0; $i < $num; $i++) { 
-			$quesArray = $RECORD->where(array('openid'=>$openId))->group('quesid')->select();
-			// var_dump($quesArr);//二维数组
-			$quesArr = $quesArray[$i];
-			$questionId = $quesArr['quesid'];
-			$quesIdArr[$i] = $questionId;
-		}
+
+        $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		//var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
