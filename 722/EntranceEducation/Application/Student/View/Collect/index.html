@@ -182,8 +182,12 @@
 						//document.write(x);
 						use[y].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
 					}else{
-						//var icon_attr = use.getAttribute('xlink:href');
-						use[y].setAttribute("xlink:href","#icon-option-right");
+                        if(option!=''){
+							//var icon_attr = use.getAttribute('xlink:href');
+							use[y].setAttribute("xlink:href","#icon-option-right");
+                        }else{
+                        	//保持原选项
+                        }
 					}
 				}else{
 					if(option.indexOf(x)!=-1) {
