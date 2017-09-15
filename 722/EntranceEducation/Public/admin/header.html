@@ -1,0 +1,55 @@
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>新生入学考试后台管理系统</title>
+        <link rel="stylesheet" href="__PUBLIC__/admin/css/admin.css">
+        <link rel="stylesheet" href="__PUBLIC__/admin/layui/css/layui.css">
+        <script src="__PUBLIC__/admin/layui/layui.js"></script>
+    </head>
+    
+    <body>
+        <div class="header">
+            <h2 class="z cl">
+                <a href="/admin/admin.php?m=Admin&amp;c=index&amp;a=index">
+                    <img src="__PUBLIC__/admin/img/logo.png"></a>
+            </h2>
+            <div class="y cl">
+                <a target="_blank" href="/admin/index.php">网站首页</a>
+                <a href="/admin/admin.php?m=Admin&amp;c=Login&amp;a=logout">退出</a></div>
+        </div>
+        <div class="admin">
+            <div class="aleft">
+                <h3>
+                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>操作菜单</h3>
+                <ul class="cl">
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a href="{:U('Exam/index')}">模拟考试</a></li>
+                    
+                </ul>
+                <h3>
+                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>系统管理</h3>
+                <ul class="cl">
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a href="/admin/admin.php?m=Admin&amp;c=conf&amp;a=index">网站配置</a></li>
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a href="/admin/admin.php?m=Admin&amp;c=member&amp;a=index">密码修改</a></li>
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a href="/admin/admin.php?m=Admin&amp;c=runtime&amp;a=index">清理缓存</a></li>
+                    <li>
+                        <i class="layui-icon">ဆ</i>
+                        <a href="/admin/admin.php?m=Admin&amp;c=Login&amp;a=logout">立即退出</a></li>
+                </ul>
+                <h3>
+                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>帮助中心</h3>
+                <ul class="cl">
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a target="_blank" href="http://wenda.templet360.com/">社区问答</a></li>
+                </ul>
+            </div>
