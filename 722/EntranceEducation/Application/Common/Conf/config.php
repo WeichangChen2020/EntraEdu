@@ -3,8 +3,8 @@ return array(
 	//'配置项'=>'配置值'
 	
 	
-	'MODULE_ALLOW_LIST'  => array('Student','Teacher'),
-    'DEFAULT_MODULE'     => 'Student',
+	// 'MODULE_ALLOW_LIST'  => array('Student','Admin'),
+    // 'DEFAULT_MODULE'     => 'Student',
 
 	'SESSION_AUTO_START' => false,
 	'URL_HTML_SUFFIX'    => '',  //伪静态设置为空
