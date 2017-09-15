@@ -49,7 +49,7 @@ class CollectController extends Controller {
 		//var_dump($record);
 		$collectNum = $RECORD->getCollectNum($openId);
 		$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$collectNum);
-		var_dump($quesIdArr);
+		//var_dump($quesIdArr);
 		//var_dump($collectNum);
 		//die();	
 		$nextid = I('nextid');
