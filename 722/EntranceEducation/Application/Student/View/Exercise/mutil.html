@@ -190,29 +190,33 @@
         	//res为正确答案
         	$('#right_answer').html('正确选项：'+ res);
 
-        	for (x in click_times)
-			{
-				var use = $('#option-'+x.toLowerCase()).find('use')[0];
+            if(res != 'done'){
+                for (x in click_times)
+                {
+                    var use = $('#option-'+x.toLowerCase()).find('use')[0];
 
-				if (res.indexOf(x) != -1) {
-					if (option.indexOf(x) != -1) {
-						// 选择，正确答案：打对勾
-						use.setAttribute('xlink:href', '#icon-option-right');
+                    if (res.indexOf(x) != -1) {
+                        if (option.indexOf(x) != -1) {
+                            // 选择，正确答案：打对勾
+                            use.setAttribute('xlink:href', '#icon-option-right');
 
-					} else {
-						// 不选择，正确答案：改底色
-						var icon_attr = use.getAttribute('xlink:href');
-						use.setAttribute('xlink:href', icon_attr + '-select');
-					}
-				} else {
-					if (option.indexOf(x) != -1) {
-						// 选择，错误答案：打错号
-						use.setAttribute('xlink:href', '#icon-option-wrong');
-					} else {
-						// 不选择，错误答案：不处理
-					}
-				}
-			}
+                        } else {
+                            // 不选择，正确答案：改底色
+                            var icon_attr = use.getAttribute('xlink:href');
+                            use.setAttribute('xlink:href', icon_attr + '-select');
+                        }
+                    } else {
+                        if (option.indexOf(x) != -1) {
+                            // 选择，错误答案：打错号
+                            use.setAttribute('xlink:href', '#icon-option-wrong');
+                        } else {
+                            // 不选择，错误答案：不处理
+                        }
+                    }
+                }
+            }else{
+            	$.alert("你已经做过此题！","确定");  
+            }
 
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
