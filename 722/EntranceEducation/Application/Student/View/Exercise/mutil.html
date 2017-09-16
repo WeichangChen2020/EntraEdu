@@ -76,7 +76,11 @@
 			<!-- <a class="submit" href="{('Exercise/exercise')}">下一题</a> -->
 			<a class="c-button" id="submit" href="javascript:;">确定</a>
 
-			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'), 'typeid'=>session('typeid')))}">下一题</a>
+			<a class="c-button" href="{:U('Exercise/exercise_chap', array(
+			'chapid'=>session('chapid'),
+			'typeid'=>session('typeid'),
+			'quesid'=>session('quesid')+1)
+			)}">下一题</a>
 		</div>
 
 		<div class='demos-content-padded'></div>
