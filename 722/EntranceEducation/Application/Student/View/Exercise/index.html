@@ -148,17 +148,17 @@
 
 		var url = "{:U('Exercise/submit')}";
         $.post(url, data, function(res){
-          	if(res == option) {
-          		use.setAttribute('xlink:href', '#icon-option-right');
-          	}
-            else if(res == 'done'){
-            	//alert();
-                $.alert("你已经做过此题！","确定");
-            } 
-            else {
-          		use.setAttribute('xlink:href', '#icon-option-wrong');
-				$('#option-'+res.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
-          	}
+            if(res != 'done'){  //如果没做过
+                if(res == option) {
+                    use.setAttribute('xlink:href', '#icon-option-right');
+                }
+                else {
+                    use.setAttribute('xlink:href', '#icon-option-wrong');
+                    $('#option-'+res.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+                }
+        	}else{
+            	$.alert("你已经做过此题！","确定");   
+            }	
         });
 
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
