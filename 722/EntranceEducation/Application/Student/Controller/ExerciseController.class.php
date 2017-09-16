@@ -98,7 +98,8 @@ class ExerciseController extends Controller{
 			$this->error('你访问的页面不存在');
 		}
 		$openid       = session('openId');
-		$quesid       = session('quesid');
+		//$quesid       = session('quesid');
+        $quesid       = I('get.quesid')?I('get.quesid'):I('post.quesid');
 		$option       = I('option');
 		$time         = intval(trim(I('time'))); //将毫秒转为秒并取整
 		$right_answer = D('Questionbank')->getRightAnswer($quesid);
