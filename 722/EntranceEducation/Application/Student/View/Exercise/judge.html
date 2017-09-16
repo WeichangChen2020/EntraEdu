@@ -116,7 +116,12 @@
 		$('.option-area').unbind(); 
 	});
 
-
+	// 点击后monup
+	$(document).on("click", ".weui-popup-modal", function() {
+        console.log("open popup");
+    }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+    });
 		
 	// 定义收藏点击的次数
     var click_select = 0;
