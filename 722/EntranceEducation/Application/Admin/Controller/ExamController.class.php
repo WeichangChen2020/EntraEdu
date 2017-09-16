@@ -101,11 +101,43 @@ class ExamController extends Controller{
 		$this->assign('info',$info)->display();
 	}
 
+	/**
+	 * addQues 添加考试题目
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-16 11:12Authors
+	 * @var  $id
+	 * @return 
+	 */
+	public function addQues($id) {
+		if (IS_POST) {
+			$data = I();
+			foreach ($data as $key => $value) {
+				$quesData = array();
+				$quesData['examid'] = $id;
+				$quesData['chapid'] = intval(substr($key, 8));
+				$quesData['chap_num'] = intval($value);
+				D('ExamQuestionbank')->add($quesData);
+			}
+			$this->success('题目添加成功', U('Exam/index'));
+		} else {
+			
+	        $examList = D('ExamSetup')->where(array('id'=>$id))->find();
+	        // dump($examList['title']);
+	        $chapterList = M('QuestionChapter')->select();
+	        foreach($chapterList as $key=>$value){
+	            $chapterList[$key]['maxNum']=D('Student/Questionbank')->getQuesChapterNum($key+1);
+	        }
+	        // dump($chapterList);
+	        $this->assign('chapterList',$chapterList);
 
-	public function addQues() {
-		$this->display();
+	        $this->assign('examList',$examList['title']);
+
+	        $this->display();
+		}
+
 	}
 
+	
 
 
 }

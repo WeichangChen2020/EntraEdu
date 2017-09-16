@@ -21,11 +21,13 @@
                         <td align="center">{$examList.set_time}</td>
                         <td align="center">{$examList.is_on|is_on=###}</td>
                         <td align="center">{$examList.time}</td>
-                        <td align="center"><a href="">题目</a></td>
+                        <td align="center">
+                            <a href="{:U('Exam/addQues', array('id'=>$examList['id']))}">添加题目</a>
+                        </td>
                         <td align="center"><a href="">班级</a></td>
                         <td align="center">
-                            <a href="{:U('Exam/edit', array('id'=>$examList['id']))}">修改</a>|
-                        <a href="{:U('Exam/delete', array('id' => $examList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a></td>
+                            <a href="{:U('Exam/edit', array('id'=>$examList['id']))}">修改</a>|<a href="{:U('Exam/delete', array('id' => $examList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                        </td>
                     </tr>
                 </volist>  
 

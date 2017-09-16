@@ -5,7 +5,7 @@ return array(
 	// 配置主题
 	'DEFAULT_THEME'    =>    'default',
 
-	'LAYOUT_ON'        =>   true,
+	'LAYOUT_ON'        =>    true,
 	'LAYOUT_NAME'      =>   'layout',
 
 	// 'VIEW_PATH'=>'.Public/Templet/',
