@@ -47,6 +47,40 @@
 			</div>
 			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'), 'typeid'=>session('typeid')))}">下一题</a>
 		</div>
+
+		<div class='demos-content-padded'></div>
+
+		<div id="half" class='weui-popup__container popup-bottom'>
+		    <div class="weui-popup__overlay"></div>
+		    <div class="weui-popup__modal">
+		        <div class="toolbar">
+			        <div class="toolbar-inner" >
+				       <div class="helf-title">入学考试题库</div>				       
+				    </div>
+		            
+		        </div>
+		        <div class="modal-content" style="height: auto; max-height: 400px; color: #000;">
+
+
+					<!-- 分 首列 尾列 都不是 三种情况考虑 -->
+
+		        	<volist name="quesList" id="quesList" key="k" >
+		        		<if condition="($k)%7 eq 1">
+		        			<div class="weui-flex">
+							    <a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+						<elseif condition="($k)%7 eq 0"/>
+							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+							    </div>
+						<else /> 
+							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+						</if>
+					</volist>
+				   
+
+		        </div>
+		    </div>
+		</div>
+
 	</body>
 </html>
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
