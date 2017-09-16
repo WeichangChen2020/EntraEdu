@@ -102,19 +102,23 @@ class ExerciseController extends Controller{
 		$option       = I('option');
 		$time         = intval(trim(I('time'))); //将毫秒转为秒并取整
 		$right_answer = D('Questionbank')->getRightAnswer($quesid);
-		
-		$data = array(
-			'openid' => $openid,
-			'quesid' => $quesid,
-			'answer' => $option,
-			'result' => $option == $right_answer ? 1 : 0,
-			'spend'  => $time,
-			'time'   => date('Y-m-d:H:i:s', time())
-		);
+		$done = D('Exercise')->where(array('openid'=>$openid,'quesid'=>$quesid))->find();
+        if(!$done){  //如果不存在
+        	$data = array(
+                'openid' => $openid,
+                'quesid' => $quesid,
+                'answer' => $option,
+                'result' => $option == $right_answer ? 1 : 0,
+                'spend'  => $time,
+                'time'   => date('Y-m-d:H:i:s', time())
+            );
 
-		D('Exercise')->add($data);
+            D('Exercise')->add($data);
 
-		$this->ajaxReturn($right_answer, 'json');
+            $this->ajaxReturn($right_answer, 'json');
+        }else{ //如果已存在
+        	$this->ajaxReturn('done');
+        }
 	}
 
 	public function test() {
