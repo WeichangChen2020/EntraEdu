@@ -4,26 +4,32 @@
         <table width="100%">
             <tbody>
                 <tr>
-                    <th width="10%" align="center">id</th>
-                    <th width="15%" align="center">开始时间</th>
+                    <th width="5%" align="center">id</th>
+                    <th width="10%" align="center">考试名称</th>
+                    <th width="10%" align="center">开始时间</th>
                     <th width="10%" align="center">考试时长</th>
+                    <th width="10%" align="center">是否开启</th>
+                    <th width="15%" align="center">创建时间</th>
                     <th width="10%" align="center">考试题目</th>
                     <th width="10%" align="center">参与班级</th>
-                    <th width="10%" align="center">是否开启</th>
-                    <th width="15%" align="center">添加时间</th>
                     <th width="10%" align="center">基本操作</th></tr>
-                <tr>
-                    <td style="padding-left: 20px;">1</td>
-                    <td align="center">2016-12-04 09:34:21</td>
-                    <td align="center">50</td>
-                    <td align="center">章节</td>
-                    <td align="center">6个班级</td>
-                    <td align="center">是</td>
-                    <td align="center">2016-12-04 09:34:21</td>
-                    <td align="center">
-                        <a href="/admin/admin.php?m=Admin&amp;c=navtop&amp;a=edit&amp;id=2">修改</a>|
-                    <a href="/admin/admin.php?m=Admin&amp;c=navtop&amp;a=delete&amp;id=2" onclick="return confirm('您确定删除吗？');">删除</a></td>
-                </tr>
+                <volist name="examList" id="examList" empty="暂时没有数据" >
+                    <tr>
+                        <td style="padding-left: 20px;">{$examList.id}</td>
+                        <td align="center">{$examList.title}</td>
+                        <td align="center">{$examList.start_time|date="m-d H:i",###}</td>
+                        <td align="center">{$examList.set_time}</td>
+                        <td align="center">{$examList.is_on|is_on=###}</td>
+                        <td align="center">{$examList.time}</td>
+                        <td align="center"><a href="">题目</a></td>
+                        <td align="center"><a href="">班级</a></td>
+                        <td align="center">
+                            <a href="{:U('Exam/edit', array('id'=>$examList['id']))}">修改</a>|
+                        <a href="{:U('Exam/delete', array('id' => $examList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a></td>
+                    </tr>
+                </volist>  
+
+                
             </tbody>
         </table>
     </form>

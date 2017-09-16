@@ -30,7 +30,7 @@
   <div class="layui-form-item">
     <label class="layui-form-label">开始时间</label>
     <div class="layui-input-block">
-      <input type="datetime-local" name="start_name" required="" lay-verify="required" placeholder="必填内容" autocomplete="" class="layui-input">
+      <input type="datetime-local" name="start_time" required="" lay-verify="required" placeholder="必填内容" autocomplete="" class="layui-input">
     </div>
   </div>
 
@@ -45,14 +45,14 @@
   <div class="layui-form-item">
     <label class="layui-form-label">是否开启</label>
     <div class="layui-input-block">
-      <input type="radio" name="show" value="1" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><span>开启</span></div>
-      <input type="radio" name="show" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+      <input type="radio" name="is_on" value="1" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><span>开启</span></div>
+      <input type="radio" name="is_on" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
     </div>
   </div>
   
 
   <div class="tpt_item">
-	<input type="hidden" name="keywords" value="">
+	<input type="hidden" name="colleges" value="">
 	<div id="tpt_sel" class="tpt_sels" style="margin-top: 20px;">
 		<span style="margin-bottom: 5px;float: left;margin-left: 110px;">
 				</span>
@@ -85,7 +85,7 @@ $(function() {
 		}
 	});
 	$("#tpt_sel").on('click', 'a>em', function() {
-		var name = "keywords";
+		var name = "colleges";
 		var tag = $(this).parent().text();
 		$(this).parent().remove();
 		var tags = new Array();
@@ -96,7 +96,7 @@ $(function() {
 		$("#tpt_pre a:contains('" + tag + "')").removeClass("selected");
 	});
 	$("#tpt_btn").click(function() {
-		var name = "keywords";
+		var name = "colleges";
 		var tags = $.trim($("input[name=" + name + "]").val());
 		if (tags !== "") {
 			tags = tags.split(",");
@@ -116,7 +116,7 @@ $(function() {
 		$("#tpt_input").val('');
 	});
 	$("#tpt_pre").on('click', 'a:not(.selected)', function() {
-		var name = "keywords";
+		var name = "colleges";
 		var tags = $.trim($("input[name=" + name + "]").val());
 		if (tags !== "") {
 			tags = tags.split(",");
