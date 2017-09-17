@@ -189,9 +189,10 @@
 
         $.post(url, data, function(res){
         	//res为正确答案
-        	$('#right_answer').html('正确选项：'+ res);
+        	
 
             if(res != 'done'){
+            	$('#right_answer').html('正确选项：'+ res);
                 for (x in click_times)
                 {
                     var use = $('#option-'+x.toLowerCase()).find('use')[0];
