@@ -142,7 +142,7 @@
 		var time      = Math.ceil((now.getTime() - start_time.getTime()) / 1000);
 		
 		var data = {
-			'quesid': {session('quesid')}
+			'quesid': <?php echo  session('quesid');?> , 
 			'option': option,
 			'time'  : time
 		}
