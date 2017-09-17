@@ -101,9 +101,10 @@
 		var option     = lable.innerHTML == '正确' ? '对' : '错'; //选项
 		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
 		var now        = new Date();
-		var time      = Math.ceil((now.getTime() - start_time.getTime()) / 1000);
+		var time       = Math.ceil((now.getTime() - start_time.getTime()) / 1000);
 
 		var data = {
+			'quesid':<?php echo  session('quesid');?> , 
 			'option': option,
 			'time'  : time
 		}
