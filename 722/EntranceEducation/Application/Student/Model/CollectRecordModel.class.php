@@ -66,4 +66,38 @@ class CollectRecordModel extends Model {
 		return $collectNum;
 	}
 
+		/**
+	 * getQuesList 获取用户收藏列表
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-114 13:18 Authors
+	 * @var openid
+	 * @return arrayList( 'quesid', 'result')
+	 */
+	public function getCollectList($openid) {
+
+		$EXER = D('Exercise');
+		$quesList = $this->where(array('openid'=>$openid))->order('quesid')->field('quesid')->select();
+		//var_dump($quesList);
+		foreach ($quesList as $key => $value) {
+			//var_dump($value);
+			$res = $EXER->where(array('quesid'=>$value['quesid'], 'openid'=>$openid))->getField('result');
+			//var_dump($res);
+			// 1 => 'placeholder-right' 
+			// 0 => 'placeholder-wrong' 
+			// else => 'placeholder' 
+			if(!isset($res)) {
+				$quesList[$key]['result'] = 'placeholder';	
+				//$quesList[$key]['href'] = U('Collect/recordList', array('quesid'=>$value['quesid']));	
+			} else if($res == 0) {
+				$quesList[$key]['result'] = 'placeholder-wrong';
+				$quesList[$key]['href'] = U('Collect/recordList', array('quesid'=>$value['quesid']));	
+			} else if($res == 1) {
+				$quesList[$key]['result'] = 'placeholder-right';
+				$quesList[$key]['href'] = U('Collect/recordList', array('quesid'=>$value['quesid']));	
+			} 
+		}
+
+		return $quesList;
+	}
+
 }
