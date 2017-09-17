@@ -149,7 +149,7 @@
 
 		var url = "{:U('Exercise/submit')}";
         $.post(url, data, function(res){
-            if(res != 'done'){  //如果没做过
+            if(res != 'fail'){  //如果没做过
                 if(res == option) {
                     use.setAttribute('xlink:href', '#icon-option-right');
                 }
