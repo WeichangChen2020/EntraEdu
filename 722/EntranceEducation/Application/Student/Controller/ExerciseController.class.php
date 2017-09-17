@@ -117,7 +117,7 @@ class ExerciseController extends Controller{
 
             $this->ajaxReturn($right_answer, 'json');
         }else{ //如果已存在
-        	$this->ajaxReturn('fail');
+        	$this->ajaxReturn('done');
         }
 	}
 
