@@ -63,8 +63,12 @@ class CollectController extends Controller {
 			}
 
 		}else{
-			$quesId = $quesIdArr[0];
-			$nextid = 1;
+			if(I('quesid')){
+				$quesId = I('quesid');
+			}else{
+				$quesId = $quesIdArr[0];
+				$nextid = 1;
+			}
 		}
 		//var_dump($quesId);
 		//die();
@@ -72,12 +76,14 @@ class CollectController extends Controller {
 		session('nextid',$nextid);
 		$quesItem  = $QUESTION->getQuestion($quesId);
 		//getQuestion方法当$quesId为空时，返回第一题
-		
+		$quesList  = $RECORD->getCollectList($openId);
+		// var_dump($quesList);
 		$rightAns = trim($QUESTION->getRightAnswer($quesId));
 		$recordArr = $EXERCISE->where(array('openid'=>$openId,'quesid'=>$quesId))->find();
 
 		$this->assign('record', $record);
 		$this->assign('quesItem', $quesItem);
+		$this->assign('quesList', $quesList);
 		$this->assign('rightAns',$rightAns);
 		$this->assign('recordArr',$recordArr);
 
