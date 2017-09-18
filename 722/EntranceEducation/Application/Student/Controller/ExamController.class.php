@@ -20,11 +20,14 @@ class ExamController extends Controller{
      */
 
     public function index() {
+    	$openid = session('openId');
         $examid = I('examid');
         session('examid',$examid);
         $examinfo = M('ExamSetup')->where(array('id'=>$examid))->find();
         $quesnum = M('ExamQuestionbank')->where(array('examid'=>$examid))->sum('chap_num');
-        // dump($examinfo);
+        $studentInfo = M('StudentInfo')->where(array('openId' => $openid))->find();
+        // dump($studentInfo);
+        $this->assign('studentInfo',$studentInfo);
         $this->assign('quesnum',$quesnum);
         $this->assign('examinfo',$examinfo);
         $this->display();
