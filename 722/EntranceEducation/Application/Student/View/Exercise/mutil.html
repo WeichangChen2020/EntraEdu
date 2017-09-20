@@ -6,11 +6,24 @@
 		<include file="./Public/weui2.0/__head.html"/>
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
 		<script src="__PUBLIC__/font/iconfont.js"></script>
+		<style type="text/css">
+			.bar {padding: 0; padding: 0 20px; background-color:#fbf9fe; color: #476777; }
+			.title {background-color:#fbf9fe; color: #476777;}
+            .bar .icon {margin: 10px 0; padding: 0; }
+            /*.icon {width: 20px; height: 20px}*/
+		</style>
 	</head>
 	<body>
+		<header class="bar bar-nav">
+	        <div class="title">{$quesItem.chapter}</div>
+	        <a href="{:U('Exercise/index')}" class="pull-left"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
+	        <a href="javascript:;" class="pull-right open-popup" data-target="#half"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-all"></use></svg></a>
+	    </header>
+	    
 		<div class="content">
-			<span class="c-title">{$record.name}</span>
 			
 			<div class="title-progerss">
 				<ul>
