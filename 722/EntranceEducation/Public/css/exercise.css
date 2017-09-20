@@ -4,7 +4,7 @@ ul{ padding: 0px; margin: 0px;}
 li{ list-style-type: none;}
 a{text-decoration: none;}
 .title{ height: 45px; line-height: 45px; text-align: center; background: #c6010f; color: #fff; font-size: 18px; overflow: hidden;}
-.content{ margin: 10px 20px 40px 20px;}
+.content{ margin: 0 20px 40px 20px;}
 .c-title{ font-size: 20px; line-height: 40px; color: #333;}
 .c-time{ color: #656565; border-bottom: 1px solid #ddd; font-size: 12px;}
 .c-pic{ width: 100%; display: block; margin: 15px 0;}
