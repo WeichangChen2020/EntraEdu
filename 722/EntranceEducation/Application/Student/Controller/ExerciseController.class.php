@@ -15,9 +15,10 @@ class ExerciseController extends Controller{
 
 		$openid         = session('openId');
 		$QUES           = D('Questionbank');
+        $RANDOM         = D('RandomExercise');
 		$quesTypeArr    = $QUES->getQuesAllType($openid);
 		$quesChapterArr = $QUES->getQuesAllChapter($openid);
-
+		$randomArr = $RANDOM->getExerciseRecord($openid);
 		$icon = array('bodygood', 'notebook', 'shenghuo', 'sate_edu', 'notebook', 'heartword', 'consciousness');
 
 
@@ -25,7 +26,7 @@ class ExerciseController extends Controller{
 		$this->assign('quesChapterArr', $quesChapterArr);
 		$this->assign('quesNum', $QUES->getQuesNum($openid));
 		$this->assign('icon', $icon);
-
+		$this->assign('randomArr',$randomArr);
 
 	
 		$this->display('list');
