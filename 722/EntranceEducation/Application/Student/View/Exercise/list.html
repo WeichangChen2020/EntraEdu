@@ -24,9 +24,14 @@
         <h1 class="title">登录</h1>
         <a href="javascript:;" class="pull-left"><svg class="icon icon-left" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
         <a href="javascript:;" class="pull-right"><svg class="icon icon-left" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-all"></use></svg></a></header> -->
+        <header class="bar bar-nav">
+            <div class="title">{$quesItem.chapter}</div>
+            <a href="{:U('User/index')}" class="pull-left"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
+            <a href="javascript:;" class="pull-right open-popup" data-target="#half"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-all"></use></svg></a>
+        </header>        
         <div class="bd">
             <div class="page__bd">
-
+ 
                 <div class="weui-cells__title">按顺序练习</div>
                 <div class="weui-cells">
                     <a class="weui-cell weui-cell_access" href="{:U('Exercise/exercise_chap')}">
