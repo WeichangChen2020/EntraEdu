@@ -41,27 +41,24 @@
                     <a class="weui-cell weui-cell_access" href="{:U('Exercise/exercise_chap')}">
                         <div class="weui-cell__hd">
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-sequence"></use></svg></span>
-
                         </div>
                         <div class="weui-cell__bd">
                             <p>顺序练习</p>
                         </div>
-                        <div class="weui-cell__ft">{$quesNum.finish_num}/{$quesNum.num}题</div></a>
+                        <div class="weui-cell__ft">{$quesNum.finish_num}/{$quesNum.num}题</div>
+                    </a>
+                </div>
                 <div class="weui-cells">
                     <a class="weui-cell weui-cell_access" href="{:U('Random/random',array('random'=>'1'))}">
                         <div class="weui-cell__hd">
                             <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-sequence"></use></svg></span>
-
                         </div>
                         <div class="weui-cell__bd">
                             <p>随机练习</p>
                         </div>
-                        <div class="weui-cell__ft">{$randomArr.count}/300</div></a>
+                        <div class="weui-cell__ft">{$randomArr.count}/300</div>
+                    </a>
                 </div>
-
-                
-
-                
 
                 <div class="weui-cells__title">按知识点分类</div>
                 <div class="weui-cells">
@@ -108,7 +105,6 @@
                         <div class="weui-cell__ft">{$quesTypeArr[2]['finish_num']}/{$quesTypeArr[2]['num']}题</div></a>
                 </div>
            
-
                 
             </div>
         </div>
