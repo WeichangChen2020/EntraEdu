@@ -39,11 +39,10 @@ class ExamController extends Controller{
         // ******************获取用户考试信息**************
         $examid   = I('examid');
         $examInfo = D('ExamSetup')->getExamInfo($examid);
+        $this->assign('examInfo', $examInfo);
 
-        // p($stuInfo);
-        p($examInfo);
 
-        // $this->display();
+        $this->display();
     }
 
     
