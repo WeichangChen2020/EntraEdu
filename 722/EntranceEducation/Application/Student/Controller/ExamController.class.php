@@ -17,6 +17,9 @@ class ExamController extends Controller{
      * @copyright  2017-10-2 9:39Authors
      * @param openid
      **/
+    public function index(){
+        echo "hel";
+    }
     public function list() {
         
         // $examList = D('ExamSetup')->list();
@@ -25,21 +28,7 @@ class ExamController extends Controller{
 
     }    
     
-    /*
-    list界面用户只能看见自己的考试
-        从studentInfo取得该openid的academic
-        从college表取得所有该用户academic的examid
-        从setup得到title
-
-        是否已做？
-        从submit表取得上述examid中是否有本用户answer为非空的数据
-
-    非新生(学院信息为空)显示所有考试
-        取得所有examid
-
-    */
-
-
+   
     
 }
 
