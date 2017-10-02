@@ -18,9 +18,21 @@ class ExamSetupModel extends Model {
 	 * @return $listArray{examinfo}
 	 */
 	public function listExam() {
-
 		$examList = $this->select();
 		return $examList;
+	}
+
+
+	/**
+	 * 获取详细的模拟考试信息
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-2 20:52Authors
+	 * @return $examInfo{examinfo}
+	 */
+
+	public function getExamInfo($examid){
+		$examInfo = $this->find($examid);
+		return $examInfo;
 	}
 	
 }

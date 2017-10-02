@@ -21,5 +21,28 @@ class ExamController extends Controller{
         $this->assign('listExam', $listExam)->display();
     }
 
+
+    /**
+     * index 模拟考试首页面
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-10-2 20:44Authors
+     **/
+    public function index() {
+
+        // ******************获取用户信息*****************
+        $openid   = session('openid');
+        $stuInfo  = D('StudentInfo')->getStuInfo($openid);
+
+
+        // ******************获取用户考试信息**************
+        $examid   = I('examid');
+        $examInfo = D('ExamSetup')->getExamInfo($examid);
+
+        p($stuInfo);
+        p($examInfo);
+
+        // $this->display();
+    }
+
     
 }
