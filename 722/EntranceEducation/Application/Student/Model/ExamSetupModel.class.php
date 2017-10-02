@@ -27,11 +27,12 @@ class ExamSetupModel extends Model {
 	 * 获取详细的模拟考试信息
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-10-2 20:52Authors
-	 * @return $examInfo{examinfo}
+	 * @return $examInfo{int examtime, int exam_ques_count, }
 	 */
 
 	public function getExamInfo($examid){
 		$examInfo = $this->find($examid);
+		$examInfo['count'] = D('ExamQuestionbank')->count($examid);
 		return $examInfo;
 	}
 	

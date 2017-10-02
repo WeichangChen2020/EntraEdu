@@ -41,9 +41,9 @@ class ExamController extends Controller{
         $examInfo = D('ExamSetup')->getExamInfo($examid);
 
         // p($stuInfo);
-        // p($examInfo);
+        p($examInfo);
 
-        $this->display();
+        // $this->display();
     }
 
     
