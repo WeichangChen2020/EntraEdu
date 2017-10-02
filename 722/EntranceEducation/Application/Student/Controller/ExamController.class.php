@@ -18,6 +18,7 @@ class ExamController extends Controller{
      **/
     public function listExam(){
         $listExam = D('ExamSetup')->listExam();
+        // p($listExam);die;
         $this->assign('listExam', $listExam)->display();
     }
 

@@ -8,6 +8,7 @@ return array(
 
 	'SESSION_AUTO_START' => false,
 	'URL_HTML_SUFFIX'    => '',  //伪静态设置为空
+	'URL_MODEL' => 1,
 
 	'SESSION_AUTO_START' => true,  //开启缓存
 
