@@ -33,16 +33,17 @@ class ExamController extends Controller{
         // ******************获取用户信息*****************
         $openid   = session('openId');
         $stuInfo  = D('StudentInfo')->getStuInfo($openid);
+        $this->assign('stuInfo', $stuInfo);
 
 
         // ******************获取用户考试信息**************
         $examid   = I('examid');
         $examInfo = D('ExamSetup')->getExamInfo($examid);
 
-        p($stuInfo);
-        p($examInfo);
+        // p($stuInfo);
+        // p($examInfo);
 
-        // $this->display();
+        $this->display();
     }
 
     
