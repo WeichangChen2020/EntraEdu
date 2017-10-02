@@ -17,18 +17,11 @@ class ExamController extends Controller{
      * @copyright  2017-10-2 9:39Authors
      * @param openid
      **/
-    public function index(){
-        echo "hel";
-    }
-    public function list() {
+    public function listExam(){
         
-        // $examList = D('ExamSetup')->list();
-        // p($examList);die;
-        // $this->assign('examList', $examList)->display();
+        $listExam = D('ExamSetup')->listExam();
+        p($listExam);        
+    }
 
-    }    
-    
-   
     
 }
-

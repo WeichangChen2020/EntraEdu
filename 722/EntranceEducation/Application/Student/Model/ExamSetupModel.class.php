@@ -17,8 +17,8 @@ class ExamSetupModel extends Model {
 	 * @copyright  2017-10-2 17:15Authors
 	 * @return $listArray{examinfo}
 	 */
-	public function list() {
-		
+	public function listExam() {
+
 		$examList = $this->select();
 		return $examList;
 	}
