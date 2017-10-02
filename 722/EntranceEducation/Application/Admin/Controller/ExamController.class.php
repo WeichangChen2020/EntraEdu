@@ -49,16 +49,8 @@ class ExamController extends Controller{
 				'time' => date('Y-m-d H:i:s'),
 			);
 
-			$collegeArr = explode(',', I('colleges'));	
 			$res = D('ExamSetup')->add($data);
 			if($res) {
-				foreach ($collegeArr as $key => $value) {
-					$collegeData = array(
-						'examid' => $res,
-						'college' => $value,
-					);
-					D('ExamCollege')->add($collegeData);
-				}
 				$this->success('考试创建成功', U('Exam/index'));
 			} else {
 				$this->error('考试创建失败');
