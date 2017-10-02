@@ -5,8 +5,8 @@ return array(
 	// 配置主题
 	'DEFAULT_THEME'    =>    'default',
 
-	'LAYOUT_ON'        =>    true,
 	'LAYOUT_NAME'      =>   'layout',
+	'LAYOUT_ON'        =>   true,
 
 	// 'VIEW_PATH'=>'.Public/Templet/',
 	// 'TMPL_PARSE_STRING'=> array(
