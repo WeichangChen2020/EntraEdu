@@ -35,7 +35,7 @@
             </div>
             <div class="weui-msg__opr-area">
                 <p class="weui-btn-area">
-                    <a id="enter_exam" class="weui-btn weui-btn_primary">进入考试</a>
+                    <a id="enter_exam" class="weui-btn weui-btn_primary" href="{:U('Exam/exam')}">进入考试</a>
             </div>
             
         </div>
@@ -44,35 +44,9 @@
 
 </html>
 <include file="./Public/weui2.0/__foot.html"/>
-<script>
-    $(function(){
-
-        //点击 进入考试
-        $("#enter_exam").click(function(){
-            var url = "{:U('Exam/enter_exam')}";
-
-            $.post(url, function(res){
-                if (res == 'enter') {
-                    // alert("ss");
-                    window.location.href= "{:U('Exam/exam')}";
-                }else{
-                    $.alert(res,"确定");
-                }
-            });
-            // {I('id')}
-
-
-            // 判断是否到了考试时间
-            // if (提交) {
-            //     $.alert('没到考试时间', '提示');
-
-            // } else if (没到考试时间 && is_on = 0) {
-
-            // } else {
-            //     // 初始化考试题目
-            //     // 跳转大题页面
-            // }
-        });
-
+<script type="text/javascript">
+    $('#enter_exam').click(function(){
+        // 
+        return false;
     });
 </script>
