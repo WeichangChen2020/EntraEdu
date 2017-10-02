@@ -31,7 +31,7 @@ class ExamController extends Controller{
     public function index() {
 
         // ******************获取用户信息*****************
-        $openid   = session('openid');
+        $openid   = session('openId');
         $stuInfo  = D('StudentInfo')->getStuInfo($openid);
 
 
