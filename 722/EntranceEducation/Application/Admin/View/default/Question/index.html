@@ -1,0 +1,38 @@
+<div class="aright">
+    <div class="arz cl"><a href="{:U('Exam/add')}"><i class="layui-icon"></i>创建考试</a></div>
+    <form method="post" class="aform cl">
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <th width="3%" align="center" >id</th>
+                    <th width="5%" align="center">题目章节</th>
+                    <th width="5%" align="center">题目类型</th>
+                    <th width="30%" align="center">题干内容</th>
+                    <th width="10%" align="center">选项A</th>
+                    <th width="10%" align="center">选项B</th>
+                    <th width="10%" align="center">选项C</th>
+                    <th width="10%" align="center">选项D</th>
+                    <th width="10%" align="center">正确选项</th>
+                    <th width="10%" align="center">操作</th></tr>
+                <volist name="questionList" id="questionList" empty="暂时没有数据" >
+                    <tr>
+                        <td style="padding-left: 20px;">{$questionList.id}</td>
+                        <td align="center">{$questionList.chapter}</td>
+                        <td align="center">{$questionList.type}</td>
+                        <td align="center">{$questionList.contents}</td>
+                        <td align="center">{$questionList.option_a}</td>
+                        <td align="center">{$questionList.option_b}</td>
+                        <td align="center">{$questionList.option_c}</td>
+                        <td align="center">{$questionList.option_d}</td>
+                        <td align="center">{$questionList.right_answer}</td>
+                        <td align="center">
+                            <a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                        </td>
+                    </tr>
+                </volist>  
+
+                
+            </tbody>
+        </table>
+    </form>
+</div>
