@@ -15,12 +15,10 @@ class ExamController extends Controller{
      * list 模拟考试列表
      * @author 李俊君<hello_lijj@qq.com>
      * @copyright  2017-10-2 9:39Authors
-     * @param openid
      **/
     public function listExam(){
-        
         $listExam = D('ExamSetup')->listExam();
-        p($listExam);        
+        $this->assign('listExam', $listExam)->display();
     }
 
     
