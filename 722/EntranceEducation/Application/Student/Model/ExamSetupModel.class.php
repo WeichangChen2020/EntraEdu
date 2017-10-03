@@ -49,12 +49,17 @@ class ExamSetupModel extends Model {
         $examInfo = $this->getExamInfo($examid);
         $now      = time();
         
-        $info         = array(
-	      'is_on'     => 1,
-	      'is_end'    => 0,
-	      'is_submit' => 0,
-	      'is_init'   => 0,
+        $info           = array(
+        	'is_newer'  => 0,	
+	        'is_on'     => 1,
+	        'is_end'    => 0,
+	        'is_submit' => 0,
+	        'is_init'   => 0,
         );
+        // 是新生
+        if (D('StudentInfo')->isNewer($openid)) {
+        	$info['is_newer'] = 1;
+        } 
 
         // 考试还未开启
         if ($now < $examInfo['start_time'] && $examInfo['is_on'] == 0) {

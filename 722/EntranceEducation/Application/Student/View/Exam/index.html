@@ -7,7 +7,7 @@
             .weui-msg__text-area{padding:0;}
             .weui-form-preview__bd, .weui-cells__title{text-align: left;}
             .weui-msg__icon-area {margin-bottom: 20px;}
-            .weui-btn_primary {background-color: #10aeff;}
+            /*.weui-btn_primary {background-color: #10aeff;}*/
         </style>
     
     <body ontouchstart="">
@@ -35,7 +35,7 @@
             </div>
             <div class="weui-msg__opr-area">
                 <p class="weui-btn-area">
-                    <a id="enter_exam" class="weui-btn weui-btn_primary" href="{:U('Exam/exam')}">进入考试</a>
+                    <a id="enter_exam" class="weui-btn weui-btn_primary">进入考试</a>
             </div>
             
         </div>
@@ -46,13 +46,32 @@
 <include file="./Public/weui2.0/__foot.html"/>
 <script type="text/javascript">
     $('#enter_exam').click(function(){
-        // 
         var url  = "{:U('Exam/beforeInit')}";
-        var data = {time: 345};
+        var data = {};
         $.post(url, data, function(res){
-            $('<div>是否开启 是否结束 是否提交 是佛结束'+res.is_on+res.is_end+res.is_submit+res.is_init+'</div>').appendTo('body');
-            console.log(res);
+            if(res.is_on == 0) {
+                $.alert("本次考试还未开启！", "提示");
+            }
+            
+            // 已开启，已提交，已结束
+            if(res.is_submit == 1 && res.is_end == 1) {
+                $.alert("本次考试已经结束，你成功提交！", "提示");
+            }
+
+            // 已开启，已提交，未结束
+            if(res.is_submit == 1 && res.is_end == 0) {
+                $.alert("你已经提交过了，不能重复提交！", "提示");
+            }
+            // 已开启，未提交，已结束
+            if(res.is_submit == 0 && res.is_end == 1) {
+                $.alert("本次考试已经结束，但你没有提交，请联系管理员！！", "提示");
+            }
+            // 已开启，未提交，未结束
+            if(res.is_submit == 0 && res.is_end == 0) {
+                window.location.href="{:U('Exam/exam')}";
+            }
+
+
         });
-        return false;
     });
 </script>
