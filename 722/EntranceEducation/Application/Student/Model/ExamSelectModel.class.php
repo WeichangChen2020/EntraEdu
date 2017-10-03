@@ -49,6 +49,7 @@ class ExamSelectModel extends Model {
 				
 				$ques = array(
 					'openid' => $openid,
+					'examid' => $examid,
 					'quesid' => $v,
 					'time'   => date('Y-m-d H:i:s'),
  				);
