@@ -54,7 +54,6 @@ class ExamSetupModel extends Model {
 	        'is_on'     => 1,
 	        'is_end'    => 0,
 	        'is_submit' => 0,
-	        'is_init'   => 0,
         );
         // 是新生
         if (D('StudentInfo')->isNewer($openid)) {
@@ -76,14 +75,12 @@ class ExamSetupModel extends Model {
         	$info['is_submit'] = 1;
         }
 
-        // 已经初始化过了
-        if (D('ExamSelect')->isInit($openid, $examid)) {
-        	$info['is_init'] = 1;
-        }
-
         return $info;
 
 	} 
+
+
+	
 	
 }
 

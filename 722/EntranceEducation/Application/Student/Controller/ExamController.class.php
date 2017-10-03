@@ -89,10 +89,20 @@ class ExamController extends Controller{
      **/
     private function initExam() {
 
-        $info = D('ExamSetup')->getExamInfo(12);
-        p($info);
+        $openid = session('openId');
+        $examid = session('examid');
+        $EXAM   = D('ExamSelect');
 
-        
+        $is_init = $EXAM->isInit($openid, $examid);
+
+        if(!$is_init) {
+            $init = $EXAM->initExam($openid, $examid);
+            return $init;
+        } else {
+            return true;
+        }
+
+
     }
 
     /**
@@ -101,9 +111,9 @@ class ExamController extends Controller{
      * @copyright  2017-10-2 20:44Authors
      **/
     public function exam() {
-
         $this->initExam();
-
-    }
+        
+        $this->display();        
+   }
     
 }
