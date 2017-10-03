@@ -113,7 +113,10 @@ class ExamController extends Controller{
     public function exam() {
         $this->initExam();
         
-        $this->display();        
+        $openid = session('openId');
+        $examid = session('examid');
+        $ques = D('ExamSelect')->getExamItems($openid, $examid);
+        p($ques);        
    }
     
 }
