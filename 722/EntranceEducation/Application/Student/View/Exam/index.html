@@ -47,6 +47,12 @@
 <script type="text/javascript">
     $('#enter_exam').click(function(){
         // 
+        var url  = "{:U('Exam/beforeInit')}";
+        var data = {time: 345};
+        $.post(url, data, function(res){
+            $('<div>是否开启 是否结束 是否提交 是佛结束'+res.is_on+res.is_end+res.is_submit+res.is_init+'</div>').appendTo('body');
+            console.log(res);
+        });
         return false;
     });
 </script>

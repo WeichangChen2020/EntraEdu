@@ -35,6 +35,50 @@ class ExamSetupModel extends Model {
 		$examInfo['count'] = D('ExamQuestionbank')->count($examid);
 		return $examInfo;
 	}
+
+
+	/**
+	 * 获取用户参与考试的基本条件
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-3 14:15Authors
+	 * @param $openid, $examid
+	 * @return 
+	 */
+	public function beforeInitExam ($openid, $examid){
+
+        $examInfo = $this->getExamInfo($examid);
+        $now      = time();
+        
+        $info         = array(
+	      'is_on'     => 1,
+	      'is_end'    => 0,
+	      'is_submit' => 0,
+	      'is_init'   => 0,
+        );
+
+        // 考试还未开启
+        if ($now < $examInfo['start_time'] && $examInfo['is_on'] == 0) {
+        	$info['is_on'] = 0;
+        } 
+
+        // 考试已经截止
+        if ($now > $examInfo['start_time'] + $examInfo['set_time'] * 60 ) {
+        	$info['is_end'] = 1;
+        }
+
+        // 已经提交过了
+        if (D('ExamSubmit')->isSubmit($openid, $examid)) {
+        	$info['is_submit'] = 1;
+        }
+
+        // 已经初始化过了
+        if (D('ExamSelect')->isInit($openid, $examid)) {
+        	$info['is_init'] = 1;
+        }
+
+        return $info;
+
+	} 
 	
 }
 

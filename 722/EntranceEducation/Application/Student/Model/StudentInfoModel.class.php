@@ -36,6 +36,22 @@ class StudentInfoModel extends Model {
 		}
 
 		return $info;
+	}
 
+	/**
+	 * 判断用户是否为新生
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-3 14:25Authors
+	 * @param $openid
+	 * @return true or false
+	 */
+	public function isNewer ($openid){
+
+		$newer = $this->where(array('openid'=>$openid))->getField('is_newer');
+		if ($newer)
+			return true;
+		else
+			return false;
+		
 	}
 }
