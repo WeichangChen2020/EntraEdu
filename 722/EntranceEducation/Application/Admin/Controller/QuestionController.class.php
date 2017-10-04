@@ -9,15 +9,12 @@ class QuestionController extends Controller {
     }
     public function edit($id){
         if (IS_POST) {
+        	$questionbank = M('questionbank');
             $data = I();
-            foreach ($data as $key => $value) {
-                $quesData = array();
-                $quesData['examid'] = $id;
-                $quesData['chapid'] = intval(substr($key, 8));
-                $quesData['chap_num'] = intval($value);
-                D('ExamQuestionbank')->add($quesData);
-            }
-            $this->success('题目添加成功', U('Exam/index'));
+            $data = array_map('trim', $data);  //trim去除多余回车
+            // dump($data);
+            $questionbank->where(array('id' => $id))->save($data);
+            $this->success('题目修改成功', U('Question/index'));
         } else {
             $question = M('Questionbank')->where(array('id'=>$id))->find();
             // dump($question);
