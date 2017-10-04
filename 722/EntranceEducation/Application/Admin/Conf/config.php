@@ -7,6 +7,8 @@ return array(
 
 	'LAYOUT_NAME'      =>   'layout',
 	'LAYOUT_ON'        =>   true,
+	// 'SHOW_PAGE_TRACE' =>true,// 显示页面Trace信息
+
 
 	// 'VIEW_PATH'=>'.Public/Templet/',
 	// 'TMPL_PARSE_STRING'=> array(
