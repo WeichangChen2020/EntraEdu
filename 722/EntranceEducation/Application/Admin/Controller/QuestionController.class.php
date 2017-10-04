@@ -34,6 +34,7 @@ class QuestionController extends Controller {
     }
 
     //搜索题目
+    //搜索条件为空则显示全部，搜索结果返回到result数组
     public function search(){
     	if (IS_POST) {
 	        $QUESTION = M('Questionbank');
