@@ -15,8 +15,10 @@ class QuestionController extends Controller {
             $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
             // dump($data);
-            $QUESTION->where(array('id' => $id))->save($data);
-            $this->success('题目修改成功', U('Question/index'));
+            if ($QUESTION->where(array('id' => $id))->save($data))
+	            $this->success('题目修改成功', U('Question/index'));
+            else
+            	$this->error('修改失败');
         } else {
             $question = M('Questionbank')->where(array('id'=>$id))->find();
             // dump($question);
@@ -24,13 +26,25 @@ class QuestionController extends Controller {
             $this->display();
         }
     }
+    //增加题目
+    public function add(){
+    	if (IS_POST) {
+	        $QUESTION = M('Questionbank');
+	        $data = I();
+            $data = array_map('trim', $data);  //trim去除多余回车
+	        if ($QUESTION->add($data))
+	        	$this->success('题目添加成功',U('Question/add'));
+	        else
+	        	$this->error('添加失败');
+    	}
+    	$this->display();
+    }
 
     //删除题目
     public function delete($id){
-        $QUESTION = M('Questionbank')->select();
+        $QUESTION = M('Questionbank');
         $QUESTION->where(array('id' => $id))->delete();
         $this->success('题目删除成功', U('Question/index'));
-        $this->display();
     }
 
     //搜索题目
@@ -50,6 +64,7 @@ class QuestionController extends Controller {
             	$map['contents'] = array('like','%'.$data['contents'].'%','AND');
 	        $result = $QUESTION -> where($map) ->select();
 	        $this->assign('result',$result);
+            $this->assign('data',$data);
     	}
 
     	$this->display();
