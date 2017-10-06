@@ -16,8 +16,8 @@ function countdown() {
     }
 
     if (h>0)
-        $('title').html('模拟考试-'+h+'时'+m+'分'+s+'秒';
+        $('title').html('模拟考试-'+h+'时'+m+'分'+s+'秒');
     else
-        $('title').html('模拟考试-'+m+'分'+s+'秒';
+        $('title').html('模拟考试-'+m+'分'+s+'秒');
 
 }
