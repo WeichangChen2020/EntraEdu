@@ -110,13 +110,67 @@ class ExamController extends Controller{
      * @author 李俊君<hello_lijj@qq.com>
      * @copyright  2017-10-2 20:44Authors
      **/
-    public function exam() {
+    public function exam($selectid = 0) {
         $this->initExam();
         
+        // ************分配考试item信息
         $openid = session('openId');
         $examid = session('examid');
-        $ques = D('ExamSelect')->getExamItems($openid, $examid);
-        p($ques);        
+
+
+
+        // ************分配考试item信息 和 题目考试信息
+        $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
+        $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
+        $this->assign('examItem', $examItem);        
+        $this->assign('quesItem', $quesItem);
+
+
+        // ************分配题目list
+        $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
+        $this->assign('quesList', $quesList);
+        // p($examItem);die;
+
+
+        // ************展示页面************
+        if ($quesItem['type'] == '单选题') {
+            $this->display('radio');
+        } else if ($quesItem['type'] == '判断题') {
+            $this->display('judge');
+        } else if ($quesItem['type'] == '多选题') {
+            $this->display('mutil');
+        }
    }
+
+    /**
+     * exam 考试页面
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-10-2 20:44Authors
+     **/
+    public function submit() {
+        if(!IS_AJAX)
+            $this->error('你访问的页面不存在');
+
+        // *********获取题目的正确答案
+        
+        $answer   = I('option');
+        $selectid = intval(trim(I('selectid')));
+
+        $right_answer = D('ExamSelect')->getRightAnswer($selectid);
+        $result   =  $answer == $right_answer ? 1 : 0;
+        //  数据表中要修改的data
+        $data = array(
+            'answer' => $answer,
+            'result' => $result,
+            'time'   => date('Y-m-d H:i:s', time()),
+            'right_answer'=>$right_answer,
+        );
+
+        D('ExamSelect')->where(array('id'=>$selectid))->save($data);
+        
+    }
+
+
+    
     
 }

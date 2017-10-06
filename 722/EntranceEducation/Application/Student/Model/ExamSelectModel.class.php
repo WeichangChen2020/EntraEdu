@@ -84,7 +84,7 @@ class ExamSelectModel extends Model {
 	}
 
 	/**
-	 * getExamItems 获取题目信息
+	 * getExamItems 获取所有题目信息
 	 * @author 李俊君<hello_lijj@qq.com>
 	 * @copyright  2017-10-3 15:52Authors
 	 * @param $openid, $examid
@@ -97,6 +97,98 @@ class ExamSelectModel extends Model {
 
 		return $examQues;
 	}
+
+	/**
+	 * getExamItem 获取某一道题目的quesid
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-6 10:24Authors
+	 * @param $openid, $examid, $quesid
+	 * @return 
+	 * 1.首次进入页面获取最小的id
+	   2.中途进入页面获取未做的题目中最小的id
+	   3.还能获取用户指定的id
+	 */
+	public function getExamItem($openid, $examid, $selectid = 0) {
+
+		// 用户指定了selectid
+		if ($selectid != 0) {
+			$quesItem = $this->where(array('id'=>$selectid))->find();
+			$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
+			return $quesItem;
+		}
+
+		// 用户首次或者中途进入答题页面
+
+		$map = array(
+			'openid' => $openid, 
+			'examid' => $examid, 
+			'result' => -1,            //表示用户还没有提交答案
+		);
+		
+		$ques = $this->where($map)->limit(1)->select();
+		$quesItem = $ques[0];
+		$selectid = $quesItem['id'];
+
+		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
+		return $quesItem;		
+	}
+
+
+	/**
+	 * getRightAnswer 获取某一道题目的正确答案
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-6 10:24Authors
+	 * @param selectid
+	 * @return right answer
+	 */
+	public function getRightAnswer($selectid) {
+
+		$quesid = $this->where(array('id'=>$selectid))->getField('quesid');
+
+		$right_answer = D('Questionbank')->getRightAnswer($quesid);
+
+		return $right_answer;
+	}
+
+	/**
+	 * getExamItemList 获取所有的题目用于构造索引模型
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-6 15:07Authors
+	 * @param openid, examid
+	 * @return 索引模型
+	 */
+	public function getExamItemList($openid, $examid) {
+
+		$examQues = $this->where(array('openid'=>$openid, 'examid'=>$examid))
+						 ->select();
+
+		return $examQues;	
+	}
+
+
+	/**
+	 * getExamSeqid 获取题目d
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-6 15:58Authors
+	 * @param openid, examid, selectid 
+	 * @return 索引模型
+	 */
+	private function getExamSeqid($openid, $examid, $selectid) {
+
+		$map = array(
+			'openid' => $openid,
+			'examid' => $examid,
+			'id'     => array('elt', $selectid),
+		);
+
+		$seqid = $this->where($map)->count();
+
+		return $seqid;
+	}
+
+
+
+
 }
 
  ?>
