@@ -15,5 +15,9 @@ function countdown() {
         s = Math.floor(t/1000%60);
     }
 
-    $('title').html('模拟考试('+h+'时'+m+'分'+s+'秒');
+    if (h>0)
+        $('title').html('模拟考试-'+h+'时'+m+'分'+s+'秒';
+    else
+        $('title').html('模拟考试-'+m+'分'+s+'秒';
+
 }
