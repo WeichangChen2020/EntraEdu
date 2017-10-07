@@ -118,7 +118,7 @@ class ExamController extends Controller{
         $examid = session('examid');
         $examInfo = M('ExamSetup')->where(array('id'=>$examid))->find();
         $endtime = $examInfo['start_time'] + $examInfo['set_time']*60;
-        $this->assign('endtime',$endtime);
+        $this->assign('endtime',$endtime*1000);
 
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
@@ -131,7 +131,7 @@ class ExamController extends Controller{
         $this->assign('quesList', $quesList);
         // p($examItem);die;
 
-        // dump($quesList);
+        dump($quesList);
 
         // ************展示页面************
         if ($quesItem['type'] == '单选题') {
