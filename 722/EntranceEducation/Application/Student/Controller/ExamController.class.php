@@ -193,7 +193,11 @@ class ExamController extends Controller{
         }
         //总答题数与正确题数
         $quesNum = M('ExamSelect')->where($data)->count();
-        $trueNum = M('ExamSelect')->where($data,array('result' => '1'))->count();
+        $trueNum = M('ExamSelect')->where(array(
+            'result' => '1',
+            'openid' => $openId,
+            'examid' => $examid,
+        ))->count();
         $this->assign('quesNum',$quesNum);
         $this->assign('trueNum',$trueNum);
 
