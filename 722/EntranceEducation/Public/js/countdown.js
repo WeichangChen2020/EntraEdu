@@ -1,9 +1,9 @@
 // 输入开始时间，考试时间
-function countdown() {
+function countdown(endtime) {
 
-	var EndTime= new Date('2017/10/07 09:00:00');
+	// var EndTime= new Date('1507392000');
     var NowTime = new Date();
-    var t =EndTime.getTime() - NowTime.getTime();
+    var t = endtime - NowTime.getTime();
 
     // t = 50 * 60 * 1000;
     var h=0;
