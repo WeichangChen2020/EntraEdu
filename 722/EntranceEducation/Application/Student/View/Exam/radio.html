@@ -115,9 +115,6 @@
 	    // 定时
 	    function time(){
 	    	countdown({$endtime});
-    var NowTime = new Date();
-	    	console.log({$endtime});
-	    	console.log(NowTime.getTime());
 	    }
 		setInterval(time,1000);
 
@@ -128,7 +125,8 @@
 			if (option!='') {
 				var selected_option = $('use')[click_index[option]];
 				var selected_option_attr = selected_option.getAttribute('xlink:href');
-				selected_option.setAttribute('xlink:href', selected_option_attr + '-select');					
+				selected_option.setAttribute('xlink:href', selected_option_attr + '-select');	
+				
 			}
 		} 
 
