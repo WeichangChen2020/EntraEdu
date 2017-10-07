@@ -158,12 +158,15 @@
 	        });
 
             $('.c-button').click(function(){
-				if (selectOption.length == '1')
+				if (selectOption.length == '1'){
 					$.confirm("您确定只选择一个选项?", "确认?", function() {
+			    		window.location.href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}";
+			        }, function() {
+			          //取消操作
+			        });
+				}else{
 		    		window.location.href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}";
-		        }, function() {
-		          //取消操作
-		        });
+				}
 
 	    	});
 
