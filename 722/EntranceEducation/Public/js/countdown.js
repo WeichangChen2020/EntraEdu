@@ -6,7 +6,6 @@ function countdown(endtime) {
     var t = endtime * 1000 - NowTime.getTime();
 
     // t = 50 * 60 * 1000;
-    console.log(t+'endtime'+endtime);
     var h=0;
     var m=0;
     var s=0;
