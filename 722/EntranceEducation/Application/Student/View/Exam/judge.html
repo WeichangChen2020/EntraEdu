@@ -93,15 +93,21 @@
 	    var click_index = {'对':2, '错':3};
 
 	    // 定时
-		setInterval(countdown({$endtime}),1000);
+	    function time(){
+	    	countdown({$endtime});
+	    }
+		setInterval(time,1000);
+
 
 
 		// 初始化如果用户已经选择了答案
 		if ("{$examItem.result}" != '-1') {
 			var option = "{$examItem.answer}";
-			var selected_option = $('use')[click_index[option]];
-			var selected_option_attr = selected_option.getAttribute('xlink:href');
-			selected_option.setAttribute('xlink:href', '#icon-danxuan');	
+			if (option!='') {
+				var selected_option = $('use')[click_index[option]];
+				var selected_option_attr = selected_option.getAttribute('xlink:href');
+				selected_option.setAttribute('xlink:href', '#icon-danxuan');	
+			}
 		} 
 
 	    // 点击选项后上传答案

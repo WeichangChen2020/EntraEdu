@@ -122,9 +122,11 @@
 		// 初始化如果用户已经选择了答案
 		if ("{$examItem.result}" != '-1') {
 			var option = "{$examItem.answer}";
-			var selected_option = $('use')[click_index[option]];
-			var selected_option_attr = selected_option.getAttribute('xlink:href');
-			selected_option.setAttribute('xlink:href', selected_option_attr + '-select');	
+			if (option!='') {
+				var selected_option = $('use')[click_index[option]];
+				var selected_option_attr = selected_option.getAttribute('xlink:href');
+				selected_option.setAttribute('xlink:href', selected_option_attr + '-select');					
+			}
 		} 
 
 	    // 点击选项后上传答案

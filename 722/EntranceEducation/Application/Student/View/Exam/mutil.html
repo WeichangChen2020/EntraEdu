@@ -115,18 +115,23 @@
     	var useList   = $('.content').find('use');
 
 	    // 定时
-		setInterval(countdown({$endtime}),1000);
+	    function time(){
+	    	countdown({$endtime});
+	    }
+		setInterval(time,1000);
+
 
 
 		// 初始化如果用户已经选择了答案
 		if ("{$examItem.result}" != '-1') {
 			var option = "{$examItem.answer}".toLowerCase();
-	    	var useList   = $('.content').find('use');
-	    	for (var i = 0; i < useList.length ; i++) {
-	    		if (option.indexOf(useList[i].getAttribute('xlink:href').substring(13,14)) != '-1') {
-	    			useList[i].setAttribute('xlink:href', useList[i].getAttribute('xlink:href') + '-select')
-	    		}
-	    		
+			if (option!='') {
+		    	var useList   = $('.content').find('use');
+		    	for (var i = 0; i < useList.length ; i++) {
+		    		if (option.indexOf(useList[i].getAttribute('xlink:href').substring(13,14)) != '-1') {
+		    			useList[i].setAttribute('xlink:href', useList[i].getAttribute('xlink:href') + '-select')
+		    		}
+		    	}	
 			}
 		} 
 
