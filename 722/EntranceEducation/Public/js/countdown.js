@@ -3,7 +3,7 @@ function countdown(endtime) {
 
 	// var EndTime= new Date('1507392000');
     var NowTime = new Date();
-    var t = endtime - NowTime.getTime();
+    var t = endtime*1000 - NowTime.getTime();
 
     // t = 50 * 60 * 1000;
     var h=0;
