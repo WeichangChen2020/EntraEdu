@@ -84,12 +84,12 @@
 		        	<volist name="quesList" id="quesList" key="k" >
 		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesList.id}</div></a>
+							    <a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesItem.id}</div></a>
 						<elseif condition="($k)%7 eq 0"/>
-							<a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesItem.id}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{:U('Exam/exam',array('selectid'=>$quesList['id']))}"><div class="{$quesList.result|get_exam_index_css=###}">{$quesItem.id}</div></a>
 						</if>
 					</volist>
 				   
