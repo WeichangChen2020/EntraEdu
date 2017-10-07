@@ -119,8 +119,8 @@ class ExamController extends Controller{
         $examInfo = M('ExamSetup')->where(array('id'=>$examid))->find();
         $startTime = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
         $endtime = strtotime($startTime) + intval($examInfo['set_time'])*60;
-        // dump(intval($examInfo['set_time']));
-        // dump($endtime);die;
+        dump(strtotime($startTime));
+        dump($endtime);die;
         $this->assign('endtime',$endtime*1000);
 
         // ************分配考试item信息 和 题目考试信息
