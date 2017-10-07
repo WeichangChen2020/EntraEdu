@@ -174,6 +174,30 @@ class ExamController extends Controller{
 
         D('ExamSelect')->where(array('id'=>$selectid))->save($data);
         
+    }    
+
+    /**
+     * exam 完成页面
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-10-7 16:44Authors
+     **/
+    public function tip() {
+        $openId = session('openId');
+        $examid = session('examid');
+        $data = array(
+            'openid' => $openId,
+            'examid' => $examid,
+        );
+        if (!M('ExamSubmit')->where($data)->find()) {
+            M('ExamSubmit')->add($data);
+        }
+        //总答题数与正确题数
+        $quesNum = M('ExamSelect')->where($data)->count();
+        $trueNum = M('ExamSelect')->where($data,array('result' => '1'))->count();
+        $this->assign('quesNum',$quesNum);
+        $this->assign('trueNum',$trueNum);
+
+        $this->display();
     }
 
 
