@@ -119,7 +119,7 @@ class ExamController extends Controller{
         $examInfo = M('ExamSetup')->where(array('id'=>$examid))->find();
         $startTime = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
         $endtime = strtotime($startTime) + intval($examInfo['set_time'])*60;
-        dump(intval($examInfo['set_time']);
+        dump(intval($examInfo['set_time']));
         dump($endtime);die;
         $this->assign('endtime',$endtime*1000);
 
