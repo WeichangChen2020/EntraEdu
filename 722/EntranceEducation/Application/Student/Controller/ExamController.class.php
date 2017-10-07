@@ -117,7 +117,9 @@ class ExamController extends Controller{
         $openid = session('openId');
         $examid = session('examid');
         $examInfo = M('ExamSetup')->where(array('id'=>$examid))->find();
-        $endtime = $examInfo['start_time'] + $examInfo['set_time']*60;
+        $startTime = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->field('time')->min();
+        // $endtime = strtotime() + $examInfo['set_time']*60;
+        dump($startTime);die;
         $this->assign('endtime',$endtime*1000);
 
         // ************分配考试item信息 和 题目考试信息
