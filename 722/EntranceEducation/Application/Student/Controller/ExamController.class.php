@@ -118,19 +118,18 @@ class ExamController extends Controller{
         $examid = session('examid');
 
 
-
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
         $this->assign('examItem', $examItem);        
         $this->assign('quesItem', $quesItem);
 
-
         // ************分配题目list
         $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
         $this->assign('quesList', $quesList);
         // p($examItem);die;
 
+        // dump($examItem);
 
         // ************展示页面************
         if ($quesItem['type'] == '单选题') {
