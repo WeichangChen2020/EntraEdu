@@ -134,7 +134,7 @@ class ExamController extends Controller{
                 $leftNum ++;
             }
         }
-        dump($leftNum);
+        // dump($leftNum);
         $this->assign('quesList', $quesList);
         $this->assign('leftNum', $leftNum);
 
