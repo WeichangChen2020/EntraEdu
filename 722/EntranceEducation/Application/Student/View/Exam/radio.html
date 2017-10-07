@@ -115,6 +115,9 @@
 	    // 定时
 	    function time(){
 	    	countdown({$endtime});
+    var NowTime = new Date();
+	    	console.log({$endtime});
+	    	console.log(NowTime.getTime());
 	    }
 		setInterval(time,1000);
 
