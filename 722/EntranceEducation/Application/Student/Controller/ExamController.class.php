@@ -129,7 +129,7 @@ class ExamController extends Controller{
         $this->assign('quesList', $quesList);
         // p($examItem);die;
 
-        // dump($examItem);
+        dump($quesItem);
 
         // ************展示页面************
         if ($quesItem['type'] == '单选题') {
