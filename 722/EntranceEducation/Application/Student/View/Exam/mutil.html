@@ -141,6 +141,7 @@
 		$('.option-area').click(function(){
 	    	var use       = $(this).find('use')[0];
 	    	var icon_attr = use.getAttribute('xlink:href');
+			selectOption = "";
 			// var option    = icon_attr.substring(13,14).toUpperCase(); //选项
 
 			//判断是否选中并加上样式
@@ -150,7 +151,6 @@
 			} else {
 				use.setAttribute('xlink:href', icon_attr + '-select');
 			}
-			selectOption = "";
 	    	for (var i = 0; i < useList.length ; i++) {
 				if (useList[i].getAttribute('xlink:href').indexOf('select') != '-1')
 					selectOption += useList[i].getAttribute('xlink:href').substring(13,14).toUpperCase();
@@ -171,7 +171,6 @@
 
 		// 点击下一题按钮
 		$('#next_ques').click(function(){
-			console.log(selectOption);
 			if (selectOption.length < 2){
 				$.alert("多选题至少选择2个答案！", "提示");
 			}else{
