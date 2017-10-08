@@ -79,6 +79,7 @@ class ExamController extends Controller{
         $openid = session('openId');
         $examid = session('examid');
         $info   = D('ExamSetup')->beforeInitExam($openid, $examid);
+        p($info);
 
         $this->ajaxReturn($info);
     }
