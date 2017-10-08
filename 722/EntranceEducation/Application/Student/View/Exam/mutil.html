@@ -67,7 +67,7 @@
 			</div>
 				
 			<if condition="$examItem['seqid'] eq count($quesList)">
-				<a class="c-button" href="{:U('Exam/tip')}">提交</a>
+				<a id="submit" href="{:U('Exam/tip')}">提交</a>
 			<else /> 
 				<a class="c-button" href="javascript:;">下一题</a>
 			</if>
@@ -167,18 +167,17 @@
 
 	        });
 
-            $('.c-button').click(function(){
-				if (selectOption.length == '1'){
-					$.alert("多选题至少选择2个答案！", "提示");
-				}else{
-		    		window.location.href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}";
-				}
-
-	    	});
-
-
 		});
 
+		// 点击下一题按钮
+		$('.c-button').click(function(){
+			if (selectOption.length == '1'){
+				$.alert("多选题至少选择2个答案！", "提示");
+			}else{
+	    		window.location.href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}";
+			}
+
+    	});
 
 		// 点击后monup
 		$(document).on("click", ".weui-popup-modal", function() {
