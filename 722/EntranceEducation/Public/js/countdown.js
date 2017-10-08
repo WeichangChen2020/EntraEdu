@@ -1,10 +1,16 @@
 // 输入开始时间，考试时间
 function countdown(endtime) {
 
-	// var EndTime= new Date('1507392000');
+	var EndTime= new Date(endtime*1000);
+    // console.log(EndTime);
     var NowTime = new Date();
-    var t = endtime - NowTime.getTime();
 
+
+    var t = endtime*1000 - NowTime.getTime();
+
+    // console.log(EndTime.toLocaleString());
+    // // // new Date().format("yyyy-MM-dd")
+    // console.log(NowTime.toLocaleString());
     // t = 50 * 60 * 1000;
     var h=0;
     var m=0;
