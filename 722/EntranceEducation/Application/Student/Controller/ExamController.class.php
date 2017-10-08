@@ -129,15 +129,15 @@ class ExamController extends Controller{
 
         // ************分配题目list
         $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
-        $leftNum    = 0;
-        foreach ($quesList as $key => $value){
-            if ($value['result'] == '-1') {
-                $leftNum ++;
-            }
-        }
+        // $leftNum    = 0;
+        // foreach ($quesList as $key => $value){
+        //     if ($value['result'] == '-1') {
+        //         $leftNum ++;
+        //     }
+        // }
         // dump($leftNum);
         $this->assign('quesList', $quesList);
-        $this->assign('leftNum', $leftNum);
+        // $this->assign('leftNum', $leftNum);
 
         // ************展示页面************
         if ($quesItem['type'] == '单选题') {
