@@ -49,6 +49,7 @@
         var url  = "{:U('Exam/beforeInit')}";
         var data = {};
         $.post(url, data, function(res){
+            console.log(res);
             if(res.is_on == 0) {
                 $.alert("本次考试还未开启！", "提示");
             }
