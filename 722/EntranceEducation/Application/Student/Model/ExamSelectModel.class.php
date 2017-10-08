@@ -120,6 +120,13 @@ class ExamSelectModel extends Model {
 			$map['id'] = $selectid;
 			$quesItem = $this->where($map)->find();
 
+			// 如果指定select不存在 
+			if (empty($quesItem)) {
+				unset($map['id']);
+				$ques = $this->where($map))->order('id desc')->limit(1)->select();
+				$quesItem = $ques[0];
+			}
+
 		} else {
 			// 用户首次或者中途进入答题页面
 			$map['result'] = -1;
@@ -128,15 +135,10 @@ class ExamSelectModel extends Model {
 			$selectid = $quesItem['id'];
 		}
 
-		// 说明要么你已经做完了所有的题目，要么你的selectid不对
-		if (empty($quesItem)) {
-			p($map);
-			$selectid = $this->where($map)->max('id');
-			p($selectid);
-			echo "string";
-		} 
+		
 
 		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
+		
 
 
 		return $quesItem;		
