@@ -5,13 +5,8 @@ function countdown(endtime) {
     // console.log(EndTime);
     var NowTime = new Date();
 
-
     var t = endtime*1000 - NowTime.getTime();
 
-    // console.log(EndTime.toLocaleString());
-    // // // new Date().format("yyyy-MM-dd")
-    // console.log(NowTime.toLocaleString());
-    // t = 50 * 60 * 1000;
     var h=0;
     var m=0;
     var s=0;
@@ -25,5 +20,30 @@ function countdown(endtime) {
         $('title').html('模拟考试-'+h+'时'+m+'分'+s+'秒');
     else
         $('title').html('模拟考试-'+m+'分'+s+'秒');
+
+}
+
+// 学生做出选择后反馈给用户信息
+function returnInfo(res) {
+    console.log(res);
+    if(res.is_on == 0) {
+        $.alert("本次考试还未开启！", "提示");
+        return false;
+    }
+    
+    // 已开启，已提交，已结束
+    if(res.is_submit == 1 && res.is_end == 1) {
+        $.alert("本次考试已经结束，你成功提交！", "提示");
+    }
+
+    // 已开启，未提交，已结束
+    if(res.is_submit == 0 && res.is_end == 1) {
+        $.alert("本次考试已经结束，但你没有提交，请联系管理员！！", "提示");
+    }
+    // 考试倒计时已经结束
+    if(res.time_end == 1 && res.is_submit == 0) {
+        $.alert("本次考试已经结束，但你没有提交，请联系管理员！！", "提示");
+    }
+    
 
 }

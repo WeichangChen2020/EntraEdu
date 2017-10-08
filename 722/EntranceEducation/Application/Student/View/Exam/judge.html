@@ -100,8 +100,6 @@
 		setInterval(time,1000);
 	   
 
-
-
 		// 初始化如果用户已经选择了答案
 		if ("{$examItem.result}" != '-1') {
 			var option = "{$examItem.answer}";
@@ -120,14 +118,7 @@
 			var option     = lable.innerHTML == '正确' ? '对' : '错'; //选项
 			click_times[option] ++;
 
-			// 判断该选项是否选中,并消除其他选项的样式
-			for (var i = 0; i < $('.content').find('use').length; i++)
-			{
-				$('.content').find('use')[i].setAttribute('xlink:href', '#icon-icondanxuanxiangweixuanze');				
-			}
-			use.setAttribute('xlink:href', '#icon-danxuan');
-
-			// console.log(option);		
+			
 			var data = {
 				'selectid': "{$examItem['id']}" , 
 				'option': option,
@@ -135,10 +126,17 @@
 
 			var url = "{:U('Exam/submit')}";
 	        $.post(url, data, function(res){
-	            
-
+	            returnInfo(res);
 	        });
 
+	        // 判断该选项是否选中,并消除其他选项的样式
+			for (var i = 0; i < $('.content').find('use').length; i++)
+			{
+				$('.content').find('use')[i].setAttribute('xlink:href', '#icon-icondanxuanxiangweixuanze');				
+			}
+			use.setAttribute('xlink:href', '#icon-danxuan');
+
+			// console.log(option);		
 		})
 
 
