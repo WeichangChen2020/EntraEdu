@@ -130,7 +130,7 @@ class ExamSelectModel extends Model {
 
 		// 说明要么你已经做完了所有的题目，要么你的selectid不对
 		if (empty($quesItem)) {
-			
+			p($map);
 			$selectid = $this->where($map)->max('id');
 			p($selectid);
 			echo "string";
