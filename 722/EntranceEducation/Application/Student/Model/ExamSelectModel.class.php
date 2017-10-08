@@ -131,10 +131,7 @@ class ExamSelectModel extends Model {
 		// 说明要么你已经做完了所有的题目，要么你的selectid不对
 		if (empty($quesItem)) {
 			
-			$selectid = $this->where($map)->select();	
-			p($selectid);
-			$map['id'] = $selectid;
-			$quesItem = $this->where($map)->find();
+			echo "string";
 		} 
 
 		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
