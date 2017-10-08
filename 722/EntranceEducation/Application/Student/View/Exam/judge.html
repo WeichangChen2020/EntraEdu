@@ -46,9 +46,10 @@
 				
 			</div>
 				
-			<a class="c-button" href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}">下一题</a>
-	        <if condition="$leftNum eq 0"> 
+			<if condition="$examItem['seqid'] eq count($quesList)">
 				<a class="c-button" href="{:U('Exam/tip')}">提交</a>
+			<else /> 
+				<a class="c-button" href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}">下一题</a>
 			</if>
 		</div>
 
@@ -94,7 +95,7 @@
 
 	    // 定时
 	    function time(){
-	    	countdown({$endtime});
+	    	countdown({$end_time});
 	    }
 		setInterval(time,1000);
 

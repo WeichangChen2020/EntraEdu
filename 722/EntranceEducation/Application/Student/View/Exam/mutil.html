@@ -118,7 +118,7 @@
 
 	    // 定时
 	    function time(){
-	    	countdown({$endtime});
+	    	countdown({$end_time});
 	    }
 		setInterval(time,1000);
 
@@ -169,7 +169,7 @@
 
             $('.c-button').click(function(){
 				if (selectOption.length == '1'){
-					$.alert("至少选择2个答案！", "警告");
+					$.alert("多选题至少选择2个答案！", "提示");
 				}else{
 		    		window.location.href="{:U('Exam/exam', array('selectid'=>$examItem['id']+1))}";
 				}

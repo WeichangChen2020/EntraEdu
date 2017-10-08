@@ -200,6 +200,24 @@ class ExamSelectModel extends Model {
 		return $seqid;
 	}
 
+	/**
+	 * getEndTime 获取考试截止时间
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-8 13:46Authors
+	 * @param openid, examid, 
+	 * @return 索引模型
+	 */
+	public function getEndTime($openid, $examid) {
+
+	 	$set_time   = D('ExamSetup')->where(array('id'=>$examid))->getField('set_time');
+
+        $start_time = D('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
+
+        $end_time   = intval(strtotime($start_time)) + intval($set_time) * 60;
+
+        return $end_time;
+	}
+
 
 
 

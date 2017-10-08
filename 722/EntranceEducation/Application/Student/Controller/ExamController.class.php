@@ -113,14 +113,9 @@ class ExamController extends Controller{
     public function exam($selectid = 0) {
         $this->initExam();
         
-        // ************分配考试item信息
         $openid = session('openId');
         $examid = session('examid');
-        $examInfo = M('ExamSetup')->where(array('id'=>$examid))->find();
-        $startTime = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
-        $endtime = intval(strtotime($startTime)) + intval($examInfo['set_time'])*60;
-        $this->assign('endtime',$endtime*1000);
-
+       
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
@@ -129,15 +124,12 @@ class ExamController extends Controller{
 
         // ************分配题目list
         $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
-        // $leftNum    = 0;
-        // foreach ($quesList as $key => $value){
-        //     if ($value['result'] == '-1') {
-        //         $leftNum ++;
-        //     }
-        // }
-        // dump($leftNum);
         $this->assign('quesList', $quesList);
-        // $this->assign('leftNum', $leftNum);
+
+        // ************分配考试截止时间*************
+        $end_time = D('ExamSelect')->getEndTime($openid, $examid);
+        $this->assign('end_time', $end_time);
+        
 
         // ************展示页面************
         if ($quesItem['type'] == '单选题') {
