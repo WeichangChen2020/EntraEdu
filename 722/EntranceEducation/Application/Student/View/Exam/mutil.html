@@ -67,9 +67,9 @@
 			</div>
 				
 			<if condition="$examItem['seqid'] eq count($quesList)">
-				<a id="submit" href="{:U('Exam/tip')}">提交</a>
+				<a class="c-button" id="submit" href="{:U('Exam/tip')}">提交</a>
 			<else /> 
-				<a class="c-button" href="javascript:;">下一题</a>
+				<a class="c-button" id="next_ques" href="javascript:;">下一题</a>
 			</if>
 		</div>
 
@@ -170,7 +170,7 @@
 		});
 
 		// 点击下一题按钮
-		$('.c-button').click(function(){
+		$('#next_ques').click(function(){
 			if (selectOption.length < 2){
 				$.alert("多选题至少选择2个答案！", "提示");
 			}else{
