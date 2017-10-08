@@ -54,7 +54,7 @@ class ExamSetupModel extends Model {
 	        'is_on'     => 1,
 	        'is_end'    => 0,
 	        'is_submit' => 0,
-	        'time_end'  => 0;
+	        'time_end'  => 0,
         );
         // 是新生
         if (D('StudentInfo')->isNewer($openid)) {
