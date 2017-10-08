@@ -126,6 +126,7 @@ class ExamSelectModel extends Model {
 		);
 		
 		$ques = $this->where($map)->limit(1)->select();
+		p($ques);die;
 		$quesItem = $ques[0];
 		$selectid = $quesItem['id'];
 
