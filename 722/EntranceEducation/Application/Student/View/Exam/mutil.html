@@ -65,12 +65,11 @@
 				</if>
 				
 			</div>
-			<a class="c-button" href="javascript:;">下一题</a>
-				<a class="c-button" href="{:U('Exam/tip')}">提交</a>
+				
 			<if condition="$examItem['seqid'] eq count($quesList)">
-				ThinkPHP
-				<else /> 
-				other Framework
+				<a class="c-button" href="{:U('Exam/tip')}">提交</a>
+			<else /> 
+				<a class="c-button" href="javascript:;">下一题</a>
 			</if>
 		</div>
 
