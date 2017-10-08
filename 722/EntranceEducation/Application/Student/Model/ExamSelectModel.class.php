@@ -122,7 +122,6 @@ class ExamSelectModel extends Model {
 
 		} else {
 			// 用户首次或者中途进入答题页面
-
 			$map['result'] = -1;
 			$ques = $this->where($map)->limit(1)->select();
 			$quesItem = $ques[0];
@@ -133,6 +132,7 @@ class ExamSelectModel extends Model {
 		if (empty($quesItem)) {
 			
 			$selectid = $this->where($map)->max('id');	
+			p($selectid);
 			$map['id'] = $selectid;
 			$quesItem = $this->where($map)->find();
 		} 
