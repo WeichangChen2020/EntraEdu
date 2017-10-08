@@ -28,24 +28,24 @@ function returnInfo(res) {
     console.log(res);
     if(res.is_on == 0) {
         $.alert("本次考试还未开启！", "提示");
-        return false;
+        return;
     }
     
     // 已开启，已提交，已结束
     if(res.is_submit == 1 && res.is_end == 1) {
         $.alert("本次考试已经结束，你成功提交！", "提示");
-        return false;
+        return;
     }
 
     // 已开启，未提交，已结束
     if(res.is_submit == 0 && res.is_end == 1) {
         $.alert("本次考试已经结束，但你没有提交，请联系管理员！！", "提示");
-        return false;
+        return;
     }
     // 考试倒计时已经结束
     if(res.time_end == 1 && res.is_submit == 0) {
         $.alert("本次考试已经结束，但你没有提交，请联系管理员！！", "提示");
-        return false;
+        return;
     }
     
 
