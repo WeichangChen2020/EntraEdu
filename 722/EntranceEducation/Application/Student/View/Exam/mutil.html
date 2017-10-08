@@ -160,7 +160,7 @@
 				'selectid': "{$examItem['id']}" , 
 				'option': selectOption,
 			}
-			console.log(selectOption);
+
 			var url = "{:U('Exam/submit')}";
 	        $.post(url, data, function(res){
 	            
@@ -171,6 +171,7 @@
 
 		// 点击下一题按钮
 		$('#next_ques').click(function(){
+			console.log(selectOption);
 			if (selectOption.length < 2){
 				$.alert("多选题至少选择2个答案！", "提示");
 			}else{
