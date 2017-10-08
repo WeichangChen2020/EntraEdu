@@ -185,7 +185,7 @@
 	    });
 
 	    // 点击提交按钮
-	    $('#submit').one('click', function(){
+	    $('#submit').click(function(){
 
 	    	$.confirm("只有一次提交机会，你确定要提交吗?", "确认提交?", function() {
 	    		window.location.href="{:U('Exam/tip')}";
