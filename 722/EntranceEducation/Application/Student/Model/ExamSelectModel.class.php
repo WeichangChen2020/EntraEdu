@@ -123,7 +123,7 @@ class ExamSelectModel extends Model {
 			// 如果指定select不存在 
 			if (empty($quesItem)) {
 				unset($map['id']);
-				$ques = $this->where($map))->order('id desc')->limit(1)->select();
+				$ques = $this->where($map)->order('id desc')->limit(1)->select();
 				$quesItem = $ques[0];
 			}
 
@@ -138,7 +138,7 @@ class ExamSelectModel extends Model {
 		
 
 		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
-		
+
 
 
 		return $quesItem;		
