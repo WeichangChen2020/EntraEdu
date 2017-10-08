@@ -150,8 +150,8 @@
 			} else {
 				use.setAttribute('xlink:href', icon_attr + '-select');
 			}
-
-	    	for (selectOption = "", var i = 0; i < useList.length ; i++) {
+			selectOption = "";
+	    	for (var i = 0; i < useList.length ; i++) {
 				if (useList[i].getAttribute('xlink:href').indexOf('select') != '-1')
 					selectOption += useList[i].getAttribute('xlink:href').substring(13,14).toUpperCase();
 			}
