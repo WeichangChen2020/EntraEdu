@@ -54,20 +54,26 @@ class ExamSetupModel extends Model {
 	        'is_on'     => 1,
 	        'is_end'    => 0,
 	        'is_submit' => 0,
+	        'time_end'  => 0;
         );
         // 是新生
         if (D('StudentInfo')->isNewer($openid)) {
         	$info['is_newer'] = 1;
         } 
 
-        // 考试还未开启
+        // 考试还未开启 
         if ($now < $examInfo['start_time'] && $examInfo['is_on'] == 0) {
         	$info['is_on'] = 0;
         } 
 
-        // 考试已经截止
-        if ($now > D('ExamSelect')->getEndTime($openid, $examid)) {
+        // 考试已经截止，：从start_time开始
+        if ($now > $examInfo['start_time'] + $examInfo['set_time'] * 60) {
         	$info['is_end'] = 1;
+        }
+
+        // 考试时间到了 从初始化题目时间开始
+        if ($now > D('ExamSelect')->getEndTime($openid, $examid)) {
+        	$info['time_end'] = 1;
         }
 
         // 已经提交过了
