@@ -110,27 +110,33 @@ class ExamSelectModel extends Model {
 	 */
 	public function getExamItem($openid, $examid, $selectid = 0) {
 
-		// 用户指定了selectid
-		if ($selectid != 0) {
-			$quesItem = $this->where(array('id'=>$selectid))->find();
-			$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
-			return $quesItem;
-		}
-
-		// 用户首次或者中途进入答题页面
-
 		$map = array(
 			'openid' => $openid, 
 			'examid' => $examid, 
-			'result' => -1,            //表示用户还没有提交答案
 		);
-		
-		$ques = $this->where($map)->limit(1)->select();
-		$quesItem = $ques[0];
-		$selectid = $quesItem['id'];
+		// 用户指定了selectid
+		if ($selectid != 0) {
 
-		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
-		
+			$map['id'] = $selectid;
+			$quesItem = $this->where($map)->find();
+
+		} else {
+			// 用户首次或者中途进入答题页面
+
+			$map['result'] = -1;
+			$ques = $this->where($map)->limit(1)->select();
+			$quesItem = $ques[0];
+			$selectid = $quesItem['id'];
+		}
+
+		// 说明要么你已经做完了所有的题目，要么你的selectid不对
+		// if (empty($quesItem)) {
+			
+		// } 
+
+		// $quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
+
+
 		return $quesItem;		
 	}
 
