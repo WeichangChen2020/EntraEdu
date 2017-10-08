@@ -130,11 +130,14 @@ class ExamSelectModel extends Model {
 		}
 
 		// 说明要么你已经做完了所有的题目，要么你的selectid不对
-		// if (empty($quesItem)) {
+		if (empty($quesItem)) {
 			
-		// } 
+			$selectid = $this->where($map)->max('id');	
+			$map['id'] = $selectid;
+			$quesItem = $this->where($map)->find();
+		} 
 
-		// $quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
+		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
 
 
 		return $quesItem;		
