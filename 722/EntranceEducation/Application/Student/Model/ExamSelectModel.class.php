@@ -131,12 +131,17 @@ class ExamSelectModel extends Model {
 			// 用户首次或者中途进入答题页面
 			$map['result'] = -1;
 			$ques = $this->where($map)->limit(1)->select();
+			
+			// 所有题目都做完了
+			if (empty($ques)) {
+				unset($map['result']);
+				$ques = $this->where($map)->order('id desc')->limit(1)->select();
+			}
 			$quesItem = $ques[0];
-			$selectid = $quesItem['id'];
+			
 		}
 
-		
-
+		$selectid = $quesItem['id'];
 		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
 
 
