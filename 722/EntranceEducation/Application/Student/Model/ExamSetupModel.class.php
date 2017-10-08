@@ -66,7 +66,7 @@ class ExamSetupModel extends Model {
         } 
 
         // 考试已经截止
-        if ($now > $examInfo['start_time'] + $examInfo['set_time'] * 60 ) {
+        if ($now > D('ExamSelect')->getEndTime($openid, $examid)) {
         	$info['is_end'] = 1;
         }
 

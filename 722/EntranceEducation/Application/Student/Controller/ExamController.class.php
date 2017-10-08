@@ -68,6 +68,7 @@ class ExamController extends Controller{
             5.考试是否开启
             6.考试是否结束
             7.考试是否提交
+            8.考试是否截止
          */
     public function beforeInit() {
         
@@ -197,7 +198,7 @@ class ExamController extends Controller{
         $this->display();
     }
 
-
+   
     
     
 }
