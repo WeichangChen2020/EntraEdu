@@ -42,7 +42,7 @@ class ExerciseController extends Controller{
 
 	public function exercise_chap() {
 		$openid = session('openId');
-		// $record = D('exercise')->getExerciseRecord($openid); 
+		$record = D('exercise')->getExerciseRecord($openid); 
 
 		$chapid = I('chapid'); if(empty($chapid)) {$chapid = 0; }
 		$typeid = I('typeid'); if(empty($typeid)) {$typeid = 0; }
