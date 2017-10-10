@@ -12,6 +12,9 @@ return array(
 
 	'SESSION_AUTO_START' => true,  //开启缓存
 
+	'SHOW_PAGE_TRACE' => true, //开启trace
+
+
 	// 配置数据库
 	'DB_TYPE' => 'mysql', 
 	'DB_HOST' => '127.0.0.1',
