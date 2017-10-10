@@ -203,8 +203,7 @@ class QuestionbankModel extends Model{
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 
-		p($res);
-		$min_id = $res;
+		$min_id = $res[0]['id'];
 		return $min_id;
 
 	}
