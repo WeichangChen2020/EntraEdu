@@ -26,7 +26,7 @@
 					
 				</ul>
 			</div>
-			
+
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
@@ -79,6 +79,52 @@
 </html>
 
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+	// 点击后monup
+	$(document).on("click", ".weui-popup-modal", function() {
+        console.log("open popup");
+    }).on("close", ".weui-popup-modal", function() {
+        console.log("close popup");
+    });
+
+    // 定义收藏点击的次数
+    var click_select = 0;
+    // 点击选项后上传答案
+    $('#collect').click(function (){
+		// 用点击基数次数 偶数次数来判定是否选择
+		click_select ++;
+		var selec_icon = document.getElementsByTagName("use");
+
+		if (click_select % 2 == 1) {
+
+			var message = confirm("确定取消收藏吗？");
+	        if(message==true){  
+	            //点击确定后取消收藏
+				var url = "{:U('Collect/cancel')}";
+				var data = {};
+				$.post(url, data, function(res){
+					selec_icon[3].setAttribute('xlink:href', '#icon-shoucang1');
+					$('#collect_tip').html('收藏');
+				});
+				window.location.href="{:U('Collect/recordList', array('nextid'=>session('nextid')-1))}";
+				//这个写法用户确定取消收藏直接跳到下一题
+				//如果是以下情况：用户取消收藏，又突然想收藏了，那就注释跳转的代码
+			}else{
+				//取消则啥都不做
+			}
+
+		} else {
+			// 收藏
+			var url = "{:U('Collect/collect')}";
+			var data = {};
+			$.post(url, data, function(res){
+	          	selec_icon[3].setAttribute('xlink:href', '#icon-shoucang11');
+				$('#collect_tip').html('已收藏');
+	        });
+		}
+	});
+
+</script>
 		<script type="text/javascript">
 			var res = "{$rightAns}";
 			var option = "{$recordArr.answer}";
@@ -88,17 +134,22 @@
 			
 			for(var i=0;i<myarray.length;i++){
 				var x = myarray[i];
+				var y = i+4;
 				if (res.indexOf(x)!=-1) {
 					if(option.indexOf(x)!=-1){
 						//document.write(x);
-						use[i].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
+						use[y].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
 					}else{
-						//var icon_attr = use.getAttribute('xlink:href');
-						use[i].setAttribute("xlink:href","#icon-option-right");
+                        if(option!=''){
+							//var icon_attr = use.getAttribute('xlink:href');
+							use[y].setAttribute("xlink:href","#icon-option-right");
+                        }else{
+                        	//如果用户是没作答，直接点击“收藏”按钮，则保持选项原格式
+                        }
 					}
 				}else{
 					if(option.indexOf(x)!=-1) {
-						use[i].setAttribute("xlink:href","#icon-option-wrong");
+						use[y].setAttribute("xlink:href","#icon-option-wrong");
 					}else{
 
 					}
