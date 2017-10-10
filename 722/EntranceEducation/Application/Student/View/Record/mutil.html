@@ -10,7 +10,23 @@
 	<body>
 		<div class="content">
 			<span class="c-title">{$record.name}</span>
-			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确&nbsp;{$record.rig_cot}&nbsp;错误&nbsp;{$record.wrg_cot}&nbsp;进度&nbsp;{$record.count}/{$record.sum}</label></p>
+<!-- 			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确&nbsp;{$record.rig_cot}&nbsp;错误&nbsp;{$record.wrg_cot}&nbsp;进度&nbsp;{$record.count}/{$record.sum}</label></p> -->
+
+			<div class="title-progerss">
+				<ul>
+					<li class="open-popup" data-target="#half" style="width: 74%; text-align: left;">
+						<span><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-jindu1"></use></svg>{$quesItem.id|default="24"}/{$record.sum|default='112'}
+						</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-zhengque1"></use></svg>{$record.rig_cot|default='23'}</span>
+						<span style="margin-left: 5px;"><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-cuowu"></use></svg>{$record.wrg_cot|default='123'}</span>
+					</li>
+<!-- 					<li id ="collect" style="width: 24%;text-align: right; ">
+						<span ><svg class="icon_progress" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-shoucang1"></use></svg><span id="collect_tip">收藏</span></span>
+					</li> -->
+					
+				</ul>
+			</div>
+
 			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
@@ -69,25 +85,30 @@
 </html>
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
 		<script type="text/javascript">
-			var res = "{$rightAns} ";
+			var res = "{$rightAns}";
 			var option = "{$recordArr.answer}";
 			//var use = document.getElementById("use");
 			var use = document.getElementsByTagName("use");
-			var myarray = new Array("A","B","C","D");
+			var myarray = new Array('A','B','C','D');
 			
 			for(var i=0;i<myarray.length;i++){
 				var x = myarray[i];
+				var y = i+3;
 				if (res.indexOf(x)!=-1) {
 					if(option.indexOf(x)!=-1){
 						//document.write(x);
-						use[i].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
+						use[y].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
 					}else{
-						//var icon_attr = use.getAttribute('xlink:href');
-						use[i].setAttribute("xlink:href","#icon-option-right");
+                        if(option!=''){
+							//var icon_attr = use.getAttribute('xlink:href');
+							use[y].setAttribute("xlink:href","#icon-option-right");
+                        }else{
+                        	//如果用户是没作答，直接点击“收藏”按钮，则保持选项原格式
+                        }
 					}
 				}else{
 					if(option.indexOf(x)!=-1) {
-						use[i].setAttribute("xlink:href","#icon-option-wrong");
+						use[y].setAttribute("xlink:href","#icon-option-wrong");
 					}else{
 
 					}
