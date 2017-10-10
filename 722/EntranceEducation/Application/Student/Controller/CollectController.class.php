@@ -74,7 +74,12 @@ class CollectController extends Controller {
 		//die();
 		session('quesid', $quesId);
 		session('nextid',$nextid);
-		$quesItem  = $QUESTION->getQuestion($quesId);
+		if($quesId==''){
+			$this->display('none');
+			die();
+		}else{
+			$quesItem  = $QUESTION->getQuestion($quesId);
+		}
 		//getQuestion方法当$quesId为空时，返回第一题
 		$quesList  = $RECORD->getCollectList($openId);
 		// var_dump($quesList);
