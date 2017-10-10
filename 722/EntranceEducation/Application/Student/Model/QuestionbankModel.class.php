@@ -194,7 +194,11 @@ class QuestionbankModel extends Model{
 	 */
 	public function getUnfishRecord($openid) { 
 
-		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
+		// 原来写的sql
+		// $sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
+
+
+		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1" ;
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
