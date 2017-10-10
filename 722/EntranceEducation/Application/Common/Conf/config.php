@@ -20,6 +20,7 @@ return array(
 	'DB_NAME'  => 'newer',
 	'DB_PORT' => '', 
 	'DB_PREFIX' => 'ee_', 
+
 	
 	//解决了数据库默认小写问题
 	'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),   
