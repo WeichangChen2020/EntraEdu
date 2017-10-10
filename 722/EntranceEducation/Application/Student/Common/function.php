@@ -30,5 +30,11 @@ function get_exsercise_index_css($result) {
 	}
 }
 
+function get_exercise_url_css($result) {
+	if (!$result) {
+		
+	}
+}
+
 
  ?>
