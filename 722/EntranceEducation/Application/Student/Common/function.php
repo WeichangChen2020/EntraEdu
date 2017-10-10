@@ -17,5 +17,18 @@ function get_exam_index_css($result) {
 	}
 }
 
+// *******展示题目索引 in  exercise *****
+
+function get_exsercise_index_css($result) {
+	
+	if ($result == 0) {
+		return 'placeholder-wrong';
+	} else if ($result == 1){
+		return 'placeholder-right';
+	} else {
+		return 'placeholder';
+	}
+}
+
 
  ?>
