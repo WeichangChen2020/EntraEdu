@@ -198,12 +198,12 @@ class QuestionbankModel extends Model{
 		// $sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id GROUP BY quesid)";
 
 
-		$sql = "SELECT * FROM ee_questionbank where NOT EXISTS (SELECT * FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1" ;
+		$sql = "SELECT id FROM ee_questionbank where NOT EXISTS (SELECT id FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1" ;
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 
-		$min_id = $res[0]['id'];
+		$min_id = $res[0];
 		return $min_id;
 
 	}
