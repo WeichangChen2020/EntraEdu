@@ -20,10 +20,9 @@ function get_exam_index_css($result) {
 }
 
 // *******展示题目索引 in  exercise *****
-function get_exsercise_index_css($id) {
+function get_exsercise_index_css($quesid) {
 	
 	$openid = session('openId');
-	$quesid = session('quesid');
 	
 	$map = array(
 		'openid' => $openid,
@@ -32,7 +31,6 @@ function get_exsercise_index_css($id) {
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
-	p($result);
 
 	if(empty($result)) {
 		return 'placeholder';
