@@ -32,6 +32,8 @@ function get_exsercise_index_css($id) {
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
+	p($result);
+
 	if(empty($result)) {
 		return 'placeholder';
 	} else if ($result == 0) {
