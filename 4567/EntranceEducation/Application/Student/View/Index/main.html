@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+	    <include file="./Public/weui2.0/__head.html"/>
+        
+        <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+	    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    	<style type="text/css">
+			.weui-grid {padding:24px 10px; } 
+			.weui-footer {margin: 15px 0; } 
+			.annoce {font-size: 14px; text-align: center;}
+			.separ {margin: 0 5px;}
+			.weui-cells__title {padding-top: 0.3em;margin-top: 0; color: #000; border-top: 1px solid #d9d9d9}
+			.icon {width: 25px; height: 25px; float: left; margin-top: 0; margin-right: 5px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
+            .weui-grid__icon {width: 25px; height: 25px; margin: 0 auto; } 
+            .weui-grid__icon+.weui-grid__label{margin-top: 15px;} 
+    </style>
+        <script src="__PUBLIC__/font/iconfont.js"></script>
+
+    <body ontouchstart>
+       
+       	<div class="jiben">
+		    <a class="" href="javascript:;">
+		        <div class="tx_box">
+		            <div class="tx">
+		                <img class="tx" src="{$stu_info.headimgurl|default='__PUBLIC__/images/newer/xsc_logo.jpg'}"></div>
+		            <ul>
+		            	<li>{$stu_info.name|default='张电子'}</li>
+		                <li class="info">
+		                	<span>{$stu_info.class|default='浙江'}</span>
+		                	<span>{$stu_info.number|default='杭州'}</span>
+		                </li>
+		            </ul>
+		            
+		        </div>
+		    </a>
+		    <div class="clearfix"></div>
+		</div>
+		
+        <!-- <div class="annoce">公告<span class="separ">|</span>距平台投入使用<span id="t_d">00天</span> <span id="t_h">00时</span> <span id="t_m">00分</span><span id="t_s">00秒</span></div> -->
+        
+		<div class="weui-cells__title">考前练习</div>
+
+        <div class="weui-grids">
+            <a href="{:U('Exercise/index')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg></div>
+                <p class="weui-grid__label">自由练习</p></a>
+            <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg></div>
+                <p class="weui-grid__label">模拟考试</p></a>
+            <a href="{:U('Rework/chose')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    
+                      <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mistakebook"></use></svg>  
+
+                </div>
+                <p class="weui-grid__label">错题回顾</p></a>
+        </div>
+
+		<div class="weui-cells__title" style="border: 0;">与我相关</div>
+        <div class="weui-grids">
+            <a href="{:U('Record/record')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-lianxi"></use>
+                	</svg></div>
+                <p class="weui-grid__label">答题记录</p>
+            </a>
+            <a href="{:U('Collect/recordList')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-shoucang1"></use>
+                	</svg></div>
+                <p class="weui-grid__label">我的收藏</p>
+            </a>            
+            <a href="{:U('Ranknew/rankSchool')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-rank"></use>
+                    </svg></div>
+                <p class="weui-grid__label">成绩与排名</p>
+            </a>
+            <a href="javascript:alert('尚未开放！');" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="" xlink:href="#icon-exam"></use>
+                    </svg></div>
+                <p class="weui-grid__label">考试</p>
+            </a>
+        </div>
+
+
+
+        
+        <div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="" class="weui-footer__link">新生入学考试系统 首页</a></p>
+            <p class="weui-footer__text">Copyright © 2017 浙江工商大学学生处</p></div>
+        
+        
+        <include file="./Public/weui2.0/__foot.html"/>
+        <script>
+        	$(function() {
+                FastClick.attach(document.body);
+            });
+        </script>
+        <script src="__PUBLIC__/font/iconfont.js"></script>
+    </body>
+
+</html>
+
+<script>
+  /*function GetRTime(){
+    var EndTime= new Date('2017/09/13 00:00:00');
+    var NowTime = new Date();
+    var t =EndTime.getTime() - NowTime.getTime();
+    var d=0;
+    var h=0;
+    var m=0;
+    var s=0;
+    if(t>=0){
+      d=Math.floor(t/1000/60/60/24);
+      h=Math.floor(t/1000/60/60%24);
+      m=Math.floor(t/1000/60%60);
+      s=Math.floor(t/1000%60);
+    }
+ 
+    document.getElementById("t_d").innerHTML = d + "天";
+    document.getElementById("t_h").innerHTML = h + "时";
+    document.getElementById("t_m").innerHTML = m + "分";
+    document.getElementById("t_s").innerHTML = s + "秒";
+  }
+  setInterval(GetRTime,0);*/
+</script>

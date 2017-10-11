@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>错题重做</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<script src="__PUBLIC__/font/iconfont.js"></script>
+		<style>
+		    body{
+		    	margin: 0 20px;
+		    }
+			.c-time{
+				padding-bottom: 13px;
+			}
+		    .content{
+		    	margin-left: 0;
+		    	margin-right: 0;
+		    }
+        </style>
+
+	</head>
+	<body>
+		<div class="content">
+			<span class="c-title">{$name}</span>
+			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" float: right;">还剩{$num}道错题未复习</label></p>
+			<div class="c-pic"><span class="weui-badge">{$ques.type}</span><span class="weui-badge" style="margin-left: 5px;">{$ques.chapter}
+			</span>{$ques.contents}</div>
+		</div>
+				<a href="javascript:;">
+					<div class="option-area" id="option-right">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">正确</lable>
+					</div>
+				</a>
+
+				<a href="javascript:;">
+					<div class="option-area" id="option-wrong">
+					    <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-icondanxuanxiangweixuanze"></use></svg></span>
+					    <lable class="option-contents">错误</lable>
+					</div>
+				</a>
+			<a class="c-button" href="{:U('Rework/chose')}">下一题</a>
+		</div>
+
+	</body>
+</html>
+<include file="./Public/weui2.0/__foot.html"/>
+<script type="text/javascript">
+	// 获取页面加载的时间
+    var start_time = new Date();  
+
+	$('.option-area').one('click',function(){
+		// 选择了之后正确
+		var use        = $(this).find('use')[0];
+		var lable      = $(this).find('lable')[0];
+		var option     = lable.innerHTML == '正确' ? '对' : '错'; //选项
+		var resArr     = {'对':'right', '错':'wrong'}; //用于下面 对->right 的转换
+		var now       = new Date();
+		var time      = Math.ceil((now.getTime() - start_time.getTime())/1000);
+		// console.log(option);
+
+		var data = {
+			'option': option,
+			'time'  : time,
+		}
+
+		var url = "{:U('Rework/submit')}";
+        $.post(url, data, function(res){
+        	console.log(res);
+          	if(option == res) {
+	      		use.setAttribute('xlink:href', '#icon-option-right');
+	      	} else {
+	      		use.setAttribute('xlink:href', '#icon-option-wrong');
+				$('#option-'+resArr[res]).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
+	      	}
+        });
+
+        $('.c-table a').removeAttr('href'); 
+		$('.option-area').unbind(); 
+
+		
+	})	
+</script>
