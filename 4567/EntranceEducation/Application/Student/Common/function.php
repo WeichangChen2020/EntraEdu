@@ -34,13 +34,11 @@ function get_exsercise_index_css($quesid) {
 
 	if(empty($result)) {
 		return 'placeholder';
-	} else if ($result == '0') {
-		return 'placeholder-wrong';
-	} else if ($result == '1'){
+	} else if ($result == 1) {
 		return 'placeholder-right';
+	} else {
+		return 'placeholder-wrong';
 	}
-
-	return 'placeholder'; 
 }
 
 function get_exercise_url_css($result) {
