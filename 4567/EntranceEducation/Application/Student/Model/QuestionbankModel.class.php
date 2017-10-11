@@ -221,13 +221,15 @@ class QuestionbankModel extends Model{
 	public function getQuesList($openid) {
 
 		$EXER = D('exercise');
+		
 		$quesList = $this->field('id')->limit(70)->select();
+		
 		foreach ($quesList as $key => $value) {
 			$res = $EXER->where(array('quesid'=>$value['id'], 'openid'=>$openid))->getField('result');
 			// 1 => 'placeholder-right' 
 			// 0 => 'placeholder-wrong' 
 			// else => 'placeholder' 
-			
+
 			if(!isset($res)) {
 				$quesList[$key]['result'] = 'placeholder';	
 				$quesList[$key]['href'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));	
