@@ -53,7 +53,7 @@ class ExerciseModel extends Model {
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
 
-			$sql = "SELECT id FROM ee_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT id FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1";
+			$sql = "SELECT id FROM ee_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT quesid FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
@@ -68,7 +68,7 @@ class ExerciseModel extends Model {
 		 
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
-			$sql = "SELECT id FROM ee_questionbank where type = '$typeid' AND NOT EXISTS (SELECT id FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1";
+			$sql = "SELECT id FROM ee_questionbank where type = '$typeid' AND NOT EXISTS (SELECT quesid FROM ee_exercise where openid = '$openid' AND ee_exercise.quesid = ee_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
