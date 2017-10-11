@@ -12,7 +12,7 @@ return array(
 
 	'SESSION_AUTO_START' => false,  //开启缓存
 
-	'SHOW_PAGE_TRACE' => true, //开启trace
+	'SHOW_PAGE_TRACE' => false, //开启trace
 
 
 	// 配置数据库
