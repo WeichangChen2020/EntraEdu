@@ -26,11 +26,11 @@ function get_exsercise_index_css($id) {
 	$quesid = session('quesid');
 	echo $openid;
 	echo $quesid;
-	
+
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	)
+ 	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
