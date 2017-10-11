@@ -82,7 +82,9 @@ class ExerciseModel extends Model {
 		}
 
 		// 此时用户按顺序练习选择题目
-		$newest_quesid = D('questionbank')->getUnfishRecord($openid);
+		$newest_item = $this->where('openid'=>$openid)->order('id desc')->limit(1)->select();
+		$newest_quesid = $newest_item[0]['quesid'];
+
 		return $newest_quesid;
 
 	}
