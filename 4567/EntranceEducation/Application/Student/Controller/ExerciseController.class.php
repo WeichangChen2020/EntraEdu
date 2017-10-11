@@ -27,6 +27,7 @@ class ExerciseController extends Controller{
 		$this->assign('quesNum', $QUES->getQuesNum($openid));
 		$this->assign('icon', $icon);
 		$this->assign('randomArr',$randomArr);
+		p($QUES->getQuesNum($openid));die();
 
 	
 		$this->display('list');
