@@ -32,7 +32,7 @@ function get_exsercise_index_css($quesid) {
 	$result =  M('exercise')->where($map)->getField('result');
 
 
-	if(empty($result)) {
+	if(!isset($result)) {
 		return 'placeholder';
 	} else if ($result == 1) {
 		return 'placeholder-right';
