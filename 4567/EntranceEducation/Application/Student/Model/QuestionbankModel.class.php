@@ -224,21 +224,21 @@ class QuestionbankModel extends Model{
 		
 		$quesList = $this->field('id')->limit(70)->select();
 		
-		// foreach ($quesList as $key => $value) {
-		// 	$res = $EXER->where(array('quesid'=>$value['id'], 'openid'=>$openid))->getField('result');
-		// 	// 1 => 'placeholder-right' 
-		// 	// 0 => 'placeholder-wrong' 
-		// 	// else => 'placeholder' 
+		foreach ($quesList as $key => $value) {
+			$res = $EXER->where(array('quesid'=>$value['id'], 'openid'=>$openid))->getField('result');
+			// 1 => 'placeholder-right' 
+			// 0 => 'placeholder-wrong' 
+			// else => 'placeholder' 
 
-		// 	if(!isset($res)) {
-		// 		$quesList[$key]['result'] = 'placeholder';	
-		// 		$quesList[$key]['href'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));	
-		// 	} else if($res == 0) {
-		// 		$quesList[$key]['result'] = 'placeholder-wrong';
-		// 	} else if($res == 1) {
-		// 		$quesList[$key]['result'] = 'placeholder-right';
-		// 	} 
-		// }
+			if(!isset($res)) {
+				$quesList[$key]['result'] = 'placeholder';	
+				$quesList[$key]['href'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));	
+			} else if($res == 0) {
+				$quesList[$key]['result'] = 'placeholder-wrong';
+			} else if($res == 1) {
+				$quesList[$key]['result'] = 'placeholder-right';
+			} 
+		}
 
 		return $quesList;
 	}

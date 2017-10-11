@@ -41,10 +41,24 @@ function get_exsercise_index_css($quesid) {
 	}
 }
 
-function get_exercise_url_css($result) {
-	if (!$result) {
-		
+function get_exercise_url_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return U('Exercise/exercise_chap', array('quesid'=>$quesid));
+	} else {
+		return 'javascript:;' ;		
 	}
+
 }
 
 
