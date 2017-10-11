@@ -30,14 +30,13 @@ function get_exsercise_index_css($quesid) {
  	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
-	$result = trim($result);
-	p($result);
+
 
 	if(empty($result)) {
 		return 'placeholder';
-	} else if ($result == 0) {
+	} else if ($result == '0') {
 		return 'placeholder-wrong';
-	} else if ($result == 1){
+	} else if ($result == '1'){
 		return 'placeholder-right';
 	}
 
