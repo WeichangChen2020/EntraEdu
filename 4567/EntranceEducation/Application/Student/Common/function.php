@@ -30,7 +30,7 @@ function get_exsercise_index_css($quesid) {
  	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
-
+	$result = trim($result);
 	p($result);
 
 	if(empty($result)) {
