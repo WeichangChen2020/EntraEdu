@@ -94,9 +94,7 @@
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
 			        <div class="toolbar-inner">
-			        	
 				       <div class="helf-title">入学考试题库</div>       
-				       <a href="javascript:;"><<</a>
 				    </div>
 		            
 		        </div>
@@ -116,6 +114,11 @@
 							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 						</if>
 					</volist>
+
+					<div class="weui-loadmore">
+				        <i class="weui-loading"></i>
+				        <span class="weui-loadmore__tips">正在加载</span>
+				    </div>
 				   
 
 		        </div>
@@ -127,9 +130,19 @@
 </html>
 
 <include file="./Public/weui2.0/__foot.html"/>
+<script>
+      var loading = false;
+      $(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        setTimeout(function() {
+          $("#list").append("<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》英文版有1100多页，教学内容非常丰富，不但涵盖了人工智能基础、问题求解、知识推理与规划等经典内容，而且还包括不确定知识与推理、机器学习、通讯感知与行动等专门知识的介绍。目前我们为本科生开设的学科基础必修课“人工智能导论”主要介绍其中的经典内容，而研究生必修的核心课程“人工智能原理”主要关注其中的专门知识。其实《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》也适合希望提高自身计算系统设计水平的广大应用计算技术的社会公众，对参加信息学奥林匹克竞赛和ACM程序设计竞赛的选手及其教练员也有一定的参考作用。</p>");
+          loading = false;
+        }, 2000);
+      });
+</script>
 <script type="text/javascript">
 	
-
 	// 获取页面加载的时间
     var start_time = new Date();  
 
