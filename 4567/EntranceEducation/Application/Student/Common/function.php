@@ -70,7 +70,7 @@ function get_question_with_img($contents) {
 	
 	p($contents);
 
-	$pattern = '/![image](*.jpg)/';
+	$pattern = '/![image]((*))/';
 
 	preg_match_all($pattern, $contents, $m);
 	p($m);
