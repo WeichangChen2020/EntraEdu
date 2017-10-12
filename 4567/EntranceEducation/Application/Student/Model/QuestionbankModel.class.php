@@ -218,11 +218,14 @@ class QuestionbankModel extends Model{
 	 * @var openid
 	 * @return arrayList( 'quesid', 'result')
 	 */
-	public function getQuesList($openid) {
+	public function getQuesList($quesid) {
 
 		$EXER = D('exercise');
+		$map = array(
+			'id' => array('gt', $quesid - 7),
+		)
 		
-		$quesList = $this->field('id')->limit(70)->select();
+		$quesList = $this->where($map)->field('id')->limit(70)->select();
 		
 		return $quesList;
 	}
