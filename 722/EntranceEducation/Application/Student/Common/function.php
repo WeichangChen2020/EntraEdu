@@ -62,4 +62,22 @@ function get_exercise_url_css($quesid) {
 }
 
 
+// *******处理包含图片的题目
+function repleace_question_image($contents) {
+	
+	$pattern = '/!\[image\]\((\d{1,}.jpg)\)/';
+
+	$r = preg_match_all($pattern, $contents, $m);
+	
+
+	if($r){
+		foreach ($m[1] as $k => $v) {
+			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://'. $_SERVER['HTTP_HOST'] .'/EntranceEducation/Public/images/questionbank/'.$v.'">', $contents);
+		}
+	}
+
+	return $contents;
+}
+
+
  ?>
