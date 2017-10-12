@@ -7,60 +7,19 @@
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="__PUBLIC__/css/style.css">
         <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
-		<script src="__PUBLIC__/font/iconfont.js"></script>
-		<style type="text/css">
-			.bar {padding: 0; padding: 0 20px; background-color:#fbf9fe; color: #476777; }
-			.title {background-color:#fbf9fe; color: #476777;}
-            .bar .icon {margin: 10px 0; padding: 0; }
-            /*.icon {width: 20px; height: 20px}*/
-            .picker-button {font-size: 14px; color: #3d4145;}
-		</style>
 	</head>
 	<body>
-		
-
-
-            <div class="weui-flex">
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-right">2</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-wrong">3</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-doing-now">4</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a>
-		    </div>
-
-		    <div class="weui-flex">
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-right">2</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-wrong">3</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-doing-now">4</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a>
-		    </div>
-		    <div class="weui-flex">
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-right">2</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-wrong">3</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-doing-now">4</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a>
-		      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a>
-		    </div>
-
-
-		    <volist name="quesList" id="quesList" key="k" >
-        		<if condition="($k)%7 eq 1">
-        			<div class="weui-flex">
-					    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-				<elseif condition="($k)%7 eq 0"/>
-					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-					    </div>
-				<else /> 
-					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-				</if>
-			</volist>
+	    <volist name="quesList" id="quesList" key="k" >
+    		<if condition="($k)%7 eq 1">
+    			<div class="weui-flex">
+				    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+			<elseif condition="($k)%7 eq 0"/>
+				<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+				    </div>
+			<else /> 
+				<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+			</if>
+		</volist>
 
 		
 	</body>
