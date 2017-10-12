@@ -63,18 +63,26 @@ function get_exercise_url_css($quesid) {
 
 
 // *******处理包含图片的题目
-function get_question_with_img($contents) {
+function repleace_question_image($contents) {
 	
-	// 下列图中哪个是正确的校学生会logo（   ）. A.![image](logo_1.jpg) B.![image](logo_2.jpg) C.![image](logo_3.jpg) D.![image](logo_4.jpg)
-	// $pattern = '/href="(show.asp\?cid=26\d\d)\"  title=\"(.*)\" target/';
+	$pattern = '/!\[image\]\((\d{1,}.jpg)\)/';
+
+	$r = preg_match_all($pattern, $contents, $m);
 	
-	p($contents);
+	if($r){
+		foreach ($m[1] as $k => $v) {
+			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://img3.redocn.com/tupian/20150430/mantenghuawenmodianshiliangbeijing_3924704.jpg">', $contents);
+		}
+	}
 
-	$pattern = '/![image](/';
+	// if($r){
+	// 	foreach ($m[1] as $k => $v) {
+	// 		$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://i.pengxun.cn/content/skin/emoji/qq/'.$v.'">', $contents);
+	// 	}
+	// }
 
-	preg_match_all($pattern, $contents, $m);
-	p($m);
 
+	return $contents;
 }
 
 

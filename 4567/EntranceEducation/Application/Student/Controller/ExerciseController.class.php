@@ -147,6 +147,7 @@ class ExerciseController extends Controller{
 
 	}
 
+	
 
 
 }
