@@ -223,7 +223,7 @@ class QuestionbankModel extends Model{
 		$EXER = D('exercise');
 		$map = array(
 			'id' => array('gt', $quesid - 7),
-		)
+		);
 		
 		$quesList = $this->where($map)->field('id')->limit(70)->select();
 		
