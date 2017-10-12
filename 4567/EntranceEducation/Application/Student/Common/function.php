@@ -62,4 +62,16 @@ function get_exercise_url_css($quesid) {
 }
 
 
+// *******处理包含图片的题目
+function get_question_with_img($contents) {
+	
+	// 下列图中哪个是正确的校学生会logo（   ）. A.![image](logo_1.jpg) B.![image](logo_2.jpg) C.![image](logo_3.jpg) D.![image](logo_4.jpg)
+	// $pattern = '/href="(show.asp\?cid=26\d\d)\"  title=\"(.*)\" target/';
+	$pattern = '/![image](*.jpg)/';
+	preg_match_all($pattern, $contents, $m);
+	p($m);
+	
+}
+
+
  ?>
