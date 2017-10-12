@@ -64,8 +64,7 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 
-		p($quesItem);
-		get_question_with_img($quesItem['contents']);die;
+	
 
 		$quesList  = D('Questionbank')->getQuesList($quesid);
 		// p($quesList);
