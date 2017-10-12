@@ -72,7 +72,7 @@ function repleace_question_image($contents) {
 
 	if($r){
 		foreach ($m[1] as $k => $v) {
-			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://".$_SERVER['HTTP_HOST']."/EntranceEducation/Public/images/questionbank/'.$v.'">', $contents);
+			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://www.baidu.com/EntranceEducation/Public/images/questionbank/'.$v.'">', $contents);
 		}
 	}
 
