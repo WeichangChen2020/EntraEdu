@@ -127,6 +127,24 @@ class ExerciseController extends Controller{
 	}
 
 
+	/**
+	 * exercise_index 自由练习的索引
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 14:58Authors
+	 * @var  
+	 * @return json. 正确，还是错误
+	 */
+
+	public function exercise_index() {
+
+		$quesList = $this->field('id')->select();
+
+		$this->assign('quesList', $quesList)->display();
+
+	}
+
+
+
 }
 
  ?>
