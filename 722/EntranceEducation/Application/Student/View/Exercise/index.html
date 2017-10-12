@@ -13,6 +13,7 @@
 			.title {background-color:#fbf9fe; color: #476777;}
             .bar .icon {margin: 10px 0; padding: 0; }
             /*.icon {width: 20px; height: 20px}*/
+            .picker-button {font-size: 14px; color: #3d4145;}
 		</style>
 	</head>
 	<body>
@@ -93,8 +94,9 @@
 		    <div class="weui-popup__overlay"></div>
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
-			        <div class="toolbar-inner" >
-				       <div class="helf-title">入学考试题库</div>				       
+			        <div class="toolbar-inner">
+			        	<a href="{:U('Exercise/exercise_index')}" class="picker-button">更多</a>
+				        <div class="helf-title">入学考试题库</div>       
 				    </div>
 		            
 		        </div>
@@ -106,16 +108,14 @@
 		        	<volist name="quesList" id="quesList" key="k" >
 		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 						<elseif condition="($k)%7 eq 0"/>
-							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 						</if>
 					</volist>
-				   
-
 		        </div>
 		    </div>
 		</div>
@@ -125,9 +125,9 @@
 </html>
 
 <include file="./Public/weui2.0/__foot.html"/>
+
 <script type="text/javascript">
 	
-
 	// 获取页面加载的时间
     var start_time = new Date();  
 
@@ -202,8 +202,6 @@
 		}
 	});
 
-
-	
 
 
 

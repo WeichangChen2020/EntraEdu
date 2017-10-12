@@ -28,8 +28,6 @@ class ExerciseController extends Controller{
 		$this->assign('icon', $icon);
 		$this->assign('randomArr',$randomArr);
 
-		// p($QUES->getQuesNum($openid));die;
-
 	
 		$this->display('list');
 	}
@@ -65,7 +63,7 @@ class ExerciseController extends Controller{
 
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
-		$quesList  = D('Questionbank')->getQuesList($openid);
+		$quesList  = D('Questionbank')->getQuesList($quesid);
 		// p($quesList);
 
 		// 判断是否已经做完了最后一道题目
@@ -127,6 +125,24 @@ class ExerciseController extends Controller{
 	public function test() {
 		D('Questionbank')->getQuesList('ohd41t0Bx0TshKrf18RvG9PuH8DI');
 	}
+
+
+	/**
+	 * exercise_index 自由练习的索引
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 14:58Authors
+	 * @var  
+	 * @return json. 正确，还是错误
+	 */
+
+	public function exercise_index() {
+
+		$quesList = D('Questionbank')->field('id')->select();
+
+		$this->assign('quesList', $quesList)->display();
+
+	}
+
 
 
 }

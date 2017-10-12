@@ -1,4 +1,6 @@
 <?php 
+use Think\Model;
+
 
 // 截止时间
 function get_endtime($now, $set_time){
@@ -18,22 +20,45 @@ function get_exam_index_css($result) {
 }
 
 // *******展示题目索引 in  exercise *****
-
-function get_exsercise_index_css($result) {
+function get_exsercise_index_css($quesid) {
 	
-	if ($result == 0) {
-		return 'placeholder-wrong';
-	} else if ($result == 1){
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return 'placeholder';
+	} else if ($result == 1) {
 		return 'placeholder-right';
 	} else {
-		return 'placeholder';
+		return 'placeholder-wrong';
 	}
 }
 
-function get_exercise_url_css($result) {
-	if (!$result) {
-		
+function get_exercise_url_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return U('Exercise/exercise_chap', array('quesid'=>$quesid));
+	} else {
+		return 'javascript:;' ;		
 	}
+
 }
 
 

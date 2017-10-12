@@ -218,28 +218,15 @@ class QuestionbankModel extends Model{
 	 * @var openid
 	 * @return arrayList( 'quesid', 'result')
 	 */
-	public function getQuesList($openid) {
+	public function getQuesList($quesid) {
 
 		$EXER = D('exercise');
+		$map = array(
+			'id' => array('gt', $quesid - 7),
+		);
 		
-		$quesList = $this->field('id')->limit(70)->select();
+		$quesList = $this->where($map)->field('id')->limit(70)->select();
 		
-		foreach ($quesList as $key => $value) {
-			$res = $EXER->where(array('quesid'=>$value['id'], 'openid'=>$openid))->getField('result');
-			// 1 => 'placeholder-right' 
-			// 0 => 'placeholder-wrong' 
-			// else => 'placeholder' 
-
-			if(!isset($res)) {
-				$quesList[$key]['result'] = 'placeholder';	
-				$quesList[$key]['href'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));	
-			} else if($res == 0) {
-				$quesList[$key]['result'] = 'placeholder-wrong';
-			} else if($res == 1) {
-				$quesList[$key]['result'] = 'placeholder-right';
-			} 
-		}
-
 		return $quesList;
 	}
 
