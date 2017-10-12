@@ -69,18 +69,12 @@ function repleace_question_image($contents) {
 
 	$r = preg_match_all($pattern, $contents, $m);
 	
+
 	if($r){
 		foreach ($m[1] as $k => $v) {
-			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://img3.redocn.com/tupian/20150430/mantenghuawenmodianshiliangbeijing_3924704.jpg">', $contents);
+			$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://".$_SERVER['HTTP_HOST']."/EntranceEducation/Public/images/questionbank/'.$v.'">', $contents);
 		}
 	}
-
-	// if($r){
-	// 	foreach ($m[1] as $k => $v) {
-	// 		$contents = str_replace($m[0][$k], '<img class="c-pic" src="http://i.pengxun.cn/content/skin/emoji/qq/'.$v.'">', $contents);
-	// 	}
-	// }
-
 
 	return $contents;
 }
