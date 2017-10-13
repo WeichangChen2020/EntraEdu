@@ -20,28 +20,9 @@
 				<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 			</if>
 		</volist>
-		<div class="weui-loadmore">
-	        <i class="weui-loading"></i>
-	        <span class="weui-loadmore__tips">加载更多</span>
-	    </div>
-
+		
 	</body>
 
 </html>
-<include file="./Public/weui2.0/__foot.html"/>
-<script type="text/javascript">
-	var loading = false;
-    	$(document.body).infinite().on("infinite", function() {
-        if(loading) return;
-        loading = true;
-        setTimeout(function() {
-        	$contents = '<div class="weui-flex"><a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder-right">2</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder-wrong">3</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder-doing-now">4</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a><a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a></div>';
-        	$("<body>").append($contents);
-
-            loading = false;
-        }, 2000);
-  });
-</script>
-
    	
 
