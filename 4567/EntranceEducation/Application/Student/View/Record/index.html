@@ -9,6 +9,12 @@
 
 	</head>
 	<body>
+		<header class="bar bar-nav">
+	        <div class="title">{$quesItem.chapter}</div>
+	        <a href="{:U('Exercise/index')}" class="pull-left"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
+	        <a href="javascript:;" class="pull-right open-popup" data-target="#half"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-all"></use></svg></a>
+	    </header>
+
 		<div class="content">
 			<span class="c-title">{$record.name}</span>
 <!-- 			<p class="c-time">{:date('m-d H:i:s', time())}<label style=" margin-left: 60px;">正确&nbsp;{$record.rig_cot}&nbsp;错误&nbsp;{$record.wrg_cot}&nbsp;进度&nbsp;{$record.count}/{$record.sum}</label></p> -->
@@ -75,6 +81,38 @@
 			</div>
 			<a class="c-button" href="{:U('Record/record',array('nextid'=>session('nextid')))}">下一题</a>
 		</div>
+
+		<div class='demos-content-padded'></div>
+
+		<div id="half" class='weui-popup__container popup-bottom'>
+		    <div class="weui-popup__overlay"></div>
+		    <div class="weui-popup__modal">
+		        <div class="toolbar">
+			        <div class="toolbar-inner">
+			        	<a href="{:U('Exercise/exercise_index')}" class="picker-button">更多</a>
+				        <div class="helf-title">入学考试题库</div>       
+				    </div>
+		            
+		        </div>
+		        <div class="modal-content" style="height: auto; max-height: 400px; color: #000;">
+
+
+					<!-- 分 首列 尾列 都不是 三种情况考虑 -->
+
+		        	<volist name="quesList" id="quesList" key="k" >
+		        		<if condition="($k)%7 eq 1">
+		        			<div class="weui-flex">
+							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+						<elseif condition="($k)%7 eq 0"/>
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							    </div>
+						<else /> 
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+						</if>
+					</volist>
+		        </div>
+		    </div>
+		</div>
 	</body>
 </html>
 
@@ -134,7 +172,7 @@
 			
 			for(var i=0;i<myarray.length;i++){
 				var x = myarray[i];
-				var y = i+3;
+				var y = i+5;
 				if (res.indexOf(x)!=-1) {
 					if(option.indexOf(x)!=-1){
 						//document.write(x);
