@@ -33,7 +33,7 @@ class RecordController extends Controller {
 		//die();
 		$quesIdArr = array('quesid'=>''); 
 
-        $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
+        $quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->getfield('quesid',$num);
 		var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
