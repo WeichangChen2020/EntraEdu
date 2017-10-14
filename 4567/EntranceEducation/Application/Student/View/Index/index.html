@@ -1,124 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>新生入学考试系统</title>
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
-
-<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
-<link rel="stylesheet" href="__PUBLIC__/css/jquery-weui.css">
-<link rel="stylesheet" href="__PUBLIC__/css/demos.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index.css">
-
-
-
-
-  </head>
-  <style type="text/css">
-      html{
-        background-image: url('__PUBLIC__/images/newer/edu_logo.jpg');
-        background-position: 10px 10px;
-        background-size: 100px 100px;
-        background-repeat: no-repeat;
-        
-      }
-      .weui_grid:before{
-        border-right:1px solid #d9d9d9
-      }
-  </style>
-
-  <body ontouchstart>
-
-    <header class='demos-header'>
-      <h1 class="demos-title">欢迎你</h1>
-      <p class='demos-sub-title'>{$stu_info.name}&nbsp同学</br></p>
-      
-      <p class='demos-sub-title'>{$stu_info.class}</br><p>
-      <p class='demos-sub-title'>{$stu_info.number}</p>
-    </header>
-
-
-    <div class="weui_grids">
-
-      <a href="{:U('Exercise/index')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/practice.png" alt="">
-<!--           <img src="__PUBLIC__/images/pass.png" class="pass" style="display:{$requirement1}">
- -->        </div>
-        <p class="weui_grid_label">
-          自由练习
-        </p>
-      </a>
-
-      <a href="{:U('Rework/chose')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/wrong.png" alt="">
-          <!-- <img src="__PUBLIC__/images/pass.png" class="pass" style="display:{$requirement2}"> -->
-        </div>
-        <p class="weui_grid_label">
-          错题回顾
-        </p>
-      </a>
-
-      <a href="{:U('Collect/index')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/collection1.png" alt="">
-          <!-- <img src="__PUBLIC__/images/pass.png" class="pass" style="display:{$requirement2}"> -->
-        </div>
-        <p class="weui_grid_label">
-          我的收藏
-        </p>
-      </a>
-
-      <a href="{:U('Rank/rankMenu')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/rank.png" alt="">
-          <!-- <img src="__PUBLIC__/images/pass.png" class="pass" style="display:{$requirement2}"> -->
-        </div>
-        <p class="weui_grid_label">
-          成绩与排名
-        </p>
-      </a>  
-
-      <a href="{:U('Simulate/index')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/simulate.png" alt="">
-          <!-- <img src="__PUBLIC__/images/pass.png" class="pass" style="display:{$requirement2}"> -->
-        </div>
-        <p class="weui_grid_label">
-          模拟考试
-        </p>
-      </a>
-
-     <a href="{:U('Test/index')}" class="weui_grid js_grid">
-        <div class="weui_grid_icon">
-          <img src="__PUBLIC__/images/exam.png" alt="">
-         
-        </div>
-        <p class="weui_grid_label">
-          考试
-        </p>
-      </a>
- 
-    </div>
-
-    <style>
-      .weui_icon_info_circle:before {
-        font-size: 28px;
-        color: #09BB07;
-      }
-    </style>
-
-<!-- <img src="http://localhost/xsc/index.php/Student/Index/check.html"> -->
-<include file="./Public/weui2.0/__foot.html"/>
-<script src="__PUBLIC__/js/jquery-weui.js"></script>
-<include file="./Public/html/_foot.html"/>
-
-
-    </body> 
-
-  </html>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">  
+    <title>上拉加载更多</title>  
+    <!-- head 中 -->  
+    <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">  
+    <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">  
+</head>  
+<body>  
+<div id="list" class="demos-content-padded">  
+  
+    <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+  
+    <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+  
+    <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+  
+    <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+  
+    <p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>  
+  
+</div>  
+<div class="weui-loadmore">  
+    <i class="weui-loading"></i>  
+    <span class="weui-loadmore__tips">正在加载</span>  
+</div>  
+<!-- body 最后 -->  
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>  
+<script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>  
+<script>  
+    $(function () {  
+        var loading = false;  //状态标记  
+        $(document.body).infinite().on("infinite", function() {  
+            if(loading) return;  
+            loading = true;  
+            setTimeout(function() {  
+               $("#list").append("<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>");  
+                loading = false;  
+            }, 1000);   //模拟延迟  
+        });  
+    })  
+</script>  
+</body>  
+</html>  
