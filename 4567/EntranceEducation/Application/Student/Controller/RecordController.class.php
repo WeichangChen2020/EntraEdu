@@ -69,8 +69,8 @@ class RecordController extends Controller {
 		//echo "用户答案：".$recordArr['answer']."<br/>";
 		//echo "正确答案：".$rightAns."<br/>";
 		//echo $recordArr['result'];
-		$quesList  = $QUESTION->getQuesList('8');
-		var_dump($quesList);
+		//$quesList  = $QUESTION->getQuesList('8');
+		//var_dump($quesList);
 		
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
