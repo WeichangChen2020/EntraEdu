@@ -406,6 +406,7 @@ class WeichatController extends Controller{
 
         // 判断 access_token 是否过期
              dump($accessTokenArr);
+             dump(time('Y-m-d H:i:s', $accessTokenArr['time']));
        if ($now_time - $accessTokenArr['time'] > 6000) {
             $appid        = 'wx1530ad1155dda9ad';
             $appsecret    = '3fea03b8dd35b465c31b1c37e659cb66';
