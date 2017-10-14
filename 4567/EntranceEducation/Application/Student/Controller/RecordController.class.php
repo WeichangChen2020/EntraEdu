@@ -34,7 +34,7 @@ class RecordController extends Controller {
 		$quesIdArr = array(); 
 
         $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
-		//var_dump($quesIdArr);//所有做过的题目的id
+		var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
 		if ($nextid) {
