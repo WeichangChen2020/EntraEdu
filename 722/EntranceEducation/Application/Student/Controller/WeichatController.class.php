@@ -405,14 +405,15 @@ class WeichatController extends Controller{
         $now_time = time();
 
         // 判断 access_token 是否过期
-        if ($now_time - $accessTokenArr['time'] > 7000) {
+
+       if ($now_time - $accessTokenArr['time'] > 7000) {
             $appid        = 'wx1530ad1155dda9ad';
             $appsecret    = '3fea03b8dd35b465c31b1c37e659cb66';
             $wechatOauth  = new WechatAuth($appid, $appsecret);
             $tokenArray   = $wechatOauth->getAccessToken();
             $access_token = $tokenArray['access_token'];
             $data = array('access_token' =>$access_token, 'time' => time(), 'id' => 1);
-            M('access_token')->where('id=1')->save($data);;
+            M('access_token')->where('id=1')->save($data);
         }
 
 

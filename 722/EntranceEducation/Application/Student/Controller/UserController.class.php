@@ -120,6 +120,24 @@ class UserController extends Controller {
         } 
        
     }
+
+    public function uphead() {
+         //更新头像
+        $WeChat           = new WeichatController();
+        $STU = M('StudentInfo');
+
+        for($i = 1;$i < 100;$i++){
+            $stuinfo = $STU->where(array('id'=>$i))->find();
+            if(empty($stuinfo['headimgurl'])){
+                $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
+
+                $stuinfo['headimgurl'] = $headimgurl;
+                $STU->where(array('openId'=>$stuinfo['openId']))->save($stuinfo);
+            }
+
+        }
+
+    } 
 	
 
 }
