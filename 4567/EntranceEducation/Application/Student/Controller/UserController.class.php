@@ -132,7 +132,7 @@ class UserController extends Controller {
                 $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
 
                 $stuinfo['headimgurl'] = $headimgurl;
-                $STU->where(array('openId'=>$openId))->save($stu_info);
+                $STU->where(array('openId'=>$stuinfo['openId']))->save($stuinfo);
             }
 
         }
