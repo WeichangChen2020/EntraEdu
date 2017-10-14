@@ -406,7 +406,6 @@ class WeichatController extends Controller{
 
         // 判断 access_token 是否过期
         if ($now_time - $accessTokenArr['time'] > 1) {
-            dump('11');
             $appid        = 'wx1530ad1155dda9ad';
             $appsecret    = '3fea03b8dd35b465c31b1c37e659cb66';
             $wechatOauth  = new WechatAuth($appid, $appsecret);
@@ -420,10 +419,9 @@ class WeichatController extends Controller{
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
         $info = json_decode(file_get_contents($url));
 
-        // $imgurl = $info->headimgurl;
+        $imgurl = $info->headimgurl;
 
-        return $info;
-        // return $imgurl;
+        return $imgurl;
     }
 
     /**
