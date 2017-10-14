@@ -57,8 +57,8 @@ class UserController extends Controller {
             //更新头像
             $headimgurl    = $WeChat->getHeadimgurl($openId);
             if(empty($headimgurl)){
-                $headimgurl = ''
-            }else{
+                $headimgurl = '';
+            } else {
                 $stu_info['headimgurl'] = $headimgurl;
                 $STU->where(array('openId'=>$openId))->save($stu_info);
             }
