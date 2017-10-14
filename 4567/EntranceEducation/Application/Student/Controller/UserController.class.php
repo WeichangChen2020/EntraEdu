@@ -126,7 +126,7 @@ class UserController extends Controller {
         $WeChat           = new WeichatController();
         $Stu = M('StudentInfo')->select();
 
-        for($i = 0;$i < 100;$i++){
+        for($i = 1;$i < 100;$i++){
             $stuinfo = M('StudentInfo')->where(array('id'=>$i))->find();
             if(!isset($stuinfo['headimgurl'])){
                 $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
