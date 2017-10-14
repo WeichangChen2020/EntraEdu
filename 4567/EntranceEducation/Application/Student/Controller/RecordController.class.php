@@ -31,7 +31,7 @@ class RecordController extends Controller {
 		$num = $record['count'];//总答题数
 		//echo $num;
 		//die();
-		$quesIdArr = array('quesid'=>''); 
+		$quesIdArr = array(); 
 
         //$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->limit($num)->select();
