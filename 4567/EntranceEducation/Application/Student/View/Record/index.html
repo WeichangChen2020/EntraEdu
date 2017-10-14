@@ -127,7 +127,7 @@
 </html>
 
 <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	// 点击后monup
 	$(document).on("click", ".weui-popup-modal", function() {
         console.log("open popup");
@@ -135,44 +135,44 @@
         console.log("close popup");
     });
 
-    // 定义收藏点击的次数
-    var click_select = 0;
-    // 点击选项后上传答案
-    $('#collect').click(function (){
-		// 用点击基数次数 偶数次数来判定是否选择
-		click_select ++;
-		var selec_icon = document.getElementsByTagName("use");
+ //    // 定义收藏点击的次数
+ //    var click_select = 0;
+ //    // 点击选项后上传答案
+ //    $('#collect').click(function (){
+	// 	// 用点击基数次数 偶数次数来判定是否选择
+	// 	click_select ++;
+	// 	var selec_icon = document.getElementsByTagName("use");
 
-		if (click_select % 2 == 1) {
+	// 	if (click_select % 2 == 1) {
 
-			var message = confirm("确定取消收藏吗？");
-	        if(message==true){  
-	            //点击确定后取消收藏
-				var url = "{:U('Collect/cancel')}";
-				var data = {};
-				$.post(url, data, function(res){
-					selec_icon[3].setAttribute('xlink:href', '#icon-shoucang1');
-					$('#collect_tip').html('收藏');
-				});
-				window.location.href="{:U('Collect/recordList', array('nextid'=>session('nextid')-1))}";
-				//这个写法用户确定取消收藏直接跳到下一题
-				//如果是以下情况：用户取消收藏，又突然想收藏了，那就注释跳转的代码
-			}else{
-				//取消则啥都不做
-			}
+	// 		var message = confirm("确定取消收藏吗？");
+	//         if(message==true){  
+	//             //点击确定后取消收藏
+	// 			var url = "{:U('Collect/cancel')}";
+	// 			var data = {};
+	// 			$.post(url, data, function(res){
+	// 				selec_icon[3].setAttribute('xlink:href', '#icon-shoucang1');
+	// 				$('#collect_tip').html('收藏');
+	// 			});
+	// 			window.location.href="{:U('Collect/recordList', array('nextid'=>session('nextid')-1))}";
+	// 			//这个写法用户确定取消收藏直接跳到下一题
+	// 			//如果是以下情况：用户取消收藏，又突然想收藏了，那就注释跳转的代码
+	// 		}else{
+	// 			//取消则啥都不做
+	// 		}
 
-		} else {
-			// 收藏
-			var url = "{:U('Collect/collect')}";
-			var data = {};
-			$.post(url, data, function(res){
-	          	selec_icon[3].setAttribute('xlink:href', '#icon-shoucang11');
-				$('#collect_tip').html('已收藏');
-	        });
-		}
-	});
+	// 	} else {
+	// 		// 收藏
+	// 		var url = "{:U('Collect/collect')}";
+	// 		var data = {};
+	// 		$.post(url, data, function(res){
+	//           	selec_icon[3].setAttribute('xlink:href', '#icon-shoucang11');
+	// 			$('#collect_tip').html('已收藏');
+	//         });
+	// 	}
+	// });
 
-</script> -->
+</script>
 		<script type="text/javascript">
 			var res = "{$rightAns}";
 			var option = "{$recordArr.answer}";
