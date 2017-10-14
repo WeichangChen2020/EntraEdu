@@ -53,6 +53,10 @@ class UserController extends Controller {
             $stu_info         = $STU->where($con)->find();
            // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
 
+            //更新头像
+            dump($openId);
+
+
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
 			$this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
@@ -81,7 +85,6 @@ class UserController extends Controller {
 
         // 用户注册的头像
         $headimgurl    = $WeChat->getHeadimgurl($openId);
-        dump($headimgurl);
         if(empty($headimgurl)) $headimgurl = '';
 
         // 新手的信息
