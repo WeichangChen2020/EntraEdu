@@ -412,16 +412,17 @@ class WeichatController extends Controller{
             $tokenArray   = $wechatOauth->getAccessToken();
             $access_token = $tokenArray['access_token'];
             $data = array('access_token' =>$access_token, 'time' => time(), 'id' => 1);
-            M('access_token')->where('id=1')->save($data);;
+            M('access_token')->where('id=1')->save($data);
         }
 
 
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
         $info = json_decode(file_get_contents($url));
 
-        $imgurl = $info->headimgurl;
+        // $imgurl = $info->headimgurl;
 
-        return $imgurl;
+        return $info;
+        // return $imgurl;
     }
 
     /**
