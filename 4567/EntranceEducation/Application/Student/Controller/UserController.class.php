@@ -48,13 +48,16 @@ class UserController extends Controller {
 
             //++++++++++++++++++++++++++++++++++++++++++模型实例化
             $STU              = D('StudentInfo');
+            $WeChat           = new WeichatController();
             //$MARK             = D('StudentMark');
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
            // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
 
             //更新头像
-            dump($openId);
+            $headimgurl    = $WeChat->getHeadimgurl($openId);
+            dump($headimgurl);
+            if(empty($headimgurl)) $headimgurl = '';
 
 
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
