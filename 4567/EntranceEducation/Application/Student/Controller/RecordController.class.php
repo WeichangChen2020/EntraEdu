@@ -31,7 +31,7 @@ class RecordController extends Controller {
 		$num = $record['count'];//总答题数
 		//echo $num;
 		//die();
-		$quesIdArr = array(); 
+		$quesIdArr = array('quesid'=>''); 
 
         $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		var_dump($quesIdArr);//所有做过的题目的id
