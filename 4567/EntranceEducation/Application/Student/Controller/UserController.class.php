@@ -81,6 +81,7 @@ class UserController extends Controller {
 
         // 用户注册的头像
         $headimgurl    = $WeChat->getHeadimgurl($openId);
+        dump($headimgurl);
         if(empty($headimgurl)) $headimgurl = '';
 
         // 新手的信息
