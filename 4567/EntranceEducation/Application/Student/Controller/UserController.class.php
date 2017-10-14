@@ -124,10 +124,10 @@ class UserController extends Controller {
     public function uphead() {
          //更新头像
         $WeChat           = new WeichatController();
-        $Stu = M('StudentInfo')->select();
+        $Stu = M('StudentInfo');
 
         for($i = 1;$i < 100;$i++){
-            $stuinfo = M('StudentInfo')->where(array('id'=>$i))->find();
+            $stuinfo = $STU->where(array('id'=>$i))->find();
             if(!isset($stuinfo['headimgurl'])){
                 $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
 
