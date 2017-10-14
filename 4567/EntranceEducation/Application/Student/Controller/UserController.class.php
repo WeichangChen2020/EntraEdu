@@ -62,6 +62,7 @@ class UserController extends Controller {
                 $stu_info['headimgurl'] = $headimgurl;
                 $STU->where(array('openId'=>$openId))->save($stu_info);
             }
+            dump($stu_info);
 
 
 
