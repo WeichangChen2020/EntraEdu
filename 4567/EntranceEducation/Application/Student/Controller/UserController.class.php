@@ -56,7 +56,6 @@ class UserController extends Controller {
 
             //更新头像
             $headimgurl    = $WeChat->getHeadimgurl($openId);
-            dump($headimgurl);
             if(empty($headimgurl)){
                 $headimgurl = '';
             } else {
