@@ -128,7 +128,7 @@ class UserController extends Controller {
 
         for($i = 1;$i < 100;$i++){
             $stuinfo = $STU->where(array('id'=>$i))->find();
-            if(!isset($stuinfo['headimgurl'])){
+            if(empty($stuinfo['headimgurl'])){
                 $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
 
                 $stuinfo['headimgurl'] = $headimgurl;
