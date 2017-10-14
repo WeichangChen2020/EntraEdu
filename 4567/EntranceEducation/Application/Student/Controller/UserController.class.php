@@ -124,7 +124,7 @@ class UserController extends Controller {
     public function uphead() {
          //更新头像
         $WeChat           = new WeichatController();
-        $Stu = M('StudentInfo');
+        $STU = M('StudentInfo');
 
         for($i = 1;$i < 100;$i++){
             $stuinfo = $STU->where(array('id'=>$i))->find();
