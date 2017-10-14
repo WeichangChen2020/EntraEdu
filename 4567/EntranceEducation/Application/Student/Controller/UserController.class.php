@@ -48,22 +48,10 @@ class UserController extends Controller {
 
             //++++++++++++++++++++++++++++++++++++++++++模型实例化
             $STU              = D('StudentInfo');
-            $WeChat           = new WeichatController();
             //$MARK             = D('StudentMark');
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
            // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
-
-            //更新头像
-            $headimgurl    = $WeChat->getHeadimgurl($openId);
-            if(empty($headimgurl)){
-                $headimgurl = '';
-            } else {
-                $stu_info['headimgurl'] = $headimgurl;
-                $STU->where(array('openId'=>$openId))->save($stu_info);
-            }
-
-
 
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
@@ -132,6 +120,24 @@ class UserController extends Controller {
         } 
        
     }
+
+    public function uphead() {
+         //更新头像
+        $WeChat           = new WeichatController();
+        $Stu = M('StudentInfo')->select();
+
+        for($i = 0;$i < 100;$i++){
+            $stuinfo = M('StudentInfo')->where(array('id'=>$i))->find();
+            if(!isset($stuinfo['headimgurl'])){
+                $headimgurl    = $WeChat->getHeadimgurl($stuinfo['openId']);
+
+                $stuinfo['headimgurl'] = $headimgurl;
+                $STU->where(array('openId'=>$openId))->save($stu_info);
+            }
+
+        }
+
+    } 
 	
 
 }
