@@ -33,31 +33,33 @@ class RanknewController extends Controller {
             dump($rankList);
             $this->ajaxReturn($rankList, 'json');
 
+        } else {
+            // dump($openId);
+            $rankList = D('exercise')->getRankList();
+            // $me = array();
+        //     获取"我的成绩与排名"
+        //     foreach($rankList as $key=>$value){
+        //      if ($value['openid']==$openId) {
+        //        $me['rank'] = $key +1;
+        //        $me['grade'] = $value['sum(result)'];
+        //        break;
+        //      }
+        // }
+            foreach($rankList as $key=>$value){
+
+              $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
+        }
+        // dump($rankList);
+
+            $this->assign('length',COUNT($rankList));
+        // $this->assign('me',$me);
+        $this->assign('rankList',$rankList);
+        $this->display();
+
+      }
+            
         }
 
-        // dump($openId);
-        $rankList = D('exercise')->getRankList();
-        // $me = array();
-  //       获取"我的成绩与排名"
-  //       foreach($rankList as $key=>$value){
-  //        if ($value['openid']==$openId) {
-  //          $me['rank'] = $key +1;
-  //          $me['grade'] = $value['sum(result)'];
-  //          break;
-  //        }
-    // }
-        foreach($rankList as $key=>$value){
-
-          $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-    }
-    // dump($rankList);
-
-        $this->assign('length',COUNT($rankList));
-    // $this->assign('me',$me);
-    $this->assign('rankList',$rankList);
-    $this->display();
-
-  }
 
 
 }
