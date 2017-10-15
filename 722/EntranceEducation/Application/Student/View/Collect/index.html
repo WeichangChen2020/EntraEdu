@@ -3,18 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title>我的收藏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 		<include file="./Public/weui2.0/__head.html"/>
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
 		<script src="__PUBLIC__/font/iconfont.js"></script>
 		<style type="text/css">
-			
-	 	
-
+			.bar {padding: 0; padding: 0 20px; background-color:#fbf9fe; color: #476777; }
+			.title {background-color:#fbf9fe; color: #476777;}
+            .bar .icon {margin: 10px 0; padding: 0; }
+            /*.icon {width: 20px; height: 20px}*/
+            .picker-button {font-size: 14px; color: #3d4145;}
 		</style>
 	</head>
 	<body>
+		<header class="bar bar-nav">
+	        <div class="title">{$quesItem.chapter}</div>
+	        <a href="{:U('User/index',array('openId'=>session('openId')))}" class="pull-left"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
+	        <a href="javascript:;" class="pull-right open-popup" data-target="#half"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-all"></use></svg></a>
+	    </header>
+
 		<div class="content">
-			<span class="c-title">{$record.name}</span>
+			<!-- <span class="c-title">{$record.name}</span> -->
 			<div class="title-progerss">
 				<ul>
 					<li class="open-popup" data-target="#half" style="width: 74%; text-align: left;">
@@ -73,7 +84,10 @@
 				
 			</div>
 
-			<span class="rightAns">正确答案：{$rightAns}</span>
+			<if condition="$recordArr.answer neq ''"> <!-- 未答题直接收藏则不显示答案 -->
+				<span class="rightAns">你的答案：{$recordArr.answer}</span><br/>
+				<span class="rightAns">正确答案：{$rightAns}</span>
+			</if>
 
 			<a class="c-button" href="{:U('Collect/recordList', array('nextid'=>session('nextid')))}">下一题</a>
 		</div>
@@ -84,41 +98,28 @@
 		    <div class="weui-popup__overlay"></div>
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
-			        <div class="toolbar-inner" >
-				       <div class="helf-title">收藏列表</div>				       
+			        <div class="toolbar-inner">
+			        	<a href="{:U('Collect/collect_index')}" class="picker-button">更多</a>
+				        <div class="helf-title">我的收藏</div>       
 				    </div>
 		            
 		        </div>
 		        <div class="modal-content" style="height: auto; max-height: 400px; color: #000;">
 
-		        <!-- sample -->
-					<!-- right c3edfd -->
-
-		           <!--  <div class="weui-flex">
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">1</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-right">2</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-wrong">3</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder-doing-now">4</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">5</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">6</div></a>
-				      <a class="weui-flex__item" href="javascript:;"><div class="placeholder">7</div></a>
-				    </div> -->
 
 					<!-- 分 首列 尾列 都不是 三种情况考虑 -->
 
 		        	<volist name="quesList" id="quesList" key="k" >
-		        		<if condition="($k)%5 eq 1">
+		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.quesid}</div></a>
-						<elseif condition="($k)%5 eq 0"/>
-							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.quesid}</div></a>
+							    <a class="weui-flex__item" href="{$quesList.quesid|get_collect_url_css=###}"><div class="{$quesList.quesid|get_collect_index_css=###}">{$quesList.quesid}</div></a>
+						<elseif condition="($k)%7 eq 0"/>
+							<a class="weui-flex__item" href="{$quesList.quesid|get_collect_url_css=###}"><div class="{$quesList.quesid|get_collect_index_css=###}">{$quesList.quesid}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{$quesList.href|default='javascript:;'}"><div class="{$quesList.result}">{$quesList.quesid}</div></a>
+							<a class="weui-flex__item" href="{$quesList.quesid|get_collect_url_css=###}"><div class="{$quesList.quesid|get_collect_index_css=###}">{$quesList.quesid}</div></a>
 						</if>
 					</volist>
-				   
-
 		        </div>
 		    </div>
 		</div>
@@ -150,7 +151,7 @@
 				var url = "{:U('Collect/cancel')}";
 				var data = {};
 				$.post(url, data, function(res){
-					selec_icon[3].setAttribute('xlink:href', '#icon-shoucang1');
+					selec_icon[5].setAttribute('xlink:href', '#icon-shoucang1');
 					$('#collect_tip').html('收藏');
 				});
 				window.location.href="{:U('Collect/recordList', array('nextid'=>session('nextid')-1))}";
@@ -165,7 +166,7 @@
 			var url = "{:U('Collect/collect')}";
 			var data = {};
 			$.post(url, data, function(res){
-	          	selec_icon[3].setAttribute('xlink:href', '#icon-shoucang11');
+	          	selec_icon[5].setAttribute('xlink:href', '#icon-shoucang11');
 				$('#collect_tip').html('已收藏');
 	        });
 		}
@@ -182,7 +183,7 @@
 			
 			for(var i=0;i<myarray.length;i++){
 				var x = myarray[i];
-				var y = i+4;
+				var y = i+6;
 				if (res.indexOf(x)!=-1) {
 					if(option.indexOf(x)!=-1){
 						//document.write(x);
