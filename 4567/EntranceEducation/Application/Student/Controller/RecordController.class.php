@@ -58,10 +58,10 @@ class RecordController extends Controller {
 			if(I('quesid')){
 				//从索引进入
 				$quesId = I('quesid');
-				print_r(array_keys($quesIdArr,$quesId,true)); 
-				die();
-				//$nextid = array_keys($quesIdArr,$quesId,true)+1; 
-				
+				//print_r(array_keys($quesIdArr,$quesId,true)); 
+				//die();
+				$nowid = array_keys($quesIdArr,$quesId,true); 
+				$nextid = $nowid+1;
 			}else{
 				//从首页入口进入显示第一题
 				$quesId = $quesList[0]['quesid'];
