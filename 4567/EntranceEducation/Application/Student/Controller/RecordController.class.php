@@ -41,9 +41,10 @@ class RecordController extends Controller {
 		$quesIdArr = array_column($quesList, 'quesid');  
 		var_dump($quesIdArr)//所有做过的题目的id，一维数组
 		// die();
-		$nextid = I('nextid');	
-		if ($nextid) {
-			//从下一题进入	
+		
+		if (I('nextid')) {
+			//从下一题进入
+			$nextid = I('nextid');	
 			if ($nextid<$num) {
 				$quesId = $quesList[$nextid]['quesid'];
 				$nextid++;
