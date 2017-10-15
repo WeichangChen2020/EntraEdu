@@ -99,7 +99,7 @@
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
 			        <div class="toolbar-inner">
-			        	<a href="{:U('Exercise/exercise_index')}" class="picker-button">更多</a>
+			        	<a href="{:U('Record/record_index')}" class="picker-button">更多</a>
 				        <div class="helf-title">入学考试题库</div>       
 				    </div>
 		            
@@ -112,12 +112,12 @@
 		        	<volist name="quesList" id="quesList" key="k" >
 		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesIdArr.quesid}</div></a>
+							    <a class="weui-flex__item" href="{$quesList.id|get_record_url_css=###}"><div class="{$quesList.id|get_record_index_css=###}">{$quesIdArr.quesid}</div></a>
 						<elseif condition="($k)%7 eq 0"/>
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesIdArr.quesid}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_record_url_css=###}"><div class="{$quesList.id|get_record_index_css=###}">{$quesIdArr.quesid}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesIdArr.quesid}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_record_url_css=###}"><div class="{$quesList.id|get_record_index_css=###}">{$quesIdArr.quesid}</div></a>
 						</if>
 					</volist>
 		        </div>
