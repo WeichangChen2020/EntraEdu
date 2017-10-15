@@ -97,7 +97,21 @@ class RecordController extends Controller {
 		}
     }
 
+	/**
+	 * exercise_index 答题记录的索引
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 14:58Authors
+	 * @var  
+	 * @return json. 正确，还是错误
+	 */
 
+	public function record_index() {
+
+		$quesList = D('exercise')->field('quesid')->select();
+
+		$this->assign('quesList', $quesList)->display();
+
+	}
 
 
 }
