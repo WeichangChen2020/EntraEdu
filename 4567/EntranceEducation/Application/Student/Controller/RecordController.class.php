@@ -37,8 +37,7 @@ class RecordController extends Controller {
 		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
 		//var_dump($quesList);//所有做过的题目的id，二维数组
 
-		$nextid = I('nextid');
-		
+		$nextid = I('nextid');//从下一题进入		
 		if ($nextid) {
 			if ($nextid<$num) {
 				$quesId = $quesList[$nextid]['quesid'];
@@ -49,8 +48,14 @@ class RecordController extends Controller {
 			}
 
 		}else{
-			$quesId = $quesList[0]['quesid'];
-			$nextid = 1;
+			if(I('quesid')){//从索引进入
+				$quesId = I('quesid');
+				$nextid = array_keys($quesList,$quesId,true)+1; 
+				
+			}else{
+				$quesId = $quesList[0]['quesid'];//从首页入口进入显示第一题
+				$nextid = 1;
+			}
 		}
 		//echo "<br/>下一题的id在数组中的下标：".$nextid;
 		//echo "<br/>题目id：".$quesId;
