@@ -80,16 +80,16 @@
         success: function(res) {
             var str = '';
             var number = parseInt($(".num:last").html());
-            var No = 0;
+            var No = 1;
             alert(res.length);
             for (var i = 0; i < res.length; i++) {
                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 No = number + i ;
                 if ( No < 99) {
                     str += "<div class= 'num elt99'>" + No +"</div>"
-
                 }
-                str += "</div>"
+                str += "<div class='NAC'><div class='name'>"+res[i]['info']['name']}+"&nbsp;</div><div class='class'>"+res[i]['info']['class']+"|default='非新生用户'}&nbsp;</div></div></div>"
+
 
             }
 
