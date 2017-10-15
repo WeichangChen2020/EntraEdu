@@ -78,9 +78,9 @@
     $.ajax({
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {
-            var start = <?php echo session('start');?>;
-            var str = '';   
-            alert(start);
+            // var start = <?php echo session('start');?>;
+            // var str = '';   
+            // alert(start);
             // for (var i = 0; i < res.length; i++) {
             //     str += "<div class="weui-row weui-no-gutter column" style="height:2.8rem">"
             //     if (start + i < 99) {
@@ -98,7 +98,7 @@
 
             // }
 
-            $(".rank").append(str);
+            // $(".rank").append(str);
         }
     });
     loading = false;
