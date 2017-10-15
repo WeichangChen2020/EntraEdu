@@ -35,6 +35,7 @@ class RanknewController extends Controller {
             $this->ajaxReturn($rankList, 'json');
 
         } else {
+            session('start',0);
             // dump($openId);
             $rankList = D('exercise')->getRankList();
             // $me = array();
