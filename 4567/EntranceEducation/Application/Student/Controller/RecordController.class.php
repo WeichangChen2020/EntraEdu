@@ -34,14 +34,14 @@ class RecordController extends Controller {
 		//$quesIdArr = array(); 
 
         // $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
-		$quesIdArr = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
-		//var_dump($quesIdArr);//所有做过的题目的id
+		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
+		//var_dump($quesList);//所有做过的题目的id，二维数组
 
 		$nextid = I('nextid');
 		
 		if ($nextid) {
 			if ($nextid<$num) {
-				$quesId = $quesIdArr[$nextid]['quesid'];
+				$quesId = $quesList[$nextid]['quesid'];
 				$nextid++;
 			}else{
 				$this->display('tip');
@@ -49,7 +49,7 @@ class RecordController extends Controller {
 			}
 
 		}else{
-			$quesId = $quesIdArr[0]['quesid'];
+			$quesId = $quesList[0]['quesid'];
 			$nextid = 1;
 		}
 		//echo "<br/>下一题的id在数组中的下标：".$nextid;
@@ -80,9 +80,9 @@ class RecordController extends Controller {
 			$this->assign('quesItem', $quesItem);
 			$this->assign('rightAns',$rightAns);
 			$this->assign('recordArr',$recordArr);
-			$this->assign('quesIdArr',$quesIdArr);
-			//$this->assign('quesList', $quesList);
-			//
+			//$this->assign('quesIdArr',$quesIdArr);
+			$this->assign('quesList', $quesList);
+			
 			// 对题目类型判断 不同类型进入不同的页面
 			if ($quesItem['type'] == '单选题') {
 				$this->display('index');
