@@ -37,7 +37,7 @@ class RecordController extends Controller {
 		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
 		//var_dump($quesList);//所有做过的题目的id，二维数组
 		$quesIdArr = array();  
-		$quesIdArr = array_column($quesList, 'quesid'); 
+		$quesIdArr = array_map('array_shift', $quesList);
 		//var_dump($quesIdArr)//所有做过的题目的id，一维数组
 		$nextid = I('nextid');//从下一题进入		
 		if ($nextid) {
