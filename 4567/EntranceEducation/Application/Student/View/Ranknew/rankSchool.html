@@ -78,8 +78,10 @@
     $.ajax({
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {   
+            for (var i = 0; i < res.length; i++) {
+                alert(res[i]);
+            }
             
-            alert(res.length);
             $(".rank").append(res);
         }
     });
