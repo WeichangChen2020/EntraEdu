@@ -127,8 +127,8 @@ class RecordController extends Controller {
 
 		$openId = session('openId');
 		$RECORD = D('exercise');
-		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
-		$this->assign('quesIdArr', $quesIdArr)->display();
+		$quesList = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
+		$this->assign('quesList', $quesList)->display();
 
 	}
 
