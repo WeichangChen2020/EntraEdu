@@ -29,7 +29,7 @@ class RecordController extends Controller {
 		// var_dump($record);
 		//die();
 		$num = $record['count'];//总答题数
-		//echo $num;
+		echo $num;
 		//die();
 		//$quesIdArr = array(); 
 
@@ -38,6 +38,7 @@ class RecordController extends Controller {
 		var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
+		echo "下一题的id在数组中的下标：".$nextid;
 		if ($nextid) {
 			if ($nextid<$num) {
 				$quesId = $quesIdArr[$nextid];
@@ -51,7 +52,7 @@ class RecordController extends Controller {
 			$quesId = $quesIdArr[0];
 			$nextid = 1;
 		}
-		//var_dump($quesId);
+		var_dump($quesId);
 		//die();
 		session('quesId', $quesId);
 		session('nextid',$nextid);
