@@ -29,13 +29,13 @@ class RecordController extends Controller {
 		// var_dump($record);
 		//die();
 		$num = $record['count'];//总答题数
-		echo "<br/>答题数：".$num;
+		//echo "<br/>答题数：".$num;
 		//die();
 		//$quesIdArr = array(); 
 
         // $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
-		var_dump($quesIdArr);//所有做过的题目的id
+		//var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
 		
@@ -52,8 +52,8 @@ class RecordController extends Controller {
 			$quesId = $quesIdArr[0]['quesid'];
 			$nextid = 1;
 		}
-		echo "<br/>下一题的id在数组中的下标：".$nextid;
-		echo "<br/>题目id：".$quesId;
+		//echo "<br/>下一题的id在数组中的下标：".$nextid;
+		//echo "<br/>题目id：".$quesId;
 		//die();
 		session('quesId', $quesId);
 		session('nextid',$nextid);
@@ -71,7 +71,7 @@ class RecordController extends Controller {
 		//echo "用户答案：".$recordArr['answer']."<br/>";
 		//echo "正确答案：".$rightAns."<br/>";
 		//echo $recordArr['result'];
-		$quesList  = $QUESTION->getQuesList('8');
+		//$quesList  = $QUESTION->getQuesList('8');
 		//var_dump($quesList);
 		
 		// 判断是否已经做完了最后一道题目
