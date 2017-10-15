@@ -47,15 +47,21 @@ class CollectController extends Controller {
 		$EXERCISE = D('Exercise');
 		$record = $EXERCISE->getExerciseRecord($openId);
 		//var_dump($record);
-		$collectNum = $RECORD->getCollectNum($openId);
-		$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$collectNum);
-		//var_dump($quesIdArr);
+		$collectNum = $RECORD->getCollectNum($openId);//收藏题数
 		//var_dump($collectNum);
-		//die();	
-		$nextid = I('nextid');
-		if ($nextid) {
+		//$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$collectNum);
+		//var_dump($quesIdArr);
+		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
+		//var_dump($quesList);//所有收藏的题目的id，二维数组
+		$quesIdArr = array();  
+		$quesIdArr = array_map('array_shift', $quesList);
+		//$quesIdArr = array_column($quesList, 'quesid');  //不知道为什么不能用
+		//var_dump($quesIdArr);//所有收藏的题目的id，一维数组
+		
+		if (I('nextid')) {
+			$nextid = I('nextid');
 			if ($nextid<$collectNum) {
-				$quesId = $quesIdArr[$nextid];
+				$quesId = $quesList[$nextid]['quesid'];
 				$nextid++;
 			}else{
 				$this->display('tip');
@@ -64,9 +70,15 @@ class CollectController extends Controller {
 
 		}else{
 			if(I('quesid')){
+				//从索引进入
 				$quesId = I('quesid');
-			}else{
-				$quesId = $quesIdArr[0];
+				//print_r(array_keys($quesIdArr,$quesId,true)); 
+				//die();
+				$nowid = array_keys($quesIdArr,$quesId,true); //array_keys返回的是数组
+				$nextid = $nowid[0]+1;
+			}else{	
+				//从首页入口进入显示第一题
+				$quesId = $quesList[0]['quesid'];
 				$nextid = 1;
 			}
 		}
@@ -104,4 +116,21 @@ class CollectController extends Controller {
 				 
 	}
 
+
+	/**
+	 * exercise_index 我的收藏的索引
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 14:58Authors
+	 * @var  
+	 * @return json. 正确，还是错误
+	 */
+
+	public function collect_index() {
+
+		$openId = session('openId');
+		$RECORD = D('CollectRecord');
+		$quesList = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
+		$this->assign('quesList', $quesList)->display();
+
+	}
 }
