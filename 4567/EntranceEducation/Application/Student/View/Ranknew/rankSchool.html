@@ -73,9 +73,19 @@
     $(document.body).infinite().on("infinite", function() {
     if(loading) return;
     loading = true;
+    $.ajax({
+        url: "{:U('Rework/chose')}",           //请求路径；
+        success: function(data) {   
+            var str = "";
+            $.each(data, function(i, item) {      //遍历出来json里边的内容；i，表示当前遍历到第几条内容；item，表示当前遍历的对象；
+                str +="<li>"+'姓名：' + item.name + '  年龄：' + item.age + '  性别：' + item.sex +"</li>"
+            });
+            $("#rank").append(str);
+        }
+    });
     setTimeout(function() {
-        $(".rank").append("<p> 我是新加载的内容 </p>");
+        $(".rank").append(str);
         loading = false;
-    }, 1500);   //模拟延迟
+    }, 1000);   //模拟延迟
 });
 </script>
