@@ -33,7 +33,7 @@ class RanknewController extends Controller {
 
                   $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
             }
-            $this->ajaxReturn($rankList);
+            $this->ajaxReturn($rankList, 'json');
 
         } else {
             session('start',0);
