@@ -79,8 +79,12 @@
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {   
             var str = "";
-
-
+            $.each(res, function (n, value) {
+               alert(n + ' ' + value);
+               var trs = "";
+               trs += "<tr><td>" + value.name + "</td> <td>" + value.password + "</td></tr>";
+               tbody += trs;
+            }); 
             $(".rank").append(res);
         }
     });
