@@ -80,11 +80,16 @@
         success: function(res) {
             var str = '';
             var start = <?php echo session('start')+20;?>;
-            alert(start);
+
+            for (var i = 0; i < res.length; i++) {
+                str += "<div class="weui-row weui-no-gutter column" style="height:2.8rem">"
+                if (start + i < 99) {
+                    str += "<elseif condition='$k elt 99' /><div class='num elt99'>" + start + i + "</div>"
+                }
 
 
 
-            // }
+            }
 
             $(".rank").append(str);
         }
