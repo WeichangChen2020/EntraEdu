@@ -33,15 +33,15 @@ class RecordController extends Controller {
 		//die();
 		//$quesIdArr = array(); 
 
-        $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
-		// $quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
+        // $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
+		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
 		var_dump($quesIdArr);//所有做过的题目的id
 
 		$nextid = I('nextid');
-		echo "<br/>下一题的id在数组中的下标：".$nextid;
+		
 		if ($nextid) {
 			if ($nextid<$num) {
-				$quesId = $quesIdArr[$nextid];
+				$quesId = $quesIdArr[$nextid]['quesid'];
 				$nextid++;
 			}else{
 				$this->display('tip');
@@ -49,9 +49,10 @@ class RecordController extends Controller {
 			}
 
 		}else{
-			$quesId = $quesIdArr[0];
+			$quesId = $quesIdArr[0]['quesid'];
 			$nextid = 1;
 		}
+		echo "<br/>下一题的id在数组中的下标：".$nextid;
 		echo "<br/>题目id：".$quesId;
 		//die();
 		session('quesId', $quesId);
