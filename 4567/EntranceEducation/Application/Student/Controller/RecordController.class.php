@@ -52,7 +52,7 @@ class RecordController extends Controller {
 		}else{
 			if(I('quesid')){//从索引进入
 				$quesId = I('quesid');
-				$nextid = array_keys($quesIdArr,"$quesId",true)+1; 
+				$nextid = array_keys($quesIdArr,$quesId,true)+1; 
 				
 			}else{
 				$quesId = $quesList[0]['quesid'];//从首页入口进入显示第一题
