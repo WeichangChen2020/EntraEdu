@@ -31,7 +31,6 @@ class RanknewController extends Controller {
             }
             $rankList    = D('exercise')->getRankList($start);
 
-            dump($rankList);
             $this->ajaxReturn($rankList, 'json');
 
         } else {
@@ -53,7 +52,7 @@ class RanknewController extends Controller {
         }
         // dump($rankList);
 
-            $this->assign('length',COUNT($rankList));
+        $this->assign('length',COUNT($rankList));
         // $this->assign('me',$me);
         $this->assign('rankList',$rankList);
         $this->display();
