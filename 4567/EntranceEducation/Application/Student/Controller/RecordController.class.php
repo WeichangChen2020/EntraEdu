@@ -39,6 +39,7 @@ class RecordController extends Controller {
 		$quesIdArr = array();  
 		$quesIdArr = array_map('array_shift', $quesList);
 		var_dump($quesIdArr)//所有做过的题目的id，一维数组
+		die();
 		$nextid = I('nextid');//从下一题进入		
 		if ($nextid) {
 			if ($nextid<$num) {
