@@ -85,21 +85,8 @@ function get_record_index_css($quesid) {
 
 function get_record_url_css($quesid) {
 	
-	$openid = session('openId');
-	
-	$map = array(
-		'openid' => $openid,
-		'quesid' => $quesid,
- 	);
-	
-	$result =  M('exercise')->where($map)->getField('result');
 
-
-	if(!isset($result)) {
-		return U('Record/record', array('quesid'=>$quesid));
-	} else {
-		return 'javascript:;' ;		
-	}
+	return U('Record/record', array('quesid'=>$quesid));
 
 }
 
