@@ -79,13 +79,16 @@
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {
             var str = '';
-            var start = <?php echo session('start')+20;?>;
-            alert(start);
+            var number = parseInt($(".num:last").html());
             alert(res.length);
-            // for (var i = 0; i < res.length; i++) {
-            //     str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
+            for (var i = 0; i < res.length; i++) {
+                str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
+                if (number + i < 99) {
+                    str += "<div class= 'num elt99'>" + number + i +"</div>"
 
-            // }
+                }
+
+            }
 
             $(".rank").append(str);
         }
