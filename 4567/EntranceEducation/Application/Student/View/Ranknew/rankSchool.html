@@ -81,9 +81,9 @@
             var str = "";
             // alert(res);
             $.each(res, function(i, item) {      //遍历出来json里边的内容；i，表示当前遍历到第几条内容；item，表示当前遍历的对象；
-                str +="<li>"+'openid：' + item.openid + '  年龄：' + item.sum(result)  +"</li>"
+                str +="<li>"+'openid：' + item.openid "</li>"
             });
-            $(".rank").append(res);
+            $(".rank").append(str);
         }
     });
     loading = false;
