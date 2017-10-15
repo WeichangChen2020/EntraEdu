@@ -144,7 +144,6 @@ class ExerciseModel extends Model {
 		// dump($sql);	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
-		dump($res);
 		if (empty($res)) {
 			return false;
 		}
