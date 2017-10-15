@@ -35,14 +35,15 @@ class RecordController extends Controller {
 
         // $quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
-		//var_dump($quesList);//所有做过的题目的id，二维数组
+		var_dump($quesList);//所有做过的题目的id，二维数组
 		$quesIdArr = array();  
 		//$quesIdArr = array_map('array_shift', $quesList);
 		$quesIdArr = array_column($quesList, 'quesid');  
 		var_dump($quesIdArr)//所有做过的题目的id，一维数组
 		die();
-		$nextid = I('nextid');//从下一题进入		
+		$nextid = I('nextid');	
 		if ($nextid) {
+			//从下一题进入	
 			if ($nextid<$num) {
 				$quesId = $quesList[$nextid]['quesid'];
 				$nextid++;
@@ -52,12 +53,14 @@ class RecordController extends Controller {
 			}
 
 		}else{
-			if(I('quesid')){//从索引进入
+			if(I('quesid')){
+				//从索引进入
 				$quesId = I('quesid');
 				//$nextid = array_keys($quesIdArr,$quesId,true)+1; 
 				
 			}else{
-				$quesId = $quesList[0]['quesid'];//从首页入口进入显示第一题
+				//从首页入口进入显示第一题
+				$quesId = $quesList[0]['quesid'];
 				$nextid = 1;
 			}
 		}
