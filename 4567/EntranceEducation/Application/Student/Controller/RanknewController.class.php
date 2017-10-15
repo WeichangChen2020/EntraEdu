@@ -30,7 +30,10 @@ class RanknewController extends Controller {
                 $start = 0;
             }
             $rankList    = D('exercise')->getRankList($start);
+            foreach($rankList as $key=>$value){
 
+                  $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
+            }
             $this->ajaxReturn($rankList, 'json');
 
         } else {
@@ -48,16 +51,16 @@ class RanknewController extends Controller {
         // }
             foreach($rankList as $key=>$value){
 
-              $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
+                  $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
+            }
+            // dump($rankList);
+
+            $this->assign('length',COUNT($rankList));
+            // $this->assign('me',$me);
+            $this->assign('rankList',$rankList);
+            $this->display();
+
         }
-        // dump($rankList);
-
-        $this->assign('length',COUNT($rankList));
-        // $this->assign('me',$me);
-        $this->assign('rankList',$rankList);
-        $this->display();
-
-      }
 
         }
 
