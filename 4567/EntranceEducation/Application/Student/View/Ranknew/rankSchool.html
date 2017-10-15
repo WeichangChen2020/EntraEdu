@@ -77,7 +77,8 @@
     setTimeout(function() {
     $.ajax({
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
-        success: function(res) {   
+        success: function(res) { 
+            res = <?php json_decode(res,true) >  
             var str = "";
 
             $(".rank").append(res);

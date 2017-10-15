@@ -24,7 +24,6 @@ class RanknewController extends Controller {
             if(session('?start')){
                 $start = session('start') + 20;
                 session('start',$start );
-                dump($start);
             } else {
                 session('start',0);
                 $start = 0;
