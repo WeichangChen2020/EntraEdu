@@ -73,6 +73,8 @@
     $(document.body).infinite().on("infinite", function() {
     if(loading) return;
     loading = true;
+
+    setTimeout(function() {
     $.ajax({
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {   
@@ -84,9 +86,7 @@
             $(".rank").append(res);
         }
     });
-    setTimeout(function() {
-        $(".rank").append(str);
-        loading = false;
+    loading = false;
     }, 1000);   //模拟延迟
 });
 </script>
