@@ -59,6 +59,7 @@ class RecordController extends Controller {
 				//从索引进入
 				$quesId = I('quesid');
 				print_r(array_keys($quesIdArr,$quesId,true)); 
+				die();
 				//$nextid = array_keys($quesIdArr,$quesId,true)+1; 
 				
 			}else{
