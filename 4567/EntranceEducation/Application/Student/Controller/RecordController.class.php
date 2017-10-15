@@ -40,8 +40,8 @@ class RecordController extends Controller {
 		$quesIdArr = array_map('array_shift', $quesList);
 		//$quesIdArr = array_column($quesList, 'quesid');  
 		//var_dump($quesIdArr);//所有做过的题目的id，一维数组
-		print_r(array_keys($quesIdArr,$quesId,true)); 
-		die();
+		
+		//die();
 		
 		if (I('nextid')) {
 			//从下一题进入
@@ -58,7 +58,8 @@ class RecordController extends Controller {
 			if(I('quesid')){
 				//从索引进入
 				$quesId = I('quesid');
-				$nextid = array_keys($quesIdArr,$quesId,true)+1; 
+				print_r(array_keys($quesIdArr,$quesId,true)); 
+				//$nextid = array_keys($quesIdArr,$quesId,true)+1; 
 				
 			}else{
 				//从首页入口进入显示第一题
