@@ -60,8 +60,8 @@ class RecordController extends Controller {
 				$quesId = I('quesid');
 				//print_r(array_keys($quesIdArr,$quesId,true)); 
 				//die();
-				$nowid = array_keys($quesIdArr,$quesId,true); 
-				$nextid = $nowid+1;
+				$nowid = array_keys($quesIdArr,$quesId,true); //array_keys返回的是数组
+				$nextid = $nowid[0]+1;
 			}else{
 				//从首页入口进入显示第一题
 				$quesId = $quesList[0]['quesid'];
