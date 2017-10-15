@@ -116,4 +116,21 @@ class CollectController extends Controller {
 				 
 	}
 
+
+	/**
+	 * exercise_index 我的收藏的索引
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-9-8 14:58Authors
+	 * @var  
+	 * @return json. 正确，还是错误
+	 */
+
+	public function collect_index() {
+
+		$openId = session('openId');
+		$RECORD = D('CollectRecord');
+		$quesList = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
+		$this->assign('quesList', $quesList)->display();
+
+	}
 }
