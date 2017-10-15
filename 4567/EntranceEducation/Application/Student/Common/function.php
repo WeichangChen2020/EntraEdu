@@ -61,6 +61,47 @@ function get_exercise_url_css($quesid) {
 
 }
 
+// *******展示题目索引 in  record *****
+function get_record_index_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return 'placeholder';
+	} else if ($result == 1) {
+		return 'placeholder-right';
+	} else {
+		return 'placeholder-wrong';
+	}
+}
+
+function get_record_url_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return U('Record/record', array('quesid'=>$quesid));
+	} else {
+		return 'javascript:;' ;		
+	}
+
+}
 
 // *******处理包含图片的题目
 function repleace_question_image($contents) {
