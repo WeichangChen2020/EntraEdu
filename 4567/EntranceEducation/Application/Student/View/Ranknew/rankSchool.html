@@ -80,11 +80,12 @@
         success: function(res) {
             var str = '';
             var number = parseInt($(".num:last").html());
+            var No = 0;
             alert(res.length);
             for (var i = 0; i < res.length; i++) {
                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
-                if (number + i < 99) {
-                    str += "<div class= 'num elt99'>" + number + i +"</div>"
+                if (No = number + i < 99) {
+                    str += "<div class= 'num elt99'>" + No +"</div>"
 
                 }
                 str += "</div>"
