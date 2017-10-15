@@ -52,11 +52,11 @@ class CollectController extends Controller {
 		//$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$collectNum);
 		//var_dump($quesIdArr);
 		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
-		var_dump($quesList);//所有收藏的题目的id，二维数组
+		//var_dump($quesList);//所有收藏的题目的id，二维数组
 		$quesIdArr = array();  
 		$quesIdArr = array_map('array_shift', $quesList);
 		//$quesIdArr = array_column($quesList, 'quesid');  //不知道为什么不能用
-		var_dump($quesIdArr);//所有收藏的题目的id，一维数组
+		//var_dump($quesIdArr);//所有收藏的题目的id，一维数组
 		
 		if (I('nextid')) {
 			$nextid = I('nextid');
