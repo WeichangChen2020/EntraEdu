@@ -23,7 +23,8 @@ class RanknewController extends Controller {
         if (IS_AJAX) {
             if(session('?start')){
                 $start = session('start');
-                session('start',parseInt($start) + 20);
+                session('start',$start + 20);
+                dump($start);
             } else {
                 session('start',0);
                 $start = 0;
