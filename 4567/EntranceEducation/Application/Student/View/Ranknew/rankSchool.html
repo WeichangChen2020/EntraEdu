@@ -79,11 +79,23 @@
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {
             var start = <?php echo session('start')+20;?>;
-            alert(start);
-            // var str = '';   
-            // for (var i = 0; i < res.length; i++) {
-            //     str += "<div class="weui-row weui-no-gutter column" style="height:2.8rem">"
-            // }
+            var str = '';   
+            for (var i = 0; i < res.length; i++) {
+                str += "<div class="weui-row weui-no-gutter column" style="height:2.8rem">"
+                if (start + i < 99) {
+                    str += "<elseif condition='$k elt 99' /><div class='num elt99'>" + start + i + "</div>"
+                }
+
+                str += "<div class='NAC'><div class='name'>"+res[i]['']&nbsp;</div>
+                    <div class="class">{$rankList['info']['class']|default="非新生用户"}&nbsp;</div>
+                </div>
+                <div class="GAT">
+                    <div class="grade">{$rankList['sum(result)']}
+                        <span class="ti">题</span>
+                    </div>
+                </div>
+
+            }
 
             $(".rank").append(str);
         }
