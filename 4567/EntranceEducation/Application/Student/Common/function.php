@@ -90,6 +90,35 @@ function get_record_url_css($quesid) {
 
 }
 
+// *******展示题目索引 in  collect *****
+function get_collect_index_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('exercise')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return 'placeholder';
+	} else if ($result == 1) {
+		return 'placeholder-right';
+	} else {
+		return 'placeholder-wrong';
+	}
+}
+
+function get_collect_url_css($quesid) {
+	
+
+	return U('Collect/recordList', array('quesid'=>$quesid));
+
+}
+
 // *******处理包含图片的题目
 function repleace_question_image($contents) {
 	
