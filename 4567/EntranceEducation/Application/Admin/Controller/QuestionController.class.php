@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 class QuestionController extends Controller {
+    
     public function index(){
         $QUESTION = M('Questionbank')->select();
         $this->assign('questionList',$QUESTION);
