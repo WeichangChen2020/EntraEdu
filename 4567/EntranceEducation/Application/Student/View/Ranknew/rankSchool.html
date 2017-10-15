@@ -79,9 +79,15 @@
         url: "{:U('Ranknew/rankSchool')}",           //请求路径；
         success: function(res) {
             var str = '';
+            var start = <?php echo session('start')+20;?>;
+            alert(start);
             alert(res.length);
+            // for (var i = 0; i < res.length; i++) {
+            //     str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
 
-            $(".rank").append(res);
+            // }
+
+            $(".rank").append(str);
         }
     });
     loading = false;
