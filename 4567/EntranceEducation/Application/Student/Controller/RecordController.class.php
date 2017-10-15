@@ -31,7 +31,7 @@ class RecordController extends Controller {
 		$num = $record['count'];//总答题数
 		//echo $num;
 		//die();
-		$quesIdArr = array(); 
+		//$quesIdArr = array(); 
 
         //$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$num);
 		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
@@ -107,9 +107,10 @@ class RecordController extends Controller {
 
 	public function record_index() {
 
-		$quesList = D('exercise')->field('quesid')->select();
-
-		$this->assign('quesList', $quesList)->display();
+		$openId = session('openId');
+		$RECORD = D('exercise');
+		$quesIdArr = $RECORD->where(array('openid'=>$openId))->field('quesid')->select();
+		$this->assign('quesIdArr', $quesIdArr)->display();
 
 	}
 
