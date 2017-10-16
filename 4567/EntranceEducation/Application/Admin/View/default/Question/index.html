@@ -33,29 +33,10 @@
 
                
             </tbody>
+            {$show}
 
         </table>
-        <div id="demo7"></div>
 
     </form>
-    
-    <script src="__PUBLIC__/admin/layui2.0/layui.js"></script>
-
-    <script>
-        //一般直接写在一个js文件中
-        layui.use('laypage', function(){
-          var laypage = layui.laypage;
-          //执行一个laypage实例
-           laypage.render({
-            elem: 'demo7'
-            ,limit: 20
-            ,count: {$count}
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-            ,jump: function(obj){
-                // window.location.href = "{:U('Question/index')}/p/"+obj.curr;
-            }
-
-          });
-        });
-    </script>
+  
 </div>
