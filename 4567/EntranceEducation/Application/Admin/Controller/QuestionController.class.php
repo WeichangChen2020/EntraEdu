@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class QuestionController extends Controller {
+class QuestionController extends CollegeController {
     
     public function index(){
 
