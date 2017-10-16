@@ -11,12 +11,7 @@ class QuestionController extends Controller {
         $count      = $Question->count();
         $Page       = new \Think\Page($count,12);
         $show       = $Page->show();
-
-
         $this->assign('page',$show);
-
-
-
         $this->display();
     }
 
