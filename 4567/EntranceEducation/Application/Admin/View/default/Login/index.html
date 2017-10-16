@@ -11,16 +11,13 @@
 </head>
 <body id="login">
 <div class="login">
-<h2>后台管理系统</h2>
+<h2>新生入学考试平台后台管理系统</h2>
 <form class="layui-form" method="post" action="{:U('Login/checklogin')}">
 <div class="layui-form-item">
 <input type="username" name="username" placeholder="请输入账号" required lay-verify="required" autocomplete="off" class="layui-input">
 </div>
 <div class="layui-form-item">
 <input type="password" name="password" placeholder="请输入密码" required lay-verify="required" autocomplete="off" class="layui-input">
-</div>
-<div class="layui-form-item">
-<input type="password" name="kouling" placeholder="请输入口令" required lay-verify="required" autocomplete="off" class="layui-input">
 </div>
 <div class="layui-form-item">
 <button style="padding: 0 102px;" class="layui-btn" lay-submit lay-filter="formDemo">立即登录</button>
