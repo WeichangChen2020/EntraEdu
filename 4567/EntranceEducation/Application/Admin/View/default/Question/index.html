@@ -8,7 +8,7 @@
     <div class="arz cl"><a href="{:U('Question/add')}"><i class="layui-icon"></i>添加</a></div>
     <form method="post" class="aform cl">
         <table width="100%">
-            <tbody>
+            <!-- <tbody>
                 <tr>
                     <th width="10%" align="center" >id</th>
                     <th width="10%" align="center">题目章节</th>
@@ -36,32 +36,32 @@
 
 
 
+        </table> -->
+
+        <table class="layui-table" lay-data="{height:315, url:'{:U('Question/index')}', page:true, id:'test'}" lay-filter="test">
+          <thead>
+            <tr>
+              <th lay-data="{field:'id', width:80, sort: true}">ID</th>
+              <th lay-data="{field:'username', width:80}">用户名</th>
+              <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+              <th lay-data="{field:'city', width:80}">城市</th>
+              <th lay-data="{field:'sign', width:177}">签名</th>
+              <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
+              <th lay-data="{field:'score', width:80, sort: true}">评分</th>
+              <th lay-data="{field:'classify', width:80}">职业</th>
+              <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
+            </tr>
+          </thead>
         </table>
 
        
-            
-        {$page}
-
-        <div id="demo7"></div>
+       
 
         <script src="__PUBLIC__/admin/layui2.0/layui.js"></script>
         <script>
-        //一般直接写在一个js文件中
-        layui.use('laypage', function(){
-          var laypage = layui.laypage;
-          //执行一个laypage实例
-           laypage.render({
-            elem: 'demo7'
-            , limit: 20
-            ,count: {$count}
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-            ,jump: function(obj){
-                  console.log(obj);
-                  console.log(obj.curr); 
-            }
-
-          });
-        });
+            layui.use('table', function(){
+              var table = layui.table;
+            });
         </script> 
 
     </form>
