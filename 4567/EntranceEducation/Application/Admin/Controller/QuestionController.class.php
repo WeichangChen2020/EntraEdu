@@ -11,9 +11,13 @@ class QuestionController extends Controller {
         $count      = $Question->count();
         $Page       = new \Think\Page($count,25);
         $show       = $Page->show();
+        
         $this->assign('page',$show);
 
-        $this->display();
+        p($show);
+
+
+        // $this->display();
     }
 
     //题目修改界面
