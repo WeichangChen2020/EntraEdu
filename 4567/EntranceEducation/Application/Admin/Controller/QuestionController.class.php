@@ -4,6 +4,12 @@ use Think\Controller;
 class QuestionController extends Controller {
     
     public function index(){
+       
+        $this->display();
+    }
+
+    public function quesRec() {
+
         $Question = M('Questionbank');
         $list = $Question->page($_GET['p'].',20')->select();
         $this->assign('questionList',$list);
@@ -13,7 +19,7 @@ class QuestionController extends Controller {
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page',$show);
-        $this->display();
+
     }
 
     //题目修改界面
