@@ -4,8 +4,15 @@ use Think\Controller;
 class QuestionController extends Controller {
     
     public function index(){
-        $QUESTION = M('Questionbank')->select();
-        $this->assign('questionList',$QUESTION);
+        $Question = M('Questionbank');
+        $list = $Question->page($_GET['p'].',25')->select();
+        $this->assign('questionList',$list);
+
+        $count      = $Question->count();
+        $Page       = new \Think\Page($count,25);
+        $show       = $Page->show();
+        $this->assign('page',$show);
+
         $this->display();
     }
 

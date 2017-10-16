@@ -29,21 +29,7 @@
                     </tr>
                 </volist>
 
-                <div id="pages"></div> 
-                <script>
-                    layui.use('laypage', function(){
-                        var laypage = layui.laypage;
-                        laypage.render({
-                        elem: 'pages'
-                        ,count: 100
-                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                        ,jump: function(obj){
-                            console.log(obj);
-                        }
-
-                      });
-                    });
-                </script>
+               
             </tbody>
         </table>
     </form>
