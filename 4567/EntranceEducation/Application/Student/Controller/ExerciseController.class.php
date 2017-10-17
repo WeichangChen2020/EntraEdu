@@ -61,6 +61,10 @@ class ExerciseController extends Controller{
 			$this->display('tip'); die;
 		}
 
+		//如果已经做过，直接显示选择答案
+		if(D('Exercise')->where(array('openid'=>$openid,'quesid'=>$quesid))->find()){
+			$done=1;
+		}
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
@@ -71,7 +75,7 @@ class ExerciseController extends Controller{
 			$this->assign('record', $record);
 			$this->assign('quesItem', $quesItem);
 			$this->assign('quesList', $quesList);
-
+			$this->assign('done',$done);
 			// 对题目类型判断 不同类型进入不同的页面
 			if ($quesItem['type'] == '单选题') {
 				$this->display('index');
