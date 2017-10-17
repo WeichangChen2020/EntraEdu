@@ -139,7 +139,7 @@ class ExerciseModel extends Model {
 	public function getRankList($start = 0) { 
 
 		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
-		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,15";
+		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
 
 		// dump($sql);	
 		$Model = new \Think\Model();
