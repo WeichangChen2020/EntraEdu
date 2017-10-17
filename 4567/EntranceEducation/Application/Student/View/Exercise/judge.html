@@ -173,12 +173,12 @@
 		}
 	});
 </script>
-<script type="text/javascript">
-			var res = "{$quesItem.right_answer}";
+		<script type="text/javascript">
+			var res = "{$rightAns}";
 			var option = "{$recordArr.answer}";
 			//var use = document.getElementById("use");
 			var use = document.getElementsByTagName("use");
-			var myarray = new Array('A','B','C','D');
+			var myarray = new Array('对','错');
 			
 			for(var i=0;i<myarray.length;i++){
 				var x = myarray[i];
