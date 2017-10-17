@@ -85,10 +85,20 @@
                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 No = number + i + 1 ;
                 if ( No < 99) {
-                    str += "<div class= 'num elt99'>" + No +"</div>"
+                    str += "<div class= 'num elt99'>" + No +"</div>";
+                } else if (No < 999 ){
+                    str += "<div class= 'num elt999'>" + No +"</div>";
+                } else {
+                    str += "<div class= 'num elt9999'>" + No +"</div>";
                 }
-                str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>"+ res[i]['info']['class'] +"|default='非新生用户'}&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "<span class='ti'>题</span></div></div></div>"
+                str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
+                if (empty(res[i]['info']['class'])) {
+                    str += '非新生用户';
+                } else {
+                    str += res[i]['info']['class'];
+                }
+                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "<span class='ti'>题</span></div></div></div>"
             }
 
             $(".rank").append(str);
