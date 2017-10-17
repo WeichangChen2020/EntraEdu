@@ -40,9 +40,7 @@
 				</ul>
 			</div>
 
-			<div class="c-pic">
-				<span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>{$quesItem.contents|repleace_question_image=###}
-			</div>
+			<div class="c-pic"><span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>{$quesItem.contents|repleace_question_image=###}</div>
 			<div class="c-table">
 
 				<!-- option exit -->
@@ -81,8 +79,11 @@
 						</div>
 					</a>
 				</if>
-				
-			</div>
+
+				<if condition="$done eq '1'">
+					<span class="rightAns">正确答案：{$quesItem.right_answer}</span>
+				</if>
+			</div> 
 			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'),
 			'typeid'=>session('typeid'),
 			'quesid'=>session('quesid')+1)
@@ -203,7 +204,36 @@
 		}
 	});
 
-
-
-
 </script>
+
+		<script type="text/javascript">
+			var res = "{$quesItem.right_answer}";
+			var option = "{$recordArr.answer}";
+			//var use = document.getElementById("use");
+			var use = document.getElementsByTagName("use");
+			var myarray = new Array('A','B','C','D');
+			
+			for(var i=0;i<myarray.length;i++){
+				var x = myarray[i];
+				var y = i+6;
+				if (res.indexOf(x)!=-1) {
+					if(option.indexOf(x)!=-1){
+						//document.write(x);
+						use[y].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
+					}else{
+                        if(option!=''){
+							//var icon_attr = use.getAttribute('xlink:href');
+							use[y].setAttribute("xlink:href","#icon-option-right");
+                        }else{
+                        	
+                        }
+					}
+				}else{
+					if(option.indexOf(x)!=-1) {
+						use[y].setAttribute("xlink:href","#icon-option-wrong");
+					}else{
+
+					}
+				}
+			}
+		</script>
