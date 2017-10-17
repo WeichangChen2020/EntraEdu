@@ -81,6 +81,15 @@
             var str = '';
             var number = parseInt($(".num:last").html());
             var No = 0;
+
+            //如果没有更多数据，则更改样式
+            if (res == '') {
+                $(".weui-loadmore").addClass(" weui-loadmore_line");
+                $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
+                return false;
+            }
+
+            //否则添加内容
             for (var i = 0; i < res.length; i++) {
                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 No = number + i + 1 ;
