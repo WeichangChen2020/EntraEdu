@@ -136,15 +136,14 @@ class ExerciseModel extends Model {
 
 	
 	//获取做对题数的排名
-	public function getRankList($openid = '') { 
+	public function getRankList($start = 0) { 
 
 		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
-		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT 50";
+		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
 
-		// dump($sql);die;	
+		// dump($sql);	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
-		// dump($res);
 		if (empty($res)) {
 			return false;
 		}
