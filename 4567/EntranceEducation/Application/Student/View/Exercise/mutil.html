@@ -14,6 +14,7 @@
 			.title {background-color:#fbf9fe; color: #476777;}
             .bar .icon {margin: 10px 0; padding: 0; }
             .picker-button {font-size: 14px; color: #476777;}
+            .weui-badge{background-color: #cc99cc;}
 		</style>
 	</head>
 	<body>
@@ -40,7 +41,11 @@
 				</ul>
 			</div>
 			
-			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
+			<div class="c-pic">
+				<span class="weui-badge">{$quesItem.type}</span>
+				<!-- <span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span> -->
+				{$quesItem.contents}
+			</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
 
@@ -81,8 +86,12 @@
 					</a>
 				</if>
 
-				<div id="right_answer"></div>
-				
+				<div id="right_answer">
+					<if condition="$done eq '1'">
+						<span class="rightAns">正确答案：{$quesItem.right_answer}</span>
+					</if>
+				</div>
+	
 			</div>
 
 
@@ -274,3 +283,35 @@
     
 
 </script>
+
+		<script type="text/javascript">
+			var res = "{$quesItem.right_answer}";
+			var option = "{$recordArr.answer}";
+			//var use = document.getElementById("use");
+			var use = document.getElementsByTagName("use");
+			var myarray = new Array('A','B','C','D');
+			
+			for(var i=0;i<myarray.length;i++){
+				var x = myarray[i];
+				var y = i+6;
+				if (res.indexOf(x)!=-1) {
+					if(option.indexOf(x)!=-1){
+						//document.write(x);
+						use[y].setAttribute("xlink:href","#icon-tianchongxuanxiangkuangqueding");
+					}else{
+                        if(option!=''){
+							//var icon_attr = use.getAttribute('xlink:href');
+							use[y].setAttribute("xlink:href","#icon-option-right");
+                        }else{
+                        	
+                        }
+					}
+				}else{
+					if(option.indexOf(x)!=-1) {
+						use[y].setAttribute("xlink:href","#icon-option-wrong");
+					}else{
+
+					}
+				}
+			}
+		</script>
