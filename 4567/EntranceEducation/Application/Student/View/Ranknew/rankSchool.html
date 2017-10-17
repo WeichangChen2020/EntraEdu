@@ -15,6 +15,10 @@
         body{
           background-color: #12b7f5;
         }
+        .weui-loadmore_line .weui-loadmore__tips {
+            background-color: #12b7f5; 
+            color: #757575;
+        }
         .column:first-child{
           border-top: 0;
         }
@@ -81,6 +85,15 @@
             var str = '';
             var number = parseInt($(".num:last").html());
             var No = 0;
+
+            //如果没有更多数据，则更改样式
+            if (res == '') {
+                $(".weui-loadmore").addClass(" weui-loadmore_line");
+                $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
+                return false;
+            }
+
+            //否则添加内容
             for (var i = 0; i < res.length; i++) {
                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 No = number + i + 1 ;
@@ -98,13 +111,13 @@
                 } else {
                     str += res[i]['info']['class'];
                 }
-                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "<span class='ti'>题</span></div></div></div>"
+                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
             }
 
             $(".rank").append(str);
         }
     });
     loading = false;
-    }, 1000);   //模拟延迟
+    }, 500);   //模拟延迟
 });
 </script>
