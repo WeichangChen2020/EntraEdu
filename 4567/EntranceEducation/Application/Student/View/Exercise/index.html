@@ -79,8 +79,11 @@
 						</div>
 					</a>
 				</if>
-				
-			</div>
+
+				<if condition="$done eq '1'">
+					<span class="rightAns">正确答案：{$quesItem.right_answer}</span>
+				</if>
+			</div> 
 			<a class="c-button" href="{:U('Exercise/exercise_chap', array('chapid'=>session('chapid'),
 			'typeid'=>session('typeid'),
 			'quesid'=>session('quesid')+1)
