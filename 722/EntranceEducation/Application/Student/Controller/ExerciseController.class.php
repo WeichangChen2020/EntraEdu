@@ -61,10 +61,16 @@ class ExerciseController extends Controller{
 			$this->display('tip'); die;
 		}
 
+		//如果已经做过，直接显示选择答案
+		if($recordArr = D('Exercise')->where(array('openid'=>$openid,'quesid'=>$quesid))->find()){
+			$done=1;
+			$this->assign('done',$done);
+			$this->assign('recordArr',$recordArr);
+		}
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
-		// p($quesList);
+		// p($quesList);//二维数组
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
