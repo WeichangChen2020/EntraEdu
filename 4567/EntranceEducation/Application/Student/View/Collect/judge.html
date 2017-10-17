@@ -15,6 +15,7 @@
             .bar .icon {margin: 10px 0; padding: 0; }
             /*.icon {width: 20px; height: 20px}*/
             .picker-button {font-size: 14px; color: #3d4145;}
+            .weui-badge{background-color: #00ff00;}
 		</style>
 	</head>
 	<body>
@@ -41,7 +42,11 @@
 				</ul>
 			</div>
 			
-			<div class="c-pic"><span class="weui-badge">{$quesItem.type}</span><span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span>{$quesItem.contents}</div>
+			<div class="c-pic">
+				<span class="weui-badge">{$quesItem.type}</span>
+				<!-- <span class="weui-badge" style="margin-left: 5px;">{$quesItem.chapter}</span> -->
+				{$quesItem.contents}
+			</div>
 			<!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
 			<div class="c-table">
 
