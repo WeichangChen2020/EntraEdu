@@ -22,7 +22,7 @@ class RanknewController extends Controller {
 
         if (IS_AJAX) {
             if(session('?start')){
-                $start = session('start') + 20;
+                $start = session('start') + 50;
                 session('start',$start );
             } else {
                 session('start',0);
@@ -52,7 +52,7 @@ class RanknewController extends Controller {
 
                   $rankList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
             }
-            // dump($rankList);
+            dump($rankList);
 
             $this->assign('length',COUNT($rankList));
             // $this->assign('me',$me);
