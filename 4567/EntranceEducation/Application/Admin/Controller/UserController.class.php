@@ -13,6 +13,7 @@ class UserController extends CommonController {
         $list = $Question->where(array('college'=>$college))->select();
         // $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
         
+        p($college);
         p($list);
         // $this->assign('userList',$list);
 
