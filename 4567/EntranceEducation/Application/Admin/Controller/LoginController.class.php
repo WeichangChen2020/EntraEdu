@@ -16,6 +16,7 @@ class LoginController extends Controller
         $result = $member->where("username='%s' AND password='%s'", $username, $password)->find();
         if ($result) {
             $_SESSION['username'] = $result['username'];
+            $_SESSION['nickname'] = $result['nickname'];
             $_SESSION['type'] = $result['type'];
             $this->success('登陆成功', U('Index/index'), 3);
         } else {
