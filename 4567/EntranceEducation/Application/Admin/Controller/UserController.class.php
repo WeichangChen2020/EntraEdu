@@ -15,18 +15,15 @@ class UserController extends CommonController {
             $map['academy'] = $college;
         }
 
-        $list = $Question->where($map)->select();
-        // $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
+        $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
         
-        p($college);
-        p($list);
-        // $this->assign('userList',$list);
+        $this->assign('userList',$list);
 
-        // $Page       = new \Think\Page($count,20);
-        // $show       = $Page->show();
-        // $this->assign('page', $show);
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
        
-        // $this->display();
+        $this->display();
     }
 
 }
