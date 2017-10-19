@@ -15,17 +15,15 @@
                 <a href="/admin/admin.php?m=Admin&amp;c=index&amp;a=index">新生入学平台后台管理系统</a>
             </h2>
             <div class="y cl">
-                <a href="{:U('Login/logout')}">退出</a></div>
+                <a href="javascript:;">{session('username')}</a>
+                <a href="{:U('Login/logout')}">退出</a>
+            </div>
         </div>
         <div class="admin">
             <div class="aleft">
                 <h3>
                     <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>学校管理员</h3>
                 <ul class="cl">
-                    <li>
-                        <i class="layui-icon"></i>
-                        <a href="{:U('Exam/index')}">用户管理</a>
-                    </li>
                     <li>
                         <i class="layui-icon"></i>
                         <a href="{:U('Exam/index')}">考试管理</a>
