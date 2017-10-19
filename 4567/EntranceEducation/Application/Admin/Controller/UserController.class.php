@@ -10,7 +10,7 @@ class UserController extends CommonController {
 
         $college = D('Adminer')->getCollege();
 
-        $list = $Question->where(array('college'=>$college))->select();
+        $list = $Question->where(array('academy'=>$college))->select();
         // $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
         
         p($college);
