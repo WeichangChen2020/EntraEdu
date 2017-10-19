@@ -22,7 +22,7 @@
 }
 .GAT{
 	position: relative;
-	top:13px;
+	top:15px;
 	text-align: center;
 }
 .name{
@@ -31,7 +31,7 @@
 	font-size: 1rem;
 }
 .grade{
-	font-size: 2rem;
+	font-size: 1.7rem;
 }
 .class , .time, .number{
 	position: relative;
