@@ -9,7 +9,7 @@ use Think\Controller;
  * @var  
  * @return 
  */
-class ExamController extends CollegeController{
+class ExamController extends CommonController{
 	
 	/**
 	 * index 自由练习主页面 能显示当前进度，答题了多少道

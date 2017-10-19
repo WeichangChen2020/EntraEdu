@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class UserController extends Controller {
+class UserController extends CommonController {
     
     // 用户列表
     public function index(){
@@ -10,14 +10,17 @@ class UserController extends Controller {
 
         $college = D('Adminer')->getCollege();
 
-        $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
-        $this->assign('userList',$list);
+        $list = $Question->where(array('college'=>$college))->select();
+        // $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
+        
+        p($list);
+        // $this->assign('userList',$list);
 
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
+        // $Page       = new \Think\Page($count,20);
+        // $show       = $Page->show();
+        // $this->assign('page', $show);
        
-        $this->display();
+        // $this->display();
     }
 
 }
