@@ -9,7 +9,8 @@ class AdminerModel extends Model {
 	public function getCollege () {
 
 		$username = session('username');
-		$college  = $this->where('username = "%s", $username')->getFieled('college');
+		$college  = $this->where('username = "%s", $username')->getField('college');
+		
 
 		return $college;
 	}
