@@ -15,7 +15,7 @@ class UserController extends Controller {
 
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
-        $this->assign('page',$show);
+        $this->assign('page', $show);
        
         $this->display();
     }
