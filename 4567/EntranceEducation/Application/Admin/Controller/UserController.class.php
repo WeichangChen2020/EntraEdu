@@ -6,17 +6,18 @@ class UserController extends CommonController {
     // 用户列表
     public function index(){
 
-        $Question = M('StudentInfo');
+        $Student = M('StudentInfo');
 
         // 查询条件
         $college = D('Adminer')->getCollege();
         $map = array();
+
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
 
-        $list = $Question->where($map)->page($_GET['p'].',20')->select();
-        $count = $Question->where($map)->count();
+        $list = $Student->where($map)->page($_GET['p'].',20')->select();
+        $count = $Student->where($map)->count();
         
         $this->assign('userList',$list);
 
@@ -26,6 +27,21 @@ class UserController extends CommonController {
        
         $this->display();
     }
+
+    // 未注册名单
+    public function unRegister() {
+
+        
+        
+        $this->assign('userList',$list);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+       
+        $this->display();
+    }
+
 
 
 }
