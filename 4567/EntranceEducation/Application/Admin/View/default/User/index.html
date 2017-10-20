@@ -15,14 +15,16 @@
         <th width="25%" align="center">学号</th>
         <th width="10%" align="center">操作</th>
       </tr>
-      <tr>
-        <td align="center">{$key+1}</td>
-        <td align="center">{$userList.name}</td>
-        <td align="center">{$userList.class}</a></td>
-        <td align="center">{$userList.number}</td>
-        <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
-        </td>
-      </tr>
+      <volist name="questionList" id="questionList" empty="暂时没有数据" >
+          <tr>
+            <td align="center">{$key+1}</td>
+            <td align="center">{$userList.name}</td>
+            <td align="center">{$userList.class}</a></td>
+            <td align="center">{$userList.number}</td>
+            <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
+            </td>
+          </tr>
+        </volist>
   </tbody></table>
 <div class="layui-form-item">
     <div style="margin-top: 20px;">
