@@ -8,6 +8,7 @@ class LoginController extends Controller
     {
         $this->display();
     }
+
     public function checklogin()
     {
         $username = I('post.username');
@@ -23,6 +24,7 @@ class LoginController extends Controller
             $this->error('登陆失败');
         }
     }
+    
     public function logout()
     {
         session(null);

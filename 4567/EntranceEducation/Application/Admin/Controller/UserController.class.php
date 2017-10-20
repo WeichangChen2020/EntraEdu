@@ -15,7 +15,7 @@ class UserController extends CommonController {
             $map['academy'] = $college;
         }
 
-        $list = $Question->where(array('college'=>$college))->page($_GET['p'].',20')->select();
+        $list = $Question->where($map)->page($_GET['p'].',20')->select();
         
         $this->assign('userList',$list);
 
@@ -25,5 +25,6 @@ class UserController extends CommonController {
        
         $this->display();
     }
+
 
 }
