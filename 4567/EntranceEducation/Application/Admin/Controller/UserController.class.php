@@ -16,6 +16,7 @@ class UserController extends CommonController {
         }
 
         $list = $Question->where($map)->page($_GET['p'].',20')->select();
+        $count = $Question->where($map)->count();
         
         $this->assign('userList',$list);
 
