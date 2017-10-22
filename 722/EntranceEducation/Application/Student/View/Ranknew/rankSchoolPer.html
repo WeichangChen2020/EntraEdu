@@ -116,7 +116,7 @@
                                 } else {
                                     str += res[i]['info']['class'];
                                 }
-                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['ROUND(SUM(result)/COUNT(*),2)']*100 + "&nbsp;<span class='ti'>题</span></div></div></div>"
+                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['ROUND(SUM(result)/COUNT(*),2)']*100 + "&nbsp;<span class='ti'>%</span></div></div></div>"
                             }
                             $(".rank").append(str);
                         }
