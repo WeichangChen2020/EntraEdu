@@ -162,7 +162,7 @@ class ExerciseModel extends Model {
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-17 13:32Authors
 	 * @var int $start
-	 * @return array('openid', 'sum(result)') 从第$start名往后的20位同学的数组
+	 * @return array('openid', 'ROUND(SUM(result)/COUNT(*),2)') 从第$start名往后的20位同学的数组
 	 */
 	public function getPerRankList($start = 0) { 
 
