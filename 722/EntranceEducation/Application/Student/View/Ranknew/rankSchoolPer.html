@@ -116,7 +116,7 @@
                                 } else {
                                     str += res[i]['info']['class'];
                                 }
-                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + 100*res[i]['ROUND(SUM(result)/COUNT(*),2)'] + "&nbsp;<span class='ti'>%</span></div></div></div>"
+                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + round(100*res[i]['ROUND(SUM(result)/COUNT(*),2)'],0) + "&nbsp;<span class='ti'>%</span></div></div></div>"
                             }
                             $(".rank").append(str);
                         }
