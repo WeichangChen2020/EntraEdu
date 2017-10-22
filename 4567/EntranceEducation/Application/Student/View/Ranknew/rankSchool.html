@@ -75,49 +75,49 @@
 <script>
     var loading = false;  //状态标记
     $(document.body).infinite().on("infinite", function() {
-    if(loading) return;
-    loading = true;
+        if(loading) return;
+        loading = true;
 
-    setTimeout(function() {
-    $.ajax({
-        url: "{:U('Ranknew/rankSchool')}",           //请求路径；
-        success: function(res) {
-            var str = '';
-            var number = parseInt($(".num:last").html());
-            var No = 0;
+        setTimeout(function() {
+        $.ajax({
+            url: "{:U('Ranknew/rankSchool')}",           //请求路径；
+            success: function(res) {
+                var str = '';
+                var number = parseInt($(".num:last").html());
+                var No = 0;
 
-            //如果没有更多数据，则更改样式
-            if (res == '') {
-                $(".weui-loadmore").addClass(" weui-loadmore_line");
-                $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
-                return false;
-            }
-
-            //否则添加内容
-            for (var i = 0; i < res.length; i++) {
-                str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
-                No = number + i + 1 ;
-                if ( No < 99) {
-                    str += "<div class= 'num elt99'>" + No +"</div>";
-                } else if (No < 999 ){
-                    str += "<div class= 'num elt999'>" + No +"</div>";
-                } else {
-                    str += "<div class= 'num elt9999'>" + No +"</div>";
+                //如果没有更多数据，则更改样式
+                if (res == '') {
+                    $(".weui-loadmore").addClass(" weui-loadmore_line");
+                    $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
+                    return false;
                 }
-                str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
-                if (res[i]['info']['class'] == '') {
-                    str += '非新生用户';
-                } else {
-                    str += res[i]['info']['class'];
+                //否则添加内容
+                for (var i = 0; i < res.length; i++) {
+                    str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
+                    No = number + i + 1 ;
+                    if ( No < 99) {
+                        str += "<div class= 'num elt99'>" + No +"</div>";
+                    } else if (No < 999 ){
+                        str += "<div class= 'num elt999'>" + No +"</div>";
+                    } else {
+                        str += "<div class= 'num elt9999'>" + No +"</div>";
+                    }
+                    str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
+
+                    if (res[i]['info']['class'] == '') {
+                        str += '非新生用户';
+                    } else {
+                        str += res[i]['info']['class'];
+                    }
+                    str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
                 }
-                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
-            }
 
-            $(".rank").append(str);
-        }
-    });
-    loading = false;
+                $(".rank").append(str);
+            }
+        });
+        loading = false;
     }, 500);   //模拟延迟
 });
 </script>
