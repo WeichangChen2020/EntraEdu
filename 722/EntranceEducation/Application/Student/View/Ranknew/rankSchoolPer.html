@@ -37,18 +37,18 @@
             <div class="weui-row weui-no-gutter column" style="height:2.8rem">
                 <if condition="$k eq 1">
                     <img src="__PUBLIC__/images/No1.png" class="No1">
-                    <elseif condition="$k eq 2" />
+                <elseif condition="$k eq 2" />
                     <img src="__PUBLIC__/images/No2.png" class="No2">
-                    <elseif condition="$k eq 3" />
+                <elseif condition="$k eq 3" />
                     <img src="__PUBLIC__/images/No3.png" class="No3">
                     <!-- 数字太大会挤出去，不知道怎么整，只能分类 -->
-                    <elseif condition="$k elt 9" />
+                <elseif condition="$k elt 9" />
                     <div class="num">{$k}</div>
-                    <elseif condition="$k elt 99" />
+                <elseif condition="$k elt 99" />
                     <div class="num elt99">{$k}</div>
-                    <elseif condition="$k elt 999" />
+                <elseif condition="$k elt 999" />
                     <div class="num elt999">{$k}</div>
-                    <else />
+                <else />
                     <div class="num elt9999">{$k}</div>
                 </if>
                 <div class="NAC">
