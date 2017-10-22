@@ -135,10 +135,15 @@ class ExerciseModel extends Model {
 	}
 
 	
-	//获取做对题数的排名
+	/**
+	 * getRankList($start) 获取做对题数的排名
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-17 13:10Authors
+	 * @var int $start
+	 * @return array('openid', 'sum(result)') 从第$start名往后的20位同学的数组
+	 */
 	public function getRankList($start = 0) { 
 
-		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
 		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
 
 		// dump($sql);	
@@ -151,5 +156,27 @@ class ExerciseModel extends Model {
 		return $res;
 	}
 
+
+	/**
+	 * getPerRankList($start) 获取正确百分比的排名
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-17 13:32Authors
+	 * @var int $start
+	 * @return array('openid', 'sum(result)') 从第$start名往后的20位同学的数组
+	 */
+	public function getPerRankList($start = 0) { 
+
+		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
+		$sql = "SELECT openid, ROUND(SUM(result)/COUNT(*),2) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY ROUND(SUM(result)/COUNT(*),2) DESC LIMIT  $start,20";
+
+		// dump($sql);	
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+		if (empty($res)) {
+			return false;
+		}
+
+		return $res;
+	}
 
 }

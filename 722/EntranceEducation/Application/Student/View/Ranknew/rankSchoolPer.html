@@ -56,8 +56,8 @@
                     <div class="class">{$rankList['info']['class']|default="非新生用户"}&nbsp;</div>
                 </div>
                 <div class="GAT">
-                    <div class="grade">{$rankList['sum(result)']}
-                        <span class="ti">题</span>
+                    <div class="grade">{$rankList['ROUND(SUM(result)/COUNT(*),2)']*100}
+                        <span class="ti">%</span>
                     </div>
                 </div>
             </div>
@@ -83,12 +83,12 @@
                 stop=false;  
                 setTimeout(function() {
                     $.ajax({
-                        url: "{:U('Ranknew/rankSchool')}",           //请求路径；
+                        url: "{:U('Ranknew/rankSchoolPer')}",           //请求路径；
                         success: function(res) {
                             var str = '';
                             var number = parseInt($(".num:last").html());
                             var No = 0;
-
+                            console.log(res);
                             //如果没有更多数据，则更改样式
                             if (res == '') {
                                 $(".weui-loadmore").addClass(" weui-loadmore_line");
@@ -100,7 +100,6 @@
                             for (var i = 0; i < res.length; i++) {
                                 if (res[i]['info'] == null) 
                                     continue;
-
                                 str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                                 No = number + i + 1 ;
                                 if ( No < 99) {
@@ -117,9 +116,8 @@
                                 } else {
                                     str += res[i]['info']['class'];
                                 }
-                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
+                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['ROUND(SUM(result)/COUNT(*),2)']*100 + "&nbsp;<span class='ti'>题</span></div></div></div>"
                             }
-
                             $(".rank").append(str);
                         }
                     });
