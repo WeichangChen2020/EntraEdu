@@ -80,7 +80,7 @@ class UserController extends CommonController {
         $list = array();
 
         if($type == 1) {
-            $list = M('StudentInfo')->where($map)->field('name,class,number')->order->('class,number')select();
+            $list = M('StudentInfo')->where($map)->field('name,class,number')->order('class,number')->select();
             $filename .= '新生入学考试平台注册用户';
         } else {
             $title = array('序号','姓名', '班级', '学号');
