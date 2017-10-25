@@ -75,16 +75,16 @@ class UserController extends CommonController {
             $map['academy'] = $college;
         }
 
-        $title = array('序号', '姓名', '班级', '学号');
+        $title = array('姓名', '班级', '学号');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $list = array();
 
         if($type == 1) {
-            $list = M('StudentInfo')->where($map)->field('id,name,class,number')->select();
+            $list = M('StudentInfo')->where($map)->field('name,class,number')->order('class,number')select();
             $filename .= '新生入学考试平台注册用户';
         } else {
             $map['type'] = 0;
-            $list = M('StudentList')->where($map)->field('id,name,class,number')->select();
+            $list = M('StudentList')->where($map)->field('name,class,number')->select();
             $filename .= '新生入学考试平台未注册用户';
         }
 
