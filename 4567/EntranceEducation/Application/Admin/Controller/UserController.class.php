@@ -59,7 +59,6 @@ class UserController extends CommonController {
        
         // $this->display('index');
         
-        p(I());
 
     }
 
