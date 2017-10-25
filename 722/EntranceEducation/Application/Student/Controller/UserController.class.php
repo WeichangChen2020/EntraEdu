@@ -116,6 +116,9 @@ class UserController extends Controller {
         );
 
         if ($STU->add($registerInfo)) {
+
+            // 将StudentList里的type置1
+            M('StudentList')-> where(array('number'=>$number))->setField('type', 1);
             $this->ajaxReturn('success');
         } 
        
