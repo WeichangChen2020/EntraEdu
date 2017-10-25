@@ -50,7 +50,7 @@ class UserController extends CommonController {
         foreach ($list as $key => $value) {
             $map = array(
                 'number'=> $value['number'],
-            )
+            );
             M('StudentList')-> where($map)->setField('type', 1);
         }
 
