@@ -122,6 +122,7 @@ class UserController extends CommonController {
         }
 
         die;
+        // 使用die是为了避免输出多余的模板html代码
     }
 
 
