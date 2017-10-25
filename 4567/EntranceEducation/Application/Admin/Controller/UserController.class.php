@@ -93,7 +93,6 @@ class UserController extends CommonController {
 
     //导出成绩报表
     public function excel($arr=array(),$title=array(),$filename='export'){
-        $MARK = M('student_mark');
         header("Content-type:application/octet-stream");
         header("Accept-Ranges:bytes");
         header("Content-type:application/vnd.ms-excel");  
