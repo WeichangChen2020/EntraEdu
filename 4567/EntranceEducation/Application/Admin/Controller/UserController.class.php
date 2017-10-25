@@ -120,6 +120,8 @@ class UserController extends CommonController {
             }
             echo implode("\n",$arr);
         }
+
+        die;
     }
 
 
