@@ -44,10 +44,8 @@ class UserController extends CommonController {
             $map['academy'] = $college;
         }
 
-
         $list = M('StudentList')->where($map)->page($_GET['p'].',20')->select();
         $count = M('StudentList')->where($map)->count();
-
 
         $this->assign('userList',$list);
 
@@ -76,13 +74,6 @@ class UserController extends CommonController {
             M('StudentList')-> where($map)->setField('type', 1);
         }
 
-    }
-
-    public function tt() {
-
-        $List = D('StudentList');
-
-        p($List);
     }
 
 
