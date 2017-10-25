@@ -18,7 +18,8 @@ class StudentListModel extends Model {
             $map['academy'] = $college;
         }
 
-        $num['registerCount'] = M('StudentInfo')->where($map)->count();
+        $map['type'] = 1;
+        $num['registerCount'] = $this->where($map)->count();
         $map['type'] = 0;
         $num['unRegistCount'] = $this->where($map)->count();
 
