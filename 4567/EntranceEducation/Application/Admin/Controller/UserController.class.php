@@ -57,22 +57,15 @@ class UserController extends CommonController {
         $num = D('StudentList')->getStudentNum();
         $this->assign('num', $num);
        
-        $this->display('index');
+        // $this->display('index');
+        
+        p($_GET);
+
     }
 
-    public function update() {
+    
+    public function export($type) {
 
-        // 注册用户
-        $Student = M('StudentInfo');
-
-        $list = $Student->where(array('is_newer'=>1))->select();
-
-        foreach ($list as $key => $value) {
-            $map = array(
-                'number'=> $value['number'],
-            );
-            M('StudentList')-> where($map)->setField('type', 1);
-        }
 
     }
 

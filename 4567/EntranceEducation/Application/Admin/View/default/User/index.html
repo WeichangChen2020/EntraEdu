@@ -28,7 +28,7 @@
      </div> 
 <div class="layui-form-item">
     <div style="margin-top: 66px;">
-      <button class="layui-btn" onclick="return confirm('您确定要删除吗？');" type="submit">导出</button>
+      <a class="layui-btn" href="{:U('User/export', array('type'=>$_GET)}" type="submit">导出</a>
     </div>
 </div>
  </form>
