@@ -60,14 +60,14 @@ class UserController extends CommonController {
         $this->assign('export', 0);
 
        
-        // $this->display('index');
+        $this->display('index');
         
-
     }
 
     
     public function export($type) {
 
+        
 
     }
 
