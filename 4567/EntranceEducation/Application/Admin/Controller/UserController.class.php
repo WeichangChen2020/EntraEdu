@@ -25,9 +25,10 @@ class UserController extends CommonController {
         $show       = $Page->show();
         $this->assign('page', $show);
 
-        // 注册数量和未注册数量
+        // 注册数量和未注册数量和导出
         $num = D('StudentList')->getStudentNum();
         $this->assign('num', $num);
+        $this->assign('export', 1);
 
        
         $this->display();
@@ -56,6 +57,8 @@ class UserController extends CommonController {
         // 注册数量和未注册数量
         $num = D('StudentList')->getStudentNum();
         $this->assign('num', $num);
+        $this->assign('export', 0);
+
        
         // $this->display('index');
         
