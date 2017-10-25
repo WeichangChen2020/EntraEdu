@@ -54,6 +54,10 @@ class UserController extends CommonController {
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page', $show);
+
+        // 注册数量和未注册数量
+        $num = D('StudentList')->getStudentNum();
+        $this->assign('num', $num);
        
         $this->display('index');
     }
