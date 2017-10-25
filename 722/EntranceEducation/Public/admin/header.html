@@ -12,49 +12,46 @@
     <body>
         <div class="header">
             <h2 class="z cl">
-                <a href="/admin/admin.php?m=Admin&amp;c=index&amp;a=index">
-                    <img src="__PUBLIC__/admin/img/logo.png"></a>
+                <a href="javascript:;">新生入学平台后台管理系统</a>
             </h2>
             <div class="y cl">
-                <a target="_blank" href="/admin/index.php">网站首页</a>
-                <a href="/admin/admin.php?m=Admin&amp;c=Login&amp;a=logout">退出</a></div>
+                <a href="javascript:;"><?php echo $_SESSION['nickname'];?></a>
+                <a href="{:U('Login/logout')}">退出</a>
+            </div>
         </div>
         <div class="admin">
             <div class="aleft">
-                <h3>
-                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>操作菜单</h3>
-                <ul class="cl">
-                    <li>
-                        <i class="layui-icon"></i>
-                        <a href="{:U('Exam/index')}">模拟考试</a>
-                    </li>
-                    <li>
-                        <i class="layui-icon"></i>
-                        <a href="{:U('Question/index')}">管理题目</a>
-                    </li>
-                    
-                </ul>
-                <h3>
-                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>系统管理</h3>
+                <if condition="($_SESSION['type'] eq 1)"> 
+                    <h3>
+                        <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>学校管理员
+                    </h3>
+                    <ul class="cl">
+                        <li>
+                            <i class="layui-icon"></i>
+                            <a href="{:U('Exam/index')}">考试管理</a>
+                        </li>
+                        <li>
+                            <i class="layui-icon"></i>
+                            <a href="{:U('Question/index')}">题目管理</a>
+                        </li>
+                        
+                    </ul>
+               
+                </if>
+                <if condition="($_SESSION['type'] eq 2)"> 
+                    <h3>
+                        <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>学院管理员
+                    </h3>
+                </if>
                 <ul class="cl">
                     <li>
                         <i class="layui-icon"></i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=conf&amp;a=index">网站配置</a></li>
+                        <a href="{:U('User/index')}">用户信息</a></li>
+                    <li>
+                        <i class="layui-icon"></i>
+                        <a href="/admin/admin.php?m=Admin&amp;c=member&amp;a=index">答题信息</a></li>
                     <li>
                         <i class="layui-icon"></i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=member&amp;a=index">密码修改</a></li>
-                    <li>
-                        <i class="layui-icon"></i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=runtime&amp;a=index">清理缓存</a></li>
-                    <li>
-                        <i class="layui-icon">ဆ</i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=Login&amp;a=logout">立即退出</a></li>
-                </ul>
-                <h3>
-                    <i class="layui-icon" style="position: relative;right: 3px;top: 1px;font-size: 18px;color: #009688;"></i>帮助中心</h3>
-                <ul class="cl">
-                    <li>
-                        <i class="layui-icon"></i>
-                        <a target="_blank" href="http://wenda.templet360.com/">社区问答</a></li>
+                        <a href="/admin/admin.php?m=Admin&amp;c=runtime&amp;a=index">考试信息</a></li>
                 </ul>
             </div>
