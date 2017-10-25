@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
-class SutdentListModel extends Model {
+class StudentListModel extends Model {
 
 	/**
 	 * getStudentNum 获取注册数量 未注册数量
