@@ -76,7 +76,13 @@ class UserController extends CommonController {
             M('StudentList')-> where($map)->setField('type', 1);
         }
 
-        
+    }
+
+    public function tt() {
+
+        $List = D('StudentList');
+
+        p($List);
     }
 
 
