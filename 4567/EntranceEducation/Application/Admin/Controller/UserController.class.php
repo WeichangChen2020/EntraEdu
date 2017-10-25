@@ -33,7 +33,7 @@ class UserController extends CommonController {
 
         // 查询条件
         $college = D('Adminer')->getCollege();
-        $map['type'] = 1;
+        $map['type'] = 0;
 
         if (!is_null($college)) {
             $map['academy'] = $college;
@@ -43,7 +43,6 @@ class UserController extends CommonController {
         $list = M('StudentList')->where($map)->page($_GET['p'].',20')->select();
         $count = M('StudentList')->where($map)->count();
 
-        p($list);die;
 
         $this->assign('userList',$list);
 
@@ -51,7 +50,7 @@ class UserController extends CommonController {
         $show       = $Page->show();
         $this->assign('page', $show);
        
-        $this->display();
+        $this->display('index');
     }
 
     public function update() {
