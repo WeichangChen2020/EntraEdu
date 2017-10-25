@@ -77,7 +77,7 @@ class UserController extends CommonController {
 
         $title = array('序号', '姓名', '班级', '学号');
 
-        $register = M('StudentInfo')->where($map)-field('id,name,class,number')->select();
+        $register = M('StudentInfo')->where($map)->field('id,name,class,number')->select();
 
 
         p($register);
