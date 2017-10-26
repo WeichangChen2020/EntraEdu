@@ -53,7 +53,9 @@ class ExamController extends CommonController{
 
 			$res = D('ExamSetup')->add($data);
 			if($res) {
+				dump($res);die;
 				$this->success('考试创建成功', U('Exam/index'));
+
 			} else {
 				$this->error('考试创建失败');
 			}
@@ -147,8 +149,8 @@ class ExamController extends CommonController{
 	 */
 	public function college($id) {
 		//创建考试的时候就已经向exam_college写入数据
-		D('ExamCollege')->init();
 		$data = I();
+		D('ExamCollege')->init();
 		dump($data);
 		// if (IS_POST) {
 		// 	# code...
