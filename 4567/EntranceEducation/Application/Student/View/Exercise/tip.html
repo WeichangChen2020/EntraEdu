@@ -16,7 +16,8 @@
           <a href="{:U('Exercise/index')}" class="weui-btn weui-btn_primary" style="background-color: #4bc2ff;">返回主页面</a>
         </p>
         <p class="weui-btn-area">
-          <a href="{:U('Repeat/repeat_chap')}" class="weui-btn weui-btn_primary" style="background-color: #4bc2ff;">再次练习</a>
+          <a href="{:U('Repeat/repeat_chap',array('chapid'=>session('chapid'),
+      'typeid'=>session('typeid')))}" class="weui-btn weui-btn_primary" style="background-color: #4bc2ff;">再次练习</a>
         </p>
       </div>
     </div>  
