@@ -148,6 +148,8 @@ class ExamController extends CommonController{
 	public function college($id) {
 		//创建考试的时候就已经向exam_college写入数据
 		D('ExamCollege')->init();
+		$data = I();
+		dump($data);
 		// if (IS_POST) {
 		// 	# code...
 		// } else {

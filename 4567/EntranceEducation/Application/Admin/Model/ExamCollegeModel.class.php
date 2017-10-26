@@ -14,6 +14,7 @@ class ExamCollegeModel extends Model {
 
 		$collegeList = D('StudentList')->getCollegeList();
 		foreach ($collegeList as $key => $value) {
+			// $value['examid'] = 
 			dump($value);
 		}
 		return $collegeList;
