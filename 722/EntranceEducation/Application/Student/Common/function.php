@@ -119,6 +119,48 @@ function get_collect_url_css($quesid) {
 
 }
 
+// *******展示题目索引 in  repeat *****
+function get_repeat_index_css($quesid) {
+	
+	$openid = session('openId');
+	
+	$map = array(
+		'openid' => $openid,
+		'quesid' => $quesid,
+ 	);
+	
+	$result =  M('repeat')->where($map)->getField('result');
+
+
+	if(!isset($result)) {
+		return 'placeholder';
+	} else if ($result == 1) {
+		return 'placeholder-right';
+	} else {
+		return 'placeholder-wrong';
+	}
+}
+
+function get_repeat_url_css($quesid) {
+	
+	//$openid = session('openId');
+	
+	//$map = array(
+	//	'openid' => $openid,
+	//	'quesid' => $quesid,
+ 	//);
+	
+	//$result =  M('repeat')->where($map)->getField('result');
+
+
+	//if(!isset($result)) {
+		return U('Repeat/repeat_chap', array('quesid'=>$quesid));
+	//} else {
+		return 'javascript:;' ;		
+	//}
+
+}
+
 // *******处理包含图片的题目
 function repleace_question_image($contents) {
 	
