@@ -10,14 +10,16 @@ class ExamCollegeModel extends Model {
 	 * @var  $exaimid 
 	 * @return  
 	 */
-	public function init() {
-
+	public function init($id) {
+		if (empty($id)) {
+			return false;
+		}
 		$collegeList = D('StudentList')->getCollegeList();
 		foreach ($collegeList as $key => $value) {
-			// $value['examid'] = 
-			dump($value);
+			$value['examid'] = $id;
+			$this->add($value);
 		}
-		return $collegeList;
+		return true;
 	}
 
 

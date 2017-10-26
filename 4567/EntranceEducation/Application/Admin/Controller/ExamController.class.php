@@ -49,13 +49,14 @@ class ExamController extends CommonController{
 				'time' => date('Y-m-d H:i:s'),
 			);
 
-			$res1 = D('ExamCollege')->init();//初始化
-
 			$res = D('ExamSetup')->add($data);
-			if($res) {
-				dump($res);die;
-				$this->success('考试创建成功', U('Exam/index'));
 
+			if($res) {
+				if (D('ExamCollege')->init($res)) {
+					$this->success('考试创建成功', U('Exam/index'));
+				}else{
+					$this->error('初始化失败');					
+				}
 			} else {
 				$this->error('考试创建失败');
 			}
