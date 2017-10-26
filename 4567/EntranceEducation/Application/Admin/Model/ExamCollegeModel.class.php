@@ -41,7 +41,6 @@ class ExamCollegeModel extends Model {
 		if (empty($res)) {
 			return false;
 		}
-		dump($res);die;
 		return $res;
 	}
 

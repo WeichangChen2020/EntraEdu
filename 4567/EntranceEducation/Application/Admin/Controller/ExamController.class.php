@@ -151,13 +151,14 @@ class ExamController extends CommonController{
 	public function college($id) {
 		//创建考试的时候就已经向exam_college写入数据
 		$list = D('ExamCollege')->getInfo($id);
-		if (IS_POST) {
-			# code...
-		} else {
+		dump($list);
+		// if (IS_POST) {
+		// 	# code...
+		// } else {
 
 			
-			$this->display();
-		}
+		// 	$this->display();
+		// }
 	}
 
 	
