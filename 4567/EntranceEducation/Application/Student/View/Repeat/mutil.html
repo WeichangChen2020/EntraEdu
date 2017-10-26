@@ -86,11 +86,11 @@
 					</a>
 				</if>
 
-				<div id="right_answer">
+<!-- 				<div id="right_answer">
 					<if condition="$done eq '1'">
 						<span class="rightAns">正确答案：{$quesItem.right_answer}</span>
 					</if>
-				</div>
+				</div> -->
 	
 			</div>
 
@@ -98,7 +98,7 @@
 			<!-- <a class="submit" href="{('Exercise/exercise')}">下一题</a> -->
 			<a class="c-button" id="submit" href="javascript:;">确定</a>
 
-			<a class="c-button" href="{:U('Exercise/exercise_chap', array(
+			<a class="c-button" href="{:U('Repeat/repeat_chap', array(
 			'chapid'=>session('chapid'),
 			'typeid'=>session('typeid'),
 			'quesid'=>session('quesid')+1)
@@ -112,7 +112,7 @@
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
 			        <div class="toolbar-inner" >
-			        	<a href="{:U('Exercise/exercise_index')}" class="picker-button">更多</a>
+			        	<a href="{:U('Repeat/repeat_index')}" class="picker-button">更多</a>
 				       <div class="helf-title">入学考试题库</div>				       
 				    </div>
 		            
@@ -137,12 +137,12 @@
 		        	<volist name="quesList" id="quesList" key="k" >
 		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							    <a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 						<elseif condition="($k)%7 eq 0"/>
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 						</if>
 					</volist>
 				   
@@ -200,7 +200,7 @@
 	  	}
 
 
-		var url   = "{:U('Exercise/submit')}";
+		var url   = "{:U('Repeat/submit')}";
 		var now   = new Date();
 		var time  = Math.ceil((now.getTime() - start_time.getTime()) / 1000);
 		
@@ -214,7 +214,7 @@
         	//res为正确答案
         	
 
-            if(res != 'done'){
+            //if(res != 'done'){
             	$('#right_answer').html('正确选项：'+ res);
                 for (x in click_times)
                 {
@@ -239,9 +239,9 @@
                         }
                     }
                 }
-            }else{
-            	$.alert("你已经做过此题！","确定");  
-            }
+            //}else{
+            	//$.alert("你已经做过此题！","确定");  
+            //}
 
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
@@ -284,7 +284,7 @@
 
 </script>
 
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			var res = "{$quesItem.right_answer}";
 			var option = "{$recordArr.answer}";
 			//var use = document.getElementById("use");
@@ -314,4 +314,4 @@
 					}
 				}
 			}
-		</script>
+		</script> -->

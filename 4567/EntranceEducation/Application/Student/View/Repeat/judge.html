@@ -58,11 +58,11 @@
 					    <lable class="option-contents">错误</lable>
 					</div>
 				</a>
-				<if condition="$done eq '1'">
+<!-- 				<if condition="$done eq '1'">
 					<span class="rightAns">正确答案：{$quesItem.right_answer}</span>
-				</if>	
+				</if>	 -->
 			</div>
-			<a class="c-button" href="{:U('Exercise/exercise_chap', array(
+			<a class="c-button" href="{:U('Repeat/repeat_chap', array(
 			'chapid'=>session('chapid'),
 			'typeid'=>session('typeid'),
 			'quesid'=>session('quesid')+1)
@@ -76,7 +76,7 @@
 		    <div class="weui-popup__modal">
 		        <div class="toolbar">
 			        <div class="toolbar-inner" >
-			        	<a href="{:U('Exercise/exercise_index')}" class="picker-button">更多</a>
+			        	<a href="{:U('Repeat/repeat_index')}" class="picker-button">更多</a>
 				       <div class="helf-title">入学考试题库</div>				       
 				    </div>
 		            
@@ -89,12 +89,12 @@
 		        	<volist name="quesList" id="quesList" key="k" >
 		        		<if condition="($k)%7 eq 1">
 		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							    <a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 						<elseif condition="($k)%7 eq 0"/>
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 							    </div>
 						<else /> 
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+							<a class="weui-flex__item" href="{$quesList.id|get_repeat_url_css=###}"><div class="{$quesList.id|get_repeat_index_css=###}">{$quesList.id}</div></a>
 						</if>
 					</volist>
 				   
@@ -125,18 +125,18 @@
 			'time'  : time
 		}
 
-		var url = "{:U('Exercise/submit')}";
+		var url = "{:U('Repeat/submit')}";
         $.post(url, data, function(res){
-            if(res != 'done'){
+            //if(res != 'done'){
                 if(option == res) {
                     use.setAttribute('xlink:href', '#icon-option-right');
                 } else {
                     use.setAttribute('xlink:href', '#icon-option-wrong');
                     $('#option-'+resArr[res]).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
                 }
-            }else{
-            	$.alert("你已经做过此题！","确定");  
-            }
+            //}else{
+            	//$.alert("你已经做过此题！","确定");  
+            //}
         });
 
         $('.c-table a').removeAttr('href'); 
@@ -173,7 +173,7 @@
 		}
 	});
 </script>
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			var res = "{$quesItem.right_answer}";
 			var option = "{$recordArr.answer}";
 			//var use = document.getElementById("use");
@@ -203,4 +203,4 @@
 					}
 				}
 			}
-		</script>
+		</script> -->
