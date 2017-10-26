@@ -57,9 +57,9 @@ class RepeatController extends Controller{
 		}		
 		
 
-		if (false == $quesid) {
-			$this->display('tip'); die;
-		}
+		// if (false == $quesid) {
+		// 	$this->display('tip'); die;
+		// }
 
 		//如果已经做过，直接显示选择答案
 		if($recordArr = D('repeat')->where(array('openid'=>$openid,'quesid'=>$quesid))->find()){
@@ -73,7 +73,7 @@ class RepeatController extends Controller{
 		// p($quesList);//二维数组
 
 		// 判断是否已经做完了最后一道题目
-		if ($quesItem) {
+		//if ($quesItem) {
 			$this->assign('record', $record);
 			$this->assign('quesItem', $quesItem);
 			$this->assign('quesList', $quesList);
@@ -87,10 +87,9 @@ class RepeatController extends Controller{
 				$this->display('mutil');
 			}
 				 
-		} else {
-
-			$this->display('tip');
-		}
+		//} else {
+			//$this->display('tip');
+		//}
 
 	}
 	/**
@@ -110,7 +109,7 @@ class RepeatController extends Controller{
 		$time         = intval(trim(I('time'))); //将毫秒转为秒并取整
 		$right_answer = D('Questionbank')->getRightAnswer($quesid);
 		$done = D('repeat')->where(array('openid'=>$openid,'quesid'=>$quesid))->find();
-        if(!$done){  //如果不存在
+        //if(!$done){  //如果不存在
         	$data = array(
                 'openid' => $openid,
                 'quesid' => $quesid,
@@ -123,9 +122,9 @@ class RepeatController extends Controller{
             D('repeat')->add($data);
 
             $this->ajaxReturn($right_answer, 'json');
-        }else{ //如果已存在
-        	$this->ajaxReturn('done');
-        }
+        //}else{ //如果已存在
+        	//$this->ajaxReturn('done');
+        //}
 	}
 
 	public function test() {
