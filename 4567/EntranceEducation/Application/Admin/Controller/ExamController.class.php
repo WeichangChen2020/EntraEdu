@@ -118,16 +118,19 @@ class ExamController extends CommonController{
 	        $chapterList = M('QuestionChapter')->select();
 	        foreach($chapterList as $key=>$value){
 	            $chapterList[$key]['maxNum']=D('Student/Questionbank')->getQuesChapterNum($key+1);
-	            // $selectNum = M('ExamQuestionbank')->where(array('id'=>$id))
-	            // $chapterList[$key]['selectNum']=M('Q');
+	            $map = array(
+	            	'examid'=>$id,
+	            	'chapid'=>$value['id'],
+	            )
+	            $selectNum = M('ExamQuestionbank')->where($map)->getField('chap_num');
+	            $chapterList[$key]['selectNum']=is_null($selectNum) ? 0 : $selectNum;
 	        }
 	        // dump($chapterList);
 	        $this->assign('chapterList',$chapterList);
 
 	        $this->assign('examList',$examList['title']);
 
-	        p($chapterList);die;
-	        // $this->display();
+	        $this->display();
 		}
 
 	}

@@ -32,7 +32,7 @@ input.text{text-align:center;}
                         <!-- <td style="padding-left: 20px;">{$examList.id}</td> -->
                         <td style="padding-left: 20px;text-align: center; ">{$chapterList.chapter}</td>
                         <td align="center">{$chapterList.maxNum}</td>
-                        <td align="center"><input  type="number" name="quesNum_{$chapterList.id}" min="0" max="{$chapterList.maxNum}" required="required" style="width: 100%;height: 100%;text-align: center;"/></td>
+                        <td align="center"><input  type="number" name="quesNum_{$chapterList.id}" min="0" max="{$chapterList.maxNum}" value="{$chapterList.selectNum}" required="required" style="width: 100%;height: 100%;text-align: center;"/></td>
                    </tr>
                 </volist>  
 
