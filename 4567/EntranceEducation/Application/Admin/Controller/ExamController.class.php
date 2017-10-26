@@ -147,15 +147,16 @@ class ExamController extends CommonController{
 	 */
 	public function college($id) {
 		//创建考试的时候就已经向exam_college写入数据
-		if (IS_POST) {
-			# code...
-		} else {
+		D('ExamCollege')->init();
+		// if (IS_POST) {
+		// 	# code...
+		// } else {
 
-			// 创建考试时候，初始化所有班级不参与
+		// 	// 创建考试时候，初始化所有班级不参与
 
 
-			$this->display();
-		}
+		// 	$this->display();
+		// }
 	}
 
 	
