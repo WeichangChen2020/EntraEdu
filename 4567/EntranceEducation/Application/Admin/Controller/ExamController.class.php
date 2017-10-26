@@ -156,7 +156,7 @@ class ExamController extends CommonController{
 		} else {
 			$list = D('ExamCollege')->getInfo($id);
 			if ($list == false) {
-				$this->error('读取失败')
+				$this->error('读取失败');
 			}
 			$this->assign('list',$list);
 			
