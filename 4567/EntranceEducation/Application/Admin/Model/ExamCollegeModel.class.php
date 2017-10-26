@@ -21,7 +21,7 @@ class ExamCollegeModel extends Model {
 			$this->add($value);
 		}
 
-		$notStu = array('examid'=>$id,'academy' => '非新生')；
+		$notStu = array('examid'=>$id,'academy' => '非新生');
 		$this->add($value);
 		$this->add($notStu);
 
