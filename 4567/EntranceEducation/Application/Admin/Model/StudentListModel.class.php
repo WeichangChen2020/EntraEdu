@@ -35,7 +35,7 @@ class StudentListModel extends Model {
 	 */
 	public function getCollegeList(){
 
-		$sql = "SELECT DISTINCT  academy FROM  ee_student_list";
+		$sql = "SELECT DISTINCT academy FROM  ee_student_list";
 
 		$res = $Model->query($sql);
 
