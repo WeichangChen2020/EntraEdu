@@ -15,7 +15,7 @@
                     <td align="center">{$vo.id}</td>
                     <td align="center"><a target="_blank" href="">{$vo.academy}</a></td>
                     <td align="center">
-                        <if condition="$vo[pic] neq ''">
+                        <if condition="$vo['state'] neq '0'">
                             参与
                         <else /> 
                             不参与
