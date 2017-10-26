@@ -135,6 +135,22 @@ class ExamController extends CommonController{
 
 	}
 
+
+	/**
+	 * college 设置考试参与学院信息
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-26 13:05Authors
+	 * @var  $id
+	 * @return 
+	 */
+	public function college($id) {
+		if (IS_POST) {
+			# code...
+		} else {
+			$this->display();
+		}
+	}
+
 	
 
 
