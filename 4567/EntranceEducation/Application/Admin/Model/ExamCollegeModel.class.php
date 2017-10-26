@@ -13,7 +13,9 @@ class ExamCollegeModel extends Model {
 	public function init() {
 
 		$collegeList = D('StudentList')->getCollegeList();
-		dump($collegeList);die;
+		foreach ($collegeList as $key => $value) {
+			dump($key+"  "+ $value);
+		}
 		return $collegeList;
 	}
 
