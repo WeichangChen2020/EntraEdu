@@ -49,6 +49,8 @@ class ExamController extends CommonController{
 				'time' => date('Y-m-d H:i:s'),
 			);
 
+			$res1 = D('ExamCollege')->init();//初始化
+
 			$res = D('ExamSetup')->add($data);
 			if($res) {
 				$this->success('考试创建成功', U('Exam/index'));
@@ -144,6 +146,7 @@ class ExamController extends CommonController{
 	 * @return 
 	 */
 	public function college($id) {
+		//创建考试的时候就已经向exam_college写入数据
 		if (IS_POST) {
 			# code...
 		} else {
