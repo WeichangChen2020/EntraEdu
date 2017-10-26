@@ -150,7 +150,7 @@
 
 		var url = "{:U('Repeat/submit')}";
         $.post(url, data, function(res){
-            if(res != 'done'){  //如果没做过
+            //if(res != 'done'){  //如果没做过
                 if(res == option) {
                     use.setAttribute('xlink:href', '#icon-option-right');
                 }
@@ -158,9 +158,9 @@
                     use.setAttribute('xlink:href', '#icon-option-wrong');
                     $('#option-'+res.toLowerCase()).find('use')[0].setAttribute('xlink:href', '#icon-option-right');
                 }
-        	}else{
-            	$.alert("你已经做过此题！","确定");   
-            }	
+        	//}else{
+            	//$.alert("你已经做过此题！","确定");   
+            //}	
         });
 
 		$('.c-table a').removeAttr('href'); //取消a：herf 取消点击样式
@@ -206,7 +206,7 @@
 
 </script>
 
-		<script type="text/javascript">
+<!-- 		<script type="text/javascript">
 			var res = "{$quesItem.right_answer}";
 			var option = "{$recordArr.answer}";
 			//var use = document.getElementById("use");
@@ -236,4 +236,4 @@
 					}
 				}
 			}
-		</script>
+		</script> -->
