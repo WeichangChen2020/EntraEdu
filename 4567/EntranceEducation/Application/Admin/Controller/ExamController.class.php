@@ -147,6 +147,10 @@ class ExamController extends CommonController{
 		if (IS_POST) {
 			# code...
 		} else {
+
+			// 创建考试时候，初始化所有班级不参与
+
+
 			$this->display();
 		}
 	}
