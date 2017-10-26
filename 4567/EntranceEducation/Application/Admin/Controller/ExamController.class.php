@@ -150,15 +150,18 @@ class ExamController extends CommonController{
 	 */
 	public function college($id) {
 		//创建考试的时候就已经向exam_college写入数据
-		$list = D('ExamCollege')->getInfo($id);
-		dump($list);
-		// if (IS_POST) {
-		// 	# code...
-		// } else {
 
+		if (IS_POST) {
+			# code...
+		} else {
+			$list = D('ExamCollege')->getInfo($id);
+			if ($list == false) {
+				$this->error('读取失败')
+			}
+			$this->assign('list',$list);
 			
-		// 	$this->display();
-		// }
+			$this->display();
+		}
 	}
 
 	
