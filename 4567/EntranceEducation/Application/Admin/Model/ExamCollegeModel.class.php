@@ -15,10 +15,16 @@ class ExamCollegeModel extends Model {
 			return false;
 		}
 		$collegeList = D('StudentList')->getCollegeList();
+
 		foreach ($collegeList as $key => $value) {
 			$value['examid'] = $id;
 			$this->add($value);
 		}
+
+		$notStu = array('examid'=>$id,'academy' => '非新生')；
+		$this->add($value);
+		$this->add($notStu);
+
 		return true;
 	}
 
