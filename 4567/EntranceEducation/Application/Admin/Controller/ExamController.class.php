@@ -121,7 +121,7 @@ class ExamController extends CommonController{
 	            $map = array(
 	            	'examid'=>$id,
 	            	'chapid'=>$value['id'],
-	            )
+	            );
 	            $selectNum = M('ExamQuestionbank')->where($map)->getField('chap_num');
 	            $chapterList[$key]['selectNum']=is_null($selectNum) ? 0 : $selectNum;
 	        }
