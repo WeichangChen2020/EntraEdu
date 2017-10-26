@@ -171,7 +171,7 @@ class ExamController extends CommonController{
 		} else {
 			$state = 0;
 		}
-		$data = $COLLEGE ->where(array('id'=>$id));
+		$data = $COLLEGE ->where(array('id'=>$id))->find();
 		$data['state'] = $state;
 		if ($COLLEGE->save($data)) {
 			$this->success('修改成功', U('college',array('id'=>$data['examid'])));
