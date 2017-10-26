@@ -164,6 +164,18 @@ class ExamController extends CommonController{
 		}
 	}
 
+	public function editCollege($id, $state) {
+		dump($id."   ".$state);die;
+		if ($state) {
+			// sql do
+
+			$this->success('修改成功', U('college'));
+		} else {
+
+		}		
+
+	}
+
 	
 
 
