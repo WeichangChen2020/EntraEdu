@@ -10,9 +10,9 @@ class ExamSubmitModel extends Model {
 	 * @var  
 	 * @return  int
 	 */
-	public function getSubmitNum() {
+	public function getSubmitNum($id) {
 
-		$sql = "SELECT COUNT( * ) FROM ee_exam_submit WHERE examid = $id ";
+		$sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = $id ";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
