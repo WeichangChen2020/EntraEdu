@@ -50,12 +50,11 @@ class ExerciseModel extends Model {
 			return 0;
 		}
 		$sql = "SELECT COUNT(result),SUM(result) FROM  ee_exercise WHERE  openid = '$openid' ";
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
 		if ($res['0']["SUM(result)"] == NULL) {
 			$res['0']["SUM(result)"] = '0';
 		}
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-		dump($res);
 		return ' '.$res['0']["SUM(result)"].'|'.$res['0']['COUNT(result)'];
 	}
 
