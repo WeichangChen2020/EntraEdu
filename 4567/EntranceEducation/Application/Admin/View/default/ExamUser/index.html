@@ -18,7 +18,7 @@
                         <td align="center">{$examList.start_time|date="m-d H:i",###}</td>
                         <td align="center">{$examList.set_time}</td>
                         <td align="center">{$examList.is_on|is_on=###}</td>
-                        <td align="center">0</td>
+                        <td align="center">{$examList.id|getAnswerNum=###}</td>
                         <td align="center">0</td>
                         <td align="center">
                             <a href="{:U('ExamUser/list', array('id'=>$examList['id']))}">查看</a>
