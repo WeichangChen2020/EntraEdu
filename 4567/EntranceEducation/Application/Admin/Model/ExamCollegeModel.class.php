@@ -50,5 +50,28 @@ class ExamCollegeModel extends Model {
 		return $res;
 	}
 
+	/**
+	 * getExamList($college) 获取$college的考试列表
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-29 15:55 Authors
+	 * @var  $id 
+	 * @return  array()
+	 */
+	public function getExamList($college) {
+		if (empty($college)) {
+			$examList = D('ExamSetup')->select();
+			return $examList;
+		}else {
+			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
+			$Model = new \Think\Model();
+			$res = $Model->query($sql);
+			if (empty($res)) {
+				return false;
+			}
+			return $res;
+		}		
+
+
+	}
 
 }

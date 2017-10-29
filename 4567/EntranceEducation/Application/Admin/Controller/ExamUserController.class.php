@@ -22,23 +22,12 @@ class ExamUserController extends CommonController{
 	public function index() {
 
         $EXAM = M('ExamSetup');
+        $EXAMCOLLEGE = D('ExamCollege');
 
-        // 查询条件
         $college = D('Adminer')->getCollege();
-        $map = array();
-
-        if (!is_null($college)) {
-            $map['academy'] = $college;
-        }
-
-        $list = $EXAM->where($map)->page($_GET['p'].',20')->select();
-        $count = $EXAM->where($map)->count();
+        $list = $EXAMCOLLEGE->getExamList($college);
 
         $this->assign('examList',$list);
-
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
    
         $this->display();
 
