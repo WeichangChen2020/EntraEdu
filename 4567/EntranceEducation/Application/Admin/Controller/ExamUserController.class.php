@@ -21,19 +21,19 @@ class ExamUserController extends CommonController{
 
 	public function index() {
 
-        // $EXAM = M('ExamSetup');
-        // $EXAMCOLLEGE = D('ExamCollege');
+        $EXAM = M('ExamSetup');
+        $EXAMCOLLEGE = D('ExamCollege');
 
-        // $college = D('Adminer')->getCollege();
-        // $list = $EXAMCOLLEGE->getExamList($college);
+        $college = D('Adminer')->getCollege();
+        $list = $EXAMCOLLEGE->getExamList($college);
 
-        // $this->assign('examList',$list);
+        $this->assign('examList',$list);
    
-        // $this->display();
-		$examList = D('ExamSetup')->select();
-		// p($examList);
-		$this->assign('examList', $examList);
-		$this->display();
+        $this->display();
+		// $examList = D('ExamSetup')->select();
+		// // p($examList);
+		// $this->assign('examList', $examList);
+		// $this->display();
 	}
 
 
