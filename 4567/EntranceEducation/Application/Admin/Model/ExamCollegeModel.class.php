@@ -58,14 +58,14 @@ class ExamCollegeModel extends Model {
 	 * @return  array()
 	 */
 	public function getExamList($college) {
-		dump($college);die;
 		if (empty($college)) {
 			$examList = D('ExamSetup')->select();
 			return $examList;
 		}else {
-			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
 			$Model = new \Think\Model();
+			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
 			$res = $Model->query($sql);
+			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
