@@ -55,7 +55,7 @@ function getAnswerNum($id) {
  */
 function getAccuracy($id) {
 	$accuracy = D('Exercise')->getAccuracy($id);
-	return $accuracy;
+	return "$accuracy";
 }
 
  ?>
