@@ -25,8 +25,8 @@ class ExamUserController extends CommonController{
 
         $college = D('Adminer')->getCollege();
         $list = $EXAMCOLLEGE->getExamList($college);
+        
         $this->assign('examidList',$list);
-        dump($list);die;
    
         $this->display();
 		// $examList = D('ExamSetup')->select();
