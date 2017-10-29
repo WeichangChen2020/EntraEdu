@@ -4,7 +4,7 @@ use Think\Model;
 class ExerciseModel extends Model {
 
 	/**
-	 * getQuestionList 获取题目列表，包括正确率和提交人数
+	 * getAnswerNum 获取提交人数
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-29 14:40 Authors
 	 * @var  
@@ -22,7 +22,7 @@ class ExerciseModel extends Model {
 		return $res['0']['COUNT(*)'];
 	}
 	/**
-	 * getAccuracy 获取题目列表，包括正确率和提交人数
+	 * getAccuracy 获取正确率
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-29 14:53 Authors
 	 * @var  

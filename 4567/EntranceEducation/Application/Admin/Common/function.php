@@ -47,15 +47,26 @@ function getAnswerNum($id) {
 	return $num;
 }
 /**
- * getAccuracy 获取答题人数
+ * getAccuracy 获取正确百分比
  * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-10-29 14:36Authors
+ * @copyright  2017-10-29 14:52Authors
  * @var $id  题目id
- * @return int 答题人数
+ * @return int 正确百分比*100   (%符号在html中加上)
  */
 function getAccuracy($id) {
 	$accuracy = D('Exercise')->getAccuracy($id);
 	return $accuracy*100;
+}
+/**
+ * getAccuracy 获取提交数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return int 提交数
+ */
+function getSubmitNum($id) {
+	$num = D('ExamSubmit')->getSubmitNum($id);
+	return $num;
 }
 
  ?>
