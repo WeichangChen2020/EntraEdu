@@ -29,7 +29,7 @@ class ExamUserController extends CommonController{
         foreach ($list as $key => $value) {
         	$value['info'] = $EXAM->where(array('id' => $value['examid']))->find();
         }
-        $this->assign('examidList',$list);
+        $this->assign('examList',$list);
    
         $this->display();
 		// $examList = D('ExamSetup')->select();
