@@ -18,7 +18,7 @@ class ExerciseModel extends Model {
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
-
+		dump($res);
 		return $res['COUNT(*)'];
 	}
 
