@@ -33,7 +33,7 @@ class ExamUserController extends CommonController{
 
         $list = $EXAM->where($map)->page($_GET['p'].',20')->select();
         $count = $EXAM->where($map)->count();
-        dump($map);
+
         $this->assign('examList',$list);
 
         $Page       = new \Think\Page($count,20);
