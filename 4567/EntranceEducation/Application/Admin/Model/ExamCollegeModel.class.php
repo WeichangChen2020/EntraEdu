@@ -58,6 +58,7 @@ class ExamCollegeModel extends Model {
 	 * @return  array()
 	 */
 	public function getExamList($college) {
+		dump("a");die;
 		if (empty($college)) {
 			$examList = D('ExamSetup')->select();
 			return $examList;
