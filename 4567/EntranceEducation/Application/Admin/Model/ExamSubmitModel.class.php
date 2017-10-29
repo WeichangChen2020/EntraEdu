@@ -31,6 +31,8 @@ class ExamSubmitModel extends Model {
 	 */
 	public function getUnsubmitNum($id) {
 
+        $Student = M('StudentList');
+
         $college = D('Adminer')->getCollege();
         $map = array();
 
