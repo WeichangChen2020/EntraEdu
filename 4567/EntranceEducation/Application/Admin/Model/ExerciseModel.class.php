@@ -55,7 +55,7 @@ class ExerciseModel extends Model {
 		if ($res['0']["SUM(result)"] == NULL) {
 			$res['0']["SUM(result)"] = '0';
 		}
-		return ' '.$res['0']["SUM(result)"].'|'.$res['0']['COUNT(result)'];
+		return $res['0']["SUM(result)"].'|'.$res['0']['COUNT(result)'];
 	}
 
 
