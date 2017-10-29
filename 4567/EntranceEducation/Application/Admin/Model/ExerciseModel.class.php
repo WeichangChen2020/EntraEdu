@@ -36,7 +36,7 @@ class ExerciseModel extends Model {
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
-dump($res);
+dump($res['0']);
 return 'aaaa';
 		// return $res['0']['ROUND(SUM(result)/COUNT(*),2)'];
 	}
