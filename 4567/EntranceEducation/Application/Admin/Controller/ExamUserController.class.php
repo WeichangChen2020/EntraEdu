@@ -25,7 +25,10 @@ class ExamUserController extends CommonController{
 
         $college = D('Adminer')->getCollege();
         $list = $EXAMCOLLEGE->getExamList($college);
-        
+        foreach ($list as $key => $value) {
+        	dump($value);
+        }
+        die;
         $this->assign('examidList',$list);
    
         $this->display();
