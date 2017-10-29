@@ -21,7 +21,6 @@ class ExamUserController extends CommonController{
 
 	public function index() {
 
-        $EXAM = M('ExamSetup');
         $EXAMCOLLEGE = D('ExamCollege');
 
         $college = D('Adminer')->getCollege();
