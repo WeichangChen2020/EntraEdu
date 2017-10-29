@@ -44,7 +44,7 @@ function get_ques_type($type) {
  */
 function getAnswerNum($id) {
 	$num = D('Exercise')->getAnswerNum($id);
-	return $num;
+	return '$num';
 }
 
  ?>
