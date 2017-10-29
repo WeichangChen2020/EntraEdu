@@ -21,11 +21,13 @@ class ExamUserController extends CommonController{
 
 	public function index() {
 
+		$EXAM = M('ExamSetup');
         $EXAMCOLLEGE = D('ExamCollege');
 
         $college = D('Adminer')->getCollege();
         $list = $EXAMCOLLEGE->getExamList($college);
         foreach ($list as $key => $value) {
+        	$value['info'] = $EXAM->where('id'= $value['examid'])->find();
         	dump($value);
         }
         die;
