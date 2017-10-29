@@ -46,5 +46,16 @@ function getAnswerNum($id) {
 	$num = D('Exercise')->getAnswerNum($id);
 	return $num;
 }
+/**
+ * getAccuracy 获取答题人数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 14:36Authors
+ * @var $id  题目id
+ * @return int 答题人数
+ */
+function getAccuracy($id) {
+	$accuracy = D('Exercise')->getAccuracy($id);
+	return $accuracy;
+}
 
  ?>
