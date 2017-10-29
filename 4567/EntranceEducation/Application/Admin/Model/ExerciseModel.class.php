@@ -38,6 +38,23 @@ class ExerciseModel extends Model {
 		$res = $Model->query($sql);
 		return $res['0']["ROUND( SUM( result ) / COUNT( * ) , 2 )"];
 	}
+	/**
+	 * getResult 获取自由练习答题情况
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-29 16:20 Authors
+	 * @var  
+	 * @return  String 正确数|提交数
+	 */
+	public function getResult($openid) {
+		if (empty($openid)) {
+			return 0;
+		}
+		$sql = "SELECT COUNT(result),SUM(result) FROM  ee_exercise WHERE  openid = '$openid' ";
+
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+		return $res['0']['SUM(result)']|$res['0']['COUNT(result)'];
+	}
 
 
 }

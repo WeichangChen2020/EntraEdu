@@ -68,5 +68,17 @@ function getSubmitNum($id) {
 	$num = D('ExamSubmit')->getSubmitNum($id);
 	return $num;
 }
+/**
+ * getResult($name) 获取$name的提交数及正确数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return String 正确数|提交数
+ */
+function getResult($name) {
+	$openid = D('StudentInfo')->getOpenid($name);
+	$result = D('Exercise')->getResult($openid);
+	return $result;
+}
 
  ?>
