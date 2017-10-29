@@ -65,7 +65,6 @@ class ExamCollegeModel extends Model {
 			$Model = new \Think\Model();
 			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
 			$res = $Model->query($sql);
-			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
