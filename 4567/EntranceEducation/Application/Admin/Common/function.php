@@ -58,7 +58,7 @@ function getAccuracy($id) {
 	return $accuracy*100;
 }
 /**
- * getAccuracy 获取提交数
+ * getSubmitNum 获取提交数
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-10-29 15:14Authors
  * @var $id  考试id

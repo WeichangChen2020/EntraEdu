@@ -15,7 +15,11 @@
                     <tr>
                         <td style="padding-left: 20px;">{$examList['examid']}</td>
                         <td align="center">{$examList.info.title}</td>
-
+                        <td align="center">{$examList.info.start_time|date="m-d H:i",###}</td>
+                        <td align="center">{$examList.info.set_time}</td>
+                        <td align="center">{$examList.info.is_on|is_on=###}</td>
+                        <td align="center">{$examList.info.id|getSubmitNum=###}</td>
+                        <td align="center">0</td>
                         <td align="center">
                             <a href="{:U('ExamUser/list', array('id'=>$examList['id']))}">查看</a>
                         </td>
