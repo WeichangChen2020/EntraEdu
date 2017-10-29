@@ -53,7 +53,7 @@ class ExerciseModel extends Model {
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
-		return $res['0']['SUM(result)']|$res['0']['COUNT(result)'];
+		return $res['0']['SUM(result)'].'|'.$res['0']['COUNT(result)'];
 	}
 
 
