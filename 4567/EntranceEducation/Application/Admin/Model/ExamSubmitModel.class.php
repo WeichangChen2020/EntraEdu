@@ -13,7 +13,7 @@ class ExamSubmitModel extends Model {
 	public function getSubmitNum($id) {
 
 		$sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = $id ";
-		
+		dump($sql);die;
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 
