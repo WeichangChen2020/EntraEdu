@@ -144,8 +144,7 @@ class ExerciseModel extends Model {
 	 */
 	public function getRankList($start = 0) { 
 
-		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
-
+		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid ORDER BY SUM(result) desc,openid desc LIMIT  $start,20";
 		// dump($sql);	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
