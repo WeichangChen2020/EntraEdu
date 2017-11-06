@@ -12,7 +12,13 @@
     <body>
         <div class="header">
             <h2 class="z cl">
+<<<<<<< .mine
+                <a href="javascript:;">新生始业教育平台管理系统</a>
+||||||| .r1880
                 <a href="javascript:;">新生入学平台后台管理系统</a>
+=======
+                <a href="{:U('Index/index')}">新生入学平台后台管理系统</a>
+>>>>>>> .r2085
             </h2>
             <div class="y cl">
                 <a href="javascript:;"><?php echo $_SESSION['nickname'];?></a>
@@ -30,11 +36,16 @@
                             <i class="layui-icon"></i>
                             <a href="{:U('Exam/index')}">考试管理</a>
                         </li>
+
                         <li>
                             <i class="layui-icon"></i>
                             <a href="{:U('Question/index')}">题目管理</a>
                         </li>
                         
+                         <li>
+                            <i class="layui-icon"></i>
+                            <a href="{:U('Exercise/index')}">自由练习</a>
+                        </li>
                     </ul>
                
                 </if>
@@ -45,13 +56,13 @@
                 </if>
                 <ul class="cl">
                     <li>
+                        <i class="layui-icon"></i>
+                        <a href="{:U('Exercise/index')}">自由练习</a></li>
+                    <li>
                         <i class="layui-icon"></i>
                         <a href="{:U('User/index')}">用户信息</a></li>
                     <li>
-                        <i class="layui-icon"></i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=member&amp;a=index">答题信息</a></li>
-                    <li>
                         <i class="layui-icon"></i>
-                        <a href="/admin/admin.php?m=Admin&amp;c=runtime&amp;a=index">考试信息</a></li>
+                        <a href="{:U('ExamUser/index')}">模拟考试</a></li>
                 </ul>
             </div>
