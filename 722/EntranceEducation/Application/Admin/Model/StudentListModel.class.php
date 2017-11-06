@@ -25,5 +25,26 @@ class StudentListModel extends Model {
 
         return $num;
 	}
+
+	/**
+	 * getCollegeList 获取所有学院名
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-26 14:25Authors
+	 * @var   
+	 * @return  array()
+	 */
+	public function getCollegeList(){
+
+		$sql = "SELECT DISTINCT academy FROM  ee_student_list";
+		
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+
+		if (empty($res)) {
+			return false;
+		}
+
+		return $res;
+	}
  
 }

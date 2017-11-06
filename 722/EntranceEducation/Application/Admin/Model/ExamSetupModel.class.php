@@ -1,22 +1,26 @@
 <?php
 namespace Admin\Model;
 use Think\Model;
-class ExamSetupModel extends Model {
+class QuestionbankModel extends Model {
 
 	/**
-	 * showList 删除 考试记录
-	 * @author 李俊君<hello_lijj@qq.com>
-	 * @copyright  2017-9-15 21:18Authors
-	 * @var  $exaimid 
-	 * @return  
+	 * getQuestionList 获取题目列表，包括正确率和提交人数
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-10-29 14:28 Authors
+	 * @var  
+	 * @return  array()
 	 */
-	public function showList() {
+	public function getQuestionList() {
 
-		$list = $this->select();
-		foreach ($list as $key => $value) {
-			// $list[$key]['start_time']
+		$sql = "SELECT * FROM  ee_exam_college WHERE examid = '$id'";
+		
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+
+		if (empty($res)) {
+			return false;
 		}
-		$this->delete($id);
+		return $res;
 	}
 
 

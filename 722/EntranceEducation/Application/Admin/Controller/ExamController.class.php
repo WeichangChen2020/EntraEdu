@@ -50,8 +50,13 @@ class ExamController extends CommonController{
 			);
 
 			$res = D('ExamSetup')->add($data);
+
 			if($res) {
-				$this->success('考试创建成功', U('Exam/index'));
+				if (D('ExamCollege')->init($res)) {
+					$this->success('考试创建成功', U('Exam/index'));
+				}else{
+					$this->error('初始化失败');					
+				}
 			} else {
 				$this->error('考试创建失败');
 			}
@@ -118,6 +123,12 @@ class ExamController extends CommonController{
 	        $chapterList = M('QuestionChapter')->select();
 	        foreach($chapterList as $key=>$value){
 	            $chapterList[$key]['maxNum']=D('Student/Questionbank')->getQuesChapterNum($key+1);
+	            $map = array(
+	            	'examid'=>$id,
+	            	'chapid'=>$value['id'],
+	            );
+	            $selectNum = M('ExamQuestionbank')->where($map)->getField('chap_num');
+	            $chapterList[$key]['selectNum']=is_null($selectNum) ? 0 : $selectNum;
 	        }
 	        // dump($chapterList);
 	        $this->assign('chapterList',$chapterList);
@@ -125,6 +136,47 @@ class ExamController extends CommonController{
 	        $this->assign('examList',$examList['title']);
 
 	        $this->display();
+		}
+
+	}
+
+
+	/**
+	 * college 设置考试参与学院信息
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-10-26 13:05Authors
+	 * @var  $id
+	 * @return 
+	 */
+	public function college($id) {
+		//创建考试的时候就已经向exam_college写入数据
+
+		if (IS_POST) {
+			# code...
+		} else {
+			$list = D('ExamCollege')->getInfo($id);
+			if ($list == false) {
+				$this->error('读取失败');
+			}
+			$this->assign('list',$list);
+			
+			$this->display();
+		}
+	}
+
+	public function editCollege($id, $state) {
+		$COLLEGE = M('ExamCollege');
+		if ($state == 0) {
+			$state = 1;
+		} else {
+			$state = 0;
+		}
+		$data = $COLLEGE ->where(array('id'=>$id))->find();
+		$data['state'] = $state;
+		if ($COLLEGE->save($data)) {
+			$this->success('修改成功', U('college',array('id'=>$data['examid'])));
+		}else{
+			$this->error('修改失败！', U('college',array('id'=>$data['examid'])));
 		}
 
 	}
