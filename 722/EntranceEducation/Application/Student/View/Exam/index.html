@@ -22,7 +22,7 @@
                     <div class="weui-form-preview__bd">
                         <div class="weui-form-preview__item">
                             <ul>
-                                <li>1. 本次考试时间：{$examInfo.start_time|date="H:i",###} -- <php> echo date("H:i", $examInfo['start_time'] + $examInfo['set_time']*60); echo $examInfo['set_time'];</php></li>
+                                <li>1. 本次考试时间：{$examInfo.start_time|date="H:i",###} -- <php> echo date("H:i", $examInfo['start_time'] + $examInfo['set_time']*60);</php></li>
                                 <li>2. 本次考试题目{$examInfo['count']}道题</li>
                                 <li>3. 答对{$examInfo['count']*3/5|ceil}道题目算通过</li>
                                 <li>4. 一人只有一次提交机会</li>
