@@ -40,6 +40,8 @@ class ExamController extends Controller{
         $examid   = I('examid');
         session('examid', $examid);
         $examInfo = D('ExamSetup')->getExamInfo($examid);
+
+        p($examInfo);die;        
         $this->assign('examInfo', $examInfo);
 
 
