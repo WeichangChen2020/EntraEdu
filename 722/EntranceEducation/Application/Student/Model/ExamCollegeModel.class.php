@@ -24,7 +24,7 @@ class ExamCollegeModel extends Model {
 		$map = array(
 			'examid' => $examid,
 			'state'  => 1,
-		)
+		);
 		$college = $this->where($map)->select();
 
 		return $college;
