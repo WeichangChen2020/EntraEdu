@@ -15,7 +15,7 @@
                 <div class="weui-cells__title">考试列表</div>
                 <div class="weui-panel weui-panel_access">
                     <div class="weui-panel__bd">
-                        <volist name="listExam" id="listExam">
+                        <volist name="listExam" id="listExam" empty="暂时没有考试">
                             <if condition="1 eq is_on_college($listExam['id'])">
                                 <a href="{:U('Student/Exam/index',array('examid'=>$listExam['id']))}" class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
