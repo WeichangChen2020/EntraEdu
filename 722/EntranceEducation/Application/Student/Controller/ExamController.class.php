@@ -57,6 +57,7 @@ class ExamController extends Controller{
           'is_end'    => 0,
           'is_submit' => 0,
           'is_init'   => 0,
+          'is_college'=> 0,
         )  
      **/
 
