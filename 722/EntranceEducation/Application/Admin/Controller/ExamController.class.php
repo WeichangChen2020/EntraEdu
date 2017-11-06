@@ -181,6 +181,13 @@ class ExamController extends CommonController{
 
 	}
 
+
+	public function test(){
+		$collegeList = D('StudentList')->getCollegeList();
+
+		p($collegeList);
+	}
+
 	
 
 
