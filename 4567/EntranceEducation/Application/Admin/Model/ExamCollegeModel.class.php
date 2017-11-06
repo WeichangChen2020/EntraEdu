@@ -39,7 +39,7 @@ class ExamCollegeModel extends Model {
 		if (empty($id)) {
 			return false;
 		}
-		$sql = "SELECT * FROM  ee_exam_college order by state WHERE examid = '$id'";
+		$sql = "SELECT * FROM  ee_exam_college WHERE examid = '$id' order by state";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
