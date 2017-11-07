@@ -171,6 +171,7 @@ class ExerciseController extends Controller{
                 //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
                 $quesList  = D('Questionbank')->getQuesList($value['quesid']);
             }
+            var_dump($quesList);
             $this->ajaxReturn($quesList);
 
         } else {
@@ -200,7 +201,7 @@ class ExerciseController extends Controller{
 
         }
 
-        }
+    }
 
 	
 
