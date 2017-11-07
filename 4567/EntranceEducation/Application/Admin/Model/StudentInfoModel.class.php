@@ -32,7 +32,7 @@ class StudentInfoModel extends Model {
 	 */
 	public function getInfo($openid) {
 
-		$info = M('StudenInfo')->where('openid'=$openid)->find();
+		$info = M('StudenInfo')->where(array('openid'=>$openid))->find();
 		if (empty($info)) {
 			return false;
 		}
