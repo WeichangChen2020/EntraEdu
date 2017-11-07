@@ -91,5 +91,16 @@ function getResult($name) {
 	$result = D('Exercise')->getResult($openid);
 	return $result;
 }
+/**
+ * getName($openid) 获取$openid的名字
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-7 15:33Authors
+ * @var $openid  
+ * @return String name
+ */
+function getName($openid) {
+	$info = D('StudentInfo')->getInfo($openid);
+	return $info['name'];
+}
 
  ?>
