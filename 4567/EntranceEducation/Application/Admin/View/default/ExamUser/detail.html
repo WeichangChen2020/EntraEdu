@@ -10,16 +10,16 @@
         <th width="15%" align="center">姓名</th>
         <th width="20%" align="center">班级</th>
         <th width="20%" align="center">学号</th>
-        <th width="20%" align="center">自由练习(正确数|总提交)</th>
+        <th width="20%" align="center">正确数</th>
         <th width="20%" align="center">操作</th>
       </tr>
       <volist name="submitList" id="submitList" empty="暂时没有数据" >
           <tr>
             <td align="center">{$key+1}</td>
-            <td align="center">{$userList.name}</td>
-            <td align="center">{$userList.class}</a></td>
-            <td align="center">{$userList.number}</td>
-            <td align="center">{$userList.name|getResult=###}</td>
+            <td align="center">{$submitList.name}</td>
+            <td align="center">{$submitList.class}</a></td>
+            <td align="center">{$submitList.number}</td>
+            <td align="center">{$submitList.name|getResult=###}</td>
             <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
             </td>
           </tr>
