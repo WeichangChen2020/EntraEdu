@@ -1,7 +1,7 @@
 <div class="aright">
 <div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
-    <a href="{:U('User/index')}">注册名单({$num['submitCount']|default='0'})</a>
-    <a href="{:U('User/unRegister')}" style="margin-left: 20px;">未注册名单({$num['unRegistCount']|default='0'})</a>
+    <a href="{:U('User/index')}">提交名单({$id|getSubmitNum=###})</a>
+    <a href="{:U('User/unRegister')}" style="margin-left: 20px;">未提交名单({$id|getUnsubmitNum=###})</a>
 </div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">

@@ -48,7 +48,10 @@ class ExamUserController extends CommonController{
 
 	public function detail($id = 0) {
 
-		dump($id);die;
+		$SUBMIT = M('ExamSubmit');
+
+		$this->assign('id',$id);
+		$this->display();
 	}
 
 
