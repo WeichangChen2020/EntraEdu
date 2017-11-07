@@ -151,5 +151,19 @@ class ExerciseModel extends Model {
 		return $res;
 	}
 
+	public function getQuesidList($start = 0) { 
+
+		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
+		$sql = "SELECT quesid FROM ee_questionbank  LIMIT $start,20";
+		// dump($sql);	
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+		if (empty($res)) {
+			return false;
+		}
+
+		return $res;
+	}
+
 
 }
