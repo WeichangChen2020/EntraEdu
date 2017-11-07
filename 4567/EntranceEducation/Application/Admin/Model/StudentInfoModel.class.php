@@ -23,5 +23,21 @@ class StudentInfoModel extends Model {
 		return $res['0']['openId'];
 	}
 
+	/**
+	 * getOpenid 获取$openid的info
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-7 15:32 Authors
+	 * @var  
+	 * @return  Array
+	 */
+	public function getInfo($openid) {
+
+		$info = M('StudenInfo')->where('openid'=$openid)->find();
+		if (empty($info)) {
+			return false;
+		}
+		return $info;
+	}
+
 
 }
