@@ -52,7 +52,6 @@ class ExamUserController extends CommonController{
 
 		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
 		$this->assign('submitList',$submitList);
-		dump($submitList);die;
 		$this->assign('id',$id);
 		$this->display();
 	}
