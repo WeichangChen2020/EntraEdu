@@ -32,48 +32,44 @@ class ExamUserController extends CommonController{
         $this->assign('examList',$list);
    
         $this->display();
-		// $examList = D('ExamSetup')->select();
-		// // p($examList);
-		// $this->assign('examList', $examList);
-		// $this->display();
 	}
 
-	/**
-	 * detail 模拟考试详细信息 提交人员详情
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-7 15:12Authors
-	 * @var  
-	 * @return 
-	 */
+	// /**
+	//  * detail 模拟考试详细信息 提交人员详情
+	//  * @author 陈伟昌<1339849378@qq.com>
+	//  * @copyright  2017-11-7 15:12Authors
+	//  * @var  
+	//  * @return 
+	//  */
 
-	public function detail($id = 0) {
+	// public function detail($id = 0) {
 
-		$SUBMIT = M('ExamSubmit');
+	// 	$SUBMIT = M('ExamSubmit');
 
-		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
-		$this->assign('submitList',$submitList);
-		$this->assign('id',$id);
-		$this->display();
-	}
+	// 	$submitList = $SUBMIT->where(array('examid'=>$id))->select();
+	// 	$this->assign('submitList',$submitList);
+	// 	$this->assign('id',$id);
+	// 	$this->display();
+	// }
 
 
-	/**
-	 * unSubmit 模拟考试详细信息 未提交人员详情
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-7 15:50Authors
-	 * @var  
-	 * @return 
-	 */
+	// /**
+	//  * unSubmit 模拟考试详细信息 未提交人员详情
+	//  * @author 陈伟昌<1339849378@qq.com>
+	//  * @copyright  2017-11-7 15:50Authors
+	//  * @var  
+	//  * @return 
+	//  */
 
-	public function unSubmit($id = 0) {
+	// public function unSubmit($id = 0) {
 
-		$STUDENT = M('ExamSubmit');
+	// 	$STUDENT = M('ExamSubmit');
 
-		$unSubmitList = $STUDENT->getUnsubmitList();
-		// $this->assign('submitList',$unSubmitList);
-		// $this->assign('id',$id);
-		// $this->display('detail');
-	}
+	// 	$unSubmitList = $STUDENT->getUnsubmitList();
+	// 	// $this->assign('submitList',$unSubmitList);
+	// 	// $this->assign('id',$id);
+	// 	// $this->display('detail');
+	// }
 
 
 
