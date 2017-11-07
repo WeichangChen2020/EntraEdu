@@ -39,14 +39,14 @@ class ExamUserController extends CommonController{
 	}
 
 	/**
-	 * list 模拟考试详细信息 提交人员详情
+	 * detail 模拟考试详细信息 提交人员详情
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-11-7 15:12Authors
 	 * @var  
 	 * @return 
 	 */
 
-	public function list($id = 0) {
+	public function detail($id = 0) {
 
 		dump($id);die;
 	}
