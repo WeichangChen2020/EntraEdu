@@ -48,10 +48,10 @@ class ExamUserController extends CommonController{
 		$SUBMIT = M('ExamSubmit');
 
 		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
-		dump($submitList);die;
+
 		$this->assign('submitList',$submitList);
 		$this->assign('id',$id);
-		$this->display();
+		$this->display('detail');
 	}
 
 
