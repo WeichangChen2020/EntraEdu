@@ -62,23 +62,23 @@ class ExamSubmitModel extends Model {
      */
     public function getUnsubmitList($id) {
 
-        // $Student = M('StudentList');
-        // die;
-        // $college = D('Adminer')->getCollege();
-        // $map = array();
+        $Student = M('StudentList');
+        die;
+        $college = D('Adminer')->getCollege();
+        $map = array();
 
-        // if (!is_null($college)) {
-        //     $map['academy'] = $college;
-        //     $sql = "SELECT openid FROM ee_student_info where  academy= '信电学院' AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
-        // } else {
-        //     $sql = "SELECT openid FROM ee_student_info AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
-        // }
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+            $sql = "SELECT openid FROM ee_student_info where  academy= '信电学院' AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
+        } else {
+            $sql = "SELECT openid FROM ee_student_info AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
+        }
 
-        // $Model = new \Think\Model();
-        // $res = $Model->query($sql);
+        $Model = new \Think\Model();
+        $res = $Model->query($sql);
 
 
-        return '$res';
+        return $res;
     }
 
 
