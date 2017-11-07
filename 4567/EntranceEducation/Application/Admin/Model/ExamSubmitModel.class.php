@@ -3,33 +3,33 @@ namespace Admin\Model;
 use Think\Model;
 class ExamSubmitModel extends Model {
 
-	/**
-	 * getSubmitNum 获取提交人数
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-10-29 14:28 Authors
-	 * @var  
-	 * @return  int
-	 */
-	public function getSubmitNum($id) {
+    /**
+     * getSubmitNum 获取提交人数
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-10-29 14:28 Authors
+     * @var  
+     * @return  int
+     */
+    public function getSubmitNum($id) {
 
-		$sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
+        $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
 
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
+        $Model = new \Think\Model();
+        $res = $Model->query($sql);
 
-		if (empty($res)) {
-			return 0;
-		}
-		return $res['0']['COUNT(*)'];
-	}
-	/**
-	 * getUnsubmitNum 获取未提交人数
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-10-29 16:59 Authors
-	 * @var  
-	 * @return  int
-	 */
-	public function getUnsubmitNum($id) {
+        if (empty($res)) {
+            return 0;
+        }
+        return $res['0']['COUNT(*)'];
+    }
+    /**
+     * getUnsubmitNum 获取未提交人数
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-10-29 16:59 Authors
+     * @var  
+     * @return  int
+     */
+    public function getUnsubmitNum($id) {
 
         $Student = M('StudentList');
 
@@ -43,16 +43,43 @@ class ExamSubmitModel extends Model {
         $count = $Student->where($map)->count();
 
 
-		$sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
+        $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
 
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
+        $Model = new \Think\Model();
+        $res = $Model->query($sql);
 
-		if (empty($res)) {
-			return 'error';
-		}
-		return $count-$res['0']['COUNT(*)'];
-	}
+        if (empty($res)) {
+            return 'error';
+        }
+        return $count-$res['0']['COUNT(*)'];
+    }
+    /**
+     * getUnsubmitList 获取未提交名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-7 16:00 Authors
+     * @var  
+     * @return  array('openid')
+     */
+    public function getUnsubmitList($id) {
+
+        $Student = M('StudentList');
+
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+            $sql = "SELECT openid FROM ee_student_info where  academy= '信电学院' AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
+        } else {
+            $sql = "SELECT openid FROM ee_student_info AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
+        }
+
+        $Model = new \Think\Model();
+        $res = $Model->query($sql);
+
+
+        return $res;
+    }
 
 
 }

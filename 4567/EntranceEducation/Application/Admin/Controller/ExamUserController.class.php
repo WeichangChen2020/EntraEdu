@@ -57,6 +57,25 @@ class ExamUserController extends CommonController{
 	}
 
 
+	/**
+	 * unSubmit 模拟考试详细信息 未提交人员详情
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-7 15:50Authors
+	 * @var  
+	 * @return 
+	 */
+
+	public function unSubmit($id = 0) {
+
+		$STUDENT = M('ExamSubmit');
+
+		$unSubmitList = $STUDENT->getUnsubmitList();
+		$this->assign('submitList',$unSubmitList);
+		$this->assign('id',$id);
+		$this->display();
+	}
+
+
 
 
 
