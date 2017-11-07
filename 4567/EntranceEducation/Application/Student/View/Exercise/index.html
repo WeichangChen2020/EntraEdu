@@ -253,6 +253,7 @@
         url: "{:U('Exercise/loadmore')}",           //请求路径；
         success: function(res) {
             var str = '';
+
             //var number = parseInt($(".num:last").html());
             //var No = 0;
 
@@ -267,12 +268,13 @@
             for (var i = 0; i < res.length; i++) {
                 //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
+                var quesid = "{$quesList.id}";
                 if ( i%7 == 1 ) {
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+{$quesList.id}+"</div></a>" +"</div>";
+                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
                 } else if ( i%7 == 0 ){
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+{$quesList.id}+"</div></a>" +"</div>";
+                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
                 } else {
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+{$quesList.id}+"</div></a>" +"</div>";
+                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
