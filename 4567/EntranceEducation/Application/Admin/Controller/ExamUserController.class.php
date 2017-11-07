@@ -38,6 +38,21 @@ class ExamUserController extends CommonController{
 		// $this->display();
 	}
 
+	/**
+	 * list 模拟考试详细信息 提交人员详情
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-7 15:12Authors
+	 * @var  
+	 * @return 
+	 */
+
+	public function list($id) {
+
+		$id = I('id');
+   
+        $this->display();
+	}
+
 
 
 
