@@ -46,12 +46,11 @@ class ExamUserController extends CommonController{
 	 * @return 
 	 */
 
-	public function list($id) {
+	public function list($id = 0) {
 
-		$id = I('id');
-   
-        $this->display();
+		dump($id);die;
 	}
+
 
 
 
