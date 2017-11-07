@@ -174,32 +174,34 @@ class ExerciseController extends Controller{
             var_dump($quesList);
             $this->ajaxReturn($quesList);
 
-        } else {
-            session('start',0);
-            // dump($openId);
-            $quesList = D('exercise')->getQuesidList();
-            // $me = array();
-        //     获取"我的成绩与排名"
+        } 
+        // else 
+        // {
+        //     session('start',0);
+        //     // dump($openId);
+        //     $quesList = D('exercise')->getQuesidList();
+        //     // $me = array();
+        // //     获取"我的成绩与排名"
+        // //     foreach($quesList as $key=>$value){
+        // //      if ($value['openid']==$openId) {
+        // //        $me['rank'] = $key +1;
+        // //        $me['grade'] = $value['sum(result)'];
+        // //        break;
+        // //      }
+        // // }
         //     foreach($quesList as $key=>$value){
-        //      if ($value['openid']==$openId) {
-        //        $me['rank'] = $key +1;
-        //        $me['grade'] = $value['sum(result)'];
-        //        break;
-        //      }
+
+        //         //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
+        //         $quesList  = D('Questionbank')->getQuesList($value['quesid']);
+        //     }
+        //     // dump($quesList);
+
+        //     $this->assign('length',COUNT($quesList));
+        //     // $this->assign('me',$me);
+        //     $this->assign('quesList',$quesList);
+        //     $this->display();
+
         // }
-            foreach($quesList as $key=>$value){
-
-                //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-                $quesList  = D('Questionbank')->getQuesList($value['quesid']);
-            }
-            // dump($quesList);
-
-            $this->assign('length',COUNT($quesList));
-            // $this->assign('me',$me);
-            $this->assign('quesList',$quesList);
-            $this->display();
-
-        }
 
     }
 
