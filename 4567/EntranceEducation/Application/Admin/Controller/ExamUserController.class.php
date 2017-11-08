@@ -51,7 +51,7 @@ class ExamUserController extends CommonController{
 
 		$this->assign('submitList',$submitList);
 		$this->assign('id',$id);
-		$this->display('detail');
+		$this->display();
 	}
 
 
@@ -70,7 +70,7 @@ class ExamUserController extends CommonController{
 		$unSubmitList = $STUDENT->getUnsubmitList($id);
 		$this->assign('submitList',$unSubmitList);
 		$this->assign('id',$id);
-		$this->display('detail');
+		$this->display();
 	}
 
 
