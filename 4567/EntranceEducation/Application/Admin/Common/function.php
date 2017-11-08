@@ -100,7 +100,7 @@ function getResult($name) {
  */
 function getNameByOpenid($openid) {
 	$info = D('StudentInfo')->getInfo($openid);
-	dump($info);
+	dump($info['name']);
 	return $info["name"];
 }
 
