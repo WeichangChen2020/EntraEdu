@@ -68,6 +68,7 @@ class ExamUserController extends CommonController{
 		$STUDENT = D('ExamSubmit');
 
 		$unSubmitList = $STUDENT->getUnsubmitList($id);
+		dump($unSubmitList);
 		$this->assign('submitList',$unSubmitList);
 		$this->assign('id',$id);
 		$this->display('detail');
