@@ -112,10 +112,10 @@ function getNameByOpenid($openid) {
  */
 function getClassByOpenid($openid) {
 	$info = D('StudentInfo')->getInfo($openid);
-	if ($info['class'] == '') {
+	if ($info['0']['class'] == '') {
 		return '非新生';
 	}
-	return $info['class'];
+	return $info['0']['class'];
 }
 
 /**
@@ -127,7 +127,7 @@ function getClassByOpenid($openid) {
  */
 function getNumberByOpenid($openid) {
 	$info = D('StudentInfo')->getInfo($openid);
-	return $info['number'];
+	return $info['0']['number'];
 }
 
  ?>
