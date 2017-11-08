@@ -1,7 +1,7 @@
 <div class="aright">
 <div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
     <a href="{:U('ExamUser/detail')}">提交名单({$id|getSubmitNum=###})</a>
-    <a href="{:U('ExamUser/unSubmit', array('id'=>$id))}" style="margin-left: 20px;">未提交名单({$id|getUnsubmitNum=###})</a>
+    <a href="{:U('ExamUser/unSubmit', array('id'=>id))}" style="margin-left: 20px;">未提交名单({$id|getUnsubmitNum=###})</a>
 </div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">
