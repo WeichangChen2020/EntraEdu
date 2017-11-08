@@ -17,7 +17,7 @@
           <tr>
             <td align="center">{$key+1}</td>
             <td align="center">{$submitList.openid|getNameByOpenid=###}</td>
-            <td align="center">{$submitList.openid|getClassByOpenid=###}</a></td>
+            <td align="center">{$submitList.openid|default='非新生'|getClassByOpenid=###}</a></td>
             <td align="center">{$submitList.openid|getNumberByOpenid=###}</td>
             <td align="center">{$id|getResult=###}</td>
             <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
