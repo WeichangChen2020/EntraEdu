@@ -47,7 +47,7 @@ class ExamUserController extends CommonController{
 
 		$SUBMIT = M('ExamSubmit');
 
-		$submitList = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
+		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
 
 		$this->assign('submitList',$submitList);
 		$this->assign('id',$id);
@@ -69,6 +69,7 @@ class ExamUserController extends CommonController{
 
 		$unSubmitList = $STUDENT->getUnsubmitList($id);
 		$this->assign('submitList',$unSubmitList);
+		dump($unSubmitList);die;
 		$this->assign('id',$id);
 		$this->display('detail');
 	}
