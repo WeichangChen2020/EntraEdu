@@ -37,7 +37,7 @@ class StudentInfoModel extends Model {
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 
-		if (empty($info)) {
+		if (empty($res)) {
 			return false;
 		}
 		return $info;
