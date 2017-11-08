@@ -68,13 +68,14 @@ class ExamSubmitModel extends Model {
 
         if (!is_null($college)) {
             $map['academy'] = $college;
-            $sql = "SELECT openid FROM ee_student_info where  academy= $college AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
+            $sql = "SELECT openid FROM ee_student_info WHERE  academy= $college AND NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = '$id' )";
         } else {
             $sql = "SELECT openid FROM ee_student_info WHERE NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = $id )";
         }
+
         $Model = new \Think\Model();
         $res = $Model->query($sql);
-
+        dump($sql);
         dump($res);die;
 
 
