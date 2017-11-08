@@ -40,7 +40,7 @@ class StudentInfoModel extends Model {
 		if (empty($res)) {
 			return false;
 		}
-		return $info;
+		return $res;
 	}
 
 
