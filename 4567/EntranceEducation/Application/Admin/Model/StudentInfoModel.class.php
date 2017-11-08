@@ -32,8 +32,12 @@ class StudentInfoModel extends Model {
 	 */
 	public function getInfo($openid) {
 
-		$info = M('StudentInfo')->where(array('openid'=>$openid))->find();
-		dump($openid);
+		$sql = "SELECT * FROM ee_student_info WHERE openid = '$openid' ";
+		
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
+		dump($sql);
+		dump($res);
 		if (empty($info)) {
 			return false;
 		}
