@@ -72,6 +72,7 @@ class ExamSubmitModel extends Model {
         } else {
             $sql = "SELECT openid FROM ee_student_info WHERE NOT EXISTS (SELECT openid FROM ee_exam_submit where examid = $id )";
         }
+        dump($sql);die;
 
         $Model = new \Think\Model();
         $res = $Model->query($sql);
