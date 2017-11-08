@@ -75,9 +75,6 @@ class ExamSubmitModel extends Model {
 
         $Model = new \Think\Model('student_info');
         $res = $Model->query($sql);
-        dump($sql);
-        dump($res);die;
-
 
         return $res;
     }
