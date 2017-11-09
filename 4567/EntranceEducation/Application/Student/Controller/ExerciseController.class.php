@@ -154,7 +154,7 @@ class ExerciseController extends Controller{
 	}
 
 	public function loadmore(){
-
+		echo "sssssss";
         $openId   = session('openId');  
 
         if (IS_AJAX) {
