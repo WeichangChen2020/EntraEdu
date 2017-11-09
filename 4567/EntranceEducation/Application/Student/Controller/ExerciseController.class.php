@@ -166,10 +166,11 @@ class ExerciseController extends Controller{
                 $start = 0;
             }
             $quesList = D('exercise')->getQuesidList($start);//quesid
+            var_dump($quesList);
             foreach($quesList as $key=>$value){
 
                 //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-                $quesList  = D('Questionbank')->getQuesList($value['quesid']);
+                $quesList  = D('Questionbank')->getQuesList($value['id']);
             }
             var_dump($quesList);
             $this->ajaxReturn($quesList);
@@ -192,7 +193,7 @@ class ExerciseController extends Controller{
             foreach($quesList as $key=>$value){
 
                 //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-                $quesList  = D('Questionbank')->getQuesList($value['quesid']);
+                $quesList  = D('Questionbank')->getQuesList($value['id']);
             }
             // dump($quesList);
 
