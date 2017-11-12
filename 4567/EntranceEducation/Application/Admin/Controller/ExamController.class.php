@@ -98,7 +98,7 @@ class ExamController extends CommonController{
 
             $st = $data['start_time'];
             $st = str_replace('T', ' ', $st).':00';
-            dump($st);die;
+            dump(strtotime($st));die;
 
             // foreach ($data as $key => $value) {
             //     $quesData = array();
