@@ -35,11 +35,11 @@
     <label class="layui-form-label">是否开启</label>
     <div class="layui-input-block">
         <if condition="$info.is_on eq 1">
-            <input type="radio" name="is_on" value="{$info.is_on}" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
-            <input type="radio" name="is_on" value="{$info.is_on}" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+            <input type="radio" name="is_on" value="1" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
+            <input type="radio" name="is_on" value="0" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
         <else />
-            <input type="radio" name="is_on" value="{$info.is_on}" title="开启"><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
-            <input type="radio" name="is_on" value="{$info.is_on}" title="关闭 checked="""><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+            <input type="radio" name="is_on" value="1" title="开启"><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
+            <input type="radio" name="is_on" value="0" title="关闭 checked="""><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
         </if>
       
     </div>
