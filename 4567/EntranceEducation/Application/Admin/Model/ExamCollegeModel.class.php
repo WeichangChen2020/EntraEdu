@@ -64,11 +64,11 @@ class ExamCollegeModel extends Model {
 			dump($examList);die;
 			return $examList;
 		}else {
-			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->select();
+			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->field('examid')->select();
 			$res = array();
 			foreach ($idList as $key => $value) {
 				dump($value);
-				$res[$key] = M('ExamSetup')->where(array('id'=>$value))->find();
+				$res[$key] = M('ExamSetup')->where(array('id'=>$value['examid']))->find();
 			}
 			dump($res);die;
 			if (empty($res)) {
