@@ -62,7 +62,13 @@ class ExamCollegeModel extends Model {
 			$examList = D('ExamSetup')->select();
 			return $examList;
 		}else {
-			$res = M('ExamSetup')->where(array('academy' => $college))->select();
+			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->select();
+			$res = array();
+			foreach ($idList as $key => $value) {
+				$res[$key] = M('ExamSetup')->where(array('id'=>$value));
+			}
+			dump($idList);
+			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
