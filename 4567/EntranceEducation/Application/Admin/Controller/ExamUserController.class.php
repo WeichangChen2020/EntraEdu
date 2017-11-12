@@ -104,12 +104,11 @@ class ExamUserController extends CommonController{
             $map['type'] = 1;
             $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
             foreach ($openid as $key => $value) {
-            	$list[$key]['name'] = getNameByOpenid($value);
-            	$list[$key]['class'] = getClassByOpenid($value);
-            	$list[$key]['number'] = getNumberByOpenid($value);
-            	$list[$key]['result'] = getResult($value);
+            	$list[$key]['name'] = getNameByOpenid($value['openid']);
+            	$list[$key]['class'] = getClassByOpenid($value['openid']);
+            	$list[$key]['number'] = getNumberByOpenid($value['openid']);
+            	$list[$key]['result'] = getResult($value['openid']);
             }
-            dump($openid);die;
             $filename .= '提交用户';
         } else {
             $map['type'] = 0;
