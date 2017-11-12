@@ -106,7 +106,7 @@ class ExamController extends CommonController{
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
             );
-            $data['time'] = $SET->where(array('id'=>$id))->field('time')->find();
+            $data = $SET->where(array('id'=>$id))->field('time')->find();
             dump($data);
             dump($SET->save($date));die;
             // 	$this->success('修改成功', U('Exam/index'));
