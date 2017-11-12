@@ -109,7 +109,7 @@ class ExamUserController extends CommonController{
             	$list[$key]['number'] = getNumberByOpenid($value);
             	$list[$key]['result'] = getResult($value);
             }
-            dump($list);die;
+            dump($openid);die;
             $filename .= '提交用户';
         } else {
             $map['type'] = 0;
