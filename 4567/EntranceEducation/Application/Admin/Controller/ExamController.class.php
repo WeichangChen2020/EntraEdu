@@ -94,6 +94,7 @@ class ExamController extends CommonController{
      */
     public function edit($id = 0) {
         if (IS_POST) {
+        	$SET = M('ExamSetup');
 
             $st = I('start_time');
             $st = str_replace('T', ' ', $st).':00';
@@ -105,8 +106,9 @@ class ExamController extends CommonController{
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
             );
+            $data['time'] = $SET->where(array('id'=>$id))->field('time')->find();
             dump($data);
-            dump(M('ExamSetup')->save($date));die;
+            dump($SET->save($date));die;
             // 	$this->success('修改成功', U('Exam/index'));
             // else
             // 	$this->error('修改失败', U('Exam/index'));
