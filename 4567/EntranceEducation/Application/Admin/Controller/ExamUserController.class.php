@@ -48,11 +48,6 @@ class ExamUserController extends CommonController{
         $college = D('Adminer')->getCollege();
 
 		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
-        $count = count($submitList);
-
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
 
         $this->assign('export', 1);
 		$this->assign('submitList',$submitList);
@@ -73,12 +68,6 @@ class ExamUserController extends CommonController{
 
 		$STUDENT = D('ExamSubmit');
 
-		$unSubmitList = $STUDENT->getUnsubmitList($id);
-        $count = count($unSubmitList);
-
-		$Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
 
         $this->assign('export', 0);
 		$this->assign('submitList',$unSubmitList);
