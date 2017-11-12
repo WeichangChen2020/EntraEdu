@@ -95,7 +95,6 @@ class ExamController extends CommonController{
     public function edit($id = 0) {
         if (IS_POST) {
         	$SET = M('ExamSetup');
-        	dump(I());die;
 
             $st = I('start_time');
             $st = str_replace('T', ' ', $st).':00';
