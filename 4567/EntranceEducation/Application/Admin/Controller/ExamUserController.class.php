@@ -110,7 +110,7 @@ class ExamUserController extends CommonController{
             }
             $filename .= '提交用户';
         } else {
-            $list = $SUBMIT->getUnsubmitList($id);
+            $openid = $SUBMIT->getUnsubmitList($id);
             foreach ($openid as $key => $value) {
             	$list[$key]['name'] = getNameByOpenid($value['openid']);
             	$list[$key]['class'] = getClassByOpenid($value['openid']);
