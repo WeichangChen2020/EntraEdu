@@ -97,16 +97,18 @@ class ExamController extends CommonController{
 
             $st = I('start_time');
             $st = str_replace('T', ' ', $st).':00';
-            dump(I());die;
 
             $data = array(
-                'title' => I('title'),
+                'title' => I('name'),
                 'start_time' => strtotime($st),
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
                 'time' => date('Y-m-d H:i:s'),
             );
-            $this->success('题目添加成功', U('Exam/index'));
+            if(M('ExamSetup')->where(array('id' => $id))->save($date))
+            	$this->success('修改成功', U('Exam/index'));
+            else
+            	$this->error('修改失败', U('Exam/index'));
         }else{
             $info = M('ExamSetup')->find($id);
             $this->assign('info',$info)->display();
