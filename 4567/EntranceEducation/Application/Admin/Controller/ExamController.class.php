@@ -98,14 +98,14 @@ class ExamController extends CommonController{
 
             $st = I('start_time');
             $st = str_replace('T', ' ', $st).':00';
-
+            $time = $SET->where(array('id'=>$id))->field('time')->find();
             $data = array(
             	'id' => $id,
                 'title' => I('name'),
                 'start_time' => strtotime($st),
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
-                'time' => $SET->where(array('id'=>$id))->field('time')->find()['time'];
+                'time' => $time['time'],
             );
             dump($data);
             dump($SET->save($date));die;
