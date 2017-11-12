@@ -96,7 +96,7 @@ class ExamController extends CommonController{
         if (IS_POST) {
             $data = I();
 
-            $st = I('start_time');
+            $st = $data['start_time'];
             dump($st);die;
             $st = str_replace('T', ' ', $st).':00';
 
