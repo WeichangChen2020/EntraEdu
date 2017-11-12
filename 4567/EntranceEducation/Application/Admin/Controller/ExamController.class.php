@@ -94,20 +94,19 @@ class ExamController extends CommonController{
      */
     public function edit($id = 0) {
         if (IS_POST) {
-            $data = I();
 
-            $st = $data['start_time'];
+            $st = I('start_time');
             $st = str_replace('T', ' ', $st).':00';
-            dump(strtotime($st));die;
+            dump(I());die;
 
-            // foreach ($data as $key => $value) {
-            //     $quesData = array();
-            //     $quesData['examid'] = $id;
-            //     $quesData['chapid'] = intval(substr($key, 8));
-            //     $quesData['chap_num'] = intval($value);
-            //     D('ExamQuestionbank')->add($quesData);
-            // }
-            // $this->success('题目添加成功', U('Exam/index'));
+            $data = array(
+                'title' => I('title'),
+                'start_time' => strtotime($st),
+                'set_time' => I('set_time'),
+                'is_on' => intval(I('is_on')),
+                'time' => date('Y-m-d H:i:s'),
+            );
+            $this->success('题目添加成功', U('Exam/index'));
         }else{
             $info = M('ExamSetup')->find($id);
             $this->assign('info',$info)->display();
