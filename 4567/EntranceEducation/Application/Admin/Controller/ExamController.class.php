@@ -110,6 +110,7 @@ class ExamController extends CommonController{
             	$this->error('修改失败', U('Exam/index'));
         }else{
             $info = M('ExamSetup')->find($id);
+            dump($info);die;
             $this->assign('info',$info)->display();
 
         }
