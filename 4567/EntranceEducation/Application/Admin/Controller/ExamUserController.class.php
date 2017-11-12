@@ -120,6 +120,39 @@ class ExamUserController extends CommonController{
         $this->excel($list, $title, $filename);
     }
 
+    //导出成绩报表
+    public function excel($arr=array(),$title=array(),$filename='export'){
+        header("Content-type:application/octet-stream");
+        header("Accept-Ranges:bytes");
+        header("Content-type:application/vnd.ms-excel");  
+        header("Content-Disposition:attachment;filename=".$filename.".xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        //导出xls 开始
+      
+        if (!empty($title)){
+            foreach ($title as $k => $v) {
+                $title[$k]=iconv("UTF-8", "GB2312",$v);
+            }
+            $title= implode("\t", $title);
+            echo "$title\n";
+        }
+        //查询数据库  $arr 是二维数组
+
+        if(!empty($arr)){
+            foreach($arr as $key=>$val){
+                foreach ($val as $ck => $cv) {
+                    $arr[$key][$ck]=iconv("UTF-8", "GB2312", $cv);
+                }
+                $arr[$key]=implode("\t", $arr[$key]);
+            }
+            echo implode("\n",$arr);
+        }
+
+        die;
+        // 使用die是为了避免输出多余的模板html代码
+    }
+
 
 
 }
