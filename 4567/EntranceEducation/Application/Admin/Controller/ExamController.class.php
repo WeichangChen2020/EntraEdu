@@ -99,12 +99,13 @@ class ExamController extends CommonController{
             $st = str_replace('T', ' ', $st).':00';
 
             $data = array(
+            	'id' => $id,
                 'title' => I('name'),
                 'start_time' => strtotime($st),
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
             );
-            dump(M('ExamSetup')->where(array('id' => $id))->save($date));
+            dump(M('ExamSetup')->save($date));
             // 	$this->success('修改成功', U('Exam/index'));
             // else
             // 	$this->error('修改失败', U('Exam/index'));
