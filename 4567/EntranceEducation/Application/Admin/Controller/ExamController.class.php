@@ -107,7 +107,7 @@ class ExamController extends CommonController{
                 'time' => $time['time'],
             );
             dump($data);
-            dump($SET->where(array('id' => $id)->save($date));die;
+            dump($SET->where(array('id' => $id))->save($date));die;
             // 	$this->success('修改成功', U('Exam/index'));
             // else
             // 	$this->error('修改失败', U('Exam/index'));
