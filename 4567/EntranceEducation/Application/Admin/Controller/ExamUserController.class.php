@@ -68,6 +68,8 @@ class ExamUserController extends CommonController{
 
 		$STUDENT = D('ExamSubmit');
 
+		$unSubmitList = $STUDENT->getUnsubmitList($id);
+
 
         $this->assign('export', 0);
 		$this->assign('submitList',$unSubmitList);
@@ -100,12 +102,18 @@ class ExamUserController extends CommonController{
 
         if($type == 1) {
             $map['type'] = 1;
-            $list = $SUBMIT->where(array('examid'=>$id))->select();
-            $filename .= '新生入学考试平台注册用户';
+            $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
+            foreach ($openid as $key => $value) {
+            	$list[$key]['name'] = getNameByOpenid($value);
+            	$list[$key]['class'] = getClassByOpenid($value);
+            	$list[$key]['number'] = getNumberByOpenid($value);
+            	$list[$key]['result'] = getResult($value);
+            }
+            $filename .= '提交用户';
         } else {
             $map['type'] = 0;
-            $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->select();
-            $filename .= '新生入学考试平台未注册用户';
+            $list = $SUBMIT->getUnsubmitList($id);
+            $filename .= '未提交用户';
         }
 
         $this->excel($list, $title, $filename);
