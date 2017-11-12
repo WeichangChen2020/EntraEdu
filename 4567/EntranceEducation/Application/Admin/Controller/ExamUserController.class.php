@@ -87,7 +87,7 @@ class ExamUserController extends CommonController{
      */
     public function export($type,$id) {
 
-		$SUBMIT = M('ExamSubmit');
+		$SUBMIT = D('ExamSubmit');
 
         // 查询条件
         $college = D('Adminer')->getCollege();
