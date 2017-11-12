@@ -61,7 +61,6 @@ class ExamCollegeModel extends Model {
 		if (empty($college)) {
 			$examList = D('ExamSetup')->select();
 
-			dump($examList);die;
 			return $examList;
 		}else {
 			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->field('examid')->select();
@@ -69,7 +68,7 @@ class ExamCollegeModel extends Model {
 			foreach ($idList as $key => $value) {
 				$res[$key] = M('ExamSetup')->where(array('id'=>$value['examid']))->find();
 			}
-			
+
 			if (empty($res)) {
 				return false;
 			}
