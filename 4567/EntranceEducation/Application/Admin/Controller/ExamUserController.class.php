@@ -101,7 +101,6 @@ class ExamUserController extends CommonController{
         $filename  = is_null($college) ? '浙江工商大学' : $college;
 
         if($type == 1) {
-            $map['type'] = 1;
             $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
             foreach ($openid as $key => $value) {
             	$list[$key]['name'] = getNameByOpenid($value['openid']);
@@ -111,8 +110,13 @@ class ExamUserController extends CommonController{
             }
             $filename .= '提交用户';
         } else {
-            $map['type'] = 0;
             $list = $SUBMIT->getUnsubmitList($id);
+            foreach ($openid as $key => $value) {
+            	$list[$key]['name'] = getNameByOpenid($value['openid']);
+            	$list[$key]['class'] = getClassByOpenid($value['openid']);
+            	$list[$key]['number'] = getNumberByOpenid($value['openid']);
+            	$list[$key]['result'] = getResult($value['openid']);
+            }
             $filename .= '未提交用户';
         }
 
