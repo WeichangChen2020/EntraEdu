@@ -95,7 +95,7 @@ class ExamController extends CommonController{
     public function edit($id = 0) {
         if (IS_POST) {
             $data = I();
-            dump($data);die;
+            dump($data['start_time'].getTime());die;
             // foreach ($data as $key => $value) {
             //     $quesData = array();
             //     $quesData['examid'] = $id;
