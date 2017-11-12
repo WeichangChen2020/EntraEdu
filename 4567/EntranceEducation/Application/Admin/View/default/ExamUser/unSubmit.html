@@ -24,7 +24,15 @@
             </td>
           </tr>
         </volist>
-  </tbody></table>
-
+  </tbody>
+</table>
+<div class="pages">
+    {$page}
+</div> 
+<div class="layui-form-item">
+    <div style="margin-top: 66px;">
+      <a class="layui-btn" href="{:U('ExamUser/export', array('type'=>$export))}" type="submit">导出</a>
+    </div>
+</div>
  </form>
 </div>

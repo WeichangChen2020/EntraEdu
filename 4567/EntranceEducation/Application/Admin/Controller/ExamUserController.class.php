@@ -45,9 +45,15 @@ class ExamUserController extends CommonController{
 	public function detail($id = 0) {
 
 		$SUBMIT = M('ExamSubmit');
+        $college = D('Adminer')->getCollege();
 
 		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
 
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+
+        $this->assign('export', 1);
 		$this->assign('submitList',$submitList);
 		$this->assign('id',$id);
 		$this->display();
@@ -67,12 +73,52 @@ class ExamUserController extends CommonController{
 		$STUDENT = D('ExamSubmit');
 
 		$unSubmitList = $STUDENT->getUnsubmitList($id);
+		
+		$Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+
+        $this->assign('export', 0);
 		$this->assign('submitList',$unSubmitList);
 		$this->assign('id',$id);
 		$this->display();
 	}
 
 
+    /**
+     * 导出到excel
+     * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-12 15:00Authors
+	 * @var  
+	 * @return 
+     */
+    public function export($type,$id) {
+
+		$SUBMIT = M('ExamSubmit');
+
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+
+        $title = array( '姓名', '班级', '学号','正确数');
+        $filename  = is_null($college) ? '浙江工商大学' : $college;
+
+        if($type == 1) {
+            $map['type'] = 1;
+            $list = $SUBMIT->where(array('examid'=>$id))->select();
+            $filename .= '新生入学考试平台注册用户';
+        } else {
+            $map['type'] = 0;
+            $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->select();
+            $filename .= '新生入学考试平台未注册用户';
+        }
+
+        $this->excel($list, $title, $filename);
+    }
 
 
 

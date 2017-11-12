@@ -111,6 +111,7 @@ class ExamController extends CommonController{
             else
             	$this->error('修改失败', U('Exam/index'));
         }else{
+
             $info = M('ExamSetup')->find($id);
             $this->assign('info',$info)->display();
         }
@@ -199,14 +200,6 @@ class ExamController extends CommonController{
 
     }
 
-
-    public function test(){
-        $collegeList = D('StudentList')->getCollegeList();
-
-        p($collegeList);
-    }
-
-    
 
 
 }
