@@ -70,7 +70,7 @@ class ExamCollegeModel extends Model {
 				dump($value);
 				$res[$key] = M('ExamSetup')->where(array('id'=>$value))->find();
 			}
-			dump($res);
+			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
