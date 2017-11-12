@@ -63,7 +63,6 @@ class ExamCollegeModel extends Model {
 			return $examList;
 		}else {
 			$res = M('ExamSetup')->where(array('academy' => $college))->select();
-			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
