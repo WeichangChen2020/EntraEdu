@@ -106,15 +106,13 @@ class ExamController extends CommonController{
                 'is_on' => intval(I('is_on')),
                 'time' => $time['time'],
             );
-            dump($data);
-            dump($SET->data($data)->where(array('id' => $id))->save($date));die;
-            // 	$this->success('修改成功', U('Exam/index'));
-            // else
-            // 	$this->error('修改失败', U('Exam/index'));
+            if($SET->data($data)->where(array('id' => $id))->save($date))
+            	$this->success('修改成功', U('Exam/index'));
+            else
+            	$this->error('修改失败', U('Exam/index'));
         }else{
             $info = M('ExamSetup')->find($id);
             $this->assign('info',$info)->display();
-
         }
     }
 

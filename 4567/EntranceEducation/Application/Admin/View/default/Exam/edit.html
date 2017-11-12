@@ -34,15 +34,21 @@
   <div class="layui-form-item">
     <label class="layui-form-label">是否开启</label>
     <div class="layui-input-block">
-      <input type="radio" name="is_on" value="{$info.is_on}" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
-      <input type="radio" name="is_on" value="{$info.is_on}" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+        <if condition="$info.is_on eq 1">
+            <input type="radio" name="is_on" value="{$info.is_on}" title="开启" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
+            <input type="radio" name="is_on" value="{$info.is_on}" title="关闭"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+        <else />
+            <input type="radio" name="is_on" value="{$info.is_on}" title="开启"><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>开启</span></div>
+            <input type="radio" name="is_on" value="{$info.is_on}" title="关闭 checked="""><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>关闭</span></div>
+        </if>
+      
     </div>
   </div>
 
 
   <div class="layui-form-item" >
     <div class="layui-input-block">
-	  <button class="layui-btn" lay-submit="" lay-filter="formDemo">立即提交</button>
+      <button class="layui-btn" lay-submit="" lay-filter="formDemo">立即提交</button>
       <a class="layui-btn layui-btn-primary" href="javascript:history.back(-1)">返回</a>
     </div>
   </div>
