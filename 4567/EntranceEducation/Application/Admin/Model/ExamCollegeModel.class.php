@@ -62,9 +62,8 @@ class ExamCollegeModel extends Model {
 			$examList = D('ExamSetup')->select();
 			return $examList;
 		}else {
-			$Model = new \Think\Model();
-			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
-			$res = $Model->query($sql);
+			$res = M('ExamSetup')->where(array('academy' => $college))->select();
+			dump($res);die;
 			if (empty($res)) {
 				return false;
 			}
