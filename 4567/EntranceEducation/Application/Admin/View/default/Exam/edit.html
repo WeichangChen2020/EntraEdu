@@ -4,7 +4,7 @@
   <legend>修改考试信息</legend>
 </fieldset>
 
-<form class="layui-form bform" method="post" action="{:U('Exam/edit')}" enctype="multipart/form-data">
+<form class="layui-form bform" method="post" action="{:U('Exam/edit', array('id'=>$info['id'])}" enctype="multipart/form-data">
 
   <div class="layui-form-item">
     <label class="layui-form-label">考试名称</label>

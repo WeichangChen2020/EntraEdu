@@ -103,7 +103,6 @@ class ExamController extends CommonController{
                 'start_time' => strtotime($st),
                 'set_time' => I('set_time'),
                 'is_on' => intval(I('is_on')),
-                'time' => date('Y-m-d H:i:s'),
             );
             if(M('ExamSetup')->where(array('id' => $id))->save($date))
             	$this->success('修改成功', U('Exam/index'));
