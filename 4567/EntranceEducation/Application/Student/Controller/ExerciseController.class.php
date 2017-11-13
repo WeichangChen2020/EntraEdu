@@ -157,6 +157,10 @@ class ExerciseController extends Controller{
                 $start = 0;
             }
             $quesList = D('Questionbank')->field('id')->limit($start,140)->select();
+            foreach ($quesList as $key => $value) {
+            	$value['css'] = get_exsercise_index_css($value['id']);
+            	$value['url'] = get_exercise_url_css($value['id']);
+            }
             //var_dump($quesList);
             $this->ajaxReturn($quesList);
 			//$this->assign('quesList', $quesList)->display();
