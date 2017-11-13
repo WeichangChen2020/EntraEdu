@@ -10,15 +10,17 @@
 	</head>
 	<body ontouchstart>
 	    <volist name="quesList" id="quesList" key="k" >
-    		<if condition="($k)%7 eq 1">
-    			<div class="weui-flex">
-				    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-			<elseif condition="($k)%7 eq 0"/>
-				<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-				    </div>
-			<else /> 
-				<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-			</if>
+	    	<div class="weui-row weui-no-gutter column" style="height:2.8rem">
+	    		<if condition="($k)%7 eq 1">
+	    			<div class="weui-flex">
+					    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+				<elseif condition="($k)%7 eq 0"/>
+					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+					    </div>
+				<else /> 
+					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+				</if>
+            </div>				
 		</volist>
 	    <div class="weui-loadmore">
 	      <i class="weui-loading"></i>
@@ -53,7 +55,7 @@
 
             //否则添加内容
             for (var i = 0; i < res.length; i++) {
-                //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
+                str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
                 var quesid = "{$quesList.id}";
                 if ( i%7 == 1 ) {
