@@ -76,16 +76,17 @@
                 //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
                 //var quesid = "{$quesList.id}";
-                if ( res[i]['id']%7 == 1 ) {
+                var j = res[i]['id'];
+                if ( j%7 == 1 ) {
                     str += 
                     "<div class= 'weui-flex'>" +                  
-                    "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap')}\">"
-                    +"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div>"
+                    "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap/quesid/j')}\">"
+                    +"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div>"
                     +"</a>";
-                } else if ( res[i]['id']%7 == 0 ){
-                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap')}\">"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" +"</div>";
+                } else if ( j%7 == 0 ){
+                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap/quesid/j')}\">"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div></a>" +"</div>";
                 } else {
-                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap')}\">"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
+                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap/quesid/j')}\">"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div></a>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
