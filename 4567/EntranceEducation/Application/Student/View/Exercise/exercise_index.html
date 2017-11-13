@@ -81,15 +81,11 @@
                 // var quesid = "{$quesList.id}";
                 var j = res[i]['id'];
                 if ( j%7 == 1 ) {
-                    str += 
-                    "<div class= 'weui-flex'>" +                  
-                    "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap')}/quesid/"+j+"\">"
-                    +"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div>"
-                    +"</a>";
+                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='"+res[i]['url']+"'>"+"<div class='"+res[i]['css']+"'>"+j+"</div></a>";
                 } else if ( j%7 == 0 ){
-                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap',array('quesid'=>j))}\">"+"<div class='"+res[i]['css']+"'>"+j+"</div></a>" +"</div>";
+                    str += "<a class='weui-flex__item' href='"+res[i]['url']+"'>"+"<div class='"+res[i]['css']+"'>"+j+"</div></a>" +"</div>";
                 } else {
-                    str += "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap',array('quesid'=>j))}\">"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div></a>";
+                    str += "<a class='weui-flex__item' href='"+res[i]['url']+"'>"+"<div class='"+res[i]['css']+"'>"+j+"</div></a>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
