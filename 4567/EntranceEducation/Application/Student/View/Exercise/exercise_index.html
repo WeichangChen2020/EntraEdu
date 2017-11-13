@@ -9,19 +9,21 @@
         <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
 	</head>
 	<body ontouchstart>
-	    <volist name="quesList" id="quesList" key="k" >
-	    	<div class="weui-row weui-no-gutter column" style="height:2.8rem">
-	    		<if condition="($k)%7 eq 1">
-	    			<div class="weui-flex">
-					    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-				<elseif condition="($k)%7 eq 0"/>
-					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-					    </div>
-				<else /> 
-					<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-				</if>
-            </div>				
-		</volist>
+		<div class="modal-content">
+		    <volist name="quesList" id="quesList" key="k" >
+		    	<div class="weui-row weui-no-gutter column" style="height:2.8rem">
+		    		<if condition="($k)%7 eq 1">
+		    			<div class="weui-flex">
+						    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+					<elseif condition="($k)%7 eq 0"/>
+						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+						    </div>
+					<else /> 
+						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+					</if>
+	            </div>
+			</volist>
+		</div>
 	    <div class="weui-loadmore">
 	      <i class="weui-loading"></i>
 	      <span class="weui-loadmore__tips">正在加载</span>
@@ -42,7 +44,6 @@
         url: "{:U('Exercise/exercise_index')}",           //请求路径；
         success: function(res) {
             var str = '';
-
             //var number = parseInt($(".num:last").html());
             //var No = 0;
 
