@@ -143,10 +143,42 @@ class ExerciseController extends Controller{
 
 	public function exercise_index() {
 
-		$quesList = D('Questionbank')->field('id')->select();
+		// $quesList = D('Questionbank')->field('id')->limit(140)->select();
+		// $this->assign('quesList', $quesList)->display();
 
-		$this->assign('quesList', $quesList)->display();
+		$openId = session('openId');  
 
+        if (IS_AJAX) {
+            if(session('?start')){
+                $start = session('start') + 140;
+                session('start',$start );
+            } else {
+                session('start',0);
+                $start = 0;
+            }
+            $quesList = D('Questionbank')->field('id')->limit($start,140)->select();
+            foreach ($quesList as $key => &$value) {
+            	$quesList[$key]['css'] = get_exsercise_index_css($value['id']);
+            	$value['url'] = get_exercise_url_css($value['id']);
+            }
+            //var_dump($quesList);
+            $this->ajaxReturn($quesList);
+			//$this->assign('quesList', $quesList)->display();
+        } 
+        else 
+        {
+            session('start',0);
+            //$start = 0;
+            // dump($openId);
+            // dump($quesList);
+			$quesList = D('Questionbank')->field('id')->limit($start,140)->select();
+
+            $this->assign('length',COUNT($quesList));
+            // $this->assign('me',$me);
+            $this->assign('quesList',$quesList);
+            $this->display();
+
+        }
 	}
 
 	public function test11() {
@@ -154,8 +186,6 @@ class ExerciseController extends Controller{
 	}
 
 	
-
-
 }
 
  ?>
