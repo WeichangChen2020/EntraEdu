@@ -146,48 +146,25 @@ class ExerciseController extends Controller{
 		// $quesList = D('Questionbank')->field('id')->limit(140)->select();
 		// $this->assign('quesList', $quesList)->display();
 
-		$openId   = session('openId');  
+		$openId = session('openId');  
 
         if (IS_AJAX) {
             if(session('?start')){
-                $start = session('start') + 20;
+                $start = session('start') + 140;
                 session('start',$start );
             } else {
                 session('start',0);
                 $start = 0;
             }
-            // $quesList = D('exercise')->getQuesidList($start);//quesid
-            // var_dump($quesList);
-            // foreach($quesList as $key=>$value){
-
-            //     //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-            //     $quesList  = D('Questionbank')->getQuesList($value['id']);
-            // }
-            // var_dump($quesList);
-            // $this->ajaxReturn($quesList);
-            $quesList = D('Questionbank')->field('id')->limit($start,70)->select();
+            $quesList = D('Questionbank')->field('id')->limit($start,140)->select();
             $this->ajaxReturn($quesList);
 			//$this->assign('quesList', $quesList)->display();
         } 
         else 
         {
             session('start',0);
-            $start = 0;
+            //$start = 0;
             // dump($openId);
-            //$quesList = D('exercise')->getQuesidList();
-            // $me = array();
-        //     获取"我的成绩与排名"
-        //     foreach($quesList as $key=>$value){
-        //      if ($value['openid']==$openId) {
-        //        $me['rank'] = $key +1;
-        //        $me['grade'] = $value['sum(result)'];
-        //        break;
-        //      }
-        // }
-            //foreach($quesList as $key=>$value){
-                //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
-                //$quesList  = D('Questionbank')->getQuesList($value['id']);
-            //}
             // dump($quesList);
 			$quesList = D('Questionbank')->field('id')->limit($start,140)->select();
 
