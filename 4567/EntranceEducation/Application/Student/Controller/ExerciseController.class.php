@@ -185,59 +185,6 @@ class ExerciseController extends Controller{
 		echo $_SERVER['HTTP_HOST'];
 	}
 
-	// public function loadmore(){
-	// 	//echo "sssssss";
- //        $openId   = session('openId');  
-
- //        if (IS_AJAX) {
- //            if(session('?start')){
- //                $start = session('start') + 20;
- //                session('start',$start );
- //            } else {
- //                session('start',0);
- //                $start = 0;
- //            }
- //            $quesList = D('exercise')->getQuesidList($start);//quesid
- //            var_dump($quesList);
- //            foreach($quesList as $key=>$value){
-
- //                //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
- //                $quesList  = D('Questionbank')->getQuesList($value['id']);
- //            }
- //            var_dump($quesList);
- //            $this->ajaxReturn($quesList);
-
- //        } 
- //        else 
- //        {
- //            session('start',0);
- //            // dump($openId);
- //            $quesList = D('exercise')->getQuesidList();
- //            // $me = array();
- //        //     获取"我的成绩与排名"
- //        //     foreach($quesList as $key=>$value){
- //        //      if ($value['openid']==$openId) {
- //        //        $me['rank'] = $key +1;
- //        //        $me['grade'] = $value['sum(result)'];
- //        //        break;
- //        //      }
- //        // }
- //            foreach($quesList as $key=>$value){
-
- //                //$quesList[$key]['info']=M('studentInfo')->where(array('openId' => $value['openid']))->find();
- //                $quesList  = D('Questionbank')->getQuesList($value['id']);
- //            }
- //            // dump($quesList);
-
- //            $this->assign('length',COUNT($quesList));
- //            // $this->assign('me',$me);
- //            $this->assign('quesList',$quesList);
- //            $this->display('index');
-
- //        }
-
- //    }
-
 	
 }
 
