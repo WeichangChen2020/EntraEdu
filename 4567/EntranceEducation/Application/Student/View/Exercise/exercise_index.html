@@ -8,24 +8,48 @@
 	<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 	<link rel="stylesheet" href="__PUBLIC__/css/style.css">
     <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    <style type="text/css">
+        [class*="weui-col-"] {
+          border: 1px solid #ccc;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+        }
+        body{
+          background-color: #12b7f5;
+        }
+        .weui-loadmore_line .weui-loadmore__tips {
+            background-color: #12b7f5; 
+            color: #757575;
+        }
+        .column:first-child{
+          border-top: 0;
+        }
+        .ti{
+          font-size: 0.9rem;
+        }
+        .rank{
+          margin-top: 8px;
+        }
+    </style>
 </head>
 <body ontouchstart>
 	<div class="modal-content">
 	    <volist name="quesList" id="quesList" key="k" >
 	    	<!-- <div class="weui-row weui-no-gutter column" style="height:2.8rem"> -->
-	    		<if condition="($k)%7 eq 1">
+	    		<if condition="($k)%7 eq 1"> 1
 	    			<div class="weui-flex">
 					    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 					    <div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 					    </a>
 					<!-- </div>    -->
-				<elseif condition="($k)%7 eq 0"/>
+				<elseif condition="($k)%7 eq 0"/> 7,
 					<!-- <div class="weui-flex"> -->
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 						<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 						</a>
 					</div>
-				<else />
+				<else /> 2,3,4,5,6
 					<!-- <div class="weui-flex">  -->
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 							<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
@@ -75,7 +99,7 @@
                 } else if ( i%7 == 0 ){
                     str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" +"</div>";
                 } else {
-                    str +=  "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
+                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
