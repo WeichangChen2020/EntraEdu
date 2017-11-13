@@ -24,13 +24,13 @@
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 						<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 						</a>
-					</div>
+					<!-- </div> -->
 				<else />
 					<!-- <div class="weui-flex">  -->
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 							<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 						</a>
-					<!-- </div> -->
+					</div>
 				</if>
             <!-- </div> -->
 		</volist>
@@ -73,9 +73,9 @@
                 if ( i%7 == 1 ) {
                     str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
                 } else if ( i%7 == 0 ){
-                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" +"</div>";
+                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" ;
                 } else {
-                    str +=  "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
+                    str +=  "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>"+"</div>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
