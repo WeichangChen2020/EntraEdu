@@ -8,20 +8,29 @@
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="__PUBLIC__/css/style.css">
         <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
-        <link rel="stylesheet" href="__PUBLIC__/css/rank.css">
 	</head>
 	<body ontouchstart>
-		<div class="rank">
+		<div class="modal-content">
 		    <volist name="quesList" id="quesList" key="k" >
 		    	<div class="weui-row weui-no-gutter column" style="height:2.8rem">
 		    		<if condition="($k)%7 eq 1">
 		    			<div class="weui-flex">
-						    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+						    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
+						    <div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
+						    </a>
+						</div>   
 					<elseif condition="($k)%7 eq 0"/>
-						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-						    </div>
-					<else /> 
-						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
+						<div class="weui-flex">
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
+							<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
+							</a>
+						</div>
+					<else />
+						<div class="weui-flex"> 
+							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
+								<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
+							</a>
+						</div>
 					</if>
 	            </div>
 			</volist>
@@ -78,7 +87,7 @@
                 // str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
             }
 
-            $(".rank").append(str);
+            $(".modal-content").append(str);
         }
     });
     loading = false;
