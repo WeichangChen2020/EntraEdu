@@ -18,19 +18,19 @@
 					    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 					    <div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 					    </a>
-					</div>   
+					<!-- </div>    -->
 				<elseif condition="($k)%7 eq 0"/>
-					<div class="weui-flex">
+					<!-- <div class="weui-flex"> -->
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 						<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 						</a>
 					</div>
 				<else />
-					<div class="weui-flex"> 
+					<!-- <div class="weui-flex">  -->
 						<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}">
 							<div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div>
 						</a>
-					</div>
+					<!-- </div> -->
 				</if>
             </div>
 		</volist>
