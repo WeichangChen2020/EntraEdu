@@ -70,13 +70,15 @@
                 $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
                 return false;
             }
+            
+            console.log(res);
+
 
             //否则添加内容
             for (var i = 0; i < res.length; i++) {
                 //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
-                var quesid = "{$quesList.id}";
-                console.log(quesid);
+                // var quesid = "{$quesList.id}";
                 var j = res[i]['id'];
                 if ( j%7 == 1 ) {
                     str += 
