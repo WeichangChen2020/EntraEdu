@@ -76,9 +76,9 @@
                 //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
                 //var quesid = "{$quesList.id}";
-                if ( i%7 == 1 ) {
+                if ( res[i]['id']%7 == 1 ) {
                     str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
-                } else if ( i%7 == 0 ){
+                } else if ( res[i]['id']%7 == 0 ){
                     str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" +"</div>";
                 } else {
                     str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
