@@ -189,7 +189,7 @@ class ExerciseController extends Controller{
                 //$quesList  = D('Questionbank')->getQuesList($value['id']);
             //}
             // dump($quesList);
-			$quesList = D('Questionbank')->field('id')->limit($start,70)->select();
+			$quesList = D('Questionbank')->field('id')->limit($start,140)->select();
 
             $this->assign('length',COUNT($quesList));
             // $this->assign('me',$me);
