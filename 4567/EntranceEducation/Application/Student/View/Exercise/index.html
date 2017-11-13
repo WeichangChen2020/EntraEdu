@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<title>自由练习</title>
 		<include file="./Public/weui2.0/__head.html"/>
-		<include file="./Public/html/_head.html"/>
 		<link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="__PUBLIC__/css/style.css">
         <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
@@ -17,7 +16,7 @@
             .picker-button {font-size: 14px; color: #3d4145;}
 		</style>
 	</head>
-	<body ontouchstart>
+	<body>
 		<header class="bar bar-nav">
 	        <div class="title">{$quesItem.chapter}</div>
 	        <a href="{:U('Exercise/index')}" class="pull-left"><svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg></a>
@@ -119,11 +118,6 @@
 							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
 						</if>
 					</volist>
-			        <div class="weui-loadmore">
-				      <i class="weui-loading"></i>
-				      <span class="weui-loadmore__tips">正在加载</span>
-				    </div>
-
 		        </div>
 		    </div>
 		</div>
@@ -131,7 +125,7 @@
 		
 	</body>
 </html>
-<include file="./Public/html/_foot.html"/>
+
 <include file="./Public/weui2.0/__foot.html"/>
 
 <script type="text/javascript">
@@ -243,55 +237,3 @@
 				}
 			}
 		</script>
-
-<script>
-    var loading = false;  //状态标记
-    $(document.body).infinite().on("infinite", function() {
-    if(loading) return;
-    loading = true;
-
-    setTimeout(function() {
-    $.ajax({
-        url: "{:U('Exercise/loadmore')}",           //请求路径；
-        success: function(res) {
-            var str = '';
-
-            //var number = parseInt($(".num:last").html());
-            //var No = 0;
-
-            //如果没有更多数据，则更改样式
-            if (res == '') {
-                $(".weui-loadmore").addClass(" weui-loadmore_line");
-                $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
-                return false;
-            }
-
-            //否则添加内容
-            for (var i = 0; i < res.length; i++) {
-                //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
-                //No = number + i + 1 ;
-                var quesid = "{$quesList.id}";
-                if ( i%7 == 1 ) {
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
-                } else if ( i%7 == 0 ){
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
-                } else {
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+quesid+"</div></a>" +"</div>";
-                }
-                // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
-
-                // if (res[i]['info']['class'] == '') {
-                //     str += '非新生用户';
-                // } else {
-                //     str += res[i]['info']['class'];
-                // }
-                // str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['sum(result)'] + "&nbsp;<span class='ti'>题</span></div></div></div>"
-            }
-
-            $(".modal-content").append(str);
-        }
-    });
-    loading = false;
-    }, 500);   //模拟延迟
-});
-</script>
