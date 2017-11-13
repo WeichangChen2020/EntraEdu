@@ -80,7 +80,7 @@
                 if ( j%7 == 1 ) {
                     str += 
                     "<div class= 'weui-flex'>" +                  
-                    "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap',array('quesid'=>j))}\">"
+                    "<a class='weui-flex__item' href=\"{:U('Exercise/exercise_chap')}/quesid/"+j+"\">"
                     +"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+j+"</div>"
                     +"</a>";
                 } else if ( j%7 == 0 ){
