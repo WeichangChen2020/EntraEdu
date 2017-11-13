@@ -166,7 +166,8 @@ class ExerciseController extends Controller{
             // var_dump($quesList);
             // $this->ajaxReturn($quesList);
             $quesList = D('Questionbank')->field('id')->limit($start,70)->select();
-			$this->assign('quesList', $quesList)->display();
+            $this->ajaxReturn($quesList);
+			//$this->assign('quesList', $quesList)->display();
         } 
         else 
         {
@@ -188,13 +189,12 @@ class ExerciseController extends Controller{
                 //$quesList  = D('Questionbank')->getQuesList($value['id']);
             //}
             // dump($quesList);
+			$quesList = D('Questionbank')->field('id')->limit($start,70)->select();
 
-            // $this->assign('length',COUNT($quesList));
+            $this->assign('length',COUNT($quesList));
             // $this->assign('me',$me);
-            // $this->assign('quesList',$quesList);
-            // $this->display('index');
-            $quesList = D('Questionbank')->field('id')->limit($start,140)->select();
-            $this->assign('quesList', $quesList)->display();
+            $this->assign('quesList',$quesList);
+            $this->display();
 
         }
 	}
