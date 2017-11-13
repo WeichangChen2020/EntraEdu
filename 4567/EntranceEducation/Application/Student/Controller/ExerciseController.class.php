@@ -143,7 +143,7 @@ class ExerciseController extends Controller{
 
 	public function exercise_index() {
 
-		$quesList = D('Questionbank')->field('id')->select();
+		$quesList = D('Questionbank')->field('id')->limit(70)->select();
 
 		$this->assign('quesList', $quesList)->display();
 
