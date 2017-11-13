@@ -157,6 +157,7 @@ class ExerciseController extends Controller{
                 $start = 0;
             }
             $quesList = D('Questionbank')->field('id')->limit($start,140)->select();
+            var_dump($quesList);
             $this->ajaxReturn($quesList);
 			//$this->assign('quesList', $quesList)->display();
         } 
