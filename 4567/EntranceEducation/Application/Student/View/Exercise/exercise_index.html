@@ -72,20 +72,16 @@
             }
 
             //否则添加内容
-            for (var i = 1; i <= res.length; i++) {
+            for (var i = 0; i < res.length; i++) {
                 //str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
                 //No = number + i + 1 ;
                 //var quesid = "{$quesList.id}";
-                //alert(res[i]['id']);
                 if ( i%7 == 1 ) {
-                	var j=i-1;
-                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[j]['id']+"</div></a>";
+                    str += "<div class= 'weui-flex'>" + "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
                 } else if ( i%7 == 0 ){
-                	var j=i-1;
-                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[j]['id']+"</div></a>" +"</div>";
+                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>" +"</div>";
                 } else {
-                	var j=i-1;
-                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[j]['id']+"</div></a>";
+                    str += "<a class='weui-flex__item' href='{$quesList.id|get_exercise_url_css=###}'>"+"<div class='{$quesList.id|get_exsercise_index_css=###}'>"+res[i]['id']+"</div></a>";
                 }
                 // str += "<div class='NAC'><div class='name'>"+ res[i]['info']['name'] +"&nbsp;</div><div class='class'>";
 
