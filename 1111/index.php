@@ -76,12 +76,8 @@ class wechatCallbackapiTest
           			{ 
             		    $msgType = "text";
                         $contentStr = "
-						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">初始界面</a> 
-						发送2：<a href=\"http://".$app_name.".sinaapp.com/communication/documents.php\">资料下载</a>
-						发送3：<a href=\"http://".$app_name.".sinaapp.com/test/ceshi.php?id=$postObj->FromUserName\">习题练习</a>
-						发送4：<a href=\"http://7.cprogramplatform.sinaapp.com/kec/prepare1.php?id=$postObj->FromUserName\">翻转课堂</a>
-						发送5：<a href=\"http://".$app_name.".sinaapp.com/score_ex/grade_personal.php?id=$postObj->FromUserName\">查看成绩</a>
-						发送6：<a href=\"http://".$app_name.".sinaapp.com/score_ex/mid_term.php?id=$postObj->FromUserName\">查期中考试成绩</a>
+						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
+				
 						发送地理位置信息：点名
 						发送？：平台使用菜单 
 						";        
