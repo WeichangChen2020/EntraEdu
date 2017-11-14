@@ -6,7 +6,7 @@ $appsecret = "635f5e327e4c8c2f70744690d9a1e02a";
 
 
 
-$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx913b2486f97088cb&secret=635f5e327e4c8c2f70744690d9a1e02a";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
