@@ -98,32 +98,32 @@ class wechatCallbackapiTest
 						echo $resultStr;
 						
 					}
-					if($keyword == '2'){
-						$msgType = "text";
-						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-					}
-					if($keyword == '3'){
-						$msgType = "text";
-						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/index";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-					}
-					if($keyword == '4'){
-						$msgType = "text";
-						$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/wrong";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-					}
-					if($keyword == 'cd'){
-						$msgType = "text";
+					// if($keyword == '2'){
+					// 	$msgType = "text";
+					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
+					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					// 	echo $resultStr;
+					// }
+					// if($keyword == '3'){
+					// 	$msgType = "text";
+					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/index";
+					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					// 	echo $resultStr;
+					// }
+					// if($keyword == '4'){
+					// 	$msgType = "text";
+					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/wrong";
+					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					// 	echo $resultStr;
+					// }
+					// if($keyword == 'cd'){
+					// 	$msgType = "text";
 
-                        //$contentStr = "<a href=\"8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
-                        $contentStr = "<a href=\"http://8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-					}
+     //                    //$contentStr = "<a href=\"8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
+     //                    $contentStr = "<a href=\"http://8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
+					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					// 	echo $resultStr;
+					// }
 					else 
 						echo "欢迎关注计算机网络在线教学平台！";
                 }else{
