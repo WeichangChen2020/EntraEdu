@@ -1,9 +1,10 @@
 <?php
-
-
-
 $appid = "wx913b2486f97088cb";
 $appsecret = "635f5e327e4c8c2f70744690d9a1e02a";
+
+
+
+
 
 $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
 
@@ -17,18 +18,9 @@ curl_close($ch);
 $jsoninfo = json_decode($output, true);
 $access_token = $jsoninfo["access_token"];
 
+
 var_dump($access_token);
 die();
-
-
-
-
-
-
-
-
-
-
 
 
 
