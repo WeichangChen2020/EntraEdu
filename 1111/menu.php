@@ -15,10 +15,13 @@ $access_token = $de_json["access_token"];
 
 var_dump($content);
 echo "</br>";
+echo "</br>";
 var_dump($de_json);
 echo "</br>";
+echo "</br>";
 var_dump($access_token);
-
+echo "</br>";
+echo "</br>";
 
 
 
