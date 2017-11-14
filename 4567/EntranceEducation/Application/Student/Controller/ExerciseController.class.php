@@ -70,10 +70,10 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
-		// foreach ($quesList as $key => &$value) {
-		// 	$value['url'] = 1;
-		// 	$value['css'] = 2;
-		// }
+		foreach ($quesList as $key => &$value) {
+			$value['url'] = 1;
+			$value['css'] = 2;
+		}
 
 		p($quesList);die;
 
