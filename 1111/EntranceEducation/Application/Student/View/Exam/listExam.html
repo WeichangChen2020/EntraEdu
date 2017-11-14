@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>    
+    <head>
+        <title>模拟考试</title>
+        <include file="./Public/weui2.0/__head.html"/>
+        
+         <style type="text/css">
+            .icon {width: 20px; height: 20px; float: left; margin-top: 0; margin-right: 5px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
+        </style>
+    
+    <body ontouchstart>
+
+        <div class="bd">
+            <div class="page__bd">
+                <div class="weui-cells__title">考试列表</div>
+                <div class="weui-panel weui-panel_access">
+                    <div class="weui-panel__bd">
+                        <volist name="listExam" id="listExam" empty="暂时没有考试">
+                            <if condition="1 eq is_on_college($listExam['id'])">
+                                <a href="{:U('Student/Exam/index',array('examid'=>$listExam['id']))}" class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">{$listExam.title}</h4>
+                                        <p class="weui-media-box__desc">考试时间：{$listExam.start_time|get_endtime=###,$listExam['set_time']}</p>
+                                    </div>
+                                </a>
+                            </if>
+                        </volist>
+                        
+                        <!-- <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                            <div class="weui-media-box__bd">
+                                <h4 class="weui-media-box__title">第二次模拟考试</h4>
+                                <p class="weui-media-box__desc">截止时间：10月08日</p>
+                            </div>
+                        </a> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+<include file="./Public/html/_foot.html"/>
