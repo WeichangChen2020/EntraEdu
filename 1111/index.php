@@ -142,7 +142,8 @@ class wechatCallbackapiTest
                 $content = "";
                 $content="<a href=\"http://".$app_name.".applinzi.com/register/register.php?id=$postObj->FromUserName\">注册个人信息</a>";
                 $result = $this->transmitText($postObj,$content);
-                echo $result;                  
+                echo $result;
+                echo 24323232;
             }
 
             if( $keyword  == "2")
