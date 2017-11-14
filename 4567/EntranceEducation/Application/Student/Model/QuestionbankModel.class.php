@@ -228,7 +228,7 @@ class QuestionbankModel extends Model{
 		);
 		
 		$quesList = $Model->join('left join exercise ON exercises.quesid = questionbank.id')
-					     ->where($map)->limit(42)
+					     // ->where($map)->limit(42)
 					     ->select();
 		
 		return $quesList;
