@@ -75,7 +75,8 @@ class ExerciseController extends Controller{
 				'openid' => $openid,
 				'quesid' => $value['id'],
 		 	);
-			$result =  M('exercise')->where($map)->getField('result');
+			// $result =  M('exercise')->where($map)->getField('result');
+			$result =  1;
 
 			if(!isset($result)) {
 				$value['css'] = 'placeholder';
