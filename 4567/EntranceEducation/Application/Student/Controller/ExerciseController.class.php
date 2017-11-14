@@ -69,7 +69,7 @@ class ExerciseController extends Controller{
 		}
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
-		$quesList  = D('Questionbank')->getQuesList($quesid);
+		$quesList  = D('Questionbank')->getQuesList($quesid, $openid);
 		/*foreach ($quesList as $key => &$value) {
 			$map = array(
 				'openid' => $openid,
