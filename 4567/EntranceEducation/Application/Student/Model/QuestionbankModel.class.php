@@ -218,16 +218,21 @@ class QuestionbankModel extends Model{
 	 * @var openid
 	 * @return arrayList( 'quesid', 'result')
 	 */
-	public function getQuesList($quesid) {
+	public function getQuesList($quesid, $openid) {
 
-		$EXER = D('exercise');
 		$map = array(
-			'id' => array('gt', $quesid - 7),
+			'questionbank.id' => array('gt', $quesid - 7),
+			'exercise.openid' => $openid,
 		);
 		
-		$quesList = $this->where($map)->field('id', 'result')->limit(42)->select();
+		$quesList = $this->join('left join exercise ON exercises.quesid = questionbank.id')
+					     ->where($map)->limit(42)
+					     ->select();
 		
 		return $quesList;
+
+
+
 	}
 
 
