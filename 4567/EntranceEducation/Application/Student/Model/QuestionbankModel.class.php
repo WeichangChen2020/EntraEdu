@@ -225,7 +225,7 @@ class QuestionbankModel extends Model{
 			'id' => array('gt', $quesid - 7),
 		);
 		
-		$quesList = $this->where($map)->field('id')->limit(70)->select();
+		$quesList = $this->where($map)->field('id')->limit(42)->select();
 		
 		return $quesList;
 	}
