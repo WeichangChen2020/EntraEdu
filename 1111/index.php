@@ -140,10 +140,10 @@ class wechatCallbackapiTest
             if( $keyword  == "1")
             {   
                 $content = "";
-                $content="<a href=\"http://".$app_name.".applinzi.com/register/register.php?id=$postObj->FromUserName\">注册个人信息</a>";
+                $content="<a href=\"http://".$app_name.".applinzi.com/register/register.php?id=$postObj->FromUserName\">注册个人信息2333</a>";
                 $result = $this->transmitText($postObj,$content);
                 echo $result;
-                echo 24323232;
+              
             }
 
             if( $keyword  == "2")
