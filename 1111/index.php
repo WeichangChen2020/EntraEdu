@@ -8,6 +8,10 @@
 header('Content-type:text');
 define("TOKEN", "weixin");
 
+define('APP_ID', 'wx913b2486f97088cb');//改成自己的APPID 
+define('APP_SECRET', '635f5e327e4c8c2f70744690d9a1e02a');//改成自己的APPSECRET 
+
+
 $wechatObj = new wechatCallbackapiTest();
 if (!isset($_GET['echostr'])) {
 	$wechatObj->responseMsg();
