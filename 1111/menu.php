@@ -14,7 +14,7 @@ $access_token = $jsoninfo["access_token"];
 
 
 
-var_dump($access_token);
+var_dump($content);
 die();
 
 
