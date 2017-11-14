@@ -13,12 +13,7 @@ $de_json = json_decode($content,TRUE);
 $access_token = $de_json["access_token"];
 
 
-var_dump($content);
-echo "</br>";
-var_dump($de_json);
-echo "</br>";
-var_dump($access_token);
-die();
+
 
 
 
