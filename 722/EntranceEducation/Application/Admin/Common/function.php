@@ -80,16 +80,53 @@ function getUnsubmitNum($id) {
 	return $num;
 }
 /**
- * getResult($name) 获取$name的提交数及正确数
+ * getResult($openid) 获取$name的提交数及正确数
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-10-29 15:14Authors
  * @var $id  考试id
  * @return String 正确数|提交数
  */
-function getResult($name) {
-	$openid = D('StudentInfo')->getOpenid($name);
+function getResult($openid) {
 	$result = D('Exercise')->getResult($openid);
 	return $result;
+}
+/**
+ * getNameByOpenid($openid) 获取$openid的名字
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-7 15:33Authors
+ * @var $openid  
+ * @return String name
+ */
+function getNameByOpenid($openid) {
+	$info = D('StudentInfo')->getInfo($openid);
+	return $info['0']["name"];
+}
+
+/**
+ * getClassByOpenid($openid) 获取$openid的班级
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-7 15:37Authors
+ * @var $openid  
+ * @return String class
+ */
+function getClassByOpenid($openid) {
+	$info = D('StudentInfo')->getInfo($openid);
+	if ($info['0']['class'] == '') {
+		return '非新生';
+	}
+	return $info['0']['class'];
+}
+
+/**
+ * getNumberByOpenid($openid) 获取$openid的学号
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-7 15:37Authors
+ * @var $openid  
+ * @return String Number
+ */
+function getNumberByOpenid($openid) {
+	$info = D('StudentInfo')->getInfo($openid);
+	return $info['0']['number'];
 }
 
  ?>

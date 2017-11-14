@@ -60,11 +60,15 @@ class ExamCollegeModel extends Model {
 	public function getExamList($college) {
 		if (empty($college)) {
 			$examList = D('ExamSetup')->select();
+
 			return $examList;
 		}else {
-			$Model = new \Think\Model();
-			$sql = "SELECT examid FROM  ee_exam_college WHERE academy = '$college'";
-			$res = $Model->query($sql);
+			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->field('examid')->select();
+			$res = array();
+			foreach ($idList as $key => $value) {
+				$res[$key] = M('ExamSetup')->where(array('id'=>$value['examid']))->find();
+			}
+
 			if (empty($res)) {
 				return false;
 			}
