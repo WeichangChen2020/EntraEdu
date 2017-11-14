@@ -108,16 +108,10 @@
 					<!-- 分 首列 尾列 都不是 三种情况考虑 -->
 
 		        	<volist name="quesList" id="quesList" key="k" >
-		        		<if condition="($k)%7 eq 1">
-		        			<div class="weui-flex">
-							    <a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-						<elseif condition="($k)%7 eq 0"/>
+		        		
 							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-							    </div>
-						<else /> 
-							<a class="weui-flex__item" href="{$quesList.id|get_exercise_url_css=###}"><div class="{$quesList.id|get_exsercise_index_css=###}">{$quesList.id}</div></a>
-						</if>
 					</volist>
+
 		        </div>
 		    </div>
 		</div>
