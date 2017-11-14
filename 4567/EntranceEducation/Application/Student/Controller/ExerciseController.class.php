@@ -70,7 +70,7 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid, $openid);
-		foreach ($quesList as $key => &$value) {
+		/*foreach ($quesList as $key => &$value) {
 			$map = array(
 				'openid' => $openid,
 				'quesid' => $value['id'],
@@ -88,9 +88,9 @@ class ExerciseController extends Controller{
 				$value['css'] = 'placeholder-wrong';
 				$value['url'] = 'javascript:;';
 			}
-		}
+		}*/
 
-		p($quesList);die;
+		// p($quesList);die;
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
