@@ -224,11 +224,11 @@ class QuestionbankModel extends Model{
 
 		$map = array(
 			'ee_questionbank.id' => array('gt', $quesid - 7),
-			'ee_exercise.openid' => $openid,
 		);
 		
-		$quesList = $Model->join('left join ee_exercise ON ee_exercise.quesid = ee_questionbank.id')
-					     ->where($map)->limit(42)
+		$quesList = $Model->where($map)->limit(42)
+						->join('left join ee_exercise ON ee_exercise.quesid = ee_questionbank.id')
+					     ->where(array('ee_questionbank.openid'=>$openid))
 					     ->select();
 		
 		return $quesList;
