@@ -10,7 +10,8 @@ $output = https_request($url);
 $jsoninfo = json_decode($output, true);
 
 $access_token = $jsoninfo["access_token"];
-
+var_dump($access_token);
+die();
 
 $jsonmenu = '{
       "button":[
