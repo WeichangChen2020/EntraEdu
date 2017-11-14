@@ -71,8 +71,22 @@ class ExerciseController extends Controller{
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
 		foreach ($quesList as $key => &$value) {
-			$value['url'] = 1;
-			$value['css'] = 2;
+			$map = array(
+				'openid' => $openid,
+				'quesid' => $value['id'],
+		 	);
+			$result =  M('exercise')->where($map)->getField('result');
+
+			if(!isset($result)) {
+				$value['css'] = 'placeholder';
+				$value['url'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));
+			} else if ($result == 1) {
+				$value['css'] = 'placeholder-right';
+				$value['url'] = 'javascript:;';
+			} else {
+				$value['css'] = 'placeholder-wrong';
+				$value['url'] = 'javascript:;';
+			}
 		}
 
 		p($quesList);die;
