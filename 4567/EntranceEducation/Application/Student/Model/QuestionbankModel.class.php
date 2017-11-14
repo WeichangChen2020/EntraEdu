@@ -220,16 +220,12 @@ class QuestionbankModel extends Model{
 	 */
 	public function getQuesList($quesid, $openid) {
 
-		$Model = M('questionbank');
-
+		$EXER = D('exercise');
 		$map = array(
-			'ee_questionbank.id' => array('gt', $quesid - 7),
+			'id' => array('gt', $quesid - 7),
 		);
 		
-		$quesList = $Model->where($map)->limit(42)
-						->join('left join ee_exercise ON ee_exercise.quesid = ee_questionbank.id')
-					     ->where(array('ee_questionbank.openid'=>$openid))
-					     ->select();
+		$quesList = $this->where($map)->field('id')->limit(70)->select();
 		
 		return $quesList;
 
