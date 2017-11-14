@@ -76,7 +76,7 @@ class wechatCallbackapiTest
           			{ 
             		    $msgType = "text";
                         $contentStr = "
-						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index\">初始界面</a> 
+						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">初始界面</a> 
 						发送2：<a href=\"http://".$app_name.".sinaapp.com/communication/documents.php\">资料下载</a>
 						发送3：<a href=\"http://".$app_name.".sinaapp.com/test/ceshi.php?id=$postObj->FromUserName\">习题练习</a>
 						发送4：<a href=\"http://7.cprogramplatform.sinaapp.com/kec/prepare1.php?id=$postObj->FromUserName\">翻转课堂</a>
