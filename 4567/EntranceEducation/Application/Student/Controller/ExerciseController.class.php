@@ -70,7 +70,7 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
-		foreach ($quesList as $key => &$value) {
+		/*foreach ($quesList as $key => &$value) {
 			$map = array(
 				'openid' => $openid,
 				'quesid' => $value['id'],
@@ -88,7 +88,7 @@ class ExerciseController extends Controller{
 				$value['css'] = 'placeholder-wrong';
 				$value['url'] = 'javascript:;';
 			}
-		}
+		}*/
 
 		p($quesList);die;
 
