@@ -70,6 +70,12 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
+		foreach ($quesList as $key => &$value) {
+			$value['url'] = 1;
+			$value['css'] = 2;
+		}
+
+		p($quesList);die;
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
