@@ -19,7 +19,7 @@ class StatisController extends Controller
 
             $map = array(
                 'gt' => date('Y-m-d H:i', $time),
-                'lt' => date('Y-m-d H:i', $time + 60);
+                'lt' => date('Y-m-d H:i', $time + 60),
             );
             $dataArray[] = D('Exercise')->where($map)->count();
         }
