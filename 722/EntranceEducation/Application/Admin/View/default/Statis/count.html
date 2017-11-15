@@ -63,24 +63,28 @@ option = {
 
 
 url = "{:U('Statis/data')}";
+myChart.setOption(option);
 // url = 'http://newer.gailvlunpt.com/EntranceEducation/admin.php/Statis/data';
-// setInterval(function () {
+setInterval(function () {
     
     $.get(url).done(function (data) {
 	    // 填入数据
 	    myChart.setOption({
 	        xAxis: {
+                // data : [1,2,3]
 	            data: data.x_data
 	        },
 	        series: [{
 	            // 根据名字对应到相应的系列
-	            name: '销量',
 	            data: data.y_data
+                // data:[4,5,6],
+                
+
 	        }]
 	    });
 	});
 
-// }, 1000);
+}, 1000);
 
 
 
