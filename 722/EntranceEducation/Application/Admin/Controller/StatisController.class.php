@@ -17,10 +17,8 @@ class StatisController extends Controller
             $time = $now - 3600 + 60 * $i;
             $timeArray[] = date('Y-m-d H:i', $time);
 
-            $map = array(
-                'gt' => date('Y-m-d H:i', $time),
-                'lt' => date('Y-m-d H:i', $time + 60),
-            );
+            
+            $map['time']  = array('between',array(date('Y-m-d H:i', $time),date('Y-m-d H:i', $time+60)));
             $dataArray[] = D('Exercise')->where($map)->count();
         }
 
