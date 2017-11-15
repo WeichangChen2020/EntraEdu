@@ -22,7 +22,7 @@
 var myChart = echarts.init(document.getElementById('main'));
 option = {
     title : {
-        text: '过去1小时答题情况',
+        text: '过去3小时答题情况',
         subtext: '浙江工商大学新生事业教育平台试试答题数据'
     },
     tooltip : {
@@ -61,7 +61,6 @@ option = {
 
  // 使用刚指定的配置项和数据显示图表。
 
-
 url = "{:U('Statis/data')}";
 myChart.setOption(option);
 // url = 'http://newer.gailvlunpt.com/EntranceEducation/admin.php/Statis/data';
@@ -71,15 +70,11 @@ setInterval(function () {
 	    // 填入数据
 	    myChart.setOption({
 	        xAxis: {
-                // data : [1,2,3]
 	            data: data.x_data
 	        },
 	        series: [{
 	            // 根据名字对应到相应的系列
 	            data: data.y_data
-                // data:[4,5,6],
-                
-
 	        }]
 	    });
 	});
