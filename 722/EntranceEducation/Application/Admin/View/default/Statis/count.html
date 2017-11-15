@@ -1,0 +1,91 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="__PUBLIC__/admin/js/echarts.common.min.js"></script>
+    <script src="__PUBLIC__/admin/js/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 1200px;height:600px;"></div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+
+
+var myChart = echarts.init(document.getElementById('main'));
+option = {
+    title : {
+        text: '过去1小时答题情况',
+        subtext: '纯属虚构'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['最高气温']
+    },
+    
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : []
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value}'
+            }
+        }
+    ],
+    series : [
+        {
+            name:'最高气温',
+            type:'line',
+            data:[],
+        },
+        
+    ]
+};
+
+
+ // 使用刚指定的配置项和数据显示图表。
+
+
+url = "{:U('Statis/data')}";
+// url = 'http://newer.gailvlunpt.com/EntranceEducation/admin.php/Statis/data';
+setInterval(function () {
+    
+    $.get(url).done(function (data) {
+	    // 填入数据
+	    myChart.setOption({
+	        xAxis: {
+	            data: data.x_data
+	        },
+	        series: [{
+	            // 根据名字对应到相应的系列
+	            name: '销量',
+	            data: data.y_data
+	        }]
+	    });
+	});
+
+}, 1000);
+
+
+
+
+
+</script>
+
+
