@@ -23,8 +23,8 @@ class StatisController extends Controller
         }
 
         $data = array($timeArray, $dataArray);
-        echo "<pre>";
-        var_dump($data);die;
+        
+        $this->ajaxReturn($data);
 
         
 
