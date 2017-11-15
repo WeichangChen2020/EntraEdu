@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div id="main" style="width: 1200px;height:600px;"></div>
+    <div id="main" style="width: 1200px;height:800px;"></div>
 
 </body>
 </html>
@@ -23,13 +23,13 @@ var myChart = echarts.init(document.getElementById('main'));
 option = {
     title : {
         text: '过去1小时答题情况',
-        subtext: '纯属虚构'
+        subtext: '浙江工商大学新生事业教育平台试试答题数据'
     },
     tooltip : {
         trigger: 'axis'
     },
     legend: {
-        data:['最高气温']
+        data:['']
     },
     
     calculable : true,
@@ -50,7 +50,7 @@ option = {
     ],
     series : [
         {
-            name:'最高气温',
+            name:'事实答题量',
             type:'line',
             data:[],
         },
