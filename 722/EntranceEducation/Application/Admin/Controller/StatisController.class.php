@@ -22,7 +22,10 @@ class StatisController extends Controller
             $dataArray[] = D('Exercise')->where($map)->count();
         }
 
-        $data = array($timeArray, $dataArray);
+        $data = array(
+            'x_data'=>$timeArray, 
+            'y_data'=>$dataArray
+        );
         
         $this->ajaxReturn($data);
 
