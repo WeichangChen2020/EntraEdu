@@ -25,7 +25,7 @@
 		    <a class="" href="javascript:;">
 		        <div class="tx_box">
 		            <div class="tx">
-		                <img class="tx" src="{$stu_info.headimgurl|default='__PUBLIC__/images/newer/xsc_logo.jpg'}"></div>
+		                <img class="tx" src="{$stu_info.headimgurl|default='__PUBLIC__/images/newer/ieee_logo.jpg'}"></div>
 		            <ul>
 		            	<li>{$stu_info.name|default='张电子'}</li>
 		                <li class="info">
@@ -41,35 +41,55 @@
 		
         <!-- <div class="annoce">公告<span class="separ">|</span>距平台投入使用<span id="t_d">00天</span> <span id="t_h">00时</span> <span id="t_m">00分</span><span id="t_s">00秒</span></div> -->
         
-		<div class="weui-cells__title">考前练习</div>
+		<div class="weui-cells__title">课前</div>
 
         <div class="weui-grids">
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+<!--                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon_nav_city"></use></svg> -->
+                    <img src="__PUBLIC__/images/icon_nav_city.png">
+                </div>
+                <p class="weui-grid__label">在线签到</p>
+            </a>        
             <a href="{:U('Exercise/index')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg></div>
-                <p class="weui-grid__label">自由练习</p></a>
-            <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg></div>
-                <p class="weui-grid__label">模拟考试</p></a>
-            <a href="{:U('Rework/chose')}" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    
-                      <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mistakebook"></use></svg>  
-
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg>
                 </div>
-                <p class="weui-grid__label">错题回顾</p></a>
+                <p class="weui-grid__label">自由练习</p>
+            </a>
+            <a href="{:U('Rework/chose')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">                   
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mistakebook"></use></svg>  
+                </div>
+                <p class="weui-grid__label">错题回顾</p>
+            </a>            
         </div>
 
-		<div class="weui-cells__title" style="border: 0;">与我相关</div>
+        <div class="weui-cells__title" style="border: 0;">课中</div>
         <div class="weui-grids">
-            <a href="{:U('Record/record')}" class="weui-grid js_grid">
+            <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg>
+                </div>
+                <p class="weui-grid__label">随堂测试</p>
+            </a>
+        </div>
+
+		<div class="weui-cells__title" style="border: 0;">课后</div>
+        <div class="weui-grids">
+<!--             <a href="{:U('Record/record')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-lianxi"></use>
                 	</svg></div>
                 <p class="weui-grid__label">答题记录</p>
-            </a>
+            </a> -->
+            <a href="#" class="weui-grid js_grid">
+                <div class="weui-grid__icon">                   
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-xueshenggongzuoguanli"></use></svg>  
+                </div>
+                <p class="weui-grid__label">课后作业</p>
+            </a>             
             <a href="{:U('Collect/recordList')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
@@ -82,8 +102,10 @@
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-rank"></use>
                     </svg></div>
-                <p class="weui-grid__label">成绩与排名</p>
+                <p class="weui-grid__label">积分排名</p>
             </a>
+           
+
            <!--  <a href="javascript:alert('尚未开放！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
@@ -98,8 +120,9 @@
         
         <div class="weui-footer">
             <p class="weui-footer__links">
-                <a href="" class="weui-footer__link">新生始业教育平台 首页</a></p>
-            <p class="weui-footer__text">Copyright © 2017 浙江工商大学学生处</p></div>
+                <a href="" class="weui-footer__link">计算机网络平台 首页</a></p>
+            <p class="weui-footer__text">Copyright © 2017 浙江工商大学信电学院“私人订制”</p>
+        </div>
         
         
         <include file="./Public/weui2.0/__foot.html"/>
