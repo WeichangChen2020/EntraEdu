@@ -14,7 +14,7 @@ class StatisController extends Controller
         // $timeArray = new array();
         for($i=1;$i<=180;$i++){
             
-            $time = $now - 3600 + 60 * $i;
+            $time = $now - 3 * 60 * 60 + 60 * $i;
             $timeArray[] = date('Y-m-d H:i', $time);
 
             
