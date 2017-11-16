@@ -28,15 +28,14 @@ class StatisController extends Controller
         );
         
         $this->ajaxReturn($data);
+    }
 
-        
 
+    public function sum() {
 
-     //    $data = array(	
-    	// 	'categories' => array("衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜1子"),
-    	// 	'data' => array(5, 20, 36, 10, 10, 20),
-    	// );
-    	// $this->ajaxReturn($data);
+        $sum = $this->count();
+
+        $this->ajaxReturn($sum);
     }
 
 
