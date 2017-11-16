@@ -308,7 +308,7 @@ $.animateToPrice(123 / 100);
 //   number = number + parseFloat((Math.random() * 1000).toFixed(2));
 //   $.animateToPrice(number);
 // });
-var url = "{:U('sum')}";
+var url = "{:U('getSum')}";
 setInterval(function () {
     
     $.get(url).done(function (data) {
