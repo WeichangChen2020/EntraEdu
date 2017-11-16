@@ -33,7 +33,7 @@ class StatisController extends Controller
 
     public function sum() {
 
-        $sum = $this->count();
+        $sum = D('Exercise')->count();
 
         $this->ajaxReturn($sum);
     }
