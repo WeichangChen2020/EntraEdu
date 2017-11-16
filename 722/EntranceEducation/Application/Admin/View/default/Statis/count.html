@@ -64,6 +64,21 @@ option = {
 url = "{:U('Statis/data')}";
 myChart.setOption(option);
 // url = 'http://newer.gailvlunpt.com/EntranceEducation/admin.php/Statis/data';
+
+$.get(url).done(function (data) {
+        // 填入数据
+    myChart.setOption({
+        xAxis: {
+            data: data.x_data
+        },
+        series: [{
+            // 根据名字对应到相应的系列
+            data: data.y_data
+        }]
+    });
+});
+
+    
 setInterval(function () {
     
     $.get(url).done(function (data) {
