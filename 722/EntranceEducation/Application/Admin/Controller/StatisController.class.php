@@ -31,7 +31,7 @@ class StatisController extends Controller
     }
 
 
-    public function sum() {
+    public function getSum() {
 
         $sum = D('Exercise')->count();
 
