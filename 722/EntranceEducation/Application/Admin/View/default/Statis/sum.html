@@ -246,16 +246,20 @@ $.animateToPrice = function(price){
   });
 };
 
-$.animateToPrice(123/100);
 
 
 url = "{:U('Statis/getSum')}";
+
+$.get(url).done(function (data) {
+
+	$.animateToPrice(data/100);
+
+});
+
 setInterval(function () {
     $.get(url).done(function (data) {
-	    console.log(data);
 		$.animateToPrice(data/100);
-
 	});
 
-}, 3000);
+}, 2000);  //每2秒统计一次
 </script>
