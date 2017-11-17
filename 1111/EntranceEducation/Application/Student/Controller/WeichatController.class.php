@@ -385,8 +385,8 @@ class WeichatController extends Controller{
     }
 
     public function getJssdkPackage(){
-        $appid     = 'wxb0c98aa1d0019242';
-        $appsecret = '906e2e3803f51e05adbb382afb4e8176';
+        $appid     = 'wx913b2486f97088cb';
+        $appsecret = '635f5e327e4c8c2f70744690d9a1e02a';
 
         $jssdk = new Jssdk($appid, $appsecret);
         return $jssdk->GetSignPackage();
