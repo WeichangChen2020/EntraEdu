@@ -33,18 +33,18 @@ class StudentListModel extends Model {
 	 * @var   
 	 * @return  array()
 	 */
-	public function getCollegeList(){
+	// public function getCollegeList(){
 
-		$sql = "SELECT DISTINCT academy FROM  ee_student_list";
+	// 	$sql = "SELECT DISTINCT academy FROM  cn_student_list";
 		
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
+	// 	$Model = new \Think\Model();
+	// 	$res = $Model->query($sql);
 
-		if (empty($res)) {
-			return false;
-		}
+	// 	if (empty($res)) {
+	// 		return false;
+	// 	}
 
-		return $res;
-	}
+	// 	return $res;
+	// }
  
 }
