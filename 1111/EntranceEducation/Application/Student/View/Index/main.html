@@ -155,8 +155,8 @@
             setTimeout(function(){
                 wx.getLocation({
                     success:function(res){
-                        // alert(res);
-                        console.log(res);
+                        // console.log(res);
+                        upload(res);
                     }
 
                 });
