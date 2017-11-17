@@ -81,7 +81,14 @@ class IndexController extends Controller {
      * @return 
      */
     public function main() {
+        $weixin       = new WeichatController();
+        $signPackage  = $weixin->getJssdkPackage();
+        // var_dump($signPackage);
+        // die();
+        $this->assign('signPackage',$signPackage);
+        // $this->assign('AAA','23333');
         $this->display();
+        
     }
     
 }
