@@ -28,7 +28,7 @@ class SigninController extends Controller{
         $openId = I('openId');
         session('openId',$openId);
 
-        $cond['accuracy']  = array('NEQ','');  //精度accurcy，是v3.0版本特加的变量，依次区别是新的版本
+        $cond['accuracy']  = array('NEQ','');  //精度accurcy，是v3.0版本特加的变量，依次区别是新的版本，不等于空
         $signinList        = M('teacher_signin')->where($cond)->order('time desc')->select();
         foreach ($signinList as $key => $value) {
             $signinList[$key]['isSignin']  = $this->isSignin($openId,$signinList[$key]['id']);
