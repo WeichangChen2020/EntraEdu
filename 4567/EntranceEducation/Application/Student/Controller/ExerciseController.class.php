@@ -181,15 +181,7 @@ class ExerciseController extends Controller{
         }
 	}
 
-	
-	public function getProgress(){
 
-		$openid = session('openId');
-		$progress = D('Questionbank')->getQuesNum($openid);
-		$percent = $progress['finish_num'] / $progress['num'];
-		$this->ajaxReturn($percent);
-
-	}
 
 	
 }
