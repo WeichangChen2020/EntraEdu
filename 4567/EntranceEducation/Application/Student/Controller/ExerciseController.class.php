@@ -69,28 +69,8 @@ class ExerciseController extends Controller{
 		}
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
-		$quesList  = D('Questionbank')->getQuesList($quesid, $openid);
-		/*foreach ($quesList as $key => &$value) {
-			$map = array(
-				'openid' => $openid,
-				'quesid' => $value['id'],
-		 	);
-			// $result =  M('exercise')->where($map)->getField('result');
-			$result =  1;
-
-			if(!isset($result)) {
-				$value['css'] = 'placeholder';
-				$value['url'] = U('Exercise/exercise_chap', array('quesid'=>$value['id']));
-			} else if ($result == 1) {
-				$value['css'] = 'placeholder-right';
-				$value['url'] = 'javascript:;';
-			} else {
-				$value['css'] = 'placeholder-wrong';
-				$value['url'] = 'javascript:;';
-			}
-		}*/
-
-		// p($quesList);die;
+		$quesList  = D('Questionbank')->getQuesList($quesid);
+		// p($quesList);//二维数组
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {

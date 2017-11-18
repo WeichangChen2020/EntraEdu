@@ -40,6 +40,7 @@ class ExamController extends Controller{
         $examid   = I('examid');
         session('examid', $examid);
         $examInfo = D('ExamSetup')->getExamInfo($examid);
+
         $this->assign('examInfo', $examInfo);
 
 
@@ -56,6 +57,7 @@ class ExamController extends Controller{
           'is_end'    => 0,
           'is_submit' => 0,
           'is_init'   => 0,
+          'is_college'=> 0,
         )  
      **/
 
@@ -170,16 +172,9 @@ class ExamController extends Controller{
         $openid = session('openId');
         $examid = session('examid');
         $examInfo = D('ExamSetup')->beforeInitExam($openid, $examid);
-        $submit_cond = array(
-            'is_on'     => 1,
-            'is_end'    => 0,
-            'is_submit' => 0,
-            'time_end'  => 0,
-        );
-        unset($examInfo['is_newer']);
-
-        if ($examInfo == $submit_cond) {
-             D('ExamSelect')->where(array('id'=>$selectid))->save($data);
+        
+        if ($examInfo['is_on'] == 1 && $examInfo['is_end'] == 0 && $examInfo['is_submit'] == 0 && $examInfo['time_end'] == 0) {
+            D('ExamSelect')->where(array('id'=>$selectid))->save($data);
         } else {
             $this->ajaxReturn($examInfo);
         }

@@ -218,7 +218,7 @@ class QuestionbankModel extends Model{
 	 * @var openid
 	 * @return arrayList( 'quesid', 'result')
 	 */
-	public function getQuesList($quesid, $openid) {
+	public function getQuesList($quesid) {
 
 		$EXER = D('exercise');
 		$map = array(
@@ -228,9 +228,6 @@ class QuestionbankModel extends Model{
 		$quesList = $this->where($map)->field('id')->limit(70)->select();
 		
 		return $quesList;
-
-
-
 	}
 
 

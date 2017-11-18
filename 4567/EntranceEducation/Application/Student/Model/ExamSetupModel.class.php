@@ -55,6 +55,7 @@ class ExamSetupModel extends Model {
 	        'is_end'    => 0,
 	        'is_submit' => 0,
 	        'time_end'  => 0,
+	        'is_college'=> 0,
         );
         // 是新生
         if (D('StudentInfo')->isNewer($openid)) {
@@ -79,6 +80,11 @@ class ExamSetupModel extends Model {
         // 已经提交过了
         if (D('ExamSubmit')->isSubmit($openid, $examid)) {
         	$info['is_submit'] = 1;
+        }
+
+        // 所在学员是否参与本次考试
+        if (D('ExamCollege')->is_college($openid, $examid)) {
+        	$info['is_college'] = 1;
         }
 
         return $info;

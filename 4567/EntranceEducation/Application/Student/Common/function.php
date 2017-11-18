@@ -179,4 +179,18 @@ function repleace_question_image($contents) {
 }
 
 
+// 在模拟考试页面中是否显示这次openid同学的examid
+function is_on_college($examid) {
+
+	$openid = session('openId');
+
+	if(true === D('ExamCollege')->is_college($openid, $examid)) {
+		return 1;
+	} else {
+		return 0;
+	}
+
+}
+
+
  ?>

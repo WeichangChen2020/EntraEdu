@@ -6,13 +6,12 @@ return array(
 	// 'MODULE_ALLOW_LIST'  => array('Student','Admin'),
     // 'DEFAULT_MODULE'     => 'Student',
 
-	'SESSION_AUTO_START' => false,
 	'URL_HTML_SUFFIX'    => '',  //伪静态设置为空
 	'URL_MODEL' => 1,
 
 	'SESSION_AUTO_START' => true,  //开启缓存
 
-	'SHOW_PAGE_TRACE' => true, //开启trace
+	'SHOW_PAGE_TRACE' => false, //开启trace
 
 
 	// 配置数据库
