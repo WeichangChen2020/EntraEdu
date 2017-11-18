@@ -15,7 +15,8 @@
 			.weui-cells__title {padding-top: 0.3em;margin-top: 0; color: #000; border-top: 1px solid #d9d9d9}
 			.icon {width: 25px; height: 25px; float: left; margin-top: 0; margin-right: 5px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
             .weui-grid__icon {width: 25px; height: 25px; margin: 0 auto; } 
-            .weui-grid__icon+.weui-grid__label{margin-top: 15px;} 
+            .weui-grid__icon+.weui-grid__label{margin-top: 15px;}
+            .weui-grid__ft{font-size: 14px;} 
     </style>
         <script src="__PUBLIC__/font/iconfont.js"></script>
 
@@ -93,7 +94,19 @@
             </a> -->
         </div>
 
-
+        <div class="weui-cells">
+          <a class="weui-cell weui-cell_access" href="javascript:start_exam();">
+            <div class="weui-cell__hd">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="" xlink:href="#icon-exam"></use>
+                </svg>
+            </div>
+            <div class="weui-cell__bd">
+              <p>考试</p>
+            </div>
+            <div class="weui-cell__ft">自由练习完成<b>60%</b>以上可进入</div>
+          </a>
+        </div>
 
         
         <div class="weui-footer">
@@ -114,25 +127,18 @@
 </html>
 
 <script>
-  /*function GetRTime(){
-    var EndTime= new Date('2017/09/13 00:00:00');
-    var NowTime = new Date();
-    var t =EndTime.getTime() - NowTime.getTime();
-    var d=0;
-    var h=0;
-    var m=0;
-    var s=0;
-    if(t>=0){
-      d=Math.floor(t/1000/60/60/24);
-      h=Math.floor(t/1000/60/60%24);
-      m=Math.floor(t/1000/60%60);
-      s=Math.floor(t/1000%60);
+
+    function start_exam() {
+
+        var progress = {$stu_info.progress};
+
+        if (progress < 0.6) {
+            $.alert('你还没有完成60%！');
+        } else {
+            window.location.href = "{:U('Student/Exam/final_test')}";
+        }
     }
+        
+    
  
-    document.getElementById("t_d").innerHTML = d + "天";
-    document.getElementById("t_h").innerHTML = h + "时";
-    document.getElementById("t_m").innerHTML = m + "分";
-    document.getElementById("t_s").innerHTML = s + "秒";
-  }
-  setInterval(GetRTime,0);*/
 </script>

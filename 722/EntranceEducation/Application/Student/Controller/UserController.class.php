@@ -51,7 +51,8 @@ class UserController extends Controller {
             //$MARK             = D('StudentMark');
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
-           // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
+            $stu_info['progress'] = D('Questionbank')->getProgress($openId);  //把成绩也并入stu_info数组中
+
 
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{

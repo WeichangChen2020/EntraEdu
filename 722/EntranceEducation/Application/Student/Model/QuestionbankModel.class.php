@@ -231,6 +231,14 @@ class QuestionbankModel extends Model{
 	}
 
 
+	public function getProgress($openid) {
+		$progress = D('Questionbank')->getQuesNum($openid);
+        $percent = $progress['finish_num'] / $progress['num'];
+        return $percent;
+	}
+
+
+
 	
 
 }

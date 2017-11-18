@@ -181,9 +181,7 @@ class ExerciseController extends Controller{
         }
 	}
 
-	public function test11() {
-		echo $_SERVER['HTTP_HOST'];
-	}
+
 
 	
 }

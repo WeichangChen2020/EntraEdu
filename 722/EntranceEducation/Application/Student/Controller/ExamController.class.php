@@ -47,6 +47,32 @@ class ExamController extends Controller{
         $this->display();
     }
 
+    /**
+     * index 正式考试首页面
+     * @author 蔡佳琪
+     * @copyright  2017-11-18 20:31 Authors
+     **/
+    public function final_test() {
+        $openid = session('openId');
+        //echo $openid;
+        // $college = D('StudentInfo')->getCollege();
+        if (D('ExamCollege')->is_college($openid, 10))
+        {
+          $this->redirect('Exam/index', array('examid' => 10));          
+        }
+        if (D('ExamCollege')->is_college($openid, 11))
+        {
+          $this->redirect('Exam/index', array('examid' => 11));
+        }
+        if (D('ExamCollege')->is_college($openid, 12))
+        {
+          $this->redirect('Exam/index', array('examid' => 12));
+        }
+
+        $this->display();
+
+
+    }
 
     /**
      * beforeInit 初始化考试之前判断用户是否满足考试条件
