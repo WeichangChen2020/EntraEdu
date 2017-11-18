@@ -54,11 +54,11 @@ class ExamController extends Controller{
      **/
     public function final_test() {
         $openid = session('openId');
+        //echo $openid;
         // $college = D('StudentInfo')->getCollege();
         if (D('ExamCollege')->is_college($openid, 10))
         {
-          $this->redirect('Exam/index', array('examid' => 10));
-          
+          $this->redirect('Exam/index', array('examid' => 10));          
         }
         if (D('ExamCollege')->is_college($openid, 11))
         {
@@ -69,27 +69,9 @@ class ExamController extends Controller{
           $this->redirect('Exam/index', array('examid' => 12));
         }
 
+        $this->display();
 
-        /*$openid   = session('openId');
-        //$record=D('Excrcise')->getExerciseRecord($openid);
-        $quesNum = D('Excrcise')->getQuesNum($openid);
-        $percentage = $quesNum['finish_num']/$quesNum['num'];
-        if($percentage >= 60%){
-          // alert('你还没做够60%的题目！');
-           $this->error()
-        }else{
-          // ******************获取用户信息*****************          
-          $stuInfo  = D('StudentInfo')->getStuInfo($openid);
-          $this->assign('stuInfo', $stuInfo);
-          // ******************获取用户考试信息**************
-          $examid   = I('examid');
-          session('examid', $examid);
-          $examInfo = D('ExamSetup')->getExamInfo($examid);
 
-          $this->assign('examInfo', $examInfo);
-
-          $this->display();
-        }*/
     }
 
     /**

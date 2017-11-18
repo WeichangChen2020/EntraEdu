@@ -181,8 +181,14 @@ class ExerciseController extends Controller{
         }
 	}
 
-	public function test11() {
-		echo $_SERVER['HTTP_HOST'];
+	
+	public function getProgress(){
+
+		$openid = session('openId');
+		$progress = D('Questionbank')->getQuesNum($openid);
+		$percent = $progress['finish_num'] / $progress['num'];
+		$this->ajaxReturn($percent);
+
 	}
 
 	
