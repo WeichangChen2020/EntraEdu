@@ -97,7 +97,22 @@ class wechatCallbackapiTest
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 						
+					}http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
+					if($keyword == '2'){
+						$msgType = "text";
+						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
+						 $contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64\">教师端</a>";
+						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						echo $resultStr;
+						
 					}
+
+
+
+
+
+
+
 					// if($keyword == '2'){
 					// 	$msgType = "text";
 					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
