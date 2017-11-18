@@ -26,7 +26,7 @@
     <div class="weui_btn_area">
       <a class="weui_btn weui_btn_primary" href="javascript:" id="submit">确定</a>
     </div>
-    <div id="test"></div>
+    <div id="test">11</div>
     <include file="./Public/html/_foot.html"/>
     <include file="./Public/html/_refreshJs.html"/>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -81,6 +81,8 @@
                     accuracy:accuracy
                   };
                   $.hideLoading();
+                    $('#test').html('dsfasf');
+
                   $.post(url,data,function(res){
                     $('#test').html(res);
                     if(res == 'success'){
