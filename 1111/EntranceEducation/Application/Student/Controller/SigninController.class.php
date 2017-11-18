@@ -22,6 +22,8 @@ class SigninController extends Controller{
     
     //学生端入口主页面
     public function index(){
+        echo '2333';
+        die();
         session('openId',null);
         $openId = getOpenId();
         session('openId',$openId);
@@ -69,7 +71,7 @@ class SigninController extends Controller{
     public function signinOnline(){
         if(!IS_AJAX)
             $this->error('你访问的界面不存在');
-        
+
         $openId        =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
         
