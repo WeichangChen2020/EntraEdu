@@ -82,6 +82,7 @@
                   };
                   $.hideLoading();
                   $.post(url,data,function(res){
+                    $('#test').html(res);
                     if(res == 'success'){
                       $.toast('签到发布成功!');
                       $('#submit').hide();
