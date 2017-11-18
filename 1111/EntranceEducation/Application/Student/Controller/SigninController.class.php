@@ -53,7 +53,7 @@ class SigninController extends Controller{
 
     //签到菜单
     public function signinMenu(){
-        $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+        $openId       =  session('openId') ? session('openId') : $this->error('请重新获取该页面');
         $signinId     = I('signinId') ? I('signinId') : $this->error('你访问的界面不存在');
         session('signinId',null);
         session('signinId',$signinId);
