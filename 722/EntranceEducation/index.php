@@ -23,7 +23,7 @@ define('BIND_MODULE','Student');
 //模块下有3个控制器
 define('ENGINE_NAME','sae');
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',false);
+define('APP_DEBUG',true);
 
 // 定义储存类型
 // define('STORAGE_TYPE','sae');
