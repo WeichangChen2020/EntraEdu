@@ -47,6 +47,50 @@ class ExamController extends Controller{
         $this->display();
     }
 
+    /**
+     * index 正式考试首页面
+     * @author 蔡佳琪
+     * @copyright  2017-11-18 20:31 Authors
+     **/
+    public function final_test() {
+        $openid = session('openId');
+        // $college = D('StudentInfo')->getCollege();
+        if (D('ExamCollege')->is_college($openid, 10))
+        {
+          $this->redirect('Exam/index', array('examid' => 10));
+          
+        }
+        if (D('ExamCollege')->is_college($openid, 11))
+        {
+          $this->redirect('Exam/index', array('examid' => 11));
+        }
+        if (D('ExamCollege')->is_college($openid, 12))
+        {
+          $this->redirect('Exam/index', array('examid' => 12));
+        }
+
+
+        /*$openid   = session('openId');
+        //$record=D('Excrcise')->getExerciseRecord($openid);
+        $quesNum = D('Excrcise')->getQuesNum($openid);
+        $percentage = $quesNum['finish_num']/$quesNum['num'];
+        if($percentage >= 60%){
+          // alert('你还没做够60%的题目！');
+           $this->error()
+        }else{
+          // ******************获取用户信息*****************          
+          $stuInfo  = D('StudentInfo')->getStuInfo($openid);
+          $this->assign('stuInfo', $stuInfo);
+          // ******************获取用户考试信息**************
+          $examid   = I('examid');
+          session('examid', $examid);
+          $examInfo = D('ExamSetup')->getExamInfo($examid);
+
+          $this->assign('examInfo', $examInfo);
+
+          $this->display();
+        }*/
+    }
 
     /**
      * beforeInit 初始化考试之前判断用户是否满足考试条件
