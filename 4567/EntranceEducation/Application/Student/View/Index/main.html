@@ -95,7 +95,7 @@
         </div>
 
         <div class="weui-cells">
-          <a class="weui-cell weui-cell_access" href="javascript:;">
+          <a class="weui-cell weui-cell_access" href="javascript:start_exam();">
             <div class="weui-cell__hd">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="" xlink:href="#icon-exam"></use>
@@ -127,6 +127,15 @@
 </html>
 
 <script>
+
+    function start_exam(argument) {
+        
+        if (true) {
+            alert('s');
+        } else {
+            window.location.href = "{:U('Exam/test_index')}";
+        }
+    }
   /*function GetRTime(){
     var EndTime= new Date('2017/09/13 00:00:00');
     var NowTime = new Date();
