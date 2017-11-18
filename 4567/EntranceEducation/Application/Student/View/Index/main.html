@@ -28,7 +28,7 @@
 		            <div class="tx">
 		                <img class="tx" src="{$stu_info.headimgurl|default='__PUBLIC__/images/newer/xsc_logo.jpg'}"></div>
 		            <ul>
-		            	<li>{$stu_info.name|default='张电子'}</li>
+		            	<li>{$stu_info.name|default='张电子'}{$stu_info.progress}</li>
 		                <li class="info">
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
@@ -129,7 +129,7 @@
 <script>
 
     function start_exam() {
-        console.log("{$stu_info['progress']}");
+        console.log("{$stu_info.progress}");
 
         // if (false) {
         //     $.alert('你还没有完成60%！');
