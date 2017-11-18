@@ -19,7 +19,7 @@
                             <a href="{:U('Student/Exam/index',array('examid'=>$listExam['id']))}" class="weui-media-box weui-media-box_appmsg">
                                 <div class="weui-media-box__bd">
                                     <h4 class="weui-media-box__title">{$listExam.title}</h4>
-                                    <p class="weui-media-box__desc">截止时间：{$listExam.start_time|get_endtime=###,$listExam['set_time']}</p>
+                                    <p class="weui-media-box__desc">考试时间：{$listExam.start_time|get_endtime=###,$listExam['set_time']}</p>
                                 </div>
                             </a>
                         </volist>
