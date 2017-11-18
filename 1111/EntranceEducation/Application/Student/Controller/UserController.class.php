@@ -58,7 +58,7 @@ class UserController extends Controller {
             // var_dump($signPackage);
             // die();
             $this->assign('signPackage',$signPackage);
-
+            $this->assign('openId',$openId);
 
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
