@@ -22,10 +22,10 @@ class SigninController extends Controller{
     
     //学生端入口主页面
     public function index(){
-        echo '2333';
-        die();
+        // echo '2333';
+        // die();
         session('openId',null);
-        $openId = getOpenId();
+        $openId = I('openId');
         session('openId',$openId);
 
         $cond['accuracy']  = array('NEQ','');  //精度accurcy，是v3.0版本特加的变量，依次区别是新的版本
