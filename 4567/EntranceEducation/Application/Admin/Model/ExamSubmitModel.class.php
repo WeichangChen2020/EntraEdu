@@ -75,7 +75,7 @@ class ExamSubmitModel extends Model {
         } else {
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
         }
-
+        dump($sql);die;
         $Model = new \Think\Model('student_info');
         $res = $Model->query($sql);
         
