@@ -36,21 +36,20 @@ class ExamSubmitModel extends Model {
         $college = D('Adminer')->getCollege();
         $map = array();
 
-        $Model = new \Think\Model();
-
         if (!is_null($college)) {
             $map['academy'] = $college;
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
-            $count = $Model->query("SELECT  COUNT(*) FROM ee_student_list WHERE academy = $college");
         } else {
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
-            $count = $Student->count();
         }
 
-        $res = $Model->query($sql);
+        $count = $Student->where($map)->count();
 
 
         $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
+
+        $Model = new \Think\Model();
+        $res = $Model->query($sql);
 
         if (empty($res)) {
             return 'error';
