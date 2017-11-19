@@ -50,6 +50,7 @@ class ExamSubmitModel extends Model {
 
         $Model = new \Think\Model();
         $res = $Model->query($sql);
+        dump($res);die;
 
         if (empty($res)) {
             return 'error';
