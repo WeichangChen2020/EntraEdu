@@ -72,7 +72,7 @@
                 $.showLoading('签到发布中');
                 setTimeout(function(){
                   //上传
-                  url = 'signin_add';   
+                  url = "{:U('signin_add')}";   
                   data = {
                     signinName:signinName,
                     deadtime:deadtime,
@@ -81,7 +81,7 @@
                     accuracy:accuracy
                   };
                   $.hideLoading();
-                    $('#test').html(data);
+                    // $('#test').html(data);
 
                   $.post(url,data,function(res){
                     $('#test').html(res);
