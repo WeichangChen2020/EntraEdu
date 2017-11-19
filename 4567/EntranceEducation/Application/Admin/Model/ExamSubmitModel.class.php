@@ -70,6 +70,7 @@ class ExamSubmitModel extends Model {
         $map = array();
 
         if (!is_null($college)) {
+            $map['academy'] = $college;
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
         } else {
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
