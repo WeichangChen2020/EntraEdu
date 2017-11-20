@@ -134,7 +134,6 @@
     var start_time = new Date();
 
 	var progress = "{$percentage}";//获取完成习题进度
-	if (progress >= 0.6) { var pass = true;}
     // 点击选项后上传答案
 	$('.option-area').one('click',function(){
 		// 选择了之后正确
@@ -169,10 +168,9 @@
 		$('.option-area').unbind(); //移除被选元素的事件处理程序
 
 		// 判断是否完成60%以上
-		//var progress = "{$percentage}";
-        if (pass) {
+		var progress = "{$percentage}";
+        if (progress >= 0.6) {
             $.alert('恭喜你已经完成60%的习题，获得参加考试资格！');
-            var pass = false;
         } 
 	})
 
