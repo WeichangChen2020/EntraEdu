@@ -109,7 +109,7 @@ class UserController extends Controller {
             'openId'     => $openId,
             'name'       => $name,
             'number'     => $number,
-            'academy'    => $college,//学院
+            'academy'    => $college ? $college : '非新生',//学院
             'class'      => $banji,//班级
             'is_newer'   => $isNewer,
             'headimgurl' => $headimgurl,
