@@ -131,7 +131,9 @@
 <script type="text/javascript">
 	
 	// 获取页面加载的时间
-    var start_time = new Date();  
+    var start_time = new Date();
+
+	var progress = "{$percentage}";//获取完成习题进度
 
     // 点击选项后上传答案
 	$('.option-area').one('click',function(){
@@ -170,7 +172,7 @@
 		var progress = "{$percentage}";
         if (progress >= 0.6) {
             $.alert('恭喜你已经完成60%的习题，获得参加考试资格！');
-            progress = false;
+            var progress = false;
         } 
 	})
 
