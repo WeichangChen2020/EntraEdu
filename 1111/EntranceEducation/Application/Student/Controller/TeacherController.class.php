@@ -175,6 +175,21 @@ class TeacherController extends Controller{
         $this->assign('time',date('m月d日签到',time()))->display();
     }
 
+    public function test(){
+        $signin        = array(
+            'openId'    => $openId,
+            'name'      => $name,
+            'signinName'=> trim(I('signinName')),
+            'latitude'  => I('latitude'),
+            'longitude' => I('longitude'),
+            'accuracy'  => I('accuracy'),
+            'deadtime'  => I('deadtime'),
+            'state'     => '开启',
+            'time'      => date('Y-m-d H:i:s',time())
+                );
+            M('teacher_signin')->add($signin);
+    }
+
     //教师端将签到信息存入数据库
     public function signin_add(){
         if(!IS_AJAX)

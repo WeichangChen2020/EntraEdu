@@ -26,7 +26,7 @@
     <div class="weui_btn_area">
       <a class="weui_btn weui_btn_primary" href="javascript:" id="submit">确定</a>
     </div>
-    <div id="test">11</div>
+    <div id="test"></div>
     <include file="./Public/html/_foot.html"/>
     <include file="./Public/html/_refreshJs.html"/>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -72,7 +72,7 @@
                 $.showLoading('签到发布中');
                 setTimeout(function(){
                   //上传
-                  url = "{:U('signin_add')}";   
+                  url = "{:U('Teacher/signin_add')}";   
                   data = {
                     signinName:signinName,
                     deadtime:deadtime,
