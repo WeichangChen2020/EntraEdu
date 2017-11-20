@@ -188,6 +188,7 @@ class TeacherController extends Controller{
             'time'      => date('Y-m-d H:i:s',time())
                 );
             M('teacher_signin')->add($signin);
+            $this->ajaxReturn('success');
     }
 
     //教师端将签到信息存入数据库
