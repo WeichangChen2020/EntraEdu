@@ -72,7 +72,7 @@ class ExerciseController extends Controller{
 		$quesList  = D('Questionbank')->getQuesList($quesid);
 		// p($quesList);//二维数组
 		// 
-		$percentage = D('Questionbank')->getProgress($openId);
+		$percentage = D('Questionbank')->getProgress($openid);
 		var_dump($percentage);
 		$this->assign('percentage',$percentage);
 		// 判断是否已经做完了最后一道题目
