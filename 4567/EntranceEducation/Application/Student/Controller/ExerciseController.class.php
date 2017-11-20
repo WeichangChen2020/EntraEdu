@@ -43,7 +43,7 @@ class ExerciseController extends Controller{
 	public function exercise_chap() {
 		$openid = session('openId');
 		$record = D('exercise')->getExerciseRecord($openid); 
- 		
+
 		$chapid = I('chapid'); if(empty($chapid)) {$chapid = 0; }
 		$typeid = I('typeid'); if(empty($typeid)) {$typeid = 0; }
 		$quesid = I('quesid'); 
@@ -71,10 +71,6 @@ class ExerciseController extends Controller{
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
 		// p($quesList);//二维数组
-
-		$percentage = D('Questionbank')->getProgress($openid);
-		//var_dump($percentage);
-		$this->assign('percentage',$percentage);
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
