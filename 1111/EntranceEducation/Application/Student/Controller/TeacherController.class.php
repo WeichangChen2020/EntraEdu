@@ -175,27 +175,27 @@ class TeacherController extends Controller{
         $this->assign('time',date('m月d日签到',time()))->display();
     }
 
-    public function test(){
-        $signin        = array(
-            'openId'    => 'qyhtesttest',
-            'name'      => 'qyh',
-            'signinName'=> '232sdf23sf',
-            'latitude'  => 'ddd',
-            'longitude' => 'ddd',
-            'accuracy'  => 'ddd',
-            'deadtime'  => date('Y-m-d H:i:s',time()),
-            'state'     => '开启',
-            'time'      => date('Y-m-d H:i:s',time())
-                );
-            M('teacher_signin')->add($signin);
-            $this->ajaxReturn('success');
-    }
+    // public function test(){
+    //     $signin        = array(
+    //         'openId'    => 'qyhtesttest',
+    //         'name'      => 'qyh',
+    //         'signinName'=> '232sdf23sf',
+    //         'latitude'  => 'ddd',
+    //         'longitude' => 'ddd',
+    //         'accuracy'  => 'ddd',
+    //         'deadtime'  => date('Y-m-d H:i:s',time()),
+    //         'state'     => '开启',
+    //         'time'      => date('Y-m-d H:i:s',time())
+    //             );
+    //         M('teacher_signin')->add($signin);
+    //         $this->ajaxReturn('success');
+    // }
 
     //教师端将签到信息存入数据库
     public function signin_add(){
         if(!IS_AJAX)
             $this->error('你访问的界面不存在');
-        $openId        =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId        =  session('openId') ? session('openId') : $this->error('请重新获取改页面');
         $name          = M('teacher_info')->where(array('openId' => $openId))->getField('name');
         $signin        = array(
             'openId'    => $openId,

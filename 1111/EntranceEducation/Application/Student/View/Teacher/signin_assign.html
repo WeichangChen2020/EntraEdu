@@ -72,8 +72,8 @@
                 $.showLoading('签到发布中');
                 setTimeout(function(){
                   //上传
-                  // url = "{:U('Teacher/signin_add')}";   
-                  url = "{:U('Teacher/test')}";  
+                  url = "{:U('Teacher/signin_add')}";   
+                  // url = "{:U('Teacher/test')}";  
                   data = {
                     signinName:signinName,
                     deadtime:deadtime,
@@ -85,7 +85,7 @@
                     // $('#test').html(data);
 
                   $.post(url,data,function(res){
-                    $('#test').html(res);
+                    // $('#test').html(res);
                     if(res == 'success'){
                       $.toast('签到发布成功!');
                       $('#submit').hide();
