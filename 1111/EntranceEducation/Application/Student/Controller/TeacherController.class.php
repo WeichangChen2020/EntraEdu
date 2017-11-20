@@ -177,13 +177,13 @@ class TeacherController extends Controller{
 
     public function test(){
         $signin        = array(
-            'openId'    => $openId,
-            'name'      => $name,
-            'signinName'=> trim(I('signinName')),
-            'latitude'  => I('latitude'),
-            'longitude' => I('longitude'),
-            'accuracy'  => I('accuracy'),
-            'deadtime'  => I('deadtime'),
+            'openId'    => 'qyhtesttest',
+            'name'      => 'qyh',
+            'signinName'=> '232sdf23sf',
+            'latitude'  => 'ddd',
+            'longitude' => 'ddd',
+            'accuracy'  => 'ddd',
+            'deadtime'  => date('Y-m-d H:i:s',time()),
             'state'     => '开启',
             'time'      => date('Y-m-d H:i:s',time())
                 );
