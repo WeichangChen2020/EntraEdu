@@ -141,5 +141,19 @@ function pass($openid) {
 	return '0';
 }
 
+/**
+ * getPersent($number) 获取$number的做题进度
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-21 14:14Authors
+ * @var $number
+ * @return 
+ */
+function getPersent($number) {
+	$openId = M('StudentInfo')->where(array('number'=>$number,'is_newer'=>1))->field('openid')->find();
+	return $openId;
+	$persent = D('Questionbank')->getProgress($openId);
+	return '0';
+}
+
 
  ?>
