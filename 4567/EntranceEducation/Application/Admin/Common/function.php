@@ -149,7 +149,7 @@ function pass($openid) {
  * @return 
  */
 function getPersent($number) {
-	return  "$openId";
+	return  $number;
 }
 
 
