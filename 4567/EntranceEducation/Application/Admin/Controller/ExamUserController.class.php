@@ -96,9 +96,7 @@ class ExamUserController extends CommonController{
 				>= 0.6
 			){
 				array_push($allowList,$studentList[i]);
-				dump($QUESTION
-				->getProgress($STUDENT
-					->getOpenidBynumber($studentList[i][number]));
+				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[i][number])));
 			}
 		}
 		dump($allowList);die;
