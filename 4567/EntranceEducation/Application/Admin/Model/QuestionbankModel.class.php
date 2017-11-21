@@ -1,5 +1,5 @@
 <?php
-namespace Student\Model;
+namespace Admin\Model;
 use Think\Model;
 
 /**
