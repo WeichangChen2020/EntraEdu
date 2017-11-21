@@ -50,8 +50,7 @@ class StudentInfoModel extends Model {
 	 */
 	public function getOpenidBynumber($number) {
 		$openid = M('StudentInfo')->where(array('number'=>$number))->select();
-		
-		dump($openid);die;
+		return $openid;
 	}
 
 }
