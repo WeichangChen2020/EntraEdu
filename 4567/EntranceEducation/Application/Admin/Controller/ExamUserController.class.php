@@ -86,11 +86,15 @@ class ExamUserController extends CommonController{
 
 	public function enable($id = 0) {
 
-		$studentList = M('StudentList')->select();
+		$studentList = M('StudentList')->page($_GET['p'].',20')->select();
 
-		dump($studentList);die;
+        $this->assign('studentList', $studentList);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        
         $this->assign('export', 0);
-
 		$this->assign('id',$id);
 		$this->display();
 	}
