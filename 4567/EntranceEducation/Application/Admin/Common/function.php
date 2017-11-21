@@ -137,8 +137,8 @@ function getNumberByOpenid($openid) {
  * @return String "是"或"否"
  */
 function pass($openid) {
-	$info = D('StudentInfo')->getInfo($openid);
-	return $info['0']['number'];
+	
+	return '0';
 }
 
 
