@@ -17,7 +17,7 @@ class StudentInfoModel extends Model {
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
 		if (empty($res)) {
-			return false;
+			return "用户未注册";
 		}
 		return $res['0']['openId'];
 	}
@@ -48,13 +48,13 @@ class StudentInfoModel extends Model {
 	 * @var  
 	 * @return  String
 	 */
-	public function getOpenidBynumber($number) {
-		dump($number);
-		$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-		if (empty($openid)) {
-			return "用户未注册";
-		}else
-			return $openid;
-	}
+	// public function getOpenidBynumber($number) {
+	// 	dump($number);
+	// 	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
+	// 	if (empty($openid)) {
+	// 		return "用户未注册";
+	// 	}else
+	// 		return $openid['openId'];
+	// }
 
 }

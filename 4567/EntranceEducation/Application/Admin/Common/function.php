@@ -142,15 +142,17 @@ function pass($openid) {
 }
 
 /**
- * getPersent($number) 获取$number的做题进度
+ * getPersent($name) 获取$name的做题进度
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-11-21 14:14Authors
- * @var $number
+ * @var $name
  * @return 
  */
-function getPersent($number) {
-	// $openId = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-	$openId = D('StudentInfo')->getOpenidByNumber($number);
+function getPersent($name) {
+	$openId = D('StudentInfo')->getOpenid($name);
+	// if ($openId) {
+	// }
+	$persent
 	dump($openId);
 	return  $openId;
 }
