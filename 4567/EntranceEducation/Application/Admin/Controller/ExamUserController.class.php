@@ -84,7 +84,7 @@ class ExamUserController extends CommonController{
 	 * @return 
 	 */
 
-	public function enable($openid,$id = 0) {
+	public function enable($id = 0) {
 
 		$studentList = M('StudentList')->select();
 
