@@ -87,16 +87,16 @@ class ExamUserController extends CommonController{
 	public function enable($id = 0) {
 		$QUESTION = D('Questionbank');
 		$STUDENT = D('StudentInfo');
-		$p=I('p');
+		$p=I();
 		$studentList = M('StudentList')->select();
 		$allowList = array();
 		for ($i=0; $i < 20; $i++) { 
-			dump($studentList[20*$p+i]['number']);
-			dump($STUDENT->getOpenidBynumber($studentList[$p*20+i]['number']));
-				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p*20+i]['number'])));
+			dump($p['p']*20+i);
+			dump($STUDENT->getOpenidBynumber($studentList[$p['p']*20+i]['number']));
+				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+i]['number'])));
 			if($QUESTION
 				->getProgress($STUDENT
-					->getOpenidBynumber($studentList[$p*20+i][number]))
+					->getOpenidBynumber($studentList[$p['p']*20+i][number]))
 				>= 0.6
 			){
 				array_push($allowList,$studentList[i]);
