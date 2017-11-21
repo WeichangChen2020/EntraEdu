@@ -76,8 +76,26 @@ class ExamUserController extends CommonController{
 		$this->assign('id',$id);
 		$this->display();
 	}
+	/**
+	 * enable 模拟考试详细信息 允许考试人员详情
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-21 13:48Authors
+	 * @var  
+	 * @return 
+	 */
 
+	public function enable($openid,$id = 0) {
 
+		$studentList = M('StudentList')->select();
+
+		dump($studentList);die;
+        $this->assign('export', 0);
+
+		$this->assign('id',$id);
+		$this->display();
+	}
+
+D('Questionbank')->getProgress($openId)
     /**
      * 导出到excel
      * @author 陈伟昌<1339849378@qq.com>
