@@ -117,7 +117,10 @@ class HomeworkController extends Controller{
         $picIdArray   = I('id');
         $ACCESS_TOKEN = $weixin->getAccessToken();
         $domain       = 'public';
-        $dir          = './homework/homework'.session('homeworkId').'/';  
+        // $dir          = './homework/homework'.session('homeworkId').'/'; 
+        $dir          = './homework/homework'.'1'.'/';
+
+
         $filenameFix  = mt_rand(10000000,99999999).$homeworkId.'_';//  图片命名前缀：网络1401班李俊君1400150108.jpg;
 
 
