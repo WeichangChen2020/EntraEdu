@@ -49,7 +49,7 @@ class StudentInfoModel extends Model {
 	 * @return  String
 	 */
 	public function getOpenidBynumber($number) {
-		$openid = M('StudentInfo')->where()->select();
+		$openid = M('StudentInfo')->where(array('is_newer'=>1))->select();
 		
 		dump($openid);die;
 	}
