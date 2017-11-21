@@ -99,12 +99,13 @@ class ExamUserController extends CommonController{
 				array_push($allowList,$studentList[$i]);
 			}
 		}
-        $count = count($allowList);
-
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
         
+
+		import("ORG.Util.Page"); //导入分页类
+	    $Page=new Page($count,20);
+        $show= $Page->show();// 分页显示输出﻿
+		$this->assign('page',$show);// 赋值分页输出
+
         $this->assign('studentList', $allowList);
 
         $this->assign('export', 0);
