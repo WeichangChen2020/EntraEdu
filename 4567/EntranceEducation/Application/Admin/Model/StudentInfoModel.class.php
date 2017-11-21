@@ -41,6 +41,17 @@ class StudentInfoModel extends Model {
 		}
 		return $res;
 	}
+	/**
+	 * getOpenidBynumber 获取$number的openid
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-21 14:55 Authors
+	 * @var  
+	 * @return  String
+	 */
+	public function getOpenidBynumber($name) {
 
+		
+		dump($name);die;
+	}
 
 }
