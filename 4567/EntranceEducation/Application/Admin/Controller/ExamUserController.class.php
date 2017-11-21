@@ -100,8 +100,8 @@ class ExamUserController extends CommonController{
 			}
 		}
         
-		$count = 
-	    $Page=new \Think\Page(count($allowList),20);
+		$count = count($allowList);
+	    $Page=new \Think\Page($count,20);
         $show= $Page->show();// 分页显示输出﻿
 	    $list=array_slice($allowList,$Page->firstRow,$Page->listRows);
 		$this->assign('page',$show);// 赋值分页输出
