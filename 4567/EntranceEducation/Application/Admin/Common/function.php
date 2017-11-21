@@ -152,8 +152,7 @@ function getPersent($number) {
 	$openId = D('StudentInfo')->getOpenidByNumber($number);
 
 	$persent = D('Questionbank')->getProgress($openId);
-	dump($persent);
-	return  $openId;
+	return  $persent;
 }
 
 
