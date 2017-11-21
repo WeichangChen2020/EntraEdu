@@ -6,11 +6,11 @@ class MistakeHistoryModel extends Model {
 	//获取错题信息
 	public function getMistakeData($openid = '') { 
 
-		$sql = "SELECT DISTINCT quesid FROM ee_exercise
+		$sql = "SELECT DISTINCT quesid FROM cn_exercise
 		where openid = '$openid' AND result = '0'
 		AND NOT EXISTS (
-			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
+			SELECT * FROM cn_mistake_history
+			WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = '$openid');";
 
 		// dump($sql);die;	
 		$Model = new \Think\Model();
@@ -19,21 +19,21 @@ class MistakeHistoryModel extends Model {
 		if (empty($res)) {
 			return false;
 		}
-		// SELECT DISTINCT quesid FROM ee_exercise
+		// SELECT DISTINCT quesid FROM cn_exercise
 		// where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0'
 		// AND NOT EXISTS (
-		// 	SELECT * FROM ee_mistake_history
-		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
+		// 	SELECT * FROM cn_mistake_history
+		// 	WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
 		return $res[0]['quesid'];
 	}
 
 	//获取错题数量
 	public function getNumberOfMistake($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_exercise
+		$sql = "SELECT DISTINCT COUNT(quesid) FROM cn_exercise
 		where openid = '$openid' AND result = '0'
 		AND NOT EXISTS (
-			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
+			SELECT * FROM cn_mistake_history
+			WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = '$openid');";
 
 		$Model = new \Think\Model();
 		$num = $Model->query($sql);
@@ -70,7 +70,7 @@ class MistakeHistoryModel extends Model {
 	//获取题目章节
 	protected function getQuesChapter($cp_id = 1) {
 
-		$Chapter = M('question_chapter', 'ee_', $this->database_con);
+		$Chapter = M('question_chapter', 'cn_', $this->database_con);
 		$chapter = $Chapter->where(array('id' => $cp_id))->getField('chapter');
 
 		return $chapter;
