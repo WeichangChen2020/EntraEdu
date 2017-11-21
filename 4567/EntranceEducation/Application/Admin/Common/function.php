@@ -150,9 +150,7 @@ function pass($openid) {
  */
 function getPersent($number) {
 	$openId = D('StudentInfo')->getOpenidByNumber($number);
-	if () {
-		# code...
-	}
+
 	// $persent
 	dump($openId);
 	return  $openId;
