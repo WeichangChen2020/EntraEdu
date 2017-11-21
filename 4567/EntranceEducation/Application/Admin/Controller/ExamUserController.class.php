@@ -96,7 +96,7 @@ class ExamUserController extends CommonController{
 					->getOpenidBynumber($studentList[$p['p']*20+$i][number]))
 				== 0
 			){
-				array_push($allowList,$studentList[i]);
+				array_push($allowList,$studentList[$i]);
 			}
 		}
 		dump($allowList);die;
