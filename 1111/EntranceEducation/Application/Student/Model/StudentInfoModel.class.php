@@ -54,4 +54,17 @@ class StudentInfoModel extends Model {
 			return false;
 		
 	}
+	public function classList() {
+		$sql = "SELECT DISTINCT(class) FROM (SELECT DISTINCT(class),time FROM db_student_info ORDER BY time DESC) P LIMIT 15";
+		$Model = new \Think\Model();
+		$class = $Model->query($sql);
+
+		if (empty($class)) {
+			return false;
+		}
+		// dump($class);
+		return $class;
+
+
+    }
 }
