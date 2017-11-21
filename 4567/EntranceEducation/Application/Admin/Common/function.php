@@ -150,7 +150,7 @@ function pass($openid) {
  */
 function getPersent($number) {
 	$openId = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-	return  $openId;
+	return  "$openId";
 }
 
 
