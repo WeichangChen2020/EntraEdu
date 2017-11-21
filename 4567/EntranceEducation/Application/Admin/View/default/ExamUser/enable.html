@@ -15,7 +15,7 @@
         <th width="20%" align="center">操作</th>
       </tr>
       <volist name="studentList" id="studentList" empty="暂时没有数据" >
-        <if condition="getPersent($studentList['number']) eq 0">
+        <if condition="dump(getPersent($studentList['number']))">
         <else>
           <tr>
             <td align="center">{$key+1}</td>
