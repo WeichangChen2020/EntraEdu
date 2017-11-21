@@ -42,25 +42,6 @@ class StudentInfoModel extends Model {
 		}
 		return $res;
 	}
-	/**
-	 * getOpenid 获取$openid的info
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-7 15:32 Authors
-	 * @var  
-	 * @return  Array
-	 */
-	public function getInfo($openid) {
-
-		$sql = "SELECT * FROM ee_student_info WHERE openid = '$openid' ";
-		
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-
-		if (empty($res)) {
-			return false;
-		}
-		return $res;
-	}
 
 
 }
