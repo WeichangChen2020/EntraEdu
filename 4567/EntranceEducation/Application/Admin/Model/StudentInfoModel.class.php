@@ -48,7 +48,7 @@ class StudentInfoModel extends Model {
 	 * @var  
 	 * @return  String
 	 */
-	public function getOpenidBynumber($name) {
+	public function getOpenidBynumber($number) {
 
 		
 		dump($name);die;
