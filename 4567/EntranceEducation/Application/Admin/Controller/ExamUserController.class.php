@@ -101,6 +101,10 @@ class ExamUserController extends CommonController{
 		}
         $count = count($allowList);
 
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        
         $this->assign('studentList', $allowList);
 
         $this->assign('export', 0);
