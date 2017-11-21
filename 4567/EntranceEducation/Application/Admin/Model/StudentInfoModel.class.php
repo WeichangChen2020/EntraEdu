@@ -50,7 +50,7 @@ class StudentInfoModel extends Model {
 	 */
 	public function getOpenidBynumber($number) {
 		dump($number);
-		$openid = M('StudentInfo')->where('number'=>$number)->field('openId')->find();
+		$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
 		if (empty($openid)) {
 			return "用户未注册"
 		}else
