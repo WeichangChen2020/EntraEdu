@@ -15,26 +15,20 @@
         <th width="20%" align="center">操作</th>
       </tr>
       <volist name="studentList" id="studentList" empty="暂时没有数据" >
-            <if condition="getPersent($studentList['number']) eq 0">
-            <else />
-                <tr>
-                    <td align="center">{$key+1}</td>
-                    <td align="center">{$studentList.name}</a></td>
-                    <td align="center">{$studentList.class}</td>
-                    <td align="center">{$studentList.number}</td>
-                    <td align="center">{$studentList.number|getPersent=###}</td>
-                    <td align="center">{$studentList.number}</td>
-                    <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
-                    </td>
-                </tr>
-            </if>
-          
+          <tr>
+            <td align="center">{$key+1}</td>
+            <td align="center">{$studentList.name}</a></td>
+            <td align="center">{$studentList.class}</td>
+            <td align="center">{$studentList.number}</td>
+            <td align="center">{$studentList.number|getResult=###}得分</td>
+            <td align="center">{$studentList.number}</td>
+            <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
+            </td>
+          </tr>
         </volist>
   </tbody>
 </table>
-  <div class="pages">
-     {$page}
-     </div> 
+
 <div class="layui-form-item">
     <div style="margin-top: 66px;">
       <a class="layui-btn" href="{:U('ExamUser/export', array('type'=>$export, 'id'=>$id))}" type="submit">导出</a>
