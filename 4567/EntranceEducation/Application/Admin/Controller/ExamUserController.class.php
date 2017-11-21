@@ -90,7 +90,7 @@ class ExamUserController extends CommonController{
 		$p=I();
 		$studentList = M('StudentList')->select();
 		$allowList = array();
-		for ($i=0; $i < 20; $i++) { 
+		for ($i=0; $i < count($studentList); $i++) { 
 			if($QUESTION
 				->getProgress($STUDENT
 					->getOpenidBynumber($studentList[$p['p']*20+$i][number]))
@@ -99,8 +99,6 @@ class ExamUserController extends CommonController{
 				array_push($allowList,$studentList[$i]);
 			}
 		}
-		dump($allowList);
-		dump(count($allowList));die;
         
 
 	    $Page=new \Think\Page(count($allowList),20);
