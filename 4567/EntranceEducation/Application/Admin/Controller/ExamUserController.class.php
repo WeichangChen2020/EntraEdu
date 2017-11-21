@@ -94,8 +94,6 @@ class ExamUserController extends CommonController{
 		$this->assign('id',$id);
 		$this->display();
 	}
-
-D('Questionbank')->getProgress($openId)
     /**
      * 导出到excel
      * @author 陈伟昌<1339849378@qq.com>
