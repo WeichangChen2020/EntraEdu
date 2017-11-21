@@ -97,6 +97,8 @@ class ExamUserController extends CommonController{
 			)
 				array_push($allowList,$studentList[i]);
 		}
+		dump($StudentList);
+		dump($allowList);die;
         $count = M('StudentList')->count();
 
         $this->assign('studentList', $allowList);
