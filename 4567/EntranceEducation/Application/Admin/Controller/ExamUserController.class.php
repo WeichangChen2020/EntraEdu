@@ -101,7 +101,6 @@ class ExamUserController extends CommonController{
 		}
         
 
-		import("@.Util.Page"); //导入分页类
 	    $Page=new Page(count($allowList),20);
         $show= $Page->show();// 分页显示输出﻿
 		$this->assign('page',$show);// 赋值分页输出
