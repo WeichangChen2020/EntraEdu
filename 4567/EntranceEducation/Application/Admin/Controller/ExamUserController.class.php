@@ -86,7 +86,7 @@ class ExamUserController extends CommonController{
 
 	public function enable($id = 0) {
 		$QUESTION = D('Questionbank');
-		$STUDENT = M('StudentInfo');
+		$STUDENT = D('StudentInfo');
 		$studentList = M('StudentList')->select();
 		$allowList = array();
 		for ($i=0; $i < count($studentList); $i++) { 
