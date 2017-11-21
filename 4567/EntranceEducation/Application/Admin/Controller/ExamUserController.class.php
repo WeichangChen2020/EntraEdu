@@ -87,7 +87,7 @@ class ExamUserController extends CommonController{
 	public function enable($id = 0) {
 
 		$studentList = M('StudentList')->page($_GET['p'].',20')->select();
-        $count = $Student->where($map)->count();
+        $count = $studentList->count();
 
         $this->assign('studentList', $studentList);
 
