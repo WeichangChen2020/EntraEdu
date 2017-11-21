@@ -103,6 +103,7 @@ class ExamUserController extends CommonController{
 
 	    $Page=new \Think\Page(count($allowList),20);
         $show= $Page->show();// 分页显示输出﻿
+	    $list=array_slice($array,$Page->firstRow,$Page->listRows);
 		$this->assign('page',$show);// 赋值分页输出
 
         $this->assign('studentList', $allowList);
