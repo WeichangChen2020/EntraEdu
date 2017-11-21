@@ -91,7 +91,7 @@ class ExamUserController extends CommonController{
 		$studentList = M('StudentList')->select();
 		$allowList = array();
 		for ($i=0; $i < 20; $i++) { 
-			dump($studentList[$p['p']*20+$i]['number']));
+			dump($studentList[$p['p']*20+$i]['number']);
 			dump($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i]['number']));
 				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i]['number'])));
 			if($QUESTION
