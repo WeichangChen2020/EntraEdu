@@ -99,6 +99,8 @@ class ExamUserController extends CommonController{
 				array_push($allowList,$studentList[$i]);
 			}
 		}
+		dump($allowList);
+		dump(count($allowList));die;
         
 
 	    $Page=new \Think\Page(count($allowList),20);
