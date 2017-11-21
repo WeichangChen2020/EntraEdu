@@ -179,7 +179,7 @@ class QuestionbankModel extends Model{
 		$quesNum['num'] = $this->count();
 
 		if(!empty($openid))
-			$quesNum['finish_num'] = D('exercise')->getCurrentProgress($openid);
+			$quesNum['finish_num'] = D('Student/exercise')->getCurrentProgress($openid);
 
 		return  $quesNum;
 
