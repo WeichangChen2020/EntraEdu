@@ -52,7 +52,7 @@ class RepeatModel extends Model {
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
 
-			$sql = "SELECT id FROM ee_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT quesid FROM ee_repeat where openid = '$openid' AND ee_repeat.quesid = ee_questionbank.id) limit 1";
+			$sql = "SELECT id FROM cn_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT quesid FROM cn_repeat where openid = '$openid' AND cn_repeat.quesid = cn_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
@@ -67,7 +67,7 @@ class RepeatModel extends Model {
 		 
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
-			$sql = "SELECT id FROM ee_questionbank where type = '$typeid' AND NOT EXISTS (SELECT quesid FROM ee_repeat where openid = '$openid' AND ee_repeat.quesid = ee_questionbank.id) limit 1";
+			$sql = "SELECT id FROM cn_questionbank where type = '$typeid' AND NOT EXISTS (SELECT quesid FROM cn_repeat where openid = '$openid' AND cn_repeat.quesid = cn_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
@@ -105,7 +105,7 @@ class RepeatModel extends Model {
 		if($chapid != 0) {
 
 			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
-					->table(array('ee_repeat'=>'exer','ee_questionbank'=>'bank'))
+					->table(array('cn_repeat'=>'exer','cn_questionbank'=>'bank'))
 					->group("exer.quesid") 
 					->select();
 			
@@ -115,7 +115,7 @@ class RepeatModel extends Model {
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
 			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
-					->table(array('ee_repeat'=>'exer','ee_questionbank'=>'bank'))
+					->table(array('cn_repeat'=>'exer','cn_questionbank'=>'bank'))
 					->group("exer.quesid") 
 					->select();
 
@@ -138,8 +138,8 @@ class RepeatModel extends Model {
 	//获取做对题数的排名
 	// public function getRankList($start = 0) { 
 
-	// 	// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_repeat) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
-	// 	$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM ee_repeat) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
+	// 	// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM cn_repeat) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
+	// 	$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM cn_repeat) P GROUP BY openid ORDER BY SUM(result) desc LIMIT  $start,20";
 
 	// 	// dump($sql);	
 	// 	$Model = new \Think\Model();
