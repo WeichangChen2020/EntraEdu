@@ -150,10 +150,9 @@ function pass($openid) {
  */
 function getPersent($name) {
 	$openId = D('StudentInfo')->getOpenid($name);
-	// if ($openId) {
-	// }
-	$persent
+	$persent = D('Student/Questionbank')->getProgress($openId);
 	dump($openId);
+	dump($persent);
 	return  $openId;
 }
 
