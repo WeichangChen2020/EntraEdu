@@ -150,7 +150,7 @@ function getNumberByOpenid($openid) {
  */
 function pass($score) {
 	if (intval($score) >= 60) {
-		return '是'
+		return '是';
 	}else{
 		return '否';
 	}
