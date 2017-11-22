@@ -51,6 +51,9 @@ class ExerciseModel extends Model {
 		if (empty($openid)) {
 			return 0;
 		}
+		$map['openid']= $openid;
+		$map['examid']= $id;
+		$submit = M('ExamSubmit')->where($map)->find();
 		if (empty($submit)) {
 			return '未提交';
 		}else{
