@@ -86,7 +86,8 @@ class ExamUserController extends CommonController{
 
     public function enable($id = 0) {
         $allowList = D('StudentList')->getAllowList();
-        $p['p']=empty(I('p')) ? 1 : I('p');
+        $p = I();
+        $p['p'] = empty($p['p']) ? 1 : $p['p'];
         $count = count($allowList);
 
         $Page=new \Think\Page($count,20);
