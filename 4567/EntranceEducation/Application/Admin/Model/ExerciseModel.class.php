@@ -50,15 +50,9 @@ class ExerciseModel extends Model {
 		dump($id);die;
 		if (empty($openid)) {
 			return 0;
-		}else 
-		if (empty(
-				M('ExamSubmit')
-					->where(array('openid'=>$openid,
-						'examid'=>$id)
-					->find()
-				)
-			)
-		) {
+		}
+		$submit = M('ExamSubmit')->where(array('openid'=>$openid,'examid'=>$id)->find();
+		if (empty($submit)) {
 			return '未提交';
 		}else{
 			$score = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$id,'result'=>1))->count();
