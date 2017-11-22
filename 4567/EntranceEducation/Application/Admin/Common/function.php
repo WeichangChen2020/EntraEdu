@@ -191,4 +191,24 @@ function page($arr,$p,$pageSize) {
     return $res;
 }
 
+/**
+ * getFailNum 获取未通过人数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return int 提交数
+ */
+function getFailNum($id) {
+	$STUDENT = M('StudentInfo');
+	$list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
+    $count = $STUDENT->where($map)->count();
+    $studentList = array();
+    foreach ($list as $key => $value) {
+        if(pass(getResultByOpenid($value['openid']))== '否'){
+            $info = $STUDENT->where(array('openId'=> $value['openid']))->find();
+            array_push($studentList, $info);
+        }
+    }
+	return count($studentList);
+}
  ?>
