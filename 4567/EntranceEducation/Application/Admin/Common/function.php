@@ -194,7 +194,7 @@ function page($arr,$p,$pageSize) {
 /**
  * getFailNum 获取未通过人数
  * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-10-29 15:14Authors
+ * @copyright  2017-11-22 15:22Authors
  * @var $id  考试id
  * @return int 提交数
  */
@@ -210,5 +210,17 @@ function getFailNum($id) {
         }
     }
 	return count($studentList);
+}
+
+/**
+ * getAllowNum 获取允许参加考试人数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-22 15:22Authors
+ * @var $id  考试id
+ * @return int 提交数
+ */
+function getAllowNum($id) {
+	$allowList = D('StudentList')->getAllowList();
+	return count($allowList);
 }
  ?>
