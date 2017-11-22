@@ -57,10 +57,10 @@ class StudentListModel extends Model {
 
 		$QUESTION = D('Questionbank');
 		$STUDENT = D('StudentInfo');
-		// $college = D('Adminer')->getCollege();
-        // $map = array();
+		$college = D('Adminer')->getCollege();
+        $map = array();
 
-		$studentList = M('StudentList')->select();
+		$studentList = M('StudentList')->where($map)->select();
 		$allowList = array();
 		for ($i=0; $i < count($studentList); $i++) { 
 			if($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i][number]))
