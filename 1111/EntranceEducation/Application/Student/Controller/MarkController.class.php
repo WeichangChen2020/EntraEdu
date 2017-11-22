@@ -1,18 +1,7 @@
 <?php
-// +----------------------------------------------------------------------
-// | 概率论与数理统计教学互动平台
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: lijj <hello_lijj@qq.com>
-// +----------------------------------------------------------------------
-// | Time: 2016-07-16  19:34
-// +----------------------------------------------------------------------
+
 namespace Student\Controller;
 use Think\Controller; 
-
 
 
 /**
@@ -20,6 +9,49 @@ use Think\Controller;
  */
 
 class MarkController extends Controller{
+
+    public function index(){
+
+        $openId=session('openId');
+        session('openId',$openId);
+
+        $this->display('markClass');
+    }
+
+    public function markClass(){
+
+        $openId   = session('openId');  
+        $MARK = D('StudentMark');
+        $STUDENT = M('studentInfo');
+        if (IS_AJAX) {
+            if(session('?start')){
+                $start = session('start') + 20;
+                session('start',$start );
+            } else {
+                session('start',0);
+                $start = 0;
+            }
+            $rankList = $MARK->getRankList($start);
+            // P($rankList);
+            // foreach($rankList as $key => $value){
+            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
+            // }
+            $this->ajaxReturn($rankList);
+
+        } else {
+            session('start',0);
+            // dump($openId);
+            $rankList = $MARK->getRankList();
+            //P($rankList);
+            // foreach($rankList as $key=>$value){
+            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
+            // }
+            //P($rankList);
+            $this->assign('rankList',$rankList);
+            $this->display();
+        }
+
+    }    
     
     //积分更新接口
     public function update(){
@@ -53,34 +85,35 @@ class MarkController extends Controller{
     public function getDetails($openId){
         /*========定义一些变量==========*/
         $MESSREC     = M('weixin_message_record');   
-        $COM_COMMENT = M('community_comment');
-        $COM_REPLY   = M('community_reply');
-        $RAN_COMMENT = M('random_comment');
-        $RAN_REPLY   = M('random_reply');
+        //$COM_COMMENT = M('community_comment');
+        //$COM_REPLY   = M('community_reply');
+        //$RAN_COMMENT = M('random_comment');
+        //$RAN_REPLY   = M('random_reply');
         $RAN_RECORD  = M('random_answer_record');
-        $CLASSTEST   = M('student_classtest_record');
+        //$CLASSTEST   = M('student_classtest_record');
+        $EXAM   = M('exam_select');
         $SIGNIN      = M('student_signin');
-        $HOMEWORK    = M('student_homework');
+        $HOMEWORK    = M('student_homework');//这个表里字段名是openId
         $user        = new UserController();
 
         $mark = array();
         $mark = array_merge($mark,$user->getUserInfo($openId));
         $mark['weixinMessageNum']  = $MESSREC->where(array('openId' => $openId))->count();   //微信后台回复的数量
-        $mark['comCommentNum']     = $COM_COMMENT->where(array('openId' => $openId))->count();    //社区留言评论
-        $mark['comReplyNum']       = $COM_REPLY->where(array('openId' => $openId))->count();         //社区留言回复
-        $mark['ranCommentNum']     = $RAN_COMMENT->where(array('openId' => $openId))->count(); //自由练习评论
-        $mark['ranReplyNum']       = $RAN_REPLY->where(array('openId' => $openId))->count();   //自由练习回复
-        $mark['doRanNum']          = $RAN_RECORD->where(array('openId' => $openId))->count();   //自由练习做的题目的个数
-        $mark['doRanRightNum']     = $RAN_RECORD->where(array('openId' => $openId,'answerResult' => 'RIGHT'))->count();   //自由练习对的个数
+        //$mark['comCommentNum']     = $COM_COMMENT->where(array('openId' => $openId))->count();    //社区留言评论
+        //$mark['comReplyNum']       = $COM_REPLY->where(array('openId' => $openId))->count();         //社区留言回复
+        //$mark['ranCommentNum']     = $RAN_COMMENT->where(array('openId' => $openId))->count(); //自由练习评论
+        //$mark['ranReplyNum']       = $RAN_REPLY->where(array('openId' => $openId))->count();   //自由练习回复
+        $mark['doRanNum']          = $RAN_RECORD->where(array('openid' => $openId))->count();   //自由练习做的题目的个数
+        $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //自由练习答对题数
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
-        $mark['classTestNum']      = $CLASSTEST->where(array('openId' => $openId))->count();
-        $mark['classTestRightNum'] = $CLASSTEST->where(array('openId' => $openId,'answerResult' => 'RIGHT'))->count();
-        $mark['signinNum']         = $SIGNIN->where(array('openId' => $openId))->count();
+        $mark['classTestNum']      = $EXAM->where(array('openid' => $openId))->count();//参与测试次数
+        $mark['classTestRightNum'] = $EXAM->where(array('openid' => $openId,'result' => '1'))->count();//模拟测试答对题数
+        $mark['signinNum']         = $SIGNIN->where(array('openid' => $openId))->count();//签到次数
         $homeworkMark = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
         if(empty($homeworkMark))
             $mark['homeworkMark'] = 0;
         else 
-            $mark['homeworkMark']      = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
+            $mark['homeworkMark'] = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
 
         return $mark;
     }
@@ -89,12 +122,18 @@ class MarkController extends Controller{
         $markInfo = $this->getDetails($openId);
         $markWeight = M('student_mark_weight')->find(1);
         
-        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage'] + $markInfo['comCommentNum'] * $markWeight['comComment'] 
-        + $markInfo['comReplyNum'] * $markWeight['comReply'] + $markInfo['ranCommentNum'] * $markWeight['ranComment']
-        + $markInfo['ranReplyNum'] * $markWeight['ranReply'] + $markInfo['doRanNum'] * $markWeight['doRan']
-        + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] + $markInfo['registerNum'] * $markWeight['register']
-        + $markInfo['classTestNum'] * $markWeight['classTest'] + $markInfo['classTestRightNum'] * $markWeight['classTestRight']
-        + $markInfo['signinNum'] * $markWeight['signin'] + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
+        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage'] 
+        //+ $markInfo['comCommentNum'] * $markWeight['comComment'] 
+        //+ $markInfo['comReplyNum'] * $markWeight['comReply'] 
+        //+ $markInfo['ranCommentNum'] * $markWeight['ranComment']
+        //+ $markInfo['ranReplyNum'] * $markWeight['ranReply'] 
+        + $markInfo['doRanNum'] * $markWeight['doRan']
+        + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] 
+        + $markInfo['registerNum'] * $markWeight['register']
+        + $markInfo['classTestNum'] * $markWeight['classTest'] 
+        + $markInfo['classTestRightNum'] * $markWeight['classTestRight']
+        + $markInfo['signinNum'] * $markWeight['signin'] 
+        + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
         
         return ($mark);
     }
@@ -107,7 +146,7 @@ class MarkController extends Controller{
      */
     
     //导出成绩报表
-    public function exportExcel($arr=array(),$title=array(),$filename='概率论与数理统计教学互动平台成绩报表'){
+    public function exportExcel($arr=array(),$title=array(),$filename='计算机网络成绩统计表'){
         $MARK = M('student_mark');
         header("Content-type:application/octet-stream");
         header("Accept-Ranges:bytes");
