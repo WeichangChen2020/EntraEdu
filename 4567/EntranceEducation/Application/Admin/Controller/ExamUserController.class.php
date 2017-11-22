@@ -120,12 +120,12 @@ class ExamUserController extends CommonController{
                 array_push($studentList, $info);
             }
         }
-
-        $p=empty(I('p')) ? 1 : I('p');
+        $p = I();
+        $p['p'] = empty($p['p']) ? 1 : $p['p'];
 
         $Page=new \Think\Page($count,20);
         $show= $Page->show();// 分页显示输出﻿
-        $list=array_slice($studentList,($p-1)*20,20);
+        $list=array_slice($studentList,($p['p']-1)*20,20);
         $this->assign('page',$show);// 赋值分页输出
 
         $this->assign('studentList',$studentList);
