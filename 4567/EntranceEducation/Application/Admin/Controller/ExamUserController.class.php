@@ -94,7 +94,7 @@ class ExamUserController extends CommonController{
 		for ($i=0; $i < count($studentList); $i++) { 
 			if($QUESTION
 				->getProgress($STUDENT
-					->getOpenidBynumber($studentList[$i][number]))
+					->getOpenidBynumber($studentList[$i]['number']))
 				>= 0.6
 			){
 				array_push($allowList,$studentList[$i]);
