@@ -88,6 +88,7 @@ class ExamUserController extends CommonController{
 		$QUESTION = D('Questionbank');
 		$STUDENT = D('StudentInfo');
 		$p=I();
+        $p['p'] = empty($p['p']) ? 1 : $p['p'];
 		$studentList = M('StudentList')->select();
 		$allowList = array();
 		for ($i=0; $i < count($studentList); $i++) { 
