@@ -47,13 +47,13 @@ class ExerciseModel extends Model {
 	 */
 	public function getResult($openid) {
 		$id = I('id');
-		dump($id);die;
 		if (empty($openid)) {
 			return 0;
 		}
 		$map['openid']= $openid;
 		$map['examid']= $id;
 		$submit = M('ExamSubmit')->where($map)->find();
+		dump($openid);
 		if (empty($submit)) {
 			return '未提交';
 		}else{
