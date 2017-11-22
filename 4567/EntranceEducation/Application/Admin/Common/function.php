@@ -154,6 +154,26 @@ function getPersent($number) {
 	$persent = D('Questionbank')->getProgress($openId);
 	return  $persent;
 }
-
+/**
+ * page($arr,$p,$pageSize) 数组分页
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-21 17:00Authors
+ * @var 
+ * @return 
+ */
+public function page($arr,$p,$pageSize) {
+    $count = count($arr);
+    $Page = new Page($count,$pageSize);
+    $start=($p- 1) *$pageSize;
+    $length= $pageSize;
+    $cut_qa=  array_slice($arr, $start, $length, true);
+    $page = $Page->show();
+    
+    $res=array(
+        'list'=>$cut_qa,
+        'page'=>$page,
+    );
+    return $res;
+}
 
  ?>

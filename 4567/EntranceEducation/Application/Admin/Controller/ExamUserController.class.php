@@ -97,6 +97,8 @@ class ExamUserController extends CommonController{
 				== 0
 			){
 				array_push($allowList,$studentList[$i]);
+				if(count($allowList) == 20)
+					break;
 			}
 		}
         
