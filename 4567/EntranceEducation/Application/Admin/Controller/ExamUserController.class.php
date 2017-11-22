@@ -115,8 +115,10 @@ class ExamUserController extends CommonController{
         $count = $Student->where($map)->count();
         $studentList = array();
         foreach ($list as $key => $value) {
-            if(pass(getResultByOpenid($value['openid']))== '否')
-                array_push($studentList, $STUDENT->where(array('openId'=> $value['openid'])->find()));
+            if(pass(getResultByOpenid($value['openid']))== '否'){
+                $info = $STUDENT->where(array('openId'=> $value['openid']))->find();
+                array_push($studentList, $info);
+            }
         }
 
         $p=empty(I('p')) ? 1 : I('p');
