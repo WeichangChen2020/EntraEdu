@@ -46,5 +46,33 @@ class StudentListModel extends Model {
 
 		return $res;
 	}
+	/**
+	 * getAllowList 获取允许考试名单
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-22 13:25Authors
+	 * @var   
+	 * @return  array()
+	 */
+	public function getAllowList(){
+
+		$QUESTION = D('Questionbank');
+		$STUDENT = D('StudentInfo');
+
+		$studentList = M('StudentList')->select();
+		$allowList = array();
+		for ($i=0; $i < count($studentList); $i++) { 
+			if($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i][number]))
+				>= 0.6)
+			{
+				array_push($allowList,$studentList[$i]);
+			}
+		}
+
+		if (empty($allowList)) {
+			return false;
+		}
+
+		return $allowList;
+	}
  
 }
