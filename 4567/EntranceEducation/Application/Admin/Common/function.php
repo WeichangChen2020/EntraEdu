@@ -163,7 +163,7 @@ function getPersent($number) {
  */
 public function page($arr,$p,$pageSize) {
     $count = count($arr);
-    $Page = new Page($count,$pageSize);
+    $Page = new \Think\Page($count,$pageSize);
     $start=($p- 1) *$pageSize;
     $length= $pageSize;
     $cut_qa=  array_slice($arr, $start, $length, true);
