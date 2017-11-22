@@ -85,23 +85,7 @@ class ExamUserController extends CommonController{
 	 */
 
 	public function enable($id = 0) {
-		$QUESTION = D('Questionbank');
-		$STUDENT = D('StudentInfo');
-		$p=I();
-        $p['p'] = empty($p['p']) ? 1 : $p['p'];
-		$studentList = M('StudentList')->select();
-		$allowList = array();
-		for ($i=0; $i < count($studentList); $i++) { 
-			if($QUESTION
-				->getProgress($STUDENT
-					->getOpenidBynumber($studentList[$i]['number']))
-				>= 0.6
-			){
-				array_push($allowList,$studentList[$i]);
-				if(count($allowList) == 20)
-					break;
-			}
-		}
+		$allowList = D('StudentList')->getAllowList();
         
 		$count = count($allowList);
 	    $Page=new \Think\Page($count,20);
