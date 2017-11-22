@@ -51,7 +51,6 @@ class ExerciseModel extends Model {
 		if (empty($openid)) {
 			return 0;
 		}
-		$submit = M('ExamSubmit')->where(array('openid'=>$openid,'examid'=>$id)->find();
 		if (empty($submit)) {
 			return '未提交';
 		}else{
