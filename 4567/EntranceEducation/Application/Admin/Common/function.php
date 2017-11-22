@@ -137,9 +137,9 @@ function getNumberByOpenid($openid) {
  * @var $openid，$id 
  * @return String "是"或"否"
  */
-function pass($openid) {
+function pass($score) {
 	
-	return '0';
+	return $score;
 }
 
 /**

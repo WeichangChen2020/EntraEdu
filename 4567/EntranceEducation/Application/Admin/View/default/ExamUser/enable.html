@@ -20,8 +20,8 @@
             <td align="center">{$studentList.name}</a></td>
             <td align="center">{$studentList.class}</td>
             <td align="center">{$studentList.number}</td>
-            <td align="center">{$studentList.number|getResult=###}得分</td>
-            <td align="center">{$studentList.number}</td>
+            <td align="center">{$studentList.number|getResult=###}</td>
+            <td align="center">{$studentList.number|getResult=###|pass=###}</td>
             <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
             </td>
           </tr>
