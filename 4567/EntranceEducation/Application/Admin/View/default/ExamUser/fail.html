@@ -1,6 +1,6 @@
 <div class="aright">
 <div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
-    <a href="{:U('ExamUser/enable', array('id'=>$id))}">允许参加考试者({|getAllowList=###})</a>
+    <a href="{:U('ExamUser/enable', array('id'=>$id))}">允许参加考试者({|getAllowList})</a>
     <a href="{:U('ExamUser/fail', array('id'=>$id))}" style="margin-left: 20px;">考试未通过({$id|getFailNum=###})</a>
 </div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
