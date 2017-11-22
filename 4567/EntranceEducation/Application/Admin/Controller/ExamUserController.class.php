@@ -109,6 +109,7 @@ class ExamUserController extends CommonController{
 	    $list=array_slice($allowList,$Page->firstRow,$Page->listRows);
 		$this->assign('page',$show);// 赋值分页输出
 
+        dump($list);dump($studentList);die;
         $this->assign('studentList', $list);
 
         $this->assign('export', 0);
