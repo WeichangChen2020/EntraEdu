@@ -47,11 +47,18 @@ class ExerciseModel extends Model {
 	 */
 	public function getResult($openid) {
 		$id = I('id');
+		dump($id);die;
 		if (empty($openid)) {
 			return 0;
-		}else if (empty(M('ExamSubmit')
-			->where(array('openid'=>$openid,'examid'=>$id)
-				->find() ))) {
+		}else 
+		if (empty(
+				M('ExamSubmit')
+					->where(array('openid'=>$openid,
+						'examid'=>$id)
+					->find()
+				)
+			)
+		) {
 			return '未提交';
 		}else{
 			$score = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$id,'result'=>1))->count();
