@@ -39,11 +39,11 @@ class ExerciseModel extends Model {
 		return $res['0']["ROUND( SUM( result ) / COUNT( * ) , 2 )"];
 	}
 	/**
-	 * getResult 获取自由练习答题情况
+	 * getResult 获取某次模拟考得分
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-29 16:20 Authors
 	 * @var  
-	 * @return  String 正确数|提交数
+	 * @return  int
 	 */
 	public function getResult($openid) {
 		if (empty($openid)) {
