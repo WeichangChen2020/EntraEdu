@@ -112,7 +112,7 @@ class ExamUserController extends CommonController{
 	public function fail($id = 0) {
         $STUDENT = M('StudentInfo');
 		$list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
-        $count = $Student->where($map)->count();
+        $count = $STUDENT->where($map)->count();
         $studentList = array();
         foreach ($list as $key => $value) {
             if(pass(getResultByOpenid($value['openid']))== '否'){
