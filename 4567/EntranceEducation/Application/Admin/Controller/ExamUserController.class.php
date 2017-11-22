@@ -76,6 +76,30 @@ class ExamUserController extends CommonController{
 		$this->assign('id',$id);
 		$this->display();
 	}
+    /**
+     * enable 模拟考试详细信息 允许考试人员详情
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-21 13:48Authors
+     * @var  
+     * @return 
+     */
+
+    public function enable($id = 0) {
+        $allowList = D('StudentList')->getAllowList();
+        $p['p']=empty(I('p')) ? 1 : I('p');
+        $count = count($allowList);
+
+        $Page=new \Think\Page($count,20);
+        $show= $Page->show();// 分页显示输出﻿
+        $list=array_slice($allowList,($p['p']-1)*20,20);
+        $this->assign('page',$show);// 赋值分页输出
+
+        $this->assign('studentList', $list);
+
+        $this->assign('export', 0);
+        $this->assign('id',$id);
+        $this->display();
+    }
 	/**
 	 * enable 模拟考试详细信息 允许考试人员详情
 	 * @author 陈伟昌<1339849378@qq.com>
@@ -84,20 +108,28 @@ class ExamUserController extends CommonController{
 	 * @return 
 	 */
 
-	public function enable($id = 0) {
-		$allowList = D('StudentList')->getAllowList();
-        
-		$count = count($allowList);
-	    $Page=new \Think\Page($count,20);
-        $show= $Page->show();// 分页显示输出﻿
-	    $list=array_slice($allowList,($p['p']-1)*20,20);
-		$this->assign('page',$show);// 赋值分页输出
+	public function fail($id = 0) {
+        $STUDENT = M('StudentInfo');
+		$list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
+        $count = $Student->where($map)->count();
+        $studentList = array();
+        foreach ($list as $key => $value) {
+            if(pass(getResultByOpenid($value['openid']))== '否')
+                array_push($studentList, $STUDENT->where(array('openId'=> $value['openid'])->find()));
+        }
 
-        $this->assign('studentList', $list);
+        $p=empty(I('p')) ? 1 : I('p');
+
+        $Page=new \Think\Page($count,20);
+        $show= $Page->show();// 分页显示输出﻿
+        $list=array_slice($studentList,($p-1)*20,20);
+        $this->assign('page',$show);// 赋值分页输出
+
+        $this->assign('studentList',$studentList);
 
         $this->assign('export', 0);
-		$this->assign('id',$id);
-		$this->display();
+        $this->assign('id',$id);
+        $this->display();
 	}
     /**
      * 导出到excel

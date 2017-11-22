@@ -80,7 +80,7 @@ function getUnsubmitNum($id) {
 	return $num;
 }
 /**
- * getResult($number) 获取$name的提交数及正确数
+ * getResult($number) 获取$name的成绩
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-10-29 15:14Authors
  * @var $id  考试id
@@ -88,6 +88,17 @@ function getUnsubmitNum($id) {
  */
 function getResult($number) {
 	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
+	$result = D('Exercise')->getResult($openid);
+	return $result;
+}
+/**
+ * getResultByOpenid($openid) 获取$name的成绩
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return String 正确数|提交数
+ */
+function getResultByOpenid($openid) {
 	$result = D('Exercise')->getResult($openid);
 	return $result;
 }
