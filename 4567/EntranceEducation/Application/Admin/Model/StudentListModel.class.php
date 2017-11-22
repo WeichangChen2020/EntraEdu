@@ -67,7 +67,7 @@ class StudentListModel extends Model {
 				>= 0.6)
 			{
 				array_push($allowList,$studentList[$i]);
-				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i][number]));
+				dump($QUESTION->getProgress($STUDENT->getOpenidBynumber($studentList[$p['p']*20+$i][number])));
 			}
 		}
 
