@@ -43,19 +43,21 @@ class ExerciseModel extends Model {
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-29 16:20 Authors
 	 * @var  
-	 * @return  int
+	 * @return  string
 	 */
 	public function getResult($openid) {
+		$id = I('id');
 		if (empty($openid)) {
 			return 0;
+		}else if (M('ExamSubmit')
+			->where(array('openid'=>$openid,'examid'=>$id)
+				->find() == null)) {
+			return '未提交';
+		}else{
+			$score = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$id,'result'=>1))->count();
+			return $score;
 		}
-		$sql = "SELECT COUNT(result),SUM(result) FROM  ee_exercise WHERE  openid = '$openid' ";
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-		if ($res['0']["SUM(result)"] == NULL) {
-			$res['0']["SUM(result)"] = '0';
-		}
-		return $res['0']["SUM(result)"].'|'.$res['0']['COUNT(result)'];
+
 	}
 
 

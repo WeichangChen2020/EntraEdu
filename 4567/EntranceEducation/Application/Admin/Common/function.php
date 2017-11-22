@@ -88,7 +88,6 @@ function getUnsubmitNum($id) {
  */
 function getResult($number) {
 	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-	dump($openid);die;
 	$result = D('Exercise')->getResult($openid);
 	return $result;
 }
