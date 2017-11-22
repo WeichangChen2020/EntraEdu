@@ -138,8 +138,11 @@ function getNumberByOpenid($openid) {
  * @return String "是"或"否"
  */
 function pass($score) {
-	
-	return $score;
+	if (intval($score) >= 60) {
+		return '是'
+	}else{
+		return '否';
+	}
 }
 
 /**
