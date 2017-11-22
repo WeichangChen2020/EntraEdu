@@ -93,7 +93,6 @@ class ExamUserController extends CommonController{
 	    $list=array_slice($allowList,($p['p']-1)*20,20);
 		$this->assign('page',$show);// 赋值分页输出
 
-        dump($list);die;
         $this->assign('studentList', $list);
 
         $this->assign('export', 0);
