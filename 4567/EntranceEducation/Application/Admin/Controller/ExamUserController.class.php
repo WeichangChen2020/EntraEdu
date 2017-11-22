@@ -108,7 +108,7 @@ class ExamUserController extends CommonController{
 	    $list=array_slice($allowList,$Page->firstRow,$Page->listRows);
 		$this->assign('page',$show);// 赋值分页输出
 
-        $this->assign('studentList', $allowList);
+        $this->assign('studentList', $List);
 
         $this->assign('export', 0);
 		$this->assign('id',$id);
