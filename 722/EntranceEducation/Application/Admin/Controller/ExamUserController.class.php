@@ -56,6 +56,28 @@ class ExamUserController extends CommonController{
         $this->assign('id',$id);
         $this->display();
     }
+    /**
+     * fail 考试未通过名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-23 17:33Authors
+     * @var  
+     * @return 
+     */
+
+    public function fail($id = 0) {
+
+        $college = D('Adminer')->getCollege();
+
+        $STUDENT = D('ExamSubmit');
+        $failList = $STUDENT->getFailList($college,$id);
+
+        
+        $this->assign('export', 0);
+        $this->assign('count', count($failList));
+        $this->assign('submitList',$failList);
+        $this->assign('id',$id);
+        $this->display();
+    }
 
     /**
      * 导出到excel

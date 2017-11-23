@@ -107,6 +107,24 @@ class ExamSubmitModel extends Model {
         }
         return $res;
     }
+    
+    /**
+     * getFailList 获取$examid考试的提交 人员名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-23 16:35 Authors
+     * @var  $id
+     * @return  array
+     */
+    public function getFailList($college,$id) {
+        $res = array();
+        $submitList = $this->getSubmitList($college,$id);
+        foreach ($submitList as $key => $value) {
+            if (pass(getResult(getNumberByOpenid($value['openid']))) == '否') {
+                array_push($res, $value);
+            }
+        }
+        return $res;
+    }
 
 
 }
