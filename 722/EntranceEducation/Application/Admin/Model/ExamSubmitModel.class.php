@@ -98,10 +98,7 @@ class ExamSubmitModel extends Model {
             $list = M('ExamSubmit')->where(array('examid'=>$id))->select();
             foreach ($list as $key => $value) {
                 $info = $STUDENT->getInfo($value['openid']);
-                dump($info);
-                dump($college);
-                dump($value);die;
-                if($info['academy']==$college)
+                if($info['0']['academy']==$college)
                     array_push($res, $value);
             }
         }
