@@ -37,7 +37,8 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $total = M('StudentInfo')->where($map)->count();
-        $this->assign('examList',$total-$submitNum);
+        $this->assign('unSubmitNum',$total-$submitNum);
+        $this->assign('examList',$list);
 
         $this->display();
     }
