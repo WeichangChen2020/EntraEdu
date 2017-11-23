@@ -91,7 +91,7 @@ class ExamSubmitModel extends Model {
      */
     public function getSubmitList($id) {
 
-        $res = $this->where(array('examid'=>$id))->select();
+        $res = M('ExamSubmit')->where(array('examid'=>$id))->select();
 
         if (empty($res)) {
             return 0;

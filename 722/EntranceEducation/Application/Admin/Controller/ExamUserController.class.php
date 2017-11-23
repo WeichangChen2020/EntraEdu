@@ -34,27 +34,6 @@ class ExamUserController extends CommonController{
         $this->display();
     }
 
-    /**
-     * detail 模拟考试详细信息 提交人员详情
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-7 15:12Authors
-     * @var  
-     * @return 
-     */
-
-    public function detail($id = 0) {
-
-        $SUBMIT = M('ExamSubmit');
-        $college = D('Adminer')->getCollege();
-
-        $submitList = $SUBMIT->where(array('examid'=>$id))->select();
-
-        $this->assign('export', 1);
-        $this->assign('submitList',$submitList);
-        $this->assign('id',$id);
-        $this->display();
-    }
-
 
     /**
      * unSubmit 模拟考试详细信息 未提交人员详情
@@ -68,7 +47,7 @@ class ExamUserController extends CommonController{
 
         $STUDENT = D('ExamSubmit');
 
-        $unSubmitList = $STUDENT->getUnsubmitList($id);
+        $unSubmitList = $STUDENT->where(array('examid'=>$id))->select();
 
         dump($unSubmitList);die;
         $this->assign('export', 0);
