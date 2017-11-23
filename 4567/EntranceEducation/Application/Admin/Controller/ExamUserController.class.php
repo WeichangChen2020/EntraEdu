@@ -212,6 +212,14 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
+    public function update(){
+        $STUDENT = M('StudentList');
+        $List = $STUDENT->select();
+        foreach ($List as $key => $value) {
+            $value['present'] = D('Questionbank')->getProgress($openId);
+            $List->save($value);
+        }
+    }
 
 
 }
