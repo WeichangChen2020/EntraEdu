@@ -102,8 +102,6 @@ class ExamSubmitModel extends Model {
                     array_push($res, $value);
             }
         }
-        dump($list);
-        dump($res);die;
         if (empty($res)) {
             return 0;
         }
