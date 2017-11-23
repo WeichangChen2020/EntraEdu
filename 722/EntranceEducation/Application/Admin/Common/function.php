@@ -78,14 +78,9 @@ function getSubmitNum($id) {
  * @return int 提交数
  */
 function getUnsubmitNum($id) {
-	
+
     $college = D('Adminer')->getCollege();
-    $map['is_newer'] = 1;
-    if (!empty($college)) {
-        $map['academy'] = $college;
-    }
-    $total = M('StudentInfo')->where($map)->count();
-	$num = D('ExamSubmit')->getUnsubmitNum($id);
+	$num = D('ExamSubmit')->getUnsubmitNum($college,$id);
 	return $num;
 }
 /**

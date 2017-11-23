@@ -36,7 +36,6 @@ class ExamSubmitModel extends Model {
 
         $Student = M('StudentList');
 
-        $college = D('Adminer')->getCollege();
         $map = array();
         $submitNum = getSubmitNum($college,$id);
         $map['is_newer'] = 1;
