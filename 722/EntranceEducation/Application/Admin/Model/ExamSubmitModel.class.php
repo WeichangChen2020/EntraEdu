@@ -92,7 +92,7 @@ class ExamSubmitModel extends Model {
     public function getSubmitList($id) {
 
         $res = M('ExamSubmit')->where(array('examid'=>$id))->select();
-
+        dump($res);die;
         if (empty($res)) {
             return 0;
         }
