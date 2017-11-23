@@ -155,4 +155,16 @@ function pass($score) {
 	}
 }
 
+/**
+ * getResult($number) 获取$number的成绩
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return String 正确数|提交数
+ */
+function getResult($number) {
+	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
+	$result = D('Exercise')->getResult($openid);
+	return $result;
+}
  ?>
