@@ -85,17 +85,24 @@ class ExamUserController extends CommonController{
      */
 
     public function enable($id = 0) {
-        $allowList = D('StudentList')->getAllowList();
-        $p = I();
-        $p['p'] = empty($p['p']) ? 1 : $p['p'];
-        $count = count($allowList);
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map['type'] = 0;
 
-        $Page=new \Think\Page($count,20);
-        $show= $Page->show();// 分页显示输出﻿
-        $list=array_slice($allowList,($p['p']-1)*20,20);
-        $this->assign('page',$show);// 赋值分页输出
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+        $map['present']  = array('egt',0.6);
+        $map['is_newer'] = 1;
+        $list = M('StudentInfo')->where($map)->page($_GET['p'].',20')->select();
+        $count = M('StudentInfo')->where($map)->count();
 
         $this->assign('studentList', $list);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+
 
         $this->assign('export', 0);
         $this->assign('id',$id);
