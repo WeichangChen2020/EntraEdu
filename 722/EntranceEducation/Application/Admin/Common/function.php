@@ -67,11 +67,6 @@ function getAccuracy($id) {
 function getSubmitNum($id) {
 
     $college = D('Adminer')->getCollege();
-        $map['is_newer'] = 1;
-        if (!empty($college)) {
-            $map['academy'] = $college;
-        }
-        $total = M('StudentInfo')->where($map)->count();
 	$num = D('ExamSubmit')->getSubmitNum($college,$id);
 	return $num;
 }
@@ -83,6 +78,13 @@ function getSubmitNum($id) {
  * @return int 提交数
  */
 function getUnsubmitNum($id) {
+	
+    $college = D('Adminer')->getCollege();
+    $map['is_newer'] = 1;
+    if (!empty($college)) {
+        $map['academy'] = $college;
+    }
+    $total = M('StudentInfo')->where($map)->count();
 	$num = D('ExamSubmit')->getUnsubmitNum($id);
 	return $num;
 }

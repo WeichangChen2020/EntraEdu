@@ -32,33 +32,39 @@ class ExamSubmitModel extends Model {
      * @var  
      * @return  int
      */
-    public function getUnsubmitNum($id) {
+    public function getUnsubmitNum($college,$id) {
 
         $Student = M('StudentList');
 
         $college = D('Adminer')->getCollege();
         $map = array();
-
-        if (!is_null($college)) {
+        $submitNum = getSubmitNum($college,$id);
+        $map['is_newer'] = 1;
+        if (!empty($college)) {
             $map['academy'] = $college;
-            $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
-            $count = $Student->where($map)->count();
-        } else {
-            $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
-            $count = $Student->count();
         }
+        $total = M('StudentInfo')->where($map)->count();
+        return $total-$submitNum;
+        // if (!is_null($college)) {
+        //     $map['academy'] = $college;
+        //     $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+        //     $count = $Student->where($map)->count();
+        // } else {
+        //     $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+        //     $count = $Student->count();
+        // }
 
 
 
-        $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
+        // $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
 
-        $Model = new \Think\Model();
-        $res = $Model->query($sql);
+        // $Model = new \Think\Model();
+        // $res = $Model->query($sql);
 
-        if (empty($res)) {
-            return 'error';
-        }
-        return $count-$res['0']['COUNT(*)'];
+        // if (empty($res)) {
+        //     return 'error';
+        // }
+        // return $count-$res['0']['COUNT(*)'];
     }
     /**
      * getUnsubmitList 获取未提交名单
