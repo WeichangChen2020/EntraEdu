@@ -72,7 +72,7 @@ class ExamUserController extends CommonController{
         $STUDENT = D('ExamSubmit');
         $failList = $STUDENT->getFailList($college,$id);
 
-        
+        dump($failList);die;
         $this->assign('export', 0);
         $this->assign('count', count($failList));
         $this->assign('submitList',$failList);
