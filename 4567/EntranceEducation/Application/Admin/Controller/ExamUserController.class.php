@@ -213,11 +213,12 @@ class ExamUserController extends CommonController{
     }
 
     public function update(){
-        $STUDENT = M('StudentList');
+        $STUDENT = M('StudentInfo');
         $List = $STUDENT->select();
         foreach ($List as $key => $value) {
-            $value['present'] = D('Questionbank')->getProgress($openId);
+            $value['present'] = D('Questionbank')->getProgress($Value['openId']);
             $STUDENT->save($value);
+            dump($value);die;
         }
     }
 
