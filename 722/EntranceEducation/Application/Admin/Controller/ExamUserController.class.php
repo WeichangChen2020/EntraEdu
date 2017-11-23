@@ -51,6 +51,7 @@ class ExamUserController extends CommonController{
 
         
         $this->assign('export', 0);
+        $this->assign('count', count($submitList));
         $this->assign('submitList',$submitList);
         $this->assign('id',$id);
         $this->display();
