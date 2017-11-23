@@ -17,11 +17,11 @@
       <volist name="submitList" id="submitList" empty="暂时没有数据" >
           <tr>
             <td align="center">{$key+1}</td>
-            <td align="center">{$submitList.name}</a></td>
-            <td align="center">{$submitList.class}</td>
-            <td align="center">{$submitList.number}</td>
-            <td align="center">{$submitList.number|getResult=###}</td>
-            <td align="center">{$submitList.number|getResult=###|pass=###}</td>
+            <td align="center">{$submitList.openid|getNameByOpenid=###}</a></td>
+            <td align="center">{$submitList.openid|getClassByOpenid=###}</td>
+            <td align="center">{$submitList.openid|getNumberByOpenid=###}</td>
+            <td align="center">{$submitList.openid|getResult=###}</td>
+            <td align="center">{$submitList.openid|getResult=###|pass=###}</td>
             <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
             </td>
           </tr>
