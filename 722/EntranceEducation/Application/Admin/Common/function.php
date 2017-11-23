@@ -165,6 +165,6 @@ function getResult($number) {
  */
 function getFailNum($id) {
 	$result = D('ExamSubmit')->getFailList($college,$id);
-	return $result;
+	return count($result);
 }
  ?>
