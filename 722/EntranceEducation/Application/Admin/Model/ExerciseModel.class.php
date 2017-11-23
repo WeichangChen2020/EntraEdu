@@ -52,7 +52,6 @@ class ExerciseModel extends Model {
 		}
 		$map['openid']= $openid;
 		$map['examid']= $id;
-		dump($map);die;
 		$submit = M('ExamSubmit')->where($map)->find();
 		if (empty($submit)) {
 			return '未提交';
