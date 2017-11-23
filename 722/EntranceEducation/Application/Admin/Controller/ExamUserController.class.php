@@ -10,83 +10,140 @@ use Think\Controller;
  * @return 
  */
 class ExamUserController extends CommonController{
-	
-	/**
-	 * index 模拟考试主页面 显示考试列表，提交人数等
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-10-29 14:12Authors
-	 * @var  
-	 * @return 
-	 */
+    
+    /**
+     * index 模拟考试主页面 显示考试列表，提交人数等
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-10-29 14:12Authors
+     * @var  
+     * @return 
+     */
 
-	public function index() {
+    public function index() {
 
-		$EXAM = M('ExamSetup');
+        $EXAM = M('ExamSetup');
         $EXAMCOLLEGE = D('ExamCollege');
 
         $college = D('Adminer')->getCollege();
         $list = $EXAMCOLLEGE->getExamList($college);
         foreach ($list as $key => $value) {
-        	$list[$key]['info'] = $EXAM->where(array('id' => $value['examid']))->find();
+            $list[$key]['info'] = $EXAM->where(array('id' => $value['examid']))->find();
         }
         $this->assign('examList',$list);
 
         $this->display();
-	}
+    }
 
-	/**
-	 * detail 模拟考试详细信息 提交人员详情
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-7 15:12Authors
-	 * @var  
-	 * @return 
-	 */
+    /**
+     * detail 模拟考试详细信息 提交人员详情
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-7 15:12Authors
+     * @var  
+     * @return 
+     */
 
-	public function detail($id = 0) {
+    public function detail($id = 0) {
 
-		$SUBMIT = M('ExamSubmit');
+        $SUBMIT = M('ExamSubmit');
         $college = D('Adminer')->getCollege();
 
-		$submitList = $SUBMIT->where(array('examid'=>$id))->select();
+        $submitList = $SUBMIT->where(array('examid'=>$id))->select();
 
         $this->assign('export', 1);
-		$this->assign('submitList',$submitList);
-		$this->assign('id',$id);
-		$this->display();
-	}
-
-
-	/**
-	 * unSubmit 模拟考试详细信息 未提交人员详情
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-7 15:50Authors
-	 * @var  
-	 * @return 
-	 */
-
-	public function unSubmit($id = 0) {
-
-		$STUDENT = D('ExamSubmit');
-
-		$unSubmitList = $STUDENT->getUnsubmitList($id);
-
-        $this->assign('export', 0);
-		$this->assign('submitList',$unSubmitList);
-		$this->assign('id',$id);
-		$this->display();
-	}
+        $this->assign('submitList',$submitList);
+        $this->assign('id',$id);
+        $this->display();
+    }
 
 
     /**
+     * unSubmit 模拟考试详细信息 未提交人员详情
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-7 15:50Authors
+     * @var  
+     * @return 
+     */
+
+    public function unSubmit($id = 0) {
+
+        $STUDENT = D('ExamSubmit');
+
+        $unSubmitList = $STUDENT->getUnsubmitList($id);
+
+        dump($unSubmitList);die;
+        $this->assign('export', 0);
+        $this->assign('submitList',$unSubmitList);
+        $this->assign('id',$id);
+        $this->display();
+    }
+    /**
+     * enable 模拟考试详细信息 允许考试人员详情
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-21 13:48Authors
+     * @var  
+     * @return 
+     */
+
+    public function enable($id = 0) {
+        $allowList = D('StudentList')->getAllowList();
+        $p = I();
+        $p['p'] = empty($p['p']) ? 1 : $p['p'];
+        $count = count($allowList);
+
+        $Page=new \Think\Page($count,20);
+        $show= $Page->show();// 分页显示输出﻿
+        $list=array_slice($allowList,($p['p']-1)*20,20);
+        $this->assign('page',$show);// 赋值分页输出
+
+        $this->assign('studentList', $list);
+
+        $this->assign('export', 0);
+        $this->assign('id',$id);
+        $this->display();
+    }
+    /**
+     * enable 模拟考试详细信息 允许考试人员详情
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-21 13:48Authors
+     * @var  
+     * @return 
+     */
+
+    public function fail($id = 0) {
+        $STUDENT = M('StudentInfo');
+        $list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
+        $count = $STUDENT->where($map)->count();
+        $studentList = array();
+        foreach ($list as $key => $value) {
+            if(pass(getResultByOpenid($value['openid']))== '否'){
+                $info = $STUDENT->where(array('openId'=> $value['openid']))->find();
+                array_push($studentList, $info);
+            }
+        }
+        $p = I();
+        $p['p'] = empty($p['p']) ? 1 : $p['p'];
+
+        $Page=new \Think\Page($count,20);
+        $show= $Page->show();// 分页显示输出﻿
+        $list=array_slice($studentList,($p['p']-1)*20,20);
+        $this->assign('page',$show);// 赋值分页输出
+
+        $this->assign('studentList',$studentList);
+
+        $this->assign('export', 0);
+        $this->assign('id',$id);
+        $this->display();
+    }
+    /**
      * 导出到excel
      * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-12 15:00Authors
-	 * @var  
-	 * @return 
+     * @copyright  2017-11-12 15:00Authors
+     * @var  
+     * @return 
      */
     public function export($type,$id) {
 
-		$SUBMIT = D('ExamSubmit');
+        $SUBMIT = D('ExamSubmit');
 
         // 查询条件
         $college = D('Adminer')->getCollege();
@@ -102,19 +159,19 @@ class ExamUserController extends CommonController{
         if($type == 1) {
             $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
             foreach ($openid as $key => $value) {
-            	$list[$key]['name'] = getNameByOpenid($value['openid']);
-            	$list[$key]['class'] = getClassByOpenid($value['openid']);
-            	$list[$key]['number'] = getNumberByOpenid($value['openid']);
-            	$list[$key]['result'] = getResult($value['openid']);
+                $list[$key]['name'] = getNameByOpenid($value['openid']);
+                $list[$key]['class'] = getClassByOpenid($value['openid']);
+                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $list[$key]['result'] = getResult($value['openid']);
             }
             $filename .= '提交用户';
         } else {
             $openid = $SUBMIT->getUnsubmitList($id);
             foreach ($openid as $key => $value) {
-            	$list[$key]['name'] = getNameByOpenid($value['openId']);
-            	$list[$key]['class'] = getClassByOpenid($value['openId']);
-            	$list[$key]['number'] = getNumberByOpenid($value['openId']);
-            	$list[$key]['result'] = getResult($value['openId']);
+                $list[$key]['name'] = getNameByOpenid($value['openId']);
+                $list[$key]['class'] = getClassByOpenid($value['openId']);
+                $list[$key]['number'] = getNumberByOpenid($value['openId']);
+                $list[$key]['result'] = getResult($value['openId']);
             }
             $filename .= '未提交用户';
         }
@@ -155,6 +212,19 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
+    public function update(){
+        $STUDENT = M('StudentInfo');
+        $List = $STUDENT->select();
+        $count = M('Questionbank')->count();
+        foreach ($List as $key => $value) {
+            $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
+            dump($wNum);
+            
+            $value['present'] = $wNum/$count;
+            $STUDENT->save($value);
+            dump($value);
+        }
+    }
 
 
 }
