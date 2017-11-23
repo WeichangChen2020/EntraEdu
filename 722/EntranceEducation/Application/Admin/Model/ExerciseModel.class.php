@@ -39,23 +39,27 @@ class ExerciseModel extends Model {
 		return $res['0']["ROUND( SUM( result ) / COUNT( * ) , 2 )"];
 	}
 	/**
-	 * getResult 获取自由练习答题情况
+	 * getResult 获取某次模拟考得分
 	 * @author 陈伟昌<1339849378@qq.com>
 	 * @copyright  2017-10-29 16:20 Authors
 	 * @var  
-	 * @return  String 正确数|提交数
+	 * @return  string
 	 */
 	public function getResult($openid) {
+		$id = I('id');
 		if (empty($openid)) {
 			return 0;
 		}
-		$sql = "SELECT COUNT(result),SUM(result) FROM  ee_exercise WHERE  openid = '$openid' ";
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-		if ($res['0']["SUM(result)"] == NULL) {
-			$res['0']["SUM(result)"] = '0';
+		$map['openid']= $openid;
+		$map['examid']= $id;
+		$submit = M('ExamSubmit')->where($map)->find();
+		if (empty($submit)) {
+			return '未提交';
+		}else{
+			$score = M('ExamSelect')->where(array('openid'=>$openid,'examid'=>$id,'result'=>1))->count();
+			return $score;
 		}
-		return $res['0']["SUM(result)"].'|'.$res['0']['COUNT(result)'];
+
 	}
 
 
