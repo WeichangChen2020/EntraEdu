@@ -80,9 +80,10 @@ class UserController extends Controller {
         $banji         = I('banji'); 
         $isNewer       = 0;
 
-        // 用户注册的头像
-        $headimgurl    = $WeChat->getHeadimgurl($openId);
-        if(empty($headimgurl)) $headimgurl = '';
+        // 用户注册的头像 这个功能
+        // $headimgurl    = $WeChat->getHeadimgurl($openId);
+        // if(empty($headimgurl)) $headimgurl = '';
+        $headimgurl = '';
 
         // 新手的信息
         if (!empty($college) && !empty($banji)) {
