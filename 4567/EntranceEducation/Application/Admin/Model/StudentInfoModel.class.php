@@ -16,6 +16,7 @@ class StudentInfoModel extends Model {
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
+
 		if (empty($res)) {
 			return false;
 		}
@@ -41,19 +42,6 @@ class StudentInfoModel extends Model {
 		}
 		return $res;
 	}
-	/**
-	 * getOpenidBynumber 获取$number的openid
-	 * @author 陈伟昌<1339849378@qq.com>
-	 * @copyright  2017-11-21 14:55 Authors
-	 * @var  
-	 * @return  String
-	 */
-	public function getOpenidBynumber($number) {
-		$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-		if (empty($openid)) {
-			return "用户未注册";
-		}else
-			return $openid['openId'];
-	}
+
 
 }

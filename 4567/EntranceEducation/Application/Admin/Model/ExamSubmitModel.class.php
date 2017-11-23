@@ -39,11 +39,12 @@ class ExamSubmitModel extends Model {
         if (!is_null($college)) {
             $map['academy'] = $college;
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+            $count = $Student->where($map)->count();
         } else {
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+            $count = $Student->count();
         }
 
-        $count = $Student->where($map)->count();
 
 
         $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
@@ -70,18 +71,33 @@ class ExamSubmitModel extends Model {
         $map = array();
 
         if (!is_null($college)) {
-            $map['academy'] = $college;
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
         } else {
             $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
         }
-        dump($sql);die;
+
         $Model = new \Think\Model('student_info');
         $res = $Model->query($sql);
         
         return $res;
     }
 
+    /**
+     * getSubmitList 获取$examid考试的提交 人员名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-23 16:35 Authors
+     * @var  $id
+     * @return  array
+     */
+    public function getSubmitList($id) {
+
+        $res = $this->where(array('examid'=>$id))->select();
+
+        if (empty($res)) {
+            return 0;
+        }
+        return $res;
+    }
 
 }
 

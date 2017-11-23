@@ -80,29 +80,6 @@ function getUnsubmitNum($id) {
 	return $num;
 }
 /**
- * getResult($number) 获取$name的成绩
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-10-29 15:14Authors
- * @var $id  考试id
- * @return String 正确数|提交数
- */
-function getResult($number) {
-	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-	$result = D('Exercise')->getResult($openid);
-	return $result;
-}
-/**
- * getResultByOpenid($openid) 获取$name的成绩
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-10-29 15:14Authors
- * @var $id  考试id
- * @return String 正确数|提交数
- */
-function getResultByOpenid($openid) {
-	$result = D('Exercise')->getResult($openid);
-	return $result;
-}
-/**
  * getNameByOpenid($openid) 获取$openid的名字
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-11-7 15:33Authors
@@ -140,6 +117,17 @@ function getNumberByOpenid($openid) {
 	$info = D('StudentInfo')->getInfo($openid);
 	return $info['0']['number'];
 }
+/**
+ * getChapterName 获取章节名
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-23 14:52Authors
+ * @var 
+ * @return String
+ */
+function getChapterName($chapter) {
+	$chapter = M('QuestionChapter')->where(array('id'=>$chapter))->field('chapter')->find();
+	return $chapter['chapter'];
+}
 
 /**
  * pass($openid,$id) 获取$openid的$id考试是否通过
@@ -157,81 +145,15 @@ function pass($score) {
 }
 
 /**
- * getPersent($number) 获取$number的做题进度
+ * getResult($number) 获取$number的成绩
  * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-11-21 14:14Authors
- * @var $number
- * @return 
- */
-function getPersent($number) {
-	$openId = D('StudentInfo')->getOpenidByNumber($number);
-
-	$persent = D('Questionbank')->getProgress($openId);
-	return  $persent;
-}
-/**
- * page($arr,$p,$pageSize) 数组分页
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-11-21 17:00Authors
- * @var 
- * @return 
- */
-function page($arr,$p,$pageSize) {
-    $count = count($arr);
-    $Page = new \Think\Page($count,$pageSize);
-    $start=($p- 1) *$pageSize;
-    $length= $pageSize;
-    $cut_qa=  array_slice($arr, $start, $length, true);
-    $page = $Page->show();
-    
-    $res=array(
-        'list'=>$cut_qa,
-        'page'=>$page,
-    );
-    return $res;
-}
-
-/**
- * getFailNum 获取未通过人数
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-11-22 15:22Authors
+ * @copyright  2017-10-29 15:14Authors
  * @var $id  考试id
- * @return int 提交数
+ * @return String 正确数|提交数
  */
-function getFailNum($id) {
-	$STUDENT = M('StudentInfo');
-	$list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
-    $count = $STUDENT->where($map)->count();
-    $studentList = array();
-    foreach ($list as $key => $value) {
-        if(pass(getResultByOpenid($value['openid']))== '否'){
-            $info = $STUDENT->where(array('openId'=> $value['openid']))->find();
-            array_push($studentList, $info);
-        }
-    }
-	return count($studentList);
-}
-
-/**
- * getAllowNum 获取允许参加考试人数
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-11-22 15:22Authors
- * @var $id  考试id
- * @return int 提交数
- */
-function getAllowNum($id) {
-	$allowList = D('StudentList')->getAllowList();
-	return count($allowList);
-}
-/**
- * getChapterName 获取章节名
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-11-23 14:52Authors
- * @var 
- * @return String
- */
-function getChapterName($chapter) {
-	$chapter = M('QuestionChapter')->where(array('id'=>$chapter))->field('chapter')->find();
-	return $chapter['chapter'];
+function getResult($number) {
+	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
+	$result = D('Exercise')->getResult($openid['openId']);
+	return $result;
 }
  ?>
