@@ -156,4 +156,15 @@ function getResult($number) {
 	$result = D('Exercise')->getResult($openid['openId']);
 	return $result;
 }
+/**
+ * getFailNum($id) 获取$id考试未通过人数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return int
+ */
+function getFailNum($id) {
+	$result = D('ExamSubmit')->getFailList($college,$id);
+	return $result;
+}
  ?>
