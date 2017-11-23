@@ -44,12 +44,12 @@
 		<div class="weui-cells__title">课前</div>
 
         <div class="weui-grids">
-            <a href="{:U('Signin/index')}/openId/{$openId}" class="weui-grid js_grid">
+            <a href="#" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
 <!--                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon_nav_city"></use></svg> -->
                     <img src="__PUBLIC__/images/icon_nav_city.png">
                 </div>
-                <p class="weui-grid__label">在线签到</p>
+                <p class="weui-grid__label">资料下载</p>
             </a>        
             <a href="{:U('Exercise/index')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
@@ -67,6 +67,13 @@
 
         <div class="weui-cells__title" style="border: 0;">课中</div>
         <div class="weui-grids">
+            <a href="{:U('Signin/index')}/openId/{$openId}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+<!--                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon_nav_city"></use></svg> -->
+                    <img src="__PUBLIC__/images/icon_nav_city.png">
+                </div>
+                <p class="weui-grid__label">在线签到</p>
+            </a>             
             <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg>
