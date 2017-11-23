@@ -232,6 +232,7 @@ function getAllowNum($id) {
  */
 function getChapterName($chapter) {
 	$chapter = M('QuestionChapter')->where(array('id'=>$chapter))->field('chapter')->find();
+	dump($chapter);
 	return $chapter;
 }
  ?>
