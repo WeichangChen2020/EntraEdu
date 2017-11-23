@@ -81,6 +81,23 @@ class ExamSubmitModel extends Model {
         
         return $res;
     }
+    
+    /**
+     * getSubmitList 获取$examid考试的提交 人员名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-23 16:35 Authors
+     * @var  $id
+     * @return  array
+     */
+    public function getSubmitList($id) {
+
+        $res = $this->where(array('examid'=>$id))->select();
+
+        if (empty($res)) {
+            return 0;
+        }
+        return $res;
+    }
 
 
 }
