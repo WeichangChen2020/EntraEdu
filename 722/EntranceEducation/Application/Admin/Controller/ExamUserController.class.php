@@ -44,8 +44,9 @@ class ExamUserController extends CommonController{
 
     public function submiter($id = 0) {
         $STUDENT = M('ExamSubmit');
+        dump($id);die;
         $submitList = $STUDENT->where(array('examid'=>$id))->limit(10)->select();
-        dump($id);
+
         dump($submitList);die;
         
         $this->assign('export', 0);
