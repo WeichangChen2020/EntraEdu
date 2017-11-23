@@ -21,7 +21,7 @@
                         <td align="center">{$examList.id|getSubmitNum=###}</td>
                         <td align="center">{$examList.id|getUnsubmitNum=###}</td>
                         <td align="center">
-                            <a href="{:U('ExamUser/enable', array('id'=>$examList['id']))}">查看</a>
+                            <a href="{:U('ExamUser/submiter', array('id'=>$examList['id']))}">查看</a>
                         </td>
                     </tr>
                 </volist>  

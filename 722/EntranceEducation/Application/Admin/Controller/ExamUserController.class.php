@@ -77,71 +77,25 @@ class ExamUserController extends CommonController{
         $this->display();
     }
     /**
-     * enable 模拟考试详细信息 允许考试人员详情
+     * submiter 提交人员详情
      * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-21 13:48Authors
+     * @copyright  2017-11-7 15:50Authors
      * @var  
      * @return 
      */
 
-    public function enable($id = 0) {
-        // 查询条件
-        $college = D('Adminer')->getCollege();
-        $map['type'] = 0;
+    public function submiter($id = 0) {
 
-        if (!is_null($college)) {
-            $map['academy'] = $college;
-        }
-        $map['present']  = array('egt',0.6);
-        $map['is_newer'] = 1;
-        $list = M('StudentInfo')->where($map)->page($_GET['p'].',20')->select();
-        $count = M('StudentInfo')->where($map)->count();
+        $STUDENT = D('ExamSubmit');
 
-        $this->assign('studentList', $list);
-
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page', $show);
-        $this->assign('count', $count);
-
-
+        $submitList = $STUDENT->getSubmitList();
+        dump($unSubmitList);die;
         $this->assign('export', 0);
+        $this->assign('submitList',$unSubmitList);
         $this->assign('id',$id);
         $this->display();
     }
-    /**
-     * enable 模拟考试详细信息 允许考试人员详情
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-21 13:48Authors
-     * @var  
-     * @return 
-     */
 
-    public function fail($id = 0) {
-        $STUDENT = M('StudentInfo');
-        $list = M('ExamSubmit')->where(array('examid'=>$id))->page($_GET['p'].',20')->select();
-        $count = $STUDENT->where($map)->count();
-        $studentList = array();
-        foreach ($list as $key => $value) {
-            if(pass(getResultByOpenid($value['openid']))== '否'){
-                $info = $STUDENT->where(array('openId'=> $value['openid']))->find();
-                array_push($studentList, $info);
-            }
-        }
-        $p = I();
-        $p['p'] = empty($p['p']) ? 1 : $p['p'];
-
-        $Page=new \Think\Page($count,20);
-        $show= $Page->show();// 分页显示输出﻿
-        $list=array_slice($studentList,($p['p']-1)*20,20);
-        $this->assign('page',$show);// 赋值分页输出
-
-        $this->assign('studentList',$studentList);
-
-        $this->assign('export', 0);
-        $this->assign('id',$id);
-        $this->display();
-    }
     /**
      * 导出到excel
      * @author 陈伟昌<1339849378@qq.com>
