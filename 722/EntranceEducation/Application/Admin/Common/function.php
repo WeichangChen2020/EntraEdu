@@ -128,5 +128,16 @@ function getNumberByOpenid($openid) {
 	$info = D('StudentInfo')->getInfo($openid);
 	return $info['0']['number'];
 }
+/**
+ * getChapterName 获取章节名
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-23 14:52Authors
+ * @var 
+ * @return String
+ */
+function getChapterName($chapter) {
+	$chapter = M('QuestionChapter')->where(array('id'=>$chapter))->field('chapter')->find();
+	return $chapter['chapter'];
+}
 
  ?>
