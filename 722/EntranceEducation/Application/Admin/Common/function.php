@@ -80,17 +80,6 @@ function getUnsubmitNum($id) {
 	return $num;
 }
 /**
- * getResult($openid) 获取$name的提交数及正确数
- * @author 陈伟昌<1339849378@qq.com>
- * @copyright  2017-10-29 15:14Authors
- * @var $id  考试id
- * @return String 正确数|提交数
- */
-function getResult($openid) {
-	$result = D('Exercise')->getResult($openid);
-	return $result;
-}
-/**
  * getNameByOpenid($openid) 获取$openid的名字
  * @author 陈伟昌<1339849378@qq.com>
  * @copyright  2017-11-7 15:33Authors
