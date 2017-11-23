@@ -30,6 +30,14 @@ class ExamUserController extends CommonController{
             $list[$key]['info'] = $EXAM->where(array('id' => $value['examid']))->find();
         }
         $this->assign('examList',$list);
+        $submitNum = getSubmitNum($college,$id);
+        $this->assign('submitNum',$submitNum);
+        $map['is_newer'] = 1;
+        if (!empty($college)) {
+            $map['academy'] = $college;
+        }
+        $total = M('StudentInfo')->where($map)->count();
+        $this->assign('examList',$total-$submitNum);
 
         $this->display();
     }
