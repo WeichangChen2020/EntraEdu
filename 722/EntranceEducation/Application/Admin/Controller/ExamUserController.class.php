@@ -34,27 +34,6 @@ class ExamUserController extends CommonController{
         $this->display();
     }
 
-
-    /**
-     * unSubmit 模拟考试详细信息 未提交人员详情
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-7 15:50Authors
-     * @var  
-     * @return 
-     */
-
-    public function unSubmit($id = 0) {
-
-        $STUDENT = D('ExamSubmit');
-
-        $unSubmitList = $STUDENT->where(array('examid'=>$id))->select();
-
-        dump($unSubmitList);die;
-        $this->assign('export', 0);
-        $this->assign('submitList',$unSubmitList);
-        $this->assign('id',$id);
-        $this->display();
-    }
     /**
      * submiter 提交人员详情
      * @author 陈伟昌<1339849378@qq.com>
@@ -64,11 +43,11 @@ class ExamUserController extends CommonController{
      */
 
     public function submiter($id = 0) {
-
-        $STUDENT = D('ExamSubmit');
-
-        $submitList = $STUDENT->getSubmitList();
-        dump($unSubmitList);die;
+        $STUDENT = M('ExamSubmit');
+        $submitList = $STUDENT->where(array('examid'=>$id))->select();
+        dump($id);
+        dump($submitList);die;
+        
         $this->assign('export', 0);
         $this->assign('submitList',$unSubmitList);
         $this->assign('id',$id);
