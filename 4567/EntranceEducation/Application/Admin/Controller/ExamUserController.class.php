@@ -219,7 +219,7 @@ class ExamUserController extends CommonController{
         foreach ($List as $key => $value) {
             $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
             dump($wNum);
-            dump($count);
+            dump($STUDENT->count());
             // $value['present'] = D('Questionbank')->getProgress($Value['openId']);
             // $STUDENT->save($value);
         }
