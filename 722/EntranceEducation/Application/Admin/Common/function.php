@@ -153,7 +153,7 @@ function pass($score) {
  */
 function getResult($number) {
 	$openid = M('StudentInfo')->where(array('number'=>$number))->field('openId')->find();
-	$result = D('Exercise')->getResult($openid);
+	$result = D('Exercise')->getResult($openid['openId']);
 	return $result;
 }
  ?>
