@@ -22,7 +22,7 @@ class ExamSubmitModel extends Model {
      * @return  int
      */
     public function getFailNum($college,$id) {
-        $res = $this->getFaailList($college,$id);
+        $res = $this->getFailList($college,$id);
         return count($res);
     }
     /**
