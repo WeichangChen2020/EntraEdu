@@ -44,10 +44,11 @@ class ExamUserController extends CommonController{
 
     public function submiter($id = 0) {
 
+        $college = D('Adminer')->getCollege();
+        
         $STUDENT = D('ExamSubmit');
-        $submitList = $STUDENT->getSubmitList($id);
+        $submitList = $STUDENT->getSubmitList($college,$id);
 
-        dump($submitList);die;
         
         $this->assign('export', 0);
         $this->assign('submitList',$unSubmitList);

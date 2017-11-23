@@ -89,9 +89,19 @@ class ExamSubmitModel extends Model {
      * @var  $id
      * @return  array
      */
-    public function getSubmitList($id) {
-
-        $res = M('ExamSubmit')->where(array('examid'=>$id))->select();
+    public function getSubmitList($college,$id) {
+        if (empty($college)) {
+            $res = M('ExamSubmit')->where(array('examid'=>$id))->select();
+        }else{
+            $STUDENT = D('StudentInfo');
+            $res = array();
+            $list = M('ExamSubmit')->where(array('examid'=>$id))->select();
+            foreach ($list as $key => $value) {
+                $info = $STUDENT->getInfo($value['openid']);
+                if($info['academy']==$college)
+                    array_push($res, $value);
+            }
+        }
         dump($res);die;
         if (empty($res)) {
             return 0;
