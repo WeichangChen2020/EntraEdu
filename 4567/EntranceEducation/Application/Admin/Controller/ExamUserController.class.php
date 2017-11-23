@@ -215,14 +215,14 @@ class ExamUserController extends CommonController{
     public function update(){
         $STUDENT = M('StudentInfo');
         $List = $STUDENT->select();
-        dump(M('StudentList')->select());die;
         $count = M('Questionbank')->count();
         foreach ($List as $key => $value) {
             $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
             dump($wNum);
             
-            // $value['present'] = D('Questionbank')->getProgress($Value['openId']);
-            // $STUDENT->save($value);
+            $value['present'] = $wNum/$count;
+            $STUDENT->save($value);
+            dump($value);
         }
     }
 
