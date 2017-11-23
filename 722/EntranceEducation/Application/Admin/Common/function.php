@@ -140,4 +140,19 @@ function getChapterName($chapter) {
 	return $chapter['chapter'];
 }
 
+/**
+ * pass($openid,$id) 获取$openid的$id考试是否通过
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-11-21 13:14Authors
+ * @var $openid，$id 
+ * @return String "是"或"否"
+ */
+function pass($score) {
+	if (intval($score) >= 60) {
+		return '是';
+	}else{
+		return '否';
+	}
+}
+
  ?>
