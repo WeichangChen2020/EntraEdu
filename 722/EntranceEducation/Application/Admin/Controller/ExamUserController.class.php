@@ -178,6 +178,7 @@ class ExamUserController extends CommonController{
         foreach ($List as $key => $value) {
             $info = D('StudentInfo')->getInfo($value['openid']);
             $value['academy'] = $info['academy'];
+            dump($info);
             dump($value);die;
             $SUBMIT->save($value);
         }
