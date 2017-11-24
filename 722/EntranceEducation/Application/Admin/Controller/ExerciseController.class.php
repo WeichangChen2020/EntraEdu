@@ -48,10 +48,10 @@ class ExerciseController extends CommonController {
         $this->assign('page', $show);
 
         // 注册数量和未注册数量和导出
-        // $num = D('StudentList')->getStudentNum();
-        // $this->assign('num', $num);
-        // $this->assign('export', 1);
-
+        $num = D('StudentList')->getExercseNum();
+        p($num);die;
+        $this->assign('num', $num);
+        $this->assign('export', 1);
        
         $this->display();
     }
