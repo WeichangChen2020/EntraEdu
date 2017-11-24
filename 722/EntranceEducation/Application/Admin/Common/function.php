@@ -185,5 +185,23 @@ function get_ques_num($number) {
 	return $rig_cot;
 }
 
+/**
+ * function is_ablity_exam 是否有考试资格
+ * @author 李俊君<hello_lijj@qq.com>
+ * @copyright  2017-11-24 13:14Authors
+ * @var $number 学号 
+ * @return int
+ */
+function is_ablity_exam($number) {
+	$openid  = M('Student_info')->where(array('number'=>$number))->getField('openId');
+	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
+	$count   = M('Exercise')->where(array('openid'=>$openid))->count();
+	if($rig_cot >= ($count * 0.6))
+		return '是';
+	else
+		return '否';
+}
+
+
 
  ?>
