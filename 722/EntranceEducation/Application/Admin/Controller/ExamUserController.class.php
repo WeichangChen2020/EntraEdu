@@ -60,7 +60,7 @@ class ExamUserController extends CommonController{
         $show       = $Page->show();
         $this->assign('page', $show);
         
-        $this->assign('export', 0);
+        $this->assign('export', 1);
         $map['score'] = array('lt','60');
         $this->assign('failNum',$STUDENT->where($map)->count());
         $this->assign('submitNum', $count);
@@ -78,6 +78,7 @@ class ExamUserController extends CommonController{
     public function fail($id = 0) {
         $college = D('Adminer')->getCollege();
         $STUDENT = M('ExamSubmit');
+        $map = array();
         // $submitList = $STUDENT->getSubmitList($college,$id);
         if (!is_null($college)) {
             $map['academy'] = $college;
@@ -102,9 +103,9 @@ class ExamUserController extends CommonController{
     }
 
     /**
-     * 导出到excel
+     * 导出$id号考试信息到excel
      * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-12 15:00Authors
+     * @copyright  2017-11-24 18:00Authors
      * @var  
      * @return 
      */
@@ -120,8 +121,9 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
 
-        $title = array( '姓名', '班级', '学号','正确数');
+        $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
+        $filename .= D('ExamSetup')->getExamName($id);
 
         if($type == 1) {
             $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
@@ -129,18 +131,21 @@ class ExamUserController extends CommonController{
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
                 $list[$key]['number'] = getNumberByOpenid($value['openid']);
-                $list[$key]['result'] = getResult($value['openid']);
+                $list[$key]['result'] = $value['score'];
+                $list[$key]['result'] = pass($value['score']);
             }
             $filename .= '提交用户';
         } else {
-            $openid = $SUBMIT->getUnsubmitList($id);
+            $map['score'] = array('lt','60');
+            $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openId']);
-                $list[$key]['class'] = getClassByOpenid($value['openId']);
-                $list[$key]['number'] = getNumberByOpenid($value['openId']);
-                $list[$key]['result'] = getResult($value['openId']);
+                $list[$key]['name'] = getNameByOpenid($value['openid']);
+                $list[$key]['class'] = getClassByOpenid($value['openid']);
+                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $list[$key]['result'] = $value['score'];
+                $list[$key]['result'] = pass($value['score']);
             }
-            $filename .= '未提交用户';
+            $filename .= '未通过用户';
         }
 
         $this->excel($list, $title, $filename);

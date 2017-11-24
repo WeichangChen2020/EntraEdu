@@ -23,5 +23,18 @@ class QuestionbankModel extends Model {
 		return $res;
 	}
 
+	/**
+	 * getExamName 获取考试名称
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-24 18:13 Authors
+	 * @var  
+	 * @return  String
+	 */
+	public function getExamName($id) {
+
+		$name = $this->where('id'=>$id)->field('title')->find();
+		return $name;
+	}
+
 
 }
