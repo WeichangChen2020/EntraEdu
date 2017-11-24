@@ -111,7 +111,7 @@ class HomeworkController extends Controller{
         /*=====================定义初始变量====================*/
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $homeworkId   = session('?homeworkId') ? session('homeworkId') : $this->error('请重新获取改页面');
-        $homeworkId   = I('homeworkId');
+        // $homeworkId   = I('homeworkId');
         $cond         = array('openId' => $openId);
         $stuInfo      = $STU->where($cond)->find();
         $picIdArray   = I('id');
