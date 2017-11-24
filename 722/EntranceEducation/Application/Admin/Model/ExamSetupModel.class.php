@@ -32,7 +32,7 @@ class QuestionbankModel extends Model {
 	 */
 	public function getExamName($id) {
 
-		$name = $this->where('id'=>$id)->field('title')->find();
+		$name = M('ExamSetup')->where('id'=>$id)->field('title')->find();
 		return $name;
 	}
 
