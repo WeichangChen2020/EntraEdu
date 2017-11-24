@@ -35,48 +35,6 @@ class ExamUserController extends CommonController{
     }
 
     /**
-     * detail 模拟考试详细信息 提交人员详情
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-7 15:12Authors
-     * @var  
-     * @return 
-     */
-
-    public function detail($id = 0) {
-
-        $SUBMIT = M('ExamSubmit');
-        $college = D('Adminer')->getCollege();
-
-        $submitList = $SUBMIT->where(array('examid'=>$id))->select();
-
-        $this->assign('export', 1);
-        $this->assign('submitList',$submitList);
-        $this->assign('id',$id);
-        $this->display();
-    }
-
-
-    /**
-     * unSubmit 模拟考试详细信息 未提交人员详情
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-7 15:50Authors
-     * @var  
-     * @return 
-     */
-
-    public function unSubmit($id = 0) {
-
-        $STUDENT = D('ExamSubmit');
-
-        $unSubmitList = $STUDENT->getUnsubmitList($id);
-
-        dump($unSubmitList);die;
-        $this->assign('export', 0);
-        $this->assign('submitList',$unSubmitList);
-        $this->assign('id',$id);
-        $this->display();
-    }
-    /**
      * submiter 提交人员详情
      * @author 陈伟昌<1339849378@qq.com>
      * @copyright  2017-11-7 15:50Authors
@@ -86,20 +44,68 @@ class ExamUserController extends CommonController{
 
     public function submiter($id = 0) {
 
-        $STUDENT = D('ExamSubmit');
+        $college = D('Adminer')->getCollege();
+        $STUDENT = M('ExamSubmit');
+        // $submitList = $STUDENT->getSubmitList($college,$id);
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+        $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
-        $submitList = $STUDENT->getSubmitList();
-        dump($unSubmitList);die;
+        $count = $STUDENT->where($map)->count();
+        
+        $this->assign('submitList',$submitList);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        
+        $this->assign('export', 1);
+        $map['score'] = array('lt','60');
+        $this->assign('failNum',$STUDENT->where($map)->count());
+        $this->assign('submitNum', $count);
+        $this->assign('id',$id);
+        $this->display();
+    }
+    /**
+     * fail 考试未通过名单
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-23 17:33Authors
+     * @var  
+     * @return 
+     */
+
+    public function fail($id = 0) {
+        $college = D('Adminer')->getCollege();
+        $STUDENT = M('ExamSubmit');
+        $map = array();
+        // $submitList = $STUDENT->getSubmitList($college,$id);
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+        $map['score'] = array('lt','60');
+        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
+
+        $count = $STUDENT->where(array('academy'=>$college))->count();
+        
+        $this->assign('submitList',$failList);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        
         $this->assign('export', 0);
-        $this->assign('submitList',$unSubmitList);
+
+        $this->assign('failNum',$STUDENT->where($map)->count());
+        $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
     }
 
     /**
-     * 导出到excel
+     * 导出$id号考试信息到excel
      * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-12 15:00Authors
+     * @copyright  2017-11-24 18:00Authors
      * @var  
      * @return 
      */
@@ -115,27 +121,31 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
 
-        $title = array( '姓名', '班级', '学号','正确数');
+        $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
-
+        $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
+        $filename .= $examName['title'];
         if($type == 1) {
-            $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
+            $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
                 $list[$key]['number'] = getNumberByOpenid($value['openid']);
-                $list[$key]['result'] = getResult($value['openid']);
+                $list[$key]['result'] = $value['score'];
+                $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '提交用户';
         } else {
-            $openid = $SUBMIT->getUnsubmitList($id);
+            $map['score'] = array('lt','60');
+            $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openId']);
-                $list[$key]['class'] = getClassByOpenid($value['openId']);
-                $list[$key]['number'] = getNumberByOpenid($value['openId']);
-                $list[$key]['result'] = getResult($value['openId']);
+                $list[$key]['name'] = getNameByOpenid($value['openid']);
+                $list[$key]['class'] = getClassByOpenid($value['openid']);
+                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $list[$key]['result'] = $value['score'];
+                $list[$key]['pass'] = pass($value['score']);
             }
-            $filename .= '未提交用户';
+            $filename .= '未通过用户';
         }
 
         $this->excel($list, $title, $filename);
@@ -174,6 +184,7 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
+    //更新学生答题进度
     public function update(){
         $STUDENT = M('StudentInfo');
         $List = $STUDENT->select();
@@ -187,6 +198,18 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
+    // public function test(){
+    //     $SELECT = M('ExamSelect');
+    //     $SUBMIT = M('ExamSubmit');
+    //     $List = M('ExamSubmit')->select();
+    //     foreach ($List as $key => $value) {
+    //         // $info = D('StudentInfo')->getInfo($value['openid']);
+    //         // $value['academy'] = $info['0']['academy'];
+    //         $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
+    //         $value['score'] = $score;
+    //         $SUBMIT->save($value);
+    //     }
+    // }
 
 
 }

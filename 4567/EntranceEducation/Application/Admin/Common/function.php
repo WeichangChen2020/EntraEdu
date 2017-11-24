@@ -65,7 +65,9 @@ function getAccuracy($id) {
  * @return int 提交数
  */
 function getSubmitNum($id) {
-	$num = D('ExamSubmit')->getSubmitNum($id);
+
+    $college = D('Adminer')->getCollege();
+	$num = D('ExamSubmit')->getSubmitNum($college,$id);
 	return $num;
 }
 /**
@@ -76,7 +78,9 @@ function getSubmitNum($id) {
  * @return int 提交数
  */
 function getUnsubmitNum($id) {
-	$num = D('ExamSubmit')->getUnsubmitNum($id);
+
+    $college = D('Adminer')->getCollege();
+	$num = D('ExamSubmit')->getUnsubmitNum($college,$id);
 	return $num;
 }
 /**
@@ -156,4 +160,48 @@ function getResult($number) {
 	$result = D('Exercise')->getResult($openid['openId']);
 	return $result;
 }
+/**
+ * getFailNum($id) 获取$id考试未通过人数
+ * @author 陈伟昌<1339849378@qq.com>
+ * @copyright  2017-10-29 15:14Authors
+ * @var $id  考试id
+ * @return int
+ */
+function getFailNum($id) {
+	$result = D('ExamSubmit')->getFailNum($college,$id);
+	return $result;
+}
+
+/**
+ * function getQuesNum 获取答题数量
+ * @author 李俊君<hello_lijj@qq.com>
+ * @copyright  2017-11-24 13:14Authors
+ * @var $number 学号 
+ * @return int
+ */
+function get_ques_num($number) {
+	$openid = M('Student_info')->where(array('number'=>$number))->getField('openId');
+	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
+	return $rig_cot;
+}
+
+/**
+ * function is_ablity_exam 是否有考试资格
+ * @author 李俊君<hello_lijj@qq.com>
+ * @copyright  2017-11-24 13:14Authors
+ * @var $number 学号 
+ * @return int
+ */
+function is_ablity_exam($number) {
+	$openid  = M('Student_info')->where(array('number'=>$number))->getField('openId');
+	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
+	$count   = M('Questionbank')->count();
+	if($rig_cot >= ($count * 0.6))
+		return '是';
+	else
+		return '否';
+}
+
+
+
  ?>

@@ -1,7 +1,7 @@
 <div class="aright">
 <div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
-    <a href="{:U('ExamUser/enable', array('id'=>$id))}">允许参加考试者({$id|getAllowNum=###})</a>
-    <a href="{:U('ExamUser/fail', array('id'=>$id))}" style="margin-left: 20px;">考试未通过({$id|getFailNum=###})</a>
+    <a href="{:U('ExamUser/submiter', array('id'=>$id))}">参加考试者({$submitNum})</a>
+    <a href="{:U('ExamUser/fail', array('id'=>$id))}" style="margin-left: 20px;">考试未通过({$failNum})</a>
 </div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">
@@ -14,14 +14,14 @@
         <th width="10%" align="center">是否通过考试</th>
         <th width="20%" align="center">操作</th>
       </tr>
-      <volist name="studentList" id="studentList" empty="暂时没有数据" >
+      <volist name="submitList" id="submitList" empty="暂时没有数据" >
           <tr>
             <td align="center">{$key+1}</td>
-            <td align="center">{$studentList.name}</a></td>
-            <td align="center">{$studentList.class}</td>
-            <td align="center">{$studentList.number}</td>
-            <td align="center">{$studentList.number|getResult=###}</td>
-            <td align="center">{$studentList.number|getResult=###|pass=###}</td>
+            <td align="center">{$submitList.openid|getNameByOpenid=###}</a></td>
+            <td align="center">{$submitList.openid|getClassByOpenid=###}</td>
+            <td align="center">{$submitList.openid|getNumberByOpenid=###}</td>
+            <td align="center">{$submitList.score}</td>
+            <td align="center">{$submitList.score|pass=###}</td>
             <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
             </td>
           </tr>
