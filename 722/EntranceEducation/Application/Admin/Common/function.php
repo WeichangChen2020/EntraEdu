@@ -195,7 +195,7 @@ function get_ques_num($number) {
 function is_ablity_exam($number) {
 	$openid  = M('Student_info')->where(array('number'=>$number))->getField('openId');
 	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
-	$count   = M('Exercise')->where(array('openid'=>$openid))->count();
+	$count   = M('Question_bank')->count();
 	if($rig_cot >= ($count * 0.6))
 		return '是';
 	else
