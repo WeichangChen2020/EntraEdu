@@ -85,11 +85,11 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
-        $map['score'] = array('lt','60');
-        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
-        $count = $STUDENT->where(array('academy'=>$college))->count();
-        
+        $count = $STUDENT->where($map)->count();
+
+        $map['score'] = array('lt','60');
+        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();        
         $this->assign('submitList',$failList);
 
         $Page       = new \Think\Page($count,20);
