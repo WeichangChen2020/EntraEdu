@@ -37,11 +37,12 @@ class ExamSubmitModel extends Model {
         $Student = M('StudentList');
 
         $map = array();
-        $submitNum = getSubmitNum($college,$id);
         $map['is_newer'] = 1;
         if (!empty($college)) {
             $map['academy'] = $college;
         }
+        $submitNum = M('ExamSubmit')->where($map)->count();
+
         $total = M('StudentInfo')->where($map)->count();
         return $total-$submitNum;
         // if (!is_null($college)) {
