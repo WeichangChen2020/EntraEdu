@@ -181,7 +181,7 @@ function getFailNum($id) {
  */
 function get_ques_num($number) {
 	$openid = M('Student_info')->where(array('number'=>$number))->getField('openId');
-	echo $openid
+	echo $openid;
 	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
 	return $rig_cot;
 }
