@@ -171,4 +171,20 @@ function getFailNum($id) {
 	$result = D('ExamSubmit')->getFailNum($college,$id);
 	return $result;
 }
+
+/**
+ * function getQuesNum 获取答题数量
+ * @author 李俊君<hello_lijj@qq.com>
+ * @copyright  2017-11-24 13:14Authors
+ * @var $number 学号 
+ * @return int
+ */
+function getQuesNum($number) {
+	$openid = M('Student_info')->where(array('number'=>$number))->getField('openId');
+	$result = D('Student/StudentInfo')->getExerciseRecord($openid);
+	$right_num = $result['rig_cot'];
+	return $right_num;
+}
+
+
  ?>
