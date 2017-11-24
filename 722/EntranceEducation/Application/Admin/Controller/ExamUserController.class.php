@@ -127,7 +127,6 @@ class ExamUserController extends CommonController{
         $filename .= $title['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
-            dump($openid);die;
             foreach ($openid as $key => $value) {
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
