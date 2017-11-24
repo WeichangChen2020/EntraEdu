@@ -132,7 +132,7 @@ class ExamUserController extends CommonController{
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
                 $list[$key]['number'] = getNumberByOpenid($value['openid']);
                 $list[$key]['result'] = $value['score'];
-                $list[$key]['result'] = pass($value['score']);
+                $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '提交用户';
         } else {
@@ -143,7 +143,7 @@ class ExamUserController extends CommonController{
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
                 $list[$key]['number'] = getNumberByOpenid($value['openid']);
                 $list[$key]['result'] = $value['score'];
-                $list[$key]['result'] = pass($value['score']);
+                $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '未通过用户';
         }
