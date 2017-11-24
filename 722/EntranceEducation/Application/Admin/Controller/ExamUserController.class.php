@@ -123,8 +123,8 @@ class ExamUserController extends CommonController{
 
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
-        $title = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
-        $filename .= $title['title'];
+        $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
+        $filename .= $examName['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
