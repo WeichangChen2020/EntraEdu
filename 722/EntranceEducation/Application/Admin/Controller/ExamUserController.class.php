@@ -92,7 +92,7 @@ class ExamUserController extends CommonController{
         
         $this->assign('export', 0);
 
-        $this->assign('failNum',count($failList));
+        $this->assign('failNum',$STUDENT->where($map)->count());
         $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
