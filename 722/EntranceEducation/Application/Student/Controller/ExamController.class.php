@@ -214,11 +214,15 @@ class ExamController extends Controller{
     public function tip() {
         $openId = session('openId');
         $examid = session('examid');
+        $info = D('StudentInfo')->getInfo($openId);
+        $score = M('ExamSelect')->where(array('openid'=>$openId,'examid'=>$examid,'result'=>1))->count();
         $data = array(
             'openid' => $openId,
             'examid' => $examid,
+            'academy'=> $info['0']['academy'],
+            'score'  => $score,
         );
-        if (!M('ExamSubmit')->where($data)->find()) {
+        if (!M('ExamSubmit')->where(array('openid'=>$openId,'examid'=>$examid))->find()) {
             M('ExamSubmit')->add($data);
         }
         //总答题数与正确题数
