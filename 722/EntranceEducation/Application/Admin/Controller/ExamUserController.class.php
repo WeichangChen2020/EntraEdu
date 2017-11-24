@@ -172,12 +172,15 @@ class ExamUserController extends CommonController{
         }
     }
     public function test(){
-        $STUDENT = M('StudentInfo');
+        $SELECT = M('ExamSelect');
         $SUBMIT = M('ExamSubmit');
         $List = M('ExamSubmit')->select();
         foreach ($List as $key => $value) {
-            $info = D('StudentInfo')->getInfo($value['openid']);
-            $value['academy'] = $info['0']['academy'];
+            // $info = D('StudentInfo')->getInfo($value['openid']);
+            // $value['academy'] = $info['0']['academy'];
+            $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
+            dump($score);
+            die;
             $SUBMIT->save($value);
         }
     }
