@@ -134,7 +134,6 @@ class ExamUserController extends CommonController{
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['result'] = pass($value['score']);
             }
-            dump($list);die;
             $filename .= '提交用户';
         } else {
             $map['score'] = array('lt','60');
