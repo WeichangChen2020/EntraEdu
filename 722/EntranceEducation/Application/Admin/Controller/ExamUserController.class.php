@@ -45,15 +45,24 @@ class ExamUserController extends CommonController{
     public function submiter($id = 0) {
 
         $college = D('Adminer')->getCollege();
+        $STUDENT = M('ExamSubmit');
+        // $submitList = $STUDENT->getSubmitList($college,$id);
+        $map['academy'] = $college;
 
-        $STUDENT = D('ExamSubmit');
-        $submitList = $STUDENT->getSubmitList($college,$id);
+        $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
+        $count = $STUDENT->where($map)->count();
+        
+        $this->assign('submitList',$submitList);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
         
         $this->assign('export', 0);
-        $this->assign('failNum',$STUDENT->getFailNum($college,$id));
-        $this->assign('submitNum', count($submitList));
-        $this->assign('submitList',$submitList);
+        $map['score'] = array('lt','60');
+        $this->assign('failNum',$STUDENT->where($map)->count());
+        $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
     }
@@ -66,16 +75,25 @@ class ExamUserController extends CommonController{
      */
 
     public function fail($id = 0) {
-
         $college = D('Adminer')->getCollege();
+        $STUDENT = M('ExamSubmit');
+        // $submitList = $STUDENT->getSubmitList($college,$id);
+        $map['academy'] = $college;
+        $map['score'] = array('lt','60');
+        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
-        $STUDENT = D('ExamSubmit');
-        $failList = $STUDENT->getFailList($college,$id);
-
-        dump($failList);die;
-        $this->assign('export', 0);
-        $this->assign('count', count($failList));
+        $count = $STUDENT->where(array('academy'=>$college))->count();
+        
         $this->assign('submitList',$failList);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        
+        $this->assign('export', 0);
+
+        $this->assign('failNum',count($failList));
+        $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
     }
@@ -158,6 +176,7 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
+    //更新学生答题进度
     public function update(){
         $STUDENT = M('StudentInfo');
         $List = $STUDENT->select();
@@ -171,18 +190,18 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
-    public function test(){
-        $SELECT = M('ExamSelect');
-        $SUBMIT = M('ExamSubmit');
-        $List = M('ExamSubmit')->select();
-        foreach ($List as $key => $value) {
-            // $info = D('StudentInfo')->getInfo($value['openid']);
-            // $value['academy'] = $info['0']['academy'];
-            $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
-            $value['score'] = $score;
-            $SUBMIT->save($value);
-        }
-    }
+    // public function test(){
+    //     $SELECT = M('ExamSelect');
+    //     $SUBMIT = M('ExamSubmit');
+    //     $List = M('ExamSubmit')->select();
+    //     foreach ($List as $key => $value) {
+    //         // $info = D('StudentInfo')->getInfo($value['openid']);
+    //         // $value['academy'] = $info['0']['academy'];
+    //         $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
+    //         $value['score'] = $score;
+    //         $SUBMIT->save($value);
+    //     }
+    // }
 
 
 }
