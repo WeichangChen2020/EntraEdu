@@ -28,7 +28,7 @@
       <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
           <textarea id="content" class="weui_textarea" placeholder="请输入作业内容" rows="3"></textarea>
-          <div class="weui_textarea_counter"><span class="textareaLength">0</span>/200</div>
+          <div class="weui_textarea_counter"><span id="count">0</span>/200</div>
         </div>
       </div>
     </div>
@@ -41,18 +41,21 @@
     <include file="./Public/html/_refreshJs.html"/>
     <script>
 
-    function LimitedWordsNum() {
-        $('#content').keydown(function() {
-            var curLength = $('#content').val().length;
-            if(curLength >= 200) {
-                var num = $('#content').val().substr(0, 200);
-                $('#content').val(num);
-                weui.alert('超字数限制，多出的字符将被截断！');
-            } else {
-                $('.textareaLength').text(curLength);
-            }
-        })
-    },
+    $(function(){
+      var max = 200;
+      $('#content').on('input', function(){
+         var text = $(this).val();
+         var len = text.length;
+         $('#count').text(len);
+         if(len > max){
+           $(this).closest('.weui_cell').addClass('weui_cell_warn');
+         }
+         else{
+           $(this).closest('.weui_cell').removeClass('weui_cell_warn');
+         }
+      });
+    }),
+    
 
 
 
