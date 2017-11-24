@@ -171,6 +171,15 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
+    public function test(){
+        $STUDENT = M('StudentInfo');
+        $SUBMIT = M('ExamSubmit');
+        $List = M('ExamSubmit')->select();
+        foreach ($List as $key => $value) {
+            dump($value);die;
+            $SUBMIT->save($value);
+        }
+    }
 
 
 }
