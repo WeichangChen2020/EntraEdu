@@ -135,7 +135,9 @@
                 id:JSON.parse(mediaIdJsonStr),
               };
               $.post(url,data,function(res){
-                $('#id').html(data.id);
+                // $('#id').html(data.id);
+                $('#test').html(res);
+
               });
               $.showLoading('作业上传中');
               setTimeout(function() {

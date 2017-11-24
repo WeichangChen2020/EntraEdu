@@ -136,7 +136,9 @@ class HomeworkController extends Controller{
             );
 
         $picUrl   = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token='.$ACCESS_TOKEN.'&media_id='.$picIdArray[0];
-        p($picUrl);
+        // p($picUrl);
+        $this->ajaxReturn($picUrl);
+
         /*======================循环写入Storage===================================*/
         foreach ($picIdArray as $key => $value) {
             $picUrl   = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token='.$ACCESS_TOKEN.'&media_id='.$picIdArray[$key];
