@@ -1,7 +1,7 @@
 <div class="aright">
 <div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
-    <a href="{:U('User/index')}">注册名单({$num['registerCount']|default='0'})</a>
-    <a href="{:U('User/unRegister')}" style="margin-left: 20px;">未注册名单({$num['unRegistCount']|default='0'})</a>
+    <a href="{:U('User/index')}">全部({$num['registerCount']|default='0'})</a>
+    <a href="{:U('User/unRegister')}" style="margin-left: 20px;">没有参加考试资格({$num['unRegistCount']|default='0'})</a>
 </div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">
@@ -10,7 +10,8 @@
         <th width="15%" align="center">姓名</th>
         <th width="20%" align="center">班级</th>
         <th width="20%" align="center">学号</th>
-        <th width="20%" align="center">操作</th>
+        <th width="20%" align="center">答题量</th>
+        <th width="15%" align="center">是否有考试资格</th>
       </tr>
       <volist name="userList" id="userList" empty="暂时没有数据" >
           <tr>
@@ -18,8 +19,7 @@
             <td align="center">{$userList.name}</td>
             <td align="center">{$userList.class}</a></td>
             <td align="center">{$userList.number}</td>
-            <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
-            </td>
+            <td align="center">是</td>
           </tr>
         </volist>
   </tbody></table>
