@@ -42,7 +42,8 @@ class ExerciseController extends CommonController {
         $count = $Student->where($map)->count();
 
         $this->assign('userList',$list);
-        p($list);die;
+
+        echo get_ques_num('1411050108'); die;
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page', $show);
