@@ -179,8 +179,7 @@ class ExamUserController extends CommonController{
             // $info = D('StudentInfo')->getInfo($value['openid']);
             // $value['academy'] = $info['0']['academy'];
             $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
-            dump($score);
-            die;
+            $value['score'] = $score;
             $SUBMIT->save($value);
         }
     }
