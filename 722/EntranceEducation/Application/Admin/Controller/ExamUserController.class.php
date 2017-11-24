@@ -123,7 +123,8 @@ class ExamUserController extends CommonController{
 
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
-        $filename .= M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
+        $title = M('ExamSetup')->where(array('id'=>$id))->field('title')->find()；
+        $filename .= $title['title'];
         if($type == 1) {
             $openid = $SUBMIT->where(array('examid'=>$id))->field('openid')->select();
             foreach ($openid as $key => $value) {
@@ -133,6 +134,7 @@ class ExamUserController extends CommonController{
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['result'] = pass($value['score']);
             }
+            dump($list);die;
             $filename .= '提交用户';
         } else {
             $map['score'] = array('lt','60');
