@@ -50,6 +50,7 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
+        $map['examid'] = $id;
         $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
         $count = $STUDENT->where($map)->count();
@@ -79,6 +80,7 @@ class ExamUserController extends CommonController{
         $college = D('Adminer')->getCollege();
         $STUDENT = M('ExamSubmit');
         $map = array();
+        $map['examid'] = $id;
         // $submitList = $STUDENT->getSubmitList($college,$id);
         if (!is_null($college)) {
             $map['academy'] = $college;
