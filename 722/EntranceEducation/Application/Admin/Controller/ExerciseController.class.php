@@ -100,14 +100,16 @@ class ExerciseController extends CommonController {
             $map['academy'] = $college;
         }
 
-        $title = array('序号','学院', '班级', '学号', '姓名');
+        $title = array('序号','姓名', '学号', '学院', '班级', '正确题数', '答题数量');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
 
         $list = M('exercise_rank')->where($map)->field('id,name,number,academy,class,right_num,answer_num')->order('academy,class,number,right_num')->select();
         $filename .= '新生始业平台自由练习答题情况';
 
 
-        p($list); die;
+        $excel = new UserController();
+        $excel->excel($list, $title, $filename);
+
 
 
        
