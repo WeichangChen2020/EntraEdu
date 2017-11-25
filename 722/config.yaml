@@ -1,2 +1,7 @@
 name: testroom
 version: 722
+cron:
+- url: /diming.php
+  schedule: "0 4 * * *"
+  timezone: "America/Los_Angeles"
+  description: "在洛杉矶时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
