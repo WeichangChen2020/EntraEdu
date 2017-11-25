@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class RankexerController extends Controller {
+class RankController extends Controller {
 
     public function index(){
 
