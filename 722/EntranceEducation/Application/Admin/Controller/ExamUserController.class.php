@@ -86,9 +86,9 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
 
+        $map['score'] = array('lt','60');
         $count = $STUDENT->where($map)->count();
 
-        $map['score'] = array('lt','60');
         $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();        
         $this->assign('submitList',$failList);
 
@@ -200,18 +200,6 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
-    // public function test(){
-    //     $SELECT = M('ExamSelect');
-    //     $SUBMIT = M('ExamSubmit');
-    //     $List = M('ExamSubmit')->select();
-    //     foreach ($List as $key => $value) {
-    //         // $info = D('StudentInfo')->getInfo($value['openid']);
-    //         // $value['academy'] = $info['0']['academy'];
-    //         $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
-    //         $value['score'] = $score;
-    //         $SUBMIT->save($value);
-    //     }
-    // }
 
 
 }
