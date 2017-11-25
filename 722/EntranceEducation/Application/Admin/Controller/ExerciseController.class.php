@@ -26,7 +26,7 @@ class ExerciseController extends CommonController {
      * @var  
      * @return 
      */
-    public function index_new() {
+    public function index_new('') {
         $Student = M('StudentList');
 
         // 查询条件
