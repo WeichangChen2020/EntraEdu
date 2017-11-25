@@ -14,7 +14,16 @@ class RankController extends Controller {
 
     	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->select();
 
-    	p($stuList);
+    	// p($stuList);
+
+    	foreach ($stuList as &$value) {
+
+    		$value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
+    		$value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+
+    		p($value);
+    	}
     	
+
     }
 }
