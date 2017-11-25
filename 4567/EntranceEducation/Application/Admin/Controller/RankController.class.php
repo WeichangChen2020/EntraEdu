@@ -21,7 +21,7 @@ class RankController extends Controller {
     		$value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
     		$value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
 
-    		p($value);
+    		M('exercise_rank')->add($value);
     	}
     	
 
