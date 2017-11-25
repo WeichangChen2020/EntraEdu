@@ -47,14 +47,9 @@ class ExerciseController extends CommonController {
         $this->assign('page', $show);
 
         $num['answer_num'] = M('exercise_rank')->where($map)->count();
-
         $where['right_num'] = array('LT', 875);
-        p($map);
         $num['unpass_num'] = M('exercise_rank')->where($map)->where($where)->count();
-        // $this->assign('num', $num);
-        p($num);
-        die;
-
+        $this->assign('num', $num);
 
        
         $this->display();
