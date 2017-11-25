@@ -16,13 +16,13 @@ class RankController extends Controller {
 
     	p($stuList);
 
-    	// foreach ($stuList as &$value) {
+    	foreach ($stuList as &$value) {
 
-    	// 	$value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
-    	// 	$value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+    		$value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
+    		$value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
 
-    	// 	p($value);
-    	// }
+    		p($value);
+    	}
     	
 
     }
