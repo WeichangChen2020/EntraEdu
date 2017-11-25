@@ -47,6 +47,8 @@ class ExerciseController extends CommonController {
         $this->assign('page', $show);
 
         $num['answer_num'] = M('exercise_rank')->where($map)->count();
+
+        $map['right_num'] = array('gt', 875);
         $num['right_num'] = M('exercise_rank')->where($map)->count();
         $this->assign('num', $num);
 
