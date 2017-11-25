@@ -12,9 +12,9 @@ class RankController extends Controller {
     public function updateRank() {
 
 
-    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(600)->select();
+    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(200)->select();
 
-    	p($stuList);
+    	// p($stuList);
 
     	foreach ($stuList as &$value) {
 
