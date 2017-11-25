@@ -11,7 +11,7 @@ class RankController extends Controller {
 
     public function updateRank($p) {
 
-    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(60)->page($p)->select();
+    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(600)->page($p)->select();
 
     	foreach ($stuList as &$value) {
             if (!empty($value)) {
