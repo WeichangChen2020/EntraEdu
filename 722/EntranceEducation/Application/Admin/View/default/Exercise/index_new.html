@@ -1,4 +1,8 @@
 <div class="aright">
+<div class="arz" style="float: left;margin: 0px 20px 20px 30px;">
+  <a href="{:U('User/index')}">全部({$num['answer_num']|default='0'})</a>
+  <a href="{:U('User/unRegister')}" style="margin-left: 20px;">无考试资格({$num['right_num']|default='0'})</a>
+</div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">
       <tbody><tr>

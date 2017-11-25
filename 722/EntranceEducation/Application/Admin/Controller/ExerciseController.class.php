@@ -37,7 +37,6 @@ class ExerciseController extends CommonController {
             $map['academy'] = $college;
         }
 
-        $map['type'] = 1;
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
 
@@ -46,6 +45,11 @@ class ExerciseController extends CommonController {
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page', $show);
+
+        $num['answer_num'] = M('exercise_rank')->where($map)->count();
+        
+        $num['right_num'] = M('exercise_rank')->where($map)->count();
+
        
         $this->display();
     }
@@ -109,11 +113,6 @@ class ExerciseController extends CommonController {
 
         $excel = new UserController();
         $excel->excel($list, $title, $filename);
-
-
-
-       
-
     }
 
 }
