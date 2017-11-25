@@ -5,10 +5,18 @@ class RankController extends Controller {
 
     public function index(){
 
-       
+
 
     }
 
+    /**
+     * 更新 exercise_rank数据表 
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-06 19:48Authors
+     * @param $p  ,每次更新 700条记录
+     * @return
+     * 通过新浪云定时功能，每天凌晨4点 更新 数据库
+     */
     public function updateRank($p) {
 
     	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(700)->page($p)->select();
@@ -23,7 +31,10 @@ class RankController extends Controller {
                 } else {
                     M('exercise_rank')->add($value);   
                 }
-            }
+            } else {
+                echo "faild";
+            } 
+
     	}
     	
 
