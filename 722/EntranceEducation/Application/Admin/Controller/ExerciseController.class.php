@@ -46,9 +46,6 @@ class ExerciseController extends CommonController {
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page', $show);
-
-    
-        $this->assign('export', 1);
        
         $this->display();
     }
