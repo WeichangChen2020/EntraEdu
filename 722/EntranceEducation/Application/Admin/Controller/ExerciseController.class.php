@@ -83,4 +83,35 @@ class ExerciseController extends CommonController {
         $this->display();
     }
 
+
+     /**
+     * 导出 自由练习做题情况
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-25 10:04Authors
+     * @var  
+     * @return 
+     */
+    public function export() {
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+
+        $title = array('序号','学院', '班级', '学号', '姓名');
+        $filename  = is_null($college) ? '浙江工商大学' : $college;
+
+        $list = M('exercise_rank')->where($map)->field('id,name,number,academy,class,right_num,answer_num')->order('academy,class,number,right_num')->select();
+        $filename .= '新生始业平台自由练习答题情况';
+
+
+        p($list); die;
+
+
+       
+
+    }
+
 }
