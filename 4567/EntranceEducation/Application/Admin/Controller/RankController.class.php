@@ -25,7 +25,6 @@ class RankController extends Controller {
             if (!empty($value)) {
                 $value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
                 $value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
-
                 if (M('exercise_rank')->find($value['id'])) {
                     M('exercise_rank')->save($value);   
                 } else {
