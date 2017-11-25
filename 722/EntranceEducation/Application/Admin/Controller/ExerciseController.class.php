@@ -49,7 +49,7 @@ class ExerciseController extends CommonController {
         $num['answer_num'] = M('exercise_rank')->where($map)->count();
 
         $map['right_num'] = array('lt', 875);
-        $num['right_num'] = M('exercise_rank')->where($map)->count();
+        $num['unpass_num'] = M('exercise_rank')->where($map)->count();
         $this->assign('num', $num);
 
 
