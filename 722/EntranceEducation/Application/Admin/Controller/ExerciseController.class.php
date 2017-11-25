@@ -35,6 +35,8 @@ class ExerciseController extends CommonController {
 
         if (!is_null($college)) {
             $map['academy'] = $college;
+        } else {
+            $map['academy'] = array('neq', '非新生');
         }
 
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
