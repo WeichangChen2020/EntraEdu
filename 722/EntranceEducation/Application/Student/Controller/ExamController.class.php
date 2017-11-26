@@ -239,7 +239,7 @@ class ExamController extends Controller{
     }
 
     public function test(){
-        $list = M('ExamSubmit')->where(array('academy'=>null))->select();
+        $list = M('ExamSubmit')->where(array('academy'=>NULL))->select();
         dump($list);
         die;
     }
