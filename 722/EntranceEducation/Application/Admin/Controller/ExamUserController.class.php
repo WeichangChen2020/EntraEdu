@@ -129,7 +129,6 @@ class ExamUserController extends CommonController{
         $filename .= $examName['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
-        dump($openid);die;
             foreach ($openid as $key => $value) {
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
@@ -150,6 +149,7 @@ class ExamUserController extends CommonController{
             }
             $filename .= '未通过用户';
         }
+        dump($list);die;
 
         $this->excel($list, $title, $filename);
     }
