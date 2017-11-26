@@ -241,6 +241,9 @@ class ExamController extends Controller{
     public function test(){
         $where['academy']=array('EXP','IS NULL');
         $list = M('ExamSubmit')->where($where)->select();
+        $info = D('StudentInfo')->getInfo($list['0']['openid']);
+        // $list['0']['']
+        dump($info);
         dump($list);
         die;
     }
