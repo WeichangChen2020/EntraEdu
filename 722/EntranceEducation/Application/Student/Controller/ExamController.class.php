@@ -242,7 +242,8 @@ class ExamController extends Controller{
 
     public function test(){
         $openid = session('openId');
-        dump($openid);die;
+        $info = D('StudentInfo')->getInfo($openid);
+        dump($info);die;
 
     }
    
