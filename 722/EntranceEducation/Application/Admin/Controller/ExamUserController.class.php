@@ -86,7 +86,7 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
 
-        $map['score'] = array('lt','60');
+        $map['score'] = array('lt','80');
         $count = $STUDENT->where($map)->count();
 
         $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();        
