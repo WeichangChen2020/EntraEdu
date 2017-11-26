@@ -45,9 +45,8 @@ class BalanceController extends Controller{
 			
 		);
 
-		p($url);
 
-		// header("location: ".$url[$college]);
+		header("location: ".$url[$college]);
 	}    
 
 }
