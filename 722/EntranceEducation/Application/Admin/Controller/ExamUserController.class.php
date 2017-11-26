@@ -214,7 +214,7 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $map['examid'] = $id;
-        $title = array( '姓名', '班级', '学号','得分','是否通过');
+        $title = array( '姓名', '学院', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
         $filename .= $examName['title'];
@@ -222,10 +222,10 @@ class ExamUserController extends CommonController{
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
                 $info = $INFO->getInfo($value['openid']);
-                dump($info);die;
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['name'];
+                $list[$key]['number'] = $info['0']['name'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
@@ -235,16 +235,16 @@ class ExamUserController extends CommonController{
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
                 $info = $INFO->getInfo($value['openid']);
-                dump($info);die;
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['name'];
+                $list[$key]['number'] = $info['0']['name'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '未通过用户';
         }
-dump($info);die;
+dump($list);die;
     }
 
 
