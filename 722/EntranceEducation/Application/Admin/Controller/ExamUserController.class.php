@@ -62,7 +62,7 @@ class ExamUserController extends CommonController{
         $this->assign('page', $show);
         
         $this->assign('export', 1);
-        $map['score'] = array('lt','60');
+        $map['score'] = array('lt','80');
         $this->assign('failNum',$STUDENT->where($map)->count());
         $this->assign('submitNum', $count);
         $this->assign('id',$id);
