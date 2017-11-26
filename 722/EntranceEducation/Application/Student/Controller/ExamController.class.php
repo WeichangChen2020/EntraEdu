@@ -247,8 +247,8 @@ class ExamController extends Controller{
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
-        dump($list['0']);
-        dump($info);
+        dump($examItem);
+        dump($quesItem);
         dump($list);
         die;
     }
