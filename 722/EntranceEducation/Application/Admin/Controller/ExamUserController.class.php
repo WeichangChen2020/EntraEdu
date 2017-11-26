@@ -86,9 +86,10 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
 
-        $map['score'] = array('lt','80');
         $count = $STUDENT->where($map)->count();
+        $this->assign('submitNum', $count);
 
+        $map['score'] = array('lt','80');
         $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();        
         $this->assign('submitList',$failList);
 
@@ -99,7 +100,6 @@ class ExamUserController extends CommonController{
         $this->assign('export', 0);
 
         $this->assign('failNum',$STUDENT->where($map)->count());
-        $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
     }
