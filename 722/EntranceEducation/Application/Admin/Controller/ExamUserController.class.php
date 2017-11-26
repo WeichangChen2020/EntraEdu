@@ -122,6 +122,7 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
+        $map['id'] = $id;
 
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
