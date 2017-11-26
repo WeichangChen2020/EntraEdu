@@ -239,6 +239,8 @@ class ExamController extends Controller{
     }
 
     public function test(){
+        $list = M('ExamSubmit')->where(array('academy'=>null))->select();
+        dump($list);
         die;
     }
    
