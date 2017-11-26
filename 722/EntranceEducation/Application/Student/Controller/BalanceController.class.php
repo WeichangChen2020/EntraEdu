@@ -45,8 +45,6 @@ class BalanceController extends Controller{
 			
 		);
 
-		
-		// $this->redirect($url[$college]);
 		header("location: ".$url[$college]);
 	}    
 
