@@ -200,7 +200,7 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
-    public function test(){
+    public function test($type,$id){
 
 
         $SUBMIT = D('ExamSubmit');
