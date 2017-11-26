@@ -239,12 +239,14 @@ class ExamController extends Controller{
     }
 
     public function test(){
-        $EXAM = M('ExamSubmit');
-        $where['academy']=array('EXP','IS NULL');
-        $list = $EXAM->where($where)->select();
-        $info = D('StudentInfo')->getInfo($list['0']['openid']);
-        $list['0']['academy'] = $info['academy'];
-        $EXAM->save($list['0']);
+        $this->initExam();
+        
+        $openid = session('openId');
+        $examid = session('examid');
+       
+        // ************分配考试item信息 和 题目考试信息
+        $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
+        $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
         dump($list['0']);
         dump($info);
         dump($list);
