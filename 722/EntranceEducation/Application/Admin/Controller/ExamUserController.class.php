@@ -114,6 +114,7 @@ class ExamUserController extends CommonController{
     public function export($type,$id) {
 
         $SUBMIT = D('ExamSubmit');
+        $INFO = D('StudentInfo');
 
         // 查询条件
         $college = D('Adminer')->getCollege();
@@ -123,16 +124,18 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $map['examid'] = $id;
-        $title = array( '姓名', '班级', '学号','得分','是否通过');
+        $title = array( '姓名', '学院', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
         $filename .= $examName['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $info = $INFO->getInfo($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
@@ -141,15 +144,16 @@ class ExamUserController extends CommonController{
             $map['score'] = array('lt','80');
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $info = $INFO->getInfo($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '未通过用户';
         }
-
         $this->excel($list, $title, $filename);
     }
 
@@ -203,48 +207,6 @@ class ExamUserController extends CommonController{
     public function test($type,$id){
 
 
-        $SUBMIT = D('ExamSubmit');
-        $INFO = D('StudentInfo');
-
-        // 查询条件
-        $college = D('Adminer')->getCollege();
-        $map = array();
-
-        if (!is_null($college)) {
-            $map['academy'] = $college;
-        }
-        $map['examid'] = $id;
-        $title = array( '姓名', '学院', '班级', '学号','得分','是否通过');
-        $filename  = is_null($college) ? '浙江工商大学' : $college;
-        $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
-        $filename .= $examName['title'];
-        if($type == 1) {
-            $openid = $SUBMIT->where($map)->select();
-            foreach ($openid as $key => $value) {
-                $info = $INFO->getInfo($value['openid']);
-                $list[$key]['name'] = $info['0']['name'];
-                $list[$key]['academy'] = $info['0']['academy'];
-                $list[$key]['class'] = $info['0']['class'];
-                $list[$key]['number'] = $info['0']['number'];
-                $list[$key]['result'] = $value['score'];
-                $list[$key]['pass'] = pass($value['score']);
-            }
-            $filename .= '提交用户';
-        } else {
-            $map['score'] = array('lt','80');
-            $openid = $SUBMIT->where($map)->select();
-            foreach ($openid as $key => $value) {
-                $info = $INFO->getInfo($value['openid']);
-                $list[$key]['name'] = $info['0']['name'];
-                $list[$key]['academy'] = $info['0']['academy'];
-                $list[$key]['class'] = $info['0']['class'];
-                $list[$key]['number'] = $info['0']['number'];
-                $list[$key]['result'] = $value['score'];
-                $list[$key]['pass'] = pass($value['score']);
-            }
-            $filename .= '未通过用户';
-        }
-        $this->excel($list, $title, $filename);
     }
 
 
