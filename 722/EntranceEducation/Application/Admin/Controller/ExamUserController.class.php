@@ -123,13 +123,13 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $map['id'] = $id;
-        dump($id);die;
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
         $filename .= $examName['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
+        dump($openid);die;
             foreach ($openid as $key => $value) {
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
