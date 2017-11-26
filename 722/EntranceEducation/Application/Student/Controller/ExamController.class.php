@@ -240,8 +240,8 @@ class ExamController extends Controller{
     }
 
     public function test(){
-        $openid = session('openId');
-        $info = D('StudentInfo')->getInfo($openid);
+        $openId = session('openId');
+        $info = D('StudentInfo')->getInfo($openId);
         dump($info['academy']);die;
 
     }
