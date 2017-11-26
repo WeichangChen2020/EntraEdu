@@ -239,6 +239,9 @@ class ExamController extends Controller{
         $this->display();
     }
 
+    public function test(){
+        
+    }
    
     
     
