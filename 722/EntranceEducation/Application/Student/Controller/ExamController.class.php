@@ -241,8 +241,31 @@ class ExamController extends Controller{
 
     public function test(){
         $openId = session('openId');
+        $examid = session('examid');
         $info = D('StudentInfo')->getInfo($openId);
-        dump($info['academy']);die;
+        // $info = M('StudentInfo')->where(array('openId'=>$openId))->find();
+        $score = M('ExamSelect')->where(array('openid'=>$openId,'examid'=>$examid,'result'=>1))->count();
+        $data = array(
+            'openid' => $openId,
+            'examid' => $examid,
+            'academy'=> $info['academy'],
+            'score'  => $score,
+        );
+        dump($data);die;
+        if (!M('ExamSubmit')->where(array('openid'=>$openId,'examid'=>$examid))->find()) {
+            M('ExamSubmit')->add($data);
+        }
+        //总答题数与正确题数
+        $quesNum = M('ExamSelect')->where($data)->count();
+        $trueNum = M('ExamSelect')->where(array(
+            'result' => '1',
+            'openid' => $openId,
+            'examid' => $examid,
+        ))->count();
+        $this->assign('quesNum',$quesNum);
+        $this->assign('trueNum',$trueNum);
+
+        $this->display();
 
     }
    
