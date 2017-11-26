@@ -224,8 +224,8 @@ class ExamUserController extends CommonController{
                 $info = $INFO->getInfo($value['openid']);
                 $list[$key]['name'] = $info['0']['name'];
                 $list[$key]['academy'] = $info['0']['academy'];
-                $list[$key]['class'] = $info['0']['name'];
-                $list[$key]['number'] = $info['0']['name'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
@@ -237,14 +237,14 @@ class ExamUserController extends CommonController{
                 $info = $INFO->getInfo($value['openid']);
                 $list[$key]['name'] = $info['0']['name'];
                 $list[$key]['academy'] = $info['0']['academy'];
-                $list[$key]['class'] = $info['0']['name'];
-                $list[$key]['number'] = $info['0']['name'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '未通过用户';
         }
-dump($list);die;
+        $this->excel($list, $title, $filename);
     }
 
 
