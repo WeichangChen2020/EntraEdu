@@ -149,7 +149,8 @@ class ExamUserController extends CommonController{
             }
             $filename .= '未通过用户';
         }
-        dump($list);die;
+        dump($openid);
+        dump($map);die;
 
         $this->excel($list, $title, $filename);
     }
