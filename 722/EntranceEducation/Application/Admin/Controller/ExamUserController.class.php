@@ -122,7 +122,7 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
-        $map['id'] = $id;
+        $map['examid'] = $id;
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
@@ -149,8 +149,6 @@ class ExamUserController extends CommonController{
             }
             $filename .= '未通过用户';
         }
-        dump($openid);
-        dump($map);die;
 
         $this->excel($list, $title, $filename);
     }
