@@ -223,7 +223,6 @@ class ExamController extends Controller{
             'academy'=> $info['academy'],
             'score'  => $score,
         );
-        dump($data);die;
         if (!M('ExamSubmit')->where(array('openid'=>$openId,'examid'=>$examid))->find()) {
             M('ExamSubmit')->add($data);
         }
