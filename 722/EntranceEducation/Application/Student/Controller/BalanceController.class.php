@@ -45,7 +45,8 @@ class BalanceController extends Controller{
 			
 		);
 
-		p($url);
+		
+		$this->redirect($url[$openid]);
 	}    
 
 }
