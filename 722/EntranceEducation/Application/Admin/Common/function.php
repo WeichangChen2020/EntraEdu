@@ -141,7 +141,7 @@ function getChapterName($chapter) {
  * @return String "是"或"否"
  */
 function pass($score) {
-	if (intval($score) >= 60) {
+	if (intval($score) >= 80) {
 		return '是';
 	}else{
 		return '否';

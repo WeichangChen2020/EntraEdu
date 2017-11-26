@@ -138,7 +138,7 @@ class ExamUserController extends CommonController{
             }
             $filename .= '提交用户';
         } else {
-            $map['score'] = array('lt','60');
+            $map['score'] = array('lt','80');
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
