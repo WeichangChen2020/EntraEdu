@@ -123,7 +123,7 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $map['id'] = $id;
-
+        dump($id);die;
         $title = array( '姓名', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
