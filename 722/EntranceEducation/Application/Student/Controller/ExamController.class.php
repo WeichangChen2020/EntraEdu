@@ -241,6 +241,8 @@ class ExamController extends Controller{
     }
 
     public function test(){
+        $openid = session('openId');
+        dump($openid);die;
 
     }
    
