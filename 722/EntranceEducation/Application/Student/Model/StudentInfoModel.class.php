@@ -54,4 +54,19 @@ class StudentInfoModel extends Model {
 			return false;
 		
 	}
+	/**
+	 * getInfo 获取$openid的info
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-26 19:20 Authors
+	 * @var  
+	 * @return  Array
+	 */
+	public function getInfo($openid) {
+
+		$res = $this->where(array('openId'=>$openid))->find();
+		if (empty($res)) {
+			return false;
+		}
+		return $res;
+	}
 }
