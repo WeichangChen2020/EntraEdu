@@ -234,6 +234,8 @@ class ExamUserController extends CommonController{
             $map['score'] = array('lt','80');
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
+                $info = $INFO->getInfo($value['openid']);
+                dump($info);die;
                 $list[$key]['name'] = getNameByOpenid($value['openid']);
                 $list[$key]['class'] = getClassByOpenid($value['openid']);
                 $list[$key]['number'] = getNumberByOpenid($value['openid']);
