@@ -12,37 +12,40 @@ class BalanceController extends Controller{
 
 		$college = M('student_info')->where(array('openId'=>$openid))->getField('academy');
 
-		/*array(
+		$url = array(
 
-			'管理学院'    =>
-			'人文学院'    =>
-			'外国语学院'  =>
-			'工商学院'    =>
+			'管理学院'    => 'http://722.testet.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'人文学院'    => 'http://722.testet.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'外国语学院'  =>'http://722.testet.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'工商学院'    =>'http://722.testet.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 
-			'管工学院'
-			'管电学院'
-			'信息学院'
-			'统计学院'
 
-			'马克思学院'
-			'信电学院'
-			'财会学院'
+			'管工学院'    =>'http://722.adsweixin.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'管电学院'    =>'http://722.adsweixin.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'信息学院'    =>'http://722.adsweixin.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'统计学院'    =>'http://722.adsweixin.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 
-			'环境学院'
-			'食品学院'
-			'经济学院'
+			'马克思学院'  =>'http://722.classtest.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'信电学院'    =>'http://722.classtest.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'财会学院'    =>'http://722.classtest.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 
-			'东语学院'
-			'法学院'
-			'旅游学院'
+			'环境学院'    =>'http://722.dataplatform.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'食品学院'    =>'http://722.dataplatform.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'经济学院'    =>'http://722.dataplatform.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 
-			'公管学院'
-			'艺术学院'
-			'金融学院'
+			'东语学院'    =>'http://722.testtest11.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'法学院'      =>'http://722.testtest11.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'旅游学院'    =>'http://722.testtest11.applinzi.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'公管学院'    =>'http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'艺术学院'    =>'http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+			'金融学院'    =>'http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'非新生'      =>'http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 			
-		);*/
+		);
 
-		p($college);
+		p($url);
 	}    
 
 }
