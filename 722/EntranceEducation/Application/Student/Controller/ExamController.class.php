@@ -214,13 +214,14 @@ class ExamController extends Controller{
     public function tip() {
         $openId = session('openId');
         $examid = session('examid');
+        //下一行有问题
         // $info = D('StudentInfo')->getInfo($openId);
-        // $info = M('StudentInfo')->where(array('openId'=>$openId))->find();
+        $info = M('StudentInfo')->where(array('openId'=>$openId))->find();
         $score = M('ExamSelect')->where(array('openid'=>$openId,'examid'=>$examid,'result'=>1))->count();
         $data = array(
             'openid' => $openId,
             'examid' => $examid,
-            // 'academy'=> $info['academy'],
+            'academy'=> $info['academy'],
             'score'  => $score,
         );
         if (!M('ExamSubmit')->where(array('openid'=>$openId,'examid'=>$examid))->find()) {
@@ -240,7 +241,7 @@ class ExamController extends Controller{
     }
 
     public function test(){
-        
+
     }
    
     
