@@ -244,8 +244,7 @@ class ExamUserController extends CommonController{
             }
             $filename .= '未通过用户';
         }
-
-        $this->excel($list, $title, $filename);
+dump($info);die;
     }
 
 
