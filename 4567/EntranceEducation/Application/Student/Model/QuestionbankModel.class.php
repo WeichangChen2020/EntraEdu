@@ -236,7 +236,7 @@ class QuestionbankModel extends Model{
 		$result = D('exercise')->getExerciseRecord($openid);//总答题量，答对数，答错数，总题量
 		$result['reworknum'] = D('MistakeHistory')->getNumberOfRight($openid);//错题回顾中答对的题数
 		$result['sumNum'] = $result['rig_cot']+$result['reworknum'];//总答对题数
-		$result['progress'] = ($result['sumNum'])/$result['num'];//完成进度
+		$result['progress'] = $result['sumNum']/$result['num'];//完成进度
         
         return $result;
 	}
