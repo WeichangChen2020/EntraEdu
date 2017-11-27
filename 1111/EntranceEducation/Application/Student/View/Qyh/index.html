@@ -4,23 +4,18 @@
   <title></title>
 </head>
 <body>
-<form action="{:U('Qyh/upload')}" method="post" enctype="mutipart/form-data">
+    <form action="{:U('Qyh/upload')}" method="post" enctype="mutipart/form-data">
          
             
-              <div class="weui_cell_bd weui_cell_primary">作业上传</div>
-              <span>(最多6张)</span>
-              </br>
+              
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
-              <!-- <div class="weui_cell_ft js_counter">0/6</div> -->
-            
-            
-      
-      <button type="submit" class="weui_btn weui_btn_primary">提交</button>
-</form>
+              
+            <input type="submit">提交 
+    </form>
 </body>
 </html>
