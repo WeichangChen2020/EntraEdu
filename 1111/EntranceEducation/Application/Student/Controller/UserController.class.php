@@ -85,11 +85,9 @@ class UserController extends Controller {
         
 
             $openId = getOpenId();
-            if (!$openId == NULL) {
-                session('openId',$openId);
-            }else{
-                $openId = session('openId');
-            }
+        
+            session('openId',$openId);
+
             
 
         
