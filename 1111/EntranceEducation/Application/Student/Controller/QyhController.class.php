@@ -15,13 +15,19 @@ class QyhController extends Controller
 
 	public function upload()
 	{
-		$upload = new \Think\Upload();// 实例化上传类
-		$upload->maxSize = 3145728 ;// 设置附件上传大小
-		$upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-		$upload->rootPath = './public/'; // 设置附件上传根目录
-		$upload->savePath = './homework/homework'.'1'.'/'; // 设置附件上传（子）目录
+		$config = array(
+            'maxSize' => 3145728,
+            'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
+            'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
+            'savePath'=>'./homework/homework'.'1'.'/',
+            'autoSub'=>false  
+        );
+		$upload = new \Think\Upload($config,'sae');// 实例化上传类
+		
+		
+
 		// 上传文件
-		$info = $upload->upload();
+		$info = $upload->upload($_FILES['photo']);
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
@@ -31,7 +37,9 @@ class QyhController extends Controller
 
 		// $domain       = 'public';
   //       $dir          = './homework/homework'.'1'.'/';
-		// $saes = new \SaeStorage();
+		 // $saes = new \SaeStorage();
+		 // $saes->upload('public',$name,$_FILES['file']['tmp_name']);
+
 		// $url = $saes->write( $domain , $dir.$filename , $output );
 	}
 
