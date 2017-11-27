@@ -26,9 +26,10 @@
         <div class="weui_cell_bd weui_cell_primary">
           <div class="weui_textarea">{$homework.content}</div>
 <form action="{:U('Qyh/upload')}" method="post" enctype="mutipart/form-data">
-          <div class="weui_uploader">
-            <div class="weui_uploader_hd weui_cell">
-              <div class="weui_cell_bd weui_cell_primary">作业上传(最多6张)</div>
+         
+            
+              <div class="weui_cell_bd weui_cell_primary">作业上传</div>
+              <span>(最多6张)</span>
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
@@ -36,8 +37,8 @@
               <input type="file" name="photo[]">
               <input type="file" name="photo[]">
               <!-- <div class="weui_cell_ft js_counter">0/6</div> -->
-            </div>
-            <div class="weui_uploader_bd">
+            
+            
               <ul class="weui_uploader_files">
                 <!-- 预览图插入到这 --> </ul>
               <div class="weui_uploader_input_wrp">
