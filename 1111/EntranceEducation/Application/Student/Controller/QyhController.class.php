@@ -16,7 +16,7 @@ class QyhController extends Controller
 	public function upload()
 	{
 		$config = array(
-            'maxSize' => 3145728,
+            'maxSize' => 314572800,
             'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
             'savePath'=>'./homework/homework'.'1'.'/',
