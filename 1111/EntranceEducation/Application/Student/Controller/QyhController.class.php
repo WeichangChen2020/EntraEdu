@@ -27,7 +27,7 @@ class QyhController extends Controller
 		
 
 		// 上传文件
-		$info = $upload->uploadOne($_FILES['photo']);
+		$info = $upload->upload($_FILES['photo']);
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
@@ -35,12 +35,7 @@ class QyhController extends Controller
 			$this->success('上传成功！');
 		}
 
-		// $domain       = 'public';
-  //       $dir          = './homework/homework'.'1'.'/';
-		 // $saes = new \SaeStorage();
-		 // $saes->upload('public',$name,$_FILES['file']['tmp_name']);
 
-		// $url = $saes->write( $domain , $dir.$filename , $output );
 	}
 
 
