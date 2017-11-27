@@ -27,7 +27,7 @@ class QyhController extends Controller
 		
 
 		// 上传文件
-		$info = $upload->uploadOne($_FILES['Filedata']);
+		$info = $upload->uploadOne($_FILES['file']);
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
