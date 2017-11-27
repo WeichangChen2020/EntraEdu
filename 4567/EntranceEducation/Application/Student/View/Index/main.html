@@ -33,7 +33,7 @@
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
 		                </li>
-                        <li class="info">进度：{$stu_info.progress|default='你猜'}</li>
+                        <li class="info">答对题数：{$progress.sumNum|default='你猜'}</li>
 		            </ul>
 		            
 		        </div>
@@ -131,7 +131,7 @@
 
     function start_exam() {
 
-        var progress = {$stu_info.progress};
+        var progress = {$progress.progress};
 
         if (progress < 0.6) {
             $.alert('你还没有完成60%！');
