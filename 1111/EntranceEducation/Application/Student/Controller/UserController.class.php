@@ -82,12 +82,17 @@ class UserController extends Controller {
     public function index(){
     	//++++++++++++++++++++++++++++++++++++++++++设定openId session
         //session('openId',null);
-        if (session('openId') == NULL) {
+        
 
             $openId = getOpenId();
-            session('openId',$openId);
+            if (!$openId == NULL) {
+                session('openId',$openId);
+            }else{
+                $openId = session('openId');
+            }
+            
 
-        }
+        
          //
         //echo $openId;
         //die();
