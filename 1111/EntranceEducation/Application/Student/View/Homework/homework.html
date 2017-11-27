@@ -38,121 +38,14 @@
     </div>
     <div id="test"></div>
 
-    
+    <form action="{:U('Qyh/upload')}" method="post" enctype="multipart/form-data"></form>
     <div class="weui_btn_area">
       <a class="weui_btn weui_btn_primary" href="javascript:" id="show-confirm">提交</a>
     </div>
     <include file="./Public/html/_foot.html"/>
     <include file="./Public/html/_refreshJs.html"/>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script>
-      wx.config({
-          debug: true,
-          appId: '{$signPackage.appId}',
-          timestamp: {$signPackage.timestamp},
-          nonceStr: '{$signPackage.nonceStr}',
-          signature: '{$signPackage.signature}',
-          jsApiList: [
-            'chooseImage',
-            'previewImage',
-            'uploadImage'
 
-          ]
-      });
-
-      picCount = 0;
-      maxCount = 6; //最多可以上传6张
-      picJsonUrl = [];
-      picJsonUrlString = '';
-      wx.ready(function () {
-          var images = {
-          localId: [],
-          serverId: []
-        };
-      
-        document.querySelector('#submit').onclick = function(){
-          wx.chooseImage({
-            count:maxCount-picCount,
-            success:function(res){
-              localIds = res.localIds;
-              images.localId = res.localIds;
-              picCount = picCount + localIds.length;
-              localIdJS = res.localIds;  //把json数据拼接在一起 ，： 把json数组转换成字符串，然后再转换成json数组
-              if(picJsonUrlString != '')
-                picJsonUrlString = picJsonUrlString.substring(1,picJsonUrlString.length-1) + ',';
-              picJsonUrlString += jonStr(JSON.stringify(res.localIds));
-              picJsonUrlString = '[' + picJsonUrlString.substring(0,picJsonUrlString.length-1) + ']';
-              picJsonUrl = JSON.parse(picJsonUrlString);
-              for (var i = 0; i < res.localIds.length; i++){
-                var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + localIds[i] + ')"></li>');
-                $('.weui_uploader_files').append($preview);
-                $('.js_counter').text(picCount + '/' + maxCount);  
-                $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();
-              }
-              if(picCount >= maxCount)
-                $('#submit').hide();
-            }
-          });
-          
-          function jonStr(s){
-            return s.substring(1,s.length-1) + ',';
-          }
-        };
-      });
-      
-      
-
-      $(document).on("click", "#show-confirm", function() {
-        if(picCount === 0){
-          $.alert('你还没有选择照片！');
-
-          return ;
-        }
-
-
-        $.confirm("您确定要上传作业吗?", "确认上传", function() {
-          var mediaId = new Array();
-
-
-          for(var i=0;i<picJsonUrl.length;i++){
-            wx.uploadImage({
-                localId: picJsonUrl[i],
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: function (res) {
-                    mediaId.push(res.serverId);
-                    upload(mediaId);
-                }
-            });
-          }
-
-          function upload(mediaIdArray){
-            if(mediaIdArray.length === picJsonUrl.length){
-              for(var i = 0 ; i < mediaIdArray.length ; i ++)
-                mediaIdArray[i] = '"' + mediaIdArray[i] + '"';
-              var mediaIdJsonStr = '[' + mediaIdArray.toString() + ']';
-              url = "{:U('Homework/upload')}";
-              data = {
-                id:JSON.parse(mediaIdJsonStr),
-              };
-              $.post(url,data,function(res){
-                // $('#id').html(data.id);
-                $('#test').html(res);
-
-              });
-              $.showLoading('作业上传中');
-              setTimeout(function() {
-                $.hideLoading();
-                $.toast("作业上传成功!");
-                $('#show-confirm').hide();
-              }, 3000);
-            }
-          }
-
-        },function(){
-          //取消操作
-        });
-      });
-    </script>
 
     <script> 
     $(document).on("click", ".weui_uploader_file", function() {
