@@ -1,35 +1,20 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>test</title>
-</head>
-<body>
-	<form action="{:U(upload)}" method="post" enctype="multipart/form-data">
-		<input type='file' name='photo[]'>
-		<input type='file' name='photo[]'>
-		
-		<input type="submit">
-	</form>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <include file="./Public/html/_head.html"/>
+  <include file="./Public/html/_head.html"/>
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.3.0/weui.css" />
 </head>
-<body ontouchstart>
+<body>
 	<include file="./Public/html/_refresh.html"/>
-	<header class='demos-header'>
-		<h1 class="demos-title">提交作业</h1>
-	</header>
+    <header class='demos-header'>
+      <h1 class="demos-title">提交作业</h1>
+    </header>
   <div class="container">
     <div class="weui_cells_title">{$homework.homeworkName}(截止时间:{$homework.deadtime})</div>
     <div class="weui_cells weui_cells_form">
       <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
-          <div class="weui_textarea">{$homework.content}</div>
-
+          	<div class="weui_textarea">{$homework.content}</div>
           <div class="weui_uploader">
             <div class="weui_uploader_hd weui_cell">
               <div class="weui_cell_bd weui_cell_primary">上传作业</div>
@@ -46,22 +31,17 @@
       </div>
     </div>
   </div>
-  <div class="weui_dialog_alert" style="display: none;">
-    <div class="weui_mask"></div>
-    <div class="weui_dialog">
-      <div class="weui_dialog_hd"> <strong class="weui_dialog_title">警告</strong>
-      </div>
-      <div class="weui_dialog_bd">弹窗内容，告知当前页面信息等</div>
-      <div class="weui_dialog_ft">
-        <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
-      </div>
-    </div>
-  </div>
-  	<div class="weui_btn_area">
+  
+    <div class="weui_btn_area">
       <a class="weui_btn weui_btn_primary" href="javascript:" id="show-confirm">提交</a>
     </div>
-    <include file="./Public/html/_foot.html"/>
-    <include file="./Public/html/_refreshJs.html"/>
+
+
+
+
+     
+    </div>
+  </div>
   <script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
 </body>
 </html>
@@ -82,7 +62,7 @@
     // 允许上传的图片类型  
     var allowTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];  
     // 1024KB，也就是 1MB  
-    var maxSize = 10240 * 10240;  
+    var maxSize = 1024 * 1024;  
     // 图片最大宽度  
     var maxWidth = 300;  
     // 最大上传图片数量  
