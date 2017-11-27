@@ -51,9 +51,9 @@ class UserController extends Controller {
             //$MARK             = D('StudentMark');
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
-            $stu_info['progress'] = D('Questionbank')->getProgress($openId);  //把成绩也并入stu_info数组中
-
-
+            $progress = D('Questionbank')->getProgress($openId);  //做题统计
+            //p($progress);
+            $this->assign('progress',$progress);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
 			$this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
@@ -80,10 +80,9 @@ class UserController extends Controller {
         $banji         = I('banji'); 
         $isNewer       = 0;
 
-        // 用户注册的头像 这个功能
-        // $headimgurl    = $WeChat->getHeadimgurl($openId);
-        // if(empty($headimgurl)) $headimgurl = '';
-        $headimgurl = '';
+        // 用户注册的头像
+        $headimgurl    = $WeChat->getHeadimgurl($openId);
+        if(empty($headimgurl)) $headimgurl = '';
 
         // 新手的信息
         if (!empty($college) && !empty($banji)) {
@@ -110,7 +109,7 @@ class UserController extends Controller {
             'openId'     => $openId,
             'name'       => $name,
             'number'     => $number,
-            'academy'    => $college ? $college : '非新生',//学院
+            'academy'    => $college,//学院
             'class'      => $banji,//班级
             'is_newer'   => $isNewer,
             'headimgurl' => $headimgurl,
