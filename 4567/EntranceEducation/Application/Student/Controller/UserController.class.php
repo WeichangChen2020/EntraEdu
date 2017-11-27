@@ -52,7 +52,7 @@ class UserController extends Controller {
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
             $progress = D('Questionbank')->getProgress($openId);  //做题统计
-            p($progress);
+            //p($progress);
             $this->assign('progress',$progress);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
