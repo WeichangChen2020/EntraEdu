@@ -44,7 +44,8 @@ class QyhController extends Controller
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
             'savePath'=>'./homework/homework'.$homeworkId.'/',
             'autoSub'=>false,
-            'saveName'=>array($one,$two,$three,$four,$five,$six)
+            // 'saveName'=>array($one,$two,$three,$four,$five,$six)
+            'saveName'=>array('1','2','3','4','5','6')
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
