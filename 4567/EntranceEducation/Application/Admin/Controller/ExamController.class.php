@@ -267,7 +267,7 @@ class ExamController extends CommonController{
         // foreach ($openidArr as $key => &$value) {
         //     $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
         // }
-        p($list);die;
+        // p($list);die;
         
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
