@@ -15,13 +15,28 @@ class QyhController extends Controller
 
 	public function upload()
 	{
+		$keynum = I('post.');
+        var_dump($keynum);
+        die;
+
+
+		$STU          = D('StudentInfo');
+        $HOMEWORK     = M('student_homework');
+        $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $homeworkId   = session('?homeworkId') ? session('homeworkId') : $this->error('请重新获取改页面');
+        $cond         = array('openId' => $openId);
+        $stuInfo      = $STU->where($cond)->find();
+
+        
+
+
 		$config = array(
             'maxSize' => 314572800,
             'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
-            'savePath'=>'./homework/homework'.'1'.'/',
-            'autoSub'=>false
-            // 'saveName'=>'qyhtest2'
+            'savePath'=>'./homework/homework'.$homeworkId.'/',
+            'autoSub'=>false,
+            'saveName'=>$stuInfo['number'].'_'.$homeworkId.'_'.$key
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
@@ -33,12 +48,9 @@ class QyhController extends Controller
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
 		}else{// 上传成功
-			$STU          = D('StudentInfo');
-        	$HOMEWORK     = M('student_homework');
-        	$openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        	$homeworkId   = session('?homeworkId') ? session('homeworkId') : $this->error('请重新获取改页面');
-        	$cond         = array('openId' => $openId);
-        	$stuInfo      = $STU->where($cond)->find();
+			
+        	
+        	
         	$homeworkInfo = array(
             'openId'  => $openId,
             'name'    => $stuInfo['name'],
@@ -47,9 +59,16 @@ class QyhController extends Controller
             'homeworkId' => $homeworkId,
             'correcter' => '未批改',
             'time'    => date('Y-m-d H:i:s',time()),
-            );
-        	$HOMEWORK->add($homeworkInfo);
 
+            );
+        	
+
+        	
+        	$stuInfoArrayKey = 'pic'.($key+1).'Url';
+            $homeworkInfo[$stuInfoArrayKey] = $dir.$filename;
+
+
+			$HOMEWORK->add($homeworkInfo);
 
 			$this->success('上传成功！',U('Homework/index'));
 		}
