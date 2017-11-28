@@ -67,11 +67,26 @@
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
     </div> -->
-
+    <div class="tooltiptop">
+     <div class="bg"></div>
+     <div class="main"><i>Jq顶部弹出框</i><span onClick="ToolTipTop.Hide();" title="关闭">X</span></div>
+    </div>
 </body>
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/weui2.0/__foot.html"/>
+<script >
+    var ToolTipTop={
+    Show:function(Msg){
+            $(".tooltiptop .main i").html(Msg);
+            $(".tooltiptop").css("display","block").animate({marginTop:"0px"},500);
+        },
+        Hide:function(){
+            $(".tooltiptop").animate({marginTop:"-50px"},500,function(){$(this).css("display","none")});
+        }
+    }
+</script>
+
 <!-- <script>
 
     var stop=true;//触发开关，防止多次调用事件  
