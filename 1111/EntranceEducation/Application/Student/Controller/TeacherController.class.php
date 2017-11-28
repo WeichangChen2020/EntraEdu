@@ -147,8 +147,8 @@ class TeacherController extends Controller{
     public function homework_view(){
         $STU_HOMEWORK = M('student_homework');
         $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage(); 
-        $this->assign('signPackage',$signPackage);
+        // $signPackage  = $weixin->getJssdkPackage(); 
+        // $this->assign('signPackage',$signPackage);
 
         $homeworkId   = I('homeworkId') ? I('homeworkId') : $this->error('你访问的界面不存在');
         $cond         = array('homeworkId' => $homeworkId);
