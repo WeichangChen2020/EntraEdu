@@ -181,8 +181,8 @@ function getFailNum($id) {
  */
 function get_ques_num($number) {
 	$openid = M('Student_info')->where(array('number'=>$number))->getField('openId');
-	$rig_cot  = M('ExerciseRank')->where(array('openid'=>$openid))->find();
-	dump($rig_cot);
+	$rig_cot  = M('ExerciseRank')->where(array('openId'=>$openid))->find();
+	// dump($rig_cot);
 	return $rig_cot['right_num'];
 }
 
