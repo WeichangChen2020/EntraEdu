@@ -224,7 +224,7 @@ class ExamController extends CommonController{
             foreach ($openidArr as $k => $v) {
                 $is_init = $EXAM->isInit($v['openId'], $examid);
                 if(!$is_init) {
-                    $init = $EXAM->initExam($openid, $examid);
+                    $init = $EXAM->initExam($v['openId'], $examid);
                     if ($init) {
                         // $this->success('生成题目成功');
                     } else {
