@@ -10,7 +10,7 @@ class MistakeHistoryModel extends Model {
 		where openid = '$openid' AND result = '0'
 		AND NOT EXISTS (
 			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
+			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid') LIMIT 1;";
 
 		// dump($sql);die;	
 		$Model = new \Think\Model();
