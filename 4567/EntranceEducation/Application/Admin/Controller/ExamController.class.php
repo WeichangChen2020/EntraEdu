@@ -258,15 +258,13 @@ class ExamController extends CommonController{
         foreach ($openidArr as $key => &$value) {
             $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
         }
-        p($list);die;
+        //p($list);die;
         // 查询条件
         // $college = D('Adminer')->getCollege(); //管理员的学院
         // $map = array();
-
         // if (!is_null($college)) {
         //     $map['academy'] = $college;
         // }
-
         // $map['type'] = 1;
         
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
@@ -277,9 +275,9 @@ class ExamController extends CommonController{
         $show       = $Page->show();
         $this->assign('page', $show);
         // 注册数量和未注册数量和导出
-        $num = D('StudentList')->getStudentNum();
-        $this->assign('num', $num);
-        $this->assign('export', 1);
+        //$num = D('StudentList')->getStudentNum();
+        //$this->assign('num', $num);
+        //$this->assign('export', 1);
    
         $this->display();
 
