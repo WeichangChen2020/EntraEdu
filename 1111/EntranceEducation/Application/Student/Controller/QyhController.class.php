@@ -13,6 +13,12 @@ class QyhController extends Controller
 		$this->display();
 	}
 
+
+
+
+
+
+
 	public function upload()
 	{
 		
@@ -46,7 +52,8 @@ class QyhController extends Controller
             'autoSub'=>false,
             // 'saveName'=>array($one,$two,$three,$four,$five,$six)
             // 'saveName'=>array('1','2','3','4','5','6')
-            'saveName'=>array('rand')
+            // 'saveName'=>array('rand')
+
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
