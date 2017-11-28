@@ -28,13 +28,12 @@ class ReworkController extends Controller{
 		*错题历史中正确->无视
 		*
 		*/
-		// $MISTAKE = M('mistake_history');
-		$quesid = D('MistakeHistory')->getMistakeData($openId);
+		$MISTAKE = D('MistakeHistory');
+		$quesid = $MISTAKE->getMistakeData($openId);
 		// dump($quesid);
-		$num = D('MistakeHistory')->getNumberOfMistake($openId);
+		$num = $MISTAKE->getNumberOfMistake($openId);
 		session('quesid',$quesid);
-		$ques = D('MistakeHistory')->getQuestionByid($quesid);
-		// dump($ques);
+		$ques = $MISTAKE->getQuestionByid($quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
 
