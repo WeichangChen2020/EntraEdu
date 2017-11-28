@@ -92,15 +92,20 @@ class QuestionController extends CommonController {
         $title = array('id','题目章节', '题目类型', '题干内容', '选项A','选项B','选项C','选项D','正确选项', '答题人数', '正确率');
         $filename  = '浙江工商大学新生始业教育题库';
 
-        $list = M('Questionbank')->select();
-        foreach ($list as $key => $value) {
-            dump($list);die;
+        $list = array();
+        $question = M('Questionbank')->select();
+        foreach ($question as $key => $value) {
             $list[$key]['id'] = $value['id'];
-            $list[$key]['academy'] = $info['0']['academy'];
-            $list[$key]['class'] = $info['0']['class'];
-            $list[$key]['number'] = $info['0']['number'];
-            $list[$key]['result'] = $value['score'];
-            $list[$key]['pass'] = pass($value['score']);
+            $list[$key]['chapter'] = getChapterName($value['chapter']);
+            $list[$key]['type'] = get_ques_type($value['type']);
+            $list[$key]['contents'] = $value['contents'];
+            $list[$key]['option_a'] = $value['option_a'];
+            $list[$key]['option_b'] = $value['option_b'];
+            $list[$key]['option_c'] = $value['option_c'];
+            $list[$key]['option_d'] = $value['option_d'];
+            $list[$key]['right_answer'] = $value['right_answer'];
+            $list[$key]['answerNumber'] = getAnswerNum($value['id']);
+            $list[$key]['accuracy'] = getAccuracy($value['id']);
         }
 
         $this->excel($list, $title, $filename);
