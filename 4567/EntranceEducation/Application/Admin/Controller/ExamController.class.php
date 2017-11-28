@@ -256,7 +256,7 @@ class ExamController extends CommonController{
         $openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
         //p($openidArr);die;  //可参与这场考试的学生id数组
         foreach ($openidArr as $key => &$value) {
-            $list = $Student->where(array('openId'=>$value['openid']))->select();
+            $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
         }
         p($list);die;
         // 查询条件
