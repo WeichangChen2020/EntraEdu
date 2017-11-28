@@ -132,7 +132,12 @@ class ExamController extends CommonController{
                 $quesData['examid'] = $id;
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
-                D('ExamQuestionbank')->add($quesData);
+                if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
+                    $this->error('题目添加失败');
+                } else {
+                    D('ExamQuestionbank')->add($quesData);
+                    $this->error('题目添加成功');
+                }
             }
             $this->success('题目添加成功', U('Exam/index'));
         } else {
