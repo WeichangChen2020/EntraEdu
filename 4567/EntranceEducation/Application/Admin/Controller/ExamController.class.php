@@ -256,19 +256,20 @@ class ExamController extends CommonController{
         foreach ($college as $key => &$value) {
             $openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
             p($openidArr);
-            foreach ($openidArr as $k => $v) {
-                $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
-            }
+
         }
-        $SELECT = M('exam_select');
+        
         // $Student = M('student_info');
         //$openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
         //p($openidArr);die;  //可参与这场考试的学生id数组
         // foreach ($openidArr as $key => &$value) {
         //     $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
         // }
+        foreach ($openidArr as $k => $v) {
+            $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
+        }
         p($list);die;
-        
+        $SELECT = M('exam_select');
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
         $this->assign('userList',$list);
