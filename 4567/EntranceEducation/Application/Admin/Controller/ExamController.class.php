@@ -216,9 +216,9 @@ class ExamController extends CommonController{
      */
     public function createExeamQues($examid) {
 
-        // $college = D('Student/ExamCollege')->getCollege($examid);
+        $college = D('Student/ExamCollege')->getCollege($examid);
 
-        // p($college);die;
+        p($college);die;
 
         $openid = 'ohd41t7JIBZc41K-KTPQtuHEI9Po';
 
