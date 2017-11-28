@@ -19,7 +19,7 @@
             <td align="center">{$userList.name}</td>
             <td align="center">{$userList.class}</a></td>
             <td align="center">{$userList.number}</td>
-            <td align="center">{$userList.number|get_ques_num=###}</td>
+            <td align="center">{$userList.number|get_ques_num=###|default='未注册'}</td>
             <td align="center">{$userList.number|is_ablity_exam=###}</td>
           </tr>
         </volist>
