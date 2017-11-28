@@ -269,7 +269,7 @@ class ExamController extends CommonController{
         // }
         // p($list);die;
         
-        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
+        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->count('openid');
         
         $this->assign('userList',$list);
 
