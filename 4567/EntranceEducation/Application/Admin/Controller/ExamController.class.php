@@ -201,4 +201,50 @@ class ExamController extends CommonController{
     }
 
 
+
+    /**
+     * inInit 为每一个学生创建一套考试题目
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-23 10:40Authors
+     * @var  $id
+     * @return 
+     */
+    public function createExeamQues($examid) {
+
+        $openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw';
+
+        $Exam = D('Student/ExamSelect');
+
+        $is_init = $EXAM->isInit($openid, $examid);
+
+        if(!$is_init) {
+            $init = $EXAM->initExam($openid, $examid);
+            return $init;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * previewExamQues 预览某个学生的考试题目
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-28 10:45Authors
+     * @var  $examid  考试id
+     * @var  $openid  学生id
+     * @return 
+     */
+
+
+    public function previewExamQues($openid, $examid) {
+
+        $ExamSelect = D('Student/ExamSelect');
+        $examItem   = $ExamSelect->getExamItemList($openid, $examid);
+
+        p($examItem);
+
+
+
+    }
+
+
 }
