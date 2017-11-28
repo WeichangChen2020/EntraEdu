@@ -258,8 +258,8 @@ class ExamController extends CommonController{
 
             $stuList = array_merge($stuList, $list);
         }
-        $SELECT = M('exam_select');
-        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
+       
+        $count = count($stuList);
         
         $this->assign('userList',$stuList);
 
