@@ -24,13 +24,13 @@ class QyhController extends Controller
 		
       	//上传图片的张数
         $keynum = (count(array_filter($_FILES['photo']['name'])));
-        $one = $stuInfo['number'].'_'.$homeworkId.'_'.'1';
-        $two = $stuInfo['number'].'_'.$homeworkId.'_'.'2';
-        $three = $stuInfo['number'].'_'.$homeworkId.'_'.'3';
-        $four = $stuInfo['number'].'_'.$homeworkId.'_'.'4';
-        $five = $stuInfo['number'].'_'.$homeworkId.'_'.'5';
-        $six = $stuInfo['number'].'_'.$homeworkId.'_'.'6';
-        // $name = array($one,$two,$three,$four,$five,$six);
+        // $one = $stuInfo['number'].'_'.$homeworkId.'_'.'1';
+        // $two = $stuInfo['number'].'_'.$homeworkId.'_'.'2';
+        // $three = $stuInfo['number'].'_'.$homeworkId.'_'.'3';
+        // $four = $stuInfo['number'].'_'.$homeworkId.'_'.'4';
+        // $five = $stuInfo['number'].'_'.$homeworkId.'_'.'5';
+        // $six = $stuInfo['number'].'_'.$homeworkId.'_'.'6';
+        // // $name = array($one,$two,$three,$four,$five,$six);
         
 
 
@@ -52,7 +52,7 @@ class QyhController extends Controller
             'autoSub'=>false,
             // 'saveName'=>array($one,$two,$three,$four,$five,$six)
             // 'saveName'=>array('1','2','3','4','5','6')
-            // 'saveName'=>array('rand')
+            
 
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
@@ -65,6 +65,10 @@ class QyhController extends Controller
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
 		}else{// 上传成功
+			echo "<pre>";
+			var_dump($info);die;
+
+
 			
         	
         	
