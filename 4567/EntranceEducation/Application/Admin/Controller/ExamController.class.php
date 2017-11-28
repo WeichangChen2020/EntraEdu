@@ -222,9 +222,9 @@ class ExamController extends CommonController{
         foreach ($college as $key => &$value) {
             $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
             foreach ($openidArr as $k => $v) {
-                $is_init = $EXAM->isInit($v['openId'], $examid);
-                if(!$is_init) {
-                    $init = $EXAM->initExam($v['openId'], $examid);
+                $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
+                if(!$is_init) {     //表里为空
+                    $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
                     if ($init) {
                         // $this->success('生成题目成功');
                     } else {
@@ -237,6 +237,48 @@ class ExamController extends CommonController{
         }
 
         $this->error('题目已经生成');
+    }
+
+    /**
+     * preview 预览所有可以参加考试的学生信息
+     * @author 蔡佳琪
+     * @copyright  2017-11-28 20:45Authors
+     * @var  $examid  考试id
+     * @var  $openid  学生id
+     * @return 
+     */
+
+    public function preview($examid) {
+
+        $SELECT = M('exam_select');
+        $openidArr = $SELECT->where(array('examid'=>$examid))->field('openid')->select();
+        p($openidArr);die;
+        $Student = M('StudentList');
+
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+
+        $map['type'] = 1;
+        $list = $Student->where($map)->page($_GET['p'].',20')->select();
+        $count = $Student->where($map)->count();
+        
+        $this->assign('userList',$list);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+        // 注册数量和未注册数量和导出
+        $num = D('StudentList')->getStudentNum();
+        $this->assign('num', $num);
+        $this->assign('export', 1);
+   
+        $this->display();
+
     }
 
     /**
