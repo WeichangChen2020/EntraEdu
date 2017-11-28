@@ -147,7 +147,9 @@ class ExamController extends Controller{
        
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
+        p($examItem);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
+        p($quesItem);
         $this->assign('examItem', $examItem);        
         $this->assign('quesItem', $quesItem);
 
@@ -214,8 +216,7 @@ class ExamController extends Controller{
     public function tip() {
         $openId = session('openId');
         $examid = session('examid');
-        // $info = D('StudentInfo')->getInfo($openId);
-        $info = M('StudentInfo')->where(array('openId'=>$openId))->find();
+        $info = D('StudentInfo')->getInfo($openId);
         $score = M('ExamSelect')->where(array('openid'=>$openId,'examid'=>$examid,'result'=>1))->count();
         $data = array(
             'openid' => $openId,
@@ -239,6 +240,20 @@ class ExamController extends Controller{
         $this->display();
     }
 
+    public function test(){
+        $this->initExam();
+        
+        $openid = session('openId');
+        $examid = session('examid');
+       
+        // ************分配考试item信息 和 题目考试信息
+        $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
+        $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
+        dump($examItem);
+        dump($quesItem);
+        dump($list);
+        die;
+    }
    
     
     
