@@ -251,7 +251,7 @@ class ExamController extends CommonController{
     public function preview($examid) {
 
         $SELECT = M('exam_select');
-        $openidArr = $SELECT->where(array('examid'=>$examid))->field('openid')->select();
+        $openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
         p($openidArr);die;
         $Student = M('StudentList');
 
