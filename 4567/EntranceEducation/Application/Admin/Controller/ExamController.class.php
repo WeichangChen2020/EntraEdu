@@ -220,7 +220,7 @@ class ExamController extends CommonController{
 
         // p($college);die;
 
-        $openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw';
+        $openid = 'ohd41t7JIBZc41K-KTPQtuHEI9Po';
 
         $EXAM = D('Student/ExamSelect');
 
