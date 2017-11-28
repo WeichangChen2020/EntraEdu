@@ -260,7 +260,7 @@ class ExamController extends CommonController{
                 $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
             }
         }
-        // $SELECT = M('exam_select');
+        $SELECT = M('exam_select');
         // $Student = M('student_info');
         //$openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
         //p($openidArr);die;  //可参与这场考试的学生id数组
@@ -269,7 +269,7 @@ class ExamController extends CommonController{
         // }
         // p($list);die;
         
-        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->count('openid');
+        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
         $this->assign('userList',$list);
 
