@@ -24,7 +24,7 @@ class QyhController extends Controller
         $four = $stuInfo['number'].'_'.$homeworkId.'_'.'4';
         $five = $stuInfo['number'].'_'.$homeworkId.'_'.'5';
         $six = $stuInfo['number'].'_'.$homeworkId.'_'.'6';
-        $name = array($one,$two,$three,$four,$five,$six);
+        // $name = array($one,$two,$three,$four,$five,$six);
         
 
 
@@ -44,7 +44,7 @@ class QyhController extends Controller
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
             'savePath'=>'./homework/homework'.$homeworkId.'/',
             'autoSub'=>false,
-            'saveName'=>$name
+            'saveName'=>array($one,$two,$three,$four,$five,$six)
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
