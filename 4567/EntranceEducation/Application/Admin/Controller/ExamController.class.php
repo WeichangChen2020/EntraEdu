@@ -261,7 +261,7 @@ class ExamController extends CommonController{
         $count = count($stuList);
         $this->assign('userList',$stuList);
 
-        $Page = new \Think\Page(40,20);
+        $Page = new \Think\Page($count,20);
         $show = $Page->show();
         $this->assign('page', $show);
    
