@@ -251,21 +251,26 @@ class ExamController extends CommonController{
     public function preview($examid) {
 
         $SELECT = M('exam_select');
+        $Student = M('student_info');
+
         $openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
-        p($openidArr);die;
-        $Student = M('StudentList');
+        //p($openidArr);die;  //可参与这场考试的学生id数组
+        foreach ($openidArr as $key => &$value) {
+            $list = $Student->where(array('openId'=>$value['openid']))->page($_GET['p'].',20')->select();
 
-        // 查询条件
-        $college = D('Adminer')->getCollege();
-        $map = array();
-
-        if (!is_null($college)) {
-            $map['academy'] = $college;
         }
+        p($list);die;
+        // 查询条件
+        // $college = D('Adminer')->getCollege(); //管理员的学院
+        // $map = array();
 
-        $map['type'] = 1;
-        $list = $Student->where($map)->page($_GET['p'].',20')->select();
-        $count = $Student->where($map)->count();
+        // if (!is_null($college)) {
+        //     $map['academy'] = $college;
+        // }
+
+        // $map['type'] = 1;
+        
+        $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
         $this->assign('userList',$list);
 
