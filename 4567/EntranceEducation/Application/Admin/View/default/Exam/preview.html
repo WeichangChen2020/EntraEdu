@@ -18,7 +18,8 @@
             <td align="center">{$userList["name"]}</td>
             <td align="center">{$userList["class"]}</td>
             <td align="center">{$userList["number"]}</td>
-            <td align="center"><a class="layui-btn layui-btn-primary" href="{:U('previewExamQues', array('examid'=>I('id')))}">预览</a>
+            <td align="center">{$userList["academy"]}</td>
+            <td align="center"><a class="layui-btn layui-btn-primary" href="{:U('previewExamQues', array('examid'=>I('id'),'openid'=>$userList))}">预览</a>
             </td>
           </tr>
         </volist>
