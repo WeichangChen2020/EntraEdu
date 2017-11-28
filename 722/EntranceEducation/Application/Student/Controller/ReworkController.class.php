@@ -19,8 +19,6 @@ class ReworkController extends Controller{
 		// $HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
 
-
-		// dump($quesidArray);die;
 		/**
 		*历史中错误----错题历史中正确->无视
 		*			|--错题历史中错误或不存在->加入数组
@@ -36,18 +34,10 @@ class ReworkController extends Controller{
 		$ques = $MISTAKE->getQuestionByid($quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
-
-		// $ques = $QUESTION->where(array('id' => $quesid))->find();
-		// $chapter=D('MistakeHistory')->getQuesChapter($ques['chapter']);
-		// $questype=D('MistakeHistory')->getQuesType($ques['type']);
-		// $this->assign('chapter',$chapter);
-		// $this->assign('questype',$questype);
 		$this->assign('num',$num);
 		$this->assign('name',$name);
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
-		// echo $quesidArray[$WrongQuesid]['quesid'];
-		// echo $num;
 		if ($num == 0) {
 			$this->display('tip-none');
 			return false;
