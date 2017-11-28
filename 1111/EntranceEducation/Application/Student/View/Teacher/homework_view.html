@@ -22,36 +22,37 @@
                 </div>
                 <div class="weui_uploader_bd">
                   <ul class="weui_uploader_files">
-                    
+                    <a href="javascript:;" class="weui-btn weui-btn_primary" id="pb1">
                     <notempty name="homeworkList.pic1Url">
-                      <a href="{$homeworkList.pic1Url}">
+                      <!-- <a href="{$homeworkList.pic1Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic1Url})"></li>
-                      </a>
+                      <!-- </a> -->
                     </notempty>
                     <notempty name="homeworkList.pic2Url">
-                    <a href="{$homeworkList.pic2Url}">
+                    <!-- <a href="{$homeworkList.pic2Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic2Url})"></li>
-                    </a>
+                    <!-- </a> -->
                     </notempty>
                     <notempty name="homeworkList.pic3Url">
-                    <a href="{$homeworkList.pic3Url}">
+                    <!-- <a href="{$homeworkList.pic3Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic3Url})"></li>
-                    </a>
+                    <!-- </a> -->
                     </notempty>
                     <notempty name="homeworkList.pic4Url">
-                    <a href="{$homeworkList.pic4Url}">
+                    <!-- <a href="{$homeworkList.pic4Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic4Url})"></li>
-                    </a>
+                    <!-- </a> -->
                     </notempty>
                     <notempty name="homeworkList.pic5Url">
-                    <a href="{$homeworkList.pic5Url}">
+                    <!-- <a href="{$homeworkList.pic5Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic5Url})"></li>
-                    </a>
+                    <!-- </a> -->
                     </notempty>
                     <notempty name="homeworkList.pic6Url">
-                    <a href="{$homeworkList.pic6Url}">
+                    <!-- <a href="{$homeworkList.pic6Url}"> -->
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic6Url})"></li>
                     </notempty>
+                    <!-- </a> -->
                     </a>
                   </ul>
                 </div>
@@ -75,6 +76,33 @@
 
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  var pb1 = $.photoBrowser({
+        items: [
+          "{$homeworkList.pic1Url}",
+          "{$homeworkList.pic2Url}",
+          "{$homeworkList.pic3Url}",
+          "{$homeworkList.pic4Url}",
+          "{$homeworkList.pic5Url}",
+          "{$homeworkList.pic6Url}",
+        ],
+
+        onSlideChange: function(index) {
+          console.log(this, index);
+        },
+
+        onOpen: function() {
+          console.log("onOpen", this);
+        },
+        onClose: function() {
+          console.log("onClose", this);
+        }
+      });
+      $("#pb1").click(function() {
+        pb1.open();
+      });
+</script>
+
     <script>
       $(document).ready(function(){
           wx.config({
