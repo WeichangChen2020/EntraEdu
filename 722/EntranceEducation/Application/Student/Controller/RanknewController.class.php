@@ -15,6 +15,14 @@ class RanknewController extends Controller {
         $this->display('rankSchool');
     }
 
+    public function top50(){
+
+        $RANK = M('ExerciseRank');
+        $list = $RANK->order('right_num desc')->limit(50)->select();
+        dump($list);die;
+
+        $this->display('rankSchool');
+    }
 
     public function rankSchool(){
 
