@@ -258,15 +258,12 @@ class ExamController extends CommonController{
 
             $stuList = array_merge($stuList, $list);
         }
-        p($stuList);
         $count = count($stuList);
-        p($count);
         $this->assign('userList',$stuList);
 
-        $Page = new \Think\Page($count,20);
+        $Page = new \Think\Page(40,20);
         $show = $Page->show();
         $this->assign('page', $show);
-        p($show);die;
    
         $this->display();
     }
