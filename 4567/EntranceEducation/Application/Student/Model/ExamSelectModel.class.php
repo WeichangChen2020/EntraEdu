@@ -146,8 +146,7 @@ class ExamSelectModel extends Model {
 		$quesItem['seqid'] = $this->getExamSeqid($openid, $examid, $selectid);
 
 
-		p($quesItem);		
-		// return $quesItem;		
+		return $quesItem;		
 	}
 
 
