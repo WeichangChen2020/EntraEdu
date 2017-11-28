@@ -235,6 +235,8 @@ class ExamController extends CommonController{
                 }
             }           
         }
+
+        $this->error('题目已经生成');
     }
 
     /**
