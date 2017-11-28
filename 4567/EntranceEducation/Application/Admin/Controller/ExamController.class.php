@@ -258,15 +258,10 @@ class ExamController extends CommonController{
 
             $stuList = array_merge($stuList, $list);
         }
-        p($stuList);die;
-        // foreach ($openidArr as $k => $v) {
-        //     $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
-        // }
-        p($list);die;
         $SELECT = M('exam_select');
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
-        $this->assign('userList',$list);
+        $this->assign('userList',$stuList);
 
         $Page = new \Think\Page($count,20);
         $show = $Page->show();
