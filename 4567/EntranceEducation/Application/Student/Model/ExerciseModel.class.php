@@ -25,7 +25,7 @@ class ExerciseModel extends Model {
 		$rig_cot      = $this->where(array('openid'=>$openid, 'result' => 1))->count();
 
 		$record       = array(
-			'name'    => D('student_info')->getName($openid),
+			'name'    => D('StudentInfo')->getName($openid),
 			'count'   => $count, //答题量
 			'rig_cot' => $rig_cot,
 	        'wrg_cot' => $count - $rig_cot,
