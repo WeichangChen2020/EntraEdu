@@ -18,6 +18,12 @@ class QyhController extends Controller
 		$keynum = $_FILES;
         var_dump($keynum);
         echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
         var_dump($_POST);
         die;
 
