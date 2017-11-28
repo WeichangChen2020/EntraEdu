@@ -11,8 +11,14 @@ class ExamSubmitModel extends Model {
      * @return  int
      */
     public function getSubmitNum($college,$id) {
-        $res = $this->getSubmitList($college,$id);
-        return count($res);
+        $map = array();
+        $map['is_newer'] = 1;
+        if (!empty($college)) {
+            $map['academy'] = $college;
+        }
+        $map['examid'] = $id;
+        $submitNum = M('ExamSubmit')->where($map)->count();
+        return $submitNum;
     }
     /**
      * getFailNum 获取提交人数
@@ -37,12 +43,13 @@ class ExamSubmitModel extends Model {
         $Student = M('StudentList');
 
         $map = array();
-        $submitNum = getSubmitNum($college,$id);
         $map['is_newer'] = 1;
         if (!empty($college)) {
             $map['academy'] = $college;
         }
         $total = M('StudentInfo')->where($map)->count();
+        $map['examid'] = $id;
+        $submitNum = M('ExamSubmit')->where($map)->count();
         return $total-$submitNum;
         // if (!is_null($college)) {
         //     $map['academy'] = $college;

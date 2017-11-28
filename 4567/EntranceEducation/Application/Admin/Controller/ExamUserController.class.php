@@ -50,6 +50,7 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
+        $map['examid'] = $id;
         $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
         $count = $STUDENT->where($map)->count();
@@ -61,7 +62,7 @@ class ExamUserController extends CommonController{
         $this->assign('page', $show);
         
         $this->assign('export', 1);
-        $map['score'] = array('lt','60');
+        $map['score'] = array('lt','80');
         $this->assign('failNum',$STUDENT->where($map)->count());
         $this->assign('submitNum', $count);
         $this->assign('id',$id);
@@ -79,15 +80,17 @@ class ExamUserController extends CommonController{
         $college = D('Adminer')->getCollege();
         $STUDENT = M('ExamSubmit');
         $map = array();
+        $map['examid'] = $id;
         // $submitList = $STUDENT->getSubmitList($college,$id);
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
-        $map['score'] = array('lt','60');
-        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
 
-        $count = $STUDENT->where(array('academy'=>$college))->count();
-        
+        $count = $STUDENT->where($map)->count();
+        $this->assign('submitNum', $count);
+
+        $map['score'] = array('lt','80');
+        $failList = $STUDENT->where($map)->page($_GET['p'].',20')->select();        
         $this->assign('submitList',$failList);
 
         $Page       = new \Think\Page($count,20);
@@ -97,7 +100,6 @@ class ExamUserController extends CommonController{
         $this->assign('export', 0);
 
         $this->assign('failNum',$STUDENT->where($map)->count());
-        $this->assign('submitNum', $count);
         $this->assign('id',$id);
         $this->display();
     }
@@ -112,6 +114,7 @@ class ExamUserController extends CommonController{
     public function export($type,$id) {
 
         $SUBMIT = D('ExamSubmit');
+        $INFO = D('StudentInfo');
 
         // 查询条件
         $college = D('Adminer')->getCollege();
@@ -120,34 +123,37 @@ class ExamUserController extends CommonController{
         if (!is_null($college)) {
             $map['academy'] = $college;
         }
-
-        $title = array( '姓名', '班级', '学号','得分','是否通过');
+        $map['examid'] = $id;
+        $title = array( '姓名', '学院', '班级', '学号','得分','是否通过');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
         $examName = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
         $filename .= $examName['title'];
         if($type == 1) {
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $info = $INFO->getInfo($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '提交用户';
         } else {
-            $map['score'] = array('lt','60');
+            $map['score'] = array('lt','80');
             $openid = $SUBMIT->where($map)->select();
             foreach ($openid as $key => $value) {
-                $list[$key]['name'] = getNameByOpenid($value['openid']);
-                $list[$key]['class'] = getClassByOpenid($value['openid']);
-                $list[$key]['number'] = getNumberByOpenid($value['openid']);
+                $info = $INFO->getInfo($value['openid']);
+                $list[$key]['name'] = $info['0']['name'];
+                $list[$key]['academy'] = $info['0']['academy'];
+                $list[$key]['class'] = $info['0']['class'];
+                $list[$key]['number'] = $info['0']['number'];
                 $list[$key]['result'] = $value['score'];
                 $list[$key]['pass'] = pass($value['score']);
             }
             $filename .= '未通过用户';
         }
-
         $this->excel($list, $title, $filename);
     }
 
@@ -198,18 +204,10 @@ class ExamUserController extends CommonController{
             dump($value);
         }
     }
-    // public function test(){
-    //     $SELECT = M('ExamSelect');
-    //     $SUBMIT = M('ExamSubmit');
-    //     $List = M('ExamSubmit')->select();
-    //     foreach ($List as $key => $value) {
-    //         // $info = D('StudentInfo')->getInfo($value['openid']);
-    //         // $value['academy'] = $info['0']['academy'];
-    //         $score = $SELECT->where(array('openid'=>$value['openid'],'examid'=>$value['examid'],'result'=>1))->count();
-    //         $value['score'] = $score;
-    //         $SUBMIT->save($value);
-    //     }
-    // }
+    public function test($type,$id){
+
+
+    }
 
 
 }

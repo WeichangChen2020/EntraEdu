@@ -35,9 +35,10 @@ class ExerciseController extends CommonController {
 
         if (!is_null($college)) {
             $map['academy'] = $college;
+        } else {
+            $map['academy'] = array('neq', '非新生');
         }
 
-        $map['type'] = 1;
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
 
@@ -47,11 +48,11 @@ class ExerciseController extends CommonController {
         $show       = $Page->show();
         $this->assign('page', $show);
 
-        // 注册数量和未注册数量和导出
-        $num = D('StudentList')->getExercseNum();
-        p($num);die;
+        $num['answer_num'] = M('exercise_rank')->where($map)->count();
+        $where['right_num'] = array('LT', 875);
+        $num['unpass_num'] = M('exercise_rank')->where($map)->where($where)->count();
         $this->assign('num', $num);
-        $this->assign('export', 1);
+
        
         $this->display();
     }
@@ -87,6 +88,34 @@ class ExerciseController extends CommonController {
         $this->assign('export', 0);
         $this->assign('id',$id);
         $this->display();
+    }
+
+
+     /**
+     * 导出 自由练习做题情况
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-25 10:04Authors
+     * @var  
+     * @return 
+     */
+    public function export() {
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+
+        $title = array('姓名', '学号', '学院', '班级', '正确题数', '答题数量');
+        $filename  = is_null($college) ? '浙江工商大学' : $college;
+
+        $list = M('exercise_rank')->where($map)->field('name,number,academy,class,right_num,answer_num')->order('academy,class,number,right_num')->select();
+        $filename .= '新生始业平台自由练习答题情况';
+
+
+        $excel = new UserController();
+        $excel->excel($list, $title, $filename);
     }
 
 }
