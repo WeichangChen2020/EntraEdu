@@ -255,29 +255,19 @@ class ExamController extends CommonController{
 
         $openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
         //p($openidArr);die;  //可参与这场考试的学生id数组
+        $list = array();
         foreach ($openidArr as $key => &$value) {
-            $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
+            $list = $Student->where(array('openId'=>$value['openid']))->select();
         }
         p($list);die;
-        // 查询条件
-        // $college = D('Adminer')->getCollege(); //管理员的学院
-        // $map = array();
-        // if (!is_null($college)) {
-        //     $map['academy'] = $college;
-        // }
-        // $map['type'] = 1;
         
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
         
         $this->assign('userList',$list);
 
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
+        $Page = new \Think\Page($count,20);
+        $show = $Page->show();
         $this->assign('page', $show);
-        // 注册数量和未注册数量和导出
-        //$num = D('StudentList')->getStudentNum();
-        //$this->assign('num', $num);
-        //$this->assign('export', 1);
    
         $this->display();
 
