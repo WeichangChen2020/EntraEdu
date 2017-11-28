@@ -213,7 +213,7 @@ class ExamController extends CommonController{
 
         $openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw';
 
-        $Exam = D('Student/ExamSelect');
+        $EXAM = D('Student/ExamSelect');
 
         $is_init = $EXAM->isInit($openid, $examid);
 
