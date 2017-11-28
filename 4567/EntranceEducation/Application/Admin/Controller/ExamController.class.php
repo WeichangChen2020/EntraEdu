@@ -252,15 +252,13 @@ class ExamController extends CommonController{
 
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
-        p($college);//测试时是管电和非新生，两个学院
-        die;
+        $stuList = array();
         foreach ($college as $key => &$value) {
-            //$openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
             $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
-            //p($openidArr);//可参与这场考试的学生id数组
 
+            $stuList = array_merge($stuList, $list);
         }
-        //p($stuinfoArr);
+        p($stuList);die;
         // foreach ($openidArr as $k => $v) {
         //     $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
         // }
