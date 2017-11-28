@@ -15,7 +15,7 @@ class QyhController extends Controller
 
 	public function upload()
 	{
-		$keynum = $_FILES;
+		$keynum = $_FILES['photo']['name'];
         echo "<pre>";
         var_dump($keynum);
         echo "</pre>";
