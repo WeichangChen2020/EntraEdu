@@ -219,9 +219,13 @@ class ExamController extends CommonController{
 
         if(!$is_init) {
             $init = $EXAM->initExam($openid, $examid);
-            return $init;
+            if ($init) {
+                $this->success('生成题目成功');
+            } else {
+                $this->error('生成题目失败');
+            }
         } else {
-            return true;
+            $this->error('题目已经生成');
         }
     }
 
