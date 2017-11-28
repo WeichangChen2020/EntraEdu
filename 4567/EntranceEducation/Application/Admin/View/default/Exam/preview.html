@@ -15,7 +15,7 @@
       <volist name="userList" id="userList" empty="暂时没有数据" >
           <tr>
             <td align="center">{$key+1}</td>
-            <td align="center">{$userList.name}</td>
+            <td align="center">{$userList[0]["name"]]}</td>
             <td align="center">{$userList.class}</td>
             <td align="center">{$userList.number}</td>
             <td align="center"><a class="layui-btn layui-btn-primary" href="{:U('previewExamQues', array('examid'=>I('id')))}">预览</a>
