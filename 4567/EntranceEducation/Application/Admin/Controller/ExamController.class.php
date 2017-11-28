@@ -258,7 +258,7 @@ class ExamController extends CommonController{
         foreach ($openidArr as $key => &$value) {
             $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
         }
-        p($list);
+        p($list);die;
         // 查询条件
         // $college = D('Adminer')->getCollege(); //管理员的学院
         // $map = array();
