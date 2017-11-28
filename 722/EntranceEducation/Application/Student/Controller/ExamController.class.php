@@ -147,6 +147,7 @@ class ExamController extends Controller{
        
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
+        p($examItem);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
         p($quesItem);
         $this->assign('examItem', $examItem);        
