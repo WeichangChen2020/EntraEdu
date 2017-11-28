@@ -65,8 +65,9 @@ class QyhController extends Controller
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
 		}else{// 上传成功
-			echo "<pre>";
-			var_dump($info);die;
+			// echo "<pre>";
+			// var_dump($info);die;
+			// $info[0]['url'];
 
 
 			
@@ -88,7 +89,7 @@ class QyhController extends Controller
         		# code...
         	}
         	$stuInfoArrayKey = 'pic'.($key+1).'Url';
-            $homeworkInfo[$stuInfoArrayKey] = $dir.$filename;
+            $homeworkInfo[$stuInfoArrayKey] = $info[$key]['url'];
 
 
 			$HOMEWORK->add($homeworkInfo);
