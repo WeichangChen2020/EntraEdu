@@ -228,10 +228,10 @@ class ExamController extends CommonController{
                     if ($init) {
                         // $this->success('生成题目成功');
                     } else {
-                        // $this->error('生成题目失败');
+                        $this->error('生成题目失败');
                     }
                 } else {
-                    // $this->error('题目已经生成');
+                    $this->error('题目已经生成');
                 }
             }           
         }
