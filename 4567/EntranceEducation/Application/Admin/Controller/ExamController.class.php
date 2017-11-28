@@ -243,8 +243,8 @@ class ExamController extends CommonController{
      * preview 预览所有可以参加考试的学生信息
      * @author 蔡佳琪
      * @copyright  2017-11-28 20:45Authors
-     * @var  $examid  考试id
-     * @var  $openid  学生id
+     * @var  
+     * @var  
      * @return 
      */
 
@@ -257,7 +257,7 @@ class ExamController extends CommonController{
             $openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
             //p($openidArr);
             foreach ($openidArr as $k => $v) {
-                $list = M('student_info')->where(array('openId'=>$v['openId']))->select();
+                $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
             }
         }
         // $SELECT = M('exam_select');
