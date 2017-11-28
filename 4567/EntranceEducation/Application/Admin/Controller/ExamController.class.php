@@ -257,7 +257,7 @@ class ExamController extends CommonController{
             $openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
             //p($openidArr);
             foreach ($openidArr as $k => $v) {
-                $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
+                $list = M('student_info')->where(array('openId'=>$v['openId']))->select();
             }
         }
         // $SELECT = M('exam_select');
