@@ -86,13 +86,12 @@ class QyhController extends Controller
         	
 
         	for ($key=0; $key < $keynum; $key++) { 
-        		# code...
+
+        		$stuInfoArrayKey = 'pic'.($key+1).'Url';
+            	$homeworkInfo[$stuInfoArrayKey] = $info[$key]['url'];
+				
         	}
-        	$stuInfoArrayKey = 'pic'.($key+1).'Url';
-            $homeworkInfo[$stuInfoArrayKey] = $info[$key]['url'];
-
-
-			$HOMEWORK->add($homeworkInfo);
+        	$HOMEWORK->add($homeworkInfo);
 
 			$this->success('上传成功！',U('Homework/index'));
 		}
