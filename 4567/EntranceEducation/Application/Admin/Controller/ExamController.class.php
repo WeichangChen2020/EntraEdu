@@ -216,30 +216,26 @@ class ExamController extends CommonController{
      */
     public function createExeamQues($examid) {
 
+        $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
 
         foreach ($college as $key => &$value) {
             $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
-            p($openidArr);            
+            foreach ($openidArr as $k => $v) {
+                $is_init = $EXAM->isInit($v['openId'], $examid);
+                if(!$is_init) {
+                    $init = $EXAM->initExam($openid, $examid);
+                    if ($init) {
+                        $this->success('生成题目成功');
+                    } else {
+                        $this->error('生成题目失败');
+                    }
+                } else {
+                    $this->error('题目已经生成');
+                }
+            }           
         }
-        die;
-
-        $openid = 'ohd41t7JIBZc41K-KTPQtuHEI9Po';
-
-        $EXAM = D('Student/ExamSelect');
-
-        $is_init = $EXAM->isInit($openid, $examid);
-
-        if(!$is_init) {
-            $init = $EXAM->initExam($openid, $examid);
-            if ($init) {
-                $this->success('生成题目成功');
-            } else {
-                $this->error('生成题目失败');
-            }
-        } else {
-            $this->error('题目已经生成');
-        }
+        
     }
 
     /**
