@@ -15,11 +15,12 @@ class QyhController extends Controller
 
 	public function upload()
 	{
-		$keynum = $_FILES['photo']['name'];
-      
-        print_r(count(array_filter($keynum)));
-     
-        die;
+		
+      	//上传图片的张数
+        $keynum = (count(array_filter($_FILES['photo']['name'])));
+        
+        $name = array('1','2','3','4','5','6');
+        
 
 
 		$STU          = D('StudentInfo');
@@ -38,7 +39,7 @@ class QyhController extends Controller
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
             'savePath'=>'./homework/homework'.$homeworkId.'/',
             'autoSub'=>false,
-            'saveName'=>$stuInfo['number'].'_'.$homeworkId.'_'.$key
+            'saveName'=>$stuInfo['number'].'_'.$homeworkId.'_'.$name
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
@@ -65,7 +66,9 @@ class QyhController extends Controller
             );
         	
 
-        	
+        	for ($key=0; $key < $keynum; $key++) { 
+        		# code...
+        	}
         	$stuInfoArrayKey = 'pic'.($key+1).'Url';
             $homeworkInfo[$stuInfoArrayKey] = $dir.$filename;
 
