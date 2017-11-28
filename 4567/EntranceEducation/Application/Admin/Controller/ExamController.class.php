@@ -252,22 +252,17 @@ class ExamController extends CommonController{
 
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
-        p($college);
+        //p($college);//测试时是管电和非新生，两个学院
         foreach ($college as $key => &$value) {
-            $openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
-            p($openidArr);
+            //$openidArr = M('student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
+            $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
+            //p($openidArr);//可参与这场考试的学生id数组
 
         }
-        
-        // $Student = M('student_info');
-        //$openidArr = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->select();
-        //p($openidArr);die;  //可参与这场考试的学生id数组
-        // foreach ($openidArr as $key => &$value) {
-        //     $list[$key] = $Student->where(array('openId'=>$value['openid']))->select();
+        //p($stuinfoArr);
+        // foreach ($openidArr as $k => $v) {
+        //     $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
         // }
-        foreach ($openidArr as $k => $v) {
-            $list[$k] = M('student_info')->where(array('openId'=>$v['openId']))->select();
-        }
         p($list);die;
         $SELECT = M('exam_select');
         $count = $SELECT->distinct(true)->where(array('examid'=>$examid))->field('openid')->count();
