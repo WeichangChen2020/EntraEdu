@@ -21,15 +21,15 @@
                 <volist name="questionList" id="questionList" empty="暂时没有数据" >
                     <tr>
                         <td style="padding-left: 20px;">{$questionList.id}</td>
-                        <td align="center">{$questionList['chapter']|getChapterName=###}</td>
-                        <td align="center">{$questionList['type']|get_ques_type=###}</td>
+                        <td align="center">{$questionList.chapter|getChapterName=###}</td>
+                        <td align="center">{$questionList.type|get_ques_type=###}</td>
                         <td align="center">{$questionList.contents}</td>
                         <td align="center">{$questionList.right_answer}</td>
                         <td align="center">{$questionList.id|getAnswerNum=###}</td>
                         <td align="center">{$questionList.id|getAccuracy=###}%</td>
-                        <td align="center">
+<!--                         <td align="center">
                             <a href="javascript:;">详情</a>|<a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
-                        </td>
+                        </td> -->
                     </tr>
                 </volist>
             </tbody>
