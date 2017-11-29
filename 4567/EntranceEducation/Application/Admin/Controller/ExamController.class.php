@@ -291,10 +291,8 @@ class ExamController extends CommonController{
         foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
             $list = M('questionbank')->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
-            dump($list);
-            dump($value);die;
             p($queList);
-            $queList = array_merge($queList, $list);
+            $queList = array_merge($queList, $list['0']);
             p($quelist);die();
         }
         p($list);
