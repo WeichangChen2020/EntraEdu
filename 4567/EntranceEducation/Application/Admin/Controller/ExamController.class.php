@@ -254,7 +254,7 @@ class ExamController extends CommonController{
         $college = D('Student/ExamCollege')->getCollege($examid);
         $stuList = array();
         foreach ($college as $key => &$value) {
-            $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
+            $list = M('student_info')->where(array('academy'=>$value['academy']))->page($_GET['p'].',20')->select();
 
             $stuList = array_merge($stuList, $list);
         }
