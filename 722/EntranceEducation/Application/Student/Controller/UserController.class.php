@@ -135,7 +135,7 @@ class UserController extends Controller {
         for ($i=0; $i < count($numArr); $i++) { 
             $stulist = $list->where(array('number'=>$numArr[$i]))->select();
             $stuinfo = $info->where(array('number'=>$numArr[$i]))->select();
-            //p($stulist);
+            p($stulist);
 
             if($stulist&&$stuinfo){       //两张表里都存在，说明是新生且已注册
                 $data['academy'] = $stulist['academy'];
