@@ -288,8 +288,8 @@ class ExamController extends CommonController{
         //p($list);die();
         $this->assign('questionList',$list);
 
-        $count      = count($examItem);
-        p($count);die;
+        $count      = count($examItem);//题数
+        //p($count);die;
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
