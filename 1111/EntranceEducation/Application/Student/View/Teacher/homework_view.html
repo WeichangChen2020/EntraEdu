@@ -148,10 +148,10 @@
                 </script> -->
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
-                  <ul class="weui_media_info">  `
+                  <ul class="weui_media_info">
                     <li class="weui_media_info_meta">批改人</li>
                     <li class="weui_media_info_meta">{$homeworkList.correcter}</li>
-                    <li class="weui_media_info_meta weui_media_info_meta_extra"><if condition="$homeworkList.correcter eq '未批改'">提交时间：{$homeworkList.time}<else />批改时间：{$homeworkList.correctTime}</if></li>
+                    <li class="weui_media_info_meta weui_media_info_meta_extra"><if condition="$homeworkList.correcter eq '未批改'">提交时间：{$homeworkList.time}<else/>批改时间：{$homeworkList.correctTime}</if></li>
                   </ul>
                 </div>
               </div>
@@ -182,12 +182,12 @@
 <script>
   var pb1 = $.photoBrowser({
         items: [
-          {$homeworkList.pic1Url},
-          {$homeworkList.pic2Url},
-          {$homeworkList.pic3Url},
-          {$homeworkList.pic4Url},
-          {$homeworkList.pic5Url},
-          {$homeworkList.pic6Url},
+          "{$homeworkList.pic1Url}",
+          "{$homeworkList.pic2Url}",
+          "{$homeworkList.pic3Url}",
+          "{$homeworkList.pic4Url}",
+          "{$homeworkList.pic5Url}",
+          "{$homeworkList.pic6Url}",
         ],
 
         onSlideChange: function(index) {
