@@ -286,9 +286,11 @@ class ExamController extends CommonController{
         //p($examItem[0]['quesid']);
         $count      = count($examItem);//题数
         $Question = M('Questionbank');
+        $queList = array();
         for ($i=0; $i < $count; $i++) { 
             //p($examItem[$i]['quesid']);
-            $list[$i] = $Question->where(array('id'=>$examItem[$i]['quesid']))->select();
+            $list = $Question->where(array('id'=>$examItem[$i]['quesid']))->select();
+            $queList = array_merge($queList, $list);
         }
         
         // foreach ($examItem as $key => $value) {
@@ -296,7 +298,7 @@ class ExamController extends CommonController{
         // }
 
         //$list = $Question->where(array('id'=>$examItem['quesid']))->select();
-        p($list);die();
+        p($quelist);die();
         $this->assign('questionList',$list);
 
         
