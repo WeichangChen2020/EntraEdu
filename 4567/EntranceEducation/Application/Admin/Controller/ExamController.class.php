@@ -294,8 +294,12 @@ class ExamController extends CommonController{
             array_push($queList,array_merge($value, $list['0']));
         }
 
-        dump($queList);die();
-        $this->assign('questionList',$quelist);       
+        //dump($queList);die();
+        if($this->assign('questionList',$quelist))
+        {
+            p("success!");
+            die;
+        }
         //p($count);die;
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
