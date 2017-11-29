@@ -128,6 +128,7 @@ class UserController extends Controller {
     public function modify($number){
         $info = M('student_info');
         $list = M('student_list');
+        p($number);
         $academy = $list->where(array('number'=>$number))->field('academy')->select();
         p($academy);
         $data['academy'] = $academy;
