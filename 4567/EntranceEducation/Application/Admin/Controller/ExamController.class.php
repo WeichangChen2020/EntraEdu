@@ -291,7 +291,7 @@ class ExamController extends CommonController{
         foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
             $list = $Question->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
-            //$queList = array_merge($queList, $list);
+            $queList = array_merge($queList, $list);
         }
         
         // foreach ($examItem as $key => $value) {
