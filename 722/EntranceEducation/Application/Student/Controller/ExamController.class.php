@@ -192,7 +192,7 @@ class ExamController extends Controller{
             'answer' => $answer,
             'result' => $result,
             'time'   => date('Y-m-d H:i:s', time()),
-            'right_answer'=>$right_answer,
+            // 'right_answer'=>$right_answer,
         );
 
         // 获取学生当前考试的环境信息
@@ -248,27 +248,10 @@ class ExamController extends Controller{
         // ************分配考试item信息 和 题目考试信息
         $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
         $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
-        $this->assign('examItem', $examItem);        
-        $this->assign('quesItem', $quesItem);
-
-        // ************分配题目list
-        $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
-
-        $this->assign('quesList', $quesList);
-
-        // ************分配考试截止时间*************
-        $end_time = D('ExamSelect')->getEndTime($openid, $examid);
-        $this->assign('end_time', $end_time);
-        
-
-        // ************展示页面************
-        if ($quesItem['type'] == '单选题') {
-            $this->display('radio');
-        } else if ($quesItem['type'] == '判断题') {
-            $this->display('judge');
-        } else if ($quesItem['type'] == '多选题') {
-            $this->display('mutil');
-        }
+        dump($examItem);
+        dump($quesItem);
+        dump($list);
+        die;
     }
    
     
