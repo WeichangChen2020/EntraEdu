@@ -128,10 +128,10 @@ class UserController extends Controller {
     public function modify($number){
         $info = M('student_info');
         $list = M('student_list');
-        $academy = $list->where('number'=>$number)->field('academy')->select();
+        $academy = $list->where(array('number'=>$number))->field('academy')->select();
         $data['academy'] = $academy;
         $data['is_newer'] = 1;
-        $result = $info->where('number'=>$number)->save($data);
+        $result = $info->where(array('number'=>$number))->save($data);
         if($result){
             p("更新成功！");
         }
