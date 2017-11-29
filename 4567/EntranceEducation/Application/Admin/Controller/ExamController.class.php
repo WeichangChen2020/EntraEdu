@@ -284,7 +284,7 @@ class ExamController extends CommonController{
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
         //p($examItem);die;
         $Question = M('Questionbank');
-        $list = $Question->where(array('quesid'=>$examItem['quesid']))->page($_GET['p'].',20')->select();
+        $list = $Question->where(array('quesid'=>$examItem['quesid']))->select();
         //p($list);die();
         $this->assign('questionList',$list);
 
