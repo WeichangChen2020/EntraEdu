@@ -174,9 +174,8 @@ class ExamSelectModel extends Model {
 	 */
 	public function getExamItemList($openid, $examid) {
 
-		$examQues = $this->where(array('openid'=>$openid, 'examid'=>$examid))
-						 ->select();
-
+		$examQues = $this->where(array('openid'=>$openid, 'examid'=>$examid))->select();
+		dump($examQues);die;
 		return $examQues;	
 	}
 
