@@ -289,7 +289,11 @@ class ExamController extends CommonController{
         //     $list = $Question->where(array('quesid'=>$examItem[$i]['quesid']))->select();
         // }
         $Question = M('Questionbank');
-        $list = $Question->where(array('id'=>$examItem['quesid']))->select();
+        foreach ($examItem as $key => $value) {
+            $list = $Question->where(array('id'=>$value[$key]['quesid']))->select();
+        }
+        
+        //$list = $Question->where(array('id'=>$examItem['quesid']))->select();
         p($list);die();
         $this->assign('questionList',$list);
 
