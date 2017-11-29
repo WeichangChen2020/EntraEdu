@@ -39,33 +39,5 @@ class StatisController extends Controller
     }
 
 
-    public function t() {
-
-        $no_newer = M('student_info')->where(array('academy'=>'非新生'))->select();
-
-        foreach ($no_newer as $key => $value) {
-            
-            $name = $value['name'];
-            $newer = M('student_list')->where(array('name'=>$name))->find();
-            if ($newer) {
-                p($newer);
-
-                if ($newer['type'] == 0) {
-                    $data = array('academy'=>$newer['academy']);
-                    M('student_info')->where(array('name'=>$name))->save($data);
-                    M('student_list')->where(array('name'=>$name))->save(array('type'=>1));
-                }
-            } else{
-
-            }
-
-        }
-    }
-
-
-
-
-
-   
    
 }
