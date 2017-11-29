@@ -293,13 +293,12 @@ class ExamController extends CommonController{
         // $newarray = array_merge($a1,$a2);
         // p($newarray);
         // die();
-        //for ($i=0; $i < $count; $i++) { 
         foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
             $list = M('questionbank')->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
             p($list);
-            $queList2 = array_merge($queList, $list);
-            p($quelist2);
+            $queList = array_merge($queList, $list);
+            p($quelist);die();
         }
         p($list);
         
@@ -313,9 +312,6 @@ class ExamController extends CommonController{
        
         $this->display();        
 
-
-
     }
-
 
 }
