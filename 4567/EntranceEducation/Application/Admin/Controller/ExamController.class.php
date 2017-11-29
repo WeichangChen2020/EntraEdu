@@ -255,10 +255,9 @@ class ExamController extends CommonController{
         $stuList = array();
         foreach ($college as $key => &$value) {
             $list = M('student_info')->where(array('academy'=>$value['academy']))->page($_GET['p'].',20')->select();
-            p($list);
+
             $stuList = array_merge($stuList, $list);
         }
-        p($stuList);die;
         $count = count($stuList);
         $this->assign('userList',$stuList);
 
@@ -293,6 +292,7 @@ class ExamController extends CommonController{
             //p($value[$key]['quesid']);
             $list = $Question->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
             $queList = array_merge($queList, $list);
+            p($quelist);die;
         }
         
         // foreach ($examItem as $key => $value) {
