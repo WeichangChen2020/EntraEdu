@@ -297,6 +297,7 @@ class ExamController extends CommonController{
             //p($value[$key]['quesid']);
             $list = M('questionbank')->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
             p($list);
+            p($queList);
             $queList = array_merge($queList, $list);
             p($quelist);die();
         }
