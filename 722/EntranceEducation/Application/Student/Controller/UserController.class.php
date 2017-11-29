@@ -129,7 +129,7 @@ class UserController extends Controller {
         $info = M('student_info');
         $list = M('student_list');
         p($number);
-        $academy = $list->where(array('number'=>$number))->field('academy')->select();
+        $academy = $list->where(array('number'=>$number))->field('academy')->find();
         p($academy);
         $data['academy'] = $academy;
         $data['is_newer'] = 1;
