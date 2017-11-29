@@ -292,13 +292,13 @@ class ExamController extends CommonController{
         foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
             $list = $Question->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
-            p($list);
+            //p($list);
             $queList = array_merge($queList, $list);
-            p($quelist);
+            //p($quelist);
         }
-        p($list);
+        //p($list);
         
-        p($quelist);die();
+        //p($quelist);die();
         $this->assign('questionList',$quelist);       
         //p($count);die;
         $this->assign('count', $count);
