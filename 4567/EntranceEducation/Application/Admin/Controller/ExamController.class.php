@@ -286,7 +286,7 @@ class ExamController extends CommonController{
         //p($examItem['quesid']);
         $Question = M('Questionbank');
         foreach ($examItem as $key => $value) {
-            $list = $Question->where(array('quesid'=>$value['quesid']))->select();
+            $list = $Question->where(array('quesid'=>$value[$key]['quesid']))->select();
         }
         
         p($list);die();
