@@ -64,7 +64,7 @@
                 <br>
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
-                  <ul class="weui_media_info">
+                  <ul class="weui_media_info">  `
                     <li class="weui_media_info_meta">批改人</li>
                     <li class="weui_media_info_meta">{$homeworkList.correcter}</li>
                     <li class="weui_media_info_meta weui_media_info_meta_extra"><if condition="$homeworkList.correcter eq '未批改'">提交时间：{$homeworkList.time}<else />批改时间：{$homeworkList.correctTime}</if></li>
@@ -75,7 +75,9 @@
           </div>
         </div>
     </volist>
-    <include file="./Public/html/_foot.html"/>
+    <!-- <include file="./Public/html/_foot.html"/> -->
+    <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
+    <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
     <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
     <script>
       $(function() {
