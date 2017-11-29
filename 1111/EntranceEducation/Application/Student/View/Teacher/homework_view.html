@@ -1,36 +1,11 @@
 
 <!-- 浏览作业 -->
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title></title>
     <include file="./Public/html/_head.html"/>
-  </head> -->
-
-<!DOCTYPE html>
-
-
-<html class="pixel-ratio-2 retina ios ios-9 ios-9-1 ios-gt-8 ios-gt-7 ios-gt-6">
-<head>
-    <title></title>
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
-
-<link rel="stylesheet" href="http://jqweui.com/dist/lib/weui.min.css">
-<link rel="stylesheet" href="http://jqweui.com/dist/css/jquery-weui.css">
-<link rel="stylesheet" href="css/demos.css">
-
-</head>
-
-
-
-
-
-
+  </head>
 
   <body ontouchstart>
     <include file="./Public/html/_refresh.html"/>
@@ -46,15 +21,13 @@
                   <div class="weui_cell_bd weui_cell_primary">{$homeworkList.name}</div>
                 </div>
                 <div class="weui_uploader_bd">
-                
+                <a href="javascript:;" id="pb1">
                   <ul class="weui_uploader_files">
                     
                     <notempty name="homeworkList.pic1Url">
                       <!-- <a href="{$homeworkList.pic1Url}"> -->
-                      <a href="javascript:;" id="pb1">
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic1Url})"></li>
                       <!-- </a> -->
-                      </a>
                     </notempty>
                     <notempty name="homeworkList.pic2Url">
                     <!-- <a href="{$homeworkList.pic2Url}"> -->
@@ -83,6 +56,7 @@
                     <!-- </a> -->
                     
                   </ul>
+                </a>
                 </div>
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
@@ -111,7 +85,7 @@
 
 
 
-
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="http://jqweui.com/dist/js/swiper.js"></script>
 
 
