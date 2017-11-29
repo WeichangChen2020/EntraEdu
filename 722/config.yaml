@@ -2,51 +2,22 @@ name: testroom
 version: 722
 cron:
 - url: /diming.php
-  schedule: "0 0 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
+  schedule: "@midnight"
 - url: /diming2.php
   schedule: "0 1 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming3.php
   schedule: "0 2 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming4.php
   schedule: "0 3 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming5.php
   schedule: "0 4 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming6.php
   schedule: "0 5 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming7.php
   schedule: "0 6 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming8.php
   schedule: "0 7 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming9.php
   schedule: "0 8 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
-cron:
 - url: /diming10.php
   schedule: "0 9 * * *"
-  timezone: "Asia/Shanghai "
-  description: "在上海时间的每天凌晨 4 点执行 对 ee_exercise_rank数据表的更新"
