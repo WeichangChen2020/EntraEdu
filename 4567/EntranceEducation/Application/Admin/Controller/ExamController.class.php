@@ -290,7 +290,8 @@ class ExamController extends CommonController{
         $queList = array();
         $a1=array(array('1'=>"red"),array('2'=>"green"));
         $a2=array(array('1'=>"blue"),array('2'=>"yellow"));
-        print_r(array_merge($a1,$a2));
+        $newarray = array_merge($a1,$a2);
+        p($newarray);
         die();
         //for ($i=0; $i < $count; $i++) { 
         foreach ($examItem as $key => &$value) {
