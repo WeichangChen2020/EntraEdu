@@ -257,7 +257,7 @@ class ExamController extends CommonController{
             $list = M('student_info')->where(array('academy'=>$value['academy']))->page($_GET['p'].',20')->select();
             //p($list);
             $stuList = array_merge($stuList, $list);
-            p($stuList);die;
+            //p($stuList);die;
         }
         $count = count($stuList);
         $this->assign('userList',$stuList);
