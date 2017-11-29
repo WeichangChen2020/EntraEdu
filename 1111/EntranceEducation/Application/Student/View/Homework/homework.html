@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <include file="./Public/html/_head.html"/>
-  </head>
+  <include file="./Public/html/_head.html"/>
+</head>
+
+
 <body ontouchstart>
-  <div class="weui-pull-to-refresh-layer">
-    <div class='pull-to-refresh-arrow'></div>
-    <div class='pull-to-refresh-preloader'></div>
-    <div class="down">下拉刷新页面</div>
-    <div class="up">释放刷新</div>
-    <div class="refresh">正在刷新</div>
-  </div>
+  <include file="./Public/html/_refresh.html"/>
   <header class='demos-header'>
       <h1 class="demos-title">提交作业</h1>
   </header>
@@ -20,7 +16,7 @@
       <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
           <div class="weui_textarea">{$homework.content}</div>
-<form action="{:U('Qyh/upload')}" method="post" enctype="mutipart/form-data">
+<form action="{:U('Qyh/upload')}" method="post" enctype="multipart/form-data">
          
             
               <div class="weui_cell_bd weui_cell_primary">作业上传</div>
