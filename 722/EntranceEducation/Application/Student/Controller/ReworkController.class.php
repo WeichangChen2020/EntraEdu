@@ -61,6 +61,7 @@ class ReworkController extends Controller{
 		}
 		$openid       = session('openId');
 		$quesid       = session('quesid');
+		// $data         = M('MistakeHistory')->where(array('openid'=>$openid,'quesid'=>$quesid));
 		$option       = trim(I('option'));
 		$time     = I('time');
 		$right_answer = trim(D('Questionbank')->getRightAnswer($quesid));
