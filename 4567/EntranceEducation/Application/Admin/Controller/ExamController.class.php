@@ -301,6 +301,7 @@ class ExamController extends CommonController{
         //     die;
         // }
         $this->assign('questionList',$quelist);
+        $this->assign('a',"$quelist");
         //p($count);die;
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
