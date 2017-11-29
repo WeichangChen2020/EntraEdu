@@ -163,13 +163,12 @@
                 'selectid': "{$examItem['id']}" , 
                 'option': selectOption,
             }
-
             var url = "{:U('Exam/submit')}";
-            console.log(selectOption);
             $.post(url, data, function(res){
                 returnInfo(res);
             });
         });
+
 
         // 点击下一题按钮
         $('#next_ques').click(function(){
