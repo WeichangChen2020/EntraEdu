@@ -226,7 +226,7 @@ class ExamController extends CommonController{
                 if(!$is_init) {     //表里为空
                     $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
                     if ($init) {
-                        // $this->success('生成题目成功');
+                        $this->success('生成题目成功');
                     } else {
                         $this->error('生成题目失败');
                     }
@@ -236,7 +236,7 @@ class ExamController extends CommonController{
             }           
         }
 
-        $this->error('题目已经生成');
+        //$this->error('题目已经生成');
     }
 
     /**
