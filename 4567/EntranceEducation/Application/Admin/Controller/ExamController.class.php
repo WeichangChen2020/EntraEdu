@@ -288,7 +288,7 @@ class ExamController extends CommonController{
         $count      = count($examItem);//题数
         //$Question = M('Questionbank');
         $queList = array();
-        $list = M('questionbank')->where(array('id'=>$examItem['quesid']))->page($_GET['p'].',20')->select();
+        $list = M('questionbank')->where(array('id'=>$examItem[0]['quesid']))->page($_GET['p'].',20')->select();
         p($list);
         $queList = array_merge($queList, $list);
         p($quelist);die();
