@@ -214,7 +214,7 @@ class ExamController extends CommonController{
      * @var  $id
      * @return 
      */
-    public function createExeamQues($examid) {
+    public function createExamQues($examid) {
 
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
