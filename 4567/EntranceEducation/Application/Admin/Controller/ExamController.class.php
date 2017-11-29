@@ -288,7 +288,7 @@ class ExamController extends CommonController{
         //p($list);die();
         $this->assign('questionList',$list);
 
-        $count      = $ExamSelect->getExamItemList($openid, $examid)->count();
+        $count      = count($examItem);
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
