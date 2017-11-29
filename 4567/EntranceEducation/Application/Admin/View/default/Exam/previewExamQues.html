@@ -4,8 +4,8 @@
     }
 </style>
 <div class="aright">
-    <div class="arz cl"><a href="{:U('Question/search')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a></div>
-    <div class="arz cl"><a href="{:U('Question/add')}"><i class="layui-icon"></i>添加</a></div>
+    <div class="arz cl"><a href="{:U('Exam/search')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a></div>
+    <div class="arz cl"><a href="{:U('Exam/addQues')}"><i class="layui-icon"></i>添加</a></div>
     <form method="post" class="aform cl">
         <table width="100%">
             <tbody>
@@ -27,9 +27,9 @@
                         <td align="center">{$questionList.right_answer}</td>
                         <td align="center">{$questionList.id|getAnswerNum=###}</td>
                         <td align="center">{$questionList.id|getAccuracy=###}%</td>
-                        <td align="center">
+<!--                         <td align="center">
                             <a href="javascript:;">详情</a>|<a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
-                        </td>
+                        </td> -->
                     </tr>
                 </volist>
             </tbody>
