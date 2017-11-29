@@ -288,16 +288,16 @@ class ExamController extends CommonController{
         $Question = M('Questionbank');
         $queList = array();
         //for ($i=0; $i < $count; $i++) { 
-        foreach ($examItem as $key => $value) {
+        foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
-            $list = $Question->where(array('id'=>$value[$key]['quesid']))->page($_GET['p'].',20')->select();
-            $queList = array_merge($queList, $list);
+            $list = $Question->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
+            //$queList = array_merge($queList, $list);
         }
         
         // foreach ($examItem as $key => $value) {
         //     $list = $Question->where(array('id'=>$value[$key]['quesid']))->select();
         // }
-
+        p($list);
         //$list = $Question->where(array('id'=>$examItem['quesid']))->select();
         p($quelist);die();
         $this->assign('questionList',$list);
