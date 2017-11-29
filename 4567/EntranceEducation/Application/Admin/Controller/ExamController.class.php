@@ -282,8 +282,18 @@ class ExamController extends CommonController{
 
         $ExamSelect = D('Student/ExamSelect');
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
+        //p($examItem);
+        $Question = M('Questionbank');
+        $list = $Question->where(array('quesid'=>$examItem['quesid']))->page($_GET['p'].',20')->select();
+        $this->assign('questionList',$list);
 
-        p($examItem);
+        $count      = $Question->count();
+        $this->assign('count', $count);
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page',$show);
+       
+        $this->display();        
 
 
 
