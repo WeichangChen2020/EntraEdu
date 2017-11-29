@@ -106,9 +106,8 @@ class QuestionController extends CommonController {
             $list[$key]['right_answer'] = $value['right_answer'];
             $list[$key]['answerNumber'] = getAnswerNum($value['id']);
             $list[$key]['accuracy'] = getAccuracy($value['id']);
-            dump($list);die;
         }
-
+            dump($list);die;
         $this->excel($list, $title, $filename);
     }
 
