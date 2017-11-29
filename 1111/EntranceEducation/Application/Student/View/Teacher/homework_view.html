@@ -122,11 +122,7 @@
                  </div> 
              
                   <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-                 <script>
-                    $(function() {
-                    FastClick.attach(document.body);
-                    });
-                 </script>
+                 <!--
                 <script>
                     var tom{$key} = $.photoBrowser({
                           items: [
@@ -152,7 +148,7 @@
                         $("#tom{$key}").click(function() {
                           tom{$key}.open();
                         });
-                </script>
+                </script>-->
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
                   <ul class="weui_media_info">
@@ -169,12 +165,12 @@
     <!-- <include file="./Public/html/_foot.html"/> -->
     <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
     <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
-    <!--<script src="http://jqweui.com/dist/lib/fastclick.js"></script>-->
-    <!--<script>
+    <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
+    <script>
       $(function() {
       FastClick.attach(document.body);
       });
-    </script>-->
+    </script>
 
     <include file="./Public/html/_refreshJs.html"/>
   <!-- </body>
