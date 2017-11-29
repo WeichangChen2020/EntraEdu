@@ -282,7 +282,7 @@ class ExamController extends CommonController{
 
         $ExamSelect = D('Student/ExamSelect');
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
-        //p($examItem);
+        p($examItem);die;
         $Question = M('Questionbank');
         $list = $Question->where(array('quesid'=>$examItem['quesid']))->page($_GET['p'].',20')->select();
         //p($list);die();
