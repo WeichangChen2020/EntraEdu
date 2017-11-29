@@ -19,13 +19,13 @@
                     
                 <volist name="questionList" id="questionList" empty="暂时没有数据" >
                     <tr>
-                        <td style="padding-left: 20px;">{$questionList["id"]}</td>
-                        <td align="center">{$questionList["chapter"]}</td>
-                        <td align="center">{$questionList["type"]}</td>
-                        <td align="center">{$questionList["contents"]}</td>
-                        <td align="center">{$questionList["right_answer"]}</td>
-                        <td align="center">{$questionList["id"]|getAnswerNum=###}</td>
-                        <td align="center">{$questionList["id"]|getAccuracy=###}%</td>
+                        <td style="padding-left: 20px;">{$questionList.id}</td>
+                        <td align="center">{$questionList.chapter|getChapterName=###}</td>
+                        <td align="center">{$questionList.type|get_ques_type=###}</td>
+                        <td align="center">{$questionList.contents}</td>
+                        <td align="center">{$questionList.right_answer}</td>
+                        <td align="center">{$questionList.id|getAnswerNum=###}</td>
+                        <td align="center">{$questionList.id|getAccuracy=###}%</td>
 
                     </tr>
                 </volist>
