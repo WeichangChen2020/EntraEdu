@@ -283,9 +283,6 @@ class ExamController extends CommonController{
 
         $ExamSelect = D('Student/ExamSelect');
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
-        dump($openid);
-        dump($examid);
-            dump($examItem);die;
         //p($examItem);//exam_select里某学生的50条数据，包括quesid
         //p($examItem[0]['quesid']);
         $count      = count($examItem);//题数
@@ -294,6 +291,8 @@ class ExamController extends CommonController{
         foreach ($examItem as $key => &$value) {
             //p($value[$key]['quesid']);
             $list = M('questionbank')->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
+            dump($list);
+            dump($value);die;
             p($queList);
             $queList = array_merge($queList, $list);
             p($quelist);die();
