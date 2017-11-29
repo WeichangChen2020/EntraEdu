@@ -295,11 +295,12 @@ class ExamController extends CommonController{
         }
 
         //dump($queList);die();
-        if($this->assign('questionList',$quelist))
-        {
-            p("success!");
-            die;
-        }
+        // if($this->assign('questionList',$quelist))
+        // {
+        //     p("success!");
+        //     die;
+        // }
+        $this->assign('questionList',$quelist);
         //p($count);die;
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
