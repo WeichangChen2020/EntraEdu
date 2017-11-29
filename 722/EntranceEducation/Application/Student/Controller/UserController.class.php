@@ -138,7 +138,7 @@ class UserController extends Controller {
             p($stulist);
 
             if($stulist&&$stuinfo){       //两张表里都存在，说明是新生且已注册
-                $data['academy'] = $stulist['academy'];
+                $data['academy'] = $stulist[0]['academy'];
                 $data['is_newer'] = 1;                
                 $result1 = $info->where(array('number'=>$numArr[$i]))->save($data);
                 $type = $list->where(array('number'=>$numArr[$i]))->getField('type');
