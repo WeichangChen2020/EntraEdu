@@ -119,7 +119,7 @@
                        <span class="swiper-pagination-bullet"></span>
                      </div> 
                   </div>
-                 </div> 
+                 </div> <!--
                 <script>
                     var tom{$key} = $.photoBrowser({
                           items: [
@@ -145,7 +145,7 @@
                         $("#tom{$key}").click(function() {
                           tom{$key}.open();
                         });
-                </script>
+                </script>-->
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
                   <ul class="weui_media_info">
@@ -178,9 +178,9 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="http://jqweui.com/dist/js/swiper.js"></script>
 
- <!-- 
+ 
 <script>
-  var pb1 = $.photoBrowser({
+  var tom{$key} = $.photoBrowser({
         items: [
           "{$homeworkList.pic1Url}",
           "{$homeworkList.pic2Url}",
@@ -201,11 +201,11 @@
           console.log("onClose", this);
         }
       });
-      $("#pb1").click(function() {
-        pb1.open();
+      $("#tom{$key}").click(function() {
+        tom{$key}.open();
       });
 </script> 
--->
+
 
 <!-- <div class="weui-photo-browser-modal" style="display: none;">            
   <div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
