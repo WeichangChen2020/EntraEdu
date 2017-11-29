@@ -282,22 +282,24 @@ class ExamController extends CommonController{
 
         $ExamSelect = D('Student/ExamSelect');
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
-        p($examItem);
-        p($examItem[0]['quesid']);
-        // for ($i=0; $i < $count; $i++) { 
-        //     p($examItem[$i]['quesid']);
-        //     $list = $Question->where(array('quesid'=>$examItem[$i]['quesid']))->select();
-        // }
+        p($examItem);//exam_select里某学生的50条数据，包括quesid
+        //p($examItem[0]['quesid']);
+        $count      = count($examItem);//题数
         $Question = M('Questionbank');
-        foreach ($examItem as $key => $value) {
-            $list = $Question->where(array('id'=>$value[$key]['quesid']))->select();
+        for ($i=0; $i < $count; $i++) { 
+            p($examItem[$i]['quesid']);
+            $list = $Question->where(array('id'=>$examItem[$i]['quesid']))->select();
         }
         
+        // foreach ($examItem as $key => $value) {
+        //     $list = $Question->where(array('id'=>$value[$key]['quesid']))->select();
+        // }
+
         //$list = $Question->where(array('id'=>$examItem['quesid']))->select();
         p($list);die();
         $this->assign('questionList',$list);
 
-        $count      = count($examItem);//题数
+        
         //p($count);die;
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
