@@ -21,13 +21,15 @@
                   <div class="weui_cell_bd weui_cell_primary">{$homeworkList.name}</div>
                 </div>
                 <div class="weui_uploader_bd">
-                <a href="javascript:;" id="pb1">
+                
                   <ul class="weui_uploader_files">
                     
                     <notempty name="homeworkList.pic1Url">
                       <!-- <a href="{$homeworkList.pic1Url}"> -->
+                      <a href="javascript:;" id="pb1">
                       <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic1Url})"></li>
                       <!-- </a> -->
+                      </a>
                     </notempty>
                     <notempty name="homeworkList.pic2Url">
                     <!-- <a href="{$homeworkList.pic2Url}"> -->
@@ -56,7 +58,7 @@
                     <!-- </a> -->
                     
                   </ul>
-                </a>
+                
                 </div>
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
@@ -116,9 +118,76 @@
       });
 </script>
 
+<div class="weui-photo-browser-modal" style="display: none;">            
+<div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(-375px, 0px, 0px);">                                
+  <div class="swiper-slide">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic1Url}">                  
+    </div>                
+  </div>                                
+  <div class="swiper-slide swiper-slide-active">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic2Url}">                  
+    </div>                
+  </div>                                
+  <div class="swiper-slide">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic3Url}">                  
+    </div>                
+  </div>                                
+  <div class="swiper-slide">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic4Url}">                  
+    </div>                
+  </div>        
+  <div class="swiper-slide">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic5Url}">                  
+    </div>                
+  </div>  
+  <div class="swiper-slide">                  
+    <div class="photo-container">                    
+      <img src="{$homeworkList.pic6Url}">                  
+    </div>                
+  </div>                    
+</div>              
+<div class="caption">                                
+<div class="caption-item caption-item-0">
+  
+</div>                                
+<div class="caption-item caption-item-1 active">
+  
+</div>                                
+<div class="caption-item caption-item-2">
+  
+</div>                                
+<div class="caption-item caption-item-3">
+  
+</div>          
+</div>                                
+<div class="caption-item caption-item-4">
+  
+</div> 
+</div>                                
+<div class="caption-item caption-item-5">
+  
+</div>                     
+</div>              
+<div class="swiper-pagination swiper-pagination-bullets">                                
+<span class="swiper-pagination-bullet"></span>                                
+<span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>                                
+<span class="swiper-pagination-bullet"></span>                                
+<span class="swiper-pagination-bullet"></span>       
+<span class="swiper-pagination-bullet"></span>                                
+<span class="swiper-pagination-bullet"></span>                        
+</div>            
+</div>          
+</div>
+</body>
+</html>                    
    
 
-<div class="weui-photo-browser-modal weui-photo-browser-modal-visible" style="display: none;">            
+<!-- <div class="weui-photo-browser-modal weui-photo-browser-modal-visible" style="display: none;">            
 <div class="swiper-container swiper-container-visible" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">              
 <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(-375px, 0px, 0px);">                                
   <div class="swiper-slide">                  
@@ -185,4 +254,4 @@
 </div>          
 </div>
 </body>
-</html>
+</html> -->
