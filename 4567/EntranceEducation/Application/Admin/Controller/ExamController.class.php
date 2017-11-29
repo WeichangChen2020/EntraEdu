@@ -258,6 +258,7 @@ class ExamController extends CommonController{
 
             $stuList = array_merge($stuList, $list);
         }
+        p($stuList);die;
         $count = count($stuList);
         $this->assign('userList',$stuList);
 
