@@ -85,6 +85,8 @@ class ExerciseController extends Controller{
 				$this->display('judge');
 			} else if ($quesItem['type'] == '多选题') {
 				$this->display('mutil');
+			} else {
+				$this->error('这道题有问题，请向系统管理员反映');
 			}
 				 
 		} else {

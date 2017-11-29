@@ -153,6 +153,7 @@ class ExamController extends Controller{
 
         // ************分配题目list
         $quesList   = D('ExamSelect')->getExamItems($openid, $examid);
+
         $this->assign('quesList', $quesList);
 
         // ************分配考试截止时间*************
@@ -193,7 +194,7 @@ class ExamController extends Controller{
             'answer' => $answer,
             'result' => $result,
             'time'   => date('Y-m-d H:i:s', time()),
-            'right_answer'=>$right_answer,
+            // 'right_answer'=>$right_answer,
         );
 
         // 获取学生当前考试的环境信息
