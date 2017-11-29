@@ -287,8 +287,8 @@ class ExamController extends CommonController{
         $count      = count($examItem);//题数
         $Question = M('Questionbank');
         for ($i=0; $i < $count; $i++) { 
-            p($examItem[$i]['quesid']);
-            $list = $Question->where(array('id'=>$examItem[$i]['quesid']))->select();
+            //p($examItem[$i]['quesid']);
+            $list[$i] = $Question->where(array('id'=>$examItem[$i]['quesid']))->select();
         }
         
         // foreach ($examItem as $key => $value) {
