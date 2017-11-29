@@ -165,6 +165,7 @@
             }
 
             var url = "{:U('Exam/submit')}";
+            console.log(selectOption);
             $.post(url, data, function(res){
                 returnInfo(res);
             });
