@@ -132,10 +132,13 @@ class UserController extends Controller {
 
         $academy = $list->where(array('number'=>$number))->getField('academy');
         p($academy);
-        
+
         $data['academy'] = $academy;
         $data['is_newer'] = 1;
-        $result = $info->where(array('number'=>$number))->save($data);
+        if($academy){
+            $result = $info->where(array('number'=>$number))->save($data);
+        }
+        
         if($result){
             p("更新成功！");
         }
