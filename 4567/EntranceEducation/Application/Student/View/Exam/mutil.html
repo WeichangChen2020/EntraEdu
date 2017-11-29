@@ -163,7 +163,6 @@
                 'selectid': "{$examItem['id']}" , 
                 'option': selectOption,
             }
-            console.log(selectOption);
             var url = "{:U('Exam/submit')}";
             $.post(url, data, function(res){
                 returnInfo(res);
