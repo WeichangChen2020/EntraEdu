@@ -294,7 +294,7 @@ class ExamController extends CommonController{
             array_push($queList,array_merge($value, $list['0']));
         }
 
-        dump($queList);die();
+        //dump($queList);die();
         $this->assign('questionList',$quelist);       
         //p($count);die;
         $this->assign('count', $count);
