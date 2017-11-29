@@ -4,7 +4,8 @@
     }
 </style>
 <div class="aright">
-
+    <div class="arz cl"><a href="{:U('Question/search')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a></div>
+    <div class="arz cl"><a href="{:U('Question/add')}"><i class="layui-icon"></i>添加</a></div>
     <form method="post" class="aform cl">
         <table width="100%">
             <tbody>
@@ -16,17 +17,19 @@
                     <th width="8%" align="center">正确选项</th>
                     <th width="8%" align="center">答题人数</th>
                     <th width="8%" align="center">正确率</th>
-                    
+                    <th width="10%" align="center">操作</th></tr>
                 <volist name="questionList" id="questionList" empty="暂时没有数据" >
                     <tr>
-                        <td style="padding-left: 20px;">1{$questionList.id}</td>
-                        <td align="center">2{$questionList.chapter|getChapterName=###}</td>
-                        <td align="center">3{$questionList.type|get_ques_type=###}</td>
-                        <td align="center">4{$questionList.contents}</td>
-                        <td align="center">5{$questionList.right_answer}</td>
-                        <td align="center">6{$questionList.id|getAnswerNum=###}</td>
-                        <td align="center">6{$questionList.id|getAccuracy=###}%</td>
-
+                        <td style="padding-left: 20px;">{$questionList.id}</td>
+                        <td align="center">{$questionList.chapter|getChapterName=###}</td>
+                        <td align="center">{$questionList.type|get_ques_type=###}</td>
+                        <td align="center">{$questionList.contents}</td>
+                        <td align="center">{$questionList.right_answer}</td>
+                        <td align="center">{$questionList.id|getAnswerNum=###}</td>
+                        <td align="center">{$questionList.id|getAccuracy=###}%</td>
+                        <td align="center">
+                            <a href="javascript:;">详情</a>|<a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                        </td>
                     </tr>
                 </volist>
             </tbody>
