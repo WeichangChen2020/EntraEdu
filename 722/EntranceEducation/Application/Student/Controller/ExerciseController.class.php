@@ -123,7 +123,9 @@ class ExerciseController extends Controller{
             );
 
             D('Exercise')->add($data);
-
+            if($data['result']==0){
+            	M('MistakeHistory')->add($data);
+            }
             $this->ajaxReturn($right_answer, 'json');
         }else{ //如果已存在
         	$this->ajaxReturn('done');
