@@ -98,12 +98,13 @@ class ReworkController extends Controller{
 			$this->display('tip');
 			return false;
 		}
+		dump($ques);die;
 		if ($ques) {
-			if ($ques['type'] == '1') {
+			if ($ques['type'] == '单选题') {
 				$this->display('chose');
-			} else if ($ques['type'] == '2') {
+			} else if ($ques['type'] == '判断题') {
 				$this->display('judge');
-			} else if ($ques['type'] == '3') {
+			} else if ($ques['type'] == '多选题') {
 				$this->display('mutil');
 			} else {
 				dump('该题题目有错，请联系管理员');
