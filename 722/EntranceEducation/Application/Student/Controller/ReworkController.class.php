@@ -68,13 +68,30 @@ class ReworkController extends Controller{
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
 
+
 		M('MistakeHistory')->where(array('openid'=>$openid,'quesid' => $quesid))->save($data);
 
 		$this->ajaxReturn($right_answer, 'json');
 	}
 	public function test(){
 
-        $EXERCISE = M('Exercise');
+
+		$openid       = session('openId');
+		$quesid       = session('quesid');
+		// $data         = M('MistakeHistory')->where(array('openid'=>$openid,'quesid'=>$quesid));
+		$option       = trim(I('option'));
+		$time     = I('time');
+		$right_answer = trim(D('Questionbank')->getRightAnswer($quesid));
+		$data = array(	
+			'openid' => $openid,
+			'quesid' => $quesid,
+			'answer' => $option,
+			'result' => $option == $right_answer ? 1 : 0,
+			'spend'  => $time,
+			'time'   => date('Y-m-d:H:i:s', time())
+		);
+		dump($openid);
+        // $EXERCISE = M('Exercise');
         // $HISTORY = M('MistakeHistory');
         // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
         // foreach ($mistake as $key => $value) {
@@ -92,8 +109,8 @@ class ReworkController extends Controller{
                 
         // }
         // dump('0');
-		$num = $EXERCISE->where(array('result'=>0))->count();
-		dump($num);die;
+		// $num = $EXERCISE->where(array('result'=>0))->count();
+		// dump($num);die;
 
 	}
 	public function del(){
