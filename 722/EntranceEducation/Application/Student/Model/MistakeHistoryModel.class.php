@@ -101,7 +101,7 @@ class MistakeHistoryModel extends Model {
         if (empty($openid)) {
             return false;
         }
-        $quesid = $this->where(array('openid'=>$openid,'result'=>0))->field('quesid')->order('rand()')->limit(1)->select();
+        $quesid = $this->where(array('openid'=>$openid,'result'=>0))->order('rand()')->limit(1)->select();
         return $quesid['0']['quesid'];
     }
     /**
