@@ -220,7 +220,7 @@ class ExamUserController extends CommonController{
         $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
         $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
         dump($mistake);
-        dump($final);
+        dump($final == NULL);
         // dump($mistake);
         die;
 
