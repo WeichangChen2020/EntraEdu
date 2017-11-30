@@ -124,7 +124,7 @@
 			'option': option,
 			'time'  : time
 		}
-
+		console({$quesid});
 		var url = "{:U('Exercise/submit')}";
         $.post(url, data, function(res){
             if(res != 'done'){
