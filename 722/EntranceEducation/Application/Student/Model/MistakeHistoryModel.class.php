@@ -116,8 +116,7 @@ class MistakeHistoryModel extends Model {
             return false;
         }
         $quesNum = $this->where(array('openid'=>$openid,'result'=>0))->count('quesid');
-        dump($quesNum);die;
-        return $quesid['0']['quesid'];
+        return $quesNum;
     }
     
 

@@ -111,6 +111,8 @@ class ReworkController extends Controller{
 				$this->display('judge');
 			} else if ($ques['type'] == '多选题') {
 				$this->display('mutil');
+			} else {
+				dump('该题题目有错，请联系管理员');
 			}
 		} else {
 			$this->display('tip');
