@@ -67,7 +67,7 @@ class ReworkController extends Controller{
 			'spend'  => $time,
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
-		this->assign('test',$quesid);
+
 
 		M('MistakeHistory')->where(array('openid'=>$openid,'quesid' => $quesid))->save($data);
 
