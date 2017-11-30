@@ -62,6 +62,34 @@
                 </div>
                 <a href="javascript:;" class="weui-btn weui-btn_primary" id="tom{$key}">浏览图片</a>
                 <br>
+                
+                <script>
+                    var tom{$key} = $.photoBrowser({
+                          items: [
+                              "{$homeworkList.pic1Url}",
+                              "{$homeworkList.pic2Url}",
+                              "{$homeworkList.pic3Url}",
+                              "{$homeworkList.pic4Url}",
+                              "{$homeworkList.pic5Url}",
+                              "{$homeworkList.pic6Url}",
+                          ],
+
+                          onSlideChange: function(index) {
+                            console.log(this, index);
+                          },
+
+                          onOpen: function() {
+                            console.log("onOpen", this);
+                          },
+                          onClose: function() {
+                            console.log("onClose", this);
+                          }
+                        });
+                        $("#tom{$key}").click(function() {
+                          tom{$key}.open();
+                        });
+                </script>
+
                  <div class="weui-photo-browser-modal" style="display: none;">            
                   <div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
                     <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(0px, 0px, 0px);">                                
@@ -99,9 +127,9 @@
                           <img src="{$homeworkList.pic6Url}">                  
                         </div>                
                       </div>    
+                    </div>   
 
 
-                     </div>              
                       <div class="caption">                                
                        <div class="caption-item caption-item-0 active"></div>
                        <div class="caption-item caption-item-1"></div>
@@ -110,6 +138,7 @@
                        <div class="caption-item caption-item-4"></div>
                        <div class="caption-item caption-item-5"></div>
                       </div>
+
                      <div class="swiper-pagination swiper-pagination-bullets">
                        <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
                        <span class="swiper-pagination-bullet"></span>
@@ -118,37 +147,14 @@
                         <span class="swiper-pagination-bullet"></span>
                        <span class="swiper-pagination-bullet"></span>
                      </div> 
+
                   </div>
                  </div> 
              
                   <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-                 <!--
-                <script>
-                    var tom{$key} = $.photoBrowser({
-                          items: [
-                              "{$homeworkList.pic1Url}",
-                              "{$homeworkList.pic2Url}",
-                              "{$homeworkList.pic3Url}",
-                              "{$homeworkList.pic4Url}",
-                              "{$homeworkList.pic5Url}",
-                              "{$homeworkList.pic6Url}",
-                          ],
+                 
+                
 
-                          onSlideChange: function(index) {
-                            console.log(this, index);
-                          },
-
-                          onOpen: function() {
-                            console.log("onOpen", this);
-                          },
-                          onClose: function() {
-                            console.log("onClose", this);
-                          }
-                        });
-                        $("#tom{$key}").click(function() {
-                          tom{$key}.open();
-                        });
-                </script>-->
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
                   <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
                   <ul class="weui_media_info">
@@ -181,7 +187,7 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="http://jqweui.com/dist/js/swiper.js"></script>
 
-
+<!--
 <script>
   var tom{$key} = $.photoBrowser({
         items: [
@@ -207,7 +213,7 @@
       $("#tom{$key}").click(function() {
         tom{$key}.open();
       });
-</script>
+</script>-->
 
 
 <!-- <div class="weui-photo-browser-modal" style="display: none;">            
