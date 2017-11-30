@@ -123,6 +123,7 @@ class ExerciseController extends Controller{
             );
 
             D('Exercise')->add($data);
+            $this->assign('result',$data['result']);
             if($data['result']==0){
             	M('MistakeHistory')->add($data);
             }
