@@ -100,7 +100,6 @@ class ReworkController extends Controller{
 		}
 		$ques['chapter'] = getChapterName($ques['chapter']);
 		$ques['type'] = get_ques_type($ques['type']);
-		dump($ques);die;
 		if ($ques) {
 			if ($ques['type'] == '单选题') {
 				$this->display('chose');
