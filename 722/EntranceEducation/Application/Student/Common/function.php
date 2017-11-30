@@ -215,7 +215,7 @@ function get_ques_type($type) {
 			return '单选题';
 			break;
 		case 2:
-			return '判读题';
+			return '判断题';
 			break;
 		case 3:
 			return '多选题';
