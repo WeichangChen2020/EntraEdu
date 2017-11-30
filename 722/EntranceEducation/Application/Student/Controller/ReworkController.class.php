@@ -74,7 +74,7 @@ class ReworkController extends Controller{
 	}
 	public function test(){
 
-        // $EXERCISE = M('Exercise');
+        $EXERCISE = M('Exercise');
         // $HISTORY = M('MistakeHistory');
         // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
         // foreach ($mistake as $key => $value) {
