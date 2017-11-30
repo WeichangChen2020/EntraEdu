@@ -89,7 +89,7 @@ class ReworkController extends Controller{
 		$ques['chapter'] = getChapterName($ques['chapter']);
 		$ques['type'] = get_ques_type($ques['type']);
 		dump($openId);
-		dump($MISTAKE->where(array('openid'=>$openiId,'result'=>0))->order('rand()')->limit(1)->select());die;
+		dump($MISTAKE->where(array('openid'=>$openiId,'result'=>0))->limit(1)->select());die;
 
 		$this->assign('num',$num);
 		$this->assign('name',$name);
