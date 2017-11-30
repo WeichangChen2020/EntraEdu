@@ -80,7 +80,7 @@ class ReworkController extends Controller{
 		$openId = session('openId');
 		$QUESTION= M('questionbank');
 		$MISTAKE = D('MistakeHistory');
-		$quesid = $MISTAKE->getMistakeRand($openId);
+		$quesid = $MISTAKE->where(array('openid'=>$openId,'result'=>0))->order('rand()')->limit(1)->select();
 		$ques = $QUESTION->where(array('id'=>$quesid))->find();
 		$num = $MISTAKE->getMistakeNum($openId);
 		$quesid = $MISTAKE->getMistakeData($openId);
@@ -88,8 +88,8 @@ class ReworkController extends Controller{
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 		$ques['chapter'] = getChapterName($ques['chapter']);
 		$ques['type'] = get_ques_type($ques['type']);
-		dump($quesid);
-		dump($MISTAKE->where(array('openid'=>$openId,'result'=>0))->limit(1)->select());die;
+		dump($openId);
+		dump($MISTAKE->where(array('openid'=>$openId,'result'=>0))->order('rand()')->limit(1)->select());die;
 
 		$this->assign('num',$num);
 		$this->assign('name',$name);
