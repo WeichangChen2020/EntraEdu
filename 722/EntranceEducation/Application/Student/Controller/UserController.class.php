@@ -160,7 +160,8 @@ class UserController extends Controller {
         $noregister = $list->where(array('type'=>0))->select();//list表中显示未注册
         for ($i=0; $i < count($noregister); $i++) { 
             $isregister = $info->where(array('name'=>$noregister[$i]['name']))->find();
-            if ($isregister) {
+            $is_newer = $isregister['is_newer'];
+            if ($is_newer==1) {  //info里是新生
                 p($noregister);
                 p($isregister);
             }
