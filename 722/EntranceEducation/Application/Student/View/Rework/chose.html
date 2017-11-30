@@ -91,6 +91,8 @@
 	$('.option-area').one('click',function(){
 		// 选择了之后正确
 		var use       = $(this).find('use')[0];
+		console.log(use);
+		console.log($(this).find('use')[0]);
 		var icon_attr = use.getAttribute('xlink:href');
 		var option    = icon_attr.substring(13).toUpperCase(); //选项
 		var now       = new Date();
@@ -100,7 +102,6 @@
 			'option': option,
 			'time'  : time,
 		}
-		console.log($(this).find('use')[0]);
 		var url = "{:U('Rework/submit')}";
         $.post(url, data, function(res){
           	if(res == option) {
