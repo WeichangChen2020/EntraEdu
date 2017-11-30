@@ -86,6 +86,8 @@ class ReworkController extends Controller{
 		$quesid = $MISTAKE->getMistakeRand($openId);
 		$ques = $QUESTION->where(array('id'=>$quesid))->find();
 		$num = $MISTAKE->getMistakeNum($openId);
+		dump($quesid);
+		dump($num);
 		dump($ques);
 
 		die;
