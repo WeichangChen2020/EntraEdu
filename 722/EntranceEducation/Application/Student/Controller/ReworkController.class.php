@@ -78,7 +78,40 @@ class ReworkController extends Controller{
 
 		$this->ajaxReturn($right_answer, 'json');
 	}
+	public function test(){
 
+		$openId = session('openId');
+		$QUESTION= M('questionbank');
+		$MISTAKE = D('MistakeHistory');
+		die;
+		$quesid = $MISTAKE->getMistakeData($openId);
+		// dump($quesid);
+		$num = $MISTAKE->getNumberOfMistake($openId);
+		session('quesid',$quesid);
+		$ques = $MISTAKE->getQuestionByid($quesid);
+		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
+
+		$this->assign('num',$num);
+		$this->assign('name',$name);
+		$this->assign('ques',$ques);
+		$this->assign('openId',$openId);
+		if ($num == 0) {
+			$this->display('tip-none');
+			return false;
+		}
+		if ($ques) {
+			if ($ques['type'] == '单选题') {
+				$this->display('chose');
+			} else if ($ques['type'] == '判断题') {
+				$this->display('judge');
+			} else if ($ques['type'] == '多选题') {
+				$this->display('mutil');
+			}
+		} else {
+			$this->display('tip');
+		}
+
+	}
 
 
 }

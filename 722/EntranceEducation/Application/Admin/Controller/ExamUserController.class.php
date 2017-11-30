@@ -206,7 +206,7 @@ class ExamUserController extends CommonController{
     // }
     public function test(){
         $HISTORY = M('MistakeHistory');
-        $mistake = $HISTORY->where(array('result'=>0))->limit('100,100')->select();
+        $mistake = $HISTORY->where(array('result'=>0))->limit('200,100')->select();
         foreach ($mistake as $key => $value) {
             $final = $HISTORY
                 ->where(
