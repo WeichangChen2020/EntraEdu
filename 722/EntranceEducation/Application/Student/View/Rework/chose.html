@@ -100,7 +100,7 @@
 			'option': option,
 			'time'  : time,
 		}
-		console.log($(this).find('use'));
+		console.log($(this).find('use')[0]);
 		var url = "{:U('Rework/submit')}";
         $.post(url, data, function(res){
           	if(res == option) {
