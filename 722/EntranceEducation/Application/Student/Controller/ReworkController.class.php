@@ -99,11 +99,11 @@ class ReworkController extends Controller{
 			return false;
 		}
 		if ($ques) {
-			if ($ques['type'] == '单选题') {
+			if ($ques['type'] == '1') {
 				$this->display('chose');
-			} else if ($ques['type'] == '判断题') {
+			} else if ($ques['type'] == '2') {
 				$this->display('judge');
-			} else if ($ques['type'] == '多选题') {
+			} else if ($ques['type'] == '3') {
 				$this->display('mutil');
 			} else {
 				dump('该题题目有错，请联系管理员');
