@@ -206,7 +206,7 @@ class ExamUserController extends CommonController{
     // }
     public function test(){
         $HISTORY = M('MistakeHistory');
-        $mistake = $HISTORY->where(array('result'=>0))->limit('200,100')->select();
+        $mistake = $HISTORY->where(array('result'=>0))->limit('300,100')->select();
         foreach ($mistake as $key => $value) {
             $final = $HISTORY
                 ->where(
@@ -216,8 +216,9 @@ class ExamUserController extends CommonController{
                 ->find();
             // dump($final);
             if($final != NULL)
-                dump($HISTORY->where(array('id'=>$value['id']))->delete());
+                $HISTORY->where(array('id'=>$value['id']))->delete();
         }
+        dump($mistake['0']);
         // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
         // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
         // dump($mistake);

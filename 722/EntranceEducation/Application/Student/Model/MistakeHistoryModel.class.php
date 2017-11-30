@@ -90,4 +90,20 @@ class MistakeHistoryModel extends Model {
 		return $chapter;
 	}
 
+    /**
+     * getMistakeRand($openid) 随机获取错题的id号
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-30 14:31 Authors
+     * @return   int  false
+     */
+    public function getMistakeRand($openid) {
+        
+        if (empty($openid)) {
+            return false;
+        }
+        $quesid = $this->where(array('openid'=>$openId,'result'=>0))->field('quesid')->order('rand()')->limit(1)->select();
+        return $quesid['0']['quesid'];
+    }
+    
+
 }
