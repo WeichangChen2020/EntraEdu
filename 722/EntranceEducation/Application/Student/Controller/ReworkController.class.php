@@ -82,18 +82,25 @@ class ReworkController extends Controller{
         for($i = 1;$i < 3000;$i++){
         	$str = $i.',1';
         	$mistake = $EXERCISE->where(array('result'=>0))->limit($str)->select();
-        	 $final = $HISTORY
+        	$final = $HISTORY
                 ->where(
                     array('result'=>1,
                         'openid'=>$mistake['0']['openid'],
                         'quesid'=>$mistake['0']['quesid']))
                 ->find();
-                unset($value['id']);
-            if($final == NULL){
+            $exist = $HISTORY
+                ->where(
+                    array('result'=>0,
+                        'openid'=>$mistake['0']['openid'],
+                        'quesid'=>$mistake['0']['quesid']))
+                ->find();
+            if($final == NULL && $exist == NULL){
+	            unset($mistake['0']['id']);
                 dump($final);
-            dump($HISTORY->add($value));
-        	dump($mistake); 
-        	die;
+                dump($exist);
+	            dump($HISTORY->add($mistake));
+	        	dump($mistake); 
+	        	die;
         	}
         }
         // foreach ($mistake as $key => $value) {
