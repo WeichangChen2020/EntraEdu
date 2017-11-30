@@ -28,6 +28,7 @@ class ReworkController extends Controller{
 
 		$this->assign('num',$num);
 		$this->assign('name',$name);
+		$this->assign('quesid',$quesid);
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		if ($num == 0) {
