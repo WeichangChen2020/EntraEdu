@@ -206,21 +206,22 @@ class ExamUserController extends CommonController{
     // }
     public function test(){
         $HISTORY = M('MistakeHistory');
-        // $mistake = $HISTORY->where(array('result'=>0))->limit(50)->select();
-        // foreach ($mistake as $key => $value) {
-        //     $final = $HISTORY
-        //         ->where(
-        //             array('result'=>1,
-        //                 'openid'=>$value['openid'],
-        //                 'quesid'=>$value['quesid']))
-        //         ->find();
-        //     dump($final);
-        //     // if()
-        // }
-        $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
-        $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
-        dump($mistake);
-        dump($final == NULL);
+        $mistake = $HISTORY->where(array('result'=>0))->limit(50)->select();
+        foreach ($mistake as $key => $value) {
+            $final = $HISTORY
+                ->where(
+                    array('result'=>1,
+                        'openid'=>$value['openid'],
+                        'quesid'=>$value['quesid']))
+                ->find();
+            // dump($final);
+            if($final != NULL)
+                $HISTORY->where('id'=>$value['id'])->->delete();
+        }
+        // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
+        // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
+        // dump($mistake);
+        // dump($final == NULL);
         // dump($mistake);
         die;
 
