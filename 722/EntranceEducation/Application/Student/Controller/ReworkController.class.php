@@ -86,17 +86,8 @@ class ReworkController extends Controller{
 		$quesid = $MISTAKE->getMistakeRand($openId);
 		$ques = $QUESTION->where(array('id'=>$quesid))->find();
 		$num = $MISTAKE->getMistakeNum($openId);
-		dump($openId);
-		dump($quesid);
-		dump($num);
-		dump($ques);
-
-		die;
 		$quesid = $MISTAKE->getMistakeData($openId);
-		// dump($quesid);
-		$num = $MISTAKE->getNumberOfMistake($openId);
 		session('quesid',$quesid);
-		$ques = $MISTAKE->getQuestionByid($quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
 		$this->assign('num',$num);
@@ -104,7 +95,7 @@ class ReworkController extends Controller{
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		if ($num == 0) {
-			$this->display('tip-none');
+			$this->display('tip');
 			return false;
 		}
 		if ($ques) {
