@@ -204,7 +204,7 @@ class ExamUserController extends CommonController{
     //         dump($value);
     //     }
     // }
-    public function test($type,$id){
+    public function test(){
         $HISTORY = M('MistakeHistory');
         dump($HISTORY->select());die;
 
