@@ -134,27 +134,27 @@ class UserController extends Controller {
         // );
         $map['class'] = '';
         $map['academy'] = array('neq','非新生');
-        p($map);
+        //p($map);
         $classNull = $info->where($map)->select();//32个
-        p($classNull);
+        //p($classNull);
         for ($i=0; $i < count($classNull); $i++) { 
             $stulist = $list->where(array('number'=>$classNull[$i]['number']))->select();
             //$stuinfo = $info->where(array('number'=>$numArr[$i]))->select();
             p($stulist);
 
-            if($stulist){       //两张表里都存在，说明是新生且已注册
+            if($stulist){       
                 //$data['academy'] = $stulist[0]['academy'];
                 //$data['is_newer'] = 1;
                 $data['class'] = $stulist[0]['class'];
-                p($data);          
-                //$result1 = $info->where(array('number'=>$classNull[$i]['number']))->save($data);
+                //p($data);          
+                $result1 = $info->where(array('number'=>$classNull[$i]['number']))->save($data);
                 //$type = $list->where(array('number'=>$numArr[$i]))->getField('type');
-                //if($type==0){  //是新生且已注册，但list表中是未注册
+                //if($type==0){ 
                     //$data2['type'] = 1;
                     //$result2 = $list->where(array('number'=>$numArr[$i]))->save($data2);
                 //}
                 if($result1){
-                    p($classNull[$i]['name']."的班级更新：".$stulist[0]['class']);
+                    p($classNull[$i]['number'].$classNull[$i]['name']."的班级更新为：".$stulist[0]['class']);
                 }
                 
             }
