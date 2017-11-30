@@ -79,7 +79,7 @@ class ReworkController extends Controller{
         $EXERCISE = M('Exercise');
         $HISTORY = M('MistakeHistory');
         // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,50000')->select();
-        for($i = 1;$i < 70;$i=$i+10){
+        for($i = 20000;$i < 50000;$i=$i+10){
         	$str = $i.',10';
         	$mistake = $EXERCISE->where(array('result'=>0))->limit($str)->select();
         	foreach ($mistake as $key => $value) {
@@ -95,9 +95,6 @@ class ReworkController extends Controller{
 	                        'openid'=>$value['openid'],
 	                        'quesid'=>$value['quesid']))
 	                ->find();
-	                dump($final);
-	                dump($exist);
-	                dump($value);
 	            if($final == NULL && $exist == NULL && $mistake['openid'] != ''){
 	                unset($value['id']);
 		            dump($HISTORY->add($mistake));
