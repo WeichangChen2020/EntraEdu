@@ -140,7 +140,7 @@ class UserController extends Controller {
         for ($i=0; $i < count($classNull); $i++) { 
             $stulist = $list->where(array('number'=>$classNull[$i]['number']))->select();
             //$stuinfo = $info->where(array('number'=>$numArr[$i]))->select();
-            p($stulist);
+            //p($stulist);
 
             if($stulist){       
                 //$data['academy'] = $stulist[0]['academy'];
