@@ -190,22 +190,23 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
-    //更新学生答题进度
-    public function update(){
-        $STUDENT = M('StudentInfo');
-        $List = $STUDENT->select();
-        $count = M('Questionbank')->count();
-        foreach ($List as $key => $value) {
-            $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
-            dump($wNum);
+    //!已废弃!更新学生答题进度
+    // public function update(){
+    //     $STUDENT = M('StudentInfo');
+    //     $List = $STUDENT->select();
+    //     $count = M('Questionbank')->count();
+    //     foreach ($List as $key => $value) {
+    //         $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
+    //         dump($wNum);
             
-            $value['present'] = $wNum/$count;
-            $STUDENT->save($value);
-            dump($value);
-        }
-    }
+    //         $value['present'] = $wNum/$count;
+    //         $STUDENT->save($value);
+    //         dump($value);
+    //     }
+    // }
     public function test($type,$id){
-
+        $HISTORY = M('MistakeHistory');
+        dump($HISTORY->select());die;
 
     }
 
