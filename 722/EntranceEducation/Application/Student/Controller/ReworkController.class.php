@@ -75,26 +75,11 @@ class ReworkController extends Controller{
 	public function test(){
 
 
-		$openid       = session('openId');
-		$quesid       = session('quesid');
-		// $data         = M('MistakeHistory')->where(array('openid'=>$openid,'quesid'=>$quesid));
-		$option       = trim(I('option'));
-		$time     = I('time');
-		$right_answer = trim(D('Questionbank')->getRightAnswer($quesid));
-		$data = array(	
-			'openid' => $openid,
-			'quesid' => $quesid,
-			'answer' => $option,
-			'result' => $option == $right_answer ? 1 : 0,
-			'spend'  => $time,
-			'time'   => date('Y-m-d:H:i:s', time())
-		);
-		dump($data);
-		dump($right_answer);
-		die;
-        // $EXERCISE = M('Exercise');
-        // $HISTORY = M('MistakeHistory');
-        // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
+		
+        $EXERCISE = M('Exercise');
+        $HISTORY = M('MistakeHistory');
+        $mistake = $EXERCISE->where(array('result'=>0))->limit('0,500000')->count();
+        dump($mistake);die;
         // foreach ($mistake as $key => $value) {
         //     $final = $HISTORY
         //         ->where(
