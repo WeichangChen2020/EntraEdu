@@ -78,8 +78,12 @@ class ReworkController extends Controller{
 		
         $EXERCISE = M('Exercise');
         $HISTORY = M('MistakeHistory');
-        $mistake = $EXERCISE->where(array('result'=>0))->limit('0,50000')->select();
-        dump('$mistake');die;
+        // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,50000')->select();
+        for($i = 0;$i < 30;$i++){
+        	$str = $i.',1';
+        	dump($str); 
+
+        }
         // foreach ($mistake as $key => $value) {
         //     $final = $HISTORY
         //         ->where(
