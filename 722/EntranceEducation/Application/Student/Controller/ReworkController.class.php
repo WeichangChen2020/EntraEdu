@@ -87,7 +87,7 @@ class ReworkController extends Controller{
             // dump($final);
                 unset($value['id']);
             if($final == NULL){
-                dump($HISTORY->add($value));die;
+                dump($HISTORY->add($value));
 
             }
                 
