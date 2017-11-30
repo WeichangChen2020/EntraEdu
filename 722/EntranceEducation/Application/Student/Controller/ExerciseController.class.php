@@ -123,7 +123,7 @@ class ExerciseController extends Controller{
             );
 
             D('Exercise')->add($data);
-            if($option == $right_answer){
+            if($option != $right_answer){
             	M('MistakeHistory')->add($data);
             }
             $this->ajaxReturn($right_answer, 'json');
