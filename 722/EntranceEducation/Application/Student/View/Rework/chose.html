@@ -102,7 +102,6 @@
 		}
 		var url = "{:U('Rework/submit')}";
         $.post(url, data, function(res){
-        	console.log(res);
           	if(res == option) {
           		use.setAttribute('xlink:href', '#icon-option-right');
           	} else {
