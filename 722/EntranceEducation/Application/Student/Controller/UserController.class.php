@@ -129,34 +129,41 @@ class UserController extends Controller {
         $info = M('student_info');
         $list = M('student_list');
         //p($number);
-        $numArr = array('1701510121','1702177311','1703080107','1703080513','1706030717','1706070107','1709070227','1709070303','1711060118','1711060437','1711060438','1719130101','1719130105','1719130106','1719130112','1719130120'
-            ,'1719130121','1719130124','1719130212','1720100411','1735010105','1735010113','1735010128','1735010131','1735010209','1735010226','1735020101','1735020105','1735020323','1735020324','1735020434','1735028128'
-        );
-        for ($i=0; $i < count($numArr); $i++) { 
-            $stulist = $list->where(array('number'=>$numArr[$i]))->select();
-            $stuinfo = $info->where(array('number'=>$numArr[$i]))->select();
-            p($stulist);
+        // $numArr = array('1701510121','1702177311','1703080107','1703080513','1706030717','1706070107','1709070227','1709070303','1711060118','1711060437','1711060438','1719130101','1719130105','1719130106','1719130112','1719130120'
+        //     ,'1719130121','1719130124','1719130212','1720100411','1735010105','1735010113','1735010128','1735010131','1735010209','1735010226','1735020101','1735020105','1735020323','1735020324','1735020434','1735028128'
+        // );
+        // for ($i=0; $i < count($numArr); $i++) { 
+        //     $stulist = $list->where(array('number'=>$numArr[$i]))->select();
+        //     $stuinfo = $info->where(array('number'=>$numArr[$i]))->select();
+        //     p($stulist);
 
-            if($stulist&&$stuinfo){       //两张表里都存在，说明是新生且已注册
-                $data['academy'] = $stulist[0]['academy'];
-                $data['is_newer'] = 1;                
-                $result1 = $info->where(array('number'=>$numArr[$i]))->save($data);
-                $type = $list->where(array('number'=>$numArr[$i]))->getField('type');
-                if($type==0){  //是新生且已注册，但list表中是未注册
-                    $data2['type'] = 1;
-                    $result2 = $list->where(array('number'=>$numArr[$i]))->save($data2);
-                }
+        //     if($stulist&&$stuinfo){       //两张表里都存在，说明是新生且已注册
+        //         $data['academy'] = $stulist[0]['academy'];
+        //         $data['is_newer'] = 1;                
+        //         $result1 = $info->where(array('number'=>$numArr[$i]))->save($data);
+        //         $type = $list->where(array('number'=>$numArr[$i]))->getField('type');
+        //         if($type==0){  //是新生且已注册，但list表中是未注册
+        //             $data2['type'] = 1;
+        //             $result2 = $list->where(array('number'=>$numArr[$i]))->save($data2);
+        //         }
                 
-            }
+        //     }
             
-            if($result1){
-                p("更新info中的学院和是否新生成功！");
-            }
+        //     if($result1){
+        //         p("更新info中的学院和是否新生成功！");
+        //     }
 
-            if($result2){
-                p("更新list中的是否注册成功！");
+        //     if($result2){
+        //         p("更新list中的是否注册成功！");
+        //     }
+        // }
+        $noregister = $list->where(array('type'=>0))->select();//list表中显示未注册
+        for ($i=0; $i < count($noregister); $i++) { 
+            $isregister = $info->where(array('name'=>$noregister[$i]['name']))->find();
+            if ($isregister) {
+                p($noregister);
+                p($isregister);
             }
         }
-
     }
 }
