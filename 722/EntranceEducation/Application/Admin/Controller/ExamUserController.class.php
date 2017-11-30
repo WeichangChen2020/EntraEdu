@@ -216,7 +216,7 @@ class ExamUserController extends CommonController{
                 ->find();
             // dump($final);
             if($final != NULL)
-                $HISTORY->where('id'=>$value['id'])->delete();
+                $HISTORY->where(array('id'=>$value['id']))->delete();
         }
         // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
         // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
