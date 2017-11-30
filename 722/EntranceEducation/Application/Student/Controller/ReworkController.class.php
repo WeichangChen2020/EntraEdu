@@ -74,24 +74,26 @@ class ReworkController extends Controller{
 	}
 	public function test(){
 
-        $EXERCISE = M('Exercise');
-        $HISTORY = M('MistakeHistory');
-        $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
-        foreach ($mistake as $key => $value) {
-            $final = $HISTORY
-                ->where(
-                    array('result'=>1,
-                        'openid'=>$value['openid'],
-                        'quesid'=>$value['quesid']))
-                ->find();
-                unset($value['id']);
-            if($final == NULL){
+        // $EXERCISE = M('Exercise');
+        // $HISTORY = M('MistakeHistory');
+        // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
+        // foreach ($mistake as $key => $value) {
+        //     $final = $HISTORY
+        //         ->where(
+        //             array('result'=>1,
+        //                 'openid'=>$value['openid'],
+        //                 'quesid'=>$value['quesid']))
+        //         ->find();
+        //         unset($value['id']);
+        //     if($final == NULL){
                 
-            dump($HISTORY->add($value));
-            }
+        //     dump($HISTORY->add($value));
+        //     }
                 
-        }
-		
+        // }
+        // dump('0');
+		$num = $EXERCISE->where(array('result'=>0))->count();
+		dump($num);die;
 
 	}
 	public function del(){
