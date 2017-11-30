@@ -206,7 +206,7 @@ class ExamUserController extends CommonController{
     // }
     public function test(){
         $HISTORY = M('MistakeHistory');
-        dump($HISTORY->select());die;
+        dump($HISTORY->limit(50)->select());die;
 
     }
 
