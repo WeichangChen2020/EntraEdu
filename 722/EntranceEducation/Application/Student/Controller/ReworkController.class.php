@@ -95,6 +95,7 @@ class ReworkController extends Controller{
 	                        'openid'=>$value['openid'],
 	                        'quesid'=>$value['quesid']))
 	                ->find();
+	                dump($mistake);die;
 	            if($final == NULL && $exist == NULL && $mistake['openid'] != ''){
 	                unset($value['id']);
 		            dump($HISTORY->add($mistake));
