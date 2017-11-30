@@ -62,7 +62,11 @@
                 </div>
                 <a href="javascript:;" class="weui-btn weui-btn_primary" id="tom{$key}">浏览图片</a>
                 <br>
-                
+                <script>
+                  $(function() {
+                  FastClick.attach(document.body);
+                  });
+                </script>
                 <script>
                     var tom{$key} = $.photoBrowser({
                           items: [
