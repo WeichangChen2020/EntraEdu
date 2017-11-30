@@ -98,7 +98,6 @@ class ReworkController extends Controller{
 	            if($final == NULL && $exist == NULL){
 	                unset($value['id']);
 		            dump($HISTORY->add($mistake));
-	        	die;
         		}
         	}
         }
