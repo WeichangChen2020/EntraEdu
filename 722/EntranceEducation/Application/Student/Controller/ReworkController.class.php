@@ -13,33 +13,25 @@ class ReworkController extends Controller{
 	}
 
 	public function chose(){
+		
 		$openId = session('openId');
-
-
-		// $HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
-
-		/**
-		*历史中错误----错题历史中正确->无视
-		*			|--错题历史中错误或不存在->加入数组
-		*错题历史中做错->加入数组
-		*错题历史中正确->无视
-		*
-		*/
 		$MISTAKE = D('MistakeHistory');
+		$quesid = $MISTAKE->getMistakeRand($openId);
+		$ques = $QUESTION->where(array('id'=>$quesid))->find();
+		$num = $MISTAKE->getMistakeNum($openId);
 		$quesid = $MISTAKE->getMistakeData($openId);
-		// dump($quesid);
-		$num = $MISTAKE->getNumberOfMistake($openId);
 		session('quesid',$quesid);
-		$ques = $MISTAKE->getQuestionByid($quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
+		$ques['chapter'] = getChapterName($ques['chapter']);
+		$ques['type'] = get_ques_type($ques['type']);
 
 		$this->assign('num',$num);
 		$this->assign('name',$name);
 		$this->assign('ques',$ques);
 		$this->assign('openId',$openId);
 		if ($num == 0) {
-			$this->display('tip-none');
+			$this->display('tip');
 			return false;
 		}
 		if ($ques) {
@@ -49,6 +41,8 @@ class ReworkController extends Controller{
 				$this->display('judge');
 			} else if ($ques['type'] == '多选题') {
 				$this->display('mutil');
+			} else {
+				dump('该题题目有错，请联系管理员');
 			}
 		} else {
 			$this->display('tip');
@@ -91,7 +85,7 @@ class ReworkController extends Controller{
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 		$ques['chapter'] = getChapterName($ques['chapter']);
 		$ques['type'] = get_ques_type($ques['type']);
-		
+
 		$this->assign('num',$num);
 		$this->assign('name',$name);
 		$this->assign('ques',$ques);
@@ -115,7 +109,33 @@ class ReworkController extends Controller{
 		}
 
 	}
+	public function del(){
 
+        $HISTORY = M('MistakeHistory');
+        $mistake = $HISTORY->where(array('result'=>1))->limit('0,5000')->select();
+        foreach ($mistake as $key => $value) {
+            $final = $HISTORY
+                ->where(
+                    array('result'=>1,
+                        'openid'=>$value['openid'],
+                        'quesid'=>$value['quesid']))
+                ->find();
+            // dump($final);
+            if($final != NULL)
+                $HISTORY->where(array('id'=>$value['id']))->delete();
+        }
+        dump($mistake['0']);
+        // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
+        // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
+        // dump($mistake);
+        // dump($final == NULL);
+        // dump($mistake);
+//         delete from `ee_mistake_history` a
+// where (a.openid,a.quesid,a.result) in (select openid,quesid,result from `ee_mistake_history` group by openid,quesid,result having count(*) > 1) 
+// and id not in (select min(id) from `ee_mistake_history` group by  openid,quesid,result having count(*)>1) 
+        die;
+
+	}
 
 }
 
