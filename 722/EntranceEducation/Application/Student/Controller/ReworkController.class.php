@@ -89,7 +89,9 @@ class ReworkController extends Controller{
 		$quesid = $MISTAKE->getMistakeData($openId);
 		session('quesid',$quesid);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
-
+		$ques['chapter'] = getChapterName($ques['chapter']);
+		$ques['type'] = get_ques_type($ques['type']);
+		
 		$this->assign('num',$num);
 		$this->assign('name',$name);
 		$this->assign('ques',$ques);
@@ -98,8 +100,6 @@ class ReworkController extends Controller{
 			$this->display('tip');
 			return false;
 		}
-		$ques['chapter'] = getChapterName($ques['chapter']);
-		$ques['type'] = get_ques_type($ques['type']);
 		if ($ques) {
 			if ($ques['type'] == '单选题') {
 				$this->display('chose');
