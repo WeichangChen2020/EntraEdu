@@ -83,6 +83,8 @@ class ReworkController extends Controller{
 		$openId = session('openId');
 		$QUESTION= M('questionbank');
 		$MISTAKE = D('MistakeHistory');
+		$quesid = M('MistakeHistory')->where(array('openid'=>$openId,'result'=>0))->field('quesid')->order('rand()')->limit(1)->select();
+		dump($quesid);
 		die;
 		$quesid = $MISTAKE->getMistakeData($openId);
 		// dump($quesid);
