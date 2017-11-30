@@ -104,6 +104,21 @@ class MistakeHistoryModel extends Model {
         $quesid = $this->where(array('openid'=>$openid,'result'=>0))->field('quesid')->order('rand()')->limit(1)->select();
         return $quesid['0']['quesid'];
     }
+    /**
+     * getMistakeNum($openid) 随机获取错题总数
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright  2017-11-30 14:31 Authors
+     * @return   int  false
+     */
+    public function getMistakeNum($openid) {
+        
+        if (empty($openid)) {
+            return false;
+        }
+        $quesNum = $this->where(array('openid'=>$openid,'result'=>0))->count('quesid');
+        dump($quesNum);die;
+        return $quesid['0']['quesid'];
+    }
     
 
 }
