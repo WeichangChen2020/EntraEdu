@@ -47,7 +47,7 @@ class MistakeHistoryModel extends Model {
 
 	//获取答对的错题数量
 	public function getNumberOfRight($openid = ''){
-		$sql = "SELECT COUNT(DISTINCT quesid) FROM ee_mistake_history WHERE result = '1' AND openid = '$openid'";
+		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_mistake_history WHERE result = '1' AND openid = '$openid'";
 
 		$Model = new \Think\Model();
 		$num = $Model->query($sql);
