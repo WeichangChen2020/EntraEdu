@@ -131,7 +131,6 @@ class ExamSelectModel extends Model {
 			// 用户首次或者中途进入答题页面
 			$map['result'] = -1;
 			$ques = $this->where($map)->limit(1)->select();
-
 			
 			// 所有题目都做完了
 			if (empty($ques)) {
@@ -174,7 +173,9 @@ class ExamSelectModel extends Model {
 	 */
 	public function getExamItemList($openid, $examid) {
 
-		$examQues = M('ExamSelect')->where(array('openid'=>$openid, 'examid'=>$examid))->select();
+		$examQues = $this->where(array('openid'=>$openid, 'examid'=>$examid))
+						 ->select();
+
 		return $examQues;	
 	}
 

@@ -58,7 +58,7 @@ class ExerciseController extends CommonController {
     }
 
     /**
-     * submiter 不允许考试人员详情
+     * ban 不允许考试人员详情
      * @author 陈伟昌<1339849378@qq.com>
      * @copyright  2017-11-21 13:48Authors
      * @var  

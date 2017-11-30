@@ -19,12 +19,14 @@ class RankController extends Controller {
      */
     public function updateRank($p) {
 
-    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(700)->page($p)->select();
+    	$stuList = M('student_info')->field('id, openId, name, number, academy, class')->limit(70)->page($p)->select();
 
     	foreach ($stuList as &$value) {
             if (!empty($value)) {
                 $value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
-                $value['right_num'] = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+                $exercise_rightnum = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+                $rework_rightnum = M('mistake_history')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+                $value['right_num'] = $exercise_rightnum + $rework_rightnum;
                 if (M('exercise_rank')->find($value['id'])) {
                     M('exercise_rank')->save($value);   
                 } else {

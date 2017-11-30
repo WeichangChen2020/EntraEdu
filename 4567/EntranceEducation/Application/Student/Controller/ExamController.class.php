@@ -168,8 +168,6 @@ class ExamController extends Controller{
             $this->display('judge');
         } else if ($quesItem['type'] == '多选题') {
             $this->display('mutil');
-        } else{
-          $this->error('请检查题目类型');
         }
    }
 

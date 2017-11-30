@@ -181,8 +181,12 @@ function getFailNum($id) {
  */
 function get_ques_num($number) {
 	$openid = M('Student_info')->where(array('number'=>$number))->getField('openId');
-	$rig_cot  = M('Exercise')->where(array('openid'=>$openid, 'result' => 1))->count();
-	return $rig_cot;
+	$rig_cot  = M('ExerciseRank')->where(array('openId'=>$openid))->find();
+	// dump($rig_cot);
+	if (empty($rig_cot)) {
+		return '未注册';
+	}
+	return $rig_cot['right_num'];
 }
 
 /**

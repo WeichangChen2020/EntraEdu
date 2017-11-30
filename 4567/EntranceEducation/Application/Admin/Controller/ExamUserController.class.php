@@ -190,22 +190,41 @@ class ExamUserController extends CommonController{
         // 使用die是为了避免输出多余的模板html代码
     }
 
-    //更新学生答题进度
-    public function update(){
-        $STUDENT = M('StudentInfo');
-        $List = $STUDENT->select();
-        $count = M('Questionbank')->count();
-        foreach ($List as $key => $value) {
-            $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
-            dump($wNum);
+    //!已废弃!更新学生答题进度
+    // public function update(){
+    //     $STUDENT = M('StudentInfo');
+    //     $List = $STUDENT->select();
+    //     $count = M('Questionbank')->count();
+    //     foreach ($List as $key => $value) {
+    //         $wNum = D('Student/Exercise')->getCurrentProgress($value['openId']);
+    //         dump($wNum);
             
-            $value['present'] = $wNum/$count;
-            $STUDENT->save($value);
-            dump($value);
+    //         $value['present'] = $wNum/$count;
+    //         $STUDENT->save($value);
+    //         dump($value);
+    //     }
+    // }
+    public function test(){
+        $HISTORY = M('MistakeHistory');
+        $mistake = $HISTORY->where(array('result'=>0))->limit('45000,5000')->select();
+        foreach ($mistake as $key => $value) {
+            $final = $HISTORY
+                ->where(
+                    array('result'=>1,
+                        'openid'=>$value['openid'],
+                        'quesid'=>$value['quesid']))
+                ->find();
+            // dump($final);
+            if($final != NULL)
+                $HISTORY->where(array('id'=>$value['id']))->delete();
         }
-    }
-    public function test($type,$id){
-
+        dump($mistake['0']);
+        // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
+        // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
+        // dump($mistake);
+        // dump($final == NULL);
+        // dump($mistake);
+        die;
 
     }
 

@@ -28,7 +28,7 @@
                         <td align="center">{$questionList.id|getAnswerNum=###}</td>
                         <td align="center">{$questionList.id|getAccuracy=###}%</td>
                         <td align="center">
-                            <a href="javascript:;">详情</a>|<a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="javascript:;">详情</a>|<a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="javascript:alert('删除功能已被禁用!');">删除</a>
                         </td>
                     </tr>
                 </volist>
@@ -38,6 +38,14 @@
     </form>
   
     <div class="pages">
-     {$page}
-     </div> 
+        {$page}
+    </div> 
+    <div class="layui-form-item">
+        <div style="margin-top: 66px;">
+            <a class="layui-btn" href="{:U('Question/export')}" type="submit">导出</a>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+    
+</script>
