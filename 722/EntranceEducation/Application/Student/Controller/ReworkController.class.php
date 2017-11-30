@@ -85,9 +85,9 @@ class ReworkController extends Controller{
                         'quesid'=>$value['quesid']))
                 ->find();
                 unset($value['id']);
+            dump($final);
             if($final == NULL){
                 
-            dump($final);
             dump($HISTORY->add($value));
             die;
             }
