@@ -86,9 +86,11 @@ class ReworkController extends Controller{
                 ->find();
             // dump($final);
                 unset($value['id']);
-                dump($value);die;
-            if($final == NULL)
-                $HISTORY->add($value);
+            if($final == NULL){
+                dump($HISTORY->add($value));die;
+
+            }
+                
         }
 		
 
