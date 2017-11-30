@@ -84,7 +84,8 @@ class ReworkController extends Controller{
 		$QUESTION= M('questionbank');
 		$MISTAKE = D('MistakeHistory');
 		$quesid = $MISTAKE->getMistakeRand($openId);
-		dump($quesid);
+		$ques = $QUESTION->where(array('id'=>$quesid))->find();
+		dump($ques);
 		die;
 		$quesid = $MISTAKE->getMistakeData($openId);
 		// dump($quesid);
