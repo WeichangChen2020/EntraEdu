@@ -88,7 +88,7 @@ class ReworkController extends Controller{
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 		$ques['chapter'] = getChapterName($ques['chapter']);
 		$ques['type'] = get_ques_type($ques['type']);
-		dump($openId);
+		dump($quesid);
 		dump($MISTAKE->where(array('openid'=>$openId,'result'=>0))->order('rand()')->limit(1)->select());die;
 
 		$this->assign('num',$num);
