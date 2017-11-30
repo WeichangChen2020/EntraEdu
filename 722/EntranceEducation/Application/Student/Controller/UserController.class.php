@@ -157,14 +157,18 @@ class UserController extends Controller {
         //         p("更新list中的是否注册成功！");
         //     }
         // }
-        $noregister = $list->where(array('type'=>0))->select();//list表中显示未注册
-        for ($i=0; $i < count($noregister); $i++) { 
-            $isregister = $info->where(array('number'=>$noregister[$i]['number']))->find();
-            $is_newer = $isregister['is_newer'];
-            if ($is_newer==1) {  //info里是新生
-                p($noregister);
-                p($isregister);
+        
+        //$noregister = $list->where(array('type'=>0))->select();//list表中显示未注册
+        $is_newer = $info->where(array('is_newer'=>1))->select();//3903
+        for ($i=0; $i < count($is_newer); $i++) { 
+            $exsit = $list->where(array('number'=>$is_newer[$i]['number']))->find();
+            //$is_newer = $isregister['is_newer'];
+            if (!$exsit) {  //info里是新生
+                //p($noregister);
+                //p($isregister);
+                p($exsit);
             }
         }
+
     }
 }
