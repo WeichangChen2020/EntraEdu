@@ -90,7 +90,9 @@ class ReworkController extends Controller{
 			'spend'  => $time,
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
+		dump($data);
 		dump($right_answer);
+		die;
         // $EXERCISE = M('Exercise');
         // $HISTORY = M('MistakeHistory');
         // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,10000')->select();
