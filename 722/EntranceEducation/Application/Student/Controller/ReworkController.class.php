@@ -79,28 +79,27 @@ class ReworkController extends Controller{
         $EXERCISE = M('Exercise');
         $HISTORY = M('MistakeHistory');
         // $mistake = $EXERCISE->where(array('result'=>0))->limit('0,50000')->select();
-        for($i = 5000;$i < 10200;$i++){
-        	$str = $i.',1';
+        for($i = 1000;$i < 1010;$i++){
+        	$str = $i*10.',10';
         	$mistake = $EXERCISE->where(array('result'=>0))->limit($str)->select();
-        	$final = $HISTORY
-                ->where(
-                    array('result'=>1,
-                        'openid'=>$mistake['0']['openid'],
-                        'quesid'=>$mistake['0']['quesid']))
-                ->find();
-            $exist = $HISTORY
-                ->where(
-                    array('result'=>0,
-                        'openid'=>$mistake['0']['openid'],
-                        'quesid'=>$mistake['0']['quesid']))
-                ->find();
-            if($final == NULL && $exist == NULL){
-	            unset($mistake['0']['id']);
-                dump($final);
-                dump($exist);
-	            dump($HISTORY->add($mistake));
-	        	dump($mistake); 
+        	foreach ($mistake as $key => $value) {
+		        $final = $HISTORY
+	                ->where(
+	                    array('result'=>1,
+	                        'openid'=>$value['openid'],
+	                        'quesid'=>$value['quesid']))
+	                ->find();
+	            $exist = $HISTORY
+	                ->where(
+	                    array('result'=>0,
+	                        'openid'=>$value['openid'],
+	                        'quesid'=>$value['quesid']))
+	                ->find();
+	            if($final == NULL && $exist == NULL){
+	                unset($value['id']);
+		            dump($HISTORY->add($mistake));
 	        	die;
+        		}
         	}
         }
         // foreach ($mistake as $key => $value) {
