@@ -98,6 +98,8 @@ class ReworkController extends Controller{
 			$this->display('tip');
 			return false;
 		}
+		$ques['chapter'] = getChapterName($ques['chapter']);
+		$ques['type'] = get_ques_type($ques['type']);
 		dump($ques);die;
 		if ($ques) {
 			if ($ques['type'] == '单选题') {
