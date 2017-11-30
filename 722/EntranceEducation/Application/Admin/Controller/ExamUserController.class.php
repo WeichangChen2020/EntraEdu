@@ -208,7 +208,7 @@ class ExamUserController extends CommonController{
         $HISTORY = M('MistakeHistory');
         $mistake = $HISTORY->where(array('result'=>0))->limit(50)->select();
         foreach ($mistake as $key => $value) {
-            dump($HISTORY->where(array('result'=>1,'openid'=>$value['openid'],'quesid'=>$value['quesid'])));
+            dump($HISTORY->where(array('result'=>1,'openid'=>$value['openid'],'quesid'=>$value['quesid']))->find());
             // if()
         }
         // dump($mistake);
