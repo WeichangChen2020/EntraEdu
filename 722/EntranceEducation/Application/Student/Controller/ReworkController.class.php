@@ -74,7 +74,7 @@ class ReworkController extends Controller{
 			'time'   => date('Y-m-d:H:i:s', time())
 		);
 
-		M('MistakeHistory')->add($data);
+		M('MistakeHistory')->where(array('openid'=>$openid,'quesid' => $quesid))->save($data);
 
 		$this->ajaxReturn($right_answer, 'json');
 	}
