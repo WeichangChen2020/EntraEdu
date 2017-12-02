@@ -135,14 +135,14 @@ class ExamController extends CommonController{
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
                 p($quesData);
-                // if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
-                //     $this->error('题目已经添加，无需再添加');
-                // } else {
-                //     D('ExamQuestionbank')->add($quesData);
-                //     $this->error('题目添加成功');
-                // }
+                if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
+                    // $this->error('题目已经添加，无需再添加');
+                } else {
+                    D('ExamQuestionbank')->add($quesData);
+                    // $this->error('题目添加成功');
+                }
             }
-            // $this->success('题目添加成功', U('Exam/index'));
+            $this->success('题目添加成功', U('Exam/index'));
         } else {
             
             $examList = D('ExamSetup')->where(array('id'=>$id))->find();
