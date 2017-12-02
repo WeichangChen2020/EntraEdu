@@ -81,11 +81,11 @@ class RandomController extends Controller{
 	public function test(){
 		$MISTAKE = M('mistakeHistory');
 		$EXERCISE = M('exercise');
-		$str = "40000,1000";
+		$str = "0,1000";
 		$list = $MISTAKE->where('result=1')->limit($str)->select();
 		dump($str);
 		foreach ($list as $key => $value) {
-			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid']))->save(array('is_rework'=>1));
+			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid'],'is_rework'=>0))->save(array('is_rework'=>1));
 			dump($final);
 		}
 		// dump($MISTAKE->where('result=1')->count());
