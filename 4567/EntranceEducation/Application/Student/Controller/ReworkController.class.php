@@ -79,7 +79,7 @@ class ReworkController extends Controller{
 		if($option == $right_answer){
 			$data2 = array(
 				'is_rework' = 1;
-			)
+			);
 			M('exercise')->save($data2);
 		}
 		
