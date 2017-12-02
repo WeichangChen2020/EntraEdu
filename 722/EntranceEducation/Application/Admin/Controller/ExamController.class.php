@@ -262,8 +262,12 @@ class ExamController extends CommonController{
         $count = count($stuList);
         $this->assign('userList',$stuList);
 
+        p($count);
+
+
         $Page = new \Think\Page($count,20);
         $show = $Page->show();
+        p($show);die;
         $this->assign('page', $show);
    
         $this->display();
