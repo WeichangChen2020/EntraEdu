@@ -25,7 +25,7 @@ class RankController extends Controller {
             if (!empty($value)) {
                 $value['answer_num'] = M('exercise')->where(array('openid'=>$value['openId']))->count();
                 $exercise_rightnum = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
-                $rework_rightnum = M('mistake_history')->where(array('openid'=>$value['openId'], 'result'=>1))->count();
+                $rework_rightnum = M('exercise')->where(array('openid'=>$value['openId'], 'result'=>0, 'is_rework'=>1))->count();
                 $value['right_num'] = $exercise_rightnum + $rework_rightnum;
                 if (M('exercise_rank')->find($value['id'])) {
                     M('exercise_rank')->save($value);   
