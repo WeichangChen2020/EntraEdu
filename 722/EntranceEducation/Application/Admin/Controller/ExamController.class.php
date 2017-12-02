@@ -127,21 +127,19 @@ class ExamController extends CommonController{
     public function addQues($id) {
         if (IS_POST) {
             $data = I();
-            p($data);
-            // die;
             foreach ($data as $key => $value) {
                 $quesData = array();
                 $quesData['examid'] = $id;
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
                 p($quesData);
-                if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
-                    D('ExamQuestionbank')->where(array('examid'=>$id))->save($quesData);
-                } else {
-                    D('ExamQuestionbank')->add($quesData);
-                }
+                // if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
+                //     D('ExamQuestionbank')->where(array('examid'=>$id))->save($quesData);
+                // } else {
+                //     D('ExamQuestionbank')->add($quesData);
+                // }
             }
-            $this->success('题目添加成功', U('Exam/index'));
+            // $this->success('题目添加成功', U('Exam/index'));
         } else {
             
             $examList = D('ExamSetup')->where(array('id'=>$id))->find();
