@@ -133,11 +133,13 @@ class ExamController extends CommonController{
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
                 p($quesData);
-                // if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
-                //     D('ExamQuestionbank')->where(array('examid'=>$id))->save($quesData);
-                // } else {
-                //     D('ExamQuestionbank')->add($quesData);
-                // }
+                if(D('ExamQuestionbank')->where(array('examid'=>$id, 'chapid'=>$quesData['chapid']))->find()) {
+
+                    D('ExamQuestionbank')->where(array('examid'=>$id, 'chapid'=>$quesData['chapid']))->save($quesData);
+                    
+                } else {
+                    D('ExamQuestionbank')->add($quesData);
+                }
             }
             // $this->success('题目添加成功', U('Exam/index'));
         } else {
