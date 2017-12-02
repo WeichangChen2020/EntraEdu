@@ -127,6 +127,8 @@ class ExamController extends CommonController{
     public function addQues($id) {
         if (IS_POST) {
             $data = I();
+            p($data);
+            die;
             foreach ($data as $key => $value) {
                 $quesData = array();
                 $quesData['examid'] = $id;
