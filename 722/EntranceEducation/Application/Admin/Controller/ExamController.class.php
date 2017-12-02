@@ -118,7 +118,7 @@ class ExamController extends CommonController{
     }
 
     /**
-     * addQues 添加考试题目
+     * addQues 添加（设置）考试章节题目数量
      * @author 李俊君<hello_lijj@qq.com>
      * @copyright  2017-9-16 11:12Authors
      * @var  $id
@@ -132,14 +132,9 @@ class ExamController extends CommonController{
                 $quesData['examid'] = $id;
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
-                p($quesData);
-                if(D('ExamQuestionbank')->where(array('examid'=>$id, 'chapid'=>$quesData['chapid']))->find()) {
 
-                    D('ExamQuestionbank')->where(array('examid'=>$id, 'chapid'=>$quesData['chapid']))->save($quesData);
-                    
-                } else {
-                    D('ExamQuestionbank')->add($quesData);
-                }
+                D('ExamQuestionbank')->add($quesData);
+                
             }
             // $this->success('题目添加成功', U('Exam/index'));
         } else {
@@ -228,12 +223,12 @@ class ExamController extends CommonController{
                 if(!$is_init) {     //表里为空
                     $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
                     if ($init) {
-                        $this->success('生成题目成功');
+                        echo $v['openId'].'同学'.$examid.'考试题目生成成功';
                     } else {
-                        $this->error('生成题目失败');
+                        echo $v['openId'].'同学'.$examid.'考试题目生成失败';
                     }
                 } else {
-                    $this->error('题目已经生成');
+                    echo $v['openId'].'同学'.$examid.'考试题目已经存在！';
                 }
             }           
         }
