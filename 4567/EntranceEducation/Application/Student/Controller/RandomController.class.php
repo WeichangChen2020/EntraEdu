@@ -81,7 +81,7 @@ class RandomController extends Controller{
 	public function test(){
 		$MISTAKE = M('mistakeHistory');
 		$EXERCISE = M('exercise');
-		$str = "9000,1000";
+		$str = "10000,1000";
 		$list = $MISTAKE->where('result=1')->limit($str)->select();
 		dump($str);
 		foreach ($list as $key => $value) {
