@@ -142,7 +142,7 @@ class ExamController extends CommonController{
                 //     $this->error('题目添加成功');
                 // }
             }
-            $this->success('题目添加成功', U('Exam/index'));
+            // $this->success('题目添加成功', U('Exam/index'));
         } else {
             
             $examList = D('ExamSetup')->where(array('id'=>$id))->find();
