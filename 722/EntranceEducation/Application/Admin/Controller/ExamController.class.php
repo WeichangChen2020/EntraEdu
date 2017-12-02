@@ -128,18 +128,19 @@ class ExamController extends CommonController{
         if (IS_POST) {
             $data = I();
             p($data);
-            die;
+            // die;
             foreach ($data as $key => $value) {
                 $quesData = array();
                 $quesData['examid'] = $id;
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
-                if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
-                    $this->error('题目已经添加，无需再添加');
-                } else {
-                    D('ExamQuestionbank')->add($quesData);
-                    $this->error('题目添加成功');
-                }
+                p($quesData);
+                // if(D('ExamQuestionbank')->where(array('examid'=>$id))->find()) {
+                //     $this->error('题目已经添加，无需再添加');
+                // } else {
+                //     D('ExamQuestionbank')->add($quesData);
+                //     $this->error('题目添加成功');
+                // }
             }
             $this->success('题目添加成功', U('Exam/index'));
         } else {
