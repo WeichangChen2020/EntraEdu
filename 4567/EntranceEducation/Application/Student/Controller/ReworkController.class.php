@@ -77,6 +77,13 @@ class ReworkController extends Controller{
 
 		$this->ajaxReturn($right_answer, 'json');
 	}
+	public function test(){
+		$MISTAKE = M('mistakeHistory');
+		$list = $MISTAKE->where('result=1')->limit('2000')->select();
+		dump($list);
+		dump($MISTAKE->where('result=1')->count());
+		die;
+	}
 
 
 
