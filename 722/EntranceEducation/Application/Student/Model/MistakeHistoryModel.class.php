@@ -6,57 +6,42 @@ class MistakeHistoryModel extends Model {
 	//获取错题信息
 	public function getMistakeData($openid = '') { 
 
-		$sql = "SELECT quesid FROM ee_exercise
-		where openid = '$openid' AND result = '0'
-		AND NOT EXISTS (
-			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid') LIMIT 1;";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
 
-		// dump($sql);die;	
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-		// dump($res);
-		if (empty($res)) {
-			return false;
-		}
-		// SELECT DISTINCT quesid FROM ee_exercise
-		// where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0'
-		// AND NOT EXISTS (
-		// 	SELECT * FROM ee_mistake_history
-		// 	WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
-		return $res[0]['quesid'];
+		$data = M('exercise')->where($map)->find();
+
+		return $data['quesid'];
 	}
 
 	//获取错题数量
 	public function getNumberOfMistake($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_exercise
-		where openid = '$openid' AND result = '0'
-		AND NOT EXISTS (
-			SELECT * FROM ee_mistake_history
-			WHERE ee_exercise.quesid = ee_mistake_history.quesid AND ee_mistake_history.result = '1' AND openid = '$openid');";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
 
-		$Model = new \Think\Model();
-		$num = $Model->query($sql);
-		// dump($num);
-		if (empty($num)) {
-			return false;
-		}
-		// echo $num[0]['COUNT(quesid)'];
-		return $num[0]['COUNT(quesid)'];
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
+
 	}
 
 	//获取答对的错题数量
 	public function getNumberOfRight($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_mistake_history WHERE result = '1' AND openid = '$openid'";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 1,
+		);
 
-		$Model = new \Think\Model();
-		$num = $Model->query($sql);
-		// dump($num);
-		if (empty($num)) {
-			return false;
-		}
-		// echo $num[0]['COUNT(quesid)'];
-		return $num[0]['COUNT(quesid)'];
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
 	}	
 
 	//获取题目信息
@@ -89,35 +74,5 @@ class MistakeHistoryModel extends Model {
 
 		return $chapter;
 	}
-
-    /**
-     * getMistakeRand($openid) 随机获取错题的id号
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-30 14:31 Authors
-     * @return   int  false
-     */
-    public function getMistakeRand($openid) {
-        
-        if (empty($openid)) {
-            return false;
-        }
-        $quesid = $this->where(array('openid'=>$openid,'result'=>0))->order('rand()')->limit(1)->select();
-        return $quesid['0']['quesid'];
-    }
-    /**
-     * getMistakeNum($openid) 随机获取错题总数
-     * @author 陈伟昌<1339849378@qq.com>
-     * @copyright  2017-11-30 14:31 Authors
-     * @return   int  false
-     */
-    public function getMistakeNum($openid) {
-        
-        if (empty($openid)) {
-            return false;
-        }
-        $quesNum = $this->where(array('openid'=>$openid,'result'=>0))->count('quesid');
-        return $quesNum;
-    }
-    
 
 }
