@@ -86,7 +86,6 @@ class RandomController extends Controller{
 			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid']))->find();
 			dump($final);
 		}
-		dump($list);
 		dump($MISTAKE->where('result=1')->count());
 		die;
 	}
