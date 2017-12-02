@@ -81,7 +81,7 @@ class RandomController extends Controller{
 	public function test(){
 		$MISTAKE = M('mistakeHistory');
 		$EXERCISE = M('exercise');
-		$list = $MISTAKE->where('result=1')->limit('24000,2000')->select();
+		$list = $MISTAKE->where('result=1')->limit('26000,1000')->select();
 		foreach ($list as $key => $value) {
 			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid']))->save(array('is_rework'=>1));
 			dump($final);
