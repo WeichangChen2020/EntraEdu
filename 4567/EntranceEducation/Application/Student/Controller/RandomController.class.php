@@ -78,20 +78,6 @@ class RandomController extends Controller{
         $this->ajaxReturn($right_answer, 'json');
 
 	}
-	public function test(){
-		$MISTAKE = M('mistakeHistory');
-		$EXERCISE = M('exercise');
-		// $str = "40000,1";
-		// $list = $MISTAKE->where('result=1')->limit($str)->select();
-		// dump($str);
-		// foreach ($list as $key => $value) {
-		// 	$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid'],'is_rework'=>0))->save(array('is_rework'=>1));
-		// 	dump($final);
-		// }
-		dump($MISTAKE->where('result=1')->count());
-		// die;
-	}
-
 
 
 }

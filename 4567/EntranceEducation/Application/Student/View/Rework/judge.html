@@ -57,7 +57,8 @@
 					    <lable class="option-contents">错误</lable>
 					</div>
 				</a>
-			<a class="c-button" href="{:U('Rework/chose')}">下一题</a>
+			<a class="c-button" href="{:U('Rework/chose', array('t'=>time()))}">下一题</a>
+			
 		</div>
 
 	</body>
@@ -84,7 +85,6 @@
 
 		var url = "{:U('Rework/submit')}";
         $.post(url, data, function(res){
-        	console.log(res);
           	if(option == res) {
 	      		use.setAttribute('xlink:href', '#icon-option-right');
 	      	} else {

@@ -4,7 +4,7 @@ namespace Admin\Controller;
 use Think\Controller;
 class StatisController extends Controller
 {
-    public function index() {
+    /*public function index() {
     	$this->display('count');
     }
 
@@ -36,12 +36,8 @@ class StatisController extends Controller
         $sum = D('Exercise')->count();
 
         $this->ajaxReturn($sum);
-    }
+    }*/
 
 
-
-
-
-   
    
 }

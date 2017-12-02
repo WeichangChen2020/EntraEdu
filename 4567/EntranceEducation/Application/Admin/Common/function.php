@@ -206,6 +206,14 @@ function is_ablity_exam($number) {
 		return '否';
 }
 
+// 
+function create_exam_num($openid, $examid)  {
+	$ExamSelect = D('Student/ExamSelect');
+    
+    $create_exam_num   = $ExamSelect->where(array('openid'=>$openid, 'examid'=>$examid))->count();
+    return $create_exam_num;
+    
+}
 
 
  ?>

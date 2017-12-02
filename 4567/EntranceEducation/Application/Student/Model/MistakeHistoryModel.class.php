@@ -33,16 +33,15 @@ class MistakeHistoryModel extends Model {
 
 	//获取答对的错题数量
 	public function getNumberOfRight($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM ee_mistake_history WHERE result = '1' AND openid = '$openid'";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 1,
+		);
 
-		$Model = new \Think\Model();
-		$num = $Model->query($sql);
-		// dump($num);
-		if (empty($num)) {
-			return false;
-		}
-		// echo $num[0]['COUNT(quesid)'];
-		return $num[0]['COUNT(quesid)'];
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
 	}	
 
 	//获取题目信息

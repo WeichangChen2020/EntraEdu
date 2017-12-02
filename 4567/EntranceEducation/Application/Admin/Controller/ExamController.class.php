@@ -118,7 +118,7 @@ class ExamController extends CommonController{
     }
 
     /**
-     * addQues 添加考试题目
+     * addQues 添加（设置）考试章节题目数量
      * @author 李俊君<hello_lijj@qq.com>
      * @copyright  2017-9-16 11:12Authors
      * @var  $id
@@ -132,9 +132,11 @@ class ExamController extends CommonController{
                 $quesData['examid'] = $id;
                 $quesData['chapid'] = intval(substr($key, 8));
                 $quesData['chap_num'] = intval($value);
+
                 D('ExamQuestionbank')->add($quesData);
+                
             }
-            $this->success('题目添加成功', U('Exam/index'));
+            // $this->success('题目添加成功', U('Exam/index'));
         } else {
             
             $examList = D('ExamSetup')->where(array('id'=>$id))->find();
@@ -200,5 +202,82 @@ class ExamController extends CommonController{
 
     }
 
+
+
+    /**
+     * inInit 为每一个学生创建一套考试题目
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-23 10:40Authors
+     * @var  $id
+     * @return 
+     */
+    public function createExamQues($examid) {
+
+        $EXAM    = D('Student/ExamSelect');
+        $college = D('Student/ExamCollege')->getCollege($examid);
+
+        foreach ($college as $key => &$value) {
+            $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
+            foreach ($openidArr as $k => $v) {
+                $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
+                if(!$is_init) {     //表里为空
+                    $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
+                    if ($init) {
+                        echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
+                    } else {
+                        echo $v['openId'].'同学'.$examid.'考试题目生成失败'.'<br/>';
+                    }
+                } else {
+                    echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
+                }
+            }           
+        }
+
+        //$this->error('题目已经生成');
+    }
+
+    /**
+     * preview 预览所有可以参加考试的学生信息
+     * @author 蔡佳琪
+     * @copyright  2017-11-28 20:45Authors
+     * @var  
+     * @var  
+     * @return 
+     */
+
+    public function preview($examid) {
+
+        $EXAM    = D('Student/ExamSelect');
+        $college = D('Student/ExamCollege')->getCollege($examid);
+        $stuList = array();
+        foreach ($college as $key => &$value) {
+            $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
+            $stuList = array_merge($stuList, $list);
+        }
+        $this->assign('userList',$stuList);
+        $Page = new \Think\Page($count,20);
+        $show = $Page->show();
+        $this->assign('page', $show);
+        $this->display();
+    }
+
+    /**
+     * previewExamQues 预览某个学生的考试题目
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-11-28 10:45Authors
+     * @var  $examid  考试id
+     * @var  $openid  学生id
+     * @return 
+     */
+
+
+    public function previewExamQues($openid, $examid) {
+
+        $ExamSelect = D('Student/ExamSelect');
+        $examItem   = $ExamSelect->getExamItemList($openid, $examid);
+
+        p($examItem); die;
+        
+    }
 
 }
