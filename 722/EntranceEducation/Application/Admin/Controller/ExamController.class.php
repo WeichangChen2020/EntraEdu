@@ -218,10 +218,7 @@ class ExamController extends CommonController{
 
         foreach ($college as $key => &$value) {
             $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
-            p($openidArr);
-            /*foreach ($openidArr as $k => $v) {
-
-
+            foreach ($openidArr as $k => $v) {
                 $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
                 if(!$is_init) {     //表里为空
                     $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
@@ -233,7 +230,7 @@ class ExamController extends CommonController{
                 } else {
                     echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
                 }
-            }  */         
+            }           
         }
 
         //$this->error('题目已经生成');
