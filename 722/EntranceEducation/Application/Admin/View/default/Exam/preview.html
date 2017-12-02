@@ -16,7 +16,7 @@
             <td align="center">{$userList["class"]}</td>
              <td align="center">{$userList["academy"]}</td>
             <td align="center">{$userList["number"]}</td>
-            <td align="center"><a class="layui-btn layui-btn-primary" href="{:U('previewExamQues', array('examid'=>I('examid'),'openid'=>$userList['openId']))}">预览</a>
+            <td align="center"><a class="layui-btn layui-btn-primary" href="{:U('previewExamQues', array('examid'=>I('examid'),'openid'=>$userList['openId']))}">预览(<php>echo create_exam_num($userList['openId'], $_GET['examid']);</php>)</a>
             </td>
           </tr>
         </volist>

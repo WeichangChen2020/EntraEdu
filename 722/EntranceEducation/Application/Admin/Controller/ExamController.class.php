@@ -257,7 +257,6 @@ class ExamController extends CommonController{
             $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
             $stuList = array_merge($stuList, $list);
         }
-        $count = count($stuList);
         $this->assign('userList',$stuList);
         $Page = new \Think\Page($count,20);
         $show = $Page->show();
@@ -282,30 +281,6 @@ class ExamController extends CommonController{
 
         p($examItem); die;
         
-        $count      = count($examItem);//题数
-        //$Question = M('Questionbank');
-        $queList = array();
-        foreach ($examItem as $key => &$value) {
-            //p($value[$key]['quesid']);
-            $list = M('questionbank')->where(array('id'=>$value['quesid']))->page($_GET['p'].',20')->select();
-            array_push($queList,array_merge($value, $list['0']));
-        }
-
-        //dump($queList);die();
-        // if($this->assign('questionList',$quelist))
-        // {
-        //     p("success!");
-        //     die;
-        // }
-        $this->assign('questionList',$queList);
-        //p($count);die;
-        $this->assign('count', $count);
-        $Page       = new \Think\Page($count,20);
-        $show       = $Page->show();
-        $this->assign('page',$show);
-       
-        $this->display();        
-
     }
 
 }
