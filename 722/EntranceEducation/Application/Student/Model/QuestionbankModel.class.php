@@ -232,9 +232,9 @@ class QuestionbankModel extends Model{
 
 
 	public function getProgress($openid) {
-		//$progress = D('Questionbank')->getQuesNum($openid);
+
 		$result = D('exercise')->getExerciseRecord($openid);//总答题量，答对数，答错数，总题量
-		$result['reworknum'] = D('MistakeHistory')->getNumberOfRight($openid);//错题回顾中答对的题数
+		$result['reworknum'] = M('exercise')->where(array('openid'=>$openid, 'result'=>0, 'is_rework'=>1))->count();//错题回顾中答对的题数
 		$result['sumNum'] = $result['rig_cot']+$result['reworknum'];//总答对题数
 		$result['progress'] = $result['sumNum']/$result['sum'];//完成进度
         
