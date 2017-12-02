@@ -211,7 +211,7 @@ class ExamSelectModel extends Model {
 
 	 	$set_time   = D('ExamSetup')->where(array('id'=>$examid))->getField('set_time');
 
-        $start_time = D('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
+        // $start_time = D('ExamSelect')->where(array('openid'=>$openid,'examid'=>$examid))->min('time');
         if (empty($start_time)) {
         	$start_time = D('ExamSetup')->where(array('id'=>$examid))->getField('start_time');
         	$end_time = $start_time + intval($set_time) * 60;
