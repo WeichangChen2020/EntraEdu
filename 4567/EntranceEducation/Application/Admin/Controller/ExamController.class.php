@@ -288,3 +288,4 @@ FROM Subject_Selection
 GROUP BY Subject, Semester
 
 [删除重复id]*/
+// select name, number, academy FROM ee_student_list where type = 1 and number not in (SELECT number from ee_student_info)
