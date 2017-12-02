@@ -6,7 +6,7 @@ class MistakeHistoryModel extends Model {
 	//获取错题信息
 	public function getMistakeData($openid = '') { 
 
-		$sql = "SELECT DISTINCT quesid FROM ee_exercise
+		$sql = "SELECT quesid FROM ee_exercise
 		where openid = '$openid' AND result = '0'
 		AND NOT EXISTS (
 			SELECT * FROM ee_mistake_history
