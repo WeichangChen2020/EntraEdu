@@ -218,19 +218,22 @@ class ExamController extends CommonController{
 
         foreach ($college as $key => &$value) {
             $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
-            foreach ($openidArr as $k => $v) {
+            p($openidArr);
+            /*foreach ($openidArr as $k => $v) {
+
+
                 $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
                 if(!$is_init) {     //表里为空
                     $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
                     if ($init) {
-                        echo $v['openId'].'同学'.$examid.'考试题目生成成功';
+                        echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
                     } else {
-                        echo $v['openId'].'同学'.$examid.'考试题目生成失败';
+                        echo $v['openId'].'同学'.$examid.'考试题目生成失败'.'<br/>';
                     }
                 } else {
-                    echo $v['openId'].'同学'.$examid.'考试题目已经存在！';
+                    echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
                 }
-            }           
+            }  */         
         }
 
         //$this->error('题目已经生成');
