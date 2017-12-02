@@ -279,8 +279,9 @@ class ExamController extends CommonController{
 
         $ExamSelect = D('Student/ExamSelect');
         $examItem   = $ExamSelect->getExamItemList($openid, $examid);
-        //p($examItem);//exam_select里某学生的50条数据，包括quesid
-        //p($examItem[0]['quesid']);
+
+        p($examItem); die;
+        
         $count      = count($examItem);//题数
         //$Question = M('Questionbank');
         $queList = array();
