@@ -77,8 +77,12 @@ class ReworkController extends Controller{
 		
 		//若错题回顾中回答正确，则更新exercise表中的is_rework
 		if($option == $right_answer){
+			$map = array(
+				'openid' => $openid,
+				'quesid' => $quesid
+			);
 			$data2['is_rework'] = 1;
-			M('exercise')->save($data2);
+			M('exercise')->where($map)->save($data2);
 		}
 		
 		$this->ajaxReturn($right_answer, 'json');
