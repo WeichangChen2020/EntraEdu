@@ -83,11 +83,11 @@ class RandomController extends Controller{
 		$EXERCISE = M('exercise');
 		$list = $MISTAKE->where('result=1')->limit('2000')->select();
 		foreach ($list as $key => $value) {
-			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid']))->find();
+			$final = $EXERCISE->where(array('openid'=>$value['openid'],'quesid'=>$value['quesid']))->save(array('is_rework'=>1));
 			dump($final);
 		}
-		dump($MISTAKE->where('result=1')->count());
-		die;
+		// dump($MISTAKE->where('result=1')->count());
+		// die;
 	}
 
 
