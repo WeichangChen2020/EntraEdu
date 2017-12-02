@@ -56,10 +56,7 @@ class ExamController extends Controller{
         $openid = session('openId');
         //echo $openid;
         // $college = D('StudentInfo')->getCollege();
-        if (D('ExamCollege')->is_college($openid, 10))
-        {
-          $this->redirect('Exam/index', array('examid' => 10));          
-        }
+      
         if (D('ExamCollege')->is_college($openid, 11))
         {
           $this->redirect('Exam/index', array('examid' => 11));
@@ -67,6 +64,54 @@ class ExamController extends Controller{
         if (D('ExamCollege')->is_college($openid, 12))
         {
           $this->redirect('Exam/index', array('examid' => 12));
+        }
+        if (D('ExamCollege')->is_college($openid, 16))
+        {
+          $this->redirect('Exam/index', array('examid' => 16));
+        }
+        if (D('ExamCollege')->is_college($openid, 17))
+        {
+          $this->redirect('Exam/index', array('examid' => 17));
+        }
+        if (D('ExamCollege')->is_college($openid, 18))
+        {
+          $this->redirect('Exam/index', array('examid' => 18));
+        }
+        if (D('ExamCollege')->is_college($openid, 19))
+        {
+          $this->redirect('Exam/index', array('examid' => 19));
+        }
+        if (D('ExamCollege')->is_college($openid, 20))
+        {
+          $this->redirect('Exam/index', array('examid' => 20));
+        }
+        if (D('ExamCollege')->is_college($openid, 21))
+        {
+          $this->redirect('Exam/index', array('examid' => 21));
+        }
+        if (D('ExamCollege')->is_college($openid, 22))
+        {
+          $this->redirect('Exam/index', array('examid' => 22));
+        }
+        if (D('ExamCollege')->is_college($openid, 23))
+        {
+          $this->redirect('Exam/index', array('examid' => 23));
+        }
+        if (D('ExamCollege')->is_college($openid, 24))
+        {
+          $this->redirect('Exam/index', array('examid' => 24));
+        }
+        if (D('ExamCollege')->is_college($openid, 25))
+        {
+          $this->redirect('Exam/index', array('examid' => 25));
+        }
+        if (D('ExamCollege')->is_college($openid, 26))
+        {
+          $this->redirect('Exam/index', array('examid' => 26));
+        }
+        if (D('ExamCollege')->is_college($openid, 27))
+        {
+          $this->redirect('Exam/index', array('examid' => 27));
         }
 
         $this->display();

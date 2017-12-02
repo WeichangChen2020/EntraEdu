@@ -136,7 +136,7 @@ class ExamController extends CommonController{
                 D('ExamQuestionbank')->add($quesData);
                 
             }
-            // $this->success('题目添加成功', U('Exam/index'));
+            $this->success('题目添加成功', U('Exam/index'));
         } else {
             
             $examList = D('ExamSetup')->where(array('id'=>$id))->find();
@@ -281,3 +281,11 @@ class ExamController extends CommonController{
     }
 
 }
+
+/*select name, number, academy, class, time, count(*) as count from ee_student_info group by name, class, academy having count>1; 
+SELECT Subject, Semester, Count(*)
+FROM Subject_Selection
+GROUP BY Subject, Semester
+
+[删除重复id]*/
+// select name, number, academy FROM ee_student_list where type = 1 and number not in (SELECT number from ee_student_info)
