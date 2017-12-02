@@ -74,7 +74,15 @@ class ReworkController extends Controller{
 		);
 
 		M('MistakeHistory')->add($data);
-
+		
+		//若错题回顾中回答正确，则更新exercise表中的is_rework
+		if($option == $right_answer){
+			$data2 = array(
+				'is_rework' = 1;
+			)
+			M('exercise')->save($data2);
+		}
+		
 		$this->ajaxReturn($right_answer, 'json');
 	}
 	public function test(){
