@@ -81,61 +81,63 @@ class ExamController extends Controller{
         if (D('ExamCollege')->is_college($openid, 11))
         {
           $this->redirect('Exam/index', array('examid' => 11));
-        }
-        if (D('ExamCollege')->is_college($openid, 12))
+        } 
+        else if (D('ExamCollege')->is_college($openid, 12))
         {
           $this->redirect('Exam/index', array('examid' => 12));
         }
-        if (D('ExamCollege')->is_college($openid, 16))
+        else if (D('ExamCollege')->is_college($openid, 16))
         {
           $this->redirect('Exam/index', array('examid' => 16));
         }
-        if (D('ExamCollege')->is_college($openid, 17))
+        else if (D('ExamCollege')->is_college($openid, 17))
         {
           $this->redirect('Exam/index', array('examid' => 17));
         }
-        if (D('ExamCollege')->is_college($openid, 18))
+        else if (D('ExamCollege')->is_college($openid, 18))
         {
           $this->redirect('Exam/index', array('examid' => 18));
         }
-        if (D('ExamCollege')->is_college($openid, 19))
+        else if (D('ExamCollege')->is_college($openid, 19))
         {
           $this->redirect('Exam/index', array('examid' => 19));
         }
-        if (D('ExamCollege')->is_college($openid, 20))
+        else if (D('ExamCollege')->is_college($openid, 20))
         {
           $this->redirect('Exam/index', array('examid' => 20));
         }
-        if (D('ExamCollege')->is_college($openid, 21))
+        else if (D('ExamCollege')->is_college($openid, 21))
         {
           $this->redirect('Exam/index', array('examid' => 21));
         }
-        if (D('ExamCollege')->is_college($openid, 22))
+        else if (D('ExamCollege')->is_college($openid, 22))
         {
           $this->redirect('Exam/index', array('examid' => 22));
         }
-        if (D('ExamCollege')->is_college($openid, 23))
+        else if (D('ExamCollege')->is_college($openid, 23))
         {
           $this->redirect('Exam/index', array('examid' => 23));
         }
-        if (D('ExamCollege')->is_college($openid, 24))
+        else if (D('ExamCollege')->is_college($openid, 24))
         {
           $this->redirect('Exam/index', array('examid' => 24));
         }
-        if (D('ExamCollege')->is_college($openid, 25))
+        else if (D('ExamCollege')->is_college($openid, 25))
         {
           $this->redirect('Exam/index', array('examid' => 25));
         }
-        if (D('ExamCollege')->is_college($openid, 26))
+        else if (D('ExamCollege')->is_college($openid, 26))
         {
           $this->redirect('Exam/index', array('examid' => 26));
         }
-        if (D('ExamCollege')->is_college($openid, 27))
+        else if (D('ExamCollege')->is_college($openid, 27))
         {
-          $this->redirect('Exam/index', array('examid' => 27));
-        }
-
-        $this->display();
+            $this->redirect('Exam/index', array('examid' => 27));
+        } 
+        else
+        {
+          $this->error('历老师你不能参加，请不要点开了', U('User/index', array('openId'=>$openid)));
+        } 
 
 
     }
