@@ -133,6 +133,10 @@ class BalanceController extends Controller{
 
 		p($stu_id);
 
+		$url2 = $url[$stu_id % 7];
+
+		p($url2);
+
 		p($url);
 
 	}
