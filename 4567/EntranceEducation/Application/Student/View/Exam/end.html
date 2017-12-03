@@ -18,14 +18,23 @@
 		</style>
 	</head>
 	<body>
-			<div class="weui-msg__text-area">
+            <div class="weui-msg">
+            <div class="weui-msg__icon-area">
+                <img class="img" src="{$stuInfo['headimgurl']|default='__PUBLIC__/images/newer/xsc_logo.jpg'}">
+            </div>
+            <div class="weui-msg__text-area">
                 <h2 class="weui-msg__title">{$stuInfo['name']}</h2>
                 <div class="weui-cells__title">考试说明</div>
                 <div class="weui-form-preview">
                     <div class="weui-form-preview__bd">
                         <div class="weui-form-preview__item">
                             <ul>
-                                <li>本次考试已经结束，请提交！！</li>
+                                <li>1. 本次考试时间：{$examInfo.start_time|date="H:i",###} -- <php> echo date("H:i", $examInfo['start_time'] + $examInfo['set_time']*60);</php></li>
+                                <li>2. 本次考试题目<span>{$examInfo['count']}</span>道题</li>
+                                <li>3. 答对<span>{$examInfo['count']*4/5|ceil}</span>道题目算通过</li>
+                                <li>4. 一人只有<span>一次</span>提交机会</li>
+                                <li>5. 点击<span>进入考试</span>后开始计时，时间结束还未答完的将<span>自动提交</span>试卷</li>
+                                <li>6. 答题界面的右上角按钮为<span>索引</span>，可跳至<span>任意</span>题目</li>
                             </ul>    
                         </div>
                     </div>
@@ -33,6 +42,12 @@
                   
                 </div>
             </div>
+            <div class="weui-msg__opr-area">
+                <p class="weui-btn-area">
+                    <a id="enter_exam" class="weui-btn weui-btn_primary">进入考试</a>
+            </div>
+            
+        </div>
 				
 			<a class="c-button" id="submit"}">提交</a>
 

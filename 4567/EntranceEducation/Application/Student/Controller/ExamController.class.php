@@ -46,6 +46,29 @@ class ExamController extends Controller{
 
         $this->display();
     }
+    /**
+     * end 模拟考试首页面
+     * @author 李俊君<hello_lijj@qq.com>
+     * @copyright  2017-10-2 20:44Authors
+     **/
+    public function end() {
+
+        // ******************获取用户信息*****************
+        $openid   = session('openId');
+        $stuInfo  = D('StudentInfo')->getStuInfo($openid);
+        $this->assign('stuInfo', $stuInfo);
+
+
+        // ******************获取用户考试信息**************
+        $examid   = I('examid');
+        session('examid', $examid);
+        $examInfo = D('ExamSetup')->getExamInfo($examid);
+
+        $this->assign('examInfo', $examInfo);
+
+
+        $this->display();
+    }
 
     /**
      * index 正式考试首页面
