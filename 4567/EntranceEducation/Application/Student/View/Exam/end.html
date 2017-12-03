@@ -34,10 +34,8 @@
                             <ul class="end">
                                 <li><span>1.本次考试已经结束，请提交！！</span></li>
                                 <li>2. 本次考试时间：{$examInfo.start_time|date="H:i",###} -- <php> echo date("H:i", $examInfo['start_time'] + $examInfo['set_time']*60);</php></li>
-                                <li>3. 本次考试题目<span>{$examInfo['count']}</span>道题</li>
-                                <li>4. 答对<span>{$examInfo['count']*4/5|ceil}</span>道题目算通过</li>
-                                <li>5. 一人只有<span>一次</span>提交机会</li>
-                                <li>6. 点击<span>进入考试</span>后开始计时，时间结束还未答完的将<span>自动提交</span>试卷</li>
+                                <li>3. 一人只有<span>一次</span>提交机会</li>
+                                <li>4. 点击<span>进入考试</span>后开始计时，时间结束还未答完的将<span>自动提交</span>试卷</li>
                             </ul>    
                         </div>
                     </div>
