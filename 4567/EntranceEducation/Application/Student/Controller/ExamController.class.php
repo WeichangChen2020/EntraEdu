@@ -62,7 +62,6 @@ class ExamController extends Controller{
         // ******************获取用户考试信息**************
         $examid   = session('examid');
         $examInfo = D('ExamSetup')->getExamInfo($examid);
-        dump($examid);die;
         $this->assign('examInfo', $examInfo);
 
 
