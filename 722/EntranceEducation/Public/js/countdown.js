@@ -39,7 +39,9 @@ function returnInfo(res) {
     // 考试倒计时已经结束
     if(res.time_end == 1 && res.is_submit == 0) {
         $.alert("本次考试时间已到，系统已自动为你保存答题记录，请退出！！", "提示");
-        window.location="{:U('User/index',array('openId'=>session('openId')))}";
+        href = "{:U('User/index',array('openId'=>session('openId')))}";
+        href = {:U('User/index',array('openId'=>session('openId')))};
+        window.location="";
         return 1;
     }
     // 已开启，未提交，已结束
