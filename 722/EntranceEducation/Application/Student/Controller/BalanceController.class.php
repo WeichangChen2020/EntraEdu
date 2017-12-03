@@ -131,6 +131,8 @@ class BalanceController extends Controller{
 
 		);
 
+		p($stu_id);
+
 		p($url);
 
 	}
