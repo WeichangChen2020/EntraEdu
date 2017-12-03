@@ -45,7 +45,8 @@ function returnInfo(res) {
     // 考试倒计时已经结束
     if(res.time_end == 1 && res.is_submit == 0) {
         $.alert("本次考试时间已到，系统已自动为你保存答题记录，请退出！！", "提示");
-        return;
+        window.location.href="{:U('Exam/index')}";
+        //return;
     }
     
 
