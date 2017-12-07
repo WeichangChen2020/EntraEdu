@@ -38,8 +38,8 @@ class ExamSubmitModel extends Model {
 	public function getGrade($openid){
 		$map = array(
 			'openid' => $openid,
-		);
-		$map['id']  = array('egt',11);
+		); 
+		$map['examid']  = array('egt',11);
 		$submit = $this->where($map)->find();
 		return $submit;
 	}
