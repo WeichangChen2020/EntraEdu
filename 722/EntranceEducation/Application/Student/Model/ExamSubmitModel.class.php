@@ -28,6 +28,22 @@ class ExamSubmitModel extends Model {
 			return false;
 	}
 
+	/**
+	 * getGrade() 获得正式考试成绩
+	 * @author 蔡佳琪
+	 * @copyright  2017-12-7 10:22Authors
+	 * @param $openid, $examid  //User控制器里如何获得$examid？后需改善！ 
+	 * @return array() submit
+	 */
+	public function getGrade($openid){
+		$map = array(
+			'openid' => $openid,
+		); 
+		$map['examid']  = array('egt',11);
+		$submit = $this->where($map)->find();
+		return $submit;
+	}
+
 }
 
  ?>
