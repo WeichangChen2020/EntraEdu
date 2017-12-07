@@ -33,7 +33,13 @@
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
 		                </li>
-                        <li class="info">答对题数：<b>{$progress.sumNum|default='你猜'}</b></li>
+                        <li class="info">答对题数：<b>{$progress.sumNum|default='你猜'}</b>
+                            <if condition="$progress.sumNum egt 875 ">
+                                <span style="color: green;">（获得考试资格）</span>
+                            <else />
+                                <span style="color: red;">（无考试资格）</span>
+                            </if>
+                        </li>
                         <li class="info">成绩：{$submit.score|default='你猜'}</li>
 		            </ul>
 		            
@@ -166,7 +172,7 @@
 
         var progress = {$progress.progress};
         //var sumNum = {$progress.sumNum};
-        if (progress < 0.58) {
+        if (progress < 0.6) {
             $.alert('抱歉，你还没有获得考试资格！');
         } else {
             window.location.href = "{:U('Student/Exam/final_test')}";
