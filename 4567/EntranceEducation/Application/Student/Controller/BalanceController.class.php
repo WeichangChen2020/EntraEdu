@@ -11,7 +11,8 @@ class BalanceController extends Controller{
 
 	public function balance($openid = '') {
 
-		$college = M('student_info')->where(array('openId'=>$openid))->getField('academy');
+		// 按照学院分配做负载均衡
+		/*$college = M('student_info')->where(array('openId'=>$openid))->getField('academy');
 
 		$url = array(
 
@@ -54,7 +55,39 @@ class BalanceController extends Controller{
 			header("location: http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/".$openid);
 		} else {
 			header("location: ".$url[$college]);
+		}*/
+
+
+		//按照 id / 7 的余数，做负载均衡
+		$stu_id = M('student_info')->where(array('openId'=>$openid))->getField('id');
+
+		$url = array(
+			'http://722.adsweixin.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://722.testtest11.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://722.dataplatform.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://722.testet.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://722.classtest.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://722.cprogramplatform.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+			'http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/'.$openid,
+
+		);
+
+
+		// 不存在说明没注册
+		if (!isset($stu_id)) {
+			header("location: http://newer.gailvlunpt.com/EntranceEducation/index.php/User/index/openId/".$openid);
+		} else {
+			header("location: ".$url[$stu_id % 7]);
 		}
+
+
+
 	}    
 
 
@@ -106,4 +139,12 @@ class BalanceController extends Controller{
 
 		p($url);
 	}
+
+	public function banlace_as_id($openid) {
+
+		
+
+
+	}
+
 }

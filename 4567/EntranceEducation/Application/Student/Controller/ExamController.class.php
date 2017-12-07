@@ -136,7 +136,7 @@ class ExamController extends Controller{
         } 
         else
         {
-          $this->error('历老师你不能参加，请不要点开了', U('User/index', array('openId'=>$openid)));
+          $this->error('你不能参加，请不要点开了！', U('User/index', array('openId'=>$openid)));
         } 
 
 
