@@ -35,9 +35,9 @@
 		                </li>
                         <li class="info">答对题数：<b>{$progress.sumNum|default='你猜'}</b>
                             <if condition="$progress.sumNum egt 875 ">
-                                获得考试资格
+                                <span style="color: green;">（获得考试资格）</span>
                             <else />
-                                无考试资格
+                                <span style="color: red;">（无考试资格）</span>
                             </if>
                         </li>
                         <li class="info">成绩：{$submit.score|default='你猜'}</li>
