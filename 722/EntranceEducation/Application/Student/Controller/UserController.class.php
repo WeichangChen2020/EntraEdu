@@ -52,10 +52,8 @@ class UserController extends Controller {
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
             $progress = D('Questionbank')->getProgress($openId);  //做题统计
-            $submit = D('ExamSubmit')->getGrade($openId);
             //p($progress);
             $this->assign('progress',$progress);
-            $this->assign('submit',$submit);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
 			$this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
