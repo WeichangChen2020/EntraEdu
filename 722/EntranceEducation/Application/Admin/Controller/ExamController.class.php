@@ -269,8 +269,6 @@ class ExamController extends CommonController{
      * @var  $openid  学生id
      * @return 
      */
-
-
     public function previewExamQues($openid, $examid) {
 
         $ExamSelect = D('Student/ExamSelect');
@@ -280,12 +278,20 @@ class ExamController extends CommonController{
         
     }
 
+
+    public function t() {
+        $EXAM    = D('Student/ExamSelect');
+        $college = D('Student/ExamCollege')->getCollege($examid);
+
+        foreach ($college as $key => &$value) {
+            $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
+            // foreach ($openidArr as $k => $v) {
+                
+            // }
+
+            p($openidArr);        
+        }
+    }
+
 }
 
-/*select name, number, academy, class, time, count(*) as count from ee_student_info group by name, class, academy having count>1; 
-SELECT Subject, Semester, Count(*)
-FROM Subject_Selection
-GROUP BY Subject, Semester
-
-[删除重复id]*/
-// select name, number, academy FROM ee_student_list where type = 1 and number not in (SELECT number from ee_student_info)
