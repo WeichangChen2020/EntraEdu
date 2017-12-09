@@ -234,7 +234,7 @@ class ExamSelectModel extends Model {
 
 	public function isPass($openid) {
 		$info = D('StudentInfo')->getInfo($openid);
-		$examid = D('Admin/ExamSubmir')->formal_examid;
+		$examid = D('Admin/ExamSubmit')->formal_examid;
 		dump($examid);die;
 
 		if($is_init)
