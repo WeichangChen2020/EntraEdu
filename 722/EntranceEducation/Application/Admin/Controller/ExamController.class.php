@@ -300,7 +300,7 @@ class ExamController extends CommonController{
 
             $EXCEL = new ExamUserController();
 
-            $EXCEL->excel($openidArr, $title, '成绩');
+            $EXCEL->excel($openidArr, $title);
         }
     }
 
