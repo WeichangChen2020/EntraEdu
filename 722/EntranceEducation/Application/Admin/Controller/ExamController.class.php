@@ -294,12 +294,7 @@ class ExamController extends CommonController{
                 $v['score'] = $EXAM->where($map)->count();
                 $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
 
-                if($v['score'] < 80)
-                    p($v);
             }
-
-
-
 
             p($openidArr);
             
