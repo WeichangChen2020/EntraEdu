@@ -233,13 +233,15 @@ class ExamSelectModel extends Model {
 	 */
 
 	public function isPass($openid) {
+		if (empty($openid)) {
+			return 'isPass($openid)传参错误';
+		}
 		$info = D('StudentInfo')->getInfo($openid);
 		$examidList = D('Admin/ExamSubmit')->formal_examid;
 		$examid = $examidList[$info['academy']];
 		$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
-		dump($score);die;
 
-		if($is_init)
+		if($score >= 80)
 			return true;
 		else
 			return false;
