@@ -291,11 +291,12 @@ class ExamController extends CommonController{
                     'openid' => $v['openId'],
                     'result' => 1,
                 );
-                $openidArr['score'] = $EXAM->where($map)->count();
-                p($openidArr);        
-                
+                $v['score'] = $EXAM->where($map)->count();
+                     
+
 
             }
+            p($openidArr);   
 
 
         }
