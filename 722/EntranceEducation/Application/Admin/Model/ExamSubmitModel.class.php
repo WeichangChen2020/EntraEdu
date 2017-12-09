@@ -169,8 +169,6 @@ class ExamSubmitModel extends Model {
 
 
     public function getUnPass($college) {
-
-        p($college);
         $examid = $this->formal_examid[$college['academy']];
 
         $EXAM    = D('Student/ExamSelect');
@@ -187,6 +185,7 @@ class ExamSubmitModel extends Model {
             $v['score'] = $EXAM->where($map)->count();
             if ($v['score']) {
                 unset($openidArr[$k]);
+                continue;
             }
             $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
         }
