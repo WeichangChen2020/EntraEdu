@@ -209,6 +209,7 @@ class ExamController extends CommonController{
      * @author 李俊君<hello_lijj@qq.com>
      * @copyright  2017-11-23 10:40Authors
      * @var  $id
+     * again说明： 为了区别正式考试和补考，设定again参数，again=0表示给所有学生创建试卷，again=1表示部分需要补考的学生创建考试，默认again=2用来提示管理员输入参数
      * @return 
      */
     public function createExamQues($examid, $again = 2) {
@@ -220,7 +221,7 @@ class ExamController extends CommonController{
         foreach ($college as $key => &$value) {
 
             if ($again == 2) {
-                $this->error('你还没有传again 参数');
+                $this->error('查看第211行注释');
             }
 
             if ($again == 0) {
@@ -277,16 +278,19 @@ class ExamController extends CommonController{
      * @copyright  2017-11-28 20:45Authors
      * @var  
      * @var  $again  1:表示补考 0 表示首次考试
+     * agagin说明： 为了区别正式考试和补考，设定again参数，again=0表示给所有学生创建试卷，again=1表示部分需要补考的学生创建考试，默认again=2用来提示管理员输入参数
      * @return 
      */
-
-    public function preview($examid, $again = 0) {
+    public function preview($examid, $again = 2) {
 
         $EXAM_SUBMIT = D('ExamSubmit');
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
         $stuList = array();
         foreach ($college as $key => &$value) {
+            if ($again == 2) {
+                $this->error('请联系');
+            }
             if($again == 0) {
                 $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
                 $stuList = array_merge($stuList, $list);
