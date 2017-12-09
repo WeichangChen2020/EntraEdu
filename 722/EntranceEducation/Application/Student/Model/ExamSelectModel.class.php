@@ -236,7 +236,8 @@ class ExamSelectModel extends Model {
 		$info = D('StudentInfo')->getInfo($openid);
 		$examidList = D('Admin/ExamSubmit')->formal_examid;
 		$examid = $examidList[$info['academy']];
-		dump($examid);die;
+		$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
+		dump($score);die;
 
 		if($is_init)
 			return true;
