@@ -183,7 +183,7 @@ class ExamSubmitModel extends Model {
                 'result' => 1,
             );
             $v['score'] = $EXAM->where($map)->count();
-            if ($v['score']) {
+            if ($v['score'] < 80) {
                 unset($openidArr[$k]);
                 continue;
             }
