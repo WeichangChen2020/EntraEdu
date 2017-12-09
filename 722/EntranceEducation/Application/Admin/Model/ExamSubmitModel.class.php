@@ -5,7 +5,7 @@ class ExamSubmitModel extends Model {
 
 
     // 正式考试的examid
-    public $formal_examid = array(11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 26);
+    public $formal_examid = array(11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
 
     /**
      * getSubmitNum 获取提交人数
@@ -143,6 +143,19 @@ class ExamSubmitModel extends Model {
             }
         }
         return $res;
+    }
+
+
+    public function getUnPass($college) {
+        $formal_examid = $this->formal_examid;
+
+        $unpassArr = array();
+        foreach ($formal_examid as $key => $value) {
+            $upass = $this->getFailList($college, $value);
+            $unpassArr = array_merge($upass, $unpassArr);
+        }
+
+        p($unpassArr);
     }
 
 
