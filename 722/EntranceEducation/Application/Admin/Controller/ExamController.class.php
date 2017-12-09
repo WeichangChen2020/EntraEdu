@@ -279,7 +279,7 @@ class ExamController extends CommonController{
     }
 
 
-    public function t() {
+    public function t($examid) {
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
 
