@@ -221,6 +221,7 @@ class ExamController extends CommonController{
             foreach ($openidArr as $k => $v) {
                 $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
                 if(!$is_init) {     //表里为空
+                    if
                     $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
                     if ($init) {
                         echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
@@ -263,8 +264,6 @@ class ExamController extends CommonController{
             $stuList = array_merge($stuList, $list);
         }
 
-        P($stuList);
-        die;
         $this->assign('userList',$stuList);
         $Page = new \Think\Page($count,20);
         $show = $Page->show();
