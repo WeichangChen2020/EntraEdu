@@ -171,16 +171,29 @@ class ExamSubmitModel extends Model {
     public function getUnPass($college) {
 
         p($college);
-        $formal_examid = $this->formal_examid;
+        $examid = $this->formal_examid[$college['academy']];
 
+        $EXAM    = D('Student/ExamSelect');
+        $academy = $college['academy'];
 
-        p($formal_examid);
-
-        $a = $this->getFailList($college['academy'], $this->formal_examid[$college['academy']]);
         
-        p($a);
+        $openidArr = M('Student_info')->where(array('academy'=>$academy))->field('openId, name, number, class, academy')->select();
+        foreach ($openidArr as $k => &$v) {
+            $map = array(
+                'examid' => $examid,
+                'openid' => $v['openId'],
+                'result' => 1,
+            );
+            $v['score'] = $EXAM->where($map)->count();
+            if ($v['score']) {
+                unset($openidArr[$k]);
+            }
+            $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
 
-        // p($unpassArr);
+        }
+
+        p($openidArr);
+       
     }
 
 
