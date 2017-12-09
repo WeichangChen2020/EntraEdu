@@ -224,7 +224,23 @@ class ExamSelectModel extends Model {
         return $end_time;
 	}
 
+	/**
+	 * isPass 获取是否通过
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-12-09 14:30Authors
+	 * @param $openid
+	 * @return true, false
+	 */
 
+	public function isPass($openid) {
+		$info = D('StudentInfo')->getInfo($openid);
+		dump($info);die;
+
+		if($is_init)
+			return true;
+		else
+			return false;
+	}
 
 
 }
