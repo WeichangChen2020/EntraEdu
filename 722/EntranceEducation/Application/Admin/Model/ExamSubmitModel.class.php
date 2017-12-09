@@ -173,13 +173,12 @@ class ExamSubmitModel extends Model {
         p($college);
         $formal_examid = $this->formal_examid;
 
+
         p($formal_examid);
 
-        // $unpassArr = array();
-        // foreach ($formal_examid as $key => $value) {
-        //     $upass = $this->getFailList($college, $value);
-        //     $unpassArr = array_merge($upass, $unpassArr);
-        // }
+        $a = $this->getFailList($college['academy'], $this->formal_examid[$college['academy']]);
+        
+        p($a);
 
         // p($unpassArr);
     }
