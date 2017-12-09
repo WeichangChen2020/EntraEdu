@@ -285,9 +285,14 @@ class ExamController extends CommonController{
 
         foreach ($college as $key => &$value) {
             $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId, name, number, class, academy')->select();
-            // foreach ($openidArr as $k => $v) {
-                
-            // }
+            foreach ($openidArr as $k => &$v) {
+                $map = array(
+                    'examid' => $examid,
+                    'openid' => $v['openId'],
+                    'result' => 1,
+                );
+                $openidArr['score'] = $EXAM->where($map)->count();
+            }
 
             p($openidArr);        
         }
