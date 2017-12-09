@@ -292,13 +292,10 @@ class ExamController extends CommonController{
                     'result' => 1,
                 );
                 $v['score'] = $EXAM->where($map)->count();
-                     
-
-
+                $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
             }
-            p($openidArr);   
 
-
+            p($openidArr);
         }
     }
 
