@@ -296,7 +296,7 @@ class ExamController extends CommonController{
             }
 
             p($openidArr);
-            $title = array('openid', '姓名', '学号', '班级','学院', '得分','是否通过');
+            $title = array('openid', 'name', 'number', 'class','academy', 'score','is_pass');
 
             $EXCEL = new ExamUserController();
 
