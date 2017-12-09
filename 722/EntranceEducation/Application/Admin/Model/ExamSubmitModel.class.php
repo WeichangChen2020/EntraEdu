@@ -3,6 +3,10 @@ namespace Admin\Model;
 use Think\Model;
 class ExamSubmitModel extends Model {
 
+
+    // 正式考试的examid
+    public $formal_examid = array(11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 26);
+
     /**
      * getSubmitNum 获取提交人数
      * @author 陈伟昌<1339849378@qq.com>
@@ -143,13 +147,4 @@ class ExamSubmitModel extends Model {
 
 
 }
-
-// NOT EXISTS (SELECT openid,examid FROM ee_exam_submit where examid = '$id' AND  ee_student_info.openId =ee_exam_submit.openid)
-
-// select openId from ee_student_info, ee_student_list where ee_student_list.number = ee_student_info.number AND openId not in (select openid from ee_exam_submit where examid = 1)
-
-
-// $Model = new \Think\Model('student_info');
-// $res = $Model->page($_GET['p'].',25')->query($sql);
-
 
