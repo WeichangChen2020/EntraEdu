@@ -16,7 +16,7 @@
                 <div class="weui-panel weui-panel_access">
                     <div class="weui-panel__bd">
                         <volist name="listExam" id="listExam" empty="暂时没有考试">
-                            <if condition="(1 eq is_on_college($listExam['id'])) AND ($listExam['id'] neq 16) AND ($listExam['id'] neq 11) AND ($listExam['id'] neq 12) AND ($listExam['id'] neq 17) AND ($listExam['id'] neq 18) AND ($listExam['id'] neq 19) AND ($listExam['id'] neq 20) AND ($listExam['id'] neq 21) AND ($listExam['id'] neq 22) AND ($listExam['id'] neq 23) AND ($listExam['id'] neq 24) AND ($listExam['id'] neq 25) AND ($listExam['id'] neq 26) AND ($listExam['id'] neq 27)  ">
+                            <if condition="(1 eq is_on_college($listExam['id'])) AND ($listExam['id'] neq 16) AND ($listExam['id'] neq 11) AND ($listExam['id'] neq 12) AND ($listExam['id'] neq 17) AND ($listExam['id'] neq 18) AND ($listExam['id'] neq 19) AND ($listExam['id'] neq 20) AND ($listExam['id'] neq 21) AND ($listExam['id'] neq 22) AND ($listExam['id'] neq 23) AND ($listExam['id'] neq 24) AND ($listExam['id'] neq 25) AND ($listExam['id'] neq 26) AND ($listExam['id'] neq 27) AND ($listExam['id'] neq 29) AND ($listExam['id'] neq 30) ">
                                 <a href="{:U('Student/Exam/index',array('examid'=>$listExam['id']))}" class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
                                         <h4 class="weui-media-box__title">{$listExam.title}</h4>
