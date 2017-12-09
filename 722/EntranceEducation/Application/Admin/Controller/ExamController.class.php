@@ -211,27 +211,61 @@ class ExamController extends CommonController{
      * @var  $id
      * @return 
      */
-    public function createExamQues($examid) {
+    public function createExamQues($examid, $again = 2) {
 
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
+        $EXAM_SUBMIT = D('ExamSubmit');
 
         foreach ($college as $key => &$value) {
-            $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
-            foreach ($openidArr as $k => $v) {
-                $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
-                if(!$is_init) {     //表里为空
-                    // if
-                    $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
-                    if ($init) {
-                        echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
+
+            if ($again == 2) {
+                $this->error('你还没有传again 参数');
+            }
+
+            if ($again == 0) {
+
+                $openidArr = M('Student_info')->where(array('academy'=>$value['academy']))->field('openId')->select();
+                foreach ($openidArr as $k => $v) {
+                    $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
+                    if(!$is_init) {     //表里为空
+
+                        $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
+                        if ($init) {
+                            echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
+                        } else {
+                            echo $v['openId'].'同学'.$examid.'考试题目生成失败'.'<br/>';
+                        }
                     } else {
-                        echo $v['openId'].'同学'.$examid.'考试题目生成失败'.'<br/>';
+                        echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
                     }
-                } else {
-                    echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
                 }
-            }           
+            }
+
+
+            if ($again == 1) {
+
+                $list = $EXAM_SUBMIT->getUnPass($value);
+
+                foreach ($list as $k => $v) {
+                    $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
+                    if(!$is_init) {     //表里为空
+
+                        $init = $EXAM->initExam($v['openId'], $examid);  // 往表里add题目
+                        if ($init) {
+                            echo $v['openId'].'同学'.$examid.'考试题目生成成功'.'<br/>';
+                        } else {
+                            echo $v['openId'].'同学'.$examid.'考试题目生成失败'.'<br/>';
+                        }
+                    } else {
+                        echo $v['openId'].'同学'.$examid.'考试题目已经存在！'.'<br/>';
+                    }
+                }
+                # code...
+            }
+            
+
+
         }
 
         //$this->error('题目已经生成');
