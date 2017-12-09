@@ -241,11 +241,16 @@ class ExamController extends CommonController{
      * @author 蔡佳琪
      * @copyright  2017-11-28 20:45Authors
      * @var  
-     * @var  
+     * @var  $again  1:表示补考 0 表示首次考试
      * @return 
      */
 
-    public function preview($examid) {
+    public function preview($examid, $again = 0) {
+
+        $EXAM_SUBMIT = D('ExamSubmit');
+        P($EXAM_SUBMIT->formal_examid);
+        p($EXAM_SUBMIT);die();
+
 
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
@@ -297,9 +302,6 @@ class ExamController extends CommonController{
             }
 
             p($openidArr);
-            
-
-            
         }
     }
 
