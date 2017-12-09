@@ -5,7 +5,15 @@ class ExamSubmitModel extends Model {
 
 
     // 正式考试的examid
-    public $formal_examid = array(11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
+    public $formal_examid = array(
+        '食品学院' => 11,
+        '财会学院' => 12,
+        '信息学院' => 18,
+        '法学院'   => 18,
+
+
+        11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 
+    );
 
     /**
      * getSubmitNum 获取提交人数
