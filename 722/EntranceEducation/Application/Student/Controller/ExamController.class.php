@@ -77,63 +77,22 @@ class ExamController extends Controller{
         $openid = session('openId');
         //echo $openid;
         // $college = D('StudentInfo')->getCollege();
+        // 
+        
+        if (D('ExamSelect')->isPass($openid)) {
+            $this->error('你已通过正式考试！');
+        }
       
-        if (D('ExamCollege')->is_college($openid, 11))
+
+        if (D('ExamCollege')->is_college($openid, 29))
         {
-          $this->redirect('Exam/index', array('examid' => 11));
+          $this->redirect('Exam/index', array('examid' => 29));
         } 
-        else if (D('ExamCollege')->is_college($openid, 12))
+        else if (D('ExamCollege')->is_college($openid, 30))
         {
-          $this->redirect('Exam/index', array('examid' => 12));
+          $this->redirect('Exam/index', array('examid' => 30));
         }
-        else if (D('ExamCollege')->is_college($openid, 16))
-        {
-          $this->redirect('Exam/index', array('examid' => 16));
-        }
-        else if (D('ExamCollege')->is_college($openid, 17))
-        {
-          $this->redirect('Exam/index', array('examid' => 17));
-        }
-        else if (D('ExamCollege')->is_college($openid, 18))
-        {
-          $this->redirect('Exam/index', array('examid' => 18));
-        }
-        else if (D('ExamCollege')->is_college($openid, 19))
-        {
-          $this->redirect('Exam/index', array('examid' => 19));
-        }
-        else if (D('ExamCollege')->is_college($openid, 20))
-        {
-          $this->redirect('Exam/index', array('examid' => 20));
-        }
-        else if (D('ExamCollege')->is_college($openid, 21))
-        {
-          $this->redirect('Exam/index', array('examid' => 21));
-        }
-        else if (D('ExamCollege')->is_college($openid, 22))
-        {
-          $this->redirect('Exam/index', array('examid' => 22));
-        }
-        else if (D('ExamCollege')->is_college($openid, 23))
-        {
-          $this->redirect('Exam/index', array('examid' => 23));
-        }
-        else if (D('ExamCollege')->is_college($openid, 24))
-        {
-          $this->redirect('Exam/index', array('examid' => 24));
-        }
-        else if (D('ExamCollege')->is_college($openid, 25))
-        {
-          $this->redirect('Exam/index', array('examid' => 25));
-        }
-        else if (D('ExamCollege')->is_college($openid, 26))
-        {
-          $this->redirect('Exam/index', array('examid' => 26));
-        }
-        else if (D('ExamCollege')->is_college($openid, 27))
-        {
-            $this->redirect('Exam/index', array('examid' => 27));
-        } 
+        
         else
         {
           $this->error('你不能参加，请不要点开了！', U('User/index', array('openId'=>$openid)));
