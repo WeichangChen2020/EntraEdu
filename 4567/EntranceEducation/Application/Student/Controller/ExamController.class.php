@@ -313,12 +313,7 @@ class ExamController extends Controller{
         $openid = session('openId');
         $examid = session('examid');
        
-        // ************分配考试item信息 和 题目考试信息
-        $examItem   = D('ExamSelect')->getExamItem($openid, $examid, $selectid);
-        $quesItem   = D('Questionbank')->getQuestion($examItem['quesid']);
-        dump($examItem);
-        dump($quesItem);
-        dump($list);
+        D('ExamSelect')->isPass($openid);
         die;
     }
    
