@@ -248,10 +248,6 @@ class ExamController extends CommonController{
     public function preview($examid, $again = 0) {
 
         $EXAM_SUBMIT = D('ExamSubmit');
-        P($EXAM_SUBMIT->formal_examid);
-        p($EXAM_SUBMIT);die();
-
-
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
         $stuList = array();
@@ -266,7 +262,7 @@ class ExamController extends CommonController{
 
             if($again == 1)
             {
-                $un_pass = D('EXAM_SUBMIT')->getUnPass($value);
+                $un_pass = $EXAM_SUBMIT->getUnPass($value);
                 p($un_pass);
             }
 
