@@ -292,15 +292,19 @@ class ExamController extends CommonController{
                     'result' => 1,
                 );
                 $v['score'] = $EXAM->where($map)->count();
+                if ($v['score'] >= 80) {
+                    unset($v);
+                    continue;
+                }
                 $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
             }
 
+
+
             p($openidArr);
-            $title = array('openid', 'name', 'number', 'class','academy', 'score','is_pass');
+            
 
-            $EXCEL = new ExamUserController();
-
-            $EXCEL->excel($openidArr, $title);
+            
         }
     }
 
