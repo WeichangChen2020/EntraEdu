@@ -189,10 +189,9 @@ class ExamSubmitModel extends Model {
                 unset($openidArr[$k]);
             }
             $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
-
         }
 
-        p($openidArr);
+        return $openidArr;
        
     }
 

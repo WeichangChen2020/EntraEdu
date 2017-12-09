@@ -252,24 +252,18 @@ class ExamController extends CommonController{
         $college = D('Student/ExamCollege')->getCollege($examid);
         $stuList = array();
         foreach ($college as $key => &$value) {
-
-
             if($again == 0) {
                 $list = M('student_info')->where(array('academy'=>$value['academy']))->select();
                 $stuList = array_merge($stuList, $list);
             }
-            
-
             if($again == 1)
             {
-                $un_pass = $EXAM_SUBMIT->getUnPass($value);
-            
+                $list = $EXAM_SUBMIT->getUnPass($value);
             }
-
-
-            
+            $stuList = array_merge($stuList, $list);
         }
 
+        P($stuList);
         die;
         $this->assign('userList',$stuList);
         $Page = new \Think\Page($count,20);
@@ -296,7 +290,7 @@ class ExamController extends CommonController{
     }
 
 
-    public function t($examid) {
+    public function unpass($examid) {
         $EXAM    = D('Student/ExamSelect');
         $college = D('Student/ExamCollege')->getCollege($examid);
 
@@ -313,7 +307,6 @@ class ExamController extends CommonController{
 
             }
 
-            p($openidArr);
         }
     }
 
