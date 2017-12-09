@@ -263,7 +263,7 @@ class ExamController extends CommonController{
             if($again == 1)
             {
                 $un_pass = $EXAM_SUBMIT->getUnPass($value);
-                p($un_pass);
+            
             }
 
 
