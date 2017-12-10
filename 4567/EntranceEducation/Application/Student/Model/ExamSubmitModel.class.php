@@ -39,6 +39,7 @@ class ExamSubmitModel extends Model {
 		$info = D('StudentInfo')->getInfo($openid);
 		$examidList = D('Admin/ExamSubmit')->formal_examid;
 		$examid = $examidList[$info['academy']];
+		p($examid);
 		if (empty($openid)) {
 			return 'getGrade($openid)传参错误';
 		}
