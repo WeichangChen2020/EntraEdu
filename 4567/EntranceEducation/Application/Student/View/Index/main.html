@@ -33,14 +33,14 @@
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
 		                </li>
-                        <li class="info">答对题数：<b>{$progress.sumNum|default='你猜'}</b>
+                        <li class="info">答对题数：<b>{$progress.sumNum|default='无'}</b>
                             <if condition="$progress.sumNum egt 875 ">
                                 <span style="color: green;">（获得考试资格）</span>
                             <else />
                                 <span style="color: red;">（无考试资格）</span>
                             </if>
                         </li>
-                        <li class="info">成绩：{$submit.score|default='你猜'}</li>
+                        <li class="info">成绩：{$score|default='无'}</li>
 		            </ul>
 		            
 		        </div>

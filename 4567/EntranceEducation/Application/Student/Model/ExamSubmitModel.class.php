@@ -36,12 +36,19 @@ class ExamSubmitModel extends Model {
 	 * @return array() submit
 	 */
 	public function getGrade($openid){
-		$map = array(
-			'openid' => $openid,
-		); 
-		$map['examid']  = array('egt',11);
-		$submit = $this->where($map)->find();
-		return $submit;
+		$info = D('StudentInfo')->getInfo($openid);
+		$examidList = D('Admin/ExamSubmit')->formal_examid;
+		$examid = $examidList[$info['academy']];
+		if (empty($openid)) {
+			return 'getGrade($openid)传参错误';
+		}
+
+		$score = $this->where(array('openid'=>$openid,'examid'=>$examid))->getField('score');
+		if($score){
+			return $score;
+		}else{
+			$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
+		}
 	}
 
 }
