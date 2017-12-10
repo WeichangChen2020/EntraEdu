@@ -274,7 +274,8 @@ class ExamController extends Controller{
         $where['score'] = array('EGT',80);
         foreach ($List as $key => $value) {
             $where['openid'] = $value['openId'];
-            if (!empty($a = M('ExamSubmit')->where($where)->find())) {
+            if (!empty(M('ExamSubmit')->where($where)->find())) {
+                $a = M('ExamSubmit')->where($where)->find();
                 array_push($errorList,$a);
             }
 
