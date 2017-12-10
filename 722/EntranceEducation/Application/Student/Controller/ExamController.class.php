@@ -268,11 +268,18 @@ class ExamController extends Controller{
 
     public function test(){
         $this->initExam();
-        
-        $openid = session('openId');
-        $examid = session('examid');
-       
-        D('ExamSelect')->isPass($openid);
+        $map['right_num'] = array('LT',875);
+        $List = M('ExerciseRank')->where($map)->select();
+        $errorList = array();
+        $where['score'] = array('EGT',80);
+        foreach ($List as $key => $value) {
+            $where['openid'] = $value['openId'];
+            if (!empty($a = M('ExamSubmit')->where($where)->find())) {
+                array_push($errorList,$a);
+            }
+
+        }
+        dump($errorList);
         die;
     }
    
