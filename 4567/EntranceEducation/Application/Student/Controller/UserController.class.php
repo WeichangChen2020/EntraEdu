@@ -54,6 +54,7 @@ class UserController extends Controller {
             $progress = D('Questionbank')->getProgress($openId);  //做题统计
             $score = D('ExamSubmit')->getGrade($openId);
             //p($progress);
+            p($score);
             $this->assign('progress',$progress);
             $this->assign('score',$score);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
