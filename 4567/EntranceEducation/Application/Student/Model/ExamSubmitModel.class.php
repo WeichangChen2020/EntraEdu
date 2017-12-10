@@ -48,6 +48,7 @@ class ExamSubmitModel extends Model {
 			return $score;
 		}else{
 			$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
+			return $score;
 		}
 	}
 
