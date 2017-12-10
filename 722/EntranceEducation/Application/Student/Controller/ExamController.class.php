@@ -276,6 +276,7 @@ class ExamController extends Controller{
             $where['openid'] = $value['openId'];
             if (M('ExamSubmit')->where($where)->find()) {
                 $a = M('ExamSubmit')->where($where)->find();
+                $a['right_num'] = $value['right_num'];
                 array_push($errorList,$a);
             }
 
