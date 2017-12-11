@@ -33,14 +33,14 @@
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
 		                </li>
-                        <li class="info">答对题数：<b>{$progress.sumNum|default='你猜'}</b>
+                        <li class="info">答对题数：<b>{$progress.sumNum|default='无'}</b>
                             <if condition="$progress.sumNum egt 875 ">
                                 <span style="color: green;">（获得考试资格）</span>
                             <else />
                                 <span style="color: red;">（无考试资格）</span>
                             </if>
                         </li>
-                        <li class="info">成绩：{$submit.score|default='你猜'}</li>
+                        <li class="info">正式考试成绩：{$score|default='无'}</li>
 		            </ul>
 		            
 		        </div>
@@ -53,78 +53,78 @@
 		<div class="weui-cells__title">考前练习</div>
 
         <div class="weui-grids">
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
-                <div class="weui-grid__icon">
-                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg></div>
-                <p class="weui-grid__label">自由练习</p></a>
-<!--             <a href="{:U('Exercise/index')}" class="weui-grid js_grid">
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg></div>
                 <p class="weui-grid__label">自由练习</p></a> -->
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
+            <a href="{:U('Exercise/index')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-exercise"></use></svg></div>
+                <p class="weui-grid__label">自由练习</p></a>
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg></div>
-                <p class="weui-grid__label">模拟考试</p></a>
-<!--             <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
+                <p class="weui-grid__label">模拟考试</p></a> -->
+            <a href="{:U('Exam/listExam')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg></div>
-                <p class="weui-grid__label">模拟考试</p></a>   -->  
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
+                <p class="weui-grid__label">模拟考试</p></a>    
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">                    
                       <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mistakebook"></use></svg>  
                 </div>
-                <p class="weui-grid__label">错题回顾</p></a>
-<!--             <a href="{:U('Rework/chose')}" class="weui-grid js_grid">
+                <p class="weui-grid__label">错题回顾</p></a> -->
+            <a href="{:U('Rework/chose')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">                    
                       <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-mistakebook"></use></svg>  
                 </div>
                 <p class="weui-grid__label">错题回顾</p></a>                
-        </div> -->
+        </div>
 
 		<div class="weui-cells__title" style="border: 0;">与我相关</div>
         <div class="weui-grids">
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-lianxi"></use>
                 	</svg></div>
                 <p class="weui-grid__label">答题记录</p>
-            </a>
-<!--             <a href="{:U('Record/record')}" class="weui-grid js_grid">
+            </a> -->
+            <a href="{:U('Record/record')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-lianxi"></use>
                     </svg></div>
                 <p class="weui-grid__label">答题记录</p>
-            </a>  -->       
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
+            </a>        
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-shoucang1"></use>
                 	</svg></div>
                 <p class="weui-grid__label">我的收藏</p>
-            </a>
-<!--             <a href="{:U('Collect/recordList')}" class="weui-grid js_grid">
+            </a> -->
+            <a href="{:U('Collect/recordList')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-shoucang1"></use>
                     </svg></div>
                 <p class="weui-grid__label">我的收藏</p>
-            </a>  -->                        
-            <a href="javascript:alert('考试期间暂停开放，12月11日起可正常使用！');" class="weui-grid js_grid">
+            </a>                         
+<!--             <a href="javascript:alert('考试期间暂停开放，12月4日起可正常使用！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-rank"></use>
                     </svg></div>
                 <p class="weui-grid__label">成绩与排名</p>
-            </a>
-<!--             <a href="{:U('Ranknew/top50')}" class="weui-grid js_grid">
+            </a> -->
+            <a href="{:U('Ranknew/top50')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="" xlink:href="#icon-rank"></use>
                     </svg></div>
                 <p class="weui-grid__label">成绩与排名</p>
-            </a>   -->          
+            </a>            
            <!--  <a href="javascript:alert('尚未开放！');" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true">
@@ -134,19 +134,6 @@
             </a> -->
         </div>
 
-       <!--  <div class="weui-cells">
-         <a class="weui-cell weui-cell_access" href="javascript:alert('正式考试已经结束！');">
-           <div class="weui-cell__hd">
-               <svg class="icon" aria-hidden="true">
-                   <use xmlns:xlink="" xlink:href="#icon-exam"></use>
-               </svg>
-           </div>
-           <div class="weui-cell__bd">
-             <p>正式考试</p>
-           </div>
-           <div class="weui-cell__ft" style="font-size: 9px;">自由练习答对总题量<b>60%</b>及以上</div>
-         </a>
-       </div> -->
         <div class="weui-cells">
           <a class="weui-cell weui-cell_access" href="javascript:start_exam();">
             <div class="weui-cell__hd">
@@ -155,11 +142,12 @@
                 </svg>
             </div>
             <div class="weui-cell__bd">
-              <p>补考入口</p>
+              <p>正式考试</p>
             </div>
-            <div class="weui-cell__ft" style="font-size: 9px;"></div>
+            <div class="weui-cell__ft" style="font-size: 9px;">自由练习答对总题量<b>60%</b>及以上</div>
           </a>
         </div>
+
         
         <div class="weui-footer">
             <p class="weui-footer__links">
