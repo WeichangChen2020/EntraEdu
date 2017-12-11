@@ -32,7 +32,7 @@ class ExamSubmitModel extends Model {
 	 * getGrade() 获得正式考试成绩
 	 * @author 蔡佳琪
 	 * @copyright  2017-12-7 10:22Authors
-	 * @param $openid, $examid  //User控制器里如何获得$examid？后需改善！ 
+	 * @param $openid, $examid  
 	 * @return array() submit
 	 */
 	public function getGrade($openid){
