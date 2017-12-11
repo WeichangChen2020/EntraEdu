@@ -32,16 +32,25 @@ class ExamSubmitModel extends Model {
 	 * getGrade() 获得正式考试成绩
 	 * @author 蔡佳琪
 	 * @copyright  2017-12-7 10:22Authors
-	 * @param $openid, $examid  //User控制器里如何获得$examid？后需改善！ 
+	 * @param $openid, $examid  
 	 * @return array() submit
 	 */
 	public function getGrade($openid){
-		$map = array(
-			'openid' => $openid,
-		); 
-		$map['examid']  = array('egt',11);
-		$submit = $this->where($map)->find();
-		return $submit;
+		$info = D('StudentInfo')->getInfo($openid);
+		$examidList = D('Admin/ExamSubmit')->formal_examid;
+		$examid = $examidList[$info['academy']];
+		//p($examid);
+		if (empty($openid)) {
+			return 'getGrade($openid)传参错误';
+		}
+
+		$score = $this->where(array('openid'=>$openid,'examid'=>$examid))->getField('score');
+		if($score){
+			return $score;
+		}else{
+			$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
+			return $score;
+		}
 	}
 
 }
