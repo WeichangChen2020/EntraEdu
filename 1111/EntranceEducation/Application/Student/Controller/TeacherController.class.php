@@ -268,7 +268,7 @@ class TeacherController extends Controller{
         session('openId',null);
         $openId = getOpenId();
         session('openId',$openId);
-
+ 
         $this->display();
     }
 
@@ -333,16 +333,16 @@ class TeacherController extends Controller{
     }
 
     public function test_ques_list(){
-        $unit   = intval(I('unit'));
-        $number = intval(I('number'));
+        $unit   = intval(I('unit'));//章节
+        $number = intval(I('number'));//题数
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
          
         $result    = array();
         foreach ($unitArray as $value) {
-           $value  = 'unit'.$value ;
-           $cond   = array('type' => $value);
+           //$value  = 'unit'.$value ;
+           $cond   = array('chapter' => $value);
            $result = array_merge($result,M('questionbank')->where($cond)->select());
         }
         if($number !== 0){   //说明用户自定义选择了数量

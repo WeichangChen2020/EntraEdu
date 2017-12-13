@@ -18,6 +18,7 @@ class UserController extends Controller {
     //         exit;
     //     }
     // }
+    
     //判断是否注册
 	public function isRegister($openId){
 		$STU                 = D('StudentInfo');       //实例化
@@ -47,7 +48,7 @@ class UserController extends Controller {
             'time'   => date('Y-m-d H:i:s',time())
             );
         if(M('teacher_info')->add($info))
-            return '教师账号添加成功，发送？尝试教师端端功能';
+            return '教师账号添加成功，发送？尝试教师端功能';
         else
             return '添加失败';
     }
@@ -63,7 +64,7 @@ class UserController extends Controller {
             );
         D('StudentInfo')->add($info);
         if(M('teacher_info')->add($info))
-            return '教师账号添加成功，发送？尝试教师端端功能';
+            return '教师账号添加成功，发送？尝试教师端功能';
         else
             return '添加失败';
     }
