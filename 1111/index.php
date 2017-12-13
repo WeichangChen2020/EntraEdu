@@ -88,13 +88,26 @@ class wechatCallbackapiTest
                 	if( $keyword == "?" || $keyword == "？")
           			{ 
             		    $msgType = "text";
-                        $contentStr = "
-						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
-				
-						发送地理位置信息：签到
+            		    if($isTeacher){
+            		    	$contentStr = "
+								发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
 
-						发送？：平台使用菜单 
-						";        
+								发送2：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/$postObj->FromUserName\">教师端</a>
+
+								发送地理位置信息：签到
+
+								发送？：平台使用菜单 
+							"; 
+            		    }else{
+            		    	$contentStr = "
+								发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a>
+
+								发送地理位置信息：签到
+
+								发送？：平台使用菜单 
+							"; 
+            		    }
+       
             			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                
         				// $resultstr = sprintf($xmlTpl, $postObj->FromUserName, $postObj->ToUserName, time(), $str);
@@ -113,7 +126,7 @@ class wechatCallbackapiTest
 						
 					}
 					//http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
-					if($keyword == '2'){
+					if($keyword == '2' && $isTeacher){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
 						$contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/$postObj->FromUserName\">教师端</a>";
@@ -123,17 +136,6 @@ class wechatCallbackapiTest
 					}
 
 
-
-
-
-
-
-					// if($keyword == '2'){
-					// 	$msgType = "text";
-					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
-					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-					// 	echo $resultStr;
-					// }
 					// if($keyword == '3'){
 					// 	$msgType = "text";
 					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/index";
