@@ -160,18 +160,22 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
+        //随机找一个没批改的人，先写上批改人是自己
         $homeworkId                 = session('homeworkId');
         $condition['homeworkId']    = $homeworkId;
         $condition['correcter']     = '未批改';
         $pool = M('student_homework')->where($condition)->select();
         $num  = count($pool); //目前共有提交作业但未批改人数
         $person = $pool[rand(0,$num-1)];
-        echo "<pre>";
-        dump($person);
-        //
-        // dump($pool);
-        // echo "<br>";
-        // dump(count($pool));
+
+        $User = M('student_homework'); // 实例化User对象
+        // 要修改的数据对象属性赋值
+        $me = M('student_info')->where('openId',session('openId'))->find();
+        $myname = $me['name'];
+        $data['correcter'] = $myname;
+        $User->where('openId',$person['openId'])->save($data); // 根据条件更新记录
+ 
+ 
         return $this->display();
     }
 }
