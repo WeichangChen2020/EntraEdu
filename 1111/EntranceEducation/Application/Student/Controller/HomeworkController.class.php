@@ -164,10 +164,14 @@ class HomeworkController extends Controller{
         $condition['homeworkId']    = $homeworkId;
         $condition['correcter']     = '未批改';
         $pool = M('student_homework')->where($condition)->select();
+        $num  = count($pool); //目前共有提交作业但未批改人数
+        $person = $pool[rand(0,$num-1)];
         echo "<pre>";
-        dump($pool);
-        echo "<br>";
-        dump(count($pool));
+        dump($person);
+        //
+        // dump($pool);
+        // echo "<br>";
+        // dump(count($pool));
         return $this->display();
     }
 }
