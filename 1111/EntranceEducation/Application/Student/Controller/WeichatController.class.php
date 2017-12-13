@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | 概率论与数理统计教学互动平台
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: lijj <hello_lijj@qq.com>
-// +----------------------------------------------------------------------
-// | Time: 2016-07-16  19:33
-// +----------------------------------------------------------------------
+
 namespace Student\Controller;
 use Think\Controller;
 use Com\Wechat;
@@ -17,10 +7,7 @@ use Com\WechatAuth;
 use Com\Jssdk; 
 
 
-
-
 class WeichatController extends Controller{
-
 
     /**
      * 微信消息接口入口
@@ -103,7 +90,7 @@ class WeichatController extends Controller{
                         //取消关注，记录日志
                         break;
                     default:
-                        $wechat->replyText("欢迎访问概率论与数理统计教学在线平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
+                        $wechat->replyText("欢迎访问计算机网络教学在线平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
                         break;
                 }
                 break;
@@ -126,7 +113,7 @@ class WeichatController extends Controller{
                         $wechat->replyText($user->teacherDelete($data['FromUserName']));
                         break;
                     case '2':
-                       $wechat->replyNewsOnce('发送2：资料下载',"这里有历年浙江工商大学概率论与数理统计期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
+                       $wechat->replyNewsOnce('发送2：资料下载',"这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
                         break;
                     case '3':
                        $wechat->replyNewsOnce('发送3：课后作业','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n课后作业", URL_ROOT."/Homework/index/openId/".$data['FromUserName'],PICURL_ROOT.'homework.jpg'); 
@@ -228,7 +215,7 @@ class WeichatController extends Controller{
         define('URL_ROOT', 'http://23.testet.sinaapp.com/index.php');
         define('PICURL_ROOT', 'http://testet.sinaapp.com/Public/images/weixin/');
         
-        $welcome      = array("欢迎关注概率论与数理统计教学互动平台","概率论与数理统计教学互动平台是一款便利于师生教学概率论与数理统计科目的产品。提供：课后作业、课堂签到、自由练习等功能。带有：历年浙江工商大学概率论与数理统计期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源。", "http://23.testet.sinaapp.com/index.php/index/help","http://testet.sinaapp.com/Public/images/weixin/welcome.jpg");
+        $welcome      = array("欢迎关注计算机网络教学互动平台","计算机网络教学互动平台是一款便利于师生教学计算机网络科目的产品。提供：课后作业、课堂签到、自由练习等功能。带有：历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源。", "http://23.testet.sinaapp.com/index.php/index/help","http://testet.sinaapp.com/Public/images/weixin/welcome.jpg");
         $more         = array("教学信息","如果你想查看更多关于教学信息，请点击这里","http://mp.weixin.qq.com/s/pvVmTLOqqSarRs0Ou8ngKA","");
         //$myInfo       = array("发送bd：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/User/index/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg");
         $myInfo       = array("发送bd：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/Edu/register/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg");
@@ -248,7 +235,7 @@ class WeichatController extends Controller{
                         break;
 
                     default:
-                        $wechat->replyText("欢迎访问概率论与数理统计教学互动平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
+                        $wechat->replyText("欢迎访问计算机网络教学互动平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
                         break;
                 }
                 break;
@@ -266,7 +253,7 @@ class WeichatController extends Controller{
                        $wechat->replyNewsOnce("发送1：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/User/index/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg"); 
                         break;
                     case '2':
-                       $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学概率论与数理统计期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg");
+                       $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg");
                         break;
                     case '46级':
                         $wechat->replyNewsOnce('发送46级：46级准考证保存','点击可保存查询46级准考证号，寒假可直接查成绩',"http://23.testet.sinaapp.com/index.php/Edu/cet/openId/".$data['FromUserName'], PICURL_ROOT."/cet.jpg"); 
