@@ -36,7 +36,28 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
+        $appid     = 'wx913b2486f97088cb';
+        $appsecret = '635f5e327e4c8c2f70744690d9a1e02a';
+        $crypt = 'IFw7tLUcSrbyksiIJUUGEkyL2snSaiXL2arnGzGhXQj'; //消息加密KEY（EncodingAESKey）
+        $token = 'weixin';
+        
+        /* 加载微信SDK */
+        $wechat = new Wechat($token, $appid, $crypt);		
+		$user = new UserController();
+		$data = $wechat->request();
+	    $userInfo = $user->getUserInfo($data['FromUserName']);
+	    $isTeacher = $user->isTeacher($data['FromUserName']);
+        $record = array(
+            'openId' => $data['FromUserName'],
+            'messageType' => 'formUser',
+            'time'  => date('Y-m-d H:i:s',time()),
+            );
+        if(!empty($data['Content']))  $record['messageContent'] = $data['Content'];
+        if(!empty($userInfo['name'])) $record['name'] = $userInfo['name'];
+        if(!empty($userInfo['class'])) $record['class'] = $userInfo['class'];
+        if(!empty($userInfo['number'])) $record['number'] = $userInfo['number'];
+        M('weixin_message_record')->add($record);
+		
       	//extract post data
 		if (!empty($postStr)){
                 
@@ -70,22 +91,24 @@ class wechatCallbackapiTest
 				if(!empty($keyword))
                 {
 
-
-
                 	if( $keyword == "?" || $keyword == "？")
           			{ 
             		    $msgType = "text";
-                        $contentStr = "
-						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
-				
-						发送地理位置信息：点名
-						发送？：平台使用菜单 
-						";        
+            		    if($isTeacher){
+            		    	$contentStr = "
+								发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
+								发送2：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/$postObj->FromUserName\">教师入口</a>			
+								发送地理位置信息：签到";
+            		    }else{
+            		    	$contentStr = "
+								发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 			
+								发送地理位置信息：签到";
+            		    }
+
             			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                
         				// $resultstr = sprintf($xmlTpl, $postObj->FromUserName, $postObj->ToUserName, time(), $str);
-          		 		//  echo $resultstr;//输出
-           
+          		 		//  echo $resultstr;//输出          
              			echo $resultStr;
             			
          			} 
@@ -93,60 +116,27 @@ class wechatCallbackapiTest
               		if($keyword == '1'){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
-						 $contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a>";
-						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-						echo $resultStr;
-						
-					}http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
-					if($keyword == '2'){
-						$msgType = "text";
-						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
-						 $contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64\">教师端</a>";
+						$contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a>";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 						
 					}
+					//http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
+					
+					if($keyword == '2' && $isTeacher){
+						$msgType = "text";
+						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
+						$contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/$postObj->FromUserName\">教师入口</a>";
+						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						echo $resultStr;						
+					}
 
-
-
-
-
-
-
-					// if($keyword == '2'){
-					// 	$msgType = "text";
-					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/random";
-					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-					// 	echo $resultStr;
-					// }
-					// if($keyword == '3'){
-					// 	$msgType = "text";
-					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/index";
-					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-					// 	echo $resultStr;
-					// }
-					// if($keyword == '4'){
-					// 	$msgType = "text";
-					// 	$contentStr = "http://8080.mysunner.sinaapp.com/index.php/Home/collect/wrong";
-					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-					// 	echo $resultStr;
-					// }
-					// if($keyword == 'cd'){
-					// 	$msgType = "text";
-
-     //                    //$contentStr = "<a href=\"8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
-     //                    $contentStr = "<a href=\"http://8080.dataplatform.applinzi.com/index.php/Home/login/chop/openid/$postObj->FromUserName\">充电一下吧</a>";
-					// 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-					// 	echo $resultStr;
-					// }
-					else 
-						echo "欢迎关注计算机网络在线教学平台！";
                 }else{
                 	echo "Input something...";
                 }
 
         }else {
-        	echo "";
+        	echo "发送？查看平台菜单";
         	exit;
         }
 
