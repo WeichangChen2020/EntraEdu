@@ -1,7 +1,9 @@
 <?php
-/**
-  * wechat php test
-  */
+namespace Student\Controller;
+use Think\Controller;
+use Com\Wechat;
+use Com\WechatAuth;
+use Com\Jssdk; 
 
 //define your token
 define("TOKEN", "weixin");//改成自己的TOKEN 
