@@ -49,7 +49,8 @@ class wechatCallbackapiTest
 		}else{
 			$isTeacher = 0;
 		}
-		
+		echo $isTeacher;
+		die;
       	//extract post data
 		if (!empty($postStr)){
                 
