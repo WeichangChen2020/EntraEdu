@@ -17,9 +17,9 @@ class WeichatController extends Controller{
     public function index($id = ''){
         //调试
         try{
-            $appid     = 'wxb0c98aa1d0019242';
-            $appsecret = '906e2e3803f51e05adbb382afb4e8176';
-            $crypt = 'ESBva88StZbiqnaq4HWXjBcVmAsUUbzY59aXqwap3rY'; //消息加密KEY（EncodingAESKey）
+            $appid     = 'wx913b2486f97088cb';
+            $appsecret = '635f5e327e4c8c2f70744690d9a1e02a';
+            $crypt = 'IFw7tLUcSrbyksiIJUUGEkyL2snSaiXL2arnGzGhXQj'; //消息加密KEY（EncodingAESKey）
             $token = 'weixin';
             
             /* 加载微信SDK */
@@ -61,22 +61,22 @@ class WeichatController extends Controller{
      * @param  array  $data   接受到微信推送的消息，用户
      */
     private function user($wechat, $data){
-        define('URL_ROOT', 'http://23.testet.sinaapp.com/index.php');
-        define('PICURL_ROOT', 'http://testet.sinaapp.com/Public/images/weixin/');
+        define('URL_ROOT', 'http://1111.classtest.sinaapp.com/index.php');
+        define('PICURL_ROOT', 'http://classtest.sinaapp.com/Public/images/qqface/');
         $user             = new UserController();
         
         
         $userInfo         = $user->getUserInfo($data['FromUserName']);
-        $welcome          = array("欢迎".$userInfo['name']."关注概率论平台",'',URL_ROOT."/Index/help",PICURL_ROOT."/welcome.jpg");
-        $connect          = array("联系我", "点击查看很多关于我的信息","http://www.sohu.com","");
-        $more             = array("教学信息","如果你想查看更多关于教学信息，请点击这里","http://mp.weixin.qq.com/s/pvVmTLOqqSarRs0Ou8ngKA","");
-        $myInfo           = array('发送1：我的信息','', URL_ROOT."/User/index/openId/".$data['FromUserName'],PICURL_ROOT.'myInfo.jpg');
-        $fileDownload     = array('发送2：资料下载','', "http://pan.baidu.com/s/1i4TeukX",PICURL_ROOT.'fileDownload.jpg');
-        $homework         = array('发送3：课后作业','', URL_ROOT."/Homework/index/openId/".$data['FromUserName'],PICURL_ROOT.'homework.jpg');
-        $signin           = array('发送4：在线签到','',URL_ROOT."/Signin/index/openId/".$data['FromUserName'],PICURL_ROOT.'signin.jpg');
-        $test             = array('发送5：随堂测试','',URL_ROOT."/Test/testList/openId/".$data['FromUserName'],PICURL_ROOT.'classtest.jpg');
-        $random           = array('发送6：自由练习','',"http://testet.sinaapp.com/index.php/Random/index/openId/".$data['FromUserName'],PICURL_ROOT.'random.jpg');
-        $interation       = array('发送7：平台互动','', "http://testet.sinaapp.com/index.php/Community/index/openId/".$data['FromUserName'],PICURL_ROOT.'interation.jpg');
+        $welcome          = array("欢迎".$userInfo['name']."关注计算机网络平台",'',URL_ROOT."/Index/help",PICURL_ROOT."100.gif");
+        //$connect          = array("联系我", "点击查看很多关于我的信息","http://www.sohu.com","");
+        //$more             = array("教学信息","如果你想查看更多关于教学信息，请点击这里","http://mp.weixin.qq.com/s/pvVmTLOqqSarRs0Ou8ngKA","");
+        //$myInfo           = array('发送1：我的信息','', URL_ROOT."/User/index/openId/".$data['FromUserName'],PICURL_ROOT.'myInfo.jpg');
+        //$fileDownload     = array('发送2：资料下载','', "http://pan.baidu.com/s/1i4TeukX",PICURL_ROOT.'fileDownload.jpg');
+        //$homework         = array('发送3：课后作业','', URL_ROOT."/Homework/index/openId/".$data['FromUserName'],PICURL_ROOT.'homework.jpg');
+        //$signin           = array('发送4：在线签到','',URL_ROOT."/Signin/index/openId/".$data['FromUserName'],PICURL_ROOT.'signin.jpg');
+        //$test             = array('发送5：随堂测试','',URL_ROOT."/Test/testList/openId/".$data['FromUserName'],PICURL_ROOT.'classtest.jpg');
+        //$random           = array('发送6：自由练习','',"http://classtest.sinaapp.com/index.php/Random/index/openId/".$data['FromUserName'],PICURL_ROOT.'random.jpg');
+        //$interation       = array('发送7：平台互动','', "http://classtest.sinaapp.com/index.php/Community/index/openId/".$data['FromUserName'],PICURL_ROOT.'interation.jpg');
         $teacher          = array('教师端入口', '点击进入教师端', URL_ROOT.'/Teacher/index/openId/'.$data['FromUserName'],'');
         
        
@@ -84,7 +84,7 @@ class WeichatController extends Controller{
             case Wechat::MSG_TYPE_EVENT:
                 switch ($data['Event']) {
                     case Wechat::MSG_EVENT_SUBSCRIBE:
-                        $wechat->replyNews($welcome,$myInfo,$fileDownload,$homework,$signin,$test,$random,$interation);
+                        $wechat->replyNews($welcome,$myInfo);
                         break;
                     case Wechat::MSG_EVENT_UNSUBSCRIBE:
                         //取消关注，记录日志
@@ -103,94 +103,19 @@ class WeichatController extends Controller{
                     case '好吧':
                         $wechat->replyText(json_encode($data));
                         break;
+                    case '我':
+                       $wechat->replyNewsOnce('我的信息：','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n积分：".$mark, URL_ROOT."/User/index/openId/".$data['FromUserName']); 
+                        break;
                     case '1':
-                       $wechat->replyNewsOnce('发送1：我的信息','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n积分：".$mark, URL_ROOT."/User/index/openId/".$data['FromUserName'],PICURL_ROOT.'myInfo.jpg'); 
-                        break;
-                    case '11':
-                        $wechat->replyText($user->teacherAdd($data['FromUserName']));
-                        break;
-                    case '111':
-                        $wechat->replyText($user->teacherDelete($data['FromUserName']));
-                        break;
-                    case '2':
-                       $wechat->replyNewsOnce('发送2：资料下载',"这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
-                        break;
-                    case '3':
-                       $wechat->replyNewsOnce('发送3：课后作业','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n课后作业", URL_ROOT."/Homework/index/openId/".$data['FromUserName'],PICURL_ROOT.'homework.jpg'); 
-                        break;
-                    case '33':
-                        if($isTeacher)
-                            $wechat->replyNewsOnce("发送33：教师端_课后作业","教师端_课后作业", URL_ROOT."/Teacher/homework_index/openId/".$data['FromUserName'],PICURL_ROOT."homework.jpg");
-                        else
-                            $wechat->replyText('你没有使用该功能的权限');
-                        break;
-                    case '4':
-                       $wechat->replyNewsOnce("发送4：在线签到",'', URL_ROOT."/Signin/index/openId/".$data['FromUserName'],PICURL_ROOT."signin.jpg"); 
-                        break;
-                    case '44':
-                        if($isTeacher)
-                            $wechat->replyNewsOnce("发送44：教师端_签到","", URL_ROOT."/Teacher/signin_index/openId/".$data['FromUserName'],PICURL_ROOT.'signin.jpg'); 
-                        else
-                            $wechat->replyText('你没有使用该功能的权限');
-                        break;
-                    case '5':
-                       $wechat->replyNewsOnce("发送5：随堂测试","", URL_ROOT."/Test/testList/openId/".$data['FromUserName'],PICURL_ROOT."classtest.jpg");
-                        break;
-                    case '55':
-                        if($isTeacher)
-                            $wechat->replyNewsOnce("发送55：教师端_随堂测试","这是课堂签到功能",URL_ROOT."/Teacher/test_index/openId/".$data['FromUserName'] ,PICURL_ROOT."classtest.jpg"); 
-                        else
-                            $wechat->replyText('你没有使用该功能的权限');
-                        break;
-                    case '6':
-                        $wechat->replyNewsOnce('发送6：自由练习','', "http://testet.sinaapp.com/index.php/Random/index/openId/".$data['FromUserName'],PICURL_ROOT."/random.jpg"); 
-                        break;
-                    case '7':
-                        $wechat->replyNewsOnce('发送7：平台互动','',"http://testet.sinaapp.com/index.php/Community/index/openId/".$data['FromUserName'], PICURL_ROOT."/interation.jpg"); 
-                        break;
-                    case 'bd':
-                    case 'BD':
-                        $wechat->replyNewsOnce('发送bd：教务网信息绑定','',"http://23.testet.sinaapp.com/index.php/Edu/register/openId/".$data['FromUserName'], PICURL_ROOT."/edu_register.jpg"); 
-                        break;
-                    case 'kb':
-                    case 'KB':
-                        // 查课表
-                        
-                        $wechat->replyText($schedule->getSchedule($data['FromUserName']));
-                        break;
-                    case 'kscj':
-                    case 'KSCJ':
-
-                        // 查成绩
-                        
-                        $wechat->replyText($schedule->getScore($data['FromUserName']));
-                        break;
-                    case 'ksap':
-                    case 'KSAP':
-                        // 查考试安排
-                       
-                        $wechat->replyText($schedule->getExamArrange($data['FromUserName']));
-                        break;
-                    case '46级':
-                        $wechat->replyNewsOnce('发送46级：46级准考证保存','点击可保存查询46级准考证号，寒假可直接查成绩',"http://23.testet.sinaapp.com/index.php/Edu/cet/openId/".$data['FromUserName'], PICURL_ROOT."/cet.jpg"); 
-                        break;
-                    case 'xdxw':
-                        $news = new NewsController();
-                        $n    = $news->adaptGailvlunpt('信电');
-                        $wechat->replyNews($n[0],$n[1],$n[2],$n[3],$n[4],$n[5],$n[6]);
-                        break;
-                    case 'jwxw':
-                        $news = new NewsController();
-                        $n    = $news->adaptGailvlunpt('教务');
-                        $wechat->replyNews($n[0],$n[1],$n[2],$n[3],$n[4],$n[5],$n[6]);
+                       $wechat->replyNewsOnce('发送1：计算机网络',"计算机网络在线学习平台，让同学们更加方便愉快得学习。计算机爱网络，我们爱计算机网络。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
                         break;
                     case '?':
                     case '？':
                         if($isTeacher)
                             // $wechat->replyNews($teacher,$more,$myInfo,$fileDownload,$homework,$signin,$test,$random,$interation);
-                            $wechat->replyNews($myInfo, $teacher, $fileDownload,$homework,$signin,$test,$random,$interation);
+                            $wechat->replyNews($myInfo, $teacher);
                         else
-                            $wechat->replyNews($myInfo,$more,$fileDownload,$homework,$signin,$test,$random,$interation);
+                            $wechat->replyNews($myInfo);
                         break;
                     default:
                         
@@ -212,23 +137,18 @@ class WeichatController extends Controller{
      * 未注册处理函数,路人
      */
     private function passer($wechat, $data){
-        define('URL_ROOT', 'http://23.testet.sinaapp.com/index.php');
-        define('PICURL_ROOT', 'http://testet.sinaapp.com/Public/images/weixin/');
+        define('URL_ROOT', 'http://1111.classtest.sinaapp.com/index.php');
+        define('PICURL_ROOT', 'http://classtest.sinaapp.com/Public/images/weixin/');
         
-        $welcome      = array("欢迎关注计算机网络教学互动平台","计算机网络教学互动平台是一款便利于师生教学计算机网络科目的产品。提供：课后作业、课堂签到、自由练习等功能。带有：历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源。", "http://23.testet.sinaapp.com/index.php/index/help","http://testet.sinaapp.com/Public/images/weixin/welcome.jpg");
-        $more         = array("教学信息","如果你想查看更多关于教学信息，请点击这里","http://mp.weixin.qq.com/s/pvVmTLOqqSarRs0Ou8ngKA","");
-        //$myInfo       = array("发送bd：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/User/index/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg");
-        $myInfo       = array("发送bd：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/Edu/register/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg");
-        $fileDownload = array('发送2：资料下载',"", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg");
-        $help         = array("发送?：使用帮助","发送？查看平台使用帮助", "http://23.testet.sinaapp.com/index.php/index/help","http://testet.sinaapp.com/Public/images/weixin/help.jpg");
-        $connect      = array("联系我", "点击查看很多关于我的信息","http://www.sohu.com","");
+        $welcome      = array("欢迎关注计算机网络教学互动平台","计算机网络教学互动平台是一款便利于师生教学计算机网络科目的产品。提供：课后作业、课堂签到、自由练习等功能。");
+
         $schedule     = new EduController();
         $user         = new UserController();
         switch ($data['MsgType']) {
             case Wechat::MSG_TYPE_EVENT:
                 switch ($data['Event']) {
                     case Wechat::MSG_EVENT_SUBSCRIBE:
-                        $wechat->replyNews($welcome,$myInfo,$fileDownload,$help,$more);
+                        $wechat->replyNews($welcome);
                         break;
                     case Wechat::MSG_EVENT_UNSUBSCRIBE:
                         //取消关注，记录日志
@@ -250,40 +170,15 @@ class WeichatController extends Controller{
                         $wechat->replyText($user->teacherAddFromPasser($data['FromUserName']));
                         break;
                     case '1':
-                       $wechat->replyNewsOnce("发送1：请先注册","你还没有注册，请点击注册你的信息", "http://23.testet.sinaapp.com/index.php/User/index/openId/".$data['FromUserName'],"http://testet.sinaapp.com/Public/images/weixin/register.jpg"); 
+                    case '1':
+                       $wechat->replyNewsOnce('发送1：计算机网络',"计算机网络在线学习平台，让同学们更加方便愉快得学习。计算机爱网络，我们爱计算机网络。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
                         break;
                     case '2':
-                       $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://testet.sinaapp.com/Public/images/weixin/fileDownload.jpg");
-                        break;
-                    case '46级':
-                        $wechat->replyNewsOnce('发送46级：46级准考证保存','点击可保存查询46级准考证号，寒假可直接查成绩',"http://23.testet.sinaapp.com/index.php/Edu/cet/openId/".$data['FromUserName'], PICURL_ROOT."/cet.jpg"); 
-                        break;
-                    case 'bd':
-                    case 'BD':
-                        $wechat->replyNewsOnce('发送bd：教务网信息绑定','',"http://23.testet.sinaapp.com/index.php/Edu/register/openId/".$data['FromUserName'], PICURL_ROOT."/edu_register.jpg"); 
-
-                        break;
-                    case 'kb':
-                    case 'KB':
-                        // 查课表
-                        
-                        $wechat->replyText($schedule->getSchedule($data['FromUserName']));
-                        break;
-                    case 'kscj':
-                    case 'KSCJ':
-
-                        // 查成绩
-                        
-                        $wechat->replyText($schedule->getScore($data['FromUserName']));
-                        break;
-                    case 'ksap':
-                    case 'KSAP':
-                        // 查考试安排
-                        $wechat->replyText($schedule->getExamArrange($data['FromUserName']));
+                       $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg");
                         break;
                     case '?':
                     default:       
-                        $wechat->replyNews($help,$myInfo,$fileDownload,$more);
+                        $wechat->replyNews();
                         break;
                 }
                 break;
