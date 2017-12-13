@@ -37,13 +37,14 @@ class wechatCallbackapiTest
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
-		$mysql_database = "app_".$_SERVER['HTTP_APPNAME'];
-		$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
-		mysql_select_db("$mysql_database",$link);//选择数据库
-		mysql_query("set names 'utf-8'");
-		date_default_timezone_set("Asia/Shanghai");
+		// $mysql_database = "app_".$_SERVER['HTTP_APPNAME'];
+		// $link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
+		// mysql_select_db("$mysql_database",$link);//选择数据库
+		// mysql_query("set names 'utf-8'");
+		// date_default_timezone_set("Asia/Shanghai");
+		$mysql = new SaeMysql();
 		$sql = "select * from cn_teacher_info where openId=$postObj->FromUserName";
-		$result = mysql_query($sql,$link);
+		$result = $mysql->runsql($sql); 
 		if($result){
 			$isTeacher = 1;
 		}else{
