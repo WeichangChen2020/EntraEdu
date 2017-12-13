@@ -157,5 +157,10 @@ class HomeworkController extends Controller{
         /*======================存入数据库==========================================*/
         $HOMEWORK->add($homeworkInfo);
     }
+
+    public function homeworkmark()
+    {
+        return $this->display();
+    }
 }
 
