@@ -165,7 +165,9 @@ class HomeworkController extends Controller{
         $condition['correcter']     = '未批改';
         $pool = M('student_homework')->where($condition)->select();
         echo "<pre>";
-        dump($pool);die();
+        dump($pool);
+        echo "<br>";
+        dump(count($pool));
         return $this->display();
     }
 }
