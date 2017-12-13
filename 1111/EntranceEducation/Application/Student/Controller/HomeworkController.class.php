@@ -160,7 +160,11 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
-        var_dump(session());
+        $homeworkId                 = session('homeworkId');
+        $condition['homeworkId']    = $homeworkId;
+        $condition['correcter']     = '未批改';
+        $pool = M('student_homework')->where($condition)->select();
+        var_dump($pool);die();
         return $this->display();
     }
 }
