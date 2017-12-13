@@ -37,6 +37,8 @@ class wechatCallbackapiTest
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
+		$user = new UserController();
+		$isTeacher = $user->isTeacher($postObj->FromUserName);
       	//extract post data
 		if (!empty($postStr)){
                 
@@ -100,7 +102,7 @@ class wechatCallbackapiTest
 						
 					}
 					//http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
-					if($keyword == '2'){
+					if($keyword == '2'&&$isTeacher){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
 						$contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/$postObj->FromUserName\">教师端</a>";
