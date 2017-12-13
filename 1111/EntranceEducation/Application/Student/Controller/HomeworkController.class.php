@@ -160,6 +160,7 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
+        var_dump(session());
         return $this->display();
     }
 }
