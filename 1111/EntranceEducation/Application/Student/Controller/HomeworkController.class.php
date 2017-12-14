@@ -176,8 +176,8 @@ class HomeworkController extends Controller{
         $myname = $me['name'];
         $data['correcter'] = $myname;
         $User->where('openId',$person['openId'])->save($data); // 根据条件更新记录
-        // echo '<pre>';
-        // var_dump($person);
+        echo '<pre>';
+        var_dump(session());
         // die();
 
         $this->assign('person',$person);
