@@ -164,9 +164,11 @@ class HomeworkController extends Controller{
         $homeworkId                 = session('homeworkId');
         $condition['homeworkId']    = $homeworkId;
         $condition['correcter']     = '未批改';
+        $condition['openId']       != session('openId');
+
         $pool = M('student_homework')->where($condition)->select();
         $num  = count($pool); //目前共有提交作业但未批改人数
-        $person = $pool[rand(0,$num-1)];
+        $person = $pool[rand(0,$num-1)];//随机的那个人
 
         $User = M('student_homework'); // 实例化User对象
         // 要修改的数据对象属性赋值
@@ -174,8 +176,11 @@ class HomeworkController extends Controller{
         $myname = $me['name'];
         $data['correcter'] = $myname;
         $User->where('openId',$person['openId'])->save($data); // 根据条件更新记录
- 
- 
+        var_dump($person);
+        die();
+
+        $this->assign('person',$person);
+
         return $this->display();
     }
 }
