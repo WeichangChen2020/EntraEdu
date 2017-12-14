@@ -173,6 +173,8 @@ class HomeworkController extends Controller{
         $User = M('student_homework'); // 实例化User对象
         // 要修改的数据对象属性赋值
         $me = M('student_info')->where('openId',session('openId'))->find();
+        var_dump($me);
+        die();
         $myname = $me['name'];
         $data['correcter'] = $myname;
         $User->where('openId',$person['openId'])->save($data); // 根据条件更新记录
