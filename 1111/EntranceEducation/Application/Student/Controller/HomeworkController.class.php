@@ -195,7 +195,7 @@ class HomeworkController extends Controller{
         // die();
         $myname = $me['name'];
         $data['correcter'] = $myname;
-        $data['correctTime'] = time();
+        $data['correctTime'] = date("Y-m-d H:i:s",time());
         $User->where(array('openId'=>$person['openId']))->save($data); // 根据条件更新记录
         // echo '<pre>';
         // var_dump($person);
