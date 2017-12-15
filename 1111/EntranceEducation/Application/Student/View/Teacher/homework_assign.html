@@ -48,7 +48,9 @@
     <include file="./Public/html/_foot.html"/>
     <include file="./Public/html/_refreshJs.html"/>
     <script>
-
+      $(function() {
+        FastClick.attach(document.body);
+      });
       $("#mobile").select({
         title: "选择手机",
         items: [
@@ -92,7 +94,7 @@
       });
 
 
-    
+
     $(function(){
       var max = 200;
       $('#content').on('input', function(){
