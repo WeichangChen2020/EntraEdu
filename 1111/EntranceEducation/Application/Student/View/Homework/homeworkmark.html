@@ -10,55 +10,140 @@
     <header class='demos-header'>
       <h1 class="demos-title">批改作业(第{$person.homeworkId}次作业)</h1>
     </header>
-    
-        <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
-          <div class="weui_cell">
-            <div class="weui_cell_bd weui_cell_primary">
-              <div class="weui_uploader">
-                <div class="weui_uploader_hd weui_cell">
-                  <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+      <notempty name="person.pic1Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
                 </div>
-                <div class="weui_uploader_bd">
-                  <ul class="weui_uploader_files">
-                    <notempty name="person.pic1Url">
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  </ul>
-                  <ul class="weui_uploader_files">
-                    <notempty name="person.pic2Url">
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic2Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  </ul> 
-                    <notempty name="person.pic3Url">
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic3Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  <ul class="weui_uploader_files">
-                    <notempty name="person.pic4Url">
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic4Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  </ul> 
-                  <ul class="weui_uploader_files">
-                    <notempty name="person.pic5Url">
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic5Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  </ul>
-                  <ul class="weui_uploader_files">
-                    <notempty name="person.pic6Url">
-                      <li class="weui_uploader_file" style="background-image:url(http://testet-public.stor.sinaapp.com/{$person.pic6Url})"></li>
-                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
-                    </notempty>
-                  </ul>
-                </div>
-                <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
               </div>
             </div>
           </div>
-        </div>
+        </notempty>
+        <notempty name="person.pic2Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic2Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic2Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </notempty>
+        <notempty name="person.pic3Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic3Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic3Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </notempty>
+        <notempty name="person.pic4Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic4Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic4Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </notempty>
+        <notempty name="person.pic5Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic5Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic5Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </notempty>
+        <notempty name="person.pic6Url">
+          <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+            <div class="weui_cell">
+              <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                  <div class="weui_uploader_hd weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">右图为正确答案</div>
+                  </div>
+                  <div class="weui_uploader_bd">
+                    <ul class="weui_uploader_files">
+                      
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic6Url})"></li>
+                        <li class="weui_uploader_file" style="background-image:url({$person.pic6Url})"></li>
+                      
+                    </ul>
+                  </div>
+                  <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </notempty>
+
+
     
     
 
