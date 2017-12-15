@@ -8,7 +8,7 @@
   <body ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-      <h1 class="demos-title">批改作业</h1>
+      <h1 class="demos-title">批改作业(第{$person.homeworkId}次作业)</h1>
     </header>
     
         <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
@@ -16,39 +16,45 @@
             <div class="weui_cell_bd weui_cell_primary">
               <div class="weui_uploader">
                 <div class="weui_uploader_hd weui_cell">
-                  <div class="weui_cell_bd weui_cell_primary">{$person.name}</div>
+                  <div class="weui_cell_bd weui_cell_primary">右图位正确答案</div>
                 </div>
                 <div class="weui_uploader_bd">
                   <ul class="weui_uploader_files">
                     <notempty name="person.pic1Url">
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                       <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   </ul>
                   <ul class="weui_uploader_files">
                     <notempty name="person.pic2Url">
                       <li class="weui_uploader_file" style="background-image:url({$person.pic2Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   </ul> 
                     <notempty name="person.pic3Url">
                       <li class="weui_uploader_file" style="background-image:url({$person.pic3Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   <ul class="weui_uploader_files">
                     <notempty name="person.pic4Url">
                       <li class="weui_uploader_file" style="background-image:url({$person.pic4Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   </ul> 
                   <ul class="weui_uploader_files">
                     <notempty name="person.pic5Url">
                       <li class="weui_uploader_file" style="background-image:url({$person.pic5Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   </ul>
                   <ul class="weui_uploader_files">
                     <notempty name="person.pic6Url">
                       <li class="weui_uploader_file" style="background-image:url(http://testet-public.stor.sinaapp.com/{$person.pic6Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$person.pic1Url})"></li>
                     </notempty>
                   </ul>
                 </div>
-                <div style="float:right"><a href="javascript:getHomeworkPerson('{$homeworkList.id}_{$homeworkList.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
+                <div style="float:right"><a href="javascript:getHomeworkPerson('{$person.homeworkId}_{$person.name}');" class="weui_btn weui_btn_mini weui_btn_primary open-popup" data-target="#half">评分</a></div>
               </div>
             </div>
           </div>
@@ -66,40 +72,40 @@
         </div>
         <div class="modal-content">
           <div class="weui_grids">
-            <a href="javascript:getMark(3);" class="weui_grid js_grid close-popup" data-id="dialog">
-              <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/33.png" alt="">
-              </div>
-            </a>
-            <a href="javascript:getMark(4);" class="weui_grid js_grid close-popup" data-id="progress">
-              <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/44.png" alt="">
-              </div>
-            </a>
-            <a href="javascript:getMark(5);" class="weui_grid js_grid close-popup" data-id="msg">
-              <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/55.png" alt="">
-              </div>
-            </a>
             <a href="javascript:getMark(0);" class="weui_grid js_grid close-popup" data-id="dialog">
               <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/00.png" alt="">
+                <!-- <img src="__PUBLIC__/images/33.png" alt=""> --><h1 style="text-align:center">0</h1>
+              </div>
+            </a>
+            <a href="javascript:getMark(1);" class="weui_grid js_grid close-popup" data-id="progress">
+              <div class="weui_grid_icon">
+                <!-- <img src="__PUBLIC__/images/44.png" alt=""> --><h1 style="text-align:center">1</h1>
+              </div>
+            </a>
+            <a href="javascript:getMark(2);" class="weui_grid js_grid close-popup" data-id="msg">
+              <div class="weui_grid_icon">
+                <!-- <img src="__PUBLIC__/images/55.png" alt=""> --><h1 style="text-align:center">2</h1>
+              </div>
+            </a>
+            <a href="javascript:getMark(3);" class="weui_grid js_grid close-popup" data-id="dialog">
+              <div class="weui_grid_icon">
+                <!-- <img src="__PUBLIC__/images/00.png" alt=""> --><h1 style="text-align:center">3</h1>
               </div>
               <p class="weui_grid_label">
                 
               </p>
             </a>
-            <a href="javascript:getMark(1);" class="weui_grid js_grid close-popup" data-id="progress">
+            <a href="javascript:getMark(4);" class="weui_grid js_grid close-popup" data-id="progress">
               <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/11.png" alt="">
+                <!-- <img src="__PUBLIC__/images/11.png" alt=""> --><h1 style="text-align:center">4</h1>
               </div>
               <p class="weui_grid_label">
                
               </p>
             </a>
-            <a href="javascript:getMark(2);" class="weui_grid js_grid close-popup" data-id="msg">
+            <a href="javascript:getMark(5);" class="weui_grid js_grid close-popup" data-id="msg">
               <div class="weui_grid_icon">
-                <img src="__PUBLIC__/images/22.png" alt="">
+                <!-- <img src="__PUBLIC__/images/22.png" alt=""> --><h1 style="text-align:center">5</h1>
               </div>
               <p class="weui_grid_label">
                
@@ -168,7 +174,8 @@
               url = "{:U('homework_mark')}";
               data = {
                 personWorkId : personWorkId,
-                mark:mark
+                mark:mark,
+                personId:{$person.openId}
               };
               $.post(url,data,function(res){
                 $.toast("评分成功!");

@@ -160,11 +160,29 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
+        $homeworkId             = session('homeworkId');
+
+        $now = time();
+        $condi['homeworkId']    = $homeworkId;
+        $condi['openId']        = array('NEQ',session('openId'));
+        $condi['correcter']     = array('NEQ','');
+        $condi['mark']          = "";
+        $condi['correctTime']   = array('GT',$now-300);
+
+       
+        $data['correcter'] = '未批改';
+        $strange = M('student_homework')->where($condi)->save($data);
+
         //随机找一个没批改的人，先写上批改人是自己
-        $homeworkId                 = session('homeworkId');
+        
         $condition['homeworkId']    = $homeworkId;
         $condition['correcter']     = '未批改';
-        $condition['openId']       != session('openId');
+        $condition['openId']       = array('NEQ',session('openId'));
+
+        
+
+
+
 
         $pool = M('student_homework')->where($condition)->select();
         $num  = count($pool); //目前共有提交作业但未批改人数
@@ -177,7 +195,8 @@ class HomeworkController extends Controller{
         // die();
         $myname = $me['name'];
         $data['correcter'] = $myname;
-        $User->where('openId',$person['openId'])->save($data); // 根据条件更新记录
+        $data['correctTime'] = date('Y-m-d H:i:s',time());
+        $User->where(array('openId'=>$person['openId']))->save($data); // 根据条件更新记录
         // echo '<pre>';
         // var_dump($person);
         // // var_dump(session('openId'));
@@ -186,6 +205,25 @@ class HomeworkController extends Controller{
         $this->assign('person',$person);
 
         return $this->display();
+    }
+
+    public function homework_mark(){
+        $STU_HOMEWORK = M('student_homework');
+
+        $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        
+        $homeworkId     = I('personWorkId');
+        $mark           = I('mark');
+        $personId       = I('personId');
+        // $person  = $STU_HOMEWORK->where(array('openId' => $personId))->find();
+
+        $correctInfo = array(
+            'mark'        => $mark,
+
+            'correctTime' => date('Y-m-d H:i:s',time()));
+        $res = $STU_HOMEWORK->where(array('id' => $personWorkId,'openId' => $personId))->save($correctInfo);
+
+        
     }
 }
 
