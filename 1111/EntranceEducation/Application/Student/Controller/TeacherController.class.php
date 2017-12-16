@@ -60,12 +60,15 @@ class TeacherController extends Controller{
     //布置作业
     public function homework_assign(){
         $homeworkName = date('m月d日课后作业',time());
+        session('homeworkName',$homeworkName);
         $this->assign('homeworkName',$homeworkName)->display();
     }
     public function homework_assign_zg(){
         if (IS_POST) {
-            //插入数据库
+            
         } else {
+            $homeworkName = session('homeworkName');
+            $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>0))->
             $this->display();
         }
         
@@ -74,6 +77,9 @@ class TeacherController extends Controller{
         if (IS_POST) {
             //插入数据库
         } else {
+            $homeworkName = session('homeworkName');
+            $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
+            $this->assign('homeworkzg',$homeworkzg);
             $this->display();
         }
     }
