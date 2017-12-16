@@ -62,6 +62,21 @@ class TeacherController extends Controller{
         $homeworkName = date('m月d日课后作业',time());
         $this->assign('homeworkName',$homeworkName)->display();
     }
+    public function homework_assign_zg(){
+        if (IS_POST) {
+            //插入数据库
+        } else {
+            $this->display();
+        }
+        
+    }
+    public function homework_assign_kg(){
+        if (IS_POST) {
+            //插入数据库
+        } else {
+            $this->display();
+        }
+    }
 
     //将上传的作业信息写入数据库
     public function homework_handAssign(){
