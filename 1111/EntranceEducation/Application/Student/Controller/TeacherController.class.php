@@ -65,10 +65,29 @@ class TeacherController extends Controller{
     }
     public function homework_assign_zg(){
         if (IS_POST) {
-            
+
+            echo '666';
         } else {
-            $homeworkName = session('homeworkName');
-            $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>0))->
+            //输出所有章节，里面包含此章节的所有题目
+            $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
+            $this->assign('chapternumber',$chapternumber);
+
+            for ($i=1; $i < $chapternumber+1; $i++) { 
+                $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
+                $this->assign('chapterproblem',$chapterproblem);
+
+
+            }
+
+
+
+            // $homeworkName = session('homeworkName');
+            // $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>0))->find();
+            // $problems = $homeworkzg['content'];
+            // $proarr = explode(',', $problems);
+
+
+
             $this->display();
         }
         
