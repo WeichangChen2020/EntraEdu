@@ -90,7 +90,7 @@ class TeacherController extends Controller{
 
 
            
-        }
+        
         
     }
     public function homework_assign_kg(){
