@@ -5,7 +5,7 @@ body, html {
 .demos-title {
   text-align: center;
   font-size: 34px;
-  color: black;
+  color: #3cc51f;
   font-weight: 400;
   margin: 0 15%;
 }
@@ -41,22 +41,4 @@ footer {
 footer a {
   color: #999;
   text-decoration: none;
-}
-
-.alert{
-  font-size:12px;
-  text-align: left;
-}
-.demos-badge{
-    background-color: #09BB07;
-    border-radius: 26px;
-    padding:1px 6px;
-    color: #FCFFFE;
-    font-size: 15px;  
-}
-.demos-badge-red{
-  background-color: #ff0000;
-}
-.demos-badge-teacher{
-    font-size: 12px;  
 }

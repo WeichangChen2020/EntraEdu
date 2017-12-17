@@ -102,10 +102,11 @@ class TeacherController extends Controller{
         if (IS_POST) {
             //插入数据库
         } else {
-            $homeworkName = session('homeworkName');
-            $homeworkkg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
-            $this->assign('homeworkkg',$homeworkkg);
-            $this->assign('chapternum',3);
+            // $homeworkName = session('homeworkName');//12月8日作业
+            // $homeworkkg = M('homework_kg')->select();
+            $chapternumber = M('questionbank')->distinct('chapter')->group('chapter')->select();
+            $num = count($chapternumber);
+            $this->assign('num',$num);
             $this->display();
         }
     }
