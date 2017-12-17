@@ -63,7 +63,7 @@ class TeacherController extends Controller{
         session('homeworkName',$homeworkName);
         $this->assign('homeworkName',$homeworkName)->display();
     }
-    public function homework_assign_zg(){
+    public function homework_zg(){
 
        
             //输出所有章节，里面包含此章节的所有题目
