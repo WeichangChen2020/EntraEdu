@@ -76,8 +76,8 @@ class TeacherController extends Controller{
             //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
             //     $this->assign('chapterproblem',$chapterproblem);
 
-                $this->display();
-            }
+                return $this->display();
+        }
             
 
 
