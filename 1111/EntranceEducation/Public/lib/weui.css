@@ -1288,7 +1288,7 @@ a.weui_media_box:active {
   position: relative;
   float: left;
   padding: 20px 10px;
-  width: 50%;
+  width: 33.3333333%;
   box-sizing: border-box;
 }
 .weui_grid:before {
