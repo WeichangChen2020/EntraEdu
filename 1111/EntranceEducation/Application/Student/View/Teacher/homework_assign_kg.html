@@ -40,15 +40,9 @@
     </div>
 
       <div class="weui_cell">
-        <div class="weui-cell weui-cell_select">
-          <div class="weui-cell__bd">
-            <select class="weui-select" name="select1">
-              <option selected="" value="1">选择第几次作业</option>
-              <option value="2">第一次</option>
-              <option value="3">第二次</option>
-            </select>
-          </div>
-        </div>
+        <for start="1" end="{$chapternum}">
+          {$i}
+        </for> 
       </div>  
 
 
