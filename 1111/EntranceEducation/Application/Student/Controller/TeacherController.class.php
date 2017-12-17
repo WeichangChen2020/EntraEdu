@@ -63,19 +63,30 @@ class TeacherController extends Controller{
         session('homeworkName',$homeworkName);
         $this->assign('homeworkName',$homeworkName)->display();
     }
-    public function homework_zg(){
+    
 
        
             //输出所有章节，里面包含此章节的所有题目
             // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
            
-            $this->assign('chapternumber',3);
+            
            
             // for ($i=1; $i < $chapternumber+1; $i++) { 
             //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
             // $this->assign('chapterproblem',$chapterproblem);
-            
+
+    public function homework_assign_zg(){
+        if (IS_POST) {
+            //插入数据库
+        } else {
+            $homeworkName = session('homeworkName');
+            $homeworkkg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
+            $this->assign('homeworkzg',$homeworkkg);
             $this->display();
+        }
+    }
+            
+          
     
             
 
@@ -86,14 +97,14 @@ class TeacherController extends Controller{
             // $problems = $homeworkzg['content'];
             // $proarr = explode(',', $problems);
 
-    }
+   
     public function homework_assign_kg(){
         if (IS_POST) {
             //插入数据库
         } else {
             $homeworkName = session('homeworkName');
-            $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
-            $this->assign('homeworkzg',$homeworkzg);
+            $homeworkkg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
+            $this->assign('homeworkzg',$homeworkkg);
             $this->display();
         }
     }
