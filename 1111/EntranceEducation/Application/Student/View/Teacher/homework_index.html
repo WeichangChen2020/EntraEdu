@@ -16,7 +16,7 @@
         <a class="weui_cell" href="{:U('homework_assign')}">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <p>布置作业</p>
+            <p class="weui_btn weui_btn_mini weui_btn_primary open-popup">布置作业</p>
           </div>
           <div class="weui_cell_ft"></div>
         </a>
@@ -36,6 +36,29 @@
         </a>
       </div>
     </div>
+
+    <div id="half" class='weui-popup-container popup-bottom'>
+      <div class="weui-popup-modal">
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <a href="javascript:;" class="picker-button close-popup">取消</a>
+            <h1 class="title">评分</h1>
+          </div>
+        </div>
+        <div class="modal-content">
+          <div class="weui_grids">
+            <a href="javascript:getMark(0);" class="weui_grid js_grid close-popup" data-id="dialog">
+              <div class="weui_grid_icon">
+                <!-- <img src="__PUBLIC__/images/33.png" alt=""> --><h1 style="text-align:center">0</h1>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </body>
 </html>
 <include file="./Public/html/_foot.html"/>
@@ -44,4 +67,11 @@
   var number = $('.demos-badge').html();
   if(number == 0)
     $('.demos-badge').hide();
+
+  $(document).on("open", ".weui-popup-modal", function() {
+          console.log("open popup");
+        }).on("close", ".weui-popup-modal", function() {
+          console.log("close popup");
+        });
+        
 </script>

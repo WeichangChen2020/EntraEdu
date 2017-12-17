@@ -78,6 +78,7 @@ class TeacherController extends Controller{
 
 
             }
+            $this->display();
 
 
 
@@ -88,7 +89,7 @@ class TeacherController extends Controller{
 
 
 
-            $this->display();
+           
         }
         
     }
