@@ -73,7 +73,8 @@ class TeacherController extends Controller{
             // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
             $num = 3;
             $this->assign('chapternumber',$num);
-
+            p($num);
+            die;
             // for ($i=1; $i < $chapternumber+1; $i++) { 
             //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
             // $this->assign('chapterproblem',$chapterproblem);
