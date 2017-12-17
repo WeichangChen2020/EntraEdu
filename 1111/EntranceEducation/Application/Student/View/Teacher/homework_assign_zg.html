@@ -1,57 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <include file="./Public/html/_head.html"/>
-  </head>
-  <body ontouchstart>
-    <include file="./Public/html/_refresh.html"/>
+<head>
+  <title>选择主观题</title>
+</head>
+<body ontouchstart>
+<include file="./Public/html/_head.html"/>
+<include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-      <h1 class="demos-title">布置作业</h1>
+      <h1 class="demos-title">选择主观题</h1>
     </header>
 
-    <div class="weui_cells weui_cells_form">
-      <div class="weui_cell">
-        <div class="weui_cell_hd"><label class="weui_label">作业名称</label></div>
-        <div class="weui_cell_bd weui_cell_primary" id="homeworkName">
-          {$homeworkName|default="课后作业"}
-          
-          <select class="weui-select" name="select1">
-            <option selected="" value="1">选择班级</option>
-
-            <option value="1">1班</option>
-            <option value="2">2班</option>
-          </select>
-        </div>
-      </div>
-      <div class="weui_cell">
-        <div class="weui_cell_hd"><label for="" class="weui_label">提交截止时间</label></div>
-        <div class="weui_cell_bd weui_cell_primary">
-          <input id="deadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
-        </div>
-      </div>
-
-      <div class="weui_cell">
-        <div class="weui_cell_hd"><label for="" class="weui_label">互评截止时间</label></div>
-        <div class="weui_cell_bd weui_cell_primary">
-          <input id="deadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
-        </div>
-      </div>
-    </div>
-
-
-    <!-- <for start="1" end="{$chapternumber}+1">
-      <div class="weui_cell">
-        <a href="{:U('selectproblem',array('chapter' => {$i}))}">第{$i}章</a>
-      </div>
-    </for> -->
-
-    
-    <div class="weui_btn_area">
-      <a class="weui_btn weui_btn_primary" href="javascript:" id="submit">确定</a>
-    </div>
-    <div id="test"></div>
-    <include file="./Public/html/_foot.html"/>
-    <include file="./Public/html/_refreshJs.html"/>
-   
-  </body>
+    <for start="1" end="{$chapternumber}">
+      第{$i}章
+    </for>
+</body>
 </html>
