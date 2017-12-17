@@ -64,29 +64,29 @@ class TeacherController extends Controller{
         $this->assign('homeworkName',$homeworkName)->display();
     }
     public function homework_assign_zg(){
-        echo 23333;
-        // if (IS_POST) {
 
-        //     echo '666';
-        // } else {
-        //     //输出所有章节，里面包含此章节的所有题目
-        //     // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
-        //     // $this->assign('chapternumber',$chapternumber);
+        if (IS_POST) {
 
-        //     // for ($i=1; $i < $chapternumber+1; $i++) { 
-        //     //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
-        //     //     $this->assign('chapterproblem',$chapterproblem);
+            echo '666';
+        } 
+            //输出所有章节，里面包含此章节的所有题目
+            // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
+            // $this->assign('chapternumber',$chapternumber);
 
-        //         return $this->display();
-        // }
+            // for ($i=1; $i < $chapternumber+1; $i++) { 
+            //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
+            //     $this->assign('chapterproblem',$chapterproblem);
+
+            return $this->display();
+    
             
 
 
 
-        //     // $homeworkName = session('homeworkName');
-        //     // $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>0))->find();
-        //     // $problems = $homeworkzg['content'];
-        //     // $proarr = explode(',', $problems);
+            // $homeworkName = session('homeworkName');
+            // $homeworkzg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>0))->find();
+            // $problems = $homeworkzg['content'];
+            // $proarr = explode(',', $problems);
 
     }
     public function homework_assign_kg(){
