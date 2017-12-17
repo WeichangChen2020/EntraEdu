@@ -105,6 +105,7 @@ class TeacherController extends Controller{
             $homeworkName = session('homeworkName');
             $homeworkkg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
             $this->assign('homeworkkg',$homeworkkg);
+            $this->assign('chapternum',3);
             $this->display();
         }
     }
