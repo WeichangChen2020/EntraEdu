@@ -72,8 +72,8 @@ class TeacherController extends Controller{
             //输出所有章节，里面包含此章节的所有题目
             // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
             $num = 3;
-            $this->assign('chapternumber',$num);
-            p($num);
+            $res = $this->assign('chapternumber',$num);
+            p($res);
             die;
             // for ($i=1; $i < $chapternumber+1; $i++) { 
             //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
