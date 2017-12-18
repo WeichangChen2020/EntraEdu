@@ -33,18 +33,48 @@ class StudentListModel extends Model {
 	 * @var   
 	 * @return  array()
 	 */
-	// public function getCollegeList(){
+	public function getCollegeList(){
 
-	// 	$sql = "SELECT DISTINCT academy FROM  cn_student_list";
+		$sql = "SELECT DISTINCT academy FROM  ee_student_list";
 		
-	// 	$Model = new \Think\Model();
-	// 	$res = $Model->query($sql);
+		$Model = new \Think\Model();
+		$res = $Model->query($sql);
 
-	// 	if (empty($res)) {
-	// 		return false;
-	// 	}
+		if (empty($res)) {
+			return false;
+		}
 
-	// 	return $res;
-	// }
+		return $res;
+	}
+
+
+	/**
+	 * getExercseNum 获取学生自由练习答题情况
+	 * @author 李俊君<hello_lijj@qq.com>
+	 * @copyright  2017-11-24 13:48Authors
+	 * @var   
+	 * @return  array()
+	 */
+
+	public function getExercseNum() {
+
+		$college = D('Adminer')->getCollege();
+        
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+        $map['type'] = 1;
+
+        $user = $this->where($map)->field('number')->select();
+        $num['allNum'] = count($user);
+        $num['unFinshNum'] = 0;
+        foreach ($user as $key => $value) {
+        	if(is_ablity_exam($value['number']))
+        		$num['unFinshNum'] ++;
+        }
+        
+        return $num;
+	}
+
  
 }

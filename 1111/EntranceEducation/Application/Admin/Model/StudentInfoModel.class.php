@@ -12,7 +12,7 @@ class StudentInfoModel extends Model {
 	 */
 	public function getOpenid($name) {
 
-		$sql = "SELECT openId FROM cn_student_info WHERE name = '$name' ";
+		$sql = "SELECT openId FROM ee_student_info WHERE name = '$name' ";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
@@ -32,7 +32,7 @@ class StudentInfoModel extends Model {
 	 */
 	public function getInfo($openid) {
 
-		$sql = "SELECT * FROM cn_student_info WHERE openid = '$openid' ";
+		$sql = "SELECT * FROM ee_student_info WHERE openid = '$openid' ";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);

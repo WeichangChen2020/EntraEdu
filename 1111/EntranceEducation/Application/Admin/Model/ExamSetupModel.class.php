@@ -12,7 +12,7 @@ class QuestionbankModel extends Model {
 	 */
 	public function getQuestionList() {
 
-		$sql = "SELECT * FROM  cn_exam_college WHERE examid = '$id'";
+		$sql = "SELECT * FROM  ee_exam_college WHERE examid = '$id'";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
@@ -21,6 +21,19 @@ class QuestionbankModel extends Model {
 			return false;
 		}
 		return $res;
+	}
+
+	/**
+	 * getExamName 获取考试名称
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright  2017-11-24 18:13 Authors
+	 * @var  
+	 * @return  String
+	 */
+	public function getExamName($id) {
+
+		$name = M('ExamSetup')->where(array('id'=>$id))->field('title')->find();
+		return $name['title'];
 	}
 
 

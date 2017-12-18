@@ -22,7 +22,7 @@ class ExamCollegeModel extends Model {
 		}
 
 		$notStu = array('examid'=>$id,'academy' => '非新生');
-		// $this->add($value);
+		// $this->add($value);  这里多写了一行
 		$this->add($notStu);
 
 		return true;
