@@ -1,15 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | 计算机网络教学互动平台
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: lijj <hello_lijj@qq.com>
-// +----------------------------------------------------------------------
-// | Time: 2016-07-24  13:24
-// +----------------------------------------------------------------------
+
 namespace Student\Controller;
 use Think\Controller;
 use Think\Model;
@@ -19,155 +9,218 @@ use Think\Model;
  */
 class TestController extends Controller{
   
-
     public function index(){
         //echo "默认页面";
         $openId=session('openId');
         session('openId',$openId);
         $this->display();
     }
+
+    //首页->随堂测试列表
     public function testList(){
         //session('openId',null);
         //$openId = getOpenId();
         $openId=session('openId');
         session('openId',$openId);
-
+        $STUINFO = D('StudentInfo');
+        $TESTSUBMIT = D('TestSubmit');
+        $class = $STUINFO->getClass($openId);//当前学生所在班级
+        //echo $class;die;
+        $map['class'] = $class;
         $map['state'] = array('neq','');
-        $testList = M('teacher_quiz')->where($map)->order('time desc')->select();
+        $testList = M('test_set')->where($map)->order('time desc')->select();
+        // p($testList);die;        
+        //$testList = M('test_set_state')->where($map)->order('id desc')->select();
 
-        //+++++++++++++++++++把是否提交和访问人数也加到数组里
+        //是否提交、提交人数
         foreach ($testList as $key => $value) {
-            $testList[$key]['isSubmit']  = $this->isSubmit($openId,$testList[$key]['id']);
-            $testList[$key]['submitNum'] = $this->getSubmitNum($testList[$key]['id']);
+            $testList[$key]['isSubmit']  = $TESTSUBMIT->isSubmit($openId,$testList[$key]['id']);
+            $testList[$key]['submitNum'] = $TESTSUBMIT->getSubmitNum($testList[$key]['id']);
         }
 
         // p($testList);
         $this->assign('testList',$testList)->display();
     }
 
-
-    private function isSubmit($openId,$quizId){
-        if(M('student_classtest_record')->where(array('openId' => $openId,'quizId' => $quizId))->find())
-            return true;
-        else
-            return false;
-    }
-
-    //提交人数,最好写在model里
-    public function getSubmitNum($quizId){
-        $testList = M('student_classtest_record')->where(array('quizId' => $quizId))->select();
-        $tea      = new TeacherController();
-        $testStu  = $tea->array_unset($testList,'openId');
-        return count($testStu);
-    }
-
+    //随堂测试列表->随堂测试（在线测试，题目解析，测试统计，测试详情）
     public function testMenu(){
-        $quizId = I('quizId')?I('quizId'):$this->error('你访问的页面不存在');
-        session('quizId',null);
-        session('quizId',$quizId);
-
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $this->assign('state',$this->isSubmit($openId,$quizId));
-        $this->assign('quizId',$quizId);
-        $this->assign('number',$this->getSubmitNum($quizId))->display();
+        $testid = I('testid')?I('testid'):$this->error('你访问的页面不存在');
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+        session('testid',null);
+        session('testid',$testid);
+        $TESTSUBMIT = D('TestSubmit');
+        $this->assign('state',$TESTSUBMIT->isSubmit($openId,$testid));//是否提交
+        $this->assign('testid',$testid);
+        $this->assign('number',$TESTSUBMIT->getSubmitNum($testid))->display();
     }
 
     // 在线测试
-    public function test(){
-        $quizId   = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+    public function test($selectid = 0){
+        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+        //p($testid);
+        $TESTSUBMIT = D('TestSubmit');
+        $TESTSET = D('TestSet');
+        $TESTSELECT = D('TestSelect');
+        if($TESTSUBMIT->isSubmit($openId,$testid))
+            $this->error('你已提交！');
+        if(!$TESTSET->isEnd($testid))
+            $this->error('测试已经结束！');
+        //$quesList = M('test_questionbank')->where(array('testid' => $testid))->order('time desc')->select();
+        //p($quesList);
+        //$this->assign('quesList',$quesList)->display();
+     
+        $testItem = $TESTSELECT->getTestItem($openId, $testid, $selectid);//select中某一条记录
+        //p($testItem);
+        //p($testItem['quesid']);
+        $quesItem = D('Questionbank')->getQuestion($testItem['quesid']);//某一道题目的信息
+        //p($quesItem);
+        $this->assign('testItem', $testItem);        
+        $this->assign('quesItem', $quesItem);
 
-        if(M('student_classtest_record')->where(array('openId' => $openId , 'quizId' => $quizId))->find())
-            $this->error('你已经提交过了，不得重复提交');
-        if(M('teacher_quiz')->where(array('quizId' => $quizId))->getField('state') == '关闭')
-            $this->error('测试时间已经结束！');
-        $quesList = M('teacher_quiz_questionbank')->where(array('quizId' => $quizId))->order('time desc')->select();
-        $this->assign('quesList',$quesList)->display();
+        $quesList = $TESTSELECT->getTestItems($openId, $testid);//某测试所有题目
+        //p($quesList);
+        foreach ($quesList as $key => &$value) {
+            $selectidArr[$key+1] = $value['id'];
+        }
+        // p($selectidArr);
+        // die;
+        $this->assign('selectidArr', $selectidArr);
+        $this->assign('quesList', $quesList);
+
+        $end_time = $TESTSET->getEndTime($openId, $testid);//测试结束时间
+
+        $this->assign('end_time', $end_time);    
+
+        //根据题型显示
+        if ($quesItem['type'] == '单选题') {
+            $this->display('radio');
+        } else if ($quesItem['type'] == '判断题') {
+            $this->display('judge');
+        } else if ($quesItem['type'] == '多选题') {
+            $this->display('mutil');
+        }        
     }
 
     public function testSubmit(){
-        if(!IS_AJAX)
-            $this->error('你访问的页面不存在');
-        $quizId  = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
-        $openId  = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        // if(!IS_AJAX)
+        //     $this->error('你访问的页面不存在');
         
-        $answerStr   = I('answer');
-        $answerArray = explode('_',substr($answerStr, 0,strlen($answerStr)-1));
-        $quesIdStr   = I('quesId');
-        $quesIdArray = explode('_',substr($quesIdStr, 0,strlen($quesIdStr)-1));
-        $user        = new UserController();
-        $stuInfo     = $user->getUserInfo($openId);
-        $quizName    = M('teacher_quiz')->where(array('id'=>$quizId))->getField('quizName');
-        $QUIZ        = M('teacher_quiz_questionbank');
-        $result      = array();
-        $rightNum    = 0;
+        $answer   = I('option');
+        $selectid = intval(trim(I('selectid')));
+
+        $right_answer = D('TestSelect')->getRightAnswer($selectid);
+        $result = $answer == $right_answer ? 1 : 0;
         
-        foreach ($answerArray as $key => $value) {
-            $rightAnswer = $QUIZ->where(array('id' => $quesIdArray[$key]))->getField('rightAnswer');
-            $answerInfo = array(
-               'openId' => $openId,
-               'quizId' => $quizId,
-               'questionId' => $quesIdArray[$key],
-               'quizName' => $quizName,
-               'answer' => $value,
-               'rightAnswer' => $rightAnswer,
-               'answerResult' => $value == $rightAnswer ? 'RIGHT' : 'WRONG',
-               'time' => date('Y-m-d H:i:s')
-               );
-            if(!empty($stuInfo)){
-                $answerInfo['name']   = $stuInfo['name'];
-                $answerInfo['class']  = $stuInfo['class'];
-            }else{
-                $answerInfo['name']   = 'null';
-                $answerInfo['class']  = 'null';
-            }
-            if($value == $rightAnswer){
-                $result[] = 'RIGHT';
-                $rightNum ++;
-            }else{
-                $result[] = 'WRONG';
-            }
-            if(!M('student_classtest_record')->add($answerInfo))
-                $this->ajaxReturn('failure');
+        $data = array(
+            'answer' => $answer,
+            'result' => $result,
+            'time'   => date('Y-m-d H:i:s', time()),
+            // 'right_answer'=>$right_answer,
+        );
+
+        // 获取学生当前考试的环境信息
+        $openid = session('openId');
+        $testid = session('testid');
+        $testInfo = D('TestSet')->beforeInitTest($openid, $testid);
+        // p($testInfo);die;
+        if ($testInfo['is_on'] == 1 && $testInfo['is_end'] == 0 && $testInfo['is_submit'] == 0) {
+            D('TestSelect')->where(array('id'=>$selectid,'openid'=>$openid))->save($data);//修改数据
+        } else {
+            $this->ajaxReturn($testInfo);
         }
-        $resultStr = '正确数量：'.$rightNum.'错误数量:'.(count($result)-$rightNum) ;
-        $this->ajaxReturn($resultStr);
     }
 
+    /**
+     * 提交成功
+     * @author 蔡佳琪
+     * @copyright  2017-12-20 15:32
+     **/
+    public function tip() {
+        $openId = session('openId');
+        $testid = session('testid');
+        $info = D('StudentInfo')->getStuInfo($openId);
+        $score = M('TestSelect')->where(array('openid'=>$openId,'testid'=>$testid,'result'=>1))->count();
+        $data = array(
+            'openid' => $openId,
+            'testid' => $testid,
+            'name'   => $info['name'],
+            'class'=> $info['class'],
+            'score'  => $score,
+        );
+        $TESTSUBMIT = D('TestSubmit');
+        if (!$TESTSUBMIT->isSubmit($openId,$testid)) {
+            M('TestSubmit')->add($data);//未提交，则add
+        }
+        $map1 = array('openid' => $openId,'testid' => $testid);
+        $map1['result'] = array('neq',-1);
+        //p($map1);die;       
+        $ansNum = M('TestSelect')->where($map1)->count();//本次测试答题数
+        $map2 = array('openid' => $openId,'testid' => $testid,'result'=>'1');
+        $rightNum = M('TestSelect')->where($map2)->count();//本次测试答对题数
+        $this->assign('ansNum',$ansNum);
+        $this->assign('rightNum',$rightNum);
 
-    //提交后的结果
+        $this->display();
+    }
+
+    //提交结果
     public function testResult(){
         $testResult = I('result');
-        $quizId  = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
-        $this->assign('quizId',$quizId);
+        $testid  = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $this->assign('testid',$testid);
         $this->assign('testResult',$testResult)->display();
     }
 
     //题目解析
     public function testAnalyze(){
-        $quizId   = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-
-        if(!M('student_classtest_record')->where(array('openId' => $openId , 'quizId' => $quizId))->find())
-            $this->error('请先完成题目在查看解析');
-        $quesList = M('teacher_quiz_questionbank')->where(array('quizId' => $quizId))->select();
-        $this->assign('quesList',$quesList)->display();
+        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+        $TESTSUBMIT = D('TestSubmit');
+        if(!$TESTSUBMIT->isSubmit($openId,$testid))
+            $this->error('请完成测试再查看解析');
+        $quesList = M('test_questionbank')->where(array('testid' => $testid,'openId'=>$openId))->select();
+        // var_dump($quesList);
+        foreach ($quesList as $key => &$value) {
+            $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
+        }    
+        // var_dump($quesItem);
+        $this->assign('quesItem',$quesItem)->display();
     }
 
-    //测试详情
+    //测试统计(教师端和学生端共用)
     public function testDetails(){
-        $quizId   = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
 
-        $STU_ClA_REC = M('student_classtest_record');
-        $quesList = M('teacher_quiz_questionbank')->where(array('quizId' => $quizId))->select();
+        $TESTBANK    = M('test_questionbank');
+        $TESTSELECT  = M('test_select');
+
+        //$TESTRECORD = M('student_classtest_record');
+        $QUESTIONBANK = M('questionbank');
+        $quesList = $TESTBANK->where(array('testid' => $testid,'openid' => $openId))->select();
+        //var_dump($quesList);
         foreach ($quesList as $key => $value) {
-            $primaryId = $quesList[$key]['id'];
-            $quesList[$key]['optionA'] = $STU_ClA_REC->where(array('quizId' => $quizId,'questionId' => $primaryId,'answer' => 'A'))->count();
-            $quesList[$key]['optionB'] = $STU_ClA_REC->where(array('quizId' => $quizId,'questionId' => $primaryId,'answer' => 'B'))->count();
-            $quesList[$key]['optionC'] = $STU_ClA_REC->where(array('quizId' => $quizId,'questionId' => $primaryId,'answer' => 'C'))->count();
-            $quesList[$key]['optionD'] = $STU_ClA_REC->where(array('quizId' => $quizId,'questionId' => $primaryId,'answer' => 'D'))->count();
+            $quesId = $quesList[$key]['quesid'];
+            // p($quesId);
+            $quesItem = $QUESTIONBANK->where(array('id'=>$quesId))->find();
+            //$quesList = array_merge($quesList[$key],$quesItem);
+            //var_dump($quesList);die;
+            $quesList[$key]['type'] = $quesItem['type'];
+            $quesList[$key]['contents'] = $quesItem['contents'];
+            $quesList[$key]['option_a'] = $quesItem['option_a'];
+            $quesList[$key]['option_b'] = $quesItem['option_b'];
+            $quesList[$key]['option_c'] = $quesItem['option_c'];
+            $quesList[$key]['option_d'] = $quesItem['option_d'];
+            $quesList[$key]['optionA'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'A'))->count();
+            $quesList[$key]['optionB'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'B'))->count();
+            $quesList[$key]['optionC'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'C'))->count();
+            $quesList[$key]['optionD'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'D'))->count();
+            $quesList[$key]['optionR'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => '对'))->count();
+            $quesList[$key]['optionW'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => '错'))->count();
+
         }
+        // var_dump($quesList);
         $this->assign('quesList',$quesList)->display();
     }
 }
