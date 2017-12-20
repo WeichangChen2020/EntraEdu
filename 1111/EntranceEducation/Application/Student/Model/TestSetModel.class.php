@@ -32,7 +32,7 @@ class TestSetModel extends Model {
 	public function beforeInitTest ($openid, $testid){
 
         $testInfo = $this->getTestInfo($testid);
-        $now      = strtotime(time());
+        $now      = time();
         
         $info           = array(
         	//'is_newer'  => 0,	
