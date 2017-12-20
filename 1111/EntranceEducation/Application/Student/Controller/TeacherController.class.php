@@ -311,75 +311,23 @@ class TeacherController extends Controller{
     }
 
 
-    //教师端随堂测试首页面
+//教师端随堂测试首页面,1.发布测试，2.测试管理
     public function test_index(){
-        session('openId',null);
+        // session('openId',null);
         $openId = getOpenId();
         session('openId',$openId);
- 
+        //p($openId);
         $this->display();
     }
 
-    //发布测试
-    public function test_assign(){
-        $quesId = I('quesId');
-        if(empty($quesId))
-            $this->error('你访问的界面不存在');
-        $assignArray['quesId']     = substr($quesId, 1);
-        $assignArray['testName']   = date('m月d日随堂测试',time());
-        $assignArray['testNumber'] = count(explode('_', substr($quesId, 1)));
-
-        $this->assign('assignArray',$assignArray)->display();
+    //发布测试->章节列表
+    public function test_unit_list(){
+        //$chapArr = M('question_chapter')->select();
+        //p($chapArr);
+        $this->display();
     }
 
-    public function test_add(){
-        if(!IS_AJAX)
-            $this->error('你访问的界面不存在');
-        $openId      =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $quesIdArray = explode('_', I('testQuesId'));
-        $user        = new UserController();
-        $teaInfo     = $user->getTeacherInfo($openId);
-        $QUESBANK = M('questionbank');
-        $QUIZBANK = M('teacher_quiz_questionbank');
-
-        // /*===============添加测试记录========================*/
-        $quiz = array(
-            'openId'   => $openId,
-            'name'     => $teaInfo['name']?$teaInfo['name']:'default',
-            'quizName' => trim(I('testName')),
-            'state'    => '开启',
-            'deadtime' => I('deadtime'),
-            'time'     => date('Y-m-d H:i:s',time()),
-            );
-        $quizId = M('teacher_quiz')->add($quiz);
-        if(!$quizId)
-            $this->ajaxReturn('failure');
-
-        
-
-        /*===============添加测试题目========================*/
-        foreach ($quesIdArray as $value) {
-            $quesInfo      = $QUESBANK->where(array('id' => $value))->find();
-            $quesInfoArray = array(
-                'quizId'           => $quizId,
-                'primaryId'        => $value,
-                'openId'           => $openId,
-                'name'             => $teaInfo['name']?$teaInfo['name']:'default',
-                'quizName'         => trim(I('testName')),
-                'questionPicPath'  => $quesInfo['questionPicPath'],
-                'questionPicName'  => $quesInfo['questionPicName'],
-                'rightAnswer'      => $quesInfo['rightAnswer'],
-                'analysisPicPath'  => $quesInfo['analysisPicPath'],
-                'analysisPicName'  => $quesInfo['analysisPicName'],
-                'time' => date('Y-m-d H:i:s') 
-                );
-            if(!$QUIZBANK->add($quesInfoArray))
-                $this->ajaxReturn('failure');
-        }
-
-        $this->ajaxReturn('success');
-    }
-
+    //发布测试->章节列表->题目列表
     public function test_ques_list(){
         $unit   = intval(I('unit'));//章节
         $number = intval(I('number'));//题数
@@ -393,38 +341,162 @@ class TeacherController extends Controller{
            $cond   = array('chapter' => $value);
            $result = array_merge($result,M('questionbank')->where($cond)->select());
         }
-        if($number !== 0){   //说明用户自定义选择了数量
+        // var_dump($result);
+        // die;
+        if($number !== 0){   //用户自定义题目数量
             $numberResult = array(); 
             $rand = array_rand($result,$number);
+            //var_dump($rand);die;
             foreach ($rand as $key => $value) {
                 $numberResult[] = $result[$value];
             }
-            $this->assign('result',$numberResult)->display();
+            //var_dump($numberResult);die;
+            $this->assign('quesItem',$numberResult)->display();
         }else{
-            $this->assign('result',$result)->display();
+            $this->assign('quesItem',$result)->display();
         }
     }
 
-    // 教师端测试列表，点击测试管理后进入界面
+    //发布测试->章节列表->题目列表->班级列表
+    public function test_class_list(){
+        $openId =  session('openId');
+        //echo $openId;
+        $quesId = I('quesId');
+        session('quesId',$quesId);
+        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        //var_dump($teacherClass);
+        $this->assign('teacherClass',$teacherClass)->display();
+
+    }
+ 
+    //发布测试
+    public function test_assign(){
+        $openId =  session('openId');
+        $quesId = session('quesId');//_2_3
+        $banji = I('banji');//_班级1_班级2
+        //echo $quesId;
+        //echo $banji;
+        //die;
+        if(empty($quesId))
+            $this->error('你访问的界面不存在');
+
+        $assignArray['quesId']     = substr($quesId, 1);//从第2个开始截取
+        $assignArray['banji']      = substr($banji, 1);
+        //echo $assignArray['quesId'];
+        $assignArray['testName']   = date('m月d日随堂测试',time());
+        $assignArray['quesNumber'] = count(explode('_', substr($quesId, 1)));
+        //var_dump($assignArray);
+        
+        $this->assign('assignArray',$assignArray)->display();
+    }
+
+    //添加测试，套了三层循环，紧张
+    public function test_add(){
+        if(!IS_AJAX)
+            $this->error('你访问的界面不存在');
+        $openId      = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $classArray  = explode('_', I('testBanji'));//以_为分割,打成数组
+        $quesIdArray = explode('_', I('testQuesId'));//题目id数组
+        // var_dump($quesIdArray);die;
+        $user        = new UserController();
+        $teaInfo     = $user->getTeacherInfo($openId);
+        $QUESBANK    = M('questionbank');
+        $TESTSET     = M('test_set');
+        $TESTBANK    = M('test_questionbank');
+        $TESTSELECT  = M('test_select');
+
+        /*===============添加测试，设置=================*/
+        foreach ($classArray as $key => $value) {
+            $quiz = array(
+                'openid'   => $openId,
+                'name'     => $teaInfo['name']?$teaInfo['name']:'佚名',
+                'testName' => $value.'的'.trim(I('testName')),
+                // 'quizName' => trim(I('testName')),
+                'class'    => $value,
+                'state'    => '开启',
+                'deadtime' => I('deadtime'),
+                'time'     => date('Y-m-d H:i:s',time()),
+            );
+            //var_dump($quiz);die;
+            $testid = $TESTSET->add($quiz);
+            // var_dump($testid);die;//居然是返回自增id握草，666
+            //$quiz['testid'] = $testid;
+            //M('test_set')->save($quiz);
+
+            if(!$testid)
+                $this->ajaxReturn('failure');
+
+            /*===============插入测试信息========================*/
+            foreach ($quesIdArray as $v) {
+                $quesInfo      = $QUESBANK->where(array('id' => $v))->find();
+                //var_dump($quesInfo);die;
+                $quesInfoArray = array(
+                    'openid'           => $openId,                
+                    'name'             => $teaInfo['name']?$teaInfo['name']:'default',
+                    'class'            => $value,
+                    'testid'           => $testid,
+                    'quesid'           => $v,
+                    'rightAnswer'      => $quesInfo['right_answer'],
+                    'time' => date('Y-m-d H:i:s') 
+                );
+                if(!$TESTBANK->add($quesInfoArray))
+                    $this->ajaxReturn('failure');
+
+                /*===============在学生答题记录表插入题目========================*/
+                $openidArr = M('student_info')->where(array('class'=>$value))->field('openId')->select();//某班级的所有学生openid
+                //p($openidArr);
+                foreach ($openidArr as $kk => $vv) {
+                    //p($vv);
+                    $openid = $vv['openId'];
+                    $stuInfo     = $user->getUserInfo($openid);
+                    $que = array(
+                        'openid' => $openid,
+                        'name'   => $stuInfo['name']?$stuInfo['name']:'default',
+                        'testid' => $testid,
+                        'quesid' => $v,
+                        'time'   => date('Y-m-d H:i:s'),
+                    );
+                    //p($que);
+                    // die;
+                    $init = $TESTSELECT->add($que);
+
+                }
+            }
+
+        }
+   
+        $this->ajaxReturn('success');
+    }
+
+
+
+    // 教师端 测试管理->随堂测试列表
     public function test_list(){
+        $openId = session('openId');
+        session('openId',$openId);
         $map['state'] = array('neq','');
-        $testList     = M('teacher_quiz')->where($map)->order('time desc')->select();
-        $TEST = new TestController();
+        $map['openid'] = $openId;
+        // p($map);
+        $testList = M('test_set')->where($map)->order('time desc')->select();
+        //$TEST = new TestController();
+        $TEST = D('TestSubmit');
         foreach ($testList as $key => $value) {
             $testList[$key]['submitNum'] = $TEST->getSubmitNum($testList[$key]['id']);
         }
+        // p($testList);
         $this->assign('testList',$testList)->display();
     }
 
 
-    //教师端测试管理页面
+    //教师端 测试管理->随堂测试列表->测试管理（停止测试，提交列表，题目解析，测试统计）
     public function test_list_set(){
-        $quizId = I('quizId') ? I('quizId') : $this->error('你访问的界面不存在');
-        session('quizId',null);
-        session('quizId',$quizId);
-        $state     = M('teacher_quiz')->where(array('id' => $quizId))->getField('state');
-        $TEST      = new TestController();
-        $submitNum = $TEST->getSubmitNum($quizId);
+        $testid = I('testid') ? I('testid') : $this->error('你访问的界面不存在');
+        session('testid',null);
+        session('testid',$testid);
+        $state     = M('test_set')->where(array('id' => $testid))->getField('state');
+        //$TEST      = new TestController();
+        $TEST = D('TestSubmit');
+        $submitNum = $TEST->getSubmitNum($testid);
         $this->assign('submitNum',$submitNum);
         $this->assign('state',$state)->display();
     }   
@@ -433,25 +505,29 @@ class TeacherController extends Controller{
     public function test_close(){
         if(!IS_AJAX)
             $this->error('你访问的界面不存在');
-        $quizId      =  session('?quizId') ? session('quizId') : $this->error('请重新获取该页面'); 
-        if(M('teacher_quiz')->where(array('id' => $quizId))->save(array('state' => '关闭')))
+        $testid      =  session('?testid') ? session('testid') : $this->error('请重新获取该页面'); 
+        if(M('test_set')->where(array('id' => $testid))->save(array('state' => '关闭')))
             $this->ajaxReturn('success');
         else
             $this->ajaxReturn('failure');
     }
 
-    // 测试提交列表
+    // 测试管理->随堂测试列表->测试管理->提交列表
     public function test_view(){
-        $quizId = I('quizId');
-        if(empty($quizId))
-            $quizId  =  session('?quizId') ? session('quizId') : $this->error('请重新获取该页面');
-        $STU_CLA_REC =  M('student_classtest_record');
-        $testList    =  $STU_CLA_REC->where(array('quizId' => $quizId))->select();
-        $stuTestList =  $this->array_unset($testList,'openId');
-        foreach ($stuTestList as $key => $value) {
-            $stuTestList[$key]['rightNum'] = $STU_CLA_REC->where(array('quizId' => $quizId,'openId' => $stuTestList[$key]['openId'],'answerResult'=>'RIGHT'))->count();
-        }
-        $this->assign('stuTestList',$stuTestList)->display();
+        $testid = I('testid');
+        if(empty($testid))
+            $testid  =  session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $SUBMIT =  M('test_submit');
+        $testList    =  $SUBMIT->where(array('testid' => $testid))->select();
+        // var_dump($testList);
+        // $stuTestList =  $this->array_unset($testList,'openid');
+        // var_dump($stuTestList);
+        // foreach ($stuTestList as $key => $value) {
+        //     $stuTestList[$key]['rightNum'] = $SUBMIT->where(array('testid' => $testid,'openid' => $stuTestList[$key]['openid'],'result'=>'1'))->count();
+        // }
+        // var_dump($stuTestList);
+        //$this->assign('stuTestList',$stuTestList)->display();
+        $this->assign('stuTestList',$testList)->display();
     }
     
     // 去除二维数组里的重复的值 
@@ -467,12 +543,17 @@ class TeacherController extends Controller{
         return $res;
     }
 
-
+    // 测试管理->随堂测试列表->测试管理->题目解析
     public function test_analyze(){
-        $quizId   = session('?quizId') ? session('quizId') : $this->error('请重新获取改页面');
+        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取改页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
 
-        $quesList = M('teacher_quiz_questionbank')->where(array('quizId' => $quizId))->select();
-        $this->assign('quesList',$quesList)->display('Test/testAnalyze');
+        $quesList = M('test_questionbank')->where(array('testid' => $testid,'openId'=>$openId))->select();
+        // var_dump($quesList);
+        foreach ($quesList as $key => &$value) {
+            $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
+        }    
+        // var_dump($quesItem);
+        $this->assign('quesItem',$quesItem)->display('Test/testAnalyze');
     }
 }
