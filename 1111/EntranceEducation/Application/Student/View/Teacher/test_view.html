@@ -20,16 +20,16 @@
     </header>
 
     <div class="weui-row weui-no-gutter">
-      <div class="weui-col-10"></div>
+      <div class="weui-col-10">序号</div>
         <div class="weui-col-20">姓名</div>
-        <div class="weui-col-20">得分 </div>
+        <div class="weui-col-20">得分</div>
       <div class="weui-col-50">提交时间</div>
     </div>
     <volist name="stuTestList" id="stuTestList" key="k" empty="没有测试提交信息">
       <div class="weui-row weui-no-gutter">
         <div class="weui-col-10">{$k}</div>
         <div class="weui-col-20">{$stuTestList.name|default='null'}</div>
-        <div class="weui-col-20">{$stuTestList.rightNum|default='null'}</div>
+        <div class="weui-col-20">{$stuTestList.score|default='null'}</div>
         <div class="weui-col-50">{$stuTestList.time|default='null'}</div>
       </div>
     </volist>

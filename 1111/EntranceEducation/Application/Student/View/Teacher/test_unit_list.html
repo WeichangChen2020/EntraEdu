@@ -124,7 +124,7 @@ $('#submit').click(function(){
         text: "是", onClick: function(){ 
           $.prompt("不得出现非法数量", "输入题目数量", function(text) {
               if(text.length >= 3) $.toptip('题目数量非法','warning');
-              else if(text == 1) $.toptip('题目数量必须超过1到','warning');
+              else if(text == 1) $.toptip('题目数量必须超过1','warning');
               else if(isNaN(text)) $.toptip('题目内容非法','warning');
               else window.location.href="test_ques_list/unit/"+unit+"/number/"+text;
           }, function() {

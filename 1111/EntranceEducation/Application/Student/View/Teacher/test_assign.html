@@ -10,12 +10,16 @@
     </header>
     
     <div class="weui_cells weui_cells_form">
+
       <div class="weui_cell">
         <div class="weui_cell_hd"><label class="weui_label">测试名称</label></div>
         <div class="weui_cell_bd weui_cell_primary" id="testName">
           {$assignArray.testName|default='随堂测试'}
         </div>
       </div>
+
+
+
       <div class="weui_cell">
         <div class="weui_cell_hd"><label for="" class="weui_label">截止时间</label></div>
         <div class="weui_cell_bd weui_cell_primary">
@@ -28,7 +32,7 @@
     <div class="weui_cells weui_cells_form">
       <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
-          <div id="content" class="weui_textarea" placeholder="请输入作业内容" rows="3">题目数量：{$assignArray.testNumber|default='0'}</div>
+          <div id="content" class="weui_textarea" placeholder="请输入作业内容" rows="3">题目数量：{$assignArray.quesNumber|default='0'}</div>
         </div>
       </div>
     </div>
@@ -45,6 +49,7 @@ $('#submit').click(function(){
   var deadtime = $('#deadtime').val();
   // var deadtime = '2016-2-2';
   var testName = $('#testName').html();
+  var testBanji = "{$assignArray.banji}";
   var testQuesId = "{$assignArray.quesId}";
   if(deadtime == '') {$.toptip('请选择测试截止时间'); return false;}
   $.confirm('您确定要发布测试吗?','确定发布',function(){
@@ -55,6 +60,7 @@ $('#submit').click(function(){
       data = {
         deadtime:deadtime,
         testName:testName,
+        testBanji:testBanji,
         testQuesId:testQuesId,
       };
       $.post(url,data,function(res){
@@ -63,8 +69,9 @@ $('#submit').click(function(){
           $.toast('测试发布失败','cancel');
         }else{
           $.hideLoading();
-          $.toast('作业布置成功!');
+          $.toast('测试发布成功!');
           $('#submit').hide();
+          window.location.href="{:U('Teacher/test_list')}";
         }
       })
       
