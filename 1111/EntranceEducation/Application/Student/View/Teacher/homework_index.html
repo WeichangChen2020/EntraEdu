@@ -2,10 +2,11 @@
 <html>
   <head>
     <title></title>
+    <include file="./Public/html/_head.html"/>
   </head>
 
   <body ontouchstart>
-    <include file="./Public/html/_head.html"/>
+    
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
       <h1 class="demos-title">课后作业</h1>
@@ -14,22 +15,31 @@
     <div class="bd">
       <div class="weui_cells weui_cells_access">
         
-          <div class="weui_cell"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block">
+          <!-- <div class="weui_cell"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block">
             <div class="weui_cell_bd weui_cell_primary">
-              <p class="open-popup" data-target="#half">布置作业</p>
+              
+              <p class="give" >布置作业</p>
             </div>
+          </div> -->
+
+        <a class="weui_cell" href="{:U('homework_assign_zg')}" id="pigai">
+          <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>布置作业</p>
           </div>
+          <div class="weui_cell_ft"><span class="demos-badge demos-badge-red"></span></div>
+        </a>
           
           
         
-        <a class="weui_cell" href="{:U('homework_list_correct')}">
+        <a class="weui_cell" href="{:U('homework_list_correct')}" id="pigai">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
             <p>批改作业</p>
           </div>
           <div class="weui_cell_ft"><span class="demos-badge demos-badge-red">{$correcNumber|default='0'}</span></div>
         </a>
-        <a class="weui_cell" href="{:U('homework_list_view')}">
+        <a class="weui_cell" href="{:U('homework_list_view')}" id="liulan">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_search_bar.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
             <p>浏览作业</p>
@@ -39,7 +49,33 @@
       </div>
     </div>
 
-    <div id="half" class='weui-popup-container popup-bottom'>
+    
+    <div style="display:none" id="chuti">
+
+      <a class="weui_cell">
+        <div class="weui_cell_hd">
+          <label id="zhuguan">主观</label>
+          
+        </div>
+      </a>
+
+      
+
+      <a class="weui_cell">
+        <div class="weui_cell_hd">
+          <label id="keguan">客观</label>
+        </div>
+      </a> 
+
+      <div style="display:none" id="type">
+        <a class="weui_cell" href="#" id="sj">随机出题</a>
+
+        <a class="weui_cell" href="#" id="zx">自选出题</a>
+      </div>
+
+    </div>
+
+    <!-- <div id="half" class='weui-popup-container popup-bottom'>
       <div class="weui-popup-modal">
         <div class="toolbar">
           <div class="toolbar-inner">
@@ -63,7 +99,7 @@
           
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -76,10 +112,89 @@
   if(number == 0)
     $('.demos-badge').hide();
 
-  $(document).on("open", ".weui-popup-modal", function() {
-          console.log("open popup");
-        }).on("close", ".weui-popup-modal", function() {
-          console.log("close popup");
-        });
+  $(document).ready(function(){
+    var time1 = 1;
+    var time2 = 1;
+    var time3 = 1;
+    var type;
+
+    $(".give").click(function(event){
+      if (time1%2) {
+        $("#chuti").attr('style','display:display');
+        $("#pigai").attr('style','display:none');
+        $("#liulan").attr('style','display:none'); 
+        time1 += 1;
+      }else{
+        $("#chuti").attr('style','display:none');
+        $("#pigai").attr('style','display:display');
+        $("#liulan").attr('style','display:display');
+        time1 += 1;
+      }
+
+    });
+
+    $("#zhuguan").click(function(event){
+      if (time2%2) {
+        $("#type").attr('style','display:display');
+        $("#bd").attr('style','display:none');
+        $("#keguan").attr('style','display:none');
+        type = '主观';
+        time2 += 1;
+      }else{
+        $("#type").attr('style','display:none');
+        $("#bd").attr('style','display:display');
+        $("#keguan").attr('style','display:display');
+        time2 += 1;
+        type = '';
+      }
+    });
+
+
+    $("#keguan").click(function(event){
+      if (time3%2) {
+        $("#type").attr('style','display:display');
+        $("#bd").attr('style','display:none');
+        // $("#zhuguan").attr('style','display:none');
+        time3 += 1;
+        type = '客观';
+      }else{
+        $("#type").attr('style','display:none');
+        $("#bd").attr('style','display:display');
+        // $("#zhuguan").attr('style','display:display');
+        time3 += 1;
+        type = '';
+      }
+    });
+
+    $("#sj").click(function(event){
+      if (type == '主观') {
+        $("#sj").attr('href','{:U(\'homework_assign_zg\',array(\'type\'=>\'随机\'))}');
+      }else{
+        $("#sj").attr('href','{:U(\'homework_assign_kg\',array(\'type\'=>\'随机\'))}');
+      }
+      
+    });
+
+    $("#zx").click(function(event){
+      if (type == '主观') {
+        $("#zx").attr('href','{:U(\'homework_assign_zg\',array(\'type\'=>\'自选\'))}');
+      }else{
+        $("#zx").attr('href','{:U(\'homework_assign_kg\',array(\'type\'=>\'自选\'))}');
+      }
+      
+    });
+
+
+  });
+
+
+
+
+  // $(document).on("open", ".weui-popup-modal", function() {
+  //         console.log("open popup");
+  //       }).on("close", ".weui-popup-modal", function() {
+  //         console.log("close popup");
+  //       });
+
 
 </script>

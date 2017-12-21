@@ -77,13 +77,35 @@ class TeacherController extends Controller{
 
     public function homework_assign_zg(){
         if (IS_POST) {
-            //插入数据库
+            $unit   = intval(I('unit'));//章节
+            $number = intval(I('number'));//题数
+            if($unit === 0)
+                $this->error('你选择的章节出错了');
+            $unitArray = str_split($unit);
+             
+            $result    = array();
+            foreach ($unitArray as $value) {
+               //$value  = 'unit'.$value ;
+               $cond   = array('chapter' => $value);
+               $result = array_merge($result,M('cn_image_questionbank')->where($cond)->select());
+            }
+            if($number !== 0){   //说明用户自定义选择了数量
+                $numberResult = array(); 
+                $rand = array_rand($result,$number);
+                foreach ($rand as $key => $value) {
+                    $numberResult[] = $result[$value];
+                }
+                $this->assign('result',$numberResult)->display();
+            }else{
+                $this->assign('result',$result)->display();
+            }
         } else {
-            $homeworkName = session('homeworkName');
-            $homeworkkg = M('teacher_homework')->where(array('homeworkName'=>$homeworkName,'type'=>1))->find();
-            $this->assign('homeworkzg',$homeworkkg);
-            $this->display();
+            $this->display();        
         }
+        
+            
+    
+        
     }
             
           
@@ -98,18 +120,14 @@ class TeacherController extends Controller{
             // $proarr = explode(',', $problems);
 
    
-    public function homework_assign_kg(){
-        if (IS_POST) {
-            //插入数据库
-        } else {
-            // $homeworkName = session('homeworkName');//12月8日作业
-            // $homeworkkg = M('homework_kg')->select();
-            $chapternumber = M('questionbank')->distinct('chapter')->group('chapter')->select();
-            $num = count($chapternumber);
-            $this->assign('num',$num);
-            $this->display();
-        }
-    }
+    // public function homework_assign_kg(){
+    //     var_dump(3444);
+    //         $chapternumber = M('questionbank')->distinct('chapter')->group('chapter')->select();
+    //         $num = count($chapternumber);
+    //         $this->assign('num',$num);
+    //         $this->display();
+        
+    // }
 
     //将上传的作业信息写入数据库
     public function homework_handAssign(){
