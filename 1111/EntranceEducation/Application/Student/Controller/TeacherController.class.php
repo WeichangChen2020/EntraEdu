@@ -76,7 +76,12 @@ class TeacherController extends Controller{
             // $this->assign('chapterproblem',$chapterproblem);
 
     public function homework_assign_zg(){
-        if (IS_POST) {
+            $this->display();        
+
+    }
+
+    public function homework_assign_zg2(){
+   
             $unit   = intval(I('unit'));//章节
             $number = intval(I('number'));//题数
             if($unit === 0)
@@ -87,25 +92,21 @@ class TeacherController extends Controller{
             foreach ($unitArray as $value) {
                //$value  = 'unit'.$value ;
                $cond   = array('chapter' => $value);
-               $result = array_merge($result,M('cn_image_questionbank')->where($cond)->select());
+               $result = array_merge($result,M('image_questionbank')->where($cond)->select());
             }
-            if($number !== 0){   //说明用户自定义选择了数量
+            if($number != ''){   //说明用户自定义选择了数量
+                // var_dump(23333);die();
                 $numberResult = array(); 
                 $rand = array_rand($result,$number);
                 foreach ($rand as $key => $value) {
                     $numberResult[] = $result[$value];
                 }
-                $this->assign('result',$numberResult)->display();
+                $this->assign('quesItem',$numberResult)->display();
             }else{
-                $this->assign('result',$result)->display();
+                $this->assign('quesItem',$result)->display();
             }
-        } else {
-            $this->display();        
-        }
         
-            
     
-        
     }
             
           
@@ -361,7 +362,7 @@ class TeacherController extends Controller{
         }
         // var_dump($result);
         // die;
-        if($number !== 0){   //用户自定义题目数量
+        if($number != 0){   //用户自定义题目数量
             $numberResult = array(); 
             $rand = array_rand($result,$number);
             //var_dump($rand);die;
@@ -374,6 +375,8 @@ class TeacherController extends Controller{
             $this->assign('quesItem',$result)->display();
         }
     }
+
+
 
     //发布测试->章节列表->题目列表->班级列表
     public function test_class_list(){
