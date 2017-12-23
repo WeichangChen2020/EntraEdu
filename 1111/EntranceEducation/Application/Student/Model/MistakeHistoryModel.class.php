@@ -6,44 +6,43 @@ class MistakeHistoryModel extends Model {
 	//获取错题信息
 	public function getMistakeData($openid = '') { 
 
-		$sql = "SELECT DISTINCT quesid FROM cn_exercise
-		where openid = '$openid' AND result = '0'
-		AND NOT EXISTS (
-			SELECT * FROM cn_mistake_history
-			WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = '$openid');";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
 
-		// dump($sql);die;	
-		$Model = new \Think\Model();
-		$res = $Model->query($sql);
-		// dump($res);
-		if (empty($res)) {
-			return false;
-		}
-		// SELECT DISTINCT quesid FROM cn_exercise
-		// where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0'
-		// AND NOT EXISTS (
-		// 	SELECT * FROM cn_mistake_history
-		// 	WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw')
-		return $res[0]['quesid'];
+		$data = M('exercise')->where($map)->find();
+
+		return $data['quesid'];
 	}
 
 	//获取错题数量
 	public function getNumberOfMistake($openid = ''){
-		$sql = "SELECT DISTINCT COUNT(quesid) FROM cn_exercise
-		where openid = '$openid' AND result = '0'
-		AND NOT EXISTS (
-			SELECT * FROM cn_mistake_history
-			WHERE cn_exercise.quesid = cn_mistake_history.quesid AND cn_mistake_history.result = '1' AND openid = '$openid');";
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
 
-		$Model = new \Think\Model();
-		$num = $Model->query($sql);
-		// dump($num);
-		if (empty($num)) {
-			return false;
-		}
-		// echo $num[0]['COUNT(quesid)'];
-		return $num[0]['COUNT(quesid)'];
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
+
 	}
+
+	//获取答对的错题数量
+	public function getNumberOfRight($openid = ''){
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 1,
+		);
+
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
+	}	
 
 	//获取题目信息
 	public function getQuestionByid($quesid = 0) {
@@ -59,6 +58,7 @@ class MistakeHistoryModel extends Model {
 		
 		return $quesArr;
 	}
+	
 	//获取题目种类
 	protected function getQuesType($ty = 0) {
 
