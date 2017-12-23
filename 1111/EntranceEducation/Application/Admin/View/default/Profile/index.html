@@ -1,0 +1,30 @@
+<style>
+    div{
+        display: inline-block;
+    }
+</style>
+<div class="aright">
+    <form method="post" class="aform cl">
+        <table width="100%">
+            <tbody>
+                <volist name="profileList" id="profileList" empty="暂时没有数据" >
+                    <tr>
+                   
+                        <td align="center">{$profileList.attribute}</td>
+                     
+                        <td align="center">{$profileList.value}</td>
+                       
+                        <td align="center">
+                            <a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+              
+    </form>
+  
+    <div class="pages">
+     {$page}
+     </div> 
+</div>
