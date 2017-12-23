@@ -17,7 +17,10 @@
                         <td align="center">{$profileList.attribute}</td>                     
                         <td align="center">{$profileList.value}</td>                       
                         <td align="center">
-                            <a href="{:U('Profile/edit', array('id'=>$profileList['id']))}">修改</a>
+                            <if condition="$profileList.isModify eq 1 "><a href="{:U('Profile/edit', array('id'=>$profileList['id']))}">修改</a>
+							<else />无
+							</if>
+                            
                         </td>
                     </tr>
                 </volist>
