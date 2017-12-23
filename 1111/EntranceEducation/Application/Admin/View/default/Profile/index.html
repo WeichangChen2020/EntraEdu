@@ -15,12 +15,10 @@
                 <volist name="profileList" id="profileList" empty="暂时没有数据" >
                     <tr>
                    
-                        <td align="center">{$profileList.attribute}</td>
-                     
-                        <td align="center">{$profileList.value}</td>
-                       
+                        <td align="center">{$profileList.attribute}</td>                     
+                        <td align="center">{$profileList.value}</td>                       
                         <td align="center">
-                            <a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>
+                            <a href="{:U('Profile/edit', array('id'=>$profileList['id']))}">修改</a>
                         </td>
                     </tr>
                 </volist>
