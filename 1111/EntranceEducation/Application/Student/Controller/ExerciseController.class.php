@@ -50,7 +50,7 @@ class ExerciseController extends Controller{
 
 		session('chapid', $chapid);
 		session('typeid', $typeid);
-		// 首次金进入，否则点击下一题进入
+		// 首次进入，否则点击下一题进入
 		
 		if (empty($quesid)) {
 			$quesid = D('exercise')->getNewestQuesid($openid, $chapid, $typeid);
@@ -120,7 +120,11 @@ class ExerciseController extends Controller{
                 'time'   => date('Y-m-d:H:i:s', time())
             );
 
-            D('Exercise')->add($data);
+            D('Exercise')->add($data);//自由练习
+
+            if($option != $right_answer){
+            	D('MistakeHistory')->add($data);//错题表
+            }
 
             $this->ajaxReturn($right_answer, 'json');
         }else{ //如果已存在

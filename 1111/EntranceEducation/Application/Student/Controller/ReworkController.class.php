@@ -3,46 +3,21 @@ namespace Student\Controller;
 use Think\Controller;
 
 class ReworkController extends Controller{
-	
-	public function index() {
-
-		$openid = session('openId');
-		// echo $openid;
-		$this->assign('openId',$openid);
-		$this->display();
-	}
 
 	public function chose(){
+
 		$openId = session('openId');
-
-
-		// $HISTORY = M('exercise');
 		$QUESTION= M('questionbank');
 
-
-		// dump($quesidArray);die;
-		/**
-		*历史中错误----错题历史中正确->无视
-		*			|--错题历史中错误或不存在->加入数组
-		*错题历史中做错->加入数组
-		*错题历史中正确->无视
-		*
-		*/
-		// $MISTAKE = M('mistake_history');
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
-		// dump($quesid);
+		// dump($quesid);die;
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
+		// p($num);
 		session('quesid',$quesid);
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
 		// dump($ques);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
-
-		// $ques = $QUESTION->where(array('id' => $quesid))->find();
-		// $chapter=D('MistakeHistory')->getQuesChapter($ques['chapter']);
-		// $questype=D('MistakeHistory')->getQuesType($ques['type']);
-		// $this->assign('chapter',$chapter);
-		// $this->assign('questype',$questype);
 		$this->assign('num',$num);
 		$this->assign('name',$name);
 		$this->assign('ques',$ques);
@@ -66,6 +41,7 @@ class ReworkController extends Controller{
 		}
 
 	}
+
 	public function submit() {
 		if (!IS_AJAX) {
 			$this->error('您访问的页面不存在');
@@ -85,7 +61,17 @@ class ReworkController extends Controller{
 		);
 
 		M('MistakeHistory')->add($data);
-
+		
+		//若错题回顾中回答正确，则更新exercise表中的is_rework
+		if($option == $right_answer){
+			$map = array(
+				'openid' => $openid,
+				'quesid' => $quesid
+			);
+			$data2['is_rework'] = 1;
+			M('exercise')->where($map)->save($data2);
+		}
+		
 		$this->ajaxReturn($right_answer, 'json');
 	}
 
