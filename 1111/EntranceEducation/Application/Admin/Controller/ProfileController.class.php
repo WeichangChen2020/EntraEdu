@@ -8,7 +8,7 @@ class ProfileController extends CommonController {
         $Profile = M('Profile');
         $list = $Profile->select();
         $this->assign('profileList',$list);
-		$this->assign('attributes',$this->get_attributes());
+		
         $this->display();
     }
 
