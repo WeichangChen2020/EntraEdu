@@ -12,7 +12,7 @@ class CommonController extends Controller
             $this->error('请登录！', U('Login/index'), 3);
         }
         
-        //$this->assign('attributes',R('Profile/get_attributes'));
+        $this->assign('attributes',R('Profile/get_attributes'));
     }
    
 }
