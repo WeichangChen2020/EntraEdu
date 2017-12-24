@@ -5,8 +5,8 @@ class ProfileController extends CommonController {
     
     public function index(){
 
-        $Question = M('Profile');
-        $list = $Question->select();
+        $Profile = M('Profile');
+        $list = $Profile->select();
         $this->assign('profileList',$list);
 
         $this->display();
@@ -29,6 +29,9 @@ class ProfileController extends CommonController {
             $this->assign('profile',$profile);
             $this->display();
         }
+    }
+    public function get_attributes(){
+    	
     }
  
 }
