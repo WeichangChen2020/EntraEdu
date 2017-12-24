@@ -114,7 +114,7 @@ class UserController extends Controller {
 
             $weixin       = new WeichatController();
             $signPackage  = $weixin->getJssdkPackage();
-            $attributes = 1;
+            $attributes = 2;
            
             // var_dump($signPackage);
             // die();
