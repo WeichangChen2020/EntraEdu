@@ -7,6 +7,14 @@ function get_endtime($now, $set_time){
 	return date('m月d日', $now + $set_time * 60);
 }
 
+function get_test_index_css($result) {
+	
+	if ($result == -1) {
+		return 'placeholder';
+	} else {
+		return 'placeholder-right';
+	}
+}
 
 // *******展示题目索引****************
 
