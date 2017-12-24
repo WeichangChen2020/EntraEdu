@@ -85,6 +85,9 @@ class IndexController extends Controller {
         $signPackage  = $weixin->getJssdkPackage();
         // var_dump($signPackage);
         // die();
+        $attributes = R('Admin/Profile/get_attributes');
+        $this->assign('attributes',$attributes);
+        
         $this->assign('signPackage',$signPackage);
         // $this->assign('AAA','23333');
         $this->display();
