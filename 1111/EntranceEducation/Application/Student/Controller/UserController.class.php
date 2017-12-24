@@ -118,7 +118,8 @@ class UserController extends Controller {
             // die();
             $this->assign('signPackage',$signPackage);
             $this->assign('openId',$openId);
-
+			$attributes = R('Admin/Profile/get_attributes');
+            $this->assign('attributes',1);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
 			$this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
