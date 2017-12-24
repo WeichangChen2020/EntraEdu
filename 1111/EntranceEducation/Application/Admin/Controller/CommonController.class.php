@@ -11,6 +11,8 @@ class CommonController extends Controller
         if ($_SESSION['username'] == "" || $arr == null) {
             $this->error('请登录！', U('Login/index'), 3);
         }
+        
+        $this->assign('attributes',R('Profile/get_attributes'));
     }
    
 }
