@@ -114,12 +114,13 @@ class UserController extends Controller {
 
             $weixin       = new WeichatController();
             $signPackage  = $weixin->getJssdkPackage();
+            $attributes = R('Admin/Profile/get_attributes');
+            return;
             // var_dump($signPackage);
             // die();
             $this->assign('signPackage',$signPackage);
             $this->assign('openId',$openId);
-			$attributes = R('Admin/Profile/get_attributes');
-            return;
+			
             $this->assign('attributes',1);
             $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
 		}else{
