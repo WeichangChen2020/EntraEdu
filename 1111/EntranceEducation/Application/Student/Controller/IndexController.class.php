@@ -86,7 +86,6 @@ class IndexController extends Controller {
         // var_dump($signPackage);
         // die();
         $attributes = R('Admin/Profile/get_attributes');
-        var_dump($attributes);
         $this->assign('attributes',$attributes);
         
         $this->assign('signPackage',$signPackage);
