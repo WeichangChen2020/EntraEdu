@@ -31,7 +31,9 @@ class ProfileController extends CommonController {
         }
     }
     public function get_attributes(){
-    	
+    	$Profile = M('Profile');
+        $list = $Profile->select();
+        return $list;
     }
  
 }
