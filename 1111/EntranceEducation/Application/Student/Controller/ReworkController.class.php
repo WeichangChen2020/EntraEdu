@@ -10,7 +10,7 @@ class ReworkController extends Controller{
 		$QUESTION= M('questionbank');
 
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
-		dump($quesid);die;
+		// dump($quesid);die;
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
 		p($num);
 		session('quesid',$quesid);
