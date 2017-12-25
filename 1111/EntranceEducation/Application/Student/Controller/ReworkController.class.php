@@ -10,12 +10,12 @@ class ReworkController extends Controller{
 		$QUESTION= M('questionbank');
 
 		$quesid = D('MistakeHistory')->getMistakeData($openId);
-		// dump($quesid);die;
+		dump($quesid);die;
 		$num = D('MistakeHistory')->getNumberOfMistake($openId);
-		// p($num);
+		p($num);
 		session('quesid',$quesid);
 		$ques = D('MistakeHistory')->getQuestionByid($quesid);
-		// dump($ques);
+		dump($ques);
 		$name = M('StudentInfo')->where('openId="'.$openId.'"')->getField('name');
 
 		$this->assign('num',$num);
