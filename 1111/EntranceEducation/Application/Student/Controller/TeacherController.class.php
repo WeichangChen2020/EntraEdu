@@ -381,7 +381,7 @@ class TeacherController extends Controller{
     //发布测试->章节列表->题目列表->班级列表
     public function test_class_list(){
         $openId =  session('openId');
-        echo $openId;
+        // echo $openId;
         $quesId = I('quesId');
         session('quesId',$quesId);
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
