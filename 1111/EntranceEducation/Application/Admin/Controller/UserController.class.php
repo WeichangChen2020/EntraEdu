@@ -82,11 +82,11 @@ class UserController extends CommonController {
         if($type == 1) {
             $map['type'] = 1;
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
-            $filename .= '新生入学考试平台注册用户';
+            $filename .= '计算机网络学习平台注册用户';
         } else {
             $map['type'] = 0;
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->select();
-            $filename .= '新生入学考试平台未注册用户';
+            $filename .= '计算机网络学习平台未注册用户';
         }
 
         $this->excel($list, $title, $filename);
