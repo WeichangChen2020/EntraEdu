@@ -72,37 +72,11 @@ class QyhController extends Controller
                 $map['homeworkname']    = $homeworkname;
                 $map['imgurl']          = $imgurl;
                 $map['time']            = date("Y-m-d H:i:s",time());
-                $HOMEWORK->create($map);
-
-
-
+                $res = $HOMEWORK->create($map);
+                var_dump($res);die();
             }
 
-
-			
-        	
-        	
-   //      	$homeworkInfo = array(
-   //          'openId'  => $openId,
-   //          'name'    => $stuInfo['name'],
-   //          'number'  => $stuInfo['number'],
-   //          'class'   => $stuInfo['class'],
-   //          'homeworkId' => $homeworkId,
-   //          'correcter' => '未批改',
-   //          'time'    => date('Y-m-d H:i:s',time()),
-
-   //          );
-        	
-
-   //      	for ($key=0; $key < $keynum; $key++) { 
-
-   //      		$stuInfoArrayKey = 'pic'.($key+1).'Url';
-   //          	$homeworkInfo[$stuInfoArrayKey] = $info[$key]['url'];
-				
-   //      	}
-   //      	$HOMEWORK->add($homeworkInfo);
-
-			// $this->success('上传成功！',U('Homework/index'));
+			$this->success('上传成功！',U('Homework/index'));
 		}
 
 
