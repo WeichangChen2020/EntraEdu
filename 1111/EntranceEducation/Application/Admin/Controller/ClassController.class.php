@@ -18,12 +18,6 @@ class ClassController extends CommonController {
         $this->display();
     }
 
-    public function quesRec() {
-
-
-
-    }
-
     //题目修改界面
     public function edit($id){
         if (IS_POST) {
