@@ -141,25 +141,9 @@ class MarkController extends Controller{
         $markInfo = $mark->getDetails($openId);
         $markInfo['commu']= $markInfo['comCommentNum']+$markInfo['comReplyNum']+$markInfo['ranCommentNum']+$markInfo['ranReplyNum'];
         $this->assign('markInfo',$markInfo)->display();
-    }
-
-
-    //查看积分
-    // public function markClass(){
-    //     $classStr = I('class');
-    //     $classArray = explode('_', substr($classStr, 0,strlen($classStr)-1));
-    //     $markList = array();
-    //     if($classArray[0] == 'all'){
-    //         $markList = M('student_mark')->order('lastMark desc')->select();
-    //     }else{
-    //         foreach ($classArray as $value) {
-    //             $markList = array_merge($markList,M('student_mark')->where(array('class' => $value))->order('lastMark desc')->select());
-    //         }
-    //     }
-    //     $this->assign('markList',$markList)->display();
-    // }        
+    }       
     
-    //积分更新接口
+    //更新积分
     public function update(){
         $STU  = M('student_info')->getField('openId', true); // 获取openId数组
         $MARK = M('student_mark');
@@ -173,21 +157,7 @@ class MarkController extends Controller{
         }
     }
 
-    public function rank() {
-        $r = new SaeRank();
-        $r->create("list", 100); //创建一个榜单。
-        $r->set("list", "a", 3); //设置值
-        $r->set("list", "b", 4);
-        $r->set("list", "c", 1);
-        $r->increase("list", "c"); //增加值
-        $ret = $r->getList("list", true); //获得排行榜
-        dump($ret);
-        $ret = $r->getRank("list", "a"); //获得某个键的排名,注意是从0开始
-        dump($ret);
-        $r->clear("list"); //清空排行榜
-    }
-
-    // 查询成绩详细信息
+    //积分详情
     public function getDetails($openId){
         /*========定义一些变量==========*/
         $MESSREC     = M('weixin_message_record');   
@@ -224,10 +194,15 @@ class MarkController extends Controller{
         return $mark;
     }
 
+    //获取某位学生的积分
     public function getMark($openId){
-        $markInfo = $this->getDetails($openId);
-        $markWeight = M('student_mark_weight')->find(1);
-        
+        $markInfo = $this->getDetails($openId);//传入的是学生id
+
+        //获取学生班级->教师openid->教师设置的积分权重
+        $class = D('StudentInfo')->getClass($openId);
+        $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
+        $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
+        // p($markWeight);
         $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage'] 
         //+ $markInfo['comCommentNum'] * $markWeight['comComment'] 
         //+ $markInfo['comReplyNum'] * $markWeight['comReply'] 
@@ -240,21 +215,23 @@ class MarkController extends Controller{
         + $markInfo['classTestRightNum'] * $markWeight['classTestRight']
         + $markInfo['signinNum'] * $markWeight['signin'] 
         + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
-        
+
         return ($mark);
     }
 
-
-
-    /**
-     * markMenu  这里的markMenu与User类的markMenu区别是：这里是教师端看到的，User是学生端看到的
-     *
-     */
-    
-
-
-
-
+    public function rank() {
+        $r = new SaeRank();
+        $r->create("list", 100); //创建一个榜单。
+        $r->set("list", "a", 3); //设置值
+        $r->set("list", "b", 4);
+        $r->set("list", "c", 1);
+        $r->increase("list", "c"); //增加值
+        $ret = $r->getList("list", true); //获得排行榜
+        dump($ret);
+        $ret = $r->getRank("list", "a"); //获得某个键的排名,注意是从0开始
+        dump($ret);
+        $r->clear("list"); //清空排行榜
+    }
 
 }
 /*
