@@ -74,12 +74,20 @@ class SigninController extends Controller{
 
         $openId        =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
+        $SIGNIN = M('teacher_signin');
+        $signInfo = $SIGNIN->where(array('id' => $signinId))->find();
+        p($signInfo);die;
+        //已截止
+        $deadtime = $SIGNIN->where(array('id' => $signinId))->getField('deadtime');
+        $now = time();
+        if($now > strtotime($deadtime))
+            $this->ajaxReturn('close');
         
-        //老师已经关闭了签到
-        if(M('teacher_signin')->where(array('id' => $signinId))->getField('state') != '开启')
+        //已关闭
+        if($SIGNIN->where(array('id' => $signinId))->getField('state') != '开启')
             $this->ajaxReturn('close');
 
-        //你已经签到过了
+        //已签到
         if(M('student_signin')->where(array('openId' => $openId,'signinId' => $signinId))->find())
             $this->ajaxReturn('signined');
 
