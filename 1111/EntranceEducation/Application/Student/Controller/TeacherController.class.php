@@ -83,6 +83,7 @@ class TeacherController extends Controller{
     public function homework_assign_zg2(){
    
             $unit   = intval(I('unit'));//章节
+            session('unit',$unit);
             $number = intval(I('number'));//题数
             if($unit === 0)
                 $this->error('你选择的章节出错了');
@@ -94,6 +95,7 @@ class TeacherController extends Controller{
                $cond   = array('chapter' => $value);
                $result = array_merge($result,M('image_questionbank')->where($cond)->select());
             }
+            // var_dump($result);die();
             if($number != ''){   //说明用户自定义选择了数量
                 // var_dump(23333);die();
                 $numberResult = array(); 
@@ -108,7 +110,34 @@ class TeacherController extends Controller{
         
     
     }
-            
+
+    public function homework_class_list(){
+        $openId =  session('openId');
+        // echo $openId;die();
+        $quesId = I('quesId');
+        session('quesId',$quesId);
+        $teacherClass = D('TeacherClass')->getTeacherClass("$quesId");//某位老师带的班级
+        var_dump($teacherClass);die();
+        $this->assign('homeworkName',date("m月d日课后作业",time()));
+        $this->assign('teacherClass',$teacherClass)->display();
+
+    }
+    
+    public function homework_insert(){
+        $data = I('post.');
+        // var_dump(session('quesId'));die();
+        $model = M('homework_zg');
+        $map['class'] = $data['teacherClass'];
+        $map['dead_time'] = $data['deadtime'];
+        $map['hpdead_time'] = $data['hpdeadtime'];
+        $map['problem_id'] = session('quesId');
+        $map['homeworkname'] = $data['homeworkName'];
+        $model->add($map);
+        $this->ajaxReturn();
+        // $problem = explode('_', $quesId);
+        // var_dump($problem);die();
+        // $map['problem_id'] = 
+    }
           
     
             
@@ -384,7 +413,7 @@ class TeacherController extends Controller{
         // echo $openId;
         $quesId = I('quesId');
         session('quesId',$quesId);
-        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        $teacherClass = D('TeacherClass')->getTeacherClass($quesId);//某位老师带的班级
         //var_dump($teacherClass);
         $this->assign('teacherClass',$teacherClass)->display();
 

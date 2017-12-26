@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <include file="./Public/html/_head.html"/>
+  </head>
+  
+  <body ontouchstart>
+
+    <header class='demos-header'>
+      <h1 class="demos-title">客观出题</h1>
+    </header>
+
+    <div class="weui_cells weui_cells_form">
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">作业名称</label></div>
+        <div class="weui_cell_bd weui_cell_primary" id="homeworkName">
+          {$homeworkName|default="课后作业"}
+          
+          <select class="weui-select" name="class">
+            <!-- <option selected="" value="1">选择班级</option> -->
+
+            <!-- option value="1">1班</option>
+            <option value="2">2班</option> -->
+            <volist name="teacherClass" id="vo">
+              <option value="{$vo.class}">{$vo.class}</option>
+            </volist>
+
+
+          </select>
+        </div>
+      </div>
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">提交截止时间</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input id="deadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
+        </div>
+      </div>
+
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">互评截止时间</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+          <input id="hpdeadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
+        </div>
+      </div>
+
+      <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:;" id="submit">确定</a>
+      </div>
+      
+ 
+    
+
+  </body>
+</html>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      
+      // alert(deadtime);
+
+      $("#submit").click(function(event){
+
+
+        var homeworkName = $("#homeworkName").val();
+        var teacherClass = $(".weui-select").val();
+        var deadtime = $("#deadtime").val();
+        var hpdeadtime = $("#hpdeadtime").val();
+       
+  
+
+        $.ajax({
+          cache:false,
+          type:"POST",
+          url:"{:U('homework_insert')}",
+          dataType:"json",
+          data:{
+            "homeworkName":homeworkName,
+            "teacherClass":teacherClass,
+            "deadtime":deadtime,
+            "hpdeadtime":hpdeadtime
+          },
+          
+          success:function(res){
+            window.location.href="{:U('index')}";
+          }
+        });
+
+      });
+
+    </script> 

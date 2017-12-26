@@ -34,12 +34,13 @@ class HomeworkController extends Controller{
         } 
         
 
-        $HOMEWORK = M('teacher_homework');
+        $HOMEWORK = M('homework_zg');
         $count    = $HOMEWORK->count();
+
         $Page       = new \Think\Page($count,$count);
         $show       = $Page->show();
-        $homework = $HOMEWORK->order('time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-
+        $homework = $HOMEWORK->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        // var_dump($homework);die();
         
 
         //+++++++++++++++++++把是否提交和访问人数也加到数组里
@@ -95,8 +96,25 @@ class HomeworkController extends Controller{
         $cond = array('homeworkId' => $homeworkId,'openId' => $openId);
         if(M('student_homework')->where($cond)->find())
             $this->error('你已经提交过了，不可重复提交');
-        $HOMEWORK     = M('teacher_homework');
+        $HOMEWORK     = M('homework_zg');
+        $questionbank = M('image_questionbank');
         $homework     = $HOMEWORK->find($homeworkId);
+        $quesarr      = explode('_', $homework['problem_id']);
+        // var_dump($quesarr);die();
+        $outproblem   = array();
+        foreach ($quesarr as $value) {
+            if (!empty($value)) {
+                $qu = $questionbank->find($value);
+
+                array_push($outproblem, $qu['contents']);
+                // var_dump($outproblem);die();
+            }
+        }
+        // var_dump($outproblem);die();
+        $this->assign('outproblem',$outproblem);//输出N和题目的url
+        // var_dump($outproblem);die();
+
+        // var_dump($outproblem);die();
         $this->assign('homework',$homework)->display();
     }
 
