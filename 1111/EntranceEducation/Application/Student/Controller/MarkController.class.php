@@ -17,41 +17,147 @@ class MarkController extends Controller{
 
         $this->display('markClass');
     }
+    
+    //教师端->积分管理
+    public function markMenu(){
+        $openId = session("openId");
+        if(!$openId){
+            $openId = getOpenId();
+            session('openId',$openId);
+        }
+        $this->display(); 
+    }
 
+    //教师端->积分管理->查看积分->选择班级
+    public function classList(){
+        $openId=session('openId');
+        session('openId',$openId);
+        $classList = D('TeacherClass')->getTeacherClass($openId);
+        // p($classList);
+        $this->assign('classList',$classList)->display();
+    }
+
+    //教师端->积分管理->查看积分->选择班级->积分排名
     public function markClass(){
 
-        $openId   = session('openId');  
-        $MARK = D('StudentMark');
-        $STUDENT = M('studentInfo');
-        if (IS_AJAX) {
-            if(session('?start')){
-                $start = session('start') + 20;
-                session('start',$start );
-            } else {
-                session('start',0);
-                $start = 0;
+        $MARK = M('student_mark');
+
+        if($classStr = I('class')){ //教师端进入，传入班级
+            $classArray = explode('_', substr($classStr, 0,strlen($classStr)-1));
+            //p($classArray);
+            
+            if($classArray[0] == 'all'){
+                //如果选择了所有班级，人不多，就不用分页加载了
+                $rankList = $MARK->order('lastMark desc')->group('openid')->select();
+            }else{
+                //如果没有选择所有班级，就查询某班级
+                $rankList = array();
+                foreach ($classArray as $value) {
+                    $markList = $MARK->where(array('class' => $value))->order('lastMark desc')->group('openid')->select();
+                    $rankList = array_merge($rankList,$markList);
+                }
+                //对二维数组根据lastmark高低重新排序
+                $marks = array();
+                foreach ($rankList as $value) {
+                    $marks[] = $value['lastMark'];
+                }
+                array_multisort($marks, SORT_DESC, $rankList);
             }
-            $rankList = $MARK->getRankList($start);
-            // P($rankList);
-            // foreach($rankList as $key => $value){
-            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
-            // }
-            $this->ajaxReturn($rankList);
-
-        } else {
-            session('start',0);
-            // dump($openId);
-            $rankList = $MARK->getRankList();
-            //P($rankList);
-            // foreach($rankList as $key=>$value){
-            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
-            // }
-            //P($rankList);
-            $this->assign('rankList',$rankList);
-            $this->display();
+        }else{  //学生端进入，只显示自己班级的排名
+            $openId=session('openId');
+            $class = D('StudentInfo')->getClass($openId);
+            $rankList = $MARK->order('lastMark desc')->where(array('class'=>$class))->group('openid')->select();
         }
+        // P($rankList);die;
+        $this->assign('rankList',$rankList);
+        $this->display();
+    } 
 
-    }    
+    //教师端->积分管理->积分权重    
+    public function markWeight(){
+        $openId=session('openId');
+        $weight = M('student_mark_weight')->where(array('openId'=>$openId))->find();
+        $this->assign('weight',$weight)->display();
+    }
+
+    //教师端->积分管理->积分权重->设置权重
+    public function setMarkWeight(){
+        $weight = I();
+        //p($weight);die;
+        $openId=session('openId');
+        $WEIGHT = M('student_mark_weight');
+        $weight['openId'] = session('openId');
+        $weight['name'] = M('teacher_info')->where(array('openId'=>$openId))->getField('name');
+        // $weight['comComment'] = $weight['ranReply'] = $weight['ranComment'] = $weight['comReply'];
+        // $weight['doran'] = I('doran');
+        // p($weight);die;
+        if($WEIGHT->where(array('openId'=>$openId))->find()){
+            $WEIGHT->where(array('openId'=>$openId))->save($weight);
+            $this->success('修改成绩权重成功',U('Teacher/index'));
+        }else{
+            $WEIGHT->add($weight);
+            $this->success('设置成绩权重成功',U('Teacher/index'));
+            //$this->error('修改成绩权重失败');
+        }
+    }
+
+    //教师端->积分管理->导出成绩
+    public function exportExcel($arr=array(),$title=array(),$filename='计算机网络成绩统计表'){
+        $MARK = M('student_mark');
+        header("Content-type:application/octet-stream");
+        header("Accept-Ranges:bytes");
+        header("Content-type:application/vnd.ms-excel");  
+        header("Content-Disposition:attachment;filename=".$filename.".xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        //导出xls 开始
+        //数据库对应xls标题的定义
+        $title=array('id','openId','name','number','class','weixinMessageNum','comCommentNum','comReplyNum','ranCommentNum','ranReplyNum','doRanNum','doRanRightNum','registerNum','classTestNum','classTestRightNum','signinNum','lastMark');
+        if (!empty($title)){
+            foreach ($title as $k => $v) {
+                $title[$k]=iconv("UTF-8", "GB2312",$v);
+            }
+            $title= implode("\t", $title);
+            echo "$title\n";
+        }
+        //查询数据库  $arr 是二维数组
+
+        $arr = $MARK->select();
+        if(!empty($arr)){
+            foreach($arr as $key=>$val){
+                foreach ($val as $ck => $cv) {
+                    $arr[$key][$ck]=iconv("UTF-8", "GB2312", $cv);
+                }
+                $arr[$key]=implode("\t", $arr[$key]);
+            }
+            echo implode("\n",$arr);
+        }
+    }
+
+    //积分详情
+    public function markDetails(){
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $mark     = new MarkController();
+        $markInfo = $mark->getDetails($openId);
+        $markInfo['commu']= $markInfo['comCommentNum']+$markInfo['comReplyNum']+$markInfo['ranCommentNum']+$markInfo['ranReplyNum'];
+        $this->assign('markInfo',$markInfo)->display();
+    }
+
+
+    //查看积分
+    // public function markClass(){
+    //     $classStr = I('class');
+    //     $classArray = explode('_', substr($classStr, 0,strlen($classStr)-1));
+    //     $markList = array();
+    //     if($classArray[0] == 'all'){
+    //         $markList = M('student_mark')->order('lastMark desc')->select();
+    //     }else{
+    //         foreach ($classArray as $value) {
+    //             $markList = array_merge($markList,M('student_mark')->where(array('class' => $value))->order('lastMark desc')->select());
+    //         }
+    //     }
+    //     $this->assign('markList',$markList)->display();
+    // }        
     
     //积分更新接口
     public function update(){
@@ -89,9 +195,9 @@ class MarkController extends Controller{
         //$COM_REPLY   = M('community_reply');
         //$RAN_COMMENT = M('random_comment');
         //$RAN_REPLY   = M('random_reply');
-        $RAN_RECORD  = M('random_answer_record');
+        $RAN_RECORD  = M('random_exercise');
         //$CLASSTEST   = M('student_classtest_record');
-        $EXAM   = M('exam_select');
+        $TEST        = M('test_submit');
         $SIGNIN      = M('student_signin');
         $HOMEWORK    = M('student_homework');//这个表里字段名是openId
         $user        = new UserController();
@@ -106,8 +212,8 @@ class MarkController extends Controller{
         $mark['doRanNum']          = $RAN_RECORD->where(array('openid' => $openId))->count();   //自由练习做的题目的个数
         $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //自由练习答对题数
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
-        $mark['classTestNum']      = $EXAM->where(array('openid' => $openId))->count();//参与测试次数
-        $mark['classTestRightNum'] = $EXAM->where(array('openid' => $openId,'result' => '1'))->count();//模拟测试答对题数
+        $mark['classTestNum']      = $TEST->where(array('openid' => $openId))->count();//参与测试次数
+        $mark['classTestRightNum'] = $TEST->where(array('openid' => $openId,'result' => '1'))->count();//模拟测试答对题数
         $mark['signinNum']         = $SIGNIN->where(array('openid' => $openId))->count();//签到次数
         $homeworkMark = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
         if(empty($homeworkMark))
@@ -145,67 +251,45 @@ class MarkController extends Controller{
      *
      */
     
-    //导出成绩报表
-    public function exportExcel($arr=array(),$title=array(),$filename='计算机网络成绩统计表'){
-        $MARK = M('student_mark');
-        header("Content-type:application/octet-stream");
-        header("Accept-Ranges:bytes");
-        header("Content-type:application/vnd.ms-excel");  
-        header("Content-Disposition:attachment;filename=".$filename.".xls");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        //导出xls 开始
-        //数据库对应xls标题的定义
-        $title=array('id','openId','name','number','class','weixinMessageNum','comCommentNum','comReplyNum','ranCommentNum','ranReplyNum','doRanNum','doRanRightNum','registerNum','classTestNum','classTestRightNum','signinNum','lastMark');
-        if (!empty($title)){
-            foreach ($title as $k => $v) {
-                $title[$k]=iconv("UTF-8", "GB2312",$v);
-            }
-            $title= implode("\t", $title);
-            echo "$title\n";
-        }
-        //查询数据库  $arr 是二维数组
-
-        $arr = $MARK->select();
-        if(!empty($arr)){
-            foreach($arr as $key=>$val){
-                foreach ($val as $ck => $cv) {
-                    $arr[$key][$ck]=iconv("UTF-8", "GB2312", $cv);
-                }
-                $arr[$key]=implode("\t", $arr[$key]);
-            }
-            echo implode("\n",$arr);
-        }
-    }
 
 
-    public function markMenu(){
-        $openId = session("openId");
-        if(!$openId){
-            $openId = getOpenId();
-            session('openId',$openId);
-        }
-        $this->display();
-    }
-    
-    public function markWeight(){
-        $weight = M('student_mark_weight')->find(1);
-        $this->assign('weight',$weight)->display();
-    }
-
-    public function setMarkWeigth(){
-        $weight = I();
-        $weight['openId'] = session('openId');
-        $weight['name'] = M('teacher_info')->where(array('openId'=>$weight['openId']))->getField('name');
-        $weight['comComment'] = $weight['ranReply'] = $weight['ranComment'] = $weight['comReply'] ;
-        
-        
-        if(M('student_mark_weight')->where(array('id'=>1))->save($weight))
-            $this->success('修改成绩权重成功',U('Teacher/index'));
-        else
-            $this->error('修改成绩权重失败');
-    }
 
 
 
 }
+/*
+    public function markClass(){
+
+        $openId   = session('openId');  
+        $MARK = D('StudentMark');
+        $STUDENT = M('studentInfo');
+        if (IS_AJAX) {
+            if(session('?start')){
+                $start = session('start') + 20;
+                session('start',$start );
+            } else {
+                session('start',0);
+                $start = 0;
+            }
+            $rankList = $MARK->getRankList($start);
+            // P($rankList);
+            // foreach($rankList as $key => $value){
+            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
+            // }
+            $this->ajaxReturn($rankList);
+
+        } else {
+            session('start',0);
+            // dump($openId);
+            $rankList = $MARK->getRankList();
+            //P($rankList);
+            // foreach($rankList as $key=>$value){
+            //     $rankList[$key]['info'] = $STUDENT->where(array('openId' => $value['openid']))->find();
+            // }
+            //P($rankList);
+            $this->assign('rankList',$rankList);
+            $this->display();
+        }
+
+    } 
+*/
