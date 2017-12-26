@@ -149,7 +149,9 @@ class UserController extends Controller {
             }
 
         } 
-        //已注册：1.openid已存在。2.用户使用其他微信账户注册，以学号判断
+        //已注册：
+        //1.openid已存在。
+        //2.用户使用其他微信账户注册，以学号判断，或者以list表中的type判断
         $isRegister = $STU->where(array('number'=>$number))->find();
         if(true === $STU->isRegister($openId) || $isRegister) {
             $this->ajaxReturn('你已注册');
