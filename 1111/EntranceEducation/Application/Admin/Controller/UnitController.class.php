@@ -24,6 +24,8 @@ class UnitController extends CommonController {
         	$QUESTION = M('questionbank');
             $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
+            var_dump($data);
+            return;
             // dump($data);
             if ($QUESTION->where(array('id' => $id))->save($data))
 	            $this->success('题目修改成功', U('Question/index'));
