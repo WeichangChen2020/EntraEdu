@@ -30,7 +30,7 @@
                         <td align="center">{$questionList.option_c}</td>
                         <td align="center">{$questionList.option_d}</td>
                         <td align="center">
-                            <a href="{:U('Question/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="{:U('Unit/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Question/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
                     </tr>
                 </volist>
