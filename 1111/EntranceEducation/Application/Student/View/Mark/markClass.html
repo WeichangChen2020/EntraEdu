@@ -53,7 +53,7 @@
                 </if>
                 <div class="NAC">
                     <div class="name">{$rankList['name']}&nbsp;</div>
-                    <div class="class">{$rankList['class']|default="非新生用户"}&nbsp;</div>
+                    <div class="class">{$rankList['class']|default="路人"}&nbsp;</div>
                 </div>
                 <div class="GAT">
                     <div class="grade">{$rankList['lastMark']}
@@ -63,10 +63,10 @@
             </div>
         </volist>
     </div>
-    <div class="weui-loadmore">
+<!--     <div class="weui-loadmore">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
-    </div>
+    </div> -->
 
 </body>
 </html>
@@ -74,60 +74,60 @@
 <include file="./Public/weui2.0/__foot.html"/>
 <script>
 
-    var stop=true;//触发开关，防止多次调用事件  
-    $(window).scroll(function() {    
-        //当内容滚动到底部时加载新的内容 100当距离最底部100个像素时开始加载.  
-        if ($(this).scrollTop() + $(window).height() + 100 >= $(document).height() && $(this).scrollTop() > 100) {    
+    // var stop=true;//触发开关，防止多次调用事件  
+    // $(window).scroll(function() {    
+    //     //当内容滚动到底部时加载新的内容 100当距离最底部100个像素时开始加载.  
+    //     if ($(this).scrollTop() + $(window).height() + 100 >= $(document).height() && $(this).scrollTop() > 100) {    
 
-            if(stop==true){  
-                stop=false;  
-                setTimeout(function() {
-                    $.ajax({
-                        url: "{:U('Mark/markClass')}",           //请求路径；
-                        success: function(res) {
-                            //console.log(res);
-                            var str = '';
-                            var number = parseInt($(".num:last").html());
-                            var No = 0;
+    //         if(stop==true){  
+    //             stop=false;  
+    //             setTimeout(function() {
+    //                 $.ajax({
+    //                     url: "{:U('Mark/markClass')}",           //请求路径；
+    //                     success: function(res) {
+    //                         //console.log(res);
+    //                         var str = '';
+    //                         var number = parseInt($(".num:last").html());
+    //                         var No = 0;
 
-                            //如果没有更多数据，则更改样式
-                            if (res == '') {
-                                $(".weui-loadmore").addClass(" weui-loadmore_line");
-                                $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
-                                return false;
-                            }
+    //                         //如果没有更多数据，则更改样式
+    //                         if (res == '') {
+    //                             $(".weui-loadmore").addClass(" weui-loadmore_line");
+    //                             $(".weui-loadmore").html("<span class='weui-loadmore__tips'>暂无数据</span>")
+    //                             return false;
+    //                         }
 
-                            //否则添加内容
-                            for (var i = 0; i < res.length; i++) {
+    //                         //否则添加内容
+    //                         for (var i = 0; i < res.length; i++) {
                                 
 
-                                str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
-                                No = number + i + 1 ;
-                                if ( No < 99) {
-                                    str += "<div class= 'num elt99'>" + No +"</div>";
-                                } else if (No < 999 ){
-                                    str += "<div class= 'num elt999'>" + No +"</div>";
-                                } else {
-                                    str += "<div class= 'num elt9999'>" + No +"</div>";
-                                }
-                                str += "<div class='NAC'><div class='name'>"+ res[i]['name'] +"&nbsp;</div><div class='class'>";
+    //                             str += "<div class='weui-row weui-no-gutter column' style='height:2.8rem'>"
+    //                             No = number + i + 1 ;
+    //                             if ( No < 99) {
+    //                                 str += "<div class= 'num elt99'>" + No +"</div>";
+    //                             } else if (No < 999 ){
+    //                                 str += "<div class= 'num elt999'>" + No +"</div>";
+    //                             } else {
+    //                                 str += "<div class= 'num elt9999'>" + No +"</div>";
+    //                             }
+    //                             str += "<div class='NAC'><div class='name'>"+ res[i]['name'] +"&nbsp;</div><div class='class'>";
 
-                                if (res[i]['class'] == '') {
-                                    str += '非新生用户';
-                                } else {
-                                    str += res[i]['class'];
-                                }
-                                str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['lastMark'] + "&nbsp;<span class='ti'>分</span></div></div></div>"
-                            }
+    //                             if (res[i]['class'] == '') {
+    //                                 str += '路人';
+    //                             } else {
+    //                                 str += res[i]['class'];
+    //                             }
+    //                             str += "&nbsp;</div></div><div class='GAT'><div class='grade'>" + res[i]['lastMark'] + "&nbsp;<span class='ti'>分</span></div></div></div>"
+    //                         }
 
-                            // console.log(str+'dsf');
-                            $(".rank").append(str);
-                        }
-                    });
-                    stop=true;  
-                }, 500);   //模拟延迟
-            }
-        }    
-    });   
+    //                         // console.log(str+'dsf');
+    //                         $(".rank").append(str);
+    //                     }
+    //                 });
+    //                 stop=true;  
+    //             }, 500);   //模拟延迟
+    //         }
+    //     }    
+    // });   
 
 </script>
