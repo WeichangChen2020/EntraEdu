@@ -185,15 +185,15 @@
                     $.toptip('请输入学号');
                     return false;
                 }
-                else if(number.length != 10){
-                    $.toptip('学号必须是10位数');
-                    return false;
-                }
+                // else if(number.length != 10){
+                //     $.toptip('学号必须是10位数');
+                //     return false;
+                // }
                 else {
                   /*=============上传数据==========*/
                   data = {
                     'name'   : name,
-                    'college':college,
+                    'college': college,
                     'banji'  : banji,
                     'number' : number,
                     'is_newer':1,
@@ -212,10 +212,10 @@
                     $.toptip('请输入号码');
                     return false;
                 }
-                else if(phone.length < 10){
-                    $.toptip('号码必须大于10位数');
-                    return false;
-                }
+                // else if(phone.length < 10){
+                //     $.toptip('号码必须大于10位数');
+                //     return false;
+                // }
                 else {
                   /*=============上传数据==========*/
                   data = {
