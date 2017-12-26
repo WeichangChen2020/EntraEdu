@@ -15,15 +15,12 @@ class QyhController extends Controller
 
 
 
-
-
-
-
 	public function upload()
 	{
 		
       	//上传图片的张数
         $keynum = (count(array_filter($_FILES['photo']['name'])));
+        // var_dump($keynum);die();
         // $one = $stuInfo['number'].'_'.$homeworkId.'_'.'1';
         // $two = $stuInfo['number'].'_'.$homeworkId.'_'.'2';
         // $three = $stuInfo['number'].'_'.$homeworkId.'_'.'3';
@@ -52,8 +49,6 @@ class QyhController extends Controller
             'autoSub'=>false,
             // 'saveName'=>array($one,$two,$three,$four,$five,$six)
             // 'saveName'=>array('1','2','3','4','5','6')
-            
-
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		

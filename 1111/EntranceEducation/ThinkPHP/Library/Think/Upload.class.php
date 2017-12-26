@@ -369,7 +369,7 @@ class Upload {
             /* 解决pathinfo中文文件名BUG */
             $filename = substr(pathinfo("_{$file['name']}", PATHINFO_FILENAME), 1);
             $savename = $filename;
-        } else {
+        }else {
             $savename = $this->getName($rule, $file['name']);
             if(empty($savename)){
                 $this->error = '文件命名规则错误！';
