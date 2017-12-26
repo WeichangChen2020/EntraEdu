@@ -212,10 +212,10 @@
                     $.toptip('请输入号码');
                     return false;
                 }
-                // else if(phone.length < 10){
-                //     $.toptip('号码必须大于10位数');
-                //     return false;
-                // }
+                else if(phone.length < 10){
+                    $.toptip('号码必须大于10位数');
+                    return false;
+                }
                 else {
                   /*=============上传数据==========*/
                   data = {
