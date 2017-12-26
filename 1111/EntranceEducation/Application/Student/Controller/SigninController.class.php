@@ -69,8 +69,8 @@ class SigninController extends Controller{
 
     //在线签到
     public function signinOnline(){
-        if(!IS_AJAX)
-            $this->error('你访问的界面不存在');
+        // if(!IS_AJAX)
+        //     $this->error('你访问的界面不存在');
 
         $openId        =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
