@@ -81,33 +81,13 @@ class UserController extends Controller {
 
 
     public function index(){
-    	//++++++++++++++++++++++++++++++++++++++++++设定openId session
-        //session('openId',null);
-        
-
-            $openId = getOpenId();
-        
-            session('openId',$openId);
-
-            
-
-        
-         //
-        //echo $openId;
-        //die();
-       
-        //$openId = 'o_88Bj6aebK2XYfoh7cU9cV0dzx0';//session('openId')
-        //echo session('openId');
-        // echo "<br>";
-        // echo $openId;
-        //echo $_COOKIE["openId"];
-        // die();
+        $openId = getOpenId();       
+        session('openId',$openId);
 
 		if($this->isRegister($openId)){
 
-            //++++++++++++++++++++++++++++++++++++++++++模型实例化
             $STU              = D('StudentInfo');
-            //$MARK             = D('StudentMark');
+            //$MARK           = D('StudentMark');
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
             // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
@@ -130,8 +110,7 @@ class UserController extends Controller {
 		}
     }
 
-    
-    
+        
     /**
      * 处理用户注册传来的信息
      * 
@@ -139,22 +118,23 @@ class UserController extends Controller {
      * @return string $imgheadurl 用户头像url
      */
     public function register(){
-        if(!IS_AJAX) $this->error('你访问的页面不存在');
-    	$STU           = D('StudentInfo');       //实例化
-        $WeChat        = new WeichatController();
-        $openId        = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        //这些是注册页面传递过来的参数
-        $name          = I('name');
-        $number        = I('number');
-        $college       = I('college');
-        $banji         = I('banji'); 
-        $isNewer       = 0;
+        if(!IS_AJAX) 
+            $this->error('你访问的页面不存在');
+    	$STU       = D('StudentInfo');
+        $WeChat    = new WeichatController();
+        $openId    = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        //注册页面传递过来的参数
+        $name      = I('name');
+        $number    = I('number');
+        $college   = I('college');
+        $banji     = I('banji'); 
+        $isNewer   = 0;
 
         // 用户注册的头像
         $headimgurl    = $WeChat->getHeadimgurl($openId);
         if(empty($headimgurl)) $headimgurl = '';
 
-        // 新手的信息
+        // 新生信息
         if (!empty($college) && !empty($banji)) {
             
             $isNewer = 1;
@@ -169,10 +149,10 @@ class UserController extends Controller {
             }
 
         } 
-
-        if(true === $STU->isRegister($openId)) {
-
-            $this->ajaxReturn('你已经注册过了');
+        //已注册：1.openid已存在。2.用户使用其他微信账户注册，以学号判断
+        $isRegister = $STU->where(array('number'=>$number))->find();
+        if(true === $STU->isRegister($openId) || $isRegister) {
+            $this->ajaxReturn('你已注册');
         }
 
         $registerInfo   = array(
