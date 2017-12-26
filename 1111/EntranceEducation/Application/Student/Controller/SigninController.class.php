@@ -69,22 +69,22 @@ class SigninController extends Controller{
 
     //在线签到
     public function signinOnline(){
-        // if(!IS_AJAX)
-        //     $this->error('你访问的界面不存在');
+        if(!IS_AJAX)
+            $this->error('你访问的界面不存在');
 
         $openId        =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
         $SIGNIN = M('teacher_signin');
         $signInfo = $SIGNIN->where(array('id' => $signinId))->find();
-        p($signInfo);die;
+
         //已截止
-        $deadtime = $SIGNIN->where(array('id' => $signinId))->getField('deadtime');
+        $deadtime = $signInfo['deadtime'];
         $now = time();
         if($now > strtotime($deadtime))
             $this->ajaxReturn('close');
         
         //已关闭
-        if($SIGNIN->where(array('id' => $signinId))->getField('state') != '开启')
+        if($signInfo['state'] != '开启')
             $this->ajaxReturn('close');
 
         //已签到
