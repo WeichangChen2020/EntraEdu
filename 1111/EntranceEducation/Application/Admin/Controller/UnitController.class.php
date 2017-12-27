@@ -17,7 +17,7 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-    public function lists(){
+    public function lists($chapter){
 
         $Question = M('Questionbank');
         $list = $Question->page($_GET['p'].',20')->select();
