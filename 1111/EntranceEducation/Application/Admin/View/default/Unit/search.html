@@ -16,7 +16,7 @@
 <div class="aright">
 
 <fieldset class="layui-elem-field layui-field-title" style="margin: 20px 30px 20px 20px;">
-  <legend>搜索</legend>
+  <legend>搜索:{$data}</legend>
 </fieldset>
 
 <form method="post" action="" class="aform cl">
@@ -29,7 +29,7 @@
     </div>
    
 
-    <if condition="$result eq null"> 
+    <if condition="$questionList eq null"> 
         <h1>没有查询到数据</h1>
     <else />
 
