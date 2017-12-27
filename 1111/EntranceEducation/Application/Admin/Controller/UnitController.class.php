@@ -11,7 +11,7 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-    public function lists($chapter){
+    public function lists($chapterid){
 
         $Question = M('Questionbank');
         $list = $Question->where(array('chapter'=> $chapter))->page($_GET['p'].',20')->select();
@@ -25,7 +25,28 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-
+	public function addChapter(){
+    }
+    public function editChapter($chapterid){
+    	 if (IS_POST) {
+        	$QUESTION = M('Question_chapter');
+            $data = I();
+            $data = array_map('trim', $data);  //trim去除多余回车
+          
+            // dump($data);
+            if ($QUESTION->where(array('id' => $chapterid))->save($data))
+	            $this->success('题目修改成功', U('Unit/index'));
+            else
+            	$this->error('修改失败');
+        } else {
+            $question = M('Question_chapter')->where(array('id'=>$id))->find();
+            // dump($question);
+            $this->assign('question',$question);
+            $this->display();
+        }
+    }
+    public function deleteChapter($chapterid){
+    }
     //题目修改界面
     public function edit($id){
         if (IS_POST) {
@@ -35,7 +56,7 @@ class UnitController extends CommonController {
           
             // dump($data);
             if ($QUESTION->where(array('id' => $id))->save($data))
-	            $this->success('题目修改成功', U('Question/index'));
+	            $this->success('题目修改成功', U('Unit/index'));
             else
             	$this->error('修改失败');
         } else {
