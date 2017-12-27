@@ -1,0 +1,57 @@
+<style>
+    div{
+        display: inline-block;
+    }
+</style>
+<div class="aright">
+    <form method="get" action="{:U('Unit/search')}" id="searchfrom">
+    <div class="arz cl">
+        <input  type="text" name="search"  required style="margin:10px 0 0 10px;height:30px;text-align: left;"/>
+        <a href="javascript:;" onclick ="document.getElementById('searchfrom').submit();"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a>
+    </div>
+    
+    <div class="arz cl"><a href="{:U('Unit/import')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->批量导入</a></div>
+    <div class="arz cl"><a href="{:U('Unit/add')}"><i class="layui-icon"></i>添加</a></div>
+    </form>
+    <form method="post" class="aform cl">
+        <table width="100%">
+           <tbody>
+                <tr>
+                    <th width="3%" align="center" >id</th>
+                    <th width="5%" align="center">题目章节</th>
+                    <th width="5%" align="center">题目类型</th>
+                    <th width="35%" align="center">题干内容</th>
+                    <th width="10%" align="center">选项A</th>
+                    <th width="10%" align="center">选项B</th>
+                    <th width="10%" align="center">选项C</th>
+                    <th width="10%" align="center">选项D</th>
+                    <th width="10%" align="center">解析</th>
+                    <th width="15%" align="center">操作</th></tr>
+                <volist name="questionList" id="questionList" empty="暂时没有数据" >
+                    <tr>
+                        <td style="padding-left: 20px;">{$questionList.id}</td>
+                        <td align="center">{$questionList.chapter}</td>
+                        <td align="center">{$questionList.type|get_ques_type=###}</td>
+                        <td align="center">{$questionList.contents}</td>
+                        <td align="center">{$questionList.option_a}</td>
+                        <td align="center">{$questionList.option_b}</td>
+                        <td align="center">{$questionList.option_c}</td>
+                        <td align="center">{$questionList.option_d}</td>
+                        <td align="center">{$questionList.analysis|default="无"}</td>
+                        <td align="center">
+                            <a href="{:U('Unit/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Unit/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+              
+    </form>
+  
+    <div class="pages">
+     {$page}
+     </div> 
+</div>
+<script type="text/javascript">
+
+</script>
