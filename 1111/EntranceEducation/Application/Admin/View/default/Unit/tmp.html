@@ -56,7 +56,7 @@
                     </td>
                    
                 </tr>
-				<tr id="explain" >
+				<tr id="explain" display="none">
                     <td width="10%" align="center">试题解析:</td>
                     <td align="center"> 
                       <input id="explainupload" class="form-control webuploader-input"  style="width:400px;height:50px;padding-left: 80px;" type="file" name="analysis[]" data-url="{:U(index)}" multiple="ture">
@@ -80,16 +80,16 @@
 	function showdiv(){
    
       var target=document.getElementById("explain");
-            if (target.style.display=="table-row;"){
+            if (target.style.display=="table-row"){
                 target.style.display="none";             
             } else {
-                target.style.display="block";
+                target.style.display="table-row";
             }
    }
     function hidediv(){  
       var target=document.getElementById("explain");
             if (target.style.display=="none"){
-                target.style.display="table-row;";             
+                target.style.display="table-row";             
             } else {
                 target.style.display="none";
             }
