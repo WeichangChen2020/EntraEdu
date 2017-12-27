@@ -21,7 +21,12 @@
 
 <form method="post" action="" class="aform cl">
 	
-
+	<div class="layui-form-item">
+        <div class="layui-input-block" style="margin: 20 35%;">
+          <!--<button id="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">搜索</button>-->
+          <button class="layui-btn layui-btn-primary" onclick="history.go(-1)">返回</button>
+        </div>
+    </div>
    
 
     <if condition="$result eq null"> 
@@ -62,12 +67,7 @@
             </tbody>
         </table>
     </if>
-	 <div class="layui-form-item">
-        <div class="layui-input-block" style="margin: 20 35%;">
-          <!--<button id="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">搜索</button>-->
-          <button class="layui-btn layui-btn-primary" onclick="history.go(-1)">返回</button>
-        </div>
-    </div>
+	 
 </form>
 <script>
 
