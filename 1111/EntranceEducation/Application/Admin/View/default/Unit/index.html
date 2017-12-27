@@ -20,13 +20,12 @@
                     <th width="3%" align="center" >id</th>
                     <th width="5%" align="center">章节</th>        
                     <th width="15%" align="center">操作</th></tr>
-                <volist name="questionList" id="questionList" empty="暂时没有数据" >
+                <volist name="chapterList" id="chapterList" empty="暂时没有数据" >
                     <tr>
                         <td style="padding-left: 20px;">{$chapterList.id}</td>
-                        <td align="center">{$chapterList.chapter}</td>
-                     
+                        <td align="center">{$chapterList.chapter}</td>                    
                         <td align="center">
-                            <a href="{:U('Unit/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Unit/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="{:U('Unit/lists', array('id'=>$chapterList['id']))}">管理</a><a href="{:U('Unit/editChapter', array('id'=>$chapterListquestionList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('id' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
                     </tr>
                 </volist>
