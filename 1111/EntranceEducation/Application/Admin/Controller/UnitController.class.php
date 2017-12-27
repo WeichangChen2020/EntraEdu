@@ -67,7 +67,7 @@ class UnitController extends CommonController {
             $data = array_map('trim', $data);  //trim去除多余回车
             if (!empty($data['search']))
             	$map['contents|option_a|option_b|option_c|option_d|analysis'] = array('like','%'.$data['contents'].'%','OR');
-	        $result = $QUESTION -> where($map) ->select();
+	        $result = $QUESTION ->where($map) ->select();
 	        $this->assign('result',$result);
             $this->assign('data',$data);
             $this->display();
