@@ -39,7 +39,7 @@ class QyhController extends Controller
         $cond         = array('openId' => $openId);
         $stuInfo      = $STU->where($cond)->find();
         $homeworkname = I('post.homeworkname');
-        $quesarr      = I('post.quesarr');
+        $quesarr      = session('quesarr');
         var_dump($quesarr);die();
         
 
