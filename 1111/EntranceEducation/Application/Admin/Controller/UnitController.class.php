@@ -36,7 +36,7 @@ class UnitController extends CommonController {
             else
                 $this->error('添加失败');
     	}
-    	$this->display();
+    	else $this->display();
     }
     public function editChapter($chapterid){
     	 if (IS_POST) {
