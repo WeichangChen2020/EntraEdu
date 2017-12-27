@@ -14,10 +14,10 @@ class UnitController extends CommonController {
     public function lists($chapterid){
 
         $Question = M('Questionbank');
-        $list = $Question->where(array('chapter'=> $chapter))->page($_GET['p'].',20')->select();
+        $list = $Question->where(array('chapter'=> $chapterid))->page($_GET['p'].',20')->select();
         $this->assign('questionList',$list);
 
-        $count      = $Question->where(array('chapter'=> $chapter))->count();
+        $count      = $Question->where(array('chapter'=> $chapterid))->count();
         $this->assign('count', $count);
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
