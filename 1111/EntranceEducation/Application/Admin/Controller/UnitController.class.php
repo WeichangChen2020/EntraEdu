@@ -125,4 +125,82 @@ class UnitController extends CommonController {
     
     	
     }
+    // 题库上传类
+	public function upload(){
+
+        if (IS_POST) {
+
+            if (!empty($_FILES)) {
+
+                /*=========整理上传图片信息===========*/
+                $numQuestionPic = count($_FILES['question']['name']);  //题目的数量
+                $numAnalysisPic = count($_FILES['analysis']['name']);  //解析的数量
+                $_FILES['analysis']['name'][0] != '' ? $existAnalysis = ture : $existAnalysis = false ;
+
+                /*=====上传的题目数量要与答案数量一致============*/
+                $numQuestionPic == strlen(I('right_answer')) || $this->error('图片的数量与答案的数量不一致');
+                if($existAnalysis) //
+                    $numQuestionPic == $numAnalysisPic || $this->error('图片的数量与解析的数量不一致');
+
+                /*================将图片上传至domain===============*/
+                $config = array(    
+                    'rootPath'   =>    './Uploads/', // 设置附件上传目录// 上传文件 
+                    'savePath'   =>    '',  
+                    'saveName'   =>    '',
+                    'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
+                    'autoSub'    =>    true,   
+                    'replace'    =>    true,          //支持相同文件名覆盖，否则上传不了
+                );
+                $upload = new \Think\Upload($config);// 实例化上传类
+                $info   =   $upload->upload();
+                if ($info === false) {
+                    $this->error($upload->getError());
+                }else{
+                    /*============将上传的图片信息整理成一个二维数组===========*/
+                    //分两种情况，有解析，没有解析
+                    if($existAnalysis){
+                        for($i = 0 ; $i < $numQuestionPic ; $i++){
+                            $uploadExercise[$i] = array(
+                                'type' => I('type'),
+                                'questionPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
+                                'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
+                                'analysisPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                'time' => date('Y-m-d H:i:s'),
+                            );
+                        }
+                    }else{
+                        for($i = 0 ; $i < $numQuestionPic ; $i++){
+                            $uploadExercise[$i] = array(
+                                'type' => I('type'),
+                                'questionPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
+                                'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
+                                'time' => date('Y-m-d H:i:s'),
+                                );
+                        }
+                    }
+
+                    /*===============将试题信息存入数据库==========*/
+                    if(M('questionbank')->addAll($uploadExercise)){
+                        $this->success('上传成功');
+                    }else{
+                        $this->error('上传失败');
+                    }
+                }
+            }            
+        } else {
+            $sidenav = get_sidenav();
+            $topmenu = get_topmenu();
+            $this->assign('sidenav', $sidenav);
+            $this->assign('topmenu', $topmenu);
+
+            $units = D('questionunit')->getUnits();
+            $this->assign('units', $units);     
+
+            $this->addCrumb('题库管理', '', '')
+                 ->addCrumb('添加题目', '')
+                 ->addNav('添加章节', U('Unit/lists'), '')
+                 ->addNav('添加题目', '', 'active')
+                 ->display();
+        }
+		
 }
