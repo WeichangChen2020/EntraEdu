@@ -3,7 +3,7 @@ namespace Admin\Controller;
 use Think\Controller;
 class UnitController extends CommonController {
     
-    public function index(){
+    public function lists(){
 
         $Question = M('Questionbank');
         $list = $Question->page($_GET['p'].',20')->select();
