@@ -65,7 +65,7 @@ class UnitController extends CommonController {
 	        $QUESTION = M('Questionbank');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
-              var_dump($data);
+              var_dump($_POST);
             return;
             if (!empty($data['id']))
             	$map['id'] = $data['id'];
