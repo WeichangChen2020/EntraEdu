@@ -72,11 +72,12 @@ class UnitController extends CommonController {
             $this->assign('search',$data['search']);
             
             $count      = count($result);
+        	var_dump($count);
         	$this->assign('count', $count);
         	$Page       = new \Think\Page($count,20);
         	$show       = $Page->show();
         	$this->assign('page',$show);
-            
+            return;
             $this->display();
     
     	
