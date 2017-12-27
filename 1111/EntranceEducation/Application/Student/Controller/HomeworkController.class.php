@@ -32,6 +32,7 @@ class HomeworkController extends Controller{
             $openId = I('openId');
             session('openId',$openId);
         } 
+        var_dump($openId);echo "<br>";
         $studentInfo = M('student_info');
         $stuclass    = $studentInfo->where('openId="$openId"')->find();
         var_dump($stuclass);echo "<br>";
