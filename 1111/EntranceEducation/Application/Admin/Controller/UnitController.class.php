@@ -30,6 +30,8 @@ class UnitController extends CommonController {
             $Chapter = M('Question_chapter');
             $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
+            var_dump($data);
+            return;
             if ($QUESTION->add($data))
                 $this->success('题目添加成功',U('Unit/index'));
             else
