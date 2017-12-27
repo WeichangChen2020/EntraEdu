@@ -61,7 +61,7 @@ class UnitController extends CommonController {
     //搜索题目
     //搜索条件为空则显示全部，搜索结果返回到result数组
     public function search(){
-    	if (IS_POST) {
+    	
 	        $QUESTION = M('Questionbank');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
@@ -78,8 +78,7 @@ class UnitController extends CommonController {
         	$this->assign('page',$show);
             
             $this->display();
-    	}
-		else $this->error("参数错误");
+    
     	
     }
 }
