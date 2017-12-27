@@ -70,8 +70,9 @@ class UnitController extends CommonController {
 	        $result = $QUESTION -> where($map) ->select();
 	        $this->assign('result',$result);
             $this->assign('data',$data);
+            $this->display();
     	}
-
-    	$this->display();
+		$this->error("参数错误");
+    	
     }
 }
