@@ -57,6 +57,9 @@ class UnitController extends CommonController {
         }
     }
     public function deleteChapter($chapterid){
+         $QUESTION = M('Question_chapter');
+        $QUESTION->where(array('id' => $chapterid))->delete();
+        $this->success('题目删除成功', U('Unit/index'));
     }
     //题目修改界面
     public function edit($id){
