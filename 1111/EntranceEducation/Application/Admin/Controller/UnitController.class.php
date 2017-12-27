@@ -71,7 +71,7 @@ class UnitController extends CommonController {
 	        $this->assign('questionList',$result);
             $this->assign('search',$data['search']);
             
-              $count      = count($result);
+            $count      = count($result);
         	$this->assign('count', $count);
         	$Page       = new \Think\Page($count,20);
         	$show       = $Page->show();
