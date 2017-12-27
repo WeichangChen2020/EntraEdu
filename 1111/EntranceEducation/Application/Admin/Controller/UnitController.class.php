@@ -189,7 +189,7 @@ class UnitController extends CommonController {
             }            
         } else {
            
-                 $this->display();
+                 $this->display("tmp");
         }
     }
 }
