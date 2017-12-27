@@ -1,0 +1,80 @@
+<extend name="Base/common" />
+<block name="main_content">
+<include file="Public/crumb" />
+<div class="mod">
+    <div class="mod-head">
+        <h3>
+            <include file="Public/nav" />
+        </h3>
+    </div>
+    <div class="mod-body tab-content">
+        <div class="tab-pane active" id="list">
+            <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+
+        		<div class="form-group">
+                    <label class="col-sm-2 col-xs-3 control-label">题目章节:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="type" class="form-control">
+                            <volist name="units" id="units">
+                            	<option value="{$units.unit}" >{$units.unit}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">试题题目:</label>
+                    <div class="col-sm-9 col-xs-12">
+                    	<input id="fileupload" class="form-control webuploader-input" type="file" name="question[]" data-url="{:U(index)}" multiple="ture" >
+                    	<span class="help-block">请注意选择图片的顺序</span>
+                    </div>
+                </div>
+                <div class="form-group">
+        			<label class="col-sm-2 col-xs-3 control-label">题目答案:</label>
+        			<div class="col-sm-9 col-xs-12">
+        				<input class="form-control" type="text" name="right_answer" placeholder="" value="">
+        				<span class="help-block">请按照题目顺序依次填写答案</span>
+        			</div>
+        		</div>
+        		
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-3 control-label">题目解析:</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <label class="radio-inline" id="existexplain">
+                          <input type="radio" name="explain" value="existexplain">有解析
+                        </label>
+                        <label class="radio-inline" id="noexplain">
+                          <input type="radio" name="explain" checked="checked" value="noexplain">无解析
+                        </label>
+                        <span class="help-block">点击文字有效</span>
+                    </div>
+                </div>
+                <div class="form-group" id="explain" style="display:none;">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">试题解析:</label>
+                    <div class="col-sm-9 col-xs-12">
+                    	<input id="explainupload" class="form-control webuploader-input" type="file" name="analysis[]" data-url="{:U(index)}" multiple="ture">
+                    	<span class="help-block">请注意选择图片的顺序</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                	<div class="col-sm-offset-2 col-sm-5 col-xs-8">
+                    <input type="submit" value="确认添加" class="btn btn-primary center-block">
+                </div>
+            </div>
+        </form>   
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$('#existexplain').click(function(e){
+		$('#explain').show();
+	});
+	$('#noexplain').click(function(e){
+		$('#explain').hide();
+		/*========清空选择的文件==================*/
+		var obj = document.getElementById('explain') ; 
+		obj.outerHTML = obj.outerHTML;
+	});
+</script>
+
+</block>
+
