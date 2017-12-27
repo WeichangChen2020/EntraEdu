@@ -117,6 +117,7 @@ class HomeworkController extends Controller{
         // var_dump($outproblem);die();
         $this->assign('outproblem',$outproblem);//输出N和题目的url
         // var_dump($outproblem);die();
+        $this->assign('quesarr',$quesarr);
 
         // var_dump($outproblem);die();
         $this->assign('homework',$homework)->display();

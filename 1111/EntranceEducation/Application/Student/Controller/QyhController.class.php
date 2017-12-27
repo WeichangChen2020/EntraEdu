@@ -39,7 +39,7 @@ class QyhController extends Controller
         $cond         = array('openId' => $openId);
         $stuInfo      = $STU->where($cond)->find();
         $homeworkname = I('post.homeworkname');
-
+        $quesarr      = I('post.quesarr');
         
         
 
@@ -63,7 +63,8 @@ class QyhController extends Controller
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
 		}else{
-            foreach($info as $file){
+            foreach($info as $key => $file){
+                var_dump($key);die();
                 $imgurl = 'http://testroom-public.stor.sinaapp.com/upload/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
@@ -72,6 +73,7 @@ class QyhController extends Controller
                 $map['homeworkname']    = $homeworkname;
                 $map['imgurl']          = $imgurl;
                 $map['time']            = date("Y-m-d H:i:s",time());
+                $map['problemid']       = $quesarr[$key];
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }
