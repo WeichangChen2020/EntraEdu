@@ -25,7 +25,7 @@
                         <td style="padding-left: 20px;" align="center">{$chapterList.id}</td>
                         <td align="center">{$chapterList.chapter}</td>                    
                         <td align="center">
-                            <a href="{:U('Unit/lists', array('id'=>$chapterList['id']))}">管理</a>|<a href="{:U('Unit/editChapter', array('id'=>$chapterListquestionList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('id' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="{:U('Unit/lists', array('chapter'=>$chapterList['id']))}">管理</a>|<a href="{:U('Unit/editChapter', array('id'=>$chapterListquestionList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('id' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
                     </tr>
                 </volist>
