@@ -188,19 +188,8 @@ class UnitController extends CommonController {
                 }
             }            
         } else {
-            $sidenav = get_sidenav();
-            $topmenu = get_topmenu();
-            $this->assign('sidenav', $sidenav);
-            $this->assign('topmenu', $topmenu);
-
-            $units = D('questionunit')->getUnits();
-            $this->assign('units', $units);     
-
-            $this->addCrumb('题库管理', '', '')
-                 ->addCrumb('添加题目', '')
-                 ->addNav('添加章节', U('Unit/lists'), '')
-                 ->addNav('添加题目', '', 'active')
-                 ->display();
+           
+                 $this->display();
         }
     }
 }
