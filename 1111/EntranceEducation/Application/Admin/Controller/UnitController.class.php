@@ -77,7 +77,7 @@ class UnitController extends CommonController {
         	$Page       = new \Think\Page($count,20);
         	$show       = $Page->show();
         	$this->assign('page',$show);
-        var_dump($page);
+       		 var_dump($page);
             return;
             $this->display();
     
