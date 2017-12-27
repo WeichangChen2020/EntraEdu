@@ -72,7 +72,7 @@ class UnitController extends CommonController {
             $this->assign('data',$data);
             //$this->display();
     	}
-		$this->error("参数错误");
+		else $this->error("参数错误");
     	
     }
 }
