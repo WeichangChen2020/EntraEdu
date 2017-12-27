@@ -40,7 +40,7 @@ class QyhController extends Controller
         $stuInfo      = $STU->where($cond)->find();
         $homeworkname = I('post.homeworkname');
         $quesarr      = session('quesarr');
-        var_dump($quesarr);die();
+        // var_dump($quesarr);die();
         
 
 
@@ -73,7 +73,7 @@ class QyhController extends Controller
                 $map['homeworkname']    = $homeworkname;
                 $map['imgurl']          = $imgurl;
                 $map['time']            = date("Y-m-d H:i:s",time());
-                $map['problemid']       = $quesarr[$key];
+                $map['problemid']       = $quesarr[$key+1];
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }
