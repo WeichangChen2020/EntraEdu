@@ -32,7 +32,6 @@
     <if condition="$questionList eq null"> 
         <h1>没有查询到数据</h1>
     <else />
-
        <table width="100%">
             <tbody>
                 <tr>
@@ -62,12 +61,13 @@
                 </volist>
             </tbody>
         </table>
+        <div class="pages">
+     {$page}
+     </div> 
     </if>
 	 
 </form>
-     <div class="pages">
-     {$page}
-     </div> 
+     
 <script>
 
 </script>
