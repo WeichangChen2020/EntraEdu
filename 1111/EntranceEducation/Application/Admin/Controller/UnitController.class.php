@@ -74,7 +74,7 @@ class UnitController extends CommonController {
             $count      = count($result);
         	
         	$this->assign('count', $count);
-        	$Page       = new \Think\Page($count,5);
+        	$Page       = new \Think\Page($count,20);
         	$show       = $Page->show();
         	$this->assign('page',$show);
        		
