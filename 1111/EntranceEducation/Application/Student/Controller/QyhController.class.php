@@ -64,7 +64,7 @@ class QyhController extends Controller
 			$this->error($upload->getError());
 		}else{
             foreach($info as $key => $file){
-                var_dump($key);die();
+                // var_dump($key);die();
                 $imgurl = 'http://testroom-public.stor.sinaapp.com/upload/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
