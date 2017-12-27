@@ -69,7 +69,7 @@ class UnitController extends CommonController {
             	$map['contents|option_a|option_b|option_c|option_d|analysis'] = array('like','%'.$data['search'].'%','OR');
 	        $result = $QUESTION ->where($map) ->select();
 	        $this->assign('questionList',$result);
-            $this->assign('data',$data);
+            $this->assign('search',$data['search']);
             
               $count      = count($result);
         	$this->assign('count', $count);
