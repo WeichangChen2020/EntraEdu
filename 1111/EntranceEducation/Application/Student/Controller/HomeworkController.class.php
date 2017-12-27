@@ -32,14 +32,16 @@ class HomeworkController extends Controller{
             $openId = I('openId');
             session('openId',$openId);
         } 
-        
+        $studentInfo = M('student_info');
+        $stuclass    = $studentInfo->where('openId="$openId"')->find();
+
 
         $HOMEWORK = M('homework_zg');
         $count    = $HOMEWORK->count();
 
         $Page       = new \Think\Page($count,$count);
         $show       = $Page->show();
-        $homework = $HOMEWORK->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $homework = $HOMEWORK->where('class="$stuclass[\'class\']"')->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         // var_dump($homework);die();
         
 
