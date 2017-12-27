@@ -32,10 +32,10 @@ class HomeworkController extends Controller{
             $openId = I('openId');
             session('openId',$openId);
         } 
-        var_dump($openId);echo "<br>";
+        // var_dump($openId);echo "<br>";
         $studentInfo = M('student_info');
         $stuclass    = $studentInfo->where("openId='$openId'")->find();
-        var_dump($stuclass);echo "<br>";
+        // var_dump($stuclass);echo "<br>";
 
         $HOMEWORK = M('homework_zg');
         $count    = $HOMEWORK->count();
@@ -44,7 +44,7 @@ class HomeworkController extends Controller{
         $show       = $Page->show();
         $con['class']  =  $stuclass['class'];
         $homework = $HOMEWORK->where($con)->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-        var_dump($homework);die();
+        // var_dump($homework);die();
         
 
         //+++++++++++++++++++把是否提交和访问人数也加到数组里
