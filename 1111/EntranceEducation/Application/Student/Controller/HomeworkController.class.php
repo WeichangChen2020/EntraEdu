@@ -42,7 +42,8 @@ class HomeworkController extends Controller{
 
         $Page       = new \Think\Page($count,$count);
         $show       = $Page->show();
-        $homework = $HOMEWORK->where('class="$stuclass[\'class\']"')->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $con['class']  =  $stuclass['class'];
+        $homework = $HOMEWORK->where($con)->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         var_dump($homework);die();
         
 
