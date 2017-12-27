@@ -4,17 +4,15 @@
     }
 </style>
 <div class="aright">
-    
+    <form method="post" action="{:U('Unit/search')}" id="searchfrom">
     <div class="arz cl">
-        <form method="post" action="{:U('Unit/search')}" id="searchfrom">
         <input  type="text" id="search"  required style="margin:10px 0 0 10px;height:30px;text-align: left;"/>
-        </form>
         <a href="javascript:;" onclick ="subthis();"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a>
     </div>
     
     <div class="arz cl"><a href="{:U('Unit/import')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->批量导入</a></div>
     <div class="arz cl"><a href="{:U('Unit/add')}"><i class="layui-icon"></i>添加</a></div>
-   
+    </form>
     <form method="post" class="aform cl">
         <table width="100%">
             <tbody>
