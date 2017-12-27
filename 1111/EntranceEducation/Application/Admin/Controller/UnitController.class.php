@@ -39,9 +39,9 @@ class UnitController extends CommonController {
             else
             	$this->error('修改失败');
         } else {
-            $question = M('Question_chapter')->where(array('id'=>$id))->find();
+            $chapter = M('Question_chapter')->where(array('id'=>$chapterid))->find();
             // dump($question);
-            $this->assign('question',$question);
+            $this->assign('chapter',$chapter);
             $this->display();
         }
     }
