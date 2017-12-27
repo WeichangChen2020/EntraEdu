@@ -71,15 +71,24 @@
             </div>
         </form>   
 <script type="text/javascript">
-	$('#existexplain').click(function(e){
-		$('#explain').show();
-	});
-	$('#noexplain').click(function(e){
-		$('#explain').hide();
-		/*========清空选择的文件==================*/
-		var obj = document.getElementById('explain') ; 
-		obj.outerHTML = obj.outerHTML;
-	});
+	function showdiv(){
+   
+      var target=document.getElementById("existexplain");
+            if (target.style.display=="block"){
+                target.style.display="none";             
+            } else {
+                target.style.display="block";
+            }
+   }
+    function hidediv(){
+   
+      var target=document.getElementById("noexplain");
+            if (target.style.display=="block"){
+                target.style.display="none";             
+            } else {
+                target.style.display="block";
+            }
+   }
 </script>
 </div>
 
