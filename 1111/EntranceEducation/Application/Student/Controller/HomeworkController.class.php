@@ -34,7 +34,7 @@ class HomeworkController extends Controller{
         } 
         var_dump($openId);echo "<br>";
         $studentInfo = M('student_info');
-        $stuclass    = $studentInfo->where("openId='$openId')->find();
+        $stuclass    = $studentInfo->where("openId='$openId'")->find();
         var_dump($stuclass);echo "<br>";
 
         $HOMEWORK = M('homework_zg');
