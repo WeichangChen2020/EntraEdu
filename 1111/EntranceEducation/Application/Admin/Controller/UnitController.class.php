@@ -68,8 +68,15 @@ class UnitController extends CommonController {
             if (!empty($data['search']))
             	$map['contents|option_a|option_b|option_c|option_d|analysis'] = array('like','%'.$data['search'].'%','OR');
 	        $result = $QUESTION ->where($map) ->select();
-	        $this->assign('result',$result);
+	        $this->assign('questionList',$result);
             $this->assign('data',$data);
+            
+              $count      = count($result);
+        	$this->assign('count', $count);
+        	$Page       = new \Think\Page($count,20);
+        	$show       = $Page->show();
+        	$this->assign('page',$show);
+            
             $this->display();
     	}
 		else $this->error("参数错误");
