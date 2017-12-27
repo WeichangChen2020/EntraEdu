@@ -133,7 +133,8 @@ class TeacherController extends Controller{
         $map['hpdead_time'] = $data['hpdeadtime'];
         $map['problem_id'] = session('quesId');
         $map['homeworkname'] = $data['homeworkName'];
-        $model->add($map);
+        $res = $model->add($map);
+        var_dump($res);die();
         $this->ajaxReturn();
         // $problem = explode('_', $quesId);
         // var_dump($problem);die();
