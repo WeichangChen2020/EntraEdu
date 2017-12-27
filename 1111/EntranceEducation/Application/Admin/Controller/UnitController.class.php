@@ -65,17 +65,8 @@ class UnitController extends CommonController {
 	        $QUESTION = M('Questionbank');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
-            echo "POST";
-              var_dump($_POST);
-            return;
-            if (!empty($data['id']))
-            	$map['id'] = $data['id'];
-            if (!empty($data['chapter']))
-            	$map['chapter'] = $data['chapter'];
-            if (!empty($data['type']))
-            	$map['type'] = $data['type'];
-            if (!empty($data['contents']))
-            	$map['contents'] = array('like','%'.$data['contents'].'%','AND');
+            if (!empty($data['search']))
+            	$map['contents|option_a|option_b|option_c|option_d|analysis'] = array('like','%'.$data['contents'].'%','OR');
 	        $result = $QUESTION -> where($map) ->select();
 	        $this->assign('result',$result);
             $this->assign('data',$data);
