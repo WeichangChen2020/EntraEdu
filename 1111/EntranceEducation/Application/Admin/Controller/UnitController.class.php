@@ -14,7 +14,7 @@ class UnitController extends CommonController {
     public function lists($chapter){
 
         $Question = M('Questionbank');
-        $list = $Question->where(array('chapter'=> $chapter)->page($_GET['p'].',20')->select();
+        $list = $Question->where(array('chapter'=> $chapter）)->page($_GET['p'].',20')->select();
         $this->assign('questionList',$list);
 
         $count      = $Question->where(array('chapter'=> $chapter)->count();
