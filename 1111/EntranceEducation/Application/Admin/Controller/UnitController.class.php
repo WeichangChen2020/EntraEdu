@@ -190,8 +190,7 @@ class UnitController extends CommonController {
         } else {
             $Chapter = M('Question_chapter');
         	$list = $Chapter->select();
-       	 $this->assign('chapterList',$list);
-           $this->assign("chapterList",chapterList);
+       		 $this->assign('chapterList',$list);
                  $this->display("tmp");
         }
     }
