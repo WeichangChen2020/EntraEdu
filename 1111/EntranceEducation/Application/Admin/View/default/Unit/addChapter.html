@@ -1,0 +1,51 @@
+<style>
+	input{
+		border: 0;
+		height: 200px;
+		width: 100px;
+		word-break:break-all;
+	}
+	textarea{
+		text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+		border: 0;
+	}
+
+</style>
+<div class="aright">
+
+<fieldset class="layui-elem-field layui-field-title" style="margin: 20px 30px 20px 20px;">
+  <legend>修改章节</legend>
+</fieldset>
+
+<form method="post" action="" class="aform cl">
+	<table width="100%">
+		<tbody>
+                <tr>
+                    <th width="1%" align="center" >id</th>
+                    <th width="50%" align="center">章节名称</th>                  
+                </tr>
+                <tr>
+                    <td style="padding-left: 20px;">{$chapter.id}</td>
+                   <td align="center"><input  type="text" name="chapter" value="{$chapter.chapter}" required style="width: 100%;height: 100%;text-align: center;"/></td>                 
+                </tr>
+                <tr>
+			</tr>
+
+
+		</tbody>
+	</table>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin: 20 35%;">
+          <button id="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">立即提交</button>
+          <button class="layui-btn layui-btn-primary" onclick="history.go(-1)">返回</button>
+        </div>
+    </div>
+
+</form>
+<script>
+
+</script>
+</div>
