@@ -55,7 +55,7 @@
                         <td align="center">{$questionList.option_b}</td>
                         <td align="center">{$questionList.option_c}</td>
                         <td align="center">{$questionList.option_d}</td>
-                        <td align="center">{$questionList.analysis}</td>
+                        <td align="center">{$questionList.analysis|default="无"}</td>
                         <td align="center">
                             <a href="{:U('Unit/edit', array('id'=>$questionList['id']))}">修改</a>|<a href="{:U('Unit/delete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
