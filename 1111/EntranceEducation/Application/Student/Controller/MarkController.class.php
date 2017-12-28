@@ -206,7 +206,7 @@ class MarkController extends Controller{
         $class = D('StudentInfo')->getClass($openId);
         $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
         $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
-        // p($markWeight);
+        p($markWeight);
         $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']
         + $mark['exerciseNum'] * $markWeight['exerciseNum']
         + $mark['exerciseRightNum'] * $markWeight['exerciseRightNum']
