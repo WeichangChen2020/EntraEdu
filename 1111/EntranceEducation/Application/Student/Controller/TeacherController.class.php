@@ -27,8 +27,11 @@ class TeacherController extends Controller{
             session('openId',$openId);
         } 
 
-        $correcNumber = $this->getHomeCorrNum();
-        $this->assign('correcNumber',$correcNumber);
+        // $correcNumber = $this->getHomeCorrNum();
+        // $this->assign('correcNumber',$correcNumber);
+        $user = new UserController;
+        $teaInfo = $user->getTeacherInfo($openId);
+        $this->assign('teaInfo',$teaInfo);
         $this->assign('openId',$openId)->display();
 
     }
