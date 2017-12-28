@@ -40,6 +40,8 @@ class HomeworkController extends Controller{
         $HOMEWORK = M('homework_zg');
         $count    = $HOMEWORK->count();
 
+     
+
         $Page       = new \Think\Page($count,$count);
         $show       = $Page->show();
         $con['class']  =  $stuclass['class'];
@@ -49,6 +51,7 @@ class HomeworkController extends Controller{
 
         //+++++++++++++++++++把是否提交和访问人数也加到数组里
         foreach ($homework as $key => $value) {
+
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['id']);
             $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['id']);
         }
@@ -57,7 +60,7 @@ class HomeworkController extends Controller{
     }
 
     private function isSubmit($openId,$homeworkId){
-        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkId' => $homeworkId))->find();
+        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkId))->select();
         if(empty($submitInfo))
             return '未提交';
         if($submitInfo['correcter'] == '未批改')
@@ -78,6 +81,7 @@ class HomeworkController extends Controller{
         $homeworkId = I('homeworkId')?I('homeworkId'):$this->error('你访问的界面不存在');
         session('homeworkId',null);
         session('homeworkId',$homeworkId);
+        var_dump(session('homeworkId'));die();
 
         $state  = $this->isSubmit($openId,$homeworkId);
         $number = $this->getSubmitNum($homeworkId);
