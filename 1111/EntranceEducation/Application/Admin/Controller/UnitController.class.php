@@ -191,7 +191,7 @@ class UnitController extends CommonController {
             $Chapter = M('Question_chapter');
         	$list = $Chapter->select();
        		 $this->assign('chapterList',$list);
-                 $this->display("tmp");
+                 $this->display();
         }
     }
 }
