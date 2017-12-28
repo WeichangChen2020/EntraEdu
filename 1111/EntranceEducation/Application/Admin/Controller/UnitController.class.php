@@ -162,7 +162,8 @@ class UnitController extends CommonController {
                     if($existAnalysis){
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
-                                'type' => I('type'),
+                                'chapter' => I('chapter'),
+                                'type' => 1,
                                 'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'analysisPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
@@ -172,7 +173,8 @@ class UnitController extends CommonController {
                     }else{
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
-                                'type' => I('type'),
+                                 'chapter' => I('chapter'),
+                                'type' => 1,
                                 'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'time' => date('Y-m-d H:i:s'),
