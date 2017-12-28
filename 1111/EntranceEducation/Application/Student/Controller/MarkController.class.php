@@ -150,12 +150,12 @@ class MarkController extends Controller{
         $STU  = M('student_info')->getField('openId', true); // 获取openId数组
         $MARK = M('student_mark');
         foreach ($STU as $value) {
-            p($value);
+            // p($value);
             $markInfo = $this->getDetails($value);
-            p($markInfo);
+            // p($markInfo);
             $markInfo['openid'] = $value;
             $markInfo['lastMark'] = $this->getMark($value);
-            p($markInfo);
+            // p($markInfo);
             if($MARK->where(array('openid' => $value))->find()){
                 $MARK->where(array('openid' => $value))->save($markInfo);
                 echo $value."积分更新成功<br/>";
@@ -176,7 +176,7 @@ class MarkController extends Controller{
         $TEST        = M('test_submit');
         $TESTSELECT  = M('test_select');
         $SIGNIN      = M('student_signin');
-        $HOMEWORK    = M('student_homework');//这个表里字段名是openId
+        $HOMEWORK    = M('student_homework');
         $user        = new UserController();
 
         $mark = array();
@@ -209,16 +209,7 @@ class MarkController extends Controller{
         $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
         $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
         p($markWeight);
-        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']
-        + $mark['exerciseNum'] * $markWeight['exerciseNum']
-        + $mark['exerciseRightNum'] * $markWeight['exerciseRightNum']
-        + $markInfo['doRanNum'] * $markWeight['doRan']
-        + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] 
-        + $markInfo['registerNum'] * $markWeight['register']
-        + $markInfo['classTestNum'] * $markWeight['classTest'] 
-        + $markInfo['classTestRightNum'] * $markWeight['classTestRight']
-        + $markInfo['signinNum'] * $markWeight['signin'] 
-        + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
+        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']+ $mark['exerciseNum'] * $markWeight['exerciseNum']+ $mark['exerciseRightNum'] * $markWeight['exerciseRightNum'] + $markInfo['doRanNum'] * $markWeight['doRan'] + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] + $markInfo['registerNum'] * $markWeight['register'] + $markInfo['classTestNum'] * $markWeight['classTest'] + $markInfo['classTestRightNum'] * $markWeight['classTestRight'] + $markInfo['signinNum'] * $markWeight['signin'] + $markInfo['homeworkMark'] * $markWeight['homework'];
 
         // return ($mark);
         p($mark);
