@@ -129,7 +129,8 @@ class UnitController extends CommonController {
 	public function upload(){
 
         if (IS_POST) {
-
+			var_dump(I());
+            return;
             if (!empty($_FILES)) {
 
                 /*=========整理上传图片信息===========*/
