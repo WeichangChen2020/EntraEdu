@@ -77,6 +77,12 @@ class QyhController extends Controller
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }
+            $homework_zg = M('homework_zg');
+            $c = $homework_zg->where("homeworkname='$homeworkname'")->find();
+            $c['submit'] += 1;
+            $homework_zg->where("homeworkname='$homeworkname'")->save($c);
+
+
 
 			$this->success('上传成功！',U('Homework/index'));
 		}

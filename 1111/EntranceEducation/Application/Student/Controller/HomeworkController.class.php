@@ -55,14 +55,18 @@ class HomeworkController extends Controller{
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname']);
             $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['homeworkname']);
         }
+        // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('homework',$homework)->display();
     }
 
     private function isSubmit($openId,$homeworkname){
         $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname))->select();
+        // var_dump($submitInfo);die();
         if(empty($submitInfo))
+        {
             return '未提交';
+        }
         $mark = 0;
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改')
@@ -88,7 +92,7 @@ class HomeworkController extends Controller{
         $homeworkname = I('homeworkname')?I('homeworkname'):$this->error('你访问的界面不存在');
         session('homeworkname',null);
         session('homeworkname',$homeworkname);
-        // var_dump(session('homeworkId'));die();
+        // var_dump(session('homeworkname'));die();
 
         $state  = $this->isSubmit($openId,$homeworkname);
         $number = $this->getSubmitNum($homeworkname);
@@ -101,20 +105,18 @@ class HomeworkController extends Controller{
 
     //上传图片页面
     public function homework(){
-        
-        $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage(); 
-        $this->assign('signPackage',$signPackage);
 
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $homeworkId   = session('?homeworkId') ? session('homeworkId') : $this->error('请重新获取改页面');
+        $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
+        // var_dump($homeworkname);die();
         /*======================判断不可重复提交===================================*/
-        $cond = array('homeworkId' => $homeworkId,'openId' => $openId);
+        $cond = array('homeworkname' => $homeworkname,'openId' => $openId);
         if(M('student_homework')->where($cond)->find())
             $this->error('你已经提交过了，不可重复提交');
         $HOMEWORK     = M('homework_zg');
         $questionbank = M('image_questionbank');
-        $homework     = $HOMEWORK->find($homeworkId);
+        $homework     = $HOMEWORK->where("homeworkname='$homeworkname'")->find();
+        // var_dump($homework);die();
         $quesarr      = explode('_', $homework['problem_id']);
         // var_dump($quesarr);die();
         $outproblem   = array();
@@ -146,18 +148,18 @@ class HomeworkController extends Controller{
 
         /*=====================定义初始变量====================*/
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $homeworkId   = session('?homeworkId') ? session('homeworkId') : $this->error('请重新获取改页面');
-        // $homeworkId   = I('homeworkId');
+        $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
+        // $homeworkname   = I('homeworkname');
         $cond         = array('openId' => $openId);
         $stuInfo      = $STU->where($cond)->find();
         $picIdArray   = I('id');
         $ACCESS_TOKEN = $weixin->getAccessToken();
         $domain       = 'public';
-        // $dir          = './homework/homework'.session('homeworkId').'/'; 
+        // $dir          = './homework/homework'.session('homeworkname').'/'; 
         $dir          = './homework/homework'.'1'.'/';
 
 
-        $filenameFix  = mt_rand(10000000,99999999).$homeworkId.'_';//  图片命名前缀：网络1401班李俊君1400150108.jpg;
+        $filenameFix  = mt_rand(10000000,99999999).$homeworkname.'_';//  图片命名前缀：网络1401班李俊君1400150108.jpg;
 
 
         /*======================构造数据上传数组===================================*/
@@ -166,7 +168,7 @@ class HomeworkController extends Controller{
             'name'    => $stuInfo['name'],
             'number'  => $stuInfo['number'],
             'class'   => $stuInfo['class'],
-            'homeworkId' => $homeworkId,
+            'homeworkname' => $homeworkname,
             'correcter' => '未批改',
             'time'    => date('Y-m-d H:i:s',time()),
             );
@@ -196,10 +198,12 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
-        $homeworkId             = session('homeworkId');
+        $homeworkname             = session('homeworkname');
+
+
 
         $now = time();
-        $condi['homeworkId']    = $homeworkId;
+        $condi['homeworkname']    = $homeworkname;
         $condi['openId']        = array('NEQ',session('openId'));
         $condi['correcter']     = array('NEQ','');
         $condi['mark']          = "";
@@ -211,7 +215,7 @@ class HomeworkController extends Controller{
 
         //随机找一个没批改的人，先写上批改人是自己
         
-        $condition['homeworkId']    = $homeworkId;
+        $condition['homeworkname']    = $homeworkname;
         $condition['correcter']     = '未批改';
         $condition['openId']       = array('NEQ',session('openId'));
 
@@ -248,7 +252,7 @@ class HomeworkController extends Controller{
 
         $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         
-        $homeworkId     = I('personWorkId');
+        $homeworkname     = I('personWorkId');
         $mark           = I('mark');
         $personId       = I('personId');
         // $person  = $STU_HOMEWORK->where(array('openId' => $personId))->find();
