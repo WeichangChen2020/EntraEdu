@@ -53,7 +53,7 @@ class HomeworkController extends Controller{
         foreach ($homework as $key => $value) {
 
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname']);
-            $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['id']);
+            $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['homeworkname']);
         }
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('homework',$homework)->display();
