@@ -165,13 +165,14 @@ class MarkController extends Controller{
         }
     }
 
-    //积分详情
+    //积分详情，每个项目的值
     public function getDetails($openId){
 
         $MESSREC     = M('weixin_message_record');   
         $EXERCISE    = M('exercise');
         $RAN_RECORD  = M('random_exercise');
         $TEST        = M('test_submit');
+        $TESTSELECT  = M('test_select');
         $SIGNIN      = M('student_signin');
         $HOMEWORK    = M('student_homework');//这个表里字段名是openId
         $user        = new UserController();
@@ -179,14 +180,14 @@ class MarkController extends Controller{
         $mark = array();
         $mark = array_merge($mark,$user->getUserInfo($openId));
         $mark['weixinMessageNum']  = $MESSREC->where(array('openId' => $openId))->count();   //微信后台回复的数量
-        $exerciseData = D('Questionbank')->getProgress($openId);//用户答题统计
+        $exerciseData = D('Questionbank')->getProgress($openId);//用户自由练习答题统计
         $mark['exerciseNum'] = $exerciseData['count'];//自由练习总答题量
         $mark['exerciseRightNum'] = $exerciseData['sumNum'];//自由练习答对题量
-        $mark['doRanNum']          = $RAN_RECORD->where(array('openid' => $openId))->count();   //自由练习做的题目的个数
-        $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //自由练习答对题数
+        $mark['doRanNum']          = $RAN_RECORD->where(array('openid' => $openId))->count();//随机练习答题数
+        $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //随机练习答对题数
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
         $mark['classTestNum']      = $TEST->where(array('openid' => $openId))->count();//参与测试次数
-        $mark['classTestRightNum'] = $TEST->where(array('openid' => $openId,'result' => '1'))->count();//随堂测试答对题数
+        $mark['classTestRightNum'] = $TESTSELECT->where(array('openid' => $openId,'result' => '1'))->count();//随堂测试答对题数
         $mark['signinNum']         = $SIGNIN->where(array('openid' => $openId))->count();//签到次数
         $homeworkMark = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
         if(empty($homeworkMark))
@@ -197,7 +198,7 @@ class MarkController extends Controller{
         return $mark;
     }
 
-    //获取某位学生的积分
+    //获取某位学生的积分 = 项目的值 * 项目的权重
     public function getMark($openId){
         $markInfo = $this->getDetails($openId);//传入的是学生id
 
