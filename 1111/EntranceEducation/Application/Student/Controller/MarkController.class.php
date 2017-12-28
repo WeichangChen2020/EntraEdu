@@ -219,7 +219,7 @@ class MarkController extends Controller{
         + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
 
         // return ($mark);
-        p($mark)
+        p($mark);
     }
 
     public function rank() {
