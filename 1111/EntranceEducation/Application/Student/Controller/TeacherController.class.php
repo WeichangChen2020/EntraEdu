@@ -366,7 +366,7 @@ class TeacherController extends Controller{
     }
 
 
-//教师端随堂测试首页面,1.发布测试，2.测试管理
+    //教师端随堂测试首页面,1.发布测试，2.测试管理
     public function test_index(){
         // session('openId',null);
         $openId = getOpenId();
@@ -379,6 +379,10 @@ class TeacherController extends Controller{
     public function test_unit_list(){
         $chapArr = M('question_chapter')->select();
         p($chapArr);
+        foreach ($chapArr as $key => $value) {
+            $num[$key] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
+        }
+        p($num);
         $this->display();
     }
 
