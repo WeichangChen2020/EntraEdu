@@ -153,7 +153,7 @@ class MarkController extends Controller{
             $markInfo = $this->getDetails($value);
             $markInfo['openid'] = $value;
             $markInfo['lastMark'] = $this->getMark($value);
-            // p($markInfo);die;
+            p($markInfo);
             if($MARK->where(array('openid' => $value))->find()){
                 $MARK->where(array('openid' => $value))->save($markInfo);
                 echo $value."积分更新成功<br/>";
