@@ -198,51 +198,79 @@ class HomeworkController extends Controller{
 
     public function homeworkmark()
     {
+        /*======================在别人表中标记是自己批改的===========================*/
         $homeworkname             = session('homeworkname');
-
-
-
-        $now = time();
-        $condi['homeworkname']    = $homeworkname;
-        $condi['openId']        = array('NEQ',session('openId'));
-        $condi['correcter']     = array('NEQ','');
-        $condi['mark']          = "";
-        $condi['correctTime']   = array('GT',$now-300);
-
-       
-        $data['correcter'] = '未批改';
-        $strange = M('student_homework')->where($condi)->save($data);
-
-        //随机找一个没批改的人，先写上批改人是自己
-        
-        $condition['homeworkname']    = $homeworkname;
-        $condition['correcter']     = '未批改';
-        $condition['openId']       = array('NEQ',session('openId'));
-
-        
-
-
-
-
-        $pool = M('student_homework')->where($condition)->select();
-        $num  = count($pool); //目前共有提交作业但未批改人数
-        $person = $pool[rand(0,$num-1)];//随机的那个人
-
-        $User = M('student_homework'); // 实例化User对象
-        // 要修改的数据对象属性赋值
         $me = M('student_info')->where(array('openId'=>session('openId')))->find();
         // var_dump($me);
         // die();
         $myname = $me['name'];
-        $data['correcter'] = $myname;
-        $data['correctTime'] = date("Y-m-d H:i:s",time());
-        $User->where(array('openId'=>$person['openId']))->save($data); // 根据条件更新记录
-        // echo '<pre>';
-        // var_dump($person);
-        // // var_dump(session('openId'));
-        // die();
+        // var_dump(session('openId'));die();
+        // var_dump($homeworkname);die();
+        $condi['homeworkname']    = $homeworkname;
+        $condi['openId']        = array('NEQ',session('openId'));
+        $condi['correcter']     = array('EQ','未批改');
+        $condi['mark']          = "no";
+        $strange = M('student_homework')->group('name')->where($condi)->select();
+        // var_dump($strange);die();
+        $others = $strange[rand(0,sizeof($strange)-1)];
+        $map['correcter'] = $myname;
+        $map['correctTime'] = date('Y-m-d H:i:s',time());
+        M('student_homework')->where(array('openId'=>$others['openId']))->save($map);
+        /*======================查找别人此时的所有作业===========================*/
+        $cond2['homeworkname']    = $homeworkname;
+        $cond2['openId']        = $others['openId'];
+        $cond2['correcter']     = array('EQ',$myname);
+        $cond2['mark']          = "no";
+        $problem = M('student_homework')->where($cond2)->select();
+        // var_dump($problem);die();
+        /*======================获取正确答案=====================================*/
+        $homework_zg            =          M('homework_zg');
+        $image_questionbank     =          M('image_questionbank');
+        $problem_id             =          $homework_zg->where(array('homeworkname' => $homeworkname))->find();
+        $problemarr             =          explode('_',$problem_id['problem_id']);
+        $problemarr2            =          array();
+        $right_answer           =          array();
+        foreach ($problemarr as $key => $value) {
+            if ($value == '') {
+                continue;
+            }else{
+                array_push($problemarr2, $value);
+            }
+        }
 
-        $this->assign('person',$person);
+        foreach ($problemarr2 as $key => $value) {
+            $answer = $image_questionbank->where(array('id' => $value))->find();
+            array_push($right_answer,$answer);
+        }
+        // var_dump($right_answer);die();
+
+
+
+
+
+        /*======================映射到模板===========================*/
+        // echo "<pre>";
+        // var_dump($problem);
+        // echo "<pre>";
+        // var_dump($right_answer);
+        // die();
+        
+        
+
+        for ($key=0; $key < sizeof($problem); $key++) { 
+           $problem[$key]['right_answer'] = $right_answer[$key]['right_answer'];
+        }
+
+
+        var_dump($problem);
+
+        $this->assign('problem',$problem);//别人的作业+正确答案url
+  
+
+
+
+        $this->assign('me',$me);
+        $this->assign('homeworkname',$homeworkname);
 
         return $this->display();
     }
