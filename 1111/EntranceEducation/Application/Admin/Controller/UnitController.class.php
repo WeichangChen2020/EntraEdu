@@ -162,9 +162,9 @@ class UnitController extends CommonController {
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
                                 'type' => I('type'),
-                                'questionPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
+                                'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'analysisPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                'analysisPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),
                             );
                         }
@@ -172,7 +172,7 @@ class UnitController extends CommonController {
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
                                 'type' => I('type'),
-                                'questionPicPath' => 'http://testtest11-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
+                                'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'time' => date('Y-m-d H:i:s'),
                                 );
