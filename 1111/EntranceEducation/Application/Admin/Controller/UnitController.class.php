@@ -128,8 +128,7 @@ class UnitController extends CommonController {
     // 题库上传类
 	public function upload(){
 
-        if (IS_POST) {
-		
+        if (IS_POST) {		
             if (!empty($_FILES)) {
 
                 /*=========整理上传图片信息===========*/
@@ -188,7 +187,9 @@ class UnitController extends CommonController {
                         $this->error('上传失败');
                     }
                 }
-            }            
+            }else{
+            	 $this->error("没有上传文件");
+            }
         } else {
             $Chapter = M('Question_chapter');
         	$list = $Chapter->select();
