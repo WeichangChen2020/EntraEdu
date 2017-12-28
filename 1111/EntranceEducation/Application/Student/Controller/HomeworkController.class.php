@@ -76,6 +76,7 @@ class HomeworkController extends Controller{
     private function getSubmitNum($homeworkname){
         $number = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname))->distinct('name')->count();
         $number2 = M('student_homework')->group('name')->select();
+        echo "<pre>";
         var_dump($number2);die();
         return $number;
     }
