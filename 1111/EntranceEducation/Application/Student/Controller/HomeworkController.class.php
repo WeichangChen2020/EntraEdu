@@ -74,7 +74,7 @@ class HomeworkController extends Controller{
 
     //提交人数,最好写在model里
     private function getSubmitNum($homeworkname){
-        $number = M('student_homework')->Distinct(true)->field('name')->where(array('homeworkname' => $homeworkname))->distinct('name')->count();
+        $number = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname))->distinct('name')->count();
         var_dump($number);die();
         return $number;
     }
