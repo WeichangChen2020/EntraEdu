@@ -14,85 +14,89 @@
 
 </style>
 <div class="aright">
-    
+
 <fieldset class="layui-elem-field layui-field-title" style="margin: 20px 30px 20px 20px;">
   <legend>添加题目</legend>
 </fieldset>
-            <form method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
 
-        		<div class="form-group">
-                    <label class="col-sm-2 col-xs-3 control-label">题目章节:</label>
-                    <div class="col-sm-9 col-xs-12">
+<form method="post" action="" class="aform cl">
+	<table width="100%">
+		<tbody>
+                
+                <tr>
+                    <td width="10%" align="center">题目章节:</td>
+                    <td align="center"> 
                         <select name="type" class="form-control">
-                            <volist name="units" id="units">
-                            	<option value="{$units.unit}" >{$units.unit}</option>
+                            <volist name="chapterList" id="chapterList">
+                            	<option value="{$chapterList.chapter}" >第{$chapterList.id}章 {$chapterList.chapter}</option>
                             </volist>
                         </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">试题题目:</label>
-                    <div class="col-sm-9 col-xs-12">
-                    	<input id="fileupload" class="form-control webuploader-input" type="file" name="question[]" data-url="{:U(index)}" multiple="ture" >
-                    	<span class="help-block">请注意选择图片的顺序</span>
-                    </div>
-                </div>
-                <div class="form-group">
-        			<label class="col-sm-2 col-xs-3 control-label">题目答案:</label>
-        			<div class="col-sm-9 col-xs-12">
-        				<input class="form-control" type="text" name="right_answer" placeholder="" value="">
-        				<span class="help-block">请按照题目顺序依次填写答案</span>
-        			</div>
-        		</div>
-        		
-                <div class="form-group">
-                    <label class="col-sm-2 col-xs-3 control-label">题目解析:</label>
-                    <div class="col-sm-9 col-xs-12">
-                        <div onclick="showdiv();">
-                            <label class="radio-inline" id="existexplain" >
-                              <input type="radio" name="explain" value="existexplain" >有解析
-                            </label>
-                        </div>
-                          <div onclick="hidediv();">
-                        <label class="radio-inline" id="noexplain" >
-                          <input type="radio" name="explain" checked="checked" value="noexplain">无解析
+                    </td>
+                   
+                </tr>
+              <tr>
+                    <td width="10%" align="center">试题题目:</td>
+                    <td align="center"> 
+                       <input id="fileupload" class="form-control webuploader-input" style="width:400px;height:50px;padding-left: 80px;" type="file" name="question[]" data-url="{:U(index)}" multiple="ture" ><br>
+                    	<span >请注意选择图片的顺序</span>
+                    </td>
+                   
+                </tr>
+              <tr>
+                    <td width="10%" align="center">题目解析:</td>
+                    <td align="center">
+                         
+                       <label class="radio-inline" id="existexplain" onclick="showdiv();">
+                          <input type="radio" name="explain" style="height: 20px;width: 20px;" value="existexplain" ><div onclick="showdiv();" style="    display: inherit;">有解析</div>
                         </label>
-                               </div>
+                        
+                           
+                        <label class="radio-inline" id="noexplain" onclick="hidediv();">
+                          <input type="radio" name="explain" style="height: 20px;width: 20px;" checked="checked" value="noexplain"><div onclick="showdiv();" style="    display: inherit;">无解析</div>
+                        </label>
+                                
+                        <br>
                         <span class="help-block">点击文字有效</span>
-                    </div>
-                </div>
-                <div class="form-group" id="explain" style="display:none;">
-                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">试题解析:</label>
-                    <div class="col-sm-9 col-xs-12">
-                    	<input id="explainupload" class="form-control webuploader-input" type="file" name="analysis[]" data-url="{:U(index)}" multiple="ture">
-                    	<span class="help-block">请注意选择图片的顺序</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                	<div class="col-sm-offset-2 col-sm-5 col-xs-8">
-                    <input type="submit" value="确认添加" class="btn btn-primary center-block">
-                </div>
-            </div>
-        </form>   
-<script type="text/javascript">
+                    </td>
+                   
+                </tr>
+				<tr id="explain" style="display:none">
+                    <td width="10%" align="center">试题解析:</td>
+                    <td align="center"> 
+                      <input id="explainupload" class="form-control webuploader-input"  style="width:400px;height:50px;padding-left: 80px;" type="file" name="analysis[]" data-url="{:U(index)}" multiple="ture">
+                    	<br><span class="help-block">请注意选择图片的顺序</span>
+                    </td>
+                   
+                </tr>
+
+		</tbody>
+	</table>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block" style="margin: 20 35%;">
+          <button id="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">立即提交</button>
+          <button class="layui-btn layui-btn-primary" onclick="history.go(-1)">返回</button>
+        </div>
+    </div>
+
+</form>
+<script>
 	function showdiv(){
    
       var target=document.getElementById("explain");
-            if (target.style.display=="block"){
+            if (target.style.display=="table-row"){
                 target.style.display="none";             
             } else {
-                target.style.display="block";
+                target.style.display="table-row";
             }
    }
     function hidediv(){  
       var target=document.getElementById("explain");
             if (target.style.display=="none"){
-                target.style.display="block";             
+                target.style.display="table-row";             
             } else {
                 target.style.display="none";
             }
    }
 </script>
 </div>
-
-
