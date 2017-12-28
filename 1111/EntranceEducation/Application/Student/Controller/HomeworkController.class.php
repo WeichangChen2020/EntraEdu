@@ -52,7 +52,7 @@ class HomeworkController extends Controller{
         //+++++++++++++++++++把是否提交和访问人数也加到数组里
         foreach ($homework as $key => $value) {
 
-            $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['id']);
+            $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname']);
             $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['id']);
         }
         $this->assign('page',$show);// 赋值分页输出
