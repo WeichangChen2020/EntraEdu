@@ -165,14 +165,10 @@ class MarkController extends Controller{
 
     //积分详情
     public function getDetails($openId){
-        /*========定义一些变量==========*/
+
         $MESSREC     = M('weixin_message_record');   
-        //$COM_COMMENT = M('community_comment');
-        //$COM_REPLY   = M('community_reply');
-        //$RAN_COMMENT = M('random_comment');
-        //$RAN_REPLY   = M('random_reply');
+        $EXERCISE    = M('exercise');
         $RAN_RECORD  = M('random_exercise');
-        //$CLASSTEST   = M('student_classtest_record');
         $TEST        = M('test_submit');
         $SIGNIN      = M('student_signin');
         $HOMEWORK    = M('student_homework');//这个表里字段名是openId
@@ -181,10 +177,9 @@ class MarkController extends Controller{
         $mark = array();
         $mark = array_merge($mark,$user->getUserInfo($openId));
         $mark['weixinMessageNum']  = $MESSREC->where(array('openId' => $openId))->count();   //微信后台回复的数量
-        //$mark['comCommentNum']     = $COM_COMMENT->where(array('openId' => $openId))->count();    //社区留言评论
-        //$mark['comReplyNum']       = $COM_REPLY->where(array('openId' => $openId))->count();         //社区留言回复
-        //$mark['ranCommentNum']     = $RAN_COMMENT->where(array('openId' => $openId))->count(); //自由练习评论
-        //$mark['ranReplyNum']       = $RAN_REPLY->where(array('openId' => $openId))->count();   //自由练习回复
+        $exerciseData = D('Questionbank')->getProgress($openId);//用户答题统计
+        $mark['exerciseNum'] = $exerciseData['count'];//自由练习总答题量
+        $mark['exerciseRightNum'] = $exerciseData['sumNum'];//自由练习答对题量
         $mark['doRanNum']          = $RAN_RECORD->where(array('openid' => $openId))->count();   //自由练习做的题目的个数
         $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //自由练习答对题数
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
