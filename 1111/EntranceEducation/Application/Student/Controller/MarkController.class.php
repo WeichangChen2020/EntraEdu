@@ -143,8 +143,10 @@ class MarkController extends Controller{
         $this->assign('markInfo',$markInfo)->display();
     }       
     
-    //更新积分
+    //教师端->积分管理->更新积分
     public function update(){
+        // $openId=session('openId');
+        // $classList = D('TeacherClass')->getTeacherClass($openId);
         $STU  = M('student_info')->getField('openId', true); // 获取openId数组
         $MARK = M('student_mark');
         foreach ($STU as $value) {
@@ -184,7 +186,7 @@ class MarkController extends Controller{
         $mark['doRanRightNum']     = $RAN_RECORD->where(array('openid' => $openId,'result' => '1'))->count();   //自由练习答对题数
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
         $mark['classTestNum']      = $TEST->where(array('openid' => $openId))->count();//参与测试次数
-        $mark['classTestRightNum'] = $TEST->where(array('openid' => $openId,'result' => '1'))->count();//模拟测试答对题数
+        $mark['classTestRightNum'] = $TEST->where(array('openid' => $openId,'result' => '1'))->count();//随堂测试答对题数
         $mark['signinNum']         = $SIGNIN->where(array('openid' => $openId))->count();//签到次数
         $homeworkMark = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
         if(empty($homeworkMark))
@@ -204,11 +206,9 @@ class MarkController extends Controller{
         $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
         $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
         // p($markWeight);
-        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage'] 
-        //+ $markInfo['comCommentNum'] * $markWeight['comComment'] 
-        //+ $markInfo['comReplyNum'] * $markWeight['comReply'] 
-        //+ $markInfo['ranCommentNum'] * $markWeight['ranComment']
-        //+ $markInfo['ranReplyNum'] * $markWeight['ranReply'] 
+        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']
+        + $mark['exerciseNum'] * $markWeight['exerciseNum']
+        + $mark['exerciseRightNum'] * $markWeight['exerciseRightNum']
         + $markInfo['doRanNum'] * $markWeight['doRan']
         + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] 
         + $markInfo['registerNum'] * $markWeight['register']
