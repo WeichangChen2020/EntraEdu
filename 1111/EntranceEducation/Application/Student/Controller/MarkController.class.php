@@ -150,7 +150,9 @@ class MarkController extends Controller{
         $STU  = M('student_info')->getField('openId', true); // 获取openId数组
         $MARK = M('student_mark');
         foreach ($STU as $value) {
+            p($value);
             $markInfo = $this->getDetails($value);
+            p($markInfo);
             $markInfo['openid'] = $value;
             $markInfo['lastMark'] = $this->getMark($value);
             p($markInfo);
