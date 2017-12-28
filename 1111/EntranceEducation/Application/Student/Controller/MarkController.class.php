@@ -150,10 +150,15 @@ class MarkController extends Controller{
         foreach ($STU as $value) {
             $markInfo = $this->getDetails($value);
             $markInfo['lastMark'] = $this->getMark($value);
-            if($MARK->where(array('openId' => $value))->find())
-                $MARK->where(array('openId' => $value))->save($markInfo);
-            else
+            // p($markInfo);die;
+            if($MARK->where(array('openid' => $value))->find()){
+                $MARK->where(array('openid' => $value))->save($markInfo);
+                echo $value."积分更新成功<br/>";
+            }
+            else{
                 $MARK->add($markInfo);
+                echo $value."积分插入成功<br/>";
+            }
         }
     }
 
