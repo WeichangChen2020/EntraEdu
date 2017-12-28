@@ -25,6 +25,19 @@ class UnitController extends CommonController {
        
         $this->display();
     }
+    public function import(){
+        if (IS_POST) {
+            $Chapter = M('Question_chapter');
+            $data = I();
+            $data = array_map('trim', $data);  //trim去除多余回车
+           
+            if ($Chapter->add($data))
+                $this->success('题目添加成功',U('Unit/index'));
+            else
+                $this->error('添加失败');
+    	}
+    	else $this->display();
+    }
 	public function addChapter(){
         if (IS_POST) {
             $Chapter = M('Question_chapter');
