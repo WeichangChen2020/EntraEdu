@@ -149,6 +149,7 @@ class MarkController extends Controller{
         $MARK = M('student_mark');
         foreach ($STU as $value) {
             $markInfo = $this->getDetails($value);
+            $markInfo['openid'] = $value;
             $markInfo['lastMark'] = $this->getMark($value);
             // p($markInfo);die;
             if($MARK->where(array('openid' => $value))->find()){
