@@ -59,35 +59,39 @@ class HomeworkController extends Controller{
         $this->assign('homework',$homework)->display();
     }
 
-    private function isSubmit($openId,$homeworkId){
-        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkId))->select();
+    private function isSubmit($openId,$homeworkname){
+        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname))->select();
         if(empty($submitInfo))
             return '未提交';
-        if($submitInfo['correcter'] == '未批改')
-            return '未批改';
-        else
-            return $submitInfo['mark'];
+        $mark = 0;
+        foreach ($submitInfo as $key => $value) {
+            if($value['correcter'] == '未批改')
+                return '未批改';
+            $mark += $value['mark'];
+        }
+            return $mark;
     }
 
     //提交人数,最好写在model里
     private function getSubmitNum($homeworkId){
-        return M('student_homework')->where(array('homeworkId' => $homeworkId))->count();
+        return M('student_homework')->where(array('homeworkname' => $homeworkname))->count();
     }
 
 
     //点击作业后的菜单界面
     public function homeworkMenu(){
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $homeworkId = I('homeworkId')?I('homeworkId'):$this->error('你访问的界面不存在');
-        session('homeworkId',null);
-        session('homeworkId',$homeworkId);
-        var_dump(session('homeworkId'));die();
+        $homeworkname = I('homeworkname')?I('homeworkname'):$this->error('你访问的界面不存在');
+        session('homeworkname',null);
+        session('homeworkname',$homeworkname);
+        // var_dump(session('homeworkId'));die();
 
-        $state  = $this->isSubmit($openId,$homeworkId);
-        $number = $this->getSubmitNum($homeworkId);
+        $state  = $this->isSubmit($openId,$homeworkname);
+        $number = $this->getSubmitNum($homeworkname);
+
 
         $this->assign('state',$state);
-        $this->assign('homeworkId',$homeworkId);
+        $this->assign('homeworkname',$homeworkname);
         $this->assign('number',$number)->display();
     }
 
