@@ -78,7 +78,7 @@ class HomeworkController extends Controller{
         $number2 = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname))->select();
         var_dump($number);
         echo "<pre>";
-        var_dump($number2);die();
+        var_dump(sizeof($number2));die();
         return $number;
     }
 
