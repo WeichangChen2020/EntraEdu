@@ -378,11 +378,11 @@ class TeacherController extends Controller{
     //发布测试->章节列表
     public function test_unit_list(){
         $chapArr = M('question_chapter')->select();
-        p($chapArr);
+        // p($chapArr);
         foreach ($chapArr as $key => $value) {
-            $num[$key] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
+            $queNum[$key]['num'] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
         }
-        p($num);
+        $this->assign('queNum',$queNum);
         $this->display();
     }
 
