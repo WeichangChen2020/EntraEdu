@@ -380,8 +380,9 @@ class TeacherController extends Controller{
         $chapArr = M('question_chapter')->select();
         // p($chapArr);
         foreach ($chapArr as $key => $value) {
-            $queNum[$key]['num'] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
+            $queNum['num'] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
         }
+        p($queNum);
         $this->assign('queNum',$queNum);
         $this->display();
     }
