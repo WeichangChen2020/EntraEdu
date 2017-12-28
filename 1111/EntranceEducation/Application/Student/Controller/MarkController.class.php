@@ -190,7 +190,7 @@ class MarkController extends Controller{
         $mark['registerNum']       = $user->isRegister($openId) ? 1 : 0; //是否注册
         $mark['classTestNum']      = $TEST->where(array('openid' => $openId))->count();//参与测试次数
         $mark['classTestRightNum'] = $TESTSELECT->where(array('openid' => $openId,'result' => '1'))->count();//随堂测试答对题数
-        $mark['signinNum']         = $SIGNIN->where(array('openid' => $openId))->count();//签到次数
+        $mark['signinNum']         = $SIGNIN->where(array('openId' => $openId))->count();//签到次数
         $homeworkMark = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
         if(empty($homeworkMark))
             $mark['homeworkMark'] = 0;
