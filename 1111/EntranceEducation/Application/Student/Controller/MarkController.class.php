@@ -218,7 +218,8 @@ class MarkController extends Controller{
         + $markInfo['signinNum'] * $markWeight['signin'] 
         + $markInfo['homeworkMark'] * $markWeight['homework'] / 5;
 
-        return ($mark);
+        // return ($mark);
+        p($mark)
     }
 
     public function rank() {
