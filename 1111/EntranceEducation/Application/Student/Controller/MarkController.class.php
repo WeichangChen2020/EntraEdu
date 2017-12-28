@@ -209,7 +209,7 @@ class MarkController extends Controller{
         $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
         $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
         // p($markWeight);
-        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']+ $mark['exerciseNum'] * $markWeight['exerciseNum']+ $mark['exerciseRightNum'] * $markWeight['exerciseRightNum'] + $markInfo['doRanNum'] * $markWeight['doRan'] + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] + $markInfo['registerNum'] * $markWeight['register'] + $markInfo['classTestNum'] * $markWeight['classTest'] + $markInfo['classTestRightNum'] * $markWeight['classTestRight'] + $markInfo['signinNum'] * $markWeight['signin'] + $markInfo['homeworkMark'] * $markWeight['homework'];
+        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']+ $markInfo['exerciseNum'] * $markWeight['exerciseNum']+ $markInfo['exerciseRightNum'] * $markWeight['exerciseRightNum'] + $markInfo['doRanNum'] * $markWeight['doRan'] + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] + $markInfo['registerNum'] * $markWeight['register'] + $markInfo['classTestNum'] * $markWeight['classTest'] + $markInfo['classTestRightNum'] * $markWeight['classTestRight'] + $markInfo['signinNum'] * $markWeight['signin'] + $markInfo['homeworkMark'] * $markWeight['homework'];
 
         return ($mark);
         // p($mark);
