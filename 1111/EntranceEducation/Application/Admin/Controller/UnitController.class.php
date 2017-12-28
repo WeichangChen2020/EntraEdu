@@ -135,7 +135,8 @@ class UnitController extends CommonController {
                 $numQuestionPic = count($_FILES['question']['name']);  //题目的数量
                 $numAnalysisPic = count($_FILES['analysis']['name']);  //解析的数量
                 $_FILES['analysis']['name'][0] != '' ? $existAnalysis = ture : $existAnalysis = false ;
-
+				echo strlen(I('right_answer'))."  ". $numQuestionPic;
+                return;
                 /*=====上传的题目数量要与答案数量一致============*/
                 $numQuestionPic == strlen(I('right_answer')) || $this->error('图片的数量与答案的数量不一致');
                 if($existAnalysis) //
