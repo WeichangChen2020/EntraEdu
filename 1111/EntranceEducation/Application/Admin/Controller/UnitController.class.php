@@ -69,7 +69,7 @@ class UnitController extends CommonController {
             $a=0;
             $b=0;
             foreach($exl as $k=>$v){
-                if (!$Q->add($data)) $this->error('添加失败');    
+                if (!$Q->add($v)) $this->error('添加失败');    
             }
             // 实例化数据
             $this->assign('total',$total);
