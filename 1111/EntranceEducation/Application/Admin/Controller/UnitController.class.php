@@ -150,7 +150,7 @@ class UnitController extends CommonController {
         $QUESTION->where(array('id' => $chapterid))->delete();
         $Q = M('Questionbank');
         $Q->where(array('chapter' => $chapterid))->delete();
-        $this->success('题目删除成功', U('Unit/index'));
+        $this->success('题库删除成功', U('Unit/index'));
     }
     //题目修改界面
     public function edit($id){
