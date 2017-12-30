@@ -101,7 +101,7 @@ class UnitController extends CommonController {
     	vendor('PHPExcel.Reader.Excel5');
         //$objReader = \PHPExcel_IOFactory::createReader('Excel5');
         //$objPHPExcel = $objReader->load($file_name,$encode='utf-8');
-        $s=new SaeStorage();
+        $s=new \SaeStorage();
         file_put_contents(SAE_TMP_PATH.'/upload.xlsx',$s->read('upload','excel/5a47884661a67.xlsx'));
         //file_put_contents(SAE_TMP_PATH.'upload.xlsx',$file_name);
         echo filesize(SAE_TMP_PATH.'upload.xlsx');
