@@ -25,12 +25,7 @@ class UnitController extends CommonController {
         $this->display();
     }
     public function tmp(){
-    
-    }
-    public function import(){
-        if (IS_POST) {
-        
-            // 上传
+    	  // 上传
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =     3145728 ;// 设置附件上传大小
             $upload->exts      =     array('xls', 'xlsx', 'csv');// 设置附件上传类型
@@ -43,6 +38,11 @@ class UnitController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             $file_name =  'http://testroom-upload.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+    }
+    public function import(){
+        if (IS_POST) {
+        
+          
            
             $exl = $this->import_exl($file_name);
 
@@ -95,7 +95,7 @@ class UnitController extends CommonController {
      * $file_name  文件路径
      */
     public function import_exl($file_name){
-        //$file_name= './Upload/excel/123456.xls';
+        $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsxs';
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
