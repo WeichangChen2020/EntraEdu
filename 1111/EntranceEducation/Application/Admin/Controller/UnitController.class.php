@@ -70,9 +70,7 @@ class UnitController extends CommonController {
             $a=0;
             $b=0;
             foreach($exl as $k=>$v){
-				var_dump($k);
-                echo "<br>";
-                var_dump($v);
+				
               
             }
             // 实例化数据
