@@ -32,13 +32,6 @@ class UnitController extends CommonController {
         if (IS_POST) {
             $files = $_FILES['exl'];
         
-
-            // exl格式，否则重新上传
-            if($files['type'] !='application/vnd.ms-excel'){
-             
-                $this->error('不是Excel文件，请重新上传');    
-            }
-
             // 上传
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =     3145728 ;// 设置附件上传大小
