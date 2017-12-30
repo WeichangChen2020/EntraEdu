@@ -45,8 +45,7 @@ class UnitController extends CommonController {
             $file_name =  'http://testroom-upload.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
            
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
-var_dump($exl);
-            echo "<br>";
+
             // 去掉第exl表格中第一行
             unset($exl[0]);
 
@@ -58,7 +57,8 @@ var_dump($exl);
             };
             // 重新排序
             sort($exl);
-			
+			var_dump($exl);
+            echo "<br>";
             $count = count($exl);
             // 检测表格导入成功后，是否有数据生成
             if($count<1){
