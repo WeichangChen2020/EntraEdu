@@ -46,6 +46,7 @@ class UnitController extends CommonController {
             $file_name =  'http://testroom-uploads.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
             echo  '<a href="'.$file_name.'" download="w3logo">';
             echo "<br>";
+            return;
             $exl = $this->import_exl($file_name);
 
             // 去掉第exl表格中第一行
