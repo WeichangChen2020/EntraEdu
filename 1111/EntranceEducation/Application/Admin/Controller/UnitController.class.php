@@ -65,7 +65,7 @@ class UnitController extends CommonController {
             }
 
             // 开始导入数据库
-            $Q = M("Questionbank_test");
+            $Q = M("Questionbank");
             $a=0;
             $b=0;
             foreach($exl as $k=>$v){
