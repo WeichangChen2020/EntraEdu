@@ -96,7 +96,7 @@ class UnitController extends CommonController {
      */
     public function import_exl($file_name){
         $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsx';
-        echo fopen($file_name);
+        echo "!!".fopen($file_name);
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
