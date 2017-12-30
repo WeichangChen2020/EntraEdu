@@ -96,8 +96,9 @@ class UnitController extends CommonController {
      */
     public function import_exl($file_name){
         //$file_name= './Upload/excel/123456.xls';
-        import("Org.Util.PHPExcel");   // 这里不能漏掉
-        import("Org.Util.PHPExcel.IOFactory");
+        vendor('PHPExcel');
+    	vendor('PHPExcel.IOFactory');
+    	vendor('PHPExcel.Reader.Excel5');
         $objReader = \PHPExcel_IOFactory::createReader('Excel5');
         $objPHPExcel = $objReader->load($file_name,$encode='utf-8');
         $sheet = $objPHPExcel->getSheet(0);
