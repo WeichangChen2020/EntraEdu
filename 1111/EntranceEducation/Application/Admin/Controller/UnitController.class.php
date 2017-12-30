@@ -57,7 +57,7 @@ class UnitController extends CommonController {
             };
             // 重新排序
             sort($exl);
-
+			var_dump($exl);
             $count = count($exl);
             // 检测表格导入成功后，是否有数据生成
             if($count<1){
