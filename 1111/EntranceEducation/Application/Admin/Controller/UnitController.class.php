@@ -110,7 +110,7 @@ class UnitController extends CommonController {
         
         for($i=1;$i<$highestRow+1;$i++){
             $tmp['chapter'] =  = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
-            $tmp['type'] =  = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
+            $tmp['type'] = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
             $tmp['contents'] =  = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
             $tmp['option_a'] =  = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
             $tmp['option_b'] =  = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();    
