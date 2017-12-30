@@ -44,7 +44,7 @@ class UnitController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             $file_name =  'http://testroom-uploads.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
-            echo  $file_name;
+            echo  '<a href="'.$file_name.'" download="w3logo">';
             $exl = $this->import_exl($file_name);
 
             // 去掉第exl表格中第一行
