@@ -103,7 +103,7 @@ class UnitController extends CommonController {
         //$objPHPExcel = $objReader->load($file_name,$encode='utf-8');
         file_put_contents(SAE_TMP_PATH.'upload.xlsx',$file_name);
         echo filesize(SAE_TMP_PATH.'upload.xlsx');
-         echo " ".filesize($file_name);
+         echo " :".filesize($file_name);
         $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
