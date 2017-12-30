@@ -111,7 +111,16 @@ class UnitController extends CommonController {
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数
         
         for($i=1;$i<$highestRow+1;$i++){
-            $data[] = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
+            $tmp['chapter'] =  = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
+            $tmp['type'] =  = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
+            $tmp['contents'] =  = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
+            $tmp['option_a'] =  = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
+            $tmp['option_b'] =  = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();    
+            $tmp['option_c'] =  = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getValue();    
+            $tmp['option_d'] =  = $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getValue();  
+            $tmp['right_answer'] =  = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getValue(); 
+            $tmp['analysis'] =  = $objPHPExcel->getActiveSheet()->getCell('I'.$i)->getValue(); 
+            $data[]=$tmp;
         }
         return $data;    
     }
