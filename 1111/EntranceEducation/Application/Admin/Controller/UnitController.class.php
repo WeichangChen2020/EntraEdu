@@ -24,9 +24,7 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-    public function tmp(){
-    	
-    }
+  
     public function import(){
         if (IS_POST) {
         
