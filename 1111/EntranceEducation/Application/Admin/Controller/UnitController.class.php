@@ -100,8 +100,9 @@ class UnitController extends CommonController {
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
-        $objReader = \PHPExcel_IOFactory::createReader('Excel5');
-        $objPHPExcel = $objReader->load($file_name,$encode='utf-8');
+        //$objReader = \PHPExcel_IOFactory::createReader('Excel5');
+        //$objPHPExcel = $objReader->load($file_name,$encode='utf-8');
+        $objPHPExcel = \PHPExcel_IOFactory::load($file_name,$encode='utf-8');
         $sheet = $objPHPExcel->getSheet(0);
         $highestRow = $sheet->getHighestRow(); // 取得总行数
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数
