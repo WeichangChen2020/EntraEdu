@@ -51,7 +51,7 @@ class UnitController extends CommonController {
 
             // 清理空数组
             foreach($exl as $k=>$v){
-                if(empty($v) || is_null($v['chapter']) || is_null($v['type']) || is_null($v['contents'])){
+                if(empty($v) || is_null($v['chapter']) || is_null($v['type']) || is_null($v['contents']) || is_null($v['right_answer'])){
                     unset($exl[$k]);
                 }
             };
