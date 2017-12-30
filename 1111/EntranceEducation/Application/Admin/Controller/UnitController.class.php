@@ -72,17 +72,11 @@ class UnitController extends CommonController {
                 if (!$Q->add($data)) $this->error('添加失败');    
             }
             // 实例化数据
-            $this->assign('goods',$goods);
-            //print_r($f);
-
-            // 统计结果
-            $total['count'] = $count;
-            $total['success'] = $f;
-            $total['error'] = $w;
             $this->assign('total',$total);
 
             // 删除Excel文件
             unlink($file_name);
+             $this->success('题目添加成功');
             //$this->display('info');
     	}
     	else $this->display();
