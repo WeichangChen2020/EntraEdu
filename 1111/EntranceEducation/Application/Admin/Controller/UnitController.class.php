@@ -35,7 +35,7 @@ class UnitController extends CommonController {
 
             // exl格式，否则重新上传
             if($files['type'] !='application/vnd.ms-excel'){
-                var_dump($files['type']);
+                var_dump($_FILES);
                 $this->error('不是Excel文件，请重新上传');    
             }
 
