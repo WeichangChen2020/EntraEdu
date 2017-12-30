@@ -25,7 +25,12 @@ class UnitController extends CommonController {
         $this->display();
     }
     public function tmp(){
-    	  // 上传
+    	
+    }
+    public function import(){
+        if (IS_POST) {
+        
+       		  // 上传
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =     3145728 ;// 设置附件上传大小
             $upload->exts      =     array('xls', 'xlsx', 'csv');// 设置附件上传类型
@@ -38,13 +43,8 @@ class UnitController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             $file_name =  'http://testroom-upload.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
-    }
-    public function import(){
-        if (IS_POST) {
-        
-       
            
-            $exl = $this->import_exl($file_name);
+            $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 
             // 去掉第exl表格中第一行
             unset($exl[0]);
@@ -94,7 +94,7 @@ class UnitController extends CommonController {
 /* 处理上传exl数据
      * $file_name  文件路径
      */
-    public function import_exl($file_name){
+    public function import_exl($name){
         $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsx';
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
@@ -102,8 +102,7 @@ class UnitController extends CommonController {
         //$objReader = \PHPExcel_IOFactory::createReader('Excel5');
         //$objPHPExcel = $objReader->load($file_name,$encode='utf-8');
         $s=new \SaeStorage();
-        file_put_contents(SAE_TMP_PATH.'/upload.xlsx',$s->read('upload','excel/5a47884661a67.xlsx'));
-        //file_put_contents(SAE_TMP_PATH.'upload.xlsx',$file_name);
+        file_put_contents(SAE_TMP_PATH.'/upload.xlsx',$s->read('upload',$name));
         echo filesize(SAE_TMP_PATH.'upload.xlsx');
         $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
         $sheet = $objPHPExcel->getSheet(0);
