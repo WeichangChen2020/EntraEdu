@@ -95,7 +95,7 @@ class UnitController extends CommonController {
      * $file_name  文件路径
      */
     public function import_exl($file_name){
-        $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsxs';
+        $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsx';
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
