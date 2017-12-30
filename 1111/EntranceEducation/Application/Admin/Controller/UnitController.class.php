@@ -35,22 +35,22 @@ class UnitController extends CommonController {
 
             // exl格式，否则重新上传
             if($files['type'] !='application/vnd.ms-excel'){
-                var_dump($_FILES);
-                return;
+             
                 $this->error('不是Excel文件，请重新上传');    
             }
 
             // 上传
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =     3145728 ;// 设置附件上传大小
-            $upload->exts      =     array('xls');// 设置附件上传类型
+            $upload->exts      =     array('xls', 'xlsx', 'csv');// 设置附件上传类型
             $upload->rootPath  =     './Upload/'; // 设置附件上传根目录
             $upload->savePath  =     'excel/'; // 设置附件上传（子）目录
             //$upload->subName   =     array('date', 'Ym');
             $upload->subName   =     '';
             // 上传文件  
             $info   =   $upload->upload();
-
+			if(!$info)  $this->error($upload->getErrorMsg());
+            
             $file_name =  $upload->rootPath.$info['exl']['savepath'].$info['exl']['savename'];
             $exl = $this->import_exl($file_name);
 
