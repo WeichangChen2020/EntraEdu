@@ -30,7 +30,6 @@ class UnitController extends CommonController {
     }
     public function import(){
         if (IS_POST) {
-            $files = $_FILES['exl'];
         
             // 上传
             $upload = new \Think\Upload();// 实例化上传类
