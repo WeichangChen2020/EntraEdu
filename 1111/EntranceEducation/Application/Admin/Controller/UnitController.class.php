@@ -97,6 +97,7 @@ class UnitController extends CommonController {
     public function import_exl($file_name){
         $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsx';
         vendor('PHPExcel');
+        vendor('PHPExcel.Autoloader.php');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
         //$objReader = \PHPExcel_IOFactory::createReader('Excel5');
