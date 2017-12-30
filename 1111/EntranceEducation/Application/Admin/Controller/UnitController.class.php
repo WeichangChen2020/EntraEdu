@@ -51,9 +51,9 @@ class UnitController extends CommonController {
 
             // 清理空数组
             foreach($exl as $k=>$v){
-                if(empty($v)){
+                if(empty($v) || is_null($v['chapter']) || is_null($v['type']) || is_null($v['contents'])){
                     unset($exl[$k]);
-                }    
+                }
             };
             // 重新排序
             sort($exl);
