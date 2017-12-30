@@ -44,6 +44,7 @@ class UnitController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             $file_name =  'http://testroom-uploads.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+             echo  '<a href="http://testroom-upload.stor.sinaapp.com/excel/5a47838568d44.xlsx" download="w3logo">0</a>';
             echo  '<a href="'.$file_name.'" download="w3logo">1</a>';
             echo "<br>";
             return;
