@@ -2,7 +2,6 @@
 namespace Admin\Controller;
 use Think\Controller;
 class UnitController extends CommonController {
-    
     public function index(){
 
         $Chapter = M('Question_chapter');
@@ -251,9 +250,9 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => I('chapter'),
                                 'type' => 1,
-                                'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
+                                'questionPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'analysisPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                'analysisPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),
                             );
                         }
@@ -262,7 +261,7 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                  'chapter' => I('chapter'),
                                 'type' => 1,
-                                'questionPicPath' => 'http://testroom-uploads.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
+                                'questionPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'time' => date('Y-m-d H:i:s'),
                                 );
