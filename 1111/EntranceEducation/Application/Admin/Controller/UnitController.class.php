@@ -25,6 +25,9 @@ class UnitController extends CommonController {
        
         $this->display();
     }
+    public function tmp(){
+    
+    }
     public function import(){
         if (IS_POST) {
             $files = $_FILES['exl'];
@@ -67,27 +70,15 @@ class UnitController extends CommonController {
                 $this->error('未检测到有效数据');    
             }
 
-            // 开始组合数据
+            // 开始导入数据库
+            $Q = M("Questionbank");
+            $a=0;
+            $b=0;
             foreach($exl as $k=>$v){
-
-                $goods[$k]['goods_sn'] = $v;
-
-                // 查询数据库
-                $where['goods_sn'] = array('like','%'.$v.'%');
-                $res = M('goods')->where($where)->find();
-
-                $goods[$k]['goods_name'] = $res['goods_name'];
-                $goods[$k]['goods_thumb'] = $res['goods_thumb'];
-                if($res){
-                    // 是否匹配成功  
-                    $goods[$k]['is_match']    = '1';
-                    $f += 1;
-                }else{
-                    // 匹配失败
-                    $goods[$k]['is_match']    = '0';
-                    $w += 1;
-                }
-
+				var_dump($k);
+                echo "<br>";
+                var_dump($v);
+              
             }
             // 实例化数据
             $this->assign('goods',$goods);
@@ -101,7 +92,7 @@ class UnitController extends CommonController {
 
             // 删除Excel文件
             unlink($file_name);
-            $this->display('info');
+            //$this->display('info');
     	}
     	else $this->display();
     }
