@@ -50,7 +50,7 @@ class UnitController extends CommonController {
         //设置excel属性
         $objActSheet = $excel->getActiveSheet();
         //根据有生成的excel多少列，$letter长度要大于等于这个值
-        $letter = array('A','B','C','D','E','F','F','G');
+        $letter = array('A','B','C','D','E','F','F','G','H','I','J');
         //设置当前的sheet
         $excel->setActiveSheetIndex(0);
         //设置sheet的name
