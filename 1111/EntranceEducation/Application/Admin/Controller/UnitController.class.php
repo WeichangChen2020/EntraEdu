@@ -27,10 +27,24 @@ class UnitController extends CommonController {
   	public function export($id){
     	$Question = M('Questionbank');
         $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
-                                
+         $this->tests();
+        return;
         $this->exportExcel($list,'questionbank_chapter'.$id.date("Y_m_d"),
                            array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","选项A","选项B","选项C","选项D","正确答案","解析（如无则不填）"),"questionbank");
 
+    }
+    public function tests(){
+         vendor("phpExcel.PHPExcel");
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getActiveSheet()->setTitle('name');//设置sheet名称
+        $objPHPExcel->setActiveSheetIndex(0);//设置当前sheet
+        $name = '下载好的表格';
+        ob_end_clean();//清除缓冲区,避免乱码
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'.$name.'.xls"');  //日期为文件名后缀
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  //excel5为xls格式，excel2007为xlsx格式
+        $objWriter->save('php://output');
     }
     public function exportExcel($data, $savefile, $fileheader, $sheetname){
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
