@@ -8,7 +8,10 @@ class ClassController extends CommonController {
         $Info = M('teacher_class');
         $list = $Info->select();
         $this->assign('classList',$list);
-
+		
+        $T = M('teacher_info');
+        $t = $T->field('name');
+        $this->assign('teacherList',$T);
         $this->display();
     }
 
