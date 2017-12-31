@@ -27,7 +27,7 @@ class UnitController extends CommonController {
   	public function export($id='all'){
     	$Question = M('Questionbank');
         if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
-        else $list = $Question->select();
+        else $list = $Question->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
         // $this->tests('test');
         //return;
         $this->exportExcel($list,'questionbank_chapter'.$id.date("Y_m_d"),
