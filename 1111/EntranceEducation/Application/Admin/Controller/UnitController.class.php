@@ -26,7 +26,7 @@ class UnitController extends CommonController {
     }
   	public function export($id){
     	$Question = M('Questionbank');
-        $list = $Question->where(array('chapter'=> $id))->select('chapter','type','contents','option_a','option_b','option_c','option_d','right_answer','analysis');
+        $list = $Question->where(array('chapter'=> $id))->select();
                                  var_dump($list);
                                  return;
         $this->exportExcel($list,'questionbank_chapter'.$id.date("Y_m_d"),
