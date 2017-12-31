@@ -6,7 +6,7 @@ class ClassController extends CommonController {
     public function index(){
 
         $Info = M('student_info');
-        $list = $Question->page($_GET['p'].',20')->select();
+        $list = $Info->select();
         $this->assign('classList',$list);
 
         $this->display();
