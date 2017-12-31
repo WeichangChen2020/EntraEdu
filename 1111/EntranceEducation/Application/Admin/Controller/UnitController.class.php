@@ -50,7 +50,7 @@ class UnitController extends CommonController {
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
     
         vendor('PHPExcel');
-    	vendor('PHPExcel.Reader.Excel2007');
+    	vendor('PHPExcel.Reader');
         //或者excel5，用户输出.xls，不过貌似有bug，生成的excel有点问题，底部是空白，不过不影响查看。
         //import("Org.Util.PHPExcel.Reader.Excel5");
         //new一个PHPExcel类，或者说创建一个excel，tp中“\”不能掉
@@ -125,16 +125,15 @@ class UnitController extends CommonController {
             //设置单元格高度，暂时没有找到统一设置高度方法
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
         }
-        var_dump($excel);
-        return;
+       
        ob_end_clean();//清除缓冲区,避免乱码 
         header('Content-Type: application/vnd.ms-excel');
         //下载的excel文件名称，为Excel5，后缀为xls，不过影响似乎不大
-        header('Content-Disposition: attachment;filename="' . $savefile . '.xlsx"'); 
+        header('Content-Disposition: attachment;filename="' . $savefile . '.xls"'); 
         header('Cache-Control: max-age=0');
         // 用户下载excel
        
-        $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
         $objWriter->save('php://output');
         // 保存excel在服务器上
         //$objWriter = new PHPExcel_Writer_Excel2007($excel);
