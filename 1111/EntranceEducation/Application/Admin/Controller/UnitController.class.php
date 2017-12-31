@@ -25,7 +25,11 @@ class UnitController extends CommonController {
         $this->display();
     }
   	public function export($id){
-    	
+    	$Question = M('Questionbank');
+        $list = $Question->where(array('chapter'=> $id)->select('chapter','type','contents','option_a','option_b','option_c','option_d','right_answer','analysis');
+        $this->exportExcel($list,'questionbank_chapter'.$id.date("Y_m_d"),
+                           array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","选项A","选项B","选项C","选项D","正确答案","解析（如无则不填）"),"questionbank");
+
     }
     public function exportExcel($data, $savefile, $fileheader, $sheetname){
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
