@@ -5,7 +5,7 @@ class ClassController extends CommonController {
     
     public function index(){
 
-        $Info = M('student_info');
+        $Info = M('teacher_class');
         $list = $Info->select();
         $this->assign('classList',$list);
 
