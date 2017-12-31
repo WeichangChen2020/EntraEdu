@@ -24,7 +24,7 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-  	public function export(){
+  	public function export($id){
     	
     }
     public function exportExcel($data, $savefile, $fileheader, $sheetname){
