@@ -24,11 +24,14 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-  	
+  	public function export(){
+    	
+    }
     public function exportExcel($data, $savefile, $fileheader, $sheetname){
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
-        import("Org.Util.PHPExcel");
-        import("Org.Util.PHPExcel.Reader.Excel2007");
+    
+        vendor('PHPExcel');
+    	vendor('PHPExcel.Reader.Excel2007');
         //或者excel5，用户输出.xls，不过貌似有bug，生成的excel有点问题，底部是空白，不过不影响查看。
         //import("Org.Util.PHPExcel.Reader.Excel5");
         //new一个PHPExcel类，或者说创建一个excel，tp中“\”不能掉
@@ -114,7 +117,7 @@ class UnitController extends CommonController {
         //$objWriter = new PHPExcel_Writer_Excel2007($excel);
         //或者$objWriter = new PHPExcel_Writer_Excel5($excel);
         //$objWriter->save("保存的文件地址/".$savefile);
-    	}
+    
 	}
     public function import(){
         if (IS_POST) {
