@@ -18,7 +18,7 @@ class ClassController extends CommonController {
     //题目修改界面
     public function edit($id){
         if (IS_POST) {
-        	$QUESTION = M('questionbank');
+        	 $Info = M('student_info');
             $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
             // dump($data);
