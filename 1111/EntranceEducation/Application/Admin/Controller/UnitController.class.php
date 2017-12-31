@@ -35,7 +35,7 @@ class UnitController extends CommonController {
     }
     public function tests($name){
          vendor("phpExcel.PHPExcel");
-        $objPHPExcel = new PHPExcel();
+        $objPHPExcel = new \PHPExcel();
         $objPHPExcel->getActiveSheet()->setTitle('111');//设置sheet名称
         $objPHPExcel->setActiveSheetIndex(0);//设置当前sheet
         $name = '下载好的表格';
