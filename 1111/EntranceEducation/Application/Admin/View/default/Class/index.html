@@ -18,8 +18,8 @@
                     <th width="10%" align="center">操作</th></tr>
                 <volist name="chapterList" id="chapterList" empty="暂时没有数据" >
                     <tr>
-                        <td style="padding-left: 20px;" align="center">{$chapterList.id}</td>
-                        <td align="center">{$chapterList.chapter}</td>                    
+                        <td style="padding-left: 20px;" align="center">{$classList.classid}</td>
+                        <td align="center">{$classList.teacher}</td>                    
                         <td align="center">
                             <a href="{:U('Unit/lists', array('chapterid'=>$chapterList['id']))}">管理</a>|<a href="{:U('Unit/editChapter', array('chapterid'=>$chapterList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('chapterid' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
