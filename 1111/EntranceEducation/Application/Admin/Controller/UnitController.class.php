@@ -25,7 +25,7 @@ class UnitController extends CommonController {
         $this->display();
     }
   	
-    public function export($data, $savefile, $fileheader, $sheetname){
+    public function exportExcel($data, $savefile, $fileheader, $sheetname){
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.Reader.Excel2007");
