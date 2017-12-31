@@ -88,8 +88,7 @@ class UnitController extends CommonController {
             //设置表头外的文字垂直居中
             $excel->setActiveSheetIndex(0)->getStyle($letter[$i])->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         }
-        //单独设置D列宽度为15
-        $objActSheet->getColumnDimension('D')->setWidth(15);
+       
         //这里$i初始值设置为2，$j初始值设置为0，自己体会原因
         for ($i = 2;$i <= count($data) + 1;$i++) {
             $j = 0;
@@ -124,6 +123,8 @@ class UnitController extends CommonController {
             }
             //设置单元格高度，暂时没有找到统一设置高度方法
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
+             //单独设置D列宽度为15
+       		 $objActSheet->getColumnDimension($i)->setWidth(30);	
         }
        
        	ob_end_clean();//清除缓冲区,避免乱码 
