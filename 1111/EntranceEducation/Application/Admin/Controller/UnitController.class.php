@@ -24,7 +24,7 @@ class UnitController extends CommonController {
        
         $this->display();
     }
-  	public function export($id){
+  	public function export($id='all'){
     	$Question = M('Questionbank');
         $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
         // $this->tests('test');
