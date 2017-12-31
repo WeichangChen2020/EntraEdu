@@ -68,7 +68,7 @@ class UnitController extends CommonController {
         
         foreach($letter as $l){
             //单独设置D列宽度为15
-       		$objActSheet->getColumnDimension($l])->setWidth('30px');	
+       		$objActSheet->getColumnDimension($l)->setWidth('30px');	
         }
         //设置当前的sheet
         $excel->setActiveSheetIndex(0);
