@@ -111,13 +111,13 @@ class UnitController extends CommonController {
             //设置单元格高度，暂时没有找到统一设置高度方法
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
         }
-       
+       ob_end_clean();//清除缓冲区,避免乱码 
         header('Content-Type: application/vnd.ms-excel');
         //下载的excel文件名称，为Excel5，后缀为xls，不过影响似乎不大
         header('Content-Disposition: attachment;filename="' . $savefile . '.xlsx"'); 
         header('Cache-Control: max-age=0');
         // 用户下载excel
-        return;
+       
         $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
         $objWriter->save('php://output');
         // 保存excel在服务器上
