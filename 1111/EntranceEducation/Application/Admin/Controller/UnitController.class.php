@@ -65,6 +65,9 @@ class UnitController extends CommonController {
         $objActSheet = $excel->getActiveSheet();
         //根据有生成的excel多少列，$letter长度要大于等于这个值
         $letter = array('A','B','C','D','E','F','F','G','H','I','J');
+        
+        foreach($letter as $l)   //单独设置D列宽度为15
+       		$objActSheet->getColumnDimension($l])->setWidth('30px');	
         //设置当前的sheet
         $excel->setActiveSheetIndex(0);
         //设置sheet的name
@@ -123,8 +126,7 @@ class UnitController extends CommonController {
             }
             //设置单元格高度，暂时没有找到统一设置高度方法
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
-             //单独设置D列宽度为15
-       		$objActSheet->getColumnDimension($letter[$j])->setWidth('30px');	
+           
         }
        
        	ob_end_clean();//清除缓冲区,避免乱码 
