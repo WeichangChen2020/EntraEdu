@@ -133,7 +133,7 @@ class UnitController extends CommonController {
         header('Cache-Control: max-age=0');
         // 用户下载excel
        
-        $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+        $objWriter = \PHPExcel_IOFactory::createWriter($excel, 'Excel5');
         $objWriter->save('php://output');
         // 保存excel在服务器上
         //$objWriter = new PHPExcel_Writer_Excel2007($excel);
