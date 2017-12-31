@@ -71,6 +71,9 @@ class UnitController extends CommonController {
             //单独设置D列宽度为15
        		$objActSheet->getColumnDimension($l)->setWidth('30px');	
         }
+        $objActSheet->getColumnDimension('A')->setWidth('5px');	
+         $objActSheet->getColumnDimension('B')->setWidth('5px');	
+      
         //设置当前的sheet
         $excel->setActiveSheetIndex(0);
         //设置sheet的name
