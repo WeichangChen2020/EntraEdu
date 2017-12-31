@@ -124,7 +124,7 @@ class UnitController extends CommonController {
             //设置单元格高度，暂时没有找到统一设置高度方法
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
              //单独设置D列宽度为15
-       		 $objActSheet->getColumnDimension($i)->setWidth('30px');	
+       		$objActSheet->getColumnDimension($letter[$j])->setWidth('30px');	
         }
        
        	ob_end_clean();//清除缓冲区,避免乱码 
