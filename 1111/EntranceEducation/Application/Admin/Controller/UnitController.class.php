@@ -126,7 +126,7 @@ class UnitController extends CommonController {
             $objActSheet->getRowDimension($i)->setRowHeight('80px');
         }
        
-       ob_end_clean();//清除缓冲区,避免乱码 
+       	ob_end_clean();//清除缓冲区,避免乱码 
         header('Content-Type: application/vnd.ms-excel');
         //下载的excel文件名称，为Excel5，后缀为xls，不过影响似乎不大
         header('Content-Disposition: attachment;filename="' . $savefile . '.xls"'); 
