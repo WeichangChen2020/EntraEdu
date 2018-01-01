@@ -26,7 +26,7 @@ class UnitController extends CommonController {
     }
      public function imglists($chapterid){
 
-        $Question = M('Questionbank');
+        $Question = M('Img_questionbank');
         $list = $Question->where(array('chapter'=> $chapterid))->page($_GET['p'].',20')->select();
         $this->assign('questionList',$list);
 
