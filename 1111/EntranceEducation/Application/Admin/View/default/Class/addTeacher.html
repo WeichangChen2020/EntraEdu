@@ -112,5 +112,17 @@
     function back(){
     	window.location.href="{:U('Unit/imglists',array('chapterid'=> $chapter))}";
     }
+     var objList = document.getElementsByTagName("input");
+     for ( var i = 0 ; i< objList.length ; i++ ) 
+     {
+         if ( objList[i].type == "text" ||  objList[i].type == "textarea" || objList[i].type == "password"  ) 
+         {
+             if ( objList[i].disabled != true ) 
+             {
+                 objList[i].focus();
+                 return false;
+             } 
+         }
+     }
 </script>
 </div>
