@@ -27,11 +27,12 @@ class ClassController extends CommonController {
 	        	$this->success('添加成功',U('Class/index'));
 	        else
 	        	$this->error('添加失败');
-    	}
-        $Adminer = M('adminer');
-        $ads = $Adminer->field('nickname')->select();
-        $this->assign('adminerList',$ads);
-    	$this->display();
+    	}else{
+            $Adminer = M('adminer');
+            $ads = $Adminer->field('nickname')->select();
+            $this->assign('adminerList',$ads);
+            $this->display();
+        }
     }
 
     //题目修改界面
