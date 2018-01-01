@@ -52,8 +52,8 @@ class ClassController extends CommonController {
     public function lists($id){
     	$Student = M('StudentList');
 		$Info = M('teacher_class');
-        $list = $Info->find($id);
-        $map['class'] = $list['class'];
+        $map = $Info->field('class')->find($id);
+       
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
         
