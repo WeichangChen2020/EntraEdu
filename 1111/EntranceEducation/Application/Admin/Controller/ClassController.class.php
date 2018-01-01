@@ -34,7 +34,22 @@ class ClassController extends CommonController {
             $this->display();
         }
     }
-
+	 public function addTeacher(){
+    	if (IS_POST) {
+	        $QUESTION = M('adminer');
+	        $data = I();
+            $data = array_map('trim', $data);  //trim去除多余回车
+	        if ($QUESTION->add($data))
+	        	$this->success('添加成功',U('Class/index'));
+	        else
+	        	$this->error('添加失败');
+    	}else{
+            $Adminer = M('adminer');
+            $ads = $Adminer->field('nickname')->select();
+            $this->assign('adminerList',$ads);
+            $this->display();
+        }
+    }
     //题目修改界面
     public function edit($id){
         if (IS_POST) {
