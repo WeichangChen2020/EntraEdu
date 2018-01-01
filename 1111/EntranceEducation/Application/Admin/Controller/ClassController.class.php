@@ -49,6 +49,35 @@ class ClassController extends CommonController {
             $this->display();
         }
     }
+    public function lists(){
+    	  $Student = M('StudentList');
+
+        // 查询条件
+        $college = D('Adminer')->getCollege();
+        $map = array();
+
+        if (!is_null($college)) {
+            $map['academy'] = $college;
+        }
+
+        $map['type'] = 1;
+        $list = $Student->where($map)->page($_GET['p'].',20')->select();
+        $count = $Student->where($map)->count();
+        
+        $this->assign('userList',$list);
+
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page', $show);
+
+        // 注册数量和未注册数量和导出
+        $num = D('StudentList')->getStudentNum();
+        $this->assign('num', $num);
+        $this->assign('export', 1);
+
+       
+        $this->display();
+    }
     //题目修改界面
     public function edit($id){
         if (IS_POST) {
