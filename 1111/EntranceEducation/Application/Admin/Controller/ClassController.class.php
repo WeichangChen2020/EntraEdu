@@ -8,7 +8,9 @@ class ClassController extends CommonController {
     }
     public function index(){
 		$Adminer = M('adminer');
-         $list = $Adminer->field('nickname')->select();
+        $ads = $Adminer->field('nickname')->select();
+         $this->assign('adminerList',$ads);
+        
         $Info = M('teacher_class');
         $list = $Info->select();
         $this->assign('classList',$list);
