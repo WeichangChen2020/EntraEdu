@@ -44,9 +44,6 @@ class ClassController extends CommonController {
 	        else
 	        	$this->error('添加失败');
     	}else{
-            $Adminer = M('adminer');
-            $ads = $Adminer->field('nickname')->select();
-            $this->assign('adminerList',$ads);
             $this->display();
         }
     }
