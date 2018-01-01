@@ -22,7 +22,7 @@
                         <td style="padding-left: 20px;" align="center">{$chapterList.id}</td>
                         <td align="center">{$chapterList.chapter}</td>                    
                         <td align="center">
-                            <a href="{:U('Unit/lists', array('chapterid'=>$chapterList['id']))}">选择题</a>|<a href="{:U('Unit/imglists', array('chapterid'=>$chapterList['id']))}">简答题</a>|<a href="{:U('Unit/editChapter', array('chapterid'=>$chapterList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('chapterid' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="{:U('Unit/lists', array('chapterid'=>$chapterList['id']))}">选择题</a> <a href="{:U('Unit/imglists', array('chapterid'=>$chapterList['id']))}">简答题</a>|<a href="{:U('Unit/editChapter', array('chapterid'=>$chapterList['id']))}">修改</a>|<a href="{:U('Unit/deleteChapter', array('chapterid' => $chapterList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
                     </tr>
                 </volist>
