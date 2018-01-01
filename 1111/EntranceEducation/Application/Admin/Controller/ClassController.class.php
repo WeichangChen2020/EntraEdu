@@ -20,6 +20,18 @@ class ClassController extends CommonController {
         $this->assign('teacherList',$T);
         $this->display();
     }
+	 public function addClass(){
+    	if (IS_POST) {
+	        $QUESTION = M('teacher_class');
+	        $data = I();
+            $data = array_map('trim', $data);  //trim去除多余回车
+	        if ($QUESTION->add($data))
+	        	$this->success('题目添加成功',U('Class/index'));
+	        else
+	        	$this->error('添加失败');
+    	}
+    	$this->display();
+    }
 
     //题目修改界面
     public function edit($id){
