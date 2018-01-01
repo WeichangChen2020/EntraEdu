@@ -407,7 +407,7 @@ class UnitController extends CommonController {
         } else {
             $Chapter = M('Question_chapter');
         	$list = $Chapter->select();
-       		 $this->assign('chapterList',$list);
+       		 $this->assign('$chapterid',I('chapterid'));
                  $this->display();
         }
     }
