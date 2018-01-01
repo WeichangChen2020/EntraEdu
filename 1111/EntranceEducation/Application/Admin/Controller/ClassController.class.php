@@ -7,9 +7,7 @@ class ClassController extends CommonController {
        if($_SESSION['type'] != 1)  $this->error('无权限进行此操作');
     }
     public function index(){
-		$Adminer = M('adminer');
-        $ads = $Adminer->field('nickname')->select();
-        $this->assign('adminerList',$ads);
+		
         
         $Info = M('teacher_class');
         $list = $Info->select();
@@ -30,6 +28,9 @@ class ClassController extends CommonController {
 	        else
 	        	$this->error('添加失败');
     	}
+        $Adminer = M('adminer');
+        $ads = $Adminer->field('nickname')->select();
+        $this->assign('adminerList',$ads);
     	$this->display();
     }
 
