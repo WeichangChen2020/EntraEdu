@@ -22,7 +22,7 @@
                         <td style="padding-left: 20px;" align="center">{$classList.class}</td>
                         <td align="center">{$classList.name}</td>                    
                         <td align="center">
-                            <a href="{:U('Class/list', array('id'=>$classList['id']))}">管理</a>|<a href="{:U('Class/edit', array('id'=>$classListchapterList['id']))}">修改</a>|<a href="{:U('Class/delete', array('id' => $classList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
+                            <a href="{:U('Class/lists', array('id'=>$classList['id']))}">管理</a>|<a href="{:U('Class/edit', array('id'=>$classListchapterList['id']))}">修改</a>|<a href="{:U('Class/delete', array('id' => $classList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
                     </tr>
                 </volist>
