@@ -29,8 +29,8 @@
                         <td style="padding-left: 20px;">{$questionList.id}</td>
                         <td align="center">{$questionList.chapter}</td>
 
-                        <td align="center">{$questionList.contents}</td>
-                        <td align="center">{$questionList.right_answer}</td>
+                        <td align="center"><img src='{$questionList.contents}' /></td>
+                        <td align="center"><img src='{$questionList.right_answer}' /></td>
                         <td align="center">
 							<a href="{:U('Unit/imgdelete', array('id' => $questionList['id']))}" onclick="return confirm('您确定删除吗？');">删除</a>
                         </td>
