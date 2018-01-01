@@ -37,7 +37,7 @@ class ClassController extends CommonController {
 	 public function addTeacher(){
     	if (IS_POST) {
 	        $QUESTION = M('adminer');
-            if(I('password') != I('password2')) $this->error('密码设置错误');
+            if(I('password') != I('password2')) $this->error('密码请保持一致');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
             
