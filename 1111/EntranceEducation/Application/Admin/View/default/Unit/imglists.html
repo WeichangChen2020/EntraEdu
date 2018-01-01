@@ -10,10 +10,9 @@
         <a href="javascript:;" onclick ="document.getElementById('searchfrom').submit();"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->搜索</a>
     </div>
     
-    <div class="arz cl"><a href="{:U('Unit/upload',array('chapter'=> $chapterid))}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->简答题导入</a></div>
-    <div class="arz cl"><a href="{:U('Unit/add')}"><i class="layui-icon"></i>添加</a></div>
-    <div class="arz cl"><a href="{:U('Unit/import')}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->EXECL导入</a></div>
-        <div class="arz cl"><a href="{:U('Unit/export',array('id'=>$questionList[0]['chapter']))}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->导出</a></div>
+    <div class="arz cl"><a href="{:U('Unit/upload',array('chapter'=> $chapterid))}"><i class="layui-icon"></i><!-- i标签里面是一个不能识别的字符 -->导入</a></div>
+
+    <!--<div class="arz cl"><a href="{:U('Unit/export',array('id'=>$questionList[0]['chapter']))}"><i class="layui-icon"></i>导出</a></div>-->
     </form>
     <form method="post" class="aform cl">
         <table width="100%">
