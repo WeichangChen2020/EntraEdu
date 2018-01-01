@@ -61,14 +61,7 @@ class ClassController extends CommonController {
 
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
-        $this->assign('page', $show);
-
-        // 注册数量和未注册数量和导出
-        $num = D('StudentList')->getStudentNum();
-        $this->assign('num', $num);
-        $this->assign('export', 1);
-
-       
+        $this->assign('page', $show);    
         $this->display();
     }
     //题目修改界面
