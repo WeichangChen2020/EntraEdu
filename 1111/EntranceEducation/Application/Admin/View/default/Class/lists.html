@@ -3,6 +3,7 @@
     <a href="{:U('User/index')}">注册名单({$num['registerCount']|default='0'})</a>
     <a href="{:U('User/unRegister')}" style="margin-left: 20px;">未注册名单({$num['unRegistCount']|default='0'})</a>
 </div>
+<div>
 <form method="post" class="aform cl" action="/admin/admin.php?m=Admin&amp;c=article&amp;a=deletes">
 <table width="100%">
       <tbody><tr>
@@ -25,6 +26,7 @@
           </tr>
       </volist>
   </tbody></table>
+    </div>
   <div class="pages">
      {$page}
      </div> 
