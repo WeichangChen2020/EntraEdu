@@ -377,8 +377,8 @@ class UnitController extends CommonController {
                                 'chapter' => I('chapter'),
                                 'type' => 1,
                                 'questionPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
-                                'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'analysisPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
+                                'right_answer' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),
                             );
                         }
