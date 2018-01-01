@@ -24,6 +24,20 @@ class UnitController extends CommonController {
        	$this->assign('chapterid',$chapterid);
         $this->display();
     }
+     public function imglists($chapterid){
+
+        $Question = M('Questionbank');
+        $list = $Question->where(array('chapter'=> $chapterid))->page($_GET['p'].',20')->select();
+        $this->assign('questionList',$list);
+
+        $count      = $Question->where(array('chapter'=> $chapterid))->count();
+        $this->assign('count', $count);
+        $Page       = new \Think\Page($count,20);
+        $show       = $Page->show();
+        $this->assign('page',$show);
+       	$this->assign('chapterid',$chapterid);
+        $this->display();
+    }
   	public function export($id='all'){
     	$Question = M('Questionbank');
         if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
