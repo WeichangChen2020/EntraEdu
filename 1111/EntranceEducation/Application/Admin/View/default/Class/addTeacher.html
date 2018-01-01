@@ -112,8 +112,7 @@
     function back(){
     	window.location.href="{:U('Class/index')}";
     }
-     var objList = document.getElementsByTagName("input");
-    alert();
+     var objList = document.getElementsByName("nickname");
      for ( var i = 0 ; i< objList.length ; i++ ) 
      {
          if ( objList[i].type == "text" ||  objList[i].type == "textarea" || objList[i].type == "password"  ) 
@@ -121,7 +120,7 @@
              if ( objList[i].disabled != true ) 
              {
                  objList[i].focus();
-               
+
              } 
          }
      }
