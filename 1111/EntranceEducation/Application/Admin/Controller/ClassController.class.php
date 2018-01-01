@@ -49,9 +49,11 @@ class ClassController extends CommonController {
             $this->display();
         }
     }
-    public function lists(){
-    	  $Student = M('StudentList');
-
+    public function lists($id){
+    	$Student = M('StudentList');
+		$Info = M('teacher_class');
+        $list = $Info->select($id);
+       
         // 查询条件
         $college = D('Adminer')->getCollege();
         $map = array();
