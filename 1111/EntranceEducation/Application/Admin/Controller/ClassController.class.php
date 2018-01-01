@@ -40,7 +40,7 @@ class ClassController extends CommonController {
             if(I('password') != I('password2')) $this->error('密码请保持一致');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
-            
+            $data['type'] = 2;
 	        if ($QUESTION->add($data))
 	        	$this->success('添加成功',U('Class/index'));
 	        else
