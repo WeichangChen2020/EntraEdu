@@ -24,9 +24,14 @@ class UnitController extends CommonController {
        	$this->assign('chapterid',$chapterid);
         $this->display();
     }
+    public function imgdelete($id){
+         $QUESTION = M('image_questionbank');
+        $QUESTION->where(array('id' => $id))->delete();
+        $this->success('题目删除成功', U('Question/index'));
+    }
      public function imglists($chapterid){
 
-        $Question = M('Img_questionbank');
+        $Question = M('image_questionbank');
         $list = $Question->where(array('chapter'=> $chapterid))->page($_GET['p'].',5')->select();
         $this->assign('questionList',$list);
 
