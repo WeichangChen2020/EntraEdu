@@ -53,7 +53,7 @@ class ClassController extends CommonController {
     	$Student = M('StudentList');
 		$Info = M('teacher_class');
         $map = $Info->field('class')->find($id);
-       var_dump($map);
+       var_dump($Student->select());
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
         
