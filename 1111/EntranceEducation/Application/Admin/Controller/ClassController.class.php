@@ -52,17 +52,8 @@ class ClassController extends CommonController {
     public function lists($id){
     	$Student = M('StudentList');
 		$Info = M('teacher_class');
-        $list = $Info->select($id);
-       
-        // 查询条件
-        $college = D('Adminer')->getCollege();
-        $map = array();
-
-        if (!is_null($college)) {
-            $map['academy'] = $college;
-        }
-
-        $map['type'] = 1;
+        $list = $Info->find($id);
+        $map['class'] = $list['class'];
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
         
