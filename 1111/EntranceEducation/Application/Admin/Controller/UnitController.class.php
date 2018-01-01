@@ -395,7 +395,7 @@ class UnitController extends CommonController {
                     }
 
                     /*===============将试题信息存入数据库==========*/
-                    if(M('questionbankpic')->addAll($uploadExercise)){
+                    if(M('image_questionbank')->addAll($uploadExercise)){
                         $this->success('上传成功');
                     }else{
                         $this->error('上传失败');
