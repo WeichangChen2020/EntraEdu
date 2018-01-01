@@ -27,7 +27,7 @@ class UnitController extends CommonController {
     public function imgdelete($id){
          $QUESTION = M('image_questionbank');
         $QUESTION->where(array('id' => $id))->delete();
-        $this->success('题目删除成功', U('Question/index'));
+        $this->success('题目删除成功');
     }
      public function imglists($chapterid){
 
