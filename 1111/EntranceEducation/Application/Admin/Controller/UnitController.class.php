@@ -32,7 +32,7 @@ class UnitController extends CommonController {
 
         $count      = $Question->where(array('chapter'=> $chapterid))->count();
         $this->assign('count', $count);
-        $Page       = new \Think\Page($count,20);
+        $Page       = new \Think\Page($count,5);
         $show       = $Page->show();
         $this->assign('page',$show);
        	$this->assign('chapterid',$chapterid);
