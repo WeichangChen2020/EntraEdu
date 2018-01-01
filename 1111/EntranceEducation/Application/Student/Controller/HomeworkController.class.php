@@ -208,7 +208,7 @@ class HomeworkController extends Controller{
         // var_dump($homeworkname);die();
         $condi['homeworkname']    = $homeworkname;
         $condi['openId']        = array('NEQ',session('openId'));
-        $condi['correcter']     = array('EQ','未批改');
+        // $condi['correcter']     = array('EQ','未批改');
         $condi['mark']          = "no";
         $strange = M('student_homework')->group('name')->where($condi)->select();
         // var_dump($strange);die();
@@ -262,16 +262,17 @@ class HomeworkController extends Controller{
         }
 
 
-        var_dump($problem);
+        // var_dump($problem);s
 
         $this->assign('problem',$problem);//别人的作业+正确答案url
+        $this->assign('size',sizeof($problem));
   
 
 
 
         $this->assign('me',$me);
         $this->assign('homeworkname',$homeworkname);
-
+        // var_dump($problem);die();
         return $this->display();
     }
 
@@ -292,6 +293,19 @@ class HomeworkController extends Controller{
         $res = $STU_HOMEWORK->where(array('id' => $personWorkId,'openId' => $personId))->save($correctInfo);
 
         
+    }
+    public function mark_score(){
+        $data = I('post.');
+        $homeworkid = $data['homeworkid'];
+        $score = $data['score'];
+        $model = D('student_homework');
+        $res = $model->give_score($homeworkid,$score);
+        if ($res) {
+            $this->ajaxReturn(true);
+        } else {
+            $this->ajaxReturn(false);
+        }
+    
     }
 }
 

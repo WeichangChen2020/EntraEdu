@@ -7,6 +7,10 @@
 
   <body ontouchstart>
 
+  <empty name="problem">
+    <h1 class="demos-title">批改作业({$homeworkname})</h1>
+    <h2 style="text-align:center">没有需要批改的作业</h2>
+  <else /> 
     <header class='demos-header'>
       <h1 class="demos-title">批改作业({$homeworkname})</h1>
       <h2>左为同学答案，右为标准答案</h2>
@@ -14,31 +18,66 @@
       
           <volist name="problem" id="data">
             <div class="weui_cell">
-              <div>
-              {$data.imgurl} 
+              <div style="float:left">
+              <img src="{$data.imgurl}">
+               
               </div>
               <div>
-              {$data.right_answer} 
-              </div>
+              <img src="{$data.right_answer}">
               
+              </div style="float:right">
+              <div id="rad" value="2333">
+                <input type="radio" name="score{$i}" value="5" checked="checked" />5 
+                <input type="radio" name="score{$i}" value="4" />4
+                <input type="radio" name="score{$i}" value="3" />3
+                <input type="radio" name="score{$i}" value="2" />2
+                <input type="radio" name="score{$i}" value="1" />1
+                <input id="problemid{$i}" value="{$data}" style="display:none">
+              </div>
+                <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary">确定</a>
             </div>
 
-
           </volist>
+  </empty> 
+
+
+    
+          
             
 
     <include file="./Public/html/_foot.html"/>
 
 
     <script>
-      $(document).ready(function(){
-         
+      // $(document).ready(function(){
+        
           
+      // });
 
-          
+      function insertscore(i,number){
+        var homeworkid = i;//作业提交的id
+       
+        var score;//此作业的分数
+        var radio = document.getElementsByName("score"+{$i});  
+        for (i=0; i<radio.length; i++) {  
+            if (radio[i].checked) {  
+                score = radio[i].value;
+            }  
+        }
+        $.ajax({
+          type:"POST",
+          url:"{:U('mark_score')}",
+          data:{homeworkid:homeworkid,score:score},
+          success:function(){
+            // alert("submit"+number);
+            document.getElementById("submit"+number).innerHTML = '已打分';
+            
+            $("#submit"+number).attr('href','javascript:;');
 
+          }
+        });
 
-      });
+      }
       
 
 
@@ -57,22 +96,22 @@
           personWorkId = homeworkInfo[0];
         }
 
-        function getMark(mark){
-            $.confirm("您确定要给"+personName+"本次作业评"+mark+"分吗?", "确认评分?", function(){
-              url = "{:U('homework_mark')}";
-              data = {
-                personWorkId : personWorkId,
-                mark:mark,
-                personId:{$person.openId}
-              };
-              $.post(url,data,function(res){
-                $.toast("评分成功!");
-              });
-              $('#'+personWorkId).hide();
-            }, function() {
-              //取消操作
-            });
-        }
+        // function getMark(mark){
+        //     $.confirm("您确定要给"+personName+"本次作业评"+mark+"分吗?", "确认评分?", function(){
+        //       url = "{:U('homework_mark')}";
+        //       data = {
+        //         personWorkId : personWorkId,
+        //         mark:mark,
+        //         personId:{$person.openId}
+        //       };
+        //       $.post(url,data,function(res){
+        //         $.toast("评分成功!");
+        //       });
+        //       $('#'+personWorkId).hide();
+        //     }, function() {
+        //       //取消操作
+        //     });
+        // }
 
 
     </script>
