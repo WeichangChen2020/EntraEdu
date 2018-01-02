@@ -12,7 +12,7 @@
         <th width="20%" align="center">自由练习(正确数|总提交)</th>
         <th width="20%" align="center">操作</th>
       </tr>
-          <volist name="userList" id="userList" empty="\<tr\>暂时没有数据\</tr\>" >
+          <volist name="userList" id="userList" empty="$empty" >
               <tr>
                 <td align="center">{$key+1}</td>
                 <td align="center">{$userList.name}</td>
