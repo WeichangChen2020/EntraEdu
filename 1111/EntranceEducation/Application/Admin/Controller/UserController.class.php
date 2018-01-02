@@ -13,7 +13,7 @@ class UserController extends CommonController {
         $map = array();
 
         if (!is_null($college)) {
-            $map['academy'] = $college;
+            $map['class'] = $college;
         }
 
         $map['type'] = 1;
