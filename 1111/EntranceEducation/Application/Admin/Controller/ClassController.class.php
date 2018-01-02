@@ -62,7 +62,7 @@ class ClassController extends CommonController {
         $Page       = new \Think\Page($count,20);
         $show       = $Page->show();
         $this->assign('page', $show);    
-       $this->assign('empty','<tr class="empty"><td>没有数据</td></tr>');
+       $this->assign('empty','<tfoot><td>没有数据</td><\tfoot>');
         $this->display();
     }
     //题目修改界面
