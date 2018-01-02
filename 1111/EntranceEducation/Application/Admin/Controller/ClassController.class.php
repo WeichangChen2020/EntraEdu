@@ -101,7 +101,7 @@ class ClassController extends CommonController {
     public function delete($id){
         $QUESTION = M('teacher_class');
         $QUESTION->where(array('id' => $id))->delete();
-        $this->success('题目删除成功', U('Class/index'));
+        $this->success('删除成功', U('Class/index'));
     }
 
     //搜索题目
