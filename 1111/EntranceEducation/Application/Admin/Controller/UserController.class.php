@@ -68,17 +68,21 @@ class UserController extends CommonController {
     
     public function export($type) {
 
+    
+
         // 查询条件
-        $college = D('Adminer')->getCollege();
+        $class = D('Adminer')->getClass();
         $map = array();
 
         if (!is_null($college)) {
-            $map['academy'] = $college;
+            $map['class'] = array('in',$class);
         }
-
         $title = array('序号','学院', '班级', '学号', '姓名');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
-
+         $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
+         $filename .= '计算机网络学习学生信息';
+        
+		/*
         if($type == 1) {
             $map['type'] = 1;
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
@@ -88,6 +92,7 @@ class UserController extends CommonController {
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->select();
             $filename .= '计算机网络学习平台未注册用户';
         }
+        */
 
         $this->excel($list, $title, $filename);
     }
