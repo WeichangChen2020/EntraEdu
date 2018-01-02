@@ -127,6 +127,10 @@ class UnitController extends CommonController {
 	        $QUESTION = M('Questionbank');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
+            $id = I('id');
+            if(!empty($id){
+            	if(!is_numeric($id) || !is_null( $QUESTION->find($id) ) $this->error('id错误');
+            }
 	        if ($QUESTION->add($data))
 	        	$this->success('题目添加成功',U('Unit/add'));
 	        else
