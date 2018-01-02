@@ -9,11 +9,11 @@ class UserController extends CommonController {
         $Student = M('StudentList');
 
         // 查询条件
-        $college = D('Adminer')->getClass();
+        $class = D('Adminer')->getClass();
         $map = array();
 
         if (!is_null($college)) {
-            $map['class'] = $college;
+            $map['class'] = $class;
         }
 
         $map['type'] = 1;
