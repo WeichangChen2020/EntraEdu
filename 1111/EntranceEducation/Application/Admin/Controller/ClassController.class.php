@@ -4,7 +4,7 @@ use Think\Controller;
 class ClassController extends CommonController {
      function _initialize()
     {
-       	super();
+       	
          if($_SESSION['type'] != 1)  $this->error('无权限进行此操作');
     }
     public function index(){
