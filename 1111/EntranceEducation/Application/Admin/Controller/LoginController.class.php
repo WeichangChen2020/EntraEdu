@@ -6,6 +6,9 @@ class LoginController extends Controller
 {
     public function index()
     {
+         $Profile = M('Profile');
+        $list = $Profile->select();
+        $this->assign('attributes',$list);
         $this->display();
     }
 
