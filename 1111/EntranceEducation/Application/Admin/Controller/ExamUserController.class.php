@@ -24,7 +24,7 @@ class ExamUserController extends CommonController{
 		$EXAM = M('ExamSetup');
         $EXAMCOLLEGE = D('ExamCollege');
 
-        $college = D('Adminer')->getCollege();
+        $college = D('Adminer')->getClass();
         $list = $EXAMCOLLEGE->getExamList($college);
         foreach ($list as $key => $value) {
         	$list[$key]['info'] = $EXAM->where(array('id' => $value['examid']))->find();
