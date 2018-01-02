@@ -27,6 +27,7 @@ class AdminerModel extends Model {
             $list = M('TeacherClass')->where('name='.session('nickname'))->select();
             foreach($list as $l){
                 $ret[]= $l['class'];
+            }
 			return $ret;
 		}
 		return ;
