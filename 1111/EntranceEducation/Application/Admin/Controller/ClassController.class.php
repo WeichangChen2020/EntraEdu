@@ -138,7 +138,7 @@ class ClassController extends CommonController {
 
         $title = array('序号','学院', '班级', '学号', '姓名');
         $filename  = is_null($college) ? '浙江工商大学' : $college;
-      $type = 1；
+      $type = 1;
         if($type == 1) {
             $map['type'] = 1;
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
