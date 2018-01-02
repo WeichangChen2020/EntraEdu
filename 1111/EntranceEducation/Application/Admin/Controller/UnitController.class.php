@@ -128,7 +128,7 @@ class UnitController extends CommonController {
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
 	        if ($QUESTION->add($data))
-	        	$this->success('题目添加成功',U('Question/add'));
+	        	$this->success('题目添加成功',U('Unit/add'));
 	        else
 	        	$this->error('添加失败');
     	}
