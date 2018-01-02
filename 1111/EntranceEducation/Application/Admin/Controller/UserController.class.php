@@ -16,7 +16,7 @@ class UserController extends CommonController {
             $map['class'] = array('in',$class);
         }
 
-        $map['type'] = 1;
+        //$map['type'] = 1;
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
         
