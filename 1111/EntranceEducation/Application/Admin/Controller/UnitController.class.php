@@ -128,7 +128,7 @@ class UnitController extends CommonController {
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
             $id = I('id');
-            if(!empty($id){
+            if(!empty($id)）{
             	if(!is_numeric($id) || !is_null( $QUESTION->find($id) ) $this->error('id错误');
             }
 	        if ($QUESTION->add($data))
