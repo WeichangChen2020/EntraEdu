@@ -24,6 +24,7 @@ class AdminerModel extends Model {
 		}
 
 		if ( session('type') == 2 && !is_null(session('nickname'))) {
+            $lsit = M('TeacherClass')->where('name='.session('nickname'))->select();
 			return session('nickname');
 		}
 		return ;
