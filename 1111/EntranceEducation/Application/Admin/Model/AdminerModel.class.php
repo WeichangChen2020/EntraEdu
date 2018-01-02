@@ -17,6 +17,17 @@ class AdminerModel extends Model {
 		}
 		return ;
 	}
+	public function getClass () {
+
+		if (session('type') == 1) {
+			return ;
+		}
+
+		if ( session('type') == 2 && !is_null(session('nickname'))) {
+			return session('nickname');
+		}
+		return ;
+	}
 
 	
 }
