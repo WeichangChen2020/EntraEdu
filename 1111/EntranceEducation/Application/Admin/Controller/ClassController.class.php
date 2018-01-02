@@ -53,11 +53,11 @@ class ClassController extends CommonController {
     	$Student = M('StudentList');
 		$Info = M('teacher_class');
         $map = $Info->field('class')->find($id);
-       var_dump($map);
-        return;
+      
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
-        
+         var_dump($list);
+        return;
         $this->assign('userList',$list);
 
         $Page       = new \Think\Page($count,20);
