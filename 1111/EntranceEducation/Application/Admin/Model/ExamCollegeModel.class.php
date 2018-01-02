@@ -63,7 +63,7 @@ class ExamCollegeModel extends Model {
 
 			return $examList;
 		}else {
-			$idList = M('ExamCollege')->where(array('academy' => $college ,'state' => 1))->field('examid')->select();
+			$idList = M('ExamCollege')->where(array('class' => array('in',$college)))->field('examid')->select();
 			$res = array();
 			foreach ($idList as $key => $value) {
 				$res[$key] = M('ExamSetup')->where(array('id'=>$value['examid']))->find();
