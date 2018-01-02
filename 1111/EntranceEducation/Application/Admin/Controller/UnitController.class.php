@@ -135,8 +135,10 @@ class UnitController extends CommonController {
 	        	$this->success('题目添加成功',U('Unit/add'));
 	        else
 	        	$this->error('添加失败');
-    	}
-    	$this->display();
+    	}else{
+            
+    		$this->display();
+        }
     }
 
     //删除题目
