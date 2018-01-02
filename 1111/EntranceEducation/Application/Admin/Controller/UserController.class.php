@@ -9,7 +9,7 @@ class UserController extends CommonController {
         $Student = M('StudentList');
 
         // 查询条件
-        $college = D('Adminer')->getCollege();
+        $college = D('Adminer')->getClass();
         $map = array();
 
         if (!is_null($college)) {
