@@ -99,7 +99,7 @@ class ClassController extends CommonController {
 
     //删除题目
     public function delete($id){
-        $QUESTION = M('Questionbank');
+        $QUESTION = M('teacher_class');
         $QUESTION->where(array('id' => $id))->delete();
         $this->success('题目删除成功', U('Question/index'));
     }
