@@ -13,14 +13,14 @@
         <th width="20%" align="center">操作</th>
       </tr>
           <volist name="userList" id="userList" empty="<tr>暂时没有数据</tr>" >
-          <tr>
-            <td align="center">{$key+1}</td>
-            <td align="center">{$userList.name}</td>
-            <td align="center">{$userList.class}</td>
-            <td align="center">{$userList.number}</td>
-            <td align="center">{$userList.name|getResult=###}</td>
-            <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
-            </td>
+              <tr>
+                <td align="center">{$key+1}</td>
+                <td align="center">{$userList.name}</td>
+                <td align="center">{$userList.class}</td>
+                <td align="center">{$userList.number}</td>
+                <td align="center">{$userList.name|getResult=###}</td>
+                <td align="center"><a href="#">修改</a> | <a href="#" onclick="return confirm('您确定要删除吗？');">删除</a>
+                </td>
           </tr>
       </volist>
   </tbody></table>
