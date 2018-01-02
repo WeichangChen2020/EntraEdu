@@ -25,7 +25,9 @@ class AdminerModel extends Model {
 
 		if ( session('type') == 2 && !is_null(session('nickname'))) {
             $list = M('TeacherClass')->where('name='.session('nickname'))->select();
-			return $list;
+            foreach($list as $l){
+                $ret[]= $l['class'];
+			return $ret;
 		}
 		return ;
 	}
