@@ -7,7 +7,7 @@
   <body ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-      <h1 class="demos-title">课后作业</h1>
+      <h1 class="demos-title">{$homeworkname}</h1>
     </header>
 
     <div class="bd">
@@ -20,13 +20,18 @@
           <div class="weui_cell_ft"><if condition="$state eq '未提交'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
         </a>
           
-        <a class="weui_cell" href="{:U('homeworkmark')}">
-          <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-          <div class="weui_cell_bd weui_cell_primary">
-            <p>互评作业</p>
-          </div>
-          <div class="weui_cell_ft"></div>
-        </a>
+
+        
+          <a class="weui_cell" id="hphomework">
+            <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+            <div class="weui_cell_bd weui_cell_primary">
+              <p>互评作业</p>
+            </div>
+            <div class="weui_cell_ft"><if condition="$state2 eq '未批改'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
+          </a>
+        
+
+        
         <!-- <a class="weui_cell" href="{:U('Teacher/homework_view')}/homeworkId/{$homeworkId}">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_search_bar.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
@@ -40,3 +45,14 @@
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
+<script type="text/javascript">
+  var data = '{$state}';
+  $("#hphomework").click(function(event){
+    if (data == '未提交') {
+      alert('你还没提交作业，不能批改别人作业');
+    }else{
+      window.location.href = '{:U('homeworkmark')}';
+    }
+  });
+  
+</script>
