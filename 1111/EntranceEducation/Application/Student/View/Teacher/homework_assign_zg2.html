@@ -44,7 +44,7 @@
         <!-- http://testroom-public.stor.sinaapp.com/public/upload/1/cn1-1.jpg
         /public/upload/1/cn1-1.jpg -->
         <div class="c-pic">
-          <span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>
+          <!-- <span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span> -->
           <img src="http://testroom-public.stor.sinaapp.com{$quesItem.contents}">
           <!-- {$quesItem.contents|repleace_question_image=###} -->
         </div>
@@ -106,7 +106,9 @@
       </div>
     </volist>
     <div style="position:fixed;bottom:30px;right:16px">
-      <a class="weui_btn weui_btn_primary weui_btn_mini" href="javascript:" id="submit">确定<span id="number"></spna></a>
+      <a class="weui_btn weui_btn_primary weui_btn_mini" href="javascript:" id="submit">确定
+      <span id="number"></span>
+      </a>
     </div>  
     
   </body>

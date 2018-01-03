@@ -53,11 +53,22 @@ class HomeworkController extends Controller{
         foreach ($homework as $key => $value) {
 
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname']);
-            $homework[$key]['submit'] = $this->getSubmitNum($homework[$key]['homeworkname']);
+            $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname']);
+            if (strtotime($homework[$key]['dead_time']) > strtotime(date("Y-m-d H:i:s"))) {
+                  $homework[$key]['status'] = 1;
+            } else {
+                  $homework[$key]['status'] = 0;
+            }
+            
+                 
         }
+        // var_dump($homework);die();
         // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('homework',$homework)->display();
+
+
+
     }
 
     private function isSubmit($openId,$homeworkname){
@@ -108,6 +119,10 @@ class HomeworkController extends Controller{
         session('homeworkname',$homeworkname);
         // var_dump(session('homeworkname'));die();
 
+        $status = I('get.status');
+        if ($status == 0) {
+            $this->error('已过提交时间，等死吧',U('index'));
+        }
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
 // var_dump($myname);die();
