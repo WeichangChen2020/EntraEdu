@@ -319,9 +319,11 @@ class UnitController extends CommonController {
                         $objDrawing[$key] = new \PHPExcel_Worksheet_Drawing();
                         // 图片地址
                         if(@fopen($value,'r')){   
-                             $path = $value;
-                                    $s=new \SaeStorage();
-        						file_put_contents(SAE_TMP_PATH.'/upload.xlsx',$s->read('upload',$name));
+                             $s=new \SaeStorage();
+                            $filearr = split(".",$value);
+							$filetype = end($filearr);
+                            $path = SAE_TMP_PATH.'/tmpImage'.$filetype;
+        				     file_put_contents($path,$s->read('upload',$name));
         
        						 $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
                         }else{    
