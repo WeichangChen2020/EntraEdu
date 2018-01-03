@@ -51,6 +51,14 @@ class UnitController extends CommonController {
                            array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","选项A","选项B","选项C","选项D","正确答案","解析（如无则不填）"),"questionbank");
 
     }
+    public function imgexport($id='all'){
+    	$Question = M('Questionbank');
+        if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
+        else $list = $Question->field('chapter,type,contents,option_a,option_b,option_c,option_d,right_answer,analysis')->select();
+        $this->exportExcel($list,'image_questionbank'.$id.date("Y_m_d"),
+                           array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","正确答案及解析"),"image_questionbank");
+
+    }
     public function tests($name){
          vendor("PHPExcel");
         $objPHPExcel = new \PHPExcel();
