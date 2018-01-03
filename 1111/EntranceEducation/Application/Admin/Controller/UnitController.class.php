@@ -318,10 +318,11 @@ class UnitController extends CommonController {
                         // 图片生成
                         $objDrawing[$key] = new \PHPExcel_Worksheet_Drawing();
                         // 图片地址
-                        
-                        if(is_readable($value) == false)
-                        	continue; 
-                        else $path = $value;
+                        if(@fopen($value,'r')){   
+                             $path = $value;
+                        }else{    
+                            continue;
+                        }
                         $objDrawing[$key]->setPath($path);
                         // 设置图片宽度高度
                         $objDrawing[$key]->setHeight('80px'); //照片高度
