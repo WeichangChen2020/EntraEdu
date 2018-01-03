@@ -68,6 +68,7 @@ class UnitController extends CommonController {
         $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
         //html内容
         $html='<h1><a name="top"></a>一个PDF文件</h1>';
+        $html.='<img src="http://testroom-upload.stor.sinaapp.com/2018-01-03/1d73a8d688491f2c.jpg">';
         $mpdf->WriteHTML($html);
         $mpdf->Output();
         exit;
