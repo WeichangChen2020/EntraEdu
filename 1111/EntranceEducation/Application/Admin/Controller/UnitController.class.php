@@ -71,7 +71,9 @@ class UnitController extends CommonController {
             	$k++;
                 $c = $l['chapter'];
             }
-        	$html='<h1><a name="top"></a>第'.$l['chapter'].'章第'.$k.'题</h1>';
+        	$html.='<h1><a name="top"></a>第'.$l['chapter'].'章第'.$k.'题</h1>';
+            $html.='<img src="'.$l['contents'].'">';
+            $html.='<h1><a name="top"></a>答案及解析</h1>';
         }
         
         $mpdf->WriteHTML($html);
