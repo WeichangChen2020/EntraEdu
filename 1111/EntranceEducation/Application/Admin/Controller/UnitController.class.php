@@ -327,7 +327,7 @@ class UnitController extends CommonController {
                             
                             $filePath = explode("/",$value);
                             $fileTurePath = $filePath[3]."/".$filePath[4];
-        				     file_put_contents($path,$s->read('upload',));
+        				     file_put_contents($path,$s->read('upload',$fileTurePath));
         
        						 $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
                         }else{    
