@@ -252,7 +252,7 @@ class UnitController extends CommonController {
                  $this->display();
         }
     }
-    public function exportExcel($data, $savefile, $fileheader, $sheetname){
+    public function exportExcel($data, $savefile, $fileheader, $sheetname,$isImage=0){
         //引入phpexcel核心文件，不是tp，你也可以用include（‘文件路径’）来引入
     
         vendor('PHPExcel');
