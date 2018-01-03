@@ -59,6 +59,17 @@ class UnitController extends CommonController {
                            array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","正确答案及解析"),"image_questionbank",1);
 
     }
+    public function pdf(){
+        //引入类库
+        Vendor('mpdf.mpdf');
+        //设置中文编码
+        $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
+        //html内容
+        $html='<h1><a name="top"></a>一个PDF文件</h1>';
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+	}
     public function tests($name){
          vendor("PHPExcel");
         $objPHPExcel = new \PHPExcel();
