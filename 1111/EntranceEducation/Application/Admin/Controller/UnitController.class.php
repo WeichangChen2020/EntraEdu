@@ -302,17 +302,17 @@ class UnitController extends CommonController {
             //设置表头外的文字垂直居中
             $excel->setActiveSheetIndex(0)->getStyle($letter[$i])->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
         }
-       
+      
         //这里$i初始值设置为2，$j初始值设置为0，自己体会原因
         for ($i = 2;$i <= count($data) + 1;$i++) {
             $j = 0;
             foreach ($data[$i - 2] as $key=>$value) {
                 //不是图片时将数据加入到excel，这里数据库存的图片字段是img
-                if($image == 0){
+                if($isImage == 0){
                     $objActSheet->setCellValue("$letter[$j]$i",$value);
                 }
                 //是图片是加入图片到excel
-                if($image == 1 && ($key == 'contents'|| $key == 'right_answer')){
+                if($isImage == 1 && ($key == 'contents'|| $key == 'right_answer')){
                     if($value != ''){
                         $value = iconv("UTF-8","GB2312",$value); //防止中文命名的文件
                         // 图片生成
