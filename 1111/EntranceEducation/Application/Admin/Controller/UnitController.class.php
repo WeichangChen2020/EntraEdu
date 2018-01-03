@@ -80,7 +80,7 @@ class UnitController extends CommonController {
         exit;
 
     }
-    public function imgexportexcel($id='all'){
+    public function imgexportexcel($chapter='all'){
         $this->pdf();
         
         
@@ -88,7 +88,7 @@ class UnitController extends CommonController {
         
         return;
     	$Question = M('ImageQuestionbank');
-        if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,right_answer,analysis')->select();
+        if($id!='all') $list = $Question->where(array('chapter'=> $chapter))->field('chapter,type,contents,right_answer,analysis')->select();
         else $list = $Question->field('chapter,type,contents,right_answer,analysis')->select();
         $this->exportExcel($list,'image_questionbank'.$id.date("Y_m_d"),
                            array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","正确答案及解析"),"image_questionbank",1);
