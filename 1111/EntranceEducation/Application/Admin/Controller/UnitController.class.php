@@ -51,9 +51,9 @@ class UnitController extends CommonController {
                            array("章节号（数字）","题目类型(1单选 2判断 3多选)","题干","选项A","选项B","选项C","选项D","正确答案","解析（如无则不填）"),"questionbank");
 
     }
-    public function imgexport($id='all'){
+    public function imgexport($chapter='all'){
       	$ImgQuestion = M('ImageQuestionbank');
-        if($id!='all') $list = $ImgQuestion->where(array('chapter'=> $id))->field('chapter,type,contents,right_answer,analysis')->select();
+        if($id!='all') $list = $ImgQuestion->where(array('chapter'=> $chapter))->field('chapter,type,contents,right_answer,analysis')->select();
         else $list = $ImgQuestion->field('chapter,type,contents,right_answer,analysis')->select();
        	
         //生成PDF
