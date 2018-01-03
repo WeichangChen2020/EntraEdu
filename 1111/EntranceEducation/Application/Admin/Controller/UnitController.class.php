@@ -63,7 +63,7 @@ class UnitController extends CommonController {
     }
     public function pdf(){
         //引入类库
-        vendor('mpdf');
+        vendor('mpdf.mpdf');
         //设置中文编码
         $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
         //html内容
