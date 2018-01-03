@@ -334,7 +334,7 @@ class UnitController extends CommonController {
                             continue;
                         }
                         $objDrawing[$key]->setPath($path);
-                        echo $path."<br>";
+                        //echo $path."<br>";
                         // 设置图片宽度高度
                         $objDrawing[$key]->setHeight('80px'); //照片高度
                         $objDrawing[$key]->setWidth('80px'); //照片宽度
@@ -355,7 +355,7 @@ class UnitController extends CommonController {
             $objActSheet->getRowDimension($i)->setRowHeight('20px');
            
         }
-       return;
+      // return;
        	ob_end_clean();//清除缓冲区,避免乱码 
         header('Content-Type: application/vnd.ms-excel');
         //下载的excel文件名称，为Excel5，后缀为xls，不过影响似乎不大
