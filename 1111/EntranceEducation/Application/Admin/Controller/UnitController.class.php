@@ -320,10 +320,14 @@ class UnitController extends CommonController {
                         // 图片地址
                         if(@fopen($value,'r')){   
                              $s=new \SaeStorage();
-                            $filearr = split(".",$value);
+                            
+                            $filearr = explode(".",$value);
 							$filetype = end($filearr);
                             $path = SAE_TMP_PATH.'/tmpImage'.$filetype;
-        				     file_put_contents($path,$s->read('upload',$name));
+                            
+                            $filePath = explode("/",$value);
+                            $fileTurePath = $filePath[3]."/".$filePath[4];
+        				     file_put_contents($path,$s->read('upload',));
         
        						 $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
                         }else{    
