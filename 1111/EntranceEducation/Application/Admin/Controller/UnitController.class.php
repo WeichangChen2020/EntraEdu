@@ -323,10 +323,12 @@ class UnitController extends CommonController {
                             
                             $filearr = explode(".",$value);
 							$filetype = end($filearr);
-                            $path = SAE_TMP_PATH.'/tmpImage.'.$filetype;
+                            
                             
                             $filePath = explode("/",$value);
                             $fileTurePath = $filePath[3]."/".$filePath[4];
+                            $path = SAE_TMP_PATH.$filePath[4];
+                            
         				    file_put_contents($path,$s->read('upload',$fileTurePath)); 
                         }else{    
                             continue;
