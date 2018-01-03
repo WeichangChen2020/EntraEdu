@@ -52,6 +52,8 @@ class UnitController extends CommonController {
 
     }
     public function imgexport($id='all'){
+        $this->pdf();
+        return;
     	$Question = M('ImageQuestionbank');
         if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,right_answer,analysis')->select();
         else $list = $Question->field('chapter,type,contents,right_answer,analysis')->select();
