@@ -312,7 +312,7 @@ class UnitController extends CommonController {
                     $objActSheet->setCellValue("$letter[$j]$i",$value);
                 }
                 //是图片是加入图片到excel
-                if($image == 1 && $key == 'contents'){
+                if($image == 1 && ($key == 'contents'|| $key == 'right_answer')){
                     if($value != ''){
                         $value = iconv("UTF-8","GB2312",$value); //防止中文命名的文件
                         // 图片生成
