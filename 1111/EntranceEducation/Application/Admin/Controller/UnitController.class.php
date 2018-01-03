@@ -55,7 +55,24 @@ class UnitController extends CommonController {
       	$ImgQuestion = M('ImageQuestionbank');
         if($id!='all') $list = $Question->where(array('chapter'=> $id))->field('chapter,type,contents,right_answer,analysis')->select();
         else $list = $Question->field('chapter,type,contents,right_answer,analysis')->select();
-       
+       	
+        //生成PDF
+        vendor('mpdf.mpdf');
+        //设置中文编码
+        $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
+        //html内容
+        $html='<h1><a name="top"></a>一个PDF文件</h1>';
+        $html.='<img src="http://testroom-upload.stor.sinaapp.com/2018-01-03/1d73a8d688491f2c.jpg">';
+        
+        $c = $list[0]['chapter'];
+        $k = 1;
+        foreach($list as $l){
+        	 $html='<h1><a name="top"></a>第'.$l['chapter'].'章第'.</h1>';
+        }
+        
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
 
     }
     public function imgexportexcel($id='all'){
