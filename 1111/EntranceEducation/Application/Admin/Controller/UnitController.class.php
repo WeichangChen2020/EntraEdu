@@ -323,7 +323,7 @@ class UnitController extends CommonController {
                             
                             $filearr = explode(".",$value);
 							$filetype = end($filearr);
-                            $path = SAE_TMP_PATH.'/tmpImage'.$filetype;
+                            $path = SAE_TMP_PATH.'/tmpImage.'.$filetype;
                             
                             $filePath = explode("/",$value);
                             $fileTurePath = $filePath[3]."/".$filePath[4];
