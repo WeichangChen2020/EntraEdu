@@ -308,11 +308,11 @@ class UnitController extends CommonController {
             $j = 0;
             foreach ($data[$i - 2] as $key=>$value) {
                 //不是图片时将数据加入到excel，这里数据库存的图片字段是img
-                if($key != 'img'){
+                if($image == 0){
                     $objActSheet->setCellValue("$letter[$j]$i",$value);
                 }
                 //是图片是加入图片到excel
-                if($key == 'img'){
+                if($image == 1 && $key == 'contents'){
                     if($value != ''){
                         $value = iconv("UTF-8","GB2312",$value); //防止中文命名的文件
                         // 图片生成
