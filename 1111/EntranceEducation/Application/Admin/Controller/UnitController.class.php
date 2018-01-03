@@ -61,9 +61,7 @@ class UnitController extends CommonController {
         //设置中文编码
         $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
         //html内容
-        $html='<h1><a name="top"></a>一个PDF文件</h1>';
-        $html.='<img src="http://testroom-upload.stor.sinaapp.com/2018-01-03/1d73a8d688491f2c.jpg">';
-        
+              
         $c = $list[0]['chapter'];
         $k = 1;
         foreach($list as $l){
@@ -73,7 +71,7 @@ class UnitController extends CommonController {
             }
         	$html.='<h1><a name="top"></a>第'.$l['chapter'].'章第'.$k.'题</h1>';
             $html.='<img src="'.$l['contents'].'">';
-            $html.='<h1><a name="top"></a>答案及解析</h1>';
+            $html.='<h2><a name="top"></a>答案及解析</h2>';
             $html.='<img src="'.$l['right_answer'].'">';
         }
         
