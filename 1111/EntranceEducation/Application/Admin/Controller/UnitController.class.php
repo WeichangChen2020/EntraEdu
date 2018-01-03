@@ -66,13 +66,14 @@ class UnitController extends CommonController {
         $k = 1;
         foreach($list as $l){
             if($l['chapter'] != $c){
-            	$k++;
+            	$k= 1;
                 $c = $l['chapter'];
             }
         	$html.='<h1><a name="top"></a>第'.$l['chapter'].'章第'.$k.'题</h1>';
             $html.='<img src="'.$l['contents'].'">';
             $html.='<h2><a name="top"></a>答案及解析</h2>';
             $html.='<img src="'.$l['right_answer'].'">';
+            $k++;
         }
         
         $mpdf->WriteHTML($html);
