@@ -141,6 +141,7 @@ class HomeworkController extends Controller{
 
         $this->assign('state',$state);
         $this->assign('state2',$state2);
+        // var_dump($state2);die();
         $this->assign('homeworkname',$homeworkname);
         $this->assign('number',$number)->display();
     }
@@ -293,6 +294,22 @@ class HomeworkController extends Controller{
             $this->ajaxReturn(false);
         }
     
+    }
+    public function homeworkview()
+    {
+        $homeworkname = I('get.homework');
+        $openId = session('openId');
+        // var_dump($homeworkname);
+        // echo "<pre>";
+        // var_dump($openId);
+        // die();
+        $model = M('student_homework');
+        $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId))->select();
+        $this->assign('homework',$homework);
+        $this->assign('homeworkname',$homeworkname);
+
+        return $this->display();
+
     }
 }
 

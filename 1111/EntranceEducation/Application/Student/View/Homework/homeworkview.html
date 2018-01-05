@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <include file="./Public/html/_head.html"/>
+</head>
+
+
+<body ontouchstart>
+  
+  <header class='demos-header'>
+      <h1 class="demos-title">浏览作业</h1>
+  </header>
+  <div class="container">
+
+    <volist name="homework" id="vo">
+      <div class="weui_cell">
+        <img src="{$vo.imgurl}">
+      </div>
+    </volist>
+
+  </div>
+
+<a href="{:U('index')}/openId/<?php echo session('openId');?>" class="weui_btn weui_btn_primary">返回</a>
+
+
+
+  <include file="./Public/html/_foot.html"/>
+</body>
+</html>
