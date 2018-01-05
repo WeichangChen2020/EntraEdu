@@ -247,7 +247,7 @@ class UnitController extends CommonController {
                 /*================将图片上传至domain===============*/
                 $config = array(    
                     'rootPath'   =>    './upload/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    '',  
+                    'savePath'   =>    'http://classtest-public.stor.sinaapp.com/upload/',  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
