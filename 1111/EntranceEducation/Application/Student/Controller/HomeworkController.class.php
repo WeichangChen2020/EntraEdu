@@ -56,8 +56,10 @@ class HomeworkController extends Controller{
             $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname']);
             if (strtotime($homework[$key]['dead_time']) > strtotime(date("Y-m-d H:i:s"))) {
                   $homework[$key]['status'] = 1;
+                  // var_dump($homework[$key]);die();
             } else {
                   $homework[$key]['status'] = 0;
+                  // var_dump($homework[$key]['status']);die();
             }
             
                  
@@ -125,7 +127,8 @@ class HomeworkController extends Controller{
 
         $status = I('get.status');
         $mark   = I('get.mark');
-        if ($status == 0 && $mark == null) {
+        
+        if ($status == 0 && $mark == '未提交') {
             $this->error('已过提交时间，等死吧',U('index'));
         }
         $model = D('StudentInfo');

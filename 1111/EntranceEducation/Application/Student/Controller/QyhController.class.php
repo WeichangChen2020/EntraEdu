@@ -65,7 +65,7 @@ class QyhController extends Controller
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
-                $imgurl = 'http://testroom-public.stor.sinaapp.com/public/homework/$homeworkname/'.$file['savename'];
+                $imgurl = 'http://testroom-public.stor.sinaapp.com/public/homework/'.$homeworkname.'/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
                 $map['number']          = $stuInfo['number'];

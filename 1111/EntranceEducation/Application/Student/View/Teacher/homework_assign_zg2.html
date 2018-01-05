@@ -34,7 +34,7 @@
         <div class="weui_cell weui_cell_switch">
           <div class="weui_cell_hd weui_cell_primary">{$i}.</div>
           <div class="weui_cell_ft">
-              <input class="weui_switch" type="checkbox" >
+              <input class="weui_switch" type="checkbox" name="checkbox">
               <div class="quesId">{$quesItem.id}</div>
           </div>
         </div>
@@ -116,7 +116,20 @@
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
 <script>
-$("input[type='checkbox']").click(function() {
+$(document).ready(function(){
+  var random = {$random};
+  
+  if (random == 1) {
+    $("input[class='weui_switch']").attr("checked", true);
+    var num = $(":checked").length;
+    $('#number').html(num);
+  };
+
+  
+
+
+
+$("input[class='weui_switch']").click(function() {
     var num = $(":checked").length;
     $('#number').html(num);
 });
@@ -134,4 +147,9 @@ $('#submit').click(function(){
       // window.location.href="{:U('test_class_list')}/quesId/"+quesId;
     window.location.href="{:U('homework_class_list')}/quesId/"+quesId;
 })
+
+});
+
+
+
 </script>

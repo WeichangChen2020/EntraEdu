@@ -106,8 +106,10 @@ class TeacherController extends Controller{
                 foreach ($rand as $key => $value) {
                     $numberResult[] = $result[$value];
                 }
+                $this->assign('random',1);
                 $this->assign('quesItem',$numberResult)->display();
             }else{
+                $this->assign('random',0);
                 $this->assign('quesItem',$result)->display();
             }
         
