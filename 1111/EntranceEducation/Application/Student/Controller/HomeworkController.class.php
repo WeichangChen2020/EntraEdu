@@ -73,8 +73,12 @@ class HomeworkController extends Controller{
 
     private function isSubmit($openId,$homeworkname){
         $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname))->select();
-        // var_dump($submitInfo);die();
-        if(empty($submitInfo))
+        $donumber = sizeof($submitInfo);
+        
+        $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname))->find();
+        $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
+
+        if($donumber < $putnumber)
         {
             return '未提交';
         }
@@ -120,7 +124,8 @@ class HomeworkController extends Controller{
         // var_dump(session('homeworkname'));die();
 
         $status = I('get.status');
-        if ($status == 0) {
+        $mark   = I('get.mark');
+        if ($status == 0 && $mark == null) {
             $this->error('已过提交时间，等死吧',U('index'));
         }
         $model = D('StudentInfo');
