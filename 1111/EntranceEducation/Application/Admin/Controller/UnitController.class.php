@@ -254,7 +254,7 @@ class UnitController extends CommonController {
                     'replace'    =>    true,          //支持相同文件名覆盖，否则上传不了
                 );
                 $upload = new \Think\Upload($config);// 实例化上传类
-                $info   =   $upload->upload();
+                $info   = $upload->upload();
                 // p($info);
                 // die;
                 if ($info === false) {
@@ -268,24 +268,23 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => $chapter,
                                 'type' => 4,
-                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.$info[$i]['savename'],
+                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
-                                'time' => date('Y-m-d H:i:s'),
-                                
+                                'time' => date('Y-m-d H:i:s'),                                
                             );
                         }
                     }else{
-                        for($i = 0 ; $i < $numQuestionPic ; $i++){
-                            $uploadExercise[$i] = array(
-                                'chapter' => $chapter,
-                                'type' => 4,
-                                'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savepath'].$info[$i]['name'],
-                                'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'time' => date('Y-m-d H:i:s'),
+                        // for($i = 0 ; $i < $numQuestionPic ; $i++){
+                        //     $uploadExercise[$i] = array(
+                        //         'chapter' => $chapter,
+                        //         'type' => 4,
+                        //         'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savepath'].$info[$i]['name'],
+                        //         'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
+                        //         'time' => date('Y-m-d H:i:s'),
                                 
-                            );
-                        }
+                        //     );
+                        // }
                     }
 
                     /*===============将试题信息存入数据库==========*/
