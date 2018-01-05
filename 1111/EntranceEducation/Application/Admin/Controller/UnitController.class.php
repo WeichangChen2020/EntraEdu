@@ -255,7 +255,7 @@ class UnitController extends CommonController {
                 );
                 $upload = new \Think\Upload($config);// 实例化上传类
                 $info   = $upload->upload();
-                p($info);
+                // p($info);
                 // die;
                 if ($info === false) {
                     $this->error($upload->getError());
@@ -270,7 +270,7 @@ class UnitController extends CommonController {
                                 'type' => 4,
                                 'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i+1]['savename'],
+                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),                                
                             );
                         }
