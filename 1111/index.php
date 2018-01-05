@@ -107,7 +107,7 @@ class wechatCallbackapiTest
 						echo $resultStr;
 					}
 					else {
-						echo "欢迎关注计算机网络在线教学平台！";
+						// echo "欢迎关注计算机网络在线教学平台！";
 					}
                 }else{
                 	// echo "Input something...";
