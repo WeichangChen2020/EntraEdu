@@ -60,7 +60,7 @@ class wechatCallbackapiTest
 				if ($ev == "subscribe")
 				{
 					  $msgType = "text";
-					  $contentStr = "欢迎关注计算机网络在线教学平台！";
+					  $contentStr = "欢迎关注计算机网络在线教学平台！\n发送“？”获取菜单";
 					  $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					  echo $resultStr;
 				}
