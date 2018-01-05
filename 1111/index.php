@@ -65,12 +65,8 @@ class wechatCallbackapiTest
 					  echo $resultStr;
 				}
 
-
-
 				if(!empty($keyword))
                 {
-
-
 
                 	if( $keyword == "?" || $keyword == "？")
           			{ 
@@ -82,13 +78,8 @@ class wechatCallbackapiTest
 
 						发送？：平台使用菜单 
 						";        
-            			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-               
-        				// $resultstr = sprintf($xmlTpl, $postObj->FromUserName, $postObj->ToUserName, time(), $str);
-          		 		//  echo $resultstr;//输出
-           
-             			echo $resultStr;
-            			
+            			$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);          
+             			echo $resultStr;           			
          			} 
 
               		if($keyword == '1'){
@@ -98,7 +89,7 @@ class wechatCallbackapiTest
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
-					//http://1111.testroom.applinzi.com/EntranceEducation/index.php/Teacher/index/openId/oIpKjs78eKv_q18h5oNTSS4vL-64
+
 					if($keyword == '2'){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
@@ -109,7 +100,7 @@ class wechatCallbackapiTest
 					else {
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
-						$contentStr = "发送'?'试试";
+						$contentStr = "请发送'？'试试";
 						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						echo $resultStr;
 					}
@@ -124,14 +115,6 @@ class wechatCallbackapiTest
 
     }
 		
-
-
-
-
-
-
-
-
 
 
 	private function checkSignature()
