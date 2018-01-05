@@ -262,12 +262,13 @@ class UnitController extends CommonController {
                 }else{
                     /*============将上传的图片信息整理成一个二维数组===========*/
                     //分两种情况，有解析，没有解析
+                    $chapter = I('chapter');
                     if($existAnalysis){
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
-                                'chapter' => I('chapter'),
+                                'chapter' => $chapter,
                                 'type' => 4,
-                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savename'],
+                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),
@@ -277,7 +278,7 @@ class UnitController extends CommonController {
                     }else{
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
-                                'chapter' => I('chapter'),
+                                'chapter' => $chapter,
                                 'type' => 4,
                                 'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
