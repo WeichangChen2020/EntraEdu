@@ -30,7 +30,7 @@
        <label class="weui_label">微信互动</label>
       </div> 
       <div class="weui_cell_bd weui_cell_primary"> 
-       <input class="weui_input" name="wexinMessage" type="number" value="{$weight.weixinMessage}" required="required"> 
+       <input class="weui_input" name="wexinMessage" type="number" min="0" max="0.5" value="{$weight.weixinMessage}" required="required"> 
       </div> 
      </div>
 
@@ -111,7 +111,7 @@
       </div> 
      </div>
   </div>
-  
+
   <div class="weui_btn_area">
     <input class="weui_btn weui_btn_primary" type="submit" value="确定"/>
   </div>
