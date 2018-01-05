@@ -83,7 +83,7 @@ class MarkController extends Controller{
     //教师端->积分管理->积分权重->设置权重
     public function setMarkWeight(){
         $weight = I();
-        //p($weight);die;
+        p($weight);die;
         $openId=session('openId');
         $WEIGHT = M('student_mark_weight');
         $weight['openId'] = session('openId');
