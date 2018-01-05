@@ -177,64 +177,6 @@ class HomeworkController extends Controller{
         $this->assign('homework',$homework)->display();
     }
 
-    // public function upload(){
-
-    //     /*=====================实例化类============================*/
-    //     $weixin       =  new WeichatController();   //示例化Weichat类，获取token
-    //     $saes         =  new \SaeStorage();        //创建SaeStorage对象
-    //     $STU          = D('StudentInfo');
-    //     $HOMEWORK     = M('student_homework');
-
-    //     /*=====================定义初始变量====================*/
-    //     $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-    //     $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
-    //     // $homeworkname   = I('homeworkname');
-    //     $cond         = array('openId' => $openId);
-    //     $stuInfo      = $STU->where($cond)->find();
-    //     $picIdArray   = I('id');
-    //     $ACCESS_TOKEN = $weixin->getAccessToken();
-    //     $domain       = 'public';
-    //     // $dir          = './homework/homework'.session('homeworkname').'/'; 
-    //     $dir          = './homework/homework'.'1'.'/';
-
-
-    //     $filenameFix  = mt_rand(10000000,99999999).$homeworkname.'_';//  图片命名前缀：网络1401班李俊君1400150108.jpg;
-
-
-    //     /*======================构造数据上传数组===================================*/
-    //     $homeworkInfo = array(
-    //         'openId'  => $openId,
-    //         'name'    => $stuInfo['name'],
-    //         'number'  => $stuInfo['number'],
-    //         'class'   => $stuInfo['class'],
-    //         'homeworkname' => $homeworkname,
-    //         'correcter' => '未批改',
-    //         'time'    => date('Y-m-d H:i:s',time()),
-    //         );
-
-    //     $picUrl   = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token='.$ACCESS_TOKEN.'&media_id='.$picIdArray[0];
-    //     // p($picUrl);
-    //     $this->ajaxReturn($picUrl);
-
-    //     /*======================循环写入Storage===================================*/
-    //     foreach ($picIdArray as $key => $value) {
-    //         $picUrl   = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token='.$ACCESS_TOKEN.'&media_id='.$picIdArray[$key];
-            
-    //         $filename = $filenameFix.($key+1).'.jpg';//设置保存在domain中的文件名
-    //         $ch       = curl_init($picUrl);
-    //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true) ; //curl_exec执行成功则返回执行结果
-    //         curl_setopt($ch, CURLOPT_BINARYTRANSFER, true) ; //在启用CURLOPT_RETURNTRANSFER的时候，返回原生的（Raw）输出。
-    //         $output   = curl_exec($ch) ;
-    //         curl_close($ch);
-    //         $url = $saes->write( $domain , $dir.$filename , $output );//将数据写入到Storage domain并返回存储在domain中此文件的url
-    //         $stuInfoArrayKey = 'pic'.($key+1).'Url';
-    //         $homeworkInfo[$stuInfoArrayKey] = $dir.$filename;
-    //     }
-
-    //     /*======================存入数据库==========================================*/
-    //     $HOMEWORK->add($homeworkInfo);
-    // }
-
     public function homeworkmark()
     {
         /*======================在别人表中标记是自己批改的===========================*/
