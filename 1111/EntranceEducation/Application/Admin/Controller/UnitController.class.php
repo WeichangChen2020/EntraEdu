@@ -102,7 +102,7 @@ class UnitController extends CommonController {
         $mpdf=new \mPDF('zh-cn','A4', 0, '宋体', 0, 0);
         //html内容
         $html='<h1><a name="top"></a>一个PDF文件</h1>';
-        $html.='<img src="http://testroom-upload.stor.sinaapp.com/2018-01-03/1d73a8d688491f2c.jpg">';
+        $html.='<img src="http://classtest-public.stor.sinaapp.com/2018-01-03/1d73a8d688491f2c.jpg">';
         $mpdf->WriteHTML($html);
         $mpdf->Output();
         exit;
@@ -246,7 +246,7 @@ class UnitController extends CommonController {
 
                 /*================将图片上传至domain===============*/
                 $config = array(    
-                    'rootPath'   =>    './Upload/', // 设置附件上传目录// 上传文件 
+                    'rootPath'   =>    './upload/', // 设置附件上传目录// 上传文件 
                     'savePath'   =>    '',  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
@@ -265,10 +265,11 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => I('chapter'),
                                 'type' => 1,
-                                'contents' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
+                                'contents' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
-                                'time' => date('Y-m-d H:i:s'),
+                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                //'time' => date('Y-m-d H:i:s'),
+                                'time' =>I('chapter'),
                             );
                         }
                     }else{
@@ -276,10 +277,11 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                  'chapter' => I('chapter'),
                                 'type' => 1,
-                                'questionPicPath' => 'http://testroom-upload.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
+                                'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'time' => date('Y-m-d H:i:s'),
-                                );
+                                // 'time' => date('Y-m-d H:i:s'),
+                                'time' =>I('chapter'),
+                            );
                         }
                     }
 
@@ -434,7 +436,7 @@ class UnitController extends CommonController {
             $info   =   $upload->upload();
 			if(!$info)  $this->error($upload->getErrorMsg());
             
-            $file_name =  'http://testroom-upload.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+            $file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
            
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 
@@ -478,7 +480,7 @@ class UnitController extends CommonController {
      * $file_name  文件路径
      */
     public function import_exl($name){
-        $file_name= 'http://testroom-upload.stor.sinaapp.com/excel/5a47884661a67.xlsx';
+        $file_name= 'http://classtest-public.stor.sinaapp.com/excel/5a47884661a67.xlsx';
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
