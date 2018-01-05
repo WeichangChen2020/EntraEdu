@@ -267,7 +267,7 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => I('chapter'),
                                 'type' => 1,
-                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'$info[$i]['savename'],
+                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 //'time' => date('Y-m-d H:i:s'),
