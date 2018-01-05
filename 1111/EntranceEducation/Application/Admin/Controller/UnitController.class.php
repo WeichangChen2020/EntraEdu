@@ -255,8 +255,8 @@ class UnitController extends CommonController {
                 );
                 $upload = new \Think\Upload($config);// 实例化上传类
                 $info   = $upload->upload();
-                // p($info);
-                // die;
+                p($info);
+                die;
                 if ($info === false) {
                     $this->error($upload->getError());
                 }else{
