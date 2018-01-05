@@ -247,7 +247,7 @@ class UnitController extends CommonController {
                 /*================将图片上传至domain===============*/
                 $config = array(    
                     'rootPath'   =>    './upload/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    'http://classtest-public.stor.sinaapp.com/upload/',  
+                    'savePath'   =>    '',  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
@@ -255,8 +255,8 @@ class UnitController extends CommonController {
                 );
                 $upload = new \Think\Upload($config);// 实例化上传类
                 $info   = $upload->upload();
-                p($info);
-                die;
+                // p($info);
+                // die;
                 if ($info === false) {
                     $this->error($upload->getError());
                 }else{
@@ -270,7 +270,7 @@ class UnitController extends CommonController {
                                 'type' => 4,
                                 'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$chapter.$info[$i+1]['savename'],
                                 'time' => date('Y-m-d H:i:s'),                                
                             );
                         }
