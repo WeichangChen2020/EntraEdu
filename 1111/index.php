@@ -148,7 +148,7 @@ class wechatCallbackapiTest
                 }
 
         }else {
-        	echo "";
+        	// echo "";
         	// exit;
         }
 
