@@ -149,7 +149,7 @@ class wechatCallbackapiTest
 
         }else {
         	echo "";
-        	exit;
+        	// exit;
         }
 
     }
