@@ -107,7 +107,11 @@ class wechatCallbackapiTest
 						echo $resultStr;
 					}
 					else {
-						// echo "欢迎关注计算机网络在线教学平台！";
+						$msgType = "text";
+						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
+						$contentStr = "发送'?'试试";
+						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						echo $resultStr;
 					}
                 }else{
                 	// echo "Input something...";
