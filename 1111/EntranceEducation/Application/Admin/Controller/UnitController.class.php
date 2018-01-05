@@ -255,8 +255,8 @@ class UnitController extends CommonController {
                 );
                 $upload = new \Think\Upload($config);// 实例化上传类
                 $info   =   $upload->upload();
-                p($info);
-                die;
+                // p($info);
+                // die;
                 if ($info === false) {
                     $this->error($upload->getError());
                 }else{
@@ -267,9 +267,9 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => I('chapter'),
                                 'type' => 1,
-                                'contents' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['savename'],
+                                'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
+                                'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
                                 //'time' => date('Y-m-d H:i:s'),
                                 'time' =>I('chapter'),
                             );
@@ -279,7 +279,7 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                  'chapter' => I('chapter'),
                                 'type' => 1,
-                                'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/'.$info[$i]['savepath'].$info[$i]['name'],
+                                'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 // 'time' => date('Y-m-d H:i:s'),
                                 'time' =>I('chapter'),
