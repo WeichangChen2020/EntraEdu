@@ -83,7 +83,7 @@ class MarkController extends Controller{
     //教师端->积分管理->积分权重->设置权重
     public function setMarkWeight(){
         $weight = I();
-        // p($weight);die;
+        p($weight);
         $openId=session('openId');
         $WEIGHT = M('student_mark_weight');
         $weight['openId'] = session('openId');
@@ -93,10 +93,10 @@ class MarkController extends Controller{
         // p($weight);die;
         if($WEIGHT->where(array('openId'=>$openId))->find()){
             $WEIGHT->where(array('openId'=>$openId))->save($weight);
-            $this->success('修改成绩权重成功',U('Teacher/index'));
+            $this->success('修改成绩权重成功',U('markWeight'));
         }else{
             $WEIGHT->add($weight);
-            $this->success('设置成绩权重成功',U('Teacher/index'));
+            $this->success('设置成绩权重成功',U('markWeight'));
             //$this->error('修改成绩权重失败');
         }
     }
