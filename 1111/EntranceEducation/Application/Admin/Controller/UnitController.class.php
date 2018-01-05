@@ -266,23 +266,23 @@ class UnitController extends CommonController {
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
                                 'chapter' => I('chapter'),
-                                'type' => 1,
+                                'type' => 4,
                                 'contents' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
                                 'right_answer' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i+count($info)/2]['savepath'].$info[$i+count($info)/2]['savename'],
-                                //'time' => date('Y-m-d H:i:s'),
-                                'time' =>I('chapter'),
+                                'time' => date('Y-m-d H:i:s'),
+                                
                             );
                         }
                     }else{
                         for($i = 0 ; $i < $numQuestionPic ; $i++){
                             $uploadExercise[$i] = array(
-                                 'chapter' => I('chapter'),
-                                'type' => 1,
+                                'chapter' => I('chapter'),
+                                'type' => 4,
                                 'questionPicPath' => 'http://classtest-public.stor.sinaapp.com/upload/'.$info[$i]['savepath'].$info[$i]['name'],
                                 'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                // 'time' => date('Y-m-d H:i:s'),
-                                'time' =>I('chapter'),
+                                'time' => date('Y-m-d H:i:s'),
+                                
                             );
                         }
                     }
