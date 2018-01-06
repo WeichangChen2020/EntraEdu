@@ -13,7 +13,7 @@ class CommonController extends Controller
         $member = D('teacher_info');
         $arr = $member->where("name = '%s'", $_SESSION['username'])->find();
         
-        $isAdminer = ( $_SESSION['username'] == $list['管理账户名'])? true:false;
+        $isAdminer = ( $_SESSION['username'] ==  $list[2]['value'])? true:false;
         if ($_SESSION['username'] == "" || $arr == null || !$isAdminer) {
             $this->error('请登录！', U('Login/index'), 3);
         }
