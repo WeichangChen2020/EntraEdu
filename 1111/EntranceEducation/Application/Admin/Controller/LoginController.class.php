@@ -23,9 +23,9 @@ class LoginController extends Controller
        	 $list = $Profile->select();
         
         if ($result || ($username == $list[2]['value'] && $password == $list[3]['value'])) {
-            $_SESSION['username'] = $result['name'];
-            $_SESSION['nickname'] = $result['name'];
-            $_SESSION['type'] = $result['type'];
+            $_SESSION['username'] =  $username;
+            $_SESSION['nickname'] = $password;
+            $_SESSION['type'] = ($result)? $result['type']:1;
             $this->success('登陆成功', U('Index/index'), 3);
         } else {  
             $this->error('登陆失败');
