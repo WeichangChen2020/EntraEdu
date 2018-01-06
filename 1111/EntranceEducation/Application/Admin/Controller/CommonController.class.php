@@ -14,7 +14,7 @@ class CommonController extends Controller
         $arr = $member->where("name = '%s'", $_SESSION['username'])->find();
         
         $isAdminer = ( $_SESSION['username'] ==  $list[2]['value'])? true:false;
-        if ($_SESSION['username'] == "" || $arr == null || !$isAdminer) {
+        if ($_SESSION['username'] == "" || ($arr == null && !$isAdminer)) {
             $this->error('请登录！', U('Login/index'), 3);
         }
         
