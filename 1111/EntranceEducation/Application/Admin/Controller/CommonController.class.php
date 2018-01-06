@@ -11,7 +11,7 @@ class CommonController extends Controller
        
         
         $member = D('teacher_info');
-        $arr = $member->where("username = '%s'", $_SESSION['username'])->find();
+        $arr = $member->where("name = '%s'", $_SESSION['username'])->find();
         if ($_SESSION['username'] == "" || $arr == null) {
             $this->error('请登录！', U('Login/index'), 3);
         }
