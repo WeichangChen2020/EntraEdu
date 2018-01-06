@@ -22,7 +22,7 @@ class LoginController extends Controller
          $Profile = M('Profile');
        	 $list = $Profile->select();
         
-        if ($result || ($username == $list[3]['value'] && $password == $list[4]['value'])) {
+        if ($result || ($username == $list[2]['value'] && $password == $list[3]['value'])) {
             $_SESSION['username'] = $result['name'];
             $_SESSION['nickname'] = $result['name'];
             $_SESSION['type'] = $result['type'];
