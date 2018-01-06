@@ -6,7 +6,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-         $Profile = M('Profile');
+        $Profile = M('Profile');
         $list = $Profile->select();
         $this->assign('attributes',$list);
         $this->display();
@@ -16,8 +16,8 @@ class LoginController extends Controller
     {
         $username = I('post.username');
         $password = I('post.password');
-        $member = D('adminer');
-        $result = $member->where("username='%s' AND password='%s'", $username, $password)->find();
+        $member = D('teacher_info');
+        $result = $member->where("name='%s' AND password='%s'", $username, $password)->find();
         if ($result) {
             $_SESSION['username'] = $result['username'];
             $_SESSION['nickname'] = $result['nickname'];
