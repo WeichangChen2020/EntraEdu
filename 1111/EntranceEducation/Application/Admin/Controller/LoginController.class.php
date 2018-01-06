@@ -18,12 +18,16 @@ class LoginController extends Controller
         $password = I('post.password');
         $member = D('teacher_info');
         $result = $member->where("name='%s' AND password='%s'", $username, $password)->find();
-        if ($result) {
+        
+         $Profile = M('Profile');
+       	 $list = $Profile->select();
+        
+        if ($result || ($username == $list['管理账户名'] && $password == $list['管理密码'])) {
             $_SESSION['username'] = $result['name'];
             $_SESSION['nickname'] = $result['name'];
             $_SESSION['type'] = $result['type'];
             $this->success('登陆成功', U('Index/index'), 3);
-        } else {
+        } else {  
             $this->error('登陆失败');
         }
     }
