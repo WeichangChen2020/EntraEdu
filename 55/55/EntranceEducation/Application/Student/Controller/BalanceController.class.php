@@ -69,7 +69,7 @@ class BalanceController extends Controller{
 			'http://55.testroom.sinaapp.com/EntranceEducation/index.php/User/index/openId/'.$openid,
 		);
 
-
+		// dump($openid);die;
 		// 不存在说明没注册
 		if (!isset($stu_id)) {
 			header("location: http://55.testtest11.sinaapp.com/EntranceEducation/index.php/User/index/openId/".$openid);

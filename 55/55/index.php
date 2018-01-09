@@ -65,18 +65,18 @@ public function responseMsg()
         if(!empty($keyword)) {
             if( $keyword == "?" || $keyword == "？" || $keyword == "帮助" || $keyword == "菜单") { 
                 $msgType = "text";
-                $contentStr = "发送1：<a href=\"http://55.testtest11.sinaapp.com/EntranceEducation/index.php/User/index/openId/".$fromUsername."\">毛概在线练习</a>\n发送?：平台使用菜单";        
+                $contentStr = "发送1：<a href=\"http://55.testtest11.sinaapp.com/EntranceEducation/index.php/Balance/balance/openid/".$fromUsername."\">毛概在线练习</a>\n发送?：平台使用菜单";        
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 //  echo $resultstr;//输出
                 echo $resultStr;
             } else if($keyword == '1') {
                 $msgType = "text";
-                $contentStr = "<a href=\"http://55.testtest11.sinaapp.com/EntranceEducation/index.php/User/index/openId/".$fromUsername."\">毛概在线练习</a>";
+                $contentStr = "<a href=\"http://55.testtest11.sinaapp.com/EntranceEducation/index.php/Balance/balance/openid/".$fromUsername."\">毛概在线练习</a>";
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             } else if($keyword == 'test') {
                 $msgType = "text";
-                $contentStr = "http://55.testtest11.sinaapp.com/EntranceEducation/index.php/User/index/openId/".$fromUsername;
+                $contentStr = "http://55.testtest11.sinaapp.com/EntranceEducation/index.php/Balance/balance/openid/".$fromUsername;
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             }
