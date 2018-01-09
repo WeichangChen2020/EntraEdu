@@ -1,0 +1,58 @@
+<!-- 试题列表 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <include file="./Public/html/_head.html"/>
+    <style>
+        .cell_top{margin-top:0px;}
+        .quesId{display:none;}
+    </style>
+  </head>
+
+  <body ontouchstart>
+    <include file="./Public/html/_refresh.html"/>
+    <header class='demos-header'>
+      <h1 class="demos-title">选择试题</h1>
+    </header>
+    <volist name="result" id="result" empty="没有试题信息息">
+      <div class="weui_cells weui_cells_form cell_top">
+        <div class="weui_cell weui_cell_switch">
+          <div class="weui_cell_hd weui_cell_primary">{$i}.</div>
+          <div class="weui_cell_ft">
+              <input class="weui_switch" type="checkbox" >
+              <div class="quesId">{$result.id}</div>
+          </div>
+        </div>
+        <div class="weui_cell weui_article" style="padding:0px 15px;">
+          <img src="http://testet-public.stor.sinaapp.com{$result.questionPicPath|str_replace='/Public','',###}{$result.questionPicName}" alt="">
+        </div>
+      </div>
+    </volist>
+    <div style="position:fixed;bottom:30px;right:16px">
+      <a class="weui_btn weui_btn_primary weui_btn_mini" href="javascript:" id="submit">确定<span id="number"></spna></a>
+    </div>  
+    
+  </body>
+</html>
+<include file="./Public/html/_foot.html"/>
+<include file="./Public/html/_refreshJs.html"/>
+<script>
+$("input[type='checkbox']").click(function() {
+    var num = $(":checked").length;
+    $('#number').html(num);
+});
+$('#submit').click(function(){
+    if($('#number').html() == '' || $('#number').html() == 0) {
+      $.toptip('你没有选择试题','warning'); return false;
+    }
+    var quesId = '';
+    $(":checked").each(function(){
+      quesId += '_'+$(this).siblings('.quesId').html();
+    });
+    if(quesId === '')
+      $.toptip('你没有选择试题','warning');
+    else
+      window.location.href="{:U('test_assign')}/quesId/"+quesId;
+
+})
+</script>
