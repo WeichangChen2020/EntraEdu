@@ -296,7 +296,7 @@ class ClassController extends CommonController {
             $tmp['name'] =   $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
             $tmp['number'] = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
             $tmp['sex'] =   $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
-            $tmp['academy'] =   $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
+            $tmp['academy'] = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
             $tmp['class'] =  $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();          
             $data[]=$tmp;
         }
