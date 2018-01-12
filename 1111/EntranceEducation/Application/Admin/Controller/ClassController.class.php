@@ -62,10 +62,10 @@ class ClassController extends CommonController {
             }
 
             // 开始导入数据库
-            $Q = M("Questionbank");
-            $a=0;
-            $b=0;
+            $Q = M("StudentList");
+ 
             foreach($exl as $k=>$v){
+                $v['course'] = $course;
                 if (!$Q->add($v)) $this->error('添加失败');    
             }
             // 实例化数据
