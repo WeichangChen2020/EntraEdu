@@ -36,6 +36,8 @@ class ClassController extends CommonController {
             $data = array_map('trim', $data);  //trim去除多余回车
             $course = $data['class'];
             $teacher = $data['name'];
+            p($data);
+            return;
             if(strlen($course) >15) $this->error("课堂名过长");
             	  // 上传
             $upload = new \Think\Upload();// 实例化上传类
