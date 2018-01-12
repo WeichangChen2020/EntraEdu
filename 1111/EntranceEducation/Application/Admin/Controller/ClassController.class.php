@@ -85,7 +85,7 @@ class ClassController extends CommonController {
             //加入teacher_class表和teacher_info表
             $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
             if(!$openId){
-            
+            	$openId = $R->field('openId')->where( array("name"=> $teacher))->find();
             }
 	        if ($QUESTION->add(array(
             		"class" => $course,
