@@ -102,7 +102,7 @@ class ClassController extends CommonController {
             }
             
             $infos = $R->where( array("name"=> $teacher))->find();  
-            if(!info){
+            if(!infos){
             	$result = $R->add($openId);
                 if(!result) $this->error('添加失败');
             }
