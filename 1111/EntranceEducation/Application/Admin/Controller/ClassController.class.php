@@ -88,7 +88,7 @@ class ClassController extends CommonController {
 	        if ($QUESTION->add(array(
             		"class" => $course,
                 	"name" => $teacher,
-                	
+                	'openId'=> $openId
             	))){
                 
 	        	$this->success('添加成功',U('Class/index'));
