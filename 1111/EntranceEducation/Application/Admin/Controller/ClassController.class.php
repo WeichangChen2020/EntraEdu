@@ -20,8 +20,8 @@ class ClassController extends CommonController {
         $this->display();
     }
     public function testt(){
-         $Q = M("StudentList");
-   			$T=M('StudentInfo');
+         $Q = M("StudentInfo");
+   			$T=M('StudentList');
         $ops = $Q->select();
         foreach($ops as $k=>$v){
         	$result = $T->where("name ='".$v['name']."'")->save( array("openId" => $v['openId']));
