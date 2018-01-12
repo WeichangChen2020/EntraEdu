@@ -58,7 +58,7 @@ class ClassController extends CommonController {
 
             // 清理空数组
             foreach($exl as $k=>$v){
-                if(empty($v) || is_null($v['姓名']) || is_null($v['学号']) ){
+                if(empty($v) || is_null($v['name']) || is_null($v['number']) ){
                     unset($exl[$k]);
                 }
             };
