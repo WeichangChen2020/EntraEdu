@@ -24,7 +24,7 @@ class ClassController extends CommonController {
    			$T=M('StudentInfo');
         $ops = $Q->select();
         foreach($ops as $k=>$v){
-        	$result = $T->where("name=".$v['name'])->save( array("openId" => $v['openId']));
+        	$result = $T->where("name =".$v['name'])->save( array("openId" => $v['openId']));
             if(!$result) $this->error();
         }
        
