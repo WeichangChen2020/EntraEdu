@@ -26,7 +26,56 @@ class ClassController extends CommonController {
             $data = array_map('trim', $data);  //trim去除多余回车
             $course = $data['class'];
             $teahcer = $data['name'];
-            W
+            
+            	  // 上传
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   =    1048576 ;// 设置附件上传大小
+            $upload->exts      =     array('xls', 'xlsx', 'csv');// 设置附件上传类型
+            $upload->rootPath  =     './Upload/'; // 设置附件上传根目录
+            $upload->savePath  =     'excel/'; // 设置附件上传（子）目录
+            //$upload->subName   =     array('date', 'Ym');
+            $upload->subName   =     '';
+            // 上传文件  
+            $info   =   $upload->upload();
+			if(!$info)  $this->error($upload->getErrorMsg());
+            
+            $file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+           
+            $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
+
+            // 去掉第exl表格中第一行
+            unset($exl[0]);
+
+            // 清理空数组
+            foreach($exl as $k=>$v){
+                if(empty($v) || is_null($v['chapter']) || is_null($v['type']) || is_null($v['contents']) || is_null($v['right_answer'])){
+                    unset($exl[$k]);
+                }
+            };
+            // 重新排序
+            sort($exl);
+		
+            $count = count($exl);
+            // 检测表格导入成功后，是否有数据生成
+            if($count<1){
+                $this->error('未检测到有效数据');    
+            }
+
+            // 开始导入数据库
+            $Q = M("Questionbank");
+            $a=0;
+            $b=0;
+            foreach($exl as $k=>$v){
+                if (!$Q->add($v)) $this->error('添加失败');    
+            }
+            // 实例化数据
+            $this->assign('total',$total);
+
+            // 删除Excel文件
+            unlink($file_name);
+             $this->success('题目添加成功');
+            
+            
 	        if ($QUESTION->add($data)){
                 
 	        	$this->success('添加成功',U('Class/index'));
