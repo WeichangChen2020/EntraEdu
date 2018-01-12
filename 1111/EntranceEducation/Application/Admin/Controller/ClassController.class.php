@@ -188,7 +188,7 @@ class ClassController extends CommonController {
         $QUESTION = M('teacher_class');
         $course = $QUESTION->find($id);
         $QUESTION->where(array('id' => $id))->delete();
-        $LIST = M('studentList')->where(array("course"=>
+        $LIST = M('studentList')->where(array("course"=> $course['class'])->save(array("isDelete"=>1));
         $this->success('删除成功', U('Class/index'));
     }
 
