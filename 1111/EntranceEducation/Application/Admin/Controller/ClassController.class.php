@@ -24,8 +24,11 @@ class ClassController extends CommonController {
 	        $QUESTION = M('teacher_class');
 	        $data = I();
             $data = array_map('trim', $data);  //trim去除多余回车
-	        if ($QUESTION->add($data))
+            $course = $data['class'];
+	        if ($QUESTION->add($data)){
+                
 	        	$this->success('添加成功',U('Class/index'));
+            }
 	        else
 	        	$this->error('添加失败');
     	}else{
