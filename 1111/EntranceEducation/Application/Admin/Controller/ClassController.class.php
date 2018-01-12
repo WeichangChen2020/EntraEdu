@@ -78,9 +78,10 @@ class ClassController extends CommonController {
             foreach($exl as $k=>$v){
                 $v['course'] = $course;
                 $v['type']=0;
+                p($v);
                 if (!$Q->add($v)) $this->error('添加失败');    
             }
-
+			returnl
             // 删除Excel文件
             unlink($file_name);
             
