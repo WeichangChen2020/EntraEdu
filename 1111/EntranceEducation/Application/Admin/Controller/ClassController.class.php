@@ -140,7 +140,7 @@ class ClassController extends CommonController {
     	$Student = M('StudentList');
 		$Info = M('teacher_class');
         $data = $Info->field('class')->find($id);
-		$map['class'] = $data['course'];
+		$map['course'] = $data['class'];
         $map['isDelete'] = 0;
         $list = $Student->where($map)->page($_GET['p'].',20')->select();
         $count = $Student->where($map)->count();
