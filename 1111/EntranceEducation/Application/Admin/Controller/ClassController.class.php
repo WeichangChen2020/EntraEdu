@@ -190,7 +190,7 @@ class ClassController extends CommonController {
         $QUESTION->where(array('id' => $id))->delete();
         $LIST = M('studentList');
         if( is_null($course['class'])) $this->error('删除失败');
-        $res = $LIST->where(array("course"=> $course['class'])->save(array("isDelete"=>1));
+        $res = $LIST->where(array("course"=> $course['class']）)->save(array("isDelete"=>1));
         $this->success('删除成功', U('Class/index'));
     }
 
