@@ -93,6 +93,7 @@ class ClassController extends CommonController {
             $this->display();
         }
     }
+    
 	 public function addTeacher(){
     	if (IS_POST) {
 	        $QUESTION = M('adminer');
@@ -242,5 +243,37 @@ class ClassController extends CommonController {
 
         die;
         // 使用die是为了避免输出多余的模板html代码
+    }
+    /* 处理上传exl数据
+     * $file_name  文件路径
+     */
+    public function import_exl($name){
+        $file_name= 'http://classtest-public.stor.sinaapp.com/excel/5a47884661a67.xlsx';
+        vendor('PHPExcel');
+    	vendor('PHPExcel.IOFactory');
+    	vendor('PHPExcel.Reader.Excel5');
+        //$objReader = \PHPExcel_IOFactory::createReader('Excel5');
+        //$objPHPExcel = $objReader->load($file_name,$encode='utf-8');
+        $s=new \SaeStorage();
+        file_put_contents(SAE_TMP_PATH.'/upload.xlsx',$s->read('upload',$name));
+        
+        $objPHPExcel = \PHPExcel_IOFactory::load(SAE_TMP_PATH.'upload.xlsx',$encode='utf-8');
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow(); // 取得总行数
+        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
+        
+        for($i=1;$i<$highestRow+1;$i++){
+            $tmp['chapter'] =   $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
+            $tmp['type'] = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
+            $tmp['contents'] =   $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
+            $tmp['option_a'] =   $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
+            $tmp['option_b'] =  $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();    
+            $tmp['option_c'] =  $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getValue();    
+            $tmp['option_d'] =  $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getValue();  
+            $tmp['right_answer']  = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getValue(); 
+            $tmp['analysis']  = $objPHPExcel->getActiveSheet()->getCell('I'.$i)->getValue(); 
+            $data[]=$tmp;
+        }
+        return $data;    
     }
 }
