@@ -68,15 +68,18 @@ class ClassController extends CommonController {
                 $v['course'] = $course;
                 if (!$Q->add($v)) $this->error('添加失败');    
             }
-            // 实例化数据
-            $this->assign('total',$total);
 
             // 删除Excel文件
             unlink($file_name);
-             $this->success('题目添加成功');
             
+            //加入teacher_class表和teacher_info表
+            $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
             
-	        if ($QUESTION->add($data)){
+	        if ($QUESTION->add(array(
+            		"class" => $course,
+                	"name" => $teacher,
+                	
+            	))){
                 
 	        	$this->success('添加成功',U('Class/index'));
             }
