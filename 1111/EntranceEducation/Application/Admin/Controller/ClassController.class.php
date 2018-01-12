@@ -31,7 +31,7 @@ class ClassController extends CommonController {
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =    1048576 ;// 设置附件上传大小
             $upload->exts      =     array('xls', 'xlsx', 'csv');// 设置附件上传类型
-            $upload->rootPath  =     './Upload/'; // 设置附件上传根目录
+            $upload->rootPath  =     './upload/'; // 设置附件上传根目录
             $upload->savePath  =     'excel/'; // 设置附件上传（子）目录
             //$upload->subName   =     array('date', 'Ym');
             $upload->subName   =     '';
