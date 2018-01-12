@@ -90,7 +90,7 @@ class ClassController extends CommonController {
             	$openId = $R->where( array("name"=> $teacher))->find();              
             }
             
-            return;
+            
 	        if (!$QUESTION->add(array(
             		"class" => $course,
                 	"name" => $teacher,
