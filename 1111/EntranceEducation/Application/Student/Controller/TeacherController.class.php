@@ -138,6 +138,7 @@ class TeacherController extends Controller{
         $map['class'] = $data['teacherClass'];
         $map['dead_time'] = $data['deadtime'];
         $map['hpdead_time'] = $data['hpdeadtime'];
+        $map['class'] = $data['class'];
         $map['problem_id'] = session('quesId');
         $map['homeworkname'] = $data['homeworkName'];
         $res = $model->add($map);
