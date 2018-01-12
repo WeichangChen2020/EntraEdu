@@ -27,7 +27,7 @@ class ClassController extends CommonController {
         	$result = $T->where("name=".$v['name'])->save( array("openId" => $v['openId']));
             if(!$result) $this->error();
         }
-        p($openId);
+       
     }
 	 public function addClass(){
     	if (IS_POST) {
