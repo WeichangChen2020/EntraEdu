@@ -19,6 +19,10 @@ class ClassController extends CommonController {
         $this->assign('teacherList',$T);
         $this->display();
     }
+    public function testt(){
+         $Q = M("StudentList");
+    $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
+    }
 	 public function addClass(){
     	if (IS_POST) {
 	        $QUESTION = M('teacher_class');
