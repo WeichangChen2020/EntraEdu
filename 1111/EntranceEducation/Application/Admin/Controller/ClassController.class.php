@@ -50,7 +50,7 @@ class ClassController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             //$file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
-           
+           p($info[0]['savepath'].$info[0]['savename']);
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 
             // 去掉第exl表格中第一行
