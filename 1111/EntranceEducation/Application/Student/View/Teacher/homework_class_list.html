@@ -66,24 +66,24 @@
         var deadtime = $("#deadtime").val();
         var hpdeadtime = $("#hpdeadtime").val();
        
-        alert(teacherClass);
+        // alert(teacherClass);
 
-        // $.ajax({
-        //   cache:false,
-        //   type:"POST",
-        //   url:"{:U('homework_insert')}",
-        //   dataType:"json",
-        //   data:{
-        //     "homeworkName":"{$homeworkName}",
-        //     "teacherClass":teacherClass,
-        //     "deadtime":deadtime,
-        //     "hpdeadtime":hpdeadtime
-        //   },
+        $.ajax({
+          cache:false,
+          type:"POST",
+          url:"{:U('homework_insert')}",
+          dataType:"json",
+          data:{
+            "homeworkName":"{$homeworkName}",
+            "teacherClass":teacherClass,
+            "deadtime":deadtime,
+            "hpdeadtime":hpdeadtime
+          },
           
-        //   success:function(res){
-        //     window.location.href="{:U('index')}";
-        //   }
-        // });
+          success:function(res){
+            window.location.href="{:U('index')}";
+          }
+        });
 
       });
 
