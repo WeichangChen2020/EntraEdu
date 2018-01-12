@@ -83,22 +83,21 @@ class ClassController extends CommonController {
             unlink($file_name);
             
             //加入teacher_class表和teacher_info表
-            $R = M("TeacherInfo");
-            $flag = 1;
-            $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
+            $R = M("TeacherInfo");            
+            $openId = $Q->where( array("name"=> $teacher))->find();
             if(!$openId){
-            	$openId = $R->field('openId')->where( array("name"=> $teacher))->find();
-                $flag = 0;
+            	$openId = $R->where( array("name"=> $teacher))->find();              
             }
 	        if (!$QUESTION->add(array(
             		"class" => $course,
                 	"name" => $teacher,
-                	'openId'=> $openId
+                	'openId'=> $openId['openId']
             	))){
                 $this->error('添加失败');
 	        	
             }
             
+            $infos = 
             
 	        $this->success('添加成功',U('Class/index'));
 	        	
