@@ -16,7 +16,7 @@
         <div class="weui_cell_bd weui_cell_primary" id="homeworkName">
           {$homeworkName|default="课后作业"}
           
-          <select name="class">
+          <select name="class" id="sel">
             <option selected="" value="0">选择班级</option>
 
             <!-- <option value="1">1班</option>
@@ -62,28 +62,28 @@
 
 
         var homeworkName = $("#homeworkName").val();
-        var teacherClass = $(".weui-select").val();
+        var teacherClass = $("#sel").val();
         var deadtime = $("#deadtime").val();
         var hpdeadtime = $("#hpdeadtime").val();
        
-  
+        alert(teacherClass);
 
-        $.ajax({
-          cache:false,
-          type:"POST",
-          url:"{:U('homework_insert')}",
-          dataType:"json",
-          data:{
-            "homeworkName":"{$homeworkName}",
-            "teacherClass":teacherClass,
-            "deadtime":deadtime,
-            "hpdeadtime":hpdeadtime
-          },
+        // $.ajax({
+        //   cache:false,
+        //   type:"POST",
+        //   url:"{:U('homework_insert')}",
+        //   dataType:"json",
+        //   data:{
+        //     "homeworkName":"{$homeworkName}",
+        //     "teacherClass":teacherClass,
+        //     "deadtime":deadtime,
+        //     "hpdeadtime":hpdeadtime
+        //   },
           
-          success:function(res){
-            window.location.href="{:U('index')}";
-          }
-        });
+        //   success:function(res){
+        //     window.location.href="{:U('index')}";
+        //   }
+        // });
 
       });
 
