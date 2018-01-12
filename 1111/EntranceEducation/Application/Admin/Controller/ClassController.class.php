@@ -73,7 +73,7 @@ class ClassController extends CommonController {
 
             // 开始导入数据库
             $Q = M("StudentList");
- 			$R = M("TeacherInfo");
+ 			
             foreach($exl as $k=>$v){
                 $v['course'] = $course;
                 if (!$Q->add($v)) $this->error('添加失败');    
@@ -83,20 +83,24 @@ class ClassController extends CommonController {
             unlink($file_name);
             
             //加入teacher_class表和teacher_info表
+            $R = M("TeacherInfo");
+            $flag = 1;
             $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
             if(!$openId){
             	$openId = $R->field('openId')->where( array("name"=> $teacher))->find();
             }
-	        if ($QUESTION->add(array(
+	        if (!$QUESTION->add(array(
             		"class" => $course,
                 	"name" => $teacher,
                 	'openId'=> $openId
             	))){
-                
-	        	$this->success('添加成功',U('Class/index'));
+                $this->error('添加失败');
+	        	
             }
-	        else
-	        	$this->error('添加失败');
+            
+            
+	        $this->success('添加成功',U('Class/index'));
+	        	
     	}else{
             $Teacher = M('teacher_info');
             $teachers = $Teacher->field('name')->select();
