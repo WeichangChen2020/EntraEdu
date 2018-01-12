@@ -81,7 +81,7 @@ class ClassController extends CommonController {
                 p($v);
                 if (!$Q->add($v)) $this->error('添加失败');    
             }
-			returnl
+			return;
             // 删除Excel文件
             unlink($file_name);
             
