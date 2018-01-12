@@ -19,8 +19,7 @@
           <div class="weui_textarea">{$homework.content}</div>
           <form action="{:U('Qyh/upload')}" method="post" enctype="multipart/form-data">
             <volist name="outproblem" id="outproblem">
-              
-
+            
               <div class="weui_cell">
                 <span id="problem">{$i}</span>
               </div>
@@ -28,13 +27,13 @@
               <div class="weui_cell">
                 <img src="{$outproblem}">
               </div>  
-
               <div class="weui_cell">
-                <span>上传作业</span>&nbsp;&nbsp;&nbsp;
                 <input type="file" name="photo[]">
               </div>
               <input type="text" style="display:none" value="{$homework.homeworkname}" name="homeworkname">
             </volist>
+
+
             <button type="submit" class="weui_btn weui_btn_primary">提交</button>
           </form> 
 

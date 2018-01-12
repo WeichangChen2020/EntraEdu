@@ -74,6 +74,7 @@ class QyhController extends Controller
                 $map['imgurl']          = $imgurl;
                 $map['time']            = date("Y-m-d H:i:s",time());
                 $map['problemid']       = $quesarr[$key+1];
+                $map['homeworkoid']     = session('homeworkoid');
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }

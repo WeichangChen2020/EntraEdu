@@ -63,7 +63,7 @@
     if (data == '未提交') {
       alert('你还没提交作业，不能批改别人作业');
     }else{
-      window.location.href = '{:U('homeworkmark')}';
+    window.location.href = '{:U('homeworkmark')}'+'?id={$homeworkoid}';
     }
   });
   

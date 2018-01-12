@@ -13,34 +13,35 @@
   <else /> 
     <header class='demos-header'>
       <h1 class="demos-title">批改作业({$homeworkname})</h1>
-      <h2>左为同学答案，右为标准答案</h2>
+      <h2>上为标准答案，下为同学答案</h2>
     </header>
       
           <volist name="problem" id="data">
-            <div class="weui_cell">
-              <div style="float:left">
-              <img src="{$data.imgurl}">  
-               
-              </div>
-              <div>
-              <img src="{$data.right_answer}">
-              
-              </div style="float:right">
-              <div id="rad" value="2333">
-                <input type="radio" name="score{$i}" value="5" checked="checked" />5 
-                <input type="radio" name="score{$i}" value="4" />4
-                <input type="radio" name="score{$i}" value="3" />3
-                <input type="radio" name="score{$i}" value="2" />2
-                <input type="radio" name="score{$i}" value="1" />1
-                <input id="problemid{$i}" value="{$data}" style="display:none">
-              </div>
-                <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary">确定</a>
-            </div>
+            <div>
+                
+                  <img src="{$data.imgurl}">  
+                
+                <br>
+                
+                  <img src="{$data.right_answer}">                
+                
 
+                <div id="rad" value="2333">
+                  <input type="radio" name="score{$i}" value="5" checked="checked" />5 
+                  <input type="radio" name="score{$i}" value="4" />4
+                  <input type="radio" name="score{$i}" value="3" />3
+                  <input type="radio" name="score{$i}" value="2" />2
+                  <input type="radio" name="score{$i}" value="1" />1
+                  <input id="problemid{$i}" value="{$data}" style="display:none">
+                </div>
+                <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
+            </div>
+            <br>
           </volist>
   </empty> 
 
-  <a href="{:U('homeworkMenu')}?homeworkname={$homeworkname}&status=1" class="weui_btn weui_btn_primary">返回</a>    
+ <!--  <a href="{:U('homeworkMenu')}?homeworkname={$homeworkname}&status=1" class="weui_btn weui_btn_primary">返回</a> -->    
+ <a href="{:U('index')}" class="weui_btn weui_btn_primary">返回</a> 
           
             
 

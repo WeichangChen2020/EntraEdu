@@ -52,7 +52,7 @@ class HomeworkController extends Controller{
         //+++++++++++++++++++把是否提交和访问人数也加到数组里
         foreach ($homework as $key => $value) {
 
-            $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname']);
+            $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname'],$homework[$key]['id']);
             $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname']);
             if (strtotime($homework[$key]['dead_time']) > strtotime(date("Y-m-d H:i:s"))) {
                   $homework[$key]['status'] = 1;
@@ -65,19 +65,24 @@ class HomeworkController extends Controller{
                  
         }
         // var_dump($homework);die();
-        // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
+
+        // var_dump($homework);die();
         $this->assign('homework',$homework)->display();
 
 
 
     }
 
-    private function isSubmit($openId,$homeworkname){
-        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname))->select();
+    private function isSubmit($openId,$homeworkname,$id){
+        $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname,'homeworkoid' => $id))->select();
+        // var_dump($openId);
+        // var_dump($homeworkname);
+        // var_dump($id);
+        // var_dump($submitInfo);die();
         $donumber = sizeof($submitInfo);
         
-        $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname))->find();
+        $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
         $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
 
         if($donumber < $putnumber)
@@ -92,8 +97,8 @@ class HomeworkController extends Controller{
         }
             return $mark;
     }
-    private function isMark($name,$homeworkname){
-        $markInfo = M('student_homework')->where(array('correcter' => $name,'homeworkname' => $homeworkname))->select();
+    private function isMark($name,$homeworkname,$id){
+        $markInfo = M('student_homework')->where(array('correcter' => $name,'homeworkname' => $homeworkname,'homeworkoid'=>$id))->select();
         // var_dump($submitInfo);die();
         if(empty($markInfo))
         {
@@ -108,8 +113,8 @@ class HomeworkController extends Controller{
     }
 
     //提交人数,最好写在model里
-    private function getSubmitNum($homeworkname){
-        $number = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname))->select();
+    private function getSubmitNum($homeworkname,$id){
+        $number = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname ,'homeworkoid' => $id))->select();
         // var_dump($number);
         // echo "<pre>";
         // var_dump(sizeof($number));die();
@@ -127,21 +132,27 @@ class HomeworkController extends Controller{
 
         $status = I('get.status');
         $mark   = I('get.mark');
-        
+        $id     = I('get.id');
         if ($status == 0 && $mark == '未提交') {
             $this->error('已过提交时间，等死吧',U('index'));
         }
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
 // var_dump($myname);die();
-        $state  = $this->isSubmit($openId,$homeworkname);
-        $number = $this->getSubmitNum($homeworkname);
-        $state2 = $this->isMark($myname,$homeworkname);
+        $state  = $this->isSubmit($openId,$homeworkname,$id);
+        $number = $this->getSubmitNum($homeworkname,$id);
+        $state2 = $this->isMark($myname,$homeworkname,$id);
 
-
+        session('homeworkoid',$id);
         $this->assign('state',$state);
         $this->assign('state2',$state2);
-        // var_dump($state2);die();
+        $homeworkoid = $id;
+        // var_dump($state);
+        // var_dump($state2);
+        // var_dump($homeworkname);
+        // var_dump($number);
+        // die();
+        $this->assign('homeworkoid',$homeworkoid);
         $this->assign('homeworkname',$homeworkname);
         $this->assign('number',$number)->display();
     }
@@ -185,7 +196,10 @@ class HomeworkController extends Controller{
     {
         /*======================在别人表中标记是自己批改的===========================*/
       
-        
+        $id = I('get.id');
+        // var_dump($id);die();
+        session('homeworkoid',null);
+        session('homeworkoid',$id);
         // var_dump($state);die();
         $homeworkname             = session('homeworkname');
         $me = M('student_info')->where(array('openId'=>session('openId')))->find();
@@ -195,6 +209,8 @@ class HomeworkController extends Controller{
         // var_dump(session('openId'));die();
         // var_dump($homeworkname);die();
         $condi['homeworkname']    = $homeworkname;
+        $condi['homeworkoid']    = $id;
+
         $condi['openId']        = array('NEQ',session('openId'));
         // $condi['correcter']     = array('EQ','未批改');
         $condi['mark']          = "no";
@@ -202,10 +218,12 @@ class HomeworkController extends Controller{
         // var_dump($strange);die();
         $others = $strange[rand(0,sizeof($strange)-1)];
         $map['correcter'] = $myname;
+        $map['homeworkoid'] = $id;
         $map['correctTime'] = date('Y-m-d H:i:s',time());
         M('student_homework')->where(array('openId'=>$others['openId']))->save($map);
         /*======================查找别人此时的所有作业===========================*/
         $cond2['homeworkname']    = $homeworkname;
+        $cond2['homeworkoid']    = $id;
         $cond2['openId']        = $others['openId'];
         $cond2['correcter']     = array('EQ',$myname);
         $cond2['mark']          = "no";
@@ -230,20 +248,7 @@ class HomeworkController extends Controller{
             $answer = $image_questionbank->where(array('id' => $value))->find();
             array_push($right_answer,$answer);
         }
-        // var_dump($right_answer);die();
 
-
-
-
-
-        /*======================映射到模板===========================*/
-        // echo "<pre>";
-        // var_dump($problem);
-        // echo "<pre>";
-        // var_dump($right_answer);
-        // die();
-        
-        
 
         for ($key=0; $key < sizeof($problem); $key++) { 
            $problem[$key]['right_answer'] = $right_answer[$key]['right_answer'];
@@ -254,12 +259,10 @@ class HomeworkController extends Controller{
 
         $this->assign('problem',$problem);//别人的作业+正确答案url
         $this->assign('size',sizeof($problem));
-  
-
-
 
         $this->assign('me',$me);
         $this->assign('homeworkname',$homeworkname);
+
         // var_dump($problem);die();
         return $this->display();
     }
@@ -268,7 +271,7 @@ class HomeworkController extends Controller{
         $STU_HOMEWORK = M('student_homework');
 
         $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        
+        $id = session('homeworkoid');
         $homeworkname     = I('personWorkId');
         $mark           = I('mark');
         $personId       = I('personId');
@@ -278,16 +281,17 @@ class HomeworkController extends Controller{
             'mark'        => $mark,
 
             'correctTime' => date('Y-m-d H:i:s',time()));
-        $res = $STU_HOMEWORK->where(array('id' => $personWorkId,'openId' => $personId))->save($correctInfo);
+        $res = $STU_HOMEWORK->where(array('id' => $personWorkId,'openId' => $personId,'homeworkoid'=>$id))->save($correctInfo);
 
         
     }
     public function mark_score(){
         $data = I('post.');
+        $id = session('homeworkoid');
         $homeworkid = $data['homeworkid'];
         $score = $data['score'];
         $model = D('student_homework');
-        $res = $model->give_score($homeworkid,$score);
+        $res = $model->give_score($homeworkid,$score,$id);
         if ($res) {
             $this->ajaxReturn(true);
         } else {
@@ -299,12 +303,13 @@ class HomeworkController extends Controller{
     {
         $homeworkname = I('get.homework');
         $openId = session('openId');
+        $id = session('homeworkoid');
         // var_dump($homeworkname);
         // echo "<pre>";
         // var_dump($openId);
         // die();
         $model = M('student_homework');
-        $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId))->select();
+        $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId,'homeworkoid'=>$id))->select();
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 

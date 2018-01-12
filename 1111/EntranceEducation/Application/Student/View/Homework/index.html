@@ -14,13 +14,13 @@
         <volist name="homework" id="homework" empty="没有布置作业">
 
 
-            <a href="{:U('Homework/homeworkMenu')}?homeworkname={$homework.homeworkname}&status={$homework.status}&mark={$homework.isSubmit}" class="weui_media_box weui_media_appmsg">
+            <a href="{:U('Homework/homeworkMenu')}?homeworkname={$homework.homeworkname}&status={$homework.status}&mark={$homework.isSubmit}&id={$homework.id}" class="weui_media_box weui_media_appmsg">
               <div class="weui_media_bd">
                 <h4 class="weui_media_title">{$homework.homeworkname}</h4>
                 <p class="weui_media_desc">{$homework.content}</p>
               </div>
                <div class="weui_cell_ft alert">
-                  <if condition="$homework.isSubmit eq '未提交'"> 
+                  <if condition="$homework.isSubmit eq '未提交'">  
                     <if condition="$homework.status eq '1'">
                       <div><i class="weui_icon_warn"></i>你还未提交</div>
                     <else/>
