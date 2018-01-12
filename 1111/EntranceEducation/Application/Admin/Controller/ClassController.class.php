@@ -21,6 +21,7 @@ class ClassController extends CommonController {
     }
     public function testt(){
          $Q = M("StudentList");
+        $teacher = "赵容";
     $openId = $Q->field('openId')->where( array("name"=> $teacher))->find();
         p($openId);
     }
