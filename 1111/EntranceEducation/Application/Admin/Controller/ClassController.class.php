@@ -50,7 +50,7 @@ class ClassController extends CommonController {
 			if(!$info)  $this->error($upload->getErrorMsg());
             
             //$file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
-           p($info[0]['savepath'].$info[0]['savename']);
+          
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 
             // 去掉第exl表格中第一行
@@ -285,15 +285,11 @@ class ClassController extends CommonController {
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数
         
         for($i=1;$i<$highestRow+1;$i++){
-            $tmp['chapter'] =   $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
-            $tmp['type'] = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
-            $tmp['contents'] =   $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
-            $tmp['option_a'] =   $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
-            $tmp['option_b'] =  $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();    
-            $tmp['option_c'] =  $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getValue();    
-            $tmp['option_d'] =  $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getValue();  
-            $tmp['right_answer']  = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getValue(); 
-            $tmp['analysis']  = $objPHPExcel->getActiveSheet()->getCell('I'.$i)->getValue(); 
+            $tmp['name'] =   $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getValue();    
+            $tmp['number'] = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();    
+            $tmp['sex'] =   $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getValue();    
+            $tmp['academy'] =   $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getValue();    
+            $tmp['class'] =  $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getValue();          
             $data[]=$tmp;
         }
         return $data;    
