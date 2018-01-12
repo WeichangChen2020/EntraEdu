@@ -135,10 +135,10 @@ class TeacherController extends Controller{
         $model = M('homework_zg');
         // $class = $model->where('class="测试1601"')->find();
         // var_dump($class);die();
-        $map['class'] = $data['class'];
+        $map['class'] = $data['teacherClass'];
         $map['dead_time'] = $data['deadtime'];
         $map['hpdead_time'] = $data['hpdeadtime'];
-
+      
         $map['problem_id'] = session('quesId');
         $map['homeworkname'] = $data['homeworkName'];
         $res = $model->add($map);
