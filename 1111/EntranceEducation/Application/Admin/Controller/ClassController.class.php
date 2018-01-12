@@ -76,6 +76,7 @@ class ClassController extends CommonController {
  			
             foreach($exl as $k=>$v){
                 $v['course'] = $course;
+                $v['type']=0;
                 if (!$Q->add($v)) $this->error('添加失败');    
             }
 
