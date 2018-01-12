@@ -17,10 +17,13 @@
           {$homeworkName|default="课后作业"}
           
           <select name="class">
-      
-            <volist name="teacherClass" id="vo">
+            <option selected="" value="1">选择班级</option>
+
+            <option value="1">1班</option>
+            <option value="2">2班</option>
+            <!-- <volist name="teacherClass" id="vo">
               <option value="{$vo.class}">{$vo.class}</option>
-            </volist>
+            </volist> -->
 
 
           </select>
