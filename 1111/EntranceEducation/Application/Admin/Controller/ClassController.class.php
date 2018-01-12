@@ -271,7 +271,6 @@ class ClassController extends CommonController {
      * $file_name  文件路径
      */
     public function import_exl($name){
-        $file_name= 'http://classtest-public.stor.sinaapp.com/excel/5a47884661a67.xlsx';
         vendor('PHPExcel');
     	vendor('PHPExcel.IOFactory');
     	vendor('PHPExcel.Reader.Excel5');
