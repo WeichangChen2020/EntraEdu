@@ -49,7 +49,7 @@ class ClassController extends CommonController {
             $info   =   $upload->upload();
 			if(!$info)  $this->error($upload->getErrorMsg());
             
-            $file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+            //$file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
            
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 
