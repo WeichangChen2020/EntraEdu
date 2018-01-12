@@ -160,7 +160,7 @@ class ClassController extends CommonController {
             $data = array_map('trim', $data);  //trim去除多余回车
             // dump($data);
             if ($QUESTION->where(array('id' => $id))->save($data))
-	            $this->success('题目修改成功', U('Question/index'));
+	            $this->success('修改成功', U('Question/index'));
             else
             	$this->error('修改失败');
         } else {
