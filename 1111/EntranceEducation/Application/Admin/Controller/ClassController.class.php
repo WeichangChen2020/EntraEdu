@@ -29,9 +29,13 @@ class ClassController extends CommonController {
 	        else
 	        	$this->error('添加失败');
     	}else{
-            $Adminer = M('adminer');
-            $ads = $Adminer->field('nickname')->select();
-            $this->assign('adminerList',$ads);
+            $Teacher = M('teacher_info');
+            $teachers = $Teacher->field('name')->select();
+            
+            $Student = M('studentList');
+            $students = $Student->field('name')->select();
+            
+            $this->assign('adminerList',array_merge($teachers,$students));
             $this->display();
         }
     }
