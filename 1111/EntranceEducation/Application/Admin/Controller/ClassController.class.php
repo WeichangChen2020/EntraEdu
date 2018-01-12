@@ -22,6 +22,11 @@ class ClassController extends CommonController {
     public function testt(){
          $Q = M("StudentList");
    			$T=M('StudentInfo');
+        $ops = $Q->select();
+        foreach($ops as $k=>$v){
+        	$result = $T->where("name=".$v['name'])->save( array("openId" => $v['openId']));
+            if(!$result) $this->error();
+        }
         p($openId);
     }
 	 public function addClass(){
