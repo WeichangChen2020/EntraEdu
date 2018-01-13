@@ -69,7 +69,7 @@ class StatisController extends Controller
             $data = D('Exercise')->query($sql);
             $this->ajaxReturn($data);
         } else {
-            $start_time = $year . '-' . $mouth . '-' $day;
+            $start_time = $year . '-' . $mouth . '-' . $day;
             $end_time = $year . '-' . $mouth . '-' . ($day+1);
             $sql = "SELECT DATE_FORMAT(time,'%m-%d %h:%i') as 'date', COUNT(*) as 'ans_cnt' FROM `ee_exercise` where time >= '$start_time' AND time < '$end_time' group by year(time), month(time), day(time), hour(time)";
             echo $sql;
