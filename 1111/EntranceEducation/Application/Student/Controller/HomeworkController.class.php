@@ -222,9 +222,9 @@ class HomeworkController extends Controller{
         // var_dump($strange);die();
         $others = $strange[rand(0,sizeof($strange)-1)];
         $map['correcter'] = $myname;
-        $map['homeworkoid'] = $id;
+
         $map['correctTime'] = date('Y-m-d H:i:s',time());
-        M('student_homework')->where(array('openId'=>$others['openId']))->save($map);
+        M('student_homework')->where(array('openId'=>$others['openId'],'homeworkoid'=>$id))->save($map);
         /*======================查找别人此时的所有作业===========================*/
         $cond2['homeworkname']    = $homeworkname;
         $cond2['homeworkoid']    = $id;
@@ -236,7 +236,7 @@ class HomeworkController extends Controller{
         /*======================获取正确答案=====================================*/
         $homework_zg            =          M('homework_zg');
         $image_questionbank     =          M('image_questionbank');
-        $problem_id             =          $homework_zg->where(array('homeworkname' => $homeworkname))->find();
+        $problem_id             =          $homework_zg->where(array('homeworkname' => $homeworkname,'id'=>$id))->find();
         $problemarr             =          explode('_',$problem_id['problem_id']);
         $problemarr2            =          array();
         $right_answer           =          array();
