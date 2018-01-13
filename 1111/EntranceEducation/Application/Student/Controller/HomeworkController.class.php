@@ -171,7 +171,7 @@ class HomeworkController extends Controller{
         $questionbank = M('image_questionbank');
         $cond2 = array('homeworkname' => $homeworkname,'homeworkoid'=>session('homeworkoid'));
         $homework     = $HOMEWORK->where($cond2)->find();
-        // var_dump($homework);die();
+        var_dump($homework);die();
         $quesarr      = explode('_', $homework['problem_id']);
         // var_dump($quesarr);die();
         $outproblem   = array();
