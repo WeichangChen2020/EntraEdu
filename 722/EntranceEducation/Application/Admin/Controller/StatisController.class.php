@@ -63,7 +63,7 @@ class StatisController extends Controller
         //查月份的
         if ($day == -1) {
             $mouth = $_GET['mouth'] ? $_GET['mouth'] : 10;
-            if($mouth == ':id') $mouth = 12;
+            $this->ajaxReturn($mouth);
             $start_time = $year . '-' . $mouth;
             $end_time = $year . '-' . ($mouth+1);
             $sql = "SELECT DATE_FORMAT(time,'%Y-%m-%d' ) as 'date', COUNT(*) as 'ans_cnt' FROM `ee_exercise` where time >= '$start_time' AND time < '$end_time' group by year(time), month(time), day(time)";
