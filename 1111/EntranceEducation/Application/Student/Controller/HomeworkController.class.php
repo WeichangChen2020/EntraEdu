@@ -302,6 +302,7 @@ class HomeworkController extends Controller{
     public function homeworkview()
     {
         $homeworkname = I('get.homework');
+
         $openId = session('openId');
         $id = session('homeworkoid');
         // var_dump($homeworkname);
@@ -313,6 +314,7 @@ class HomeworkController extends Controller{
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 
+        
         return $this->display();
 
     }
