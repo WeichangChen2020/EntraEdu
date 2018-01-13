@@ -20,16 +20,6 @@ class QyhController extends Controller
 		
       	//上传图片的张数
         $keynum = (count(array_filter($_FILES['photo']['name'])));
-        // var_dump($keynum);die();
-        // $one = $stuInfo['number'].'_'.$homeworkId.'_'.'1';
-        // $two = $stuInfo['number'].'_'.$homeworkId.'_'.'2';
-        // $three = $stuInfo['number'].'_'.$homeworkId.'_'.'3';
-        // $four = $stuInfo['number'].'_'.$homeworkId.'_'.'4';
-        // $five = $stuInfo['number'].'_'.$homeworkId.'_'.'5';
-        // $six = $stuInfo['number'].'_'.$homeworkId.'_'.'6';
-        // // $name = array($one,$two,$three,$four,$five,$six);
-        
-
 
 		$STU          = D('StudentInfo');
         $HOMEWORK     = M('student_homework');
@@ -65,7 +55,7 @@ class QyhController extends Controller
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
-                $imgurl = 'http://testroom-public.stor.sinaapp.com/public/homework/'.$homeworkname.'/'.$file['savename'];
+                $imgurl = 'http://testroom-public.stor.sinaapp.com/homework/'.$homeworkname.'/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
                 $map['number']          = $stuInfo['number'];
@@ -80,7 +70,7 @@ class QyhController extends Controller
             }
 
             $homework_zg = M('homework_zg');
-            $map2 = array('homeworkname'=>$homeworkname,'homeworkoid'=>session('homeworkoid'));
+            $map2 = array('homeworkname'=>$homeworkname,'id'=>session('homeworkoid'));
             $c = $homework_zg->where($map2)->find();
             $c['submit'] += 1;
             $homework_zg->where($map2)->save($c);
