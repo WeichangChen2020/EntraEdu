@@ -164,7 +164,7 @@ class HomeworkController extends Controller{
         $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
         // var_dump($homeworkname);die();
         /*======================判断不可重复提交===================================*/
-        $cond = array('homeworkname' => $homeworkname,'openId' => $openId);
+        $cond = array('homeworkname' => $homeworkname,'openId' => $openId,'homeworkoid'=>session('homeworkoid'));
         if(M('student_homework')->where($cond)->find())
             $this->error('你已经提交过了，不可重复提交');
         $HOMEWORK     = M('homework_zg');
@@ -314,7 +314,7 @@ class HomeworkController extends Controller{
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 
-        
+
         return $this->display();
 
     }
