@@ -169,7 +169,8 @@ class HomeworkController extends Controller{
             $this->error('你已经提交过了，不可重复提交');
         $HOMEWORK     = M('homework_zg');
         $questionbank = M('image_questionbank');
-        $homework     = $HOMEWORK->where("homeworkname='$homeworkname'")->find();
+        $cond2 = array('homeworkname' => $homeworkname,'homeworkoid'=>session('homeworkoid'));
+        $homework     = $HOMEWORK->where($cond2)->find();
         // var_dump($homework);die();
         $quesarr      = explode('_', $homework['problem_id']);
         // var_dump($quesarr);die();
