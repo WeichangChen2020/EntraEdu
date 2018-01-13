@@ -19,21 +19,21 @@
           <volist name="problem" id="data">
             <div>
                 
-                  <img src="{$data.imgurl}">  
+                  <img src="{$data.imgurl}" style="display:block">  
                 
                 <br>
                 
-                  <img src="{$data.right_answer}">                
+                  <img src="{$data.right_answer}" style="display:block">                
                 
 
-                <div id="rad" value="2333">
+                <div id="rad" value="2333" style="display:inline">
                   <input type="radio" name="score{$i}" value="5" checked="checked" />5 
                   <input type="radio" name="score{$i}" value="4" />4
                   <input type="radio" name="score{$i}" value="3" />3
                   <input type="radio" name="score{$i}" value="2" />2
                   <input type="radio" name="score{$i}" value="1" />1
                   <input id="problemid{$i}" value="{$data}" style="display:none">
-                </div>
+                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
             </div>
             <br>
