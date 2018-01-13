@@ -59,19 +59,20 @@ class StatisController extends Controller
         $DAY = array();  //to do 赋值day有效值
         
         // to do  入参校验
-
+        $mouth = $_GET['mouth'] ? $_GET['mouth'] : 10;
+        
         //查月份的
         if ($day == -1) {
-            $mouth = $_GET['mouth'] ? $_GET['mouth'] : 10;
             $start_time = $year . '-' . $mouth;
-            $end_time = $year . '-' . ($mouth+1);
+            $end_time = $year . '-' . ($mouth+1);    
             $sql = "SELECT DATE_FORMAT(time,'%Y-%m-%d' ) as 'date', COUNT(*) as 'ans_cnt' FROM `ee_exercise` where time >= '$start_time' AND time < '$end_time' group by year(time), month(time), day(time)";
-            //echo $sql; die;
             $data = D('Exercise')->query($sql);
             $this->ajaxReturn($data);
         } else {
-            $start_time = strtotime($year . '-' . $mouth);
-            $end_time = strtotime($year . '-' . $mouth+1);
+            $start_time = $year . '-' . $mouth . '-' $day;
+            $end_time = $year . '-' . $mouth . '-' . ($day+1);
+            $sql = "SELECT DATE_FORMAT(time,'%m-%d %h:%i') as 'date', COUNT(*) as 'ans_cnt' FROM `ee_exercise` where time >= '$start_time' AND time < '$end_time' group by year(time), month(time), day(time), hour(time)";
+            echo $sql;
         }
         
         
