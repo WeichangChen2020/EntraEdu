@@ -39,5 +39,44 @@ class StatisController extends Controller
     }
 
 
+    // 时间跟答题量的可视化 
+        // 时间跟答题人数的可视化
+        // 时间 分为 具体到某个小时，某一天
+
+        // 学院跟答题量（正确量）可视化，
+        // 性别跟答题量（正确量）的可视化
+
+        // 日志分析系统
+    /**
+     * 可视化接口
+     * @param start 开始时间
+     * @param end   结束时间
+     * @param type    类型 day 看每一天的，hour 看每一个小时的
+     * @param result  结果 1 答题量 2 正确题数
+     */
+    public function data_v($mouth = 10, $day = -1) {
+        $year = 2017;
+        $MOUTH = array(10, 11, 12);
+        $DAY = array();  //to do 赋值day有效值
+        
+        // to do  入参校验
+
+
+        //查月份的
+        if ($day == -1) {
+            $start_time = strtotime($year . '-' . $mouth);
+            $end_time = strtotime($year . '-' . $mouth+1);
+            $map['time'] = array('between',array($start_time, $end_time));
+            $data = D('Exercise')->field('DATE_FORMAT(time,"%Y-%m-%d"),count(*)')->where($map)->group('year(time), month(time), day(time)');
+            $this->ajaxReturn($data);
+        } else {
+            $start_time = strtotime($year . '-' . $mouth);
+            $end_time = strtotime($year . '-' . $mouth+1);
+        }
+        
+        
+
+    }
+
    
 }
