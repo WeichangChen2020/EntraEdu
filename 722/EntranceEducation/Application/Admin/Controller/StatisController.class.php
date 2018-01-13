@@ -63,7 +63,7 @@ class StatisController extends Controller
         //查月份的
         if ($day == -1) {
             $mouth = $_GET['mouth'] ? $_GET['mouth'] : 10;
-            //$this->ajaxReturn(array('a'=>'s', 'v'=>$mouth));
+            $this->ajaxReturn([{"date":"2017-12-01","ans_cnt":"246291"},{"date":"2017-12-02","ans_cnt":"360403"},{"date":"2017-12-03","ans_cnt":"246363"},{"date":"2017-12-04","ans_cnt":"10015"},{"date":"2017-12-05","ans_cnt":"8672"},{"date":"2017-12-06","ans_cnt":"3354"},{"date":"2017-12-07","ans_cnt":"5966"},{"date":"2017-12-08","ans_cnt":"4155"},{"date":"2017-12-09","ans_cnt":"5984"},{"date":"2017-12-10","ans_cnt":"6311"},{"date":"2017-12-11","ans_cnt":"2"},{"date":"2017-12-13","ans_cnt":"11"},{"date":"2017-12-14","ans_cnt":"120"},{"date":"2017-12-15","ans_cnt":"1"},{"date":"2017-12-17","ans_cnt":"3"},{"date":"2017-12-19","ans_cnt":"3"},{"date":"2017-12-21","ans_cnt":"1"},{"date":"2017-12-24","ans_cnt":"2"}]);
             $start_time = $year . '-' . $mouth;
             $end_time = $year . '-' . ($mouth+1);
             $sql = "SELECT DATE_FORMAT(time,'%Y-%m-%d' ) as 'date', COUNT(*) as 'ans_cnt' FROM `ee_exercise` where time >= '$start_time' AND time < '$end_time' group by year(time), month(time), day(time)";
