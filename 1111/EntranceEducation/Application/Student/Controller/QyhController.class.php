@@ -78,10 +78,12 @@ class QyhController extends Controller
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }
+
             $homework_zg = M('homework_zg');
-            $c = $homework_zg->where("homeworkname='$homeworkname'")->find();
+            $map2 = array('homeworkname'=>$homeworkname,'homeworkoid'=>session('homeworkoid'));
+            $c = $homework_zg->where($map2)->find();
             $c['submit'] += 1;
-            $homework_zg->where("homeworkname='$homeworkname'")->save($c);
+            $homework_zg->where($map2)->save($c);
 
 
 
