@@ -67,7 +67,8 @@ class StatisController extends Controller
             $start_time = strtotime($year . '-' . $mouth);
             $end_time = strtotime($year . '-' . $mouth+1);
             $map['time'] = array('between',array($start_time, $end_time));
-            $data = D('Exercise')->field('DATE_FORMAT(time,"%Y-%m-%d"),count(*)')->where($map)->group('year(time), month(time), day(time)');
+            $sql = 'SELECT DATE_FORMAT(time,"%Y-%m-%d" ) as '日期', COUNT(*) as '答题量' FROM `ee_exercise` where time < '2017-10-31'group by year(time), month(time), day(time)';
+            $data = D('Exercise')->query($sql);
             $this->ajaxReturn($data);
         } else {
             $start_time = strtotime($year . '-' . $mouth);
