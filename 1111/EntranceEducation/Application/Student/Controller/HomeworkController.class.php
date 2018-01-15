@@ -67,7 +67,7 @@ class HomeworkController extends Controller{
         // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
 
-        var_dump($homework);die();
+        // var_dump($homework);die();
         $this->assign('homework',$homework)->display();
 
 
@@ -81,7 +81,7 @@ class HomeworkController extends Controller{
         // var_dump($id);
         // var_dump($submitInfo);die();
         $donumber = sizeof($submitInfo);
-        
+
         $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
         $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
 
@@ -91,7 +91,7 @@ class HomeworkController extends Controller{
         }
         $mark = 0;
         foreach ($submitInfo as $key => $value) {
-            if($value['correcter'] == '未批改')
+            if($value['correcter'] == '未批改' && $value['mark'] == 'no')
                 return '未批改';
             $mark += $value['mark'];
         }
@@ -128,11 +128,16 @@ class HomeworkController extends Controller{
         $homeworkname = I('homeworkname')?I('homeworkname'):$this->error('你访问的界面不存在');
         session('homeworkname',null);
         session('homeworkname',$homeworkname);
+        
         // var_dump(session('homeworkname'));die();
 
         $status = I('get.status');
         $mark   = I('get.mark');
         $id     = I('get.id');
+        session('homeworkoid',null);
+        session('homeworkoid',$id);
+        $id = session('homeworkoid');
+        // var_dump($id);die();
         if ($status == 0 && $mark == '未提交') {
             $this->error('已过提交时间，等死吧',U('index'));
         }
@@ -142,8 +147,7 @@ class HomeworkController extends Controller{
         $state  = $this->isSubmit($openId,$homeworkname,$id);
         $number = $this->getSubmitNum($homeworkname,$id);
         $state2 = $this->isMark($myname,$homeworkname,$id);
-        session('homeworkoid',null);
-        session('homeworkoid',$id);
+        
         $this->assign('state',$state);
         $this->assign('state2',$state2);
         $homeworkoid = $id;
@@ -162,16 +166,17 @@ class HomeworkController extends Controller{
 
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
+        $homeworkoid = session('homeworkoid');
         // var_dump($homeworkname);die();
         /*======================判断不可重复提交===================================*/
-        $cond = array('homeworkname' => $homeworkname,'openId' => $openId,'homeworkoid'=>session('homeworkoid'));
+        $cond = array('homeworkname' => $homeworkname,'openId' => $openId,'homeworkoid'=>$homeworkoid);
         if(M('student_homework')->where($cond)->find())
             $this->error('你已经提交过了，不可重复提交');
         $HOMEWORK     = M('homework_zg');
         $questionbank = M('image_questionbank');
         // var_dump(session('homeworkoid'));die();
 
-        $cond2 = array('homeworkname' => $homeworkname,'id'=>session('homeworkoid'));
+        $cond2 = array('homeworkname' => $homeworkname,'id'=>$homeworkoid);
 
         $homework     = $HOMEWORK->where($cond2)->find();
         // var_dump($homework);die();
