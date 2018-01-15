@@ -53,7 +53,7 @@ class HomeworkController extends Controller{
         foreach ($homework as $key => $value) {
 
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname'],$homework[$key]['id']);
-            $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname']);
+            $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname'],$homework[$key]['id']);
             if (strtotime($homework[$key]['dead_time']) > strtotime(date("Y-m-d H:i:s"))) {
                   $homework[$key]['status'] = 1;
                   // var_dump($homework[$key]);die();
@@ -67,7 +67,7 @@ class HomeworkController extends Controller{
         // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
 
-        // var_dump($homework);die();
+        var_dump($homework);die();
         $this->assign('homework',$homework)->display();
 
 
