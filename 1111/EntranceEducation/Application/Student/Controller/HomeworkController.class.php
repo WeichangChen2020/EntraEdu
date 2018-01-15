@@ -84,13 +84,19 @@ class HomeworkController extends Controller{
 
         $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
         $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
-        // var_dump($donumber);
-        // var_dump($putnumber);
-        // die();
+        var_dump($homeworkname);
+        var_dump($id);
+        var_dump($donumber);
+        var_dump($putnumber);
+
         if($donumber < $putnumber)
         {
+            var_dump('未提交');
+            die();
             return '未提交';
         }
+        var_dump('已提交');
+        die();
         $mark = 0;
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改' && $value['mark'] == 'no')
