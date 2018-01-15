@@ -100,7 +100,9 @@ class HomeworkController extends Controller{
         $mark = 0;
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改' || $value['mark'] == 'no')
+            {
                 return '未批改';
+            }
 
             $mark += $value['mark'];
         }
