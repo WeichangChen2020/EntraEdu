@@ -35,22 +35,48 @@
         <a class="weui_cell" href="{:U('homework_list_correct')}" id="pigai">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <p>批改作业</p>
+            <p>批改未批改作业</p>
           </div>
           <div class="weui_cell_ft"><span class="demos-badge demos-badge-red">{$correcNumber|default='0'}</span></div>
         </a>
-        <a class="weui_cell" href="{:U('homework_list_view')}" id="liulan">
+
+        <a class="weui_cell" href="{:U('homework_list_correct')}" id="pigai">
+          <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>批改申诉作业</p>
+          </div>
+          <div class="weui_cell_ft"><span class="demos-badge demos-badge-red">{$correcNumber|default='0'}</span></div>
+        </a>
+
+        <a class="weui_cell" id="liulan">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_search_bar.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <p>浏览作业</p>
+            <p>浏览作业(选择班级)</p>
           </div>
           <div class="weui_cell_ft"></div>
         </a>
+
+
+
+        <div style="display:none" id="cla">
+          <volist name="teacherClass" id="vo">
+            <a class="weui_cell" id="liulan" href="{:U('homework_list_view')}?class={$vo['class']}">
+              <div class="weui_cell_hd"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                <p>{$vo['class']}</p>
+              </div>
+              <div class="weui_cell_ft"></div>
+            </a>
+          </volist>
+        </div>
+        
+
+
       </div>
     </div>
 
     
-    <div style="display:none" id="chuti">
+    <!-- <div style="display:none" id="chuti">
 
       <a class="weui_cell">
         <div class="weui_cell_hd">
@@ -73,7 +99,7 @@
         <a class="weui_cell" href="#" id="zx">自选出题</a>
       </div>
 
-    </div>
+    </div> -->
 
     <!-- <div id="half" class='weui-popup-container popup-bottom'>
       <div class="weui-popup-modal">
@@ -188,13 +214,24 @@
   });
 
 
+    var i =0;
+
+    $("#liulan").click(function(event){
+      
+      if (i%2 == 0) {
+        $("#cla").attr('style','display:display');
+        console.log('开');
+        i++;
+      }else{
+        $("#cla").attr('style','display:none');
+        console.log('关');
+        i++;
+      }
+      
+    });
 
 
-  // $(document).on("open", ".weui-popup-modal", function() {
-  //         console.log("open popup");
-  //       }).on("close", ".weui-popup-modal", function() {
-  //         console.log("close popup");
-  //       });
 
+  // });
 
 </script>

@@ -46,8 +46,13 @@ class TeacherController extends Controller{
         $openId = getOpenId();
         session('openId',$openId);
 
-        $correcNumber = $this->getHomeCorrNum();
-        $this->assign('correcNumber',$correcNumber)->display();
+        $openId =  session('openId');
+        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        $this->assign('teacherClass',$teacherClass)->display();
+
+        // $correcNumber = $this->getHomeCorrNum();
+        // var_dump($correcNumber);die();
+        // $this->assign('correcNumber',$correcNumber)->display();
     }
 
     //获取教师端作业待批改量
@@ -68,15 +73,6 @@ class TeacherController extends Controller{
     }
     
 
-       
-            //输出所有章节，里面包含此章节的所有题目
-            // $chapternumber = M('homework_zg')->field('chapter')->group('chapter')->count();
-           
-            
-           
-            // for ($i=1; $i < $chapternumber+1; $i++) { 
-            //     $chapterproblem = M('homework_zg')->where('chapter="$i"')->select();
-            // $this->assign('chapterproblem',$chapterproblem);
 
     public function homework_assign_zg(){
             $this->display();        
@@ -117,12 +113,9 @@ class TeacherController extends Controller{
     }
 
     public function homework_class_list(){
-        $openId =  session('openId');
-        // echo $openId;die();
-        $quesId = I('quesId');
-        session('quesId',$quesId);
-        // var_dump($quesId);die();
-        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        $class = I('get.class');
+        
+        $teacherClass = M('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
         $this->assign('homeworkName',date("m月d日课后作业",time()));
         $this->assign('teacherClass',$teacherClass)->display();
@@ -148,6 +141,8 @@ class TeacherController extends Controller{
         // var_dump($problem);die();
         // $map['problem_id'] = 
     }
+
+
           
     
             
@@ -234,13 +229,12 @@ class TeacherController extends Controller{
 
     //浏览已批改作业列表
     public function homework_list_view(){
-        $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $homework = M('teacher_homework')->order('time desc')->select();
-
-        foreach ($homework as $key => $value) {
-            $homework[$key]['ViewNum'] = $this->getHomeViewNum($homework[$key]['id']);
-        }
-        $this->assign('homework',$homework)->display();
+        $class = I('get.class');
+        
+        $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
+        $this->assign('homework',$homework);
+        // var_dump($homework);die();
+        $this->display();
     }
 
     //获取教师端作业浏览量
@@ -251,16 +245,12 @@ class TeacherController extends Controller{
 
     //批改作业
     public function homework_view(){
-        $STU_HOMEWORK = M('student_homework');
-        $weixin       = new WeichatController();
-        // $signPackage  = $weixin->getJssdkPackage(); 
-        // $this->assign('signPackage',$signPackage);
-
-        $homeworkId   = I('homeworkId') ? I('homeworkId') : $this->error('你访问的界面不存在');
-        $cond         = array('homeworkId' => $homeworkId);
-        // $map['correcter']  = array('NEQ','未批改');  //已批改查询条件
-        $homeworkList = $STU_HOMEWORK->where($cond)->select();
-        $this->assign('homeworkList',$homeworkList)->display();
+        $homeworkoid = I('get.id');
+        
+        $homework = M('student_homework')->where(array('homeworkoid'=>$homeworkoid))->order("homeworkoid desc")->select();
+        $this->assign('homeworkList',$homework);
+        // var_dump($homework);die();
+        $this->display();
     }
 
 

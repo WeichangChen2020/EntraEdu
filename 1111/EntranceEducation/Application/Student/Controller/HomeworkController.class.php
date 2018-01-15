@@ -69,9 +69,6 @@ class HomeworkController extends Controller{
 
         // var_dump($homework);die();
         $this->assign('homework',$homework)->display();
-
-
-
     }
 
     private function isSubmit($openId,$homeworkname,$id){
@@ -168,6 +165,7 @@ class HomeworkController extends Controller{
         // var_dump($number);
         // die();
         $this->assign('homeworkoid',$homeworkoid);
+        $this->assign('openId',$openId);
         $this->assign('homeworkname',$homeworkname);
         $this->assign('number',$number)->display();
     }
@@ -337,6 +335,11 @@ class HomeworkController extends Controller{
 
         return $this->display();
 
+    }
+
+    public function complain()
+    {
+        echo 2333333;
     }
 }
 

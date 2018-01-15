@@ -39,6 +39,13 @@
             </div>
           </a>
 
+          <a class="weui_cell" id="sshomework">
+            <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+            <div class="weui_cell_bd weui_cell_primary">
+              <p>作业申诉</p>
+            </div>
+          </a>
+
           
         
 
@@ -67,4 +74,27 @@
     }
   });
   
+
+
+  $("#sshomework").click(function(event){
+    $.modal({
+      title: "同学",
+      text: "你觉得别人批改的分数有问题要申诉么？",
+      buttons: [
+        { 
+          text: "是", onClick: function(){ 
+            window.location.href="{:U('Homework/complain')}?homework={$homeworkname}&id={$homeworkoid}&openId={$openId}";
+          } 
+        },
+        { 
+          text: "否", 
+          className: "default"
+        },
+      ]
+    });
+  });
+  
+
+
+
 </script>

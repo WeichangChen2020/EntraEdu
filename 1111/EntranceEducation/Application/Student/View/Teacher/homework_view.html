@@ -29,36 +29,11 @@
                 
                   <ul class="weui_uploader_files">
                     
-                    <notempty name="homeworkList.pic1Url">
-                      <!-- <a href="{$homeworkList.pic1Url}"> -->
-                     
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic1Url})"></li>
-                      <!-- </a> -->
-                     
-                    </notempty>
-                    <notempty name="homeworkList.pic2Url">
-                    <!-- <a href="{$homeworkList.pic2Url}"> -->
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic2Url})"></li>
-                    <!-- </a> -->
-                    </notempty>
-                    <notempty name="homeworkList.pic3Url">
-                    <!-- <a href="{$homeworkList.pic3Url}"> -->
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic3Url})"></li>
-                    <!-- </a> -->
-                    </notempty>
-                    <notempty name="homeworkList.pic4Url">
-                    <!-- <a href="{$homeworkList.pic4Url}"> -->
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic4Url})"></li>
-                    <!-- </a> -->
-                    </notempty>
-                    <notempty name="homeworkList.pic5Url">
-                    <!-- <a href="{$homeworkList.pic5Url}"> -->
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic5Url})"></li>
-                    <!-- </a> -->
-                    </notempty>
-                    <notempty name="homeworkList.pic6Url">
+                    
+                    
+                    <notempty name="homeworkList.imgurl">
                     <!-- <a href="{$homeworkList.pic6Url}"> -->
-                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.pic6Url})"></li>
+                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.imgurl})"></li>
                     </notempty>
                     <!-- </a> -->
                     
@@ -76,12 +51,8 @@
                 <script>
                     var tom{$key} = $.photoBrowser({
                           items: [
-                              "{$homeworkList.pic1Url}",
-                              "{$homeworkList.pic2Url}",
-                              "{$homeworkList.pic3Url}",
-                              "{$homeworkList.pic4Url}",
-                              "{$homeworkList.pic5Url}",
-                              "{$homeworkList.pic6Url}",
+                              "{$homeworkList.imgurl}",
+                              
                           ],
 
                           onSlideChange: function(index) {
@@ -105,38 +76,9 @@
                     <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(0px, 0px, 0px);">                                
                       <div class="swiper-slide swiper-slide-active">                  
                         <div class="photo-container">                    
-                          <img src="{$homeworkList.pic1Url}">                  
+                          <img src="{$homeworkList.imgurl}">                  
                         </div>                
                       </div>                                
-                      <div class="swiper-slide">                  
-                        <div class="photo-container">                    
-                          <img src="{$homeworkList.pic2Url}">                  
-                        </div>                
-                      </div>                                
-                      <div class="swiper-slide">                  
-                        <div class="photo-container">                    
-                          <img src="{$homeworkList.pic3Url}">                  
-                        </div>                
-                      </div>    
-
-
-                      <div class="swiper-slide">                  
-                        <div class="photo-container">                    
-                          <img src="{$homeworkList.pic4Url}">                  
-                        </div>                
-                      </div> 
-
-                      <div class="swiper-slide">                  
-                        <div class="photo-container">                    
-                          <img src="{$homeworkList.pic5Url}">                  
-                        </div>                
-                      </div> 
-
-                      <div class="swiper-slide">                  
-                        <div class="photo-container">                    
-                          <img src="{$homeworkList.pic6Url}">                  
-                        </div>                
-                      </div>    
                     </div>   
 
 
