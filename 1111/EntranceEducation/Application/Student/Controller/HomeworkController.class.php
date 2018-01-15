@@ -84,7 +84,9 @@ class HomeworkController extends Controller{
 
         $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
         $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
-
+        var_dump($donumber);
+        var_dump($putnumber);
+        die();
         if($donumber < $putnumber)
         {
             return '未提交';
