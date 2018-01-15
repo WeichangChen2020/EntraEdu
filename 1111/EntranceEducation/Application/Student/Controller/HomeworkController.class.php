@@ -339,7 +339,13 @@ class HomeworkController extends Controller{
 
     public function complain()
     {
-        echo 2333333;
+        
+        $homeworkoid = I('get.homeworkoid');
+        $openId = I('get.openId');
+
+        $homework = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->select();
+        var_dump($homework);
+        $this->assign('homework',$homework);
     }
 }
 
