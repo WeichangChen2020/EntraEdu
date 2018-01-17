@@ -125,7 +125,6 @@ class TeacherController extends Controller{
     
     public function homework_insert(){
         $data = I('post.');
-        var_dump($data);die;
         // var_dump(session('quesId'));die();
         $model = M('homework_zg');
         // $class = $model->where('class="测试1601"')->find();
@@ -231,7 +230,7 @@ class TeacherController extends Controller{
         $this->assign('signPackage',$signPackage);
 
         $homeworkId   = I('homeworkId') ? I('homeworkId') : $this->error('你访问的界面不存在');
-        //  
+
         $cond         = array('homeworkId' => $homeworkId,'correcter' => '未批改');
         $homeworkList = $STU_HOMEWORK->where($cond)->order('time desc')->select();
         $this->assign('homeworkList',$homeworkList)->display();
