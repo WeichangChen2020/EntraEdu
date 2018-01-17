@@ -209,7 +209,7 @@ class TeacherController extends Controller{
         $score = $data['score'];
 
 
-        $model = M('student_homework')
+        $model = M('student_homework');
 
         // 要修改的数据对象属性赋值
         $data['score'] = 'ThinkPHP';
