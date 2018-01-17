@@ -190,14 +190,38 @@ class TeacherController extends Controller{
 
     //批改作业列表
     public function homework_list_correct(){
-        $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-        $homework = M('teacher_homework')->order('time desc')->select();
+        $homework = M('student_homework')->where(array('complain'=>1))->order('time desc')->select();
+        $right = M('image_questionbank');
         foreach ($homework as $key => $value) {
-            $homework[$key]['correcNumber'] = $this->getHomeCorrNum($homework[$key]['id']);
+            $problem = $right->where(array('id'=>$value['problemid']))->find();
+            $homework['right_answer'] = $problem['right_answer'];
         }
+        
+
         $this->assign('homework',$homework)->display();
     }
 
+    public function mark_score(){
+        $data = I('post.');
+
+        $homeworkid = $data['homeworkid'];
+        
+        $score = $data['score'];
+
+
+        $model = M('student_homework')
+
+        // 要修改的数据对象属性赋值
+        $data['score'] = 'ThinkPHP';
+        $res = $model->where(array('id' => , $homeworkid))->save($data); // 根据条件更新记录
+        
+        if ($res) {
+            $this->ajaxReturn(true);
+        } else {
+            $this->ajaxReturn(false);
+        }
+    
+    }
     //批改作业
     public function homework_correct(){
         $STU_HOMEWORK = M('student_homework');

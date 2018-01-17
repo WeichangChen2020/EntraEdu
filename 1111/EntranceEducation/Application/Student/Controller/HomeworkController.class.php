@@ -342,10 +342,15 @@ class HomeworkController extends Controller{
         
         $homeworkoid = I('get.homeworkoid');
         $openId = I('get.openId');
+        $model = M('student_homework');
+        $homework = $model->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->select();
 
-        $homework = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->select();
-        var_dump($homework);
-        $this->assign('homework',$homework);
+        foreach ($homework as $key => $value) {
+            $data['complain'] = 1;
+            $User->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->save($data);
+        }
+
+        $this->redirect('index');
     }
 }
 
