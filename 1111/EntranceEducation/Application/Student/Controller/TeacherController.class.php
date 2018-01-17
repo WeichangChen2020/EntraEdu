@@ -213,7 +213,7 @@ class TeacherController extends Controller{
 
         // 要修改的数据对象属性赋值
         $data['score'] = 'ThinkPHP';
-        $res = $model->where(array('id' => , $homeworkid))->save($data); // 根据条件更新记录
+        $res = $model->where(array('id' => $homeworkid))->save($data); // 根据条件更新记录
         
         if ($res) {
             $this->ajaxReturn(true);
