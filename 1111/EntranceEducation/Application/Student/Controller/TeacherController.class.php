@@ -116,6 +116,7 @@ class TeacherController extends Controller{
         $openId =  session('openId');
         $class = I('get.class');
         $quesId = I('get.quesId');
+        session('quesId',null);
         session('quesId',$quesId);
         
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
