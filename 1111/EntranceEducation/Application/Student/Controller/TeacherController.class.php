@@ -124,8 +124,9 @@ class TeacherController extends Controller{
     }
     
     public function homework_insert(){
+        // var_dump(23333);die();
         $data = I('post.');
-        // var_dump(session('quesId'));die();
+        var_dump(session('quesId'));die();
         $model = M('homework_zg');
         // $class = $model->where('class="测试1601"')->find();
         // var_dump($class);die();
