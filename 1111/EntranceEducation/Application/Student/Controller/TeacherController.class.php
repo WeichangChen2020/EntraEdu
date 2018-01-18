@@ -428,8 +428,10 @@ class TeacherController extends Controller{
                 $numberResult[] = $result[$value];
             }
             //var_dump($numberResult);die;
+            $this->assign('random',1);
             $this->assign('quesItem',$numberResult)->display();
         }else{
+            $this->assign('random',0);
             $this->assign('quesItem',$result)->display();
         }
     }
