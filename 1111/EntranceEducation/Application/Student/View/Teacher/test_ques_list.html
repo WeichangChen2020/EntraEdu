@@ -111,22 +111,31 @@
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
 <script>
-$("input[type='checkbox']").click(function() {
+  var random = {$random}; 
+  if (random == 1) {
+    $("input[class='weui_switch']").attr("checked", true);
     var num = $(":checked").length;
     $('#number').html(num);
-});
-$('#submit').click(function(){
-    if($('#number').html() == '' || $('#number').html() == 0) {
-      $.toptip('你没有选择试题','warning'); return false;
-    }
-    var quesId = '';
-    $(":checked").each(function(){
-      quesId += '_'+$(this).siblings('.quesId').html();
-    });
-    if(quesId === '')
-      $.toptip('你没有选择试题','warning');
-    else
-      window.location.href="{:U('test_class_list')}/quesId/"+quesId;
+  };
 
-})
+  $("input[type='checkbox']").click(function() {
+      var num = $(":checked").length;
+      $('#number').html(num);
+  });
+
+  $('#submit').click(function(){
+      if($('#number').html() == '' || $('#number').html() == 0) {
+        $.toptip('你没有选择试题','warning'); return false;
+      }
+      var quesId = '';
+      $(":checked").each(function(){
+        quesId += '_'+$(this).siblings('.quesId').html();
+      });
+      if(quesId === '')
+        $.toptip('你没有选择试题','warning');
+      else
+        window.location.href="{:U('test_class_list')}/quesId/"+quesId;
+
+  })
+
 </script>
