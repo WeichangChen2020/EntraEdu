@@ -115,6 +115,8 @@ class TeacherController extends Controller{
     public function homework_class_list(){
         $openId =  session('openId');
         $class = I('get.class');
+        $quesId = I('get.quesId');
+        session('quesId',$quesId);
         
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
