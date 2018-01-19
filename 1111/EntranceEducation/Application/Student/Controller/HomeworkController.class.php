@@ -136,6 +136,7 @@ class HomeworkController extends Controller{
         $homeworkname = I('homeworkname')?I('homeworkname'):$this->error('你访问的界面不存在');
         session('homeworkname',null);
         session('homeworkname',$homeworkname);
+
         
         // var_dump(session('homeworkname'));die();
 
@@ -145,10 +146,18 @@ class HomeworkController extends Controller{
         session('homeworkoid',null);
         session('homeworkoid',$id);
         $id = session('homeworkoid');
+        
         // var_dump($id);die();
-        // if ($status == 0 && $mark == '未提交') {
-        //     $this->error('已过提交时间，等死吧',U('index'));
-        // }
+        $time = M('homework_zg')->where(array('id'=>13))->getField("hpdead_time");
+        $now = date();
+        $time = strtotime($time);
+        if ($time>$now) {
+            $hp = 1;
+        }else{
+            $hp = 0;
+        }
+
+
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
 // var_dump($myname);die();
@@ -160,6 +169,7 @@ class HomeworkController extends Controller{
         $this->assign('status',$status);
         $this->assign('mark',$mark);
         $this->assign('state2',$state2);
+        $this->assign('hp',$hp);
         $homeworkoid = $id;
         // var_dump($state);
         // var_dump($state2);
