@@ -13,23 +13,25 @@
   <else /> 
     <header class='demos-header'>
       <h1 class="demos-title">批改申诉作业</h1>
-      <h2>上为标准答案，下为同学答案</h2>
+      <h2 style="text-align:center">上为标准答案，下为同学答案</h2>
     </header>
       
           <volist name="homework" id="data">
             <div>
-                <img src="{$data.right_answer}" style="display:block"> 
+                <img src="{$data.right_answer}" style="display:block;width:100px;height:150px;margin: auto;">
                 <br>
-                <img src="{$data.imgurl}" style="display:block">  
-                <div id="rad" value="2333" style="display:inline">
-                  <input type="radio" name="score{$i}" value="5" checked="checked" />5 
-                  <input type="radio" name="score{$i}" value="4" />4
-                  <input type="radio" name="score{$i}" value="3" />3
-                  <input type="radio" name="score{$i}" value="2" />2
-                  <input type="radio" name="score{$i}" value="1" />1
-                  <input id="problemid{$i}" value="{$data}" style="display:none">
-                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
+                <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;">  
+                <div style="text-align:center;margin:auto;">
+                  <div id="rad" value="2333" style="display:inline">
+                    <input type="radio" name="score{$i}" value="5" checked="checked" />5 
+                    <input type="radio" name="score{$i}" value="4" />4
+                    <input type="radio" name="score{$i}" value="3" />3
+                    <input type="radio" name="score{$i}" value="2" />2
+                    <input type="radio" name="score{$i}" value="1" />1
+                    <input id="problemid{$i}" value="{$data}" style="display:none">
+                  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
+                </div>
             </div>
             <br>
           </volist>
