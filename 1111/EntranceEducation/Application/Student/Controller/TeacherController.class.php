@@ -542,7 +542,7 @@ class TeacherController extends Controller{
             $quiz = array(
                 'openid'   => $openId,
                 'name'     => $teaInfo['name']?$teaInfo['name']:'佚名',
-                'testName' => $value.'的'.trim(I('testName')),
+                'testName' => $value.'：'.trim(I('testName')),
                 // 'quizName' => trim(I('testName')),
                 'class'    => $value,
                 'state'    => '开启',
