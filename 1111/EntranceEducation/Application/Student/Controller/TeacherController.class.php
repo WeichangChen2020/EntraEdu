@@ -515,7 +515,7 @@ class TeacherController extends Controller{
         $assignArray['quesId']     = substr($quesId, 1);//从第2个开始截取
         $assignArray['banji']      = substr($banji, 1);
         //echo $assignArray['quesId'];
-        $assignArray['testName']   = date('Y年m月d日H:i:s',time());
+        $assignArray['testName']   = date('m月d日H:i:s',time());
         $assignArray['quesNumber'] = count(explode('_', substr($quesId, 1)));
         //var_dump($assignArray);
         
