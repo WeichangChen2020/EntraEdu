@@ -373,6 +373,7 @@ class HomeworkController extends Controller{
             $homework['right_answer'] = $problem['right_answer'];
         }
 
+        var_dump($homework);die();
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 
