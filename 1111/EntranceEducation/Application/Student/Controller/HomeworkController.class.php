@@ -86,12 +86,12 @@ class HomeworkController extends Controller{
         // var_dump($donumber);
         // var_dump($putnumber);
 
-        if($donumber < $putnumber)
-        {
-            // var_dump('未提交');
-            // die();
-            return '未提交';
-        }
+        // if($donumber < $putnumber)
+        // {
+        //     // var_dump('未提交');
+        //     // die();
+        //     return '未提交';
+        // }
         // var_dump('已提交');
         // die();
         $mark = 0;
@@ -373,7 +373,7 @@ class HomeworkController extends Controller{
 
         foreach ($homework as $key => $value) {
             $data['complain'] = 1;
-            $User->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->save($data);
+            $model->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->save($data);
         }
 
         $this->redirect('index');
