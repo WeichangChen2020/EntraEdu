@@ -21,11 +21,11 @@
                 <img src="{$data.right_answer}" style="display:block;margin: auto;"> 
                 <br>
                 
-                <if condition="{$data.imgurl} neq ''" >
+                <if condition="$data.imgurl neq ''" >
                   <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;"> 
                 </else>他没有提交该题
                 </if> 
-                
+
                 <div style="text-align:center;margin:auto;">
                   <div id="rad" value="2333" style="display:inline">
                     <input type="radio" name="score{$i}" value="5" checked="checked" />5 
