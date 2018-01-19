@@ -366,11 +366,31 @@ class HomeworkController extends Controller{
         // die();
         $model = M('student_homework');
         $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId,'homeworkoid'=>$id))->select();
+
+        $right = M('image_questionbank');
+        foreach ($homework as $key => $value) {
+            $problem = $right->where(array('id'=>$value['problemid']))->find();
+            $homework['right_answer'] = $problem['right_answer'];
+        }
+
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 
 
         return $this->display();
+
+
+
+
+
+
+
+        
+        
+        
+        
+
+        $this->assign('homework',$homework)->display();
 
     }
 
