@@ -36,6 +36,7 @@ class TestController extends Controller{
         foreach ($testList as $key => $value) {
             $testList[$key]['isSubmit']  = $TESTSUBMIT->isSubmit($openId,$testList[$key]['id']);
             $testList[$key]['submitNum'] = $TESTSUBMIT->getSubmitNum($testList[$key]['id']);
+            $testList[$key]['rightNum'] = $TESTSUBMIT->getRightNum($openId,$testList[$key]['id']);
         }
 
         // p($testList);
