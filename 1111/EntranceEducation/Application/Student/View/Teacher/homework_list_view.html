@@ -15,10 +15,20 @@
         <volist name="homework" id="homework" empty="没有作业可供浏览">
             <a href="{:U('homework_view')}?id={$homework.id}" class="weui_media_box weui_media_appmsg">
               <div class="weui_media_bd">
+
                 <h4 class="weui_media_title">{$homework.homeworkname}</h4>
-                
+                <p class="weui_media_desc"></p>
               </div>
-            </a>            
+                  
+                <div class="weui_cell_ft alert">
+   
+                    <div><i class="weui_icon_info"></i>已提交：{$homework.submit}/总人数：{$sum}</div>
+                </div>
+                
+            </a>        
+
+           
+
         </volist>
       </div>
     </div>

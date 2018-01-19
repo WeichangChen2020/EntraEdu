@@ -130,7 +130,8 @@ class TeacherController extends Controller{
             $name = date("m月d日",time());
         }else
         {
-            $name = date("m月d日".$homeworkzg+1,time());
+            $homeworkzg++;
+            $name = date("m月d日第".$homeworkzg."次作业",time());
         }
         $this->assign('homeworkName',$name);
         $this->assign('teacherClass',$teacherClass)->display();
@@ -151,7 +152,9 @@ class TeacherController extends Controller{
             $name = date("m月d日",time());
         }else
         {
-            $name = date("m月d日".$homeworkzg+1,time());
+            $homeworkzg++;
+            $name = date("m月d日第".$homeworkzg."次作业",time());
+            // var_dump($name);die();
         }
 
 
@@ -303,7 +306,9 @@ class TeacherController extends Controller{
         $class = I('get.class');
         
         $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
+        $sum = M('student_info')->where("class='$class'")->count();
         $this->assign('homework',$homework);
+        $this->assign('sum',$sum);
         // var_dump($homework);die();
         $this->display();
     }
