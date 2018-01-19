@@ -87,10 +87,13 @@ class UserController extends Controller {
 		if($this->isRegister($openId)){
 
             $STU              = D('StudentInfo');
-            //$MARK           = D('StudentMark');
+            $MARK             = D('StudentMark');
+
             $con['openId']    = $openId;
             $stu_info         = $STU->where($con)->find();
-            // $stu_info['mark'] = $MARK->where($con)->getField('lastMark');  //把成绩也并入stu_info数组中
+            $stu_info['lastMark'] = $MARK->getLastMark($openId); //积分
+            $stu_info['ranking'] = $MARK->getRank($openId);//所在积分排名
+            $stu_info['stuNum'] = $STU->getStuNum($openId);//所在班级人数
 
             $weixin       = new WeichatController();
             $signPackage  = $weixin->getJssdkPackage();
