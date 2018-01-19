@@ -34,7 +34,8 @@ class StudentMarkModel extends Model {
     			$rankMark=array_keys($rankList,$value);
     		}
     	}
-    	return $rankMark[0];
+    	$ranking = $rankMark[0]+1;
+    	return $ranking;
     }
 
     /**
