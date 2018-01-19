@@ -3,7 +3,11 @@
 <head>
   <include file="./Public/html/_head.html"/>
 </head>
-
+<style type="text/css">
+  span{
+    text-align: center;
+  }
+</style>
 
 <body ontouchstart>
   
@@ -19,8 +23,12 @@
         <img src="{$vo['right_answer']}" style="display:block;margin: auto;">
         <br>
         <img src="{$vo.imgurl}" style="display:block;width:100px;height:150px;margin: auto;">
-        
-        
+        <br>
+        <if condition="$homework['mark']" neq ''>
+        <span>得分：{$homework['mark']}</span>
+        </else>
+        <span>未被批改</span>
+        </if>
       </div>
       <br>
       <br>
