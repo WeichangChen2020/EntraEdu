@@ -32,11 +32,12 @@ class TestController extends Controller{
         // p($testList);die;        
         //$testList = M('test_set_state')->where($map)->order('id desc')->select();
 
-        //是否提交、提交人数
+        //是否提交、提交人数、答对题数、总人数
         foreach ($testList as $key => $value) {
             $testList[$key]['isSubmit']  = $TESTSUBMIT->isSubmit($openId,$testList[$key]['id']);
             $testList[$key]['submitNum'] = $TESTSUBMIT->getSubmitNum($testList[$key]['id']);
             $testList[$key]['rightNum'] = $TESTSUBMIT->getRightNum($openId,$testList[$key]['id']);
+            $testList[$key]['stuNum'] = $STUINFO->getStuNum($openId);
         }
 
         // p($testList);
