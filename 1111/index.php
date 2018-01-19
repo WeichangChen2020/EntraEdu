@@ -46,6 +46,20 @@ class wechatCallbackapiTest
                 $keyword = trim($postObj->Content);
 
                 $ev = $postObj->Event;
+                //判断是否是教师
+				$mysql_database = "app_".$_SERVER['HTTP_APPNAME'];
+				$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
+				mysql_select_db("$mysql_database",$link);//选择数据库
+				mysql_query("set names 'utf-8'");
+				date_default_timezone_set("Asia/Shanghai");
+
+                $sql = "select * from cp_teacher_info where openId = '$fromUsername'";
+                $result=mysql_query($sql,$link);
+                if($result){
+                	$teacher = 1;
+                }else{
+                	$teacher = 0;
+                }
 
                 $time = time();
                 $textTpl = "<xml>
