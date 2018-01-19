@@ -121,10 +121,17 @@ class TeacherController extends Controller{
         
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
-        $map['create_time'] = array('like',date("m月d日",time()));
-        $homeworkzg = M('homework_zg')->where($map)->select();
-        var_dump($homeworkzg);die();
+        $word = date("m月d日",time());
 
+        $map['homeworkname'] = array('like',$word.'%');
+        $homeworkzg = M('homework_zg')->where($map)->count();
+        // var_dump($homeworkzg+2);die();
+        if ($homeworkzg == 0) {
+            $name = date("m月d日",time());
+        }else
+        {
+            $name = date("m月d日".$homeworkzg+1,time());
+        }
 
         $this->assign('homeworkName',date("m月d日",time()));
         $this->assign('teacherClass',$teacherClass)->display();
