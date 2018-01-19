@@ -372,8 +372,8 @@ class HomeworkController extends Controller{
             $problem = $right->where(array('id'=>$value['problemid']))->find();
             $homework[$key]['right_answer'] = $problem['right_answer'];
         }
-        echo "<pre>";
-        var_dump($homework);die();
+        // echo "<pre>";
+        // var_dump($homework);die();
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
 
