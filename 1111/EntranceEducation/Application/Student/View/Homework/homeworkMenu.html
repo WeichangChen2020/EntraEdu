@@ -12,7 +12,7 @@
 
     <div class="bd">
       <div class="weui_cells weui_cells_access">
-        <a class="weui_cell" href="{:U('Homework/homework')}">
+        <a class="weui_cell" href="{:U('Homework/homework')}?status={$status}&mark={$mark}">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
             <p>去完成作业</p>
@@ -29,6 +29,19 @@
             </div>
             <div class="weui_cell_ft"><if condition="$state2 eq '未批改'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
           </a>
+
+
+          <if condition="($status eq 0) AND ($mark eq '未提交') ">
+            <a class="weui_cell" id="hphomework" href="{:U('Homework/homework')}?bj=1">
+              <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                <p>补交作业</p>
+              </div>
+              <div class="weui_cell_ft"><if condition="$state2 eq '未批改'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
+            </a>
+          </if>
+
+        
 
 
           

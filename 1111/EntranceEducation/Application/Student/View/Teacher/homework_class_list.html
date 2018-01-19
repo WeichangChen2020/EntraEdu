@@ -45,7 +45,7 @@
 
       <div class="weui_cell">
         <div class="weui_cell_hd"><label for="" class="weui_label">是否允许补交</label></div>
-        
+        <input class="weui_switch" id="bj" type="checkbox" name="bj">
       </div>
 
       <div class="weui_btn_area">
@@ -70,8 +70,14 @@
         var teacherClass = $("#sel").val();
         var deadtime = $("#deadtime").val();
         var hpdeadtime = $("#hpdeadtime").val();
-       
-        // alert(teacherClass);
+        var bj;
+       if($('#bj').is(':checked')) {
+          bj = 1;
+        }else{
+          bj = 0;
+        }
+      
+        
 
         $.ajax({
           cache:false,
@@ -82,7 +88,8 @@
             "homeworkName":"{$homeworkName}",
             "teacherClass":teacherClass,
             "deadtime":deadtime,
-            "hpdeadtime":hpdeadtime
+            "hpdeadtime":hpdeadtime,
+            "bj":bj
           },
           
           success:function(res){

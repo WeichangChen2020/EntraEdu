@@ -146,9 +146,9 @@ class HomeworkController extends Controller{
         session('homeworkoid',$id);
         $id = session('homeworkoid');
         // var_dump($id);die();
-        if ($status == 0 && $mark == '未提交') {
-            $this->error('已过提交时间，等死吧',U('index'));
-        }
+        // if ($status == 0 && $mark == '未提交') {
+        //     $this->error('已过提交时间，等死吧',U('index'));
+        // }
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
 // var_dump($myname);die();
@@ -157,6 +157,8 @@ class HomeworkController extends Controller{
         $state2 = $this->isMark($myname,$homeworkname,$id);
         
         $this->assign('state',$state);
+        $this->assign('status',$status);
+        $this->assign('mark',$mark);
         $this->assign('state2',$state2);
         $homeworkoid = $id;
         // var_dump($state);
@@ -172,6 +174,15 @@ class HomeworkController extends Controller{
 
     //上传图片页面
     public function homework(){
+        $status = I('get.status');
+        $mark   = I('get.mark');
+        $bj     = I('get.bj');
+        if ($status == 0 && $mark == '未提交') {
+            $this->error('已过提交时间，等死吧',U('index'));
+        }
+
+
+
 
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
@@ -203,9 +214,14 @@ class HomeworkController extends Controller{
         // var_dump($outproblem);die();
         $this->assign('outproblem',$outproblem);//输出N和题目的url
         // var_dump($outproblem);die();
-        -
+        
         session('quesarr',$quesarr);
-
+        if ($bj == 1) {
+            $this->assign('bj',1);
+        }else
+        {
+            $this->assign('bj',0);
+        }
         // var_dump($outproblem);die();
         $this->assign('homework',$homework)->display();
     }

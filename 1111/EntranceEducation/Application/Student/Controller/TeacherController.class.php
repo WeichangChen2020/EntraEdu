@@ -129,6 +129,7 @@ class TeacherController extends Controller{
     public function homework_insert(){
         // var_dump(23333);die();
         $data = I('post.');
+
         // var_dump(session('quesId'));die();
         $model = M('homework_zg');
         // $class = $model->where('class="测试1601"')->find();
@@ -139,6 +140,7 @@ class TeacherController extends Controller{
       
         $map['problem_id'] = session('quesId');
         $map['homeworkname'] = $data['homeworkName'];
+        $map['bj'] = $data['bj'];
         $res = $model->add($map);
         // var_dump($res);
         $this->ajaxReturn();

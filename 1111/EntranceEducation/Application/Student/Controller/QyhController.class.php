@@ -17,6 +17,7 @@ class QyhController extends Controller
 
 	public function upload()
 	{
+        $bj = I('get.bj');
 		
       	//上传图片的张数
         $keynum = (count(array_filter($_FILES['photo']['name'])));
@@ -65,6 +66,7 @@ class QyhController extends Controller
                 $map['time']            = date("Y-m-d H:i:s",time());
                 $map['problemid']       = $quesarr[$key+1];
                 $map['homeworkoid']     = session('homeworkoid');
+                $map['bj']              = $bj;
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
             }
