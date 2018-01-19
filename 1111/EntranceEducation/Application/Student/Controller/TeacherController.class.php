@@ -122,8 +122,29 @@ class TeacherController extends Controller{
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
         $word = date("m月d日",time());
-
         $map['homeworkname'] = array('like',$word.'%');
+        $map['class'] = $data['teacherClass'];
+        $homeworkzg = M('homework_zg')->where($map)->count();
+        // var_dump($homeworkzg+2);die();
+        if ($homeworkzg == 0) {
+            $name = date("m月d日",time());
+        }else
+        {
+            $name = date("m月d日".$homeworkzg+1,time());
+        }
+        $this->assign('homeworkName',$name);
+        $this->assign('teacherClass',$teacherClass)->display();
+
+
+    }
+    
+    public function homework_insert(){
+        $data = I('post.');
+        $model = M('homework_zg');
+
+        $word = date("m月d日",time());
+        $map['homeworkname'] = array('like',$word.'%');
+        $map['class'] = $data['teacherClass'];
         $homeworkzg = M('homework_zg')->where($map)->count();
         // var_dump($homeworkzg+2);die();
         if ($homeworkzg == 0) {
@@ -133,25 +154,19 @@ class TeacherController extends Controller{
             $name = date("m月d日".$homeworkzg+1,time());
         }
 
-        $this->assign('homeworkName',date("m月d日",time()));
-        $this->assign('teacherClass',$teacherClass)->display();
 
-    }
-    
-    public function homework_insert(){
-        // var_dump(23333);die();
-        $data = I('post.');
 
-        // var_dump(session('quesId'));die();
-        $model = M('homework_zg');
-        // $class = $model->where('class="测试1601"')->find();
-        // var_dump($class);die();
+
+
+        $map['homeworkname'] = $name;
         $map['class'] = $data['teacherClass'];
         $map['dead_time'] = $data['deadtime'];
         $map['hpdead_time'] = $data['hpdeadtime'];
-      
         $map['problem_id'] = session('quesId');
-        $map['homeworkname'] = $data['homeworkName'];
+        
+
+
+
         $map['bj'] = $data['bj'];
         $res = $model->add($map);
         // var_dump($res);

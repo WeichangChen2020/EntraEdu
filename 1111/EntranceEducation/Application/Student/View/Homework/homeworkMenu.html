@@ -9,7 +9,8 @@
     <header class='demos-header'>
       <h1 class="demos-title">{$homeworkname}</h1>
     </header>
-
+    <div class="weui_cells_title">{$homework.homeworkname}(截止时间:{$homework.dead_time})</div>
+    <div class="weui_cells_title">互评截止时间:{$homework.hpdead_time}</div>
     <div class="bd">
       <div class="weui_cells weui_cells_access">
         <a class="weui_cell" href="{:U('Homework/homework')}?status={$status}&mark={$mark}">

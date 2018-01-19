@@ -146,9 +146,9 @@ class HomeworkController extends Controller{
         session('homeworkoid',null);
         session('homeworkoid',$id);
         $id = session('homeworkoid');
-        
+        $HOMEWORK = M('homework_zg');
         // var_dump($id);die();
-        $time = M('homework_zg')->where(array('id'=>13))->getField("hpdead_time");
+        $time = $HOMEWORK->where(array('id'=>13))->getField("hpdead_time");
         $now = date();
         $time = strtotime($time);
         if ($time>$now) {
@@ -157,6 +157,9 @@ class HomeworkController extends Controller{
             $hp = 0;
         }
 
+        $cond2 = array('homeworkname' => $homeworkname,'id'=>$id);
+
+        $homework     = $HOMEWORK->where($cond2)->find();
 
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
@@ -169,6 +172,7 @@ class HomeworkController extends Controller{
         $this->assign('status',$status);
         $this->assign('mark',$mark);
         $this->assign('state2',$state2);
+        $this->assign('homework',$homework);
         $this->assign('hp',$hp);
         $homeworkoid = $id;
         // var_dump($state);
