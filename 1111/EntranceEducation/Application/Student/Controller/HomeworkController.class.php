@@ -370,7 +370,7 @@ class HomeworkController extends Controller{
         $right = M('image_questionbank');
         foreach ($homework as $key => $value) {
             $problem = $right->where(array('id'=>$value['problemid']))->find();
-            $homework['right_answer'] = $problem['right_answer'];
+            $homework[$key]['right_answer'] = $problem['right_answer'];
         }
         echo "<pre>";
         var_dump($homework);die();
