@@ -194,9 +194,12 @@ class TeacherController extends Controller{
         $HOMEWORK->add($homework);
     }
 
-    //批改作业列表
+    //批改申诉作业列表
     public function homework_list_correct(){
-        $homework = M('student_homework')->where(array('complain'=>1))->order('time desc')->select();
+        $model = M('student_homework');
+        $model->correcter = '老师批改';
+        $model->where("complain=1")->save();
+        $homework = $model->where(array('complain'=>1))->order('time desc')->select();
         $right = M('image_questionbank');
         foreach ($homework as $key => $value) {
             $problem = $right->where(array('id'=>$value['problemid']))->find();
@@ -207,20 +210,30 @@ class TeacherController extends Controller{
         $this->assign('homework',$homework)->display();
     }
 
+    //批改未批改作业列表
+    public function homework_list_correct2(){
+        $model = M('student_homework');
+        $model->correcter = '老师批改';
+        $model->where("correcter='未批改'")->save();
+        $homework = $model->where(array('correcter'=>'未批改'))->order('time desc')->select();
+        $right = M('image_questionbank');
+        foreach ($homework as $key => $value) {
+            $problem = $right->where(array('id'=>$value['problemid']))->find();
+            $homework['right_answer'] = $problem['right_answer'];
+
+        }
+        
+
+        $this->assign('homework',$homework)->display();
+    }
+
     public function mark_score(){
         $data = I('post.');
-
+        $id = session('homeworkoid');
         $homeworkid = $data['homeworkid'];
-        
         $score = $data['score'];
-
-
-        $model = M('student_homework');
-
-        // 要修改的数据对象属性赋值
-        $data['score'] = 'ThinkPHP';
-        $res = $model->where(array('id' => $homeworkid))->save($data); // 根据条件更新记录
-        
+        $model = D('student_homework');
+        $res = $model->give_score($homeworkid,$score,$id);
         if ($res) {
             $this->ajaxReturn(true);
         } else {

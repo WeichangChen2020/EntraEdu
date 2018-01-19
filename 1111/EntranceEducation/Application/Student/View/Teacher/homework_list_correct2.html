@@ -7,25 +7,20 @@
 
   <body ontouchstart>
 
-  <empty name="problem">
-    <h1 class="demos-title">批改作业({$homeworkname})</h1>
+  <empty name="homework">
+    <h1 class="demos-title">批改未批改作业</h1>
     <h2 style="text-align:center">没有需要批改的作业</h2>
   <else /> 
     <header class='demos-header'>
-      <h1 class="demos-title">批改作业({$homeworkname})</h1>
-      <h2>上为标准答案，下为同学答案</h2>
+      <h1 class="demos-title">批改未批改作业</h1>
+      <h2 style="text-align:center">上为标准答案，下为同学答案</h2>
     </header>
       
-          <volist name="problem" id="data">
+          <volist name="homework" id="data">
             <div>
-                <img src="{$data.right_answer}" style="display:block;margin: auto;"> 
+                <img src="{$data.right_answer}" style="display:block;margin: auto;">
                 <br>
-                
-                <if condition="{$data.imgurl} neq ''" >
-                  <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;"> 
-                </else>他没有提交该题
-                </if> 
-                
+                <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;">  
                 <div style="text-align:center;margin:auto;">
                   <div id="rad" value="2333" style="display:inline">
                     <input type="radio" name="score{$i}" value="5" checked="checked" />5 
