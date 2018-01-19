@@ -18,7 +18,7 @@
             </div>
             <div class="weui_cell_ft alert">
                 <div><if condition="$testList.state eq '开启'"><i class="weui_icon_success_circle"></i>状态:开启<else /> <i class="weui_icon_warn"></i>状态:关闭</if></div>
-                <div><i class="weui_icon_info"></i>提交人数:{$testList.submitNum|default='0'}</div>
+                <div><i class="weui_icon_info"></i>提交人数:{$testList.submitNum|default='0'}/{$testList.stuNum}</div>
               </div>
           </a>  
         </volist>          
