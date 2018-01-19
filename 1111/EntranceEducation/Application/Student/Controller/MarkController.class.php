@@ -143,11 +143,19 @@ class MarkController extends Controller{
         $this->assign('markInfo',$markInfo)->display();
     }       
     
-    //教师端->积分管理->更新积分
+    //教师端->积分管理->更新积分（只更新该教师所带学生积分）
     public function update(){
-        // $openId=session('openId');
+        //根据教师id找到该教师所带的所有班级，通过循环把所带学生的openid存入数组
+        $openId=session('openId');//教师id
         // $classList = D('TeacherClass')->getTeacherClass($openId);
-        $STU  = M('student_info')->getField('openId', true); // 获取openId数组
+        $classList = M('teacher_class')->where(array('openId'=>$openId))->getField('class',true);
+        // p($classList);
+        $STU = array();
+        foreach ($classList as $key => $value) {
+            $stuidArr  = M('student_info')->where(array('class'=>$value))->getField('openId', true); // 获取openId数组
+            $STU = array_merge($STU,$stuidArr);
+        } 
+
         $MARK = M('student_mark');
         foreach ($STU as $value) {
             // p($value);
