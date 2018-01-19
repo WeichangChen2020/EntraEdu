@@ -102,7 +102,7 @@ class HomeworkController extends Controller{
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改' || $value['mark'] == 'no')
             {
-                var_dump('wpg');die();
+                
                 return '未批改';
             }
 
