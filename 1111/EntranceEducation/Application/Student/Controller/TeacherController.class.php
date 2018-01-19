@@ -612,8 +612,10 @@ class TeacherController extends Controller{
         $testList = M('test_set')->where($map)->order('time desc')->select();
         //$TEST = new TestController();
         $TEST = D('TestSubmit');
+        $STUINFO = D('StudentInfo');
         foreach ($testList as $key => $value) {
             $testList[$key]['submitNum'] = $TEST->getSubmitNum($testList[$key]['id']);
+            $testList[$key]['stuNum'] = $STUINFO->getStuNum($openId);
         }
         // p($testList);
         $this->assign('testList',$testList)->display();
