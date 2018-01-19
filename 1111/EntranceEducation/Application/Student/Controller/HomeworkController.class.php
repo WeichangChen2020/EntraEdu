@@ -73,10 +73,14 @@ class HomeworkController extends Controller{
 
     private function isSubmit($openId,$homeworkname,$id){
         $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname,'homeworkoid' => $id))->select();
+
         // var_dump($openId);
         // var_dump($homeworkname);
         // var_dump($id);
         // var_dump($submitInfo);die();
+        if(empty($submitInfo)){
+            return '未提交';
+        }
         $donumber = sizeof($submitInfo);
 
         $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
@@ -98,11 +102,13 @@ class HomeworkController extends Controller{
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改' || $value['mark'] == 'no')
             {
+                var_dump('wpg');die();
                 return '未批改';
             }
 
             $mark += $value['mark'];
         }
+
             return $mark;
     }
     private function isMark($name,$homeworkname,$id){
@@ -142,6 +148,7 @@ class HomeworkController extends Controller{
 
         $status = I('get.status');
         $mark   = I('get.mark');
+        // var_dump($mark);die();
         $id     = I('get.id');
         session('homeworkoid',null);
         session('homeworkoid',$id);
@@ -176,7 +183,7 @@ class HomeworkController extends Controller{
         $this->assign('hp',$hp);
         $homeworkoid = $id;
         // var_dump($state);
-        // var_dump($state2);
+        // var_dump($state2);die();
         // var_dump($homeworkname);
         // var_dump($number);
         // die();
