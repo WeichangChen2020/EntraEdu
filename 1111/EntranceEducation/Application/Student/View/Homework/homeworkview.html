@@ -6,7 +6,8 @@
 <style type="text/css">
   span{
     text-align: center;
-  }
+    margin: auto;
+  } 
 </style>
 
 <body ontouchstart>
@@ -24,14 +25,13 @@
         <br>
         <img src="{$vo.imgurl}" style="display:block;width:100px;height:150px;margin: auto;">
         <br>
-
-        <if condition="$vo.mark neq 'no'">
-          <span>得分：{$homework['mark']}</span>
-        </else>
-          <span>未被批改</span>
-        </if>
-      
-
+        <div style="text-align:center">
+          <if condition="$vo.mark neq 'no'">
+            <span>得分：{$vo.mark}</span>
+          <else />
+            <span>未被批改</span>
+          </if>
+        </div>
 
       </div>
       <br>
