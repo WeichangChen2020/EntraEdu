@@ -17,6 +17,12 @@ class StudentInfoModel extends Model {
 	public function getStuInfo($openid){
 		return  $this->where('openId="'.$openid.'"')->find();
 	}
+	//获取某个班级总人数
+	public function getStuNum($openid){
+		$class = $this->getClass($openid);
+		$stuNum = $this->where(array('class'=>$class))->count();
+		return $stuNum;
+	}
 
 	//判断是否注册
 	public function isRegister($openId){
