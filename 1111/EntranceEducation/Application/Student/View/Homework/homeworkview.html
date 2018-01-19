@@ -10,12 +10,13 @@
   <header class='demos-header'>
       <h1 class="demos-title">浏览作业</h1>
   </header>
-  <h2 style="text-align:center">上为标准答案，下为你的答案2{$vo.right_answer}</h2>
+  <h2 style="text-align:center">上为标准答案，下为你的答案</h2>
   <div class="container">
 
     <volist name="homework" id="vo">
       <div class="weui_cell">
         <img src="{$vo.right_answer}" style="display:block;margin: auto;">
+        {$vo.right_answer}
         <br>
         <img src="{$vo.imgurl}" style="display:block;width:100px;height:150px;margin: auto;">
       </div>
