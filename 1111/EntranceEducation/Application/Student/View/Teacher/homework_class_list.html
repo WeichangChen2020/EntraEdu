@@ -76,13 +76,13 @@
         }else{
           bj = 0;
         }
-
+        alert(deadtime);
         var dead = new Date(deadtime).toJSON();  
-        var dead = new Date(+new Date(dead)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
+        var dead = new Date(+new Date(dead)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
         var dead = Date.parse(new Date(dead));
 
         var hp = new Date(hpdeadtime).toJSON();  
-        var hp = new Date(+new Date(hp)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
+        var hp = new Date(+new Date(hp)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
         var hp = Date.parse(new Date(hp));
         alert(dead+'/'+myDate);
         if(dead>myDate){
