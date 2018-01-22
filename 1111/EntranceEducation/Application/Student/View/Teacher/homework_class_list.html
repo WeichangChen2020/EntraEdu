@@ -79,7 +79,7 @@
         // alert(deadtime);
         var dead = new Date(deadtime).toJSON();  
         var dead = new Date(+new Date(dead)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
-        var myDate = new Date(dead).getTime();
+        
         alert(dead+'/'+myDate);
 
        
