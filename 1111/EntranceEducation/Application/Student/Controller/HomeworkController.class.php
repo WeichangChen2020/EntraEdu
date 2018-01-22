@@ -45,6 +45,7 @@ class HomeworkController extends Controller{
         $Page       = new \Think\Page($count,$count);
         $show       = $Page->show();
         $con['class']  =  $stuclass['class'];
+        $allnum = M('StudentInfo')->where(array('class'=>$stuclass['class']))->count();
         $homework = $HOMEWORK->where($con)->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         // var_dump($homework);die();
         
@@ -66,7 +67,7 @@ class HomeworkController extends Controller{
         }
         // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
-
+        $this->assign('allnum',$allnum);
         // var_dump($homework);die();
         $this->assign('homework',$homework)->display();
     }
@@ -134,7 +135,6 @@ class HomeworkController extends Controller{
         // var_dump(sizeof($number));die();
         return sizeof($number);
     }
-
 
     //点击作业后的菜单界面
     public function homeworkMenu(){

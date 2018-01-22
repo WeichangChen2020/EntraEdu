@@ -64,39 +64,52 @@
       // alert(deadtime);
 
       $("#submit").click(function(event){
-
-
         var homeworkName = $("#homeworkName").val();
         var teacherClass = $("#sel").val();
         var deadtime = $("#deadtime").val();
         var hpdeadtime = $("#hpdeadtime").val();
         var bj;
+        var myDate = new Date().getTime();//获取系统当前时间
+
        if($('#bj').is(':checked')) {
           bj = 1;
         }else{
           bj = 0;
         }
-      
-        
 
-        $.ajax({
-          cache:false,
-          type:"POST",
-          url:"{:U('homework_insert')}",
-          dataType:"json",
-          data:{
-            "homeworkName":"{$homeworkName}",
-            "teacherClass":teacherClass,
-            "deadtime":deadtime,
-            "hpdeadtime":hpdeadtime,
-            "bj":bj
-          },
-          
-          success:function(res){
-            window.location.href="{:U('index')}";
-          }
+        var dead = new Date(deadtime).toJSON();  
+        var dead = new Date(+new Date(dead)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
+        var dead = Date.parse(new Date(dead));
+
+        var hp = new Date(hpdeadtime).toJSON();  
+        var hp = new Date(+new Date(hp)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
+        var hp = Date.parse(new Date(hp));
+
+        if(dead>myDate){
+            if(hp>dead){   
+              $.ajax({
+                cache:false,
+                type:"POST",
+                url:"{:U('homework_insert')}",
+                dataType:"json",
+                data:{
+                  "homeworkName":"{$homeworkName}",
+                  "teacherClass":teacherClass,
+                  "deadtime":deadtime,
+                  "hpdeadtime":hpdeadtime,
+                  "bj":bj
+                },
+                
+                success:function(res){
+                  window.location.href="{:U('index')}";
+                }
+              });
+            }else{
+              alert('互评截止时间不能早于提交截止时间');
+            }
+        }else{
+            alert('当前时间已过提交截止时间');
+        }
         });
-
-      });
 
     </script> 
