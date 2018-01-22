@@ -32,7 +32,7 @@
       <div class="weui_cells weui_cells_form cell_top">
         <div class="content">
           <div class="weui_cell weui_cell_switch">
-            <div class="weui_cell_hd weui_cell_primary">{$i}.</div>
+            <!-- <div class="weui_cell_hd weui_cell_primary">{$i}.</div> -->
             <div class="weui_cell_ft">
                 <!-- <input class="weui_switch" type="checkbox" > -->
                 <div class="quesId">{$quesItem.id}</div>
@@ -40,7 +40,7 @@
           </div>
 
           <div class="c-pic">
-            <span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>
+            {$i}.<span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>
             {$quesItem.contents|repleace_question_image=###}
           </div>
           <div class="c-table">
