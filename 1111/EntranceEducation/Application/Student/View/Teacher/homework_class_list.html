@@ -84,7 +84,7 @@
         var hp = new Date(hpdeadtime).toJSON();  
         var hp = new Date(+new Date(hp)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
         var hp = Date.parse(new Date(hp));
-        alert(dead/myDate);
+        alert(dead+'/'+myDate);
         // if(dead>myDate){
         //     if(hp>dead){   
         //       $.ajax({
