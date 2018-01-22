@@ -25,7 +25,7 @@ class StudentHomeworkModel extends Model {
 
 
 		$data['mark'] = $score;
-		$data['bj'] = 0;
+		$data['complain'] = 0;
 		$res = $this->where(array('id' => $homeworkid,'homeworkoid'=>$id))->save($data);
 		if ($res) {
 			return true;
