@@ -304,11 +304,26 @@ class TeacherController extends Controller{
     //浏览已批改作业列表
     public function homework_list_view(){
         $class = I('get.class');
-        
+        $now = date("Y-m-d H:i:s",time());
         $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
         $sum = M('student_info')->where("class='$class'")->count();
+        foreach ($homework as $key => $value) {
+            $bjnum = M('student_homework')->where(array('homeworkoid' => $value['id'],'bj'=>1))->count();
+            $homework[$key]['bjnum'] = $bjnum;
+            //flag为1指还没截止作业提交
+            if ($value['dead_time'] > $now) {
+                $homework[$key]['flag'] = 1;
+                
+            }else{
+                $homework[$key]['flag'] = 0;
+            }
+
+        }
         $this->assign('homework',$homework);
         $this->assign('sum',$sum);
+        $this->assign('now',$now);
+       
+
         // var_dump($homework);die();
         $this->display();
     }
