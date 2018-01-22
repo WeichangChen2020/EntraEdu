@@ -12,6 +12,20 @@ use Think\Model;
 class TestSelectModel extends Model {
 
 	/**
+	 * getTestItems 获取用户答案
+	 * @author 蔡佳琪
+	 * @copyright  2018-01-22 15:27Authors
+	 * @param $openid, $testid，$quesid
+	 * @return 
+	 */
+	public function getUserAnswer($openid, $testid,$quesid) {
+
+		$select = $this->where(array('openid'=>$openid, 'testid'=>$testid,'quesid'=>$quesid))->find();
+
+		return $select['answer'];
+	}
+	
+	/**
 	 * getTestItems 获取某次测试的所有题目信息
 	 * @author 蔡佳琪
 	 * @copyright  2017-12-19 21:29Authors
