@@ -38,7 +38,7 @@ class TestController extends Controller{
             $testList[$key]['submitNum'] = $TESTSUBMIT->getSubmitNum($testList[$key]['id']);
             $testList[$key]['rightNum'] = $TESTSUBMIT->getRightNum($openId,$testList[$key]['id']);
             $testInfo = D('TestSet')->getTestInfo($testList[$key]['id']);//某次测试信息
-            $testList[$key]['queNum'] = $testInfo['count'];            
+            $testList[$key]['queNum'] = $testInfo['queNum'];            
             $testList[$key]['stuNum'] = $STUINFO->getStuNum($openId);
         }
 
