@@ -233,7 +233,7 @@ class TeacherController extends Controller{
         $right = M('image_questionbank');
         foreach ($homework as $key => $value) {
             $problem = $right->where(array('id'=>$value['problemid']))->find();
-            $homework['right_answer'] = $problem['right_answer'];
+            $homework[$key]['right_answer'] = $problem['right_answer'];
         }
         
 
