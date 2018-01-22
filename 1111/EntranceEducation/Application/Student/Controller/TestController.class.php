@@ -209,7 +209,7 @@ class TestController extends Controller{
         foreach ($quesList as $key => $value) {
             $quesId = $quesList[$key]['quesid'];
             // p($quesId);
-            $quesItem = $QUESTIONBANK->where(array('id'=>$quesId))->find();
+            $quesItem = D('Questionbank')->getQuestion($quesId);
             //$quesList = array_merge($quesList[$key],$quesItem);
             //var_dump($quesList);die;
             $quesList[$key]['type'] = $quesItem['type'];
