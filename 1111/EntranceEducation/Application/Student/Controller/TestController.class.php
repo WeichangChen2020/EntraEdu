@@ -187,6 +187,7 @@ class TestController extends Controller{
         // var_dump($quesList);
         foreach ($quesList as $key => &$value) {
             $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
+            $quesItem[$key]['answer'] = $TESTSELECT->getUserAnswer($openId,$testid,$value['quesid']);
         }    
         // var_dump($quesItem);
         $this->assign('quesItem',$quesItem)->display();
