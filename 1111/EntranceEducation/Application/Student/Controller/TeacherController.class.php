@@ -696,12 +696,12 @@ class TeacherController extends Controller{
     public function test_analyze(){
         $testid   = session('?testid') ? session('testid') : $this->error('请重新获取改页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
-
-        $quesList = M('test_questionbank')->where(array('testid' => $testid,'openId'=>$openId))->select();
+        $quesList = M('test_questionbank')->where(array('testid' => $testid))->select();
         // var_dump($quesList);
         foreach ($quesList as $key => &$value) {
             $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
-        }    
+            $quesItem[$key]['answer'] = D('TestSelect')->getUserAnswer($openId,$testid,$value['quesid']);
+        }
         // var_dump($quesItem);
         $this->assign('quesItem',$quesItem)->display('Test/testAnalyze');
     }
