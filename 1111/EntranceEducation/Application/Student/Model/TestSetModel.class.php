@@ -17,7 +17,7 @@ class TestSetModel extends Model {
 
 	public function getTestInfo($testid){
 		$testInfo = $this->find($testid);
-		$testInfo['count'] = D('TestQuestionbank')->count($testid);
+		$testInfo['queNum'] = M('test_questionbank')->where(array('testid'=>$testid))->count('quesid');
 		return $testInfo;
 	}
 
