@@ -52,12 +52,15 @@
               <p>浏览作业</p>
             </div>
           </a>
-          <a class="weui_cell" id="sshomework">
+          <if condition="$state2 neq '未批改'">
+            <a class="weui_cell" id="sshomework">
             <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
             <div class="weui_cell_bd weui_cell_primary">
               <p>作业申诉</p>
             </div>
           </a>
+          </if>
+          
         </if>
 
           
