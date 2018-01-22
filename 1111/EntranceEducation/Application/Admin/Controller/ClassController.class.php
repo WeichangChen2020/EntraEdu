@@ -114,7 +114,7 @@ class ClassController extends CommonController {
             $Teacher = M('teacher_info');
             $teachers = $Teacher->field('name')->select();
             
-            $Student = M('student_list');
+            $Student = M('student_info');
             $students = $Student->field('name')->select();
             
             $this->assign('adminerList',array_merge($teachers,$students));
