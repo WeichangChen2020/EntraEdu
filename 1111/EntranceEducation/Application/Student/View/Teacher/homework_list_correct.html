@@ -15,13 +15,16 @@
       <h1 class="demos-title">批改申诉作业</h1>
       <h2 style="text-align:center">上为标准答案，下为同学答案</h2>
     </header>
+    <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
+    <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
+    <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
       
           <volist name="homework" id="data">
             <div>
                 <img src="{$data.right_answer}" style="display:block;margin: auto;">
                 <br>
                 <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;" id="tom{$key}"> 
-                  
+
                 <script>
                   $(function() {
                   FastClick.attach(document.body);

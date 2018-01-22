@@ -78,8 +78,9 @@
         }
         // alert(deadtime);
         var dead = new Date(deadtime).toJSON();  
-        var dead = new Date(+new Date(dead)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
-        dead = new Date(dead.replace(/-/g,'/')).getTime();
+        var dead = new Date(+new Date(dead)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');
+        //解决苹果手机兼容性问题NAN  
+        dead = new Date(dead.replace(/-/g,'/')).getTime(); 
         
         
 
@@ -93,23 +94,23 @@
         if(dead>myDate){
             if(hp>dead){ 
                 alert(2333);
-              // $.ajax({
-              //   cache:false,
-              //   type:"POST",
-              //   url:"{:U('homework_insert')}",
-              //   dataType:"json",
-              //   data:{
-              //     "homeworkName":"{$homeworkName}",
-              //     "teacherClass":teacherClass,
-              //     "deadtime":deadtime,
-              //     "hpdeadtime":hpdeadtime,
-              //     "bj":bj
-              //   },
+              $.ajax({
+                cache:false,
+                type:"POST",
+                url:"{:U('homework_insert')}",
+                dataType:"json",
+                data:{
+                  "homeworkName":"{$homeworkName}",
+                  "teacherClass":teacherClass,
+                  "deadtime":deadtime,
+                  "hpdeadtime":hpdeadtime,
+                  "bj":bj
+                },
                 
-              //   success:function(res){
-              //     window.location.href="{:U('index')}";
-              //   }
-              // });
+                success:function(res){
+                  window.location.href="{:U('index')}";
+                }
+              });
             }else{
               alert('互评截止时间不能早于提交截止时间');
             }
