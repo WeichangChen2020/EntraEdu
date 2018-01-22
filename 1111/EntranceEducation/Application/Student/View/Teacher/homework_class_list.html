@@ -91,9 +91,8 @@
         hp = new Date(hp.replace(/-/g,'/')).getTime();
 
         if(dead>myDate){
-          console.log(1);
-            // if(hp>dead){ 
-
+            if(hp>dead){ 
+                alert(2333);
               // $.ajax({
               //   cache:false,
               //   type:"POST",
@@ -111,9 +110,9 @@
               //     window.location.href="{:U('index')}";
               //   }
               // });
-            // }else{
-            //   alert('互评截止时间不能早于提交截止时间');
-            // }
+            }else{
+              alert('互评截止时间不能早于提交截止时间');
+            }
         }else{
             alert('当前时间已过提交截止时间');
         }
