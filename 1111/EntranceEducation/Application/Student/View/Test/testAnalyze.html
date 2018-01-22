@@ -81,8 +81,9 @@
             </if>
 
             <div class="weui_cells weui_article cell_top" style="padding:0px; left:15px;">
-              <div>标准答案：{$quesItem.right_answer}
-              <!-- <span class="analyze">解析：<empty name="quesList.analysisPicPath">无</empty></span> -->
+              <div>
+                标准答案：{$quesItem.right_answer}
+                你的答案：{$quesItem.answer}
               </div>
             </div> 
 
@@ -94,7 +95,7 @@
         </div>          
       </div>
     </volist>
-  </body>
+  </body> 
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
