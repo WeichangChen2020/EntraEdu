@@ -106,10 +106,10 @@
       buttons: [
         { 
           text: "是", onClick: function(){ 
-            alert('申诉成功');
+            alert('申诉成功,等待教师批改');
             setTimeout(function(){
               window.location.href="{:U('Homework/complain')}?homeworkoid={$homeworkoid}&openId={$openId}"
-            },1500);
+            },1000);
             
           } 
         },

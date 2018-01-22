@@ -263,7 +263,7 @@ class TeacherController extends Controller{
         $homeworkid = $data['homeworkid'];
         $score = $data['score'];
         $model = D('student_homework');
-        $res = $model->give_score($homeworkid,$score,$id);
+        $res = $model->ssgive_score($homeworkid,$score,$id);
         if ($res) {
             $this->ajaxReturn(true);
         } else {

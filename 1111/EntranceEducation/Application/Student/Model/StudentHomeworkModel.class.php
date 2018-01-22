@@ -20,4 +20,18 @@ class StudentHomeworkModel extends Model {
 		
 	}
 
+	public function ssgive_score($homeworkid,$score,$id)
+	{
+
+
+		$data['mark'] = $score;
+		$data['bj'] = 0;
+		$res = $this->where(array('id' => $homeworkid,'homeworkoid'=>$id))->save($data);
+		if ($res) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 }
