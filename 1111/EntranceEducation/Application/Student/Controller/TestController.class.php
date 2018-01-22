@@ -200,8 +200,8 @@ class TestController extends Controller{
 
         //$TESTRECORD = M('student_classtest_record');
         $QUESTIONBANK = M('questionbank');
-        $quesList = $TESTBANK->where(array('testid' => $testid,'openid' => $openId))->select();
-        var_dump($quesList);
+        $quesList = $TESTBANK->where(array('testid' => $testid))->select();
+        // var_dump($quesList); 
         foreach ($quesList as $key => $value) {
             $quesId = $quesList[$key]['quesid'];
             // p($quesId);
