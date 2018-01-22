@@ -181,6 +181,7 @@ class TestController extends Controller{
         $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $TESTSUBMIT = D('TestSubmit');
+        $TESTSELECT = D('TestSelect');
         if(!$TESTSUBMIT->isSubmit($openId,$testid))
             $this->error('请完成测试再查看解析');
         $quesList = M('test_questionbank')->where(array('testid' => $testid,'openId'=>$openId))->select();
