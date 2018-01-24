@@ -156,6 +156,8 @@ class UserController extends CommonController {
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
         for ($i=0; $i < count($academyList); $i++) { 
+            $map['exercise'] = array('elt','2017-12-3 11:11:11');
+            $map['academy'] = $academyList[$i];
             dump($map);
             die;
             $studentList = $EXERCISE->where($map)->select();
@@ -163,8 +165,6 @@ class UserController extends CommonController {
                 dump($studentList[$j]);
             die;
             }
-            $map['exercise'] = array('elt','2017-12-3 11:11:11');
-            $map['academy'] = $academyList[$i];
         }
         $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
         $filename .= '新生入学考试平台注册用户';
