@@ -168,7 +168,8 @@ class UserController extends CommonController {
                 $num = $EXERCISE->where($where)->count();
                 $dum += $num;
             }
-            dump($academyList[$i].count($studentList)."人2017-12-03 12:00:00前:  ".$sum);
+            dump($academyList[$i]);
+            dump(count($studentList));
             die;
         }
         die;
