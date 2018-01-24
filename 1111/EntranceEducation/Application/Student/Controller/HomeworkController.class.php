@@ -391,12 +391,12 @@ class HomeworkController extends Controller{
         }
         //本次作业应有的数目
         $outproblem  = array_diff($outproblem,$do);
-        
-        // echo "<pre>";
-        // var_dump($do);
-        // var_dump($outproblem);die();
-        // echo "<pre>";
-        // var_dump($homework);die();
+
+        if (empty($outproblem)) {
+            $this->assign('flag',0);
+        }else{
+            $this->assign('flag',1);
+        }
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
         $this->assign('outproblem',$outproblem);
