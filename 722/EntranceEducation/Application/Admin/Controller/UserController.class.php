@@ -126,7 +126,7 @@ class UserController extends CommonController {
     }
     public function test() {
         $EXERCISE = M('exercise');
-        $STLIST = M('StudentInfo');
+        $STULIST = M('StudentInfo');
         // 查询条件
         $academyList = array(
             '管理学院',
@@ -158,7 +158,7 @@ class UserController extends CommonController {
         // for ($i=0; $i < count($academyList); $i++) { 
             $map['academy'] = array('elt','2017-12-03 12:00:00');
             $map['academy'] = $academyList[$i];
-            $studentList = $EXERCISE->where($map)->select();
+            $studentList = $STULIST->where($map)->select();
             // dump($studentList);
             dump($map);
             die;
