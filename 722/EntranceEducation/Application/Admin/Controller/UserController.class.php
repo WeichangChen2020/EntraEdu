@@ -155,6 +155,9 @@ class UserController extends CommonController {
         $map = array();
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
+        $t2 = 2014-04-16 09:15:20;
+        $timeend = strtotime($t2);
+        dump($timeend);die;
         for ($i=0; $i < count($academyList); $i++) { 
             $sum = 0;
             $map['academy'] = $academyList[$i];
