@@ -165,13 +165,10 @@ class UserController extends CommonController {
             for ($j=0; $j < count($studentList); $j++) { 
                 $where['time'] = array('ELT', '2017-12-03 12:00:00');
                 $where['openid'] = $studentList[$j]['openid'];
-                $list = $EXERCISE->where($where)->count();
+                $num = $EXERCISE->where($where)->count();
                 $dum += $num;
-                dump($EXERCISE->getLastSql());
-                dump($where);
-                dump($list);
-            die;
             }
+            dump($academyList[$i]."2017-12-03 12:00:00前:  ".$sum);
         }
         die;
         $filename .= '新生入学考试平台注册用户';
