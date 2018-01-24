@@ -158,7 +158,7 @@ class UserController extends CommonController {
         for ($i=0; $i < count($academyList); $i++) { 
             $map['academy'] = array('elt','2017-12-03 12:00:00');
             $map['academy'] = $academyList[$i];
-            $studentList = $STULIST->where($map)->select();
+            $studentList = $STULIST->where($map)->field('openid')->select();
             dump($studentList);
             for ($j=0; $j < count($studentList); $j++) { 
                 dump($studentList[$j]);
