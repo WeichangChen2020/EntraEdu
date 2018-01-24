@@ -248,7 +248,7 @@ class UnitController extends CommonController {
                 /*================将图片上传至domain===============*/
                 $config = array(    
                     'rootPath'   =>    '/public/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    './upload/'.$chapter,  
+                    'savePath'   =>    './upload/'.$chapter.'/',  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
