@@ -167,6 +167,7 @@ class UserController extends CommonController {
             die;
             }
         }
+        die;
         $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
         $filename .= '新生入学考试平台注册用户';
 
