@@ -124,7 +124,52 @@ class UserController extends CommonController {
         die;
         // 使用die是为了避免输出多余的模板html代码
     }
+    public function test() {
+        $EXERCISE = D('exercise');
+        // 查询条件
+        $academyList = array(
+            '管理学院',
+            '人文学院',
+            '外国语学院',
+            '工商学院',
+            '管工学院' ,
+            '管电学院' ,
+            '信息学院' ,
+            '统计学院'  ,
+            '马克思学院',
+            '信电学院'  ,
+            '财会学院' ,
+            '环境学院' ,
+            '食品学院' ,
+            '经济学院',
+            '东语学院',
+            '法学院'   ,
+            '旅游学院'  ,
+            '公管学院',
+            '艺术学院' ,
+            '金融学院' ,
+            '非新生'  ,
+        );
+        $college = D('Adminer')->getCollege();
+        $map = array();
 
+        $title = array('学院', '班级', '学号', '姓名');
+        $filename  = '学院';
+        for ($i=0; $i < count($academyList); $i++) { 
+            $studentList = $EXERCISE->where($map)->select();
+            for ($j=0; $j < count($studentList); $j++) { 
+                dump($studentList[$j]);
+            }
+            die;
+            $map['exercise'] = array('elt','2017-12-3 11:11:11');
+            $map['academy'] = $academyList[$i];
+        }
+        $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->order('academy,class,number,id')->select();
+        $filename .= '新生入学考试平台注册用户';
+
+
+        $this->excel($list, $title, $filename);
+    }
 
 
 }
