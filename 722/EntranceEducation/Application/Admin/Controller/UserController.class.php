@@ -165,7 +165,7 @@ class UserController extends CommonController {
             for ($j=0; $j < count($studentList); $j++) { 
                 $where['time'] = array('elt',$timeend);
                 $openid = $studentList[$j];
-                $list = $EXERCISE->where("time <= $timeend and openid = $openid")->select();
+                $list = $EXERCISE->where("openid = $openid")->select();
                 $dum += $num;
                 dump($list);
             die;
