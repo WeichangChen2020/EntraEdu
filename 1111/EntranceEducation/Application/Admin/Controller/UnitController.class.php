@@ -243,11 +243,11 @@ class UnitController extends CommonController {
                 //$numQuestionPic == strlen(I('right_answer')) || $this->error('图片的数量与答案的数量不一致');
                 if($existAnalysis) //
                     $numQuestionPic == $numAnalysisPic || $this->error('图片的数量与解析的数量不一致');
-                $chapter = I('chapter');
+
                 /*================将图片上传至domain===============*/
                 $config = array(    
-                    'rootPath'   =>    'http://classtest-public.stor.sinaapp.com/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    'public/upload/'.$chapter,  
+                    'rootPath'   =>    './upload/', // 设置附件上传目录// 上传文件 
+                    'savePath'   =>    $chapter,  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
