@@ -239,6 +239,7 @@ class UnitController extends CommonController {
                 $numAnalysisPic = count($_FILES['analysis']['name']);  //解析的数量
                 $_FILES['analysis']['name'][0] != '' ? $existAnalysis = ture : $existAnalysis = false ;
 				$existAnalysis = 1;
+                $chapter = I('chapter');
                 /*=====上传的题目数量要与答案数量一致============*/
                 //$numQuestionPic == strlen(I('right_answer')) || $this->error('图片的数量与答案的数量不一致');
                 if($existAnalysis) //
@@ -246,8 +247,8 @@ class UnitController extends CommonController {
 
                 /*================将图片上传至domain===============*/
                 $config = array(    
-                    'rootPath'   =>    './upload/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    $chapter,  
+                    'rootPath'   =>    '/public/', // 设置附件上传目录// 上传文件 
+                    'savePath'   =>    './upload/'.$chapter,  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
