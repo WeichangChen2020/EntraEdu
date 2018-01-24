@@ -155,7 +155,7 @@ class UserController extends CommonController {
         $map = array();
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
-        // for ($i=0; $i < count($academyList); $i++) { 
+        for ($i=0; $i < count($academyList); $i++) { 
             $map['academy'] = array('elt','2017-12-03 12:00:00');
             $map['academy'] = $academyList[$i];
             $studentList = $STULIST->where($map)->select();
