@@ -167,6 +167,7 @@ class UserController extends CommonController {
                 $where['openid'] = $studentList[$j]['openid'];
                 $list = $EXERCISE->where($where)->select();
                 $dum += $num;
+                dump($EXERCISE->getLastSql());
                 dump($where);
                 dump($list);
             die;
