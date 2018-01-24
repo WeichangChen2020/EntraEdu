@@ -156,6 +156,8 @@ class UserController extends CommonController {
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
         for ($i=0; $i < count($academyList); $i++) { 
+            dump($map);
+            die;
             $studentList = $EXERCISE->where($map)->select();
             for ($j=0; $j < count($studentList); $j++) { 
                 dump($studentList[$j]);
