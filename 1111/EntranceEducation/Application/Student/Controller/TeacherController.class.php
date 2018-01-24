@@ -337,13 +337,31 @@ class TeacherController extends Controller{
     //批改作业
     public function homework_view(){
         $homeworkoid = I('get.id');
-        
-        $homework = M('student_homework')->where(array('homeworkoid'=>$homeworkoid))->order("homeworkoid desc")->select();
-        $this->assign('homeworkList',$homework);
-        // var_dump($homework);die();
+        $class = M('homework_zg')->where(array('id'=>$homeworkoid))->getField("class");
+        $classmate = M('student_info')->where("class='$class'")->select();
+        // var_dump($classmate);die();
+        foreach ($classmate as $key => $value) {
+            $doc = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$value['name']))->find();
+            if (!empty($doc)) {
+                $classmate[$key]['flag'] = 1;
+            }else{
+                $classmate[$key]['flag'] = 0;
+            }
+        }
+        // var_dump($classmate);die();
+        $this->assign('classmate',$classmate);
+        $this->assign('homeworkoid',$$homeworkoid);
         $this->display();
     }
-
+    public function homework_viewdetail()
+    {
+        $homeworkoid = I('get.homeworkoid');
+        $name = I('get.name');
+        // var_dump($homeworkoid.'/'.$name);die();
+        $data = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$name))->select();
+        $this->assign('homeworkList',$data);
+        $this->display();
+    }
 
     //教师端签到主页面
     public function signin_index(){
