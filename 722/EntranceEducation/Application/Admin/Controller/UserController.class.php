@@ -157,7 +157,7 @@ class UserController extends CommonController {
         for ($i=0; $i < count($academyList); $i++) { 
             $map['time'] = array('elt','2017-12-03 12:00:00');
             $map['academy'] = $academyList[$i];
-            // $studentList = $EXERCISE->where($map)->select();
+            $studentList = $EXERCISE->where(array('time'=>array('elt','2017-12-03 12:00:00')))->select();
             // dump($studentList);
             dump($map);
             die;
