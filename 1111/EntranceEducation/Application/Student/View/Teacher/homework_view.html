@@ -61,18 +61,18 @@
         <body ontouchstart>
             <include file="./Public/html/_refresh.html"/>
             <header class='demos-header'>
-                <h1 class="demos-title">签到记录</h1>
+                <h1 class="demos-title">作业浏览</h1>
             </header>
 
             <div class="container" id="container">
                 <volist name="classmate" id="signinList" key="k" empty="没有签到信息">
                     <if condition="$signinList['flag'] eq 1"> 
-                        <a href="javascript:void(0);" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
+                        <a href="{:U('homework_viewdetail')}?homeworkoid={$homeworkoid}&name={$signinList['name']}" class="weui-grid js_grid studentInfo">
                             <div class="attend"><span class="flag">交</span></div>
                             <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['class']}</p>
                         </a>
                     <elseif condition="$signinList['flag'] eq 0"/>
-                        <a href="javascript:void(0);" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
+                        <a href="javascript:;" class="weui-grid js_grid studentInfo">
                             <div class="absent"><span class="flag">缺</span></div>
                             <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['class']}</p>
                         </a>
@@ -84,27 +84,3 @@
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
 <include file="./Public/weui2.0/__foot.html"/>
-<script type="text/javascript">
-    $('.studentInfo').click(function(){
-        var url = "{:U('Teacher/daiqian')}";
-        var data = {
-            'openId': this.id , 
-        }
-        $.confirm("您确定要代签吗?", "确认代签?", function() {
-            $.post(url, data, function(res){
-                if (res == 'error') 
-                    $.toast("学生ID获取失败!");
-                else if (res == 'fail')
-                    $.toast("代签失败!");
-                else if (res == 'success'){
-                    window.location.reload(); 
-                    $.toast("代签成功!");
-                }
-                else
-                    $.toast("非法访问!");
-            });
-        }, function() {
-            //取消操作
-        });
-    })
-</script>
