@@ -169,7 +169,7 @@ class UserController extends CommonController {
                 $dum += $num;
             }
             dump($academyList[$i]);
-            dump(count($studentList));
+            dump(($studentList));
             die;
         }
         die;
