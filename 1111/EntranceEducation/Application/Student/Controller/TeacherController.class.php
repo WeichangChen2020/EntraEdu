@@ -114,7 +114,9 @@ class TeacherController extends Controller{
 
     public function homework_class_list(){
         $openId =  session('openId');
-        $class = I('get.class');
+        $banji = I('get.banji');
+        $banji = explode('_', $banji);
+        // var_dump($banji);die();
         $quesId = I('get.quesId');
         session('quesId',null);
         session('quesId',$quesId);
@@ -133,8 +135,30 @@ class TeacherController extends Controller{
             $homeworkzg++;
             $name = date("m月d日第".$homeworkzg."次作业",time());
         }
+        $banji = json_encode($banji);
+        // var_dump($banji);die();
         $this->assign('homeworkName',$name);
+        $this->assign('banji',$banji);
         $this->assign('teacherClass',$teacherClass)->display();
+
+
+    }
+
+    public function chooseclass(){
+        
+        $openId =  session('openId');
+        // echo $openId;
+        $quesId = I('get.quesId');
+        session('quesId',$quesId);
+        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        // var_dump($teacherClass);
+        $this->assign('teacherClass',$teacherClass);
+        $this->assign('quesId',$quesId);
+
+
+        
+
+        $this->assign('quesId',$quesId)->display();
 
 
     }
@@ -142,41 +166,35 @@ class TeacherController extends Controller{
     public function homework_insert(){
         $data = I('post.');
         $model = M('homework_zg');
-
-        $word = date("m月d日",time());
-        $map['homeworkname'] = array('like',$word.'%');
-        $map['class'] = $data['teacherClass'];
-        $homeworkzg = M('homework_zg')->where($map)->count();
-        // var_dump($homeworkzg+2);die();
-        if ($homeworkzg == 0) {
-            $name = date("m月d日",time());
-        }else
-        {
-            $homeworkzg++;
-            $name = date("m月d日第".$homeworkzg."次作业",time());
-            // var_dump($name);die();
-        }
-
-
-
-
-
-        $map['homeworkname'] = $name;
-        $map['class'] = $data['teacherClass'];
-        $map['dead_time'] = $data['deadtime'];
-        $map['hpdead_time'] = $data['hpdeadtime'];
-        $map['problem_id'] = session('quesId');
         
-
-
-
-        $map['bj'] = $data['bj'];
-        $res = $model->add($map);
-        // var_dump($res);
+        $class = $data['teacherClass'];
+        // var_dump($data);die();
+        $word = date("m月d日",time());
+        foreach ($class as $key => $value) {
+           if (!empty($value)) {
+                $map['homeworkname'] = array('like',$word.'%');
+                $map['class'] = $value;
+                $homeworkzg = M('homework_zg')->where($map)->count();
+                // var_dump($homeworkzg+2);die();
+                if ($homeworkzg == 0) {
+                    $name = date("m月d日",time());
+                }else
+                {
+                    $homeworkzg++;
+                    $name = date("m月d日第".$homeworkzg."次作业",time());
+                    // var_dump($name);die();
+                }
+                $map['homeworkname'] = $name;
+                $map['class'] = $value;
+                $map['dead_time'] = $data['deadtime'];
+                $map['hpdead_time'] = $data['hpdeadtime'];
+                $map['problem_id'] = session('quesId');
+                $map['bj'] = $data['bj'];
+                $res = $model->add($map);
+           }
+        }
         $this->ajaxReturn();
-        // $problem = explode('_', $quesId);
-        // var_dump($problem);die();
-        // $map['problem_id'] = 
+
     }
 
 
