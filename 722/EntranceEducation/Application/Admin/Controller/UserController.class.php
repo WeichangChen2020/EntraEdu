@@ -156,16 +156,16 @@ class UserController extends CommonController {
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
         $t2 = '2017-12-03 12:00:00';
-        $timeend = strtotime($t2);
+        $endtime = strtotime($t2);
         // dump($timeend);die;
         for ($i=0; $i < count($academyList); $i++) { 
             $sum = 0;
             $map['academy'] = $academyList[$i];
             $studentList = $STULIST->where($map)->field('openid')->select();
             for ($j=0; $j < count($studentList); $j++) { 
-                $where['time'] = array('elt',$timeend);
-                $openid = $studentList[$j];
-                $list = $EXERCISE->where("openid = $openid")->select();
+                // $where['time'] = array('ELT', $endtime);
+                $where['openid'] = $studentList[$j];
+                $list = $EXERCISE->where($where)->select();
                 $dum += $num;
                 dump($list);
             die;
