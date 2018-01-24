@@ -360,22 +360,46 @@ class HomeworkController extends Controller{
 
         $openId = session('openId');
         $id = session('homeworkoid');
-        // var_dump($homeworkname);
-        // echo "<pre>";
-        // var_dump($openId);
-        // die();
+        // var_dump($id);die();
+        $homework_zg = M('homework_zg')->where("id='$id'")->getField('problem_id');
+        // var_dump($homework_zg);die();
+        $quesarr      = explode('_', $homework_zg);
+        // var_dump($quesarr);
+
+        $questionbank = M('image_questionbank');
+        //应该有的提交url
+        $outproblem   = array();
+        foreach ($quesarr as $value) {
+            if (!empty($value)) {
+                $qu = $questionbank->find($value);
+                array_push($outproblem, $qu['right_answer']);
+                
+            }
+        }
+        // var_dump($outproblem);
         $model = M('student_homework');
         $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId,'homeworkoid'=>$id))->select();
 
         $right = M('image_questionbank');
+        //同学提交的数目
+
+        $do = array();
         foreach ($homework as $key => $value) {
             $problem = $right->where(array('id'=>$value['problemid']))->find();
             $homework[$key]['right_answer'] = $problem['right_answer'];
+            array_push($do, $problem['right_answer']);
         }
+        //本次作业应有的数目
+        $outproblem  = array_diff($outproblem,$do);
+        
+        // echo "<pre>";
+        // var_dump($do);
+        // var_dump($outproblem);die();
         // echo "<pre>";
         // var_dump($homework);die();
         $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
+        $this->assign('outproblem',$outproblem);
 
 
         return $this->display();
