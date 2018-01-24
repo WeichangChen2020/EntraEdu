@@ -157,7 +157,7 @@ class UserController extends CommonController {
         $filename  = '学院';
         $t2 = '2017-12-03 12:00:00';
         $timeend = strtotime($t2);
-        dump($timeend);die;
+        // dump($timeend);die;
         for ($i=0; $i < count($academyList); $i++) { 
             $sum = 0;
             $map['academy'] = $academyList[$i];
