@@ -152,13 +152,10 @@ class UserController extends CommonController {
         );
         $college = D('Adminer')->getCollege();
         $map = array();
-        $t2 = '2017-12-3 12:00:00';
-        $timeend = strtotime($t2);
-        dump($timeend);die;
         $title = array('学院', '班级', '学号', '姓名');
         $filename  = '学院';
         for ($i=0; $i < count($academyList); $i++) { 
-            $map['time'] = array('elt',$timeend );
+            $map['time'] = array('elt','2017-12-03 12:00:00');
             $map['academy'] = $academyList[$i];
             $studentList = $EXERCISE->where($map)->select();
             for ($j=0; $j < count($studentList); $j++) { 
