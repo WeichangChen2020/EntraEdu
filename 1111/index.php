@@ -104,6 +104,14 @@ class wechatCallbackapiTest
 						echo $resultStr;
 					}
 
+              		if($keyword == 'rz'){
+						$msgType = "text";
+						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
+						$contentStr = "<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/teacherAdd/openId/$postObj->FromUserName\">教师认证</a>";
+						$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						echo $resultStr;
+					}
+
 					if($keyword == '2'){
 						$msgType = "text";
 						/*$contentStr = "http://71.testroom.applinzi.com/index.php/Home/Index/index";*/
