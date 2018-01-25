@@ -11,9 +11,7 @@ return array(
     'DB_USER'           =>  'lzyoo3jx2o',    // 用户名
     'DB_PWD'            =>  'ik221mylmw4h1x0kyi51j32k01150hx0j4jk30xi',         // 密码
     'DB_PORT'           =>  3306,        // 端口
-    'TMPL_PARSE_STRING'=>array(
-       '/public/'=>'http://classtest-public.stor.sinaapp.com/public/'
-    )
+    
     // 'DB_PREFIX'         =>  'ee_',
 
     // 'DB_HOST'           =>  'dcmrwrmlsspf.mysql.sae.sina.com.cn', // 服务器地址
