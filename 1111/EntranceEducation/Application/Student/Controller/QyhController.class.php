@@ -38,8 +38,8 @@ class QyhController extends Controller
 		$config = array(
             'maxSize' => 314572800,
             'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
-            'rootPath'=>'http://classtest-public.stor.sinaapp.com/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
-            'savePath'=>'./homework/'.$homeworkname.'/',
+            'rootPath'=>'http://classtest-public.stor.sinaapp.com/homework/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
+            'savePath'=>$homeworkname.'/',
             'autoSub'=>false,
             // 'saveName'=>array($one,$two,$three,$four,$five,$six)
             // 'saveName'=>array('1','2','3','4','5','6')
