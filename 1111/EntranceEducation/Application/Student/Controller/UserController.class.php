@@ -51,9 +51,10 @@ class UserController extends Controller {
         if(M('adminer')->where(array('nickname'=>$userInfo['name']))->find()){
             $result = M('teacher_info')->add($info);
             if($result)
-                return "教师认证成功，发送'2'即可使用教师端功能";
+                $this->success('教师认证成功，将跳转到教师端',U('Teacher/index'));
+                //return "教师认证成功，发送'2'即可使用教师端功能";
             else
-                return "认证失败";
+                $this->error('认证失败',U('User/index'));
         }else{
             return "您不是教师，请联系管理员。";
         }
