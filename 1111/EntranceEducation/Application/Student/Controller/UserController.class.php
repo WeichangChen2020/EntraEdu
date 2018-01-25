@@ -41,7 +41,7 @@ class UserController extends Controller {
     public function teacherAdd($openId){
         session('openId',$openId);
         if($this->isTeacher($openId))
-            $this->error('您已是教师');
+            $this->error('您已是教师',U('Teacher/index'));
         $userInfo = $this->getUserInfo($openId);
         $info     = array(
             'openId' => $openId,
