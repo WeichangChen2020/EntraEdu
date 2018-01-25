@@ -39,8 +39,9 @@ class UserController extends Controller {
 
     //添加为教师
     public function teacherAdd($openId){
+        session('openId',$openId);
         if($this->isTeacher($openId))
-            return '您已是教师账号';
+            $this->error('您已是教师');
         $userInfo = $this->getUserInfo($openId);
         $info     = array(
             'openId' => $openId,
