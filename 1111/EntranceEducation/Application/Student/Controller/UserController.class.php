@@ -40,17 +40,24 @@ class UserController extends Controller {
     //添加为教师
     public function teacherAdd($openId){
         if($this->isTeacher($openId))
-            return '你的账号已是教师账号，不用再添加';
+            return '您已是教师账号';
         $userInfo = $this->getUserInfo($openId);
         $info     = array(
             'openId' => $openId,
             'name'   => $userInfo['name'],
             'time'   => date('Y-m-d H:i:s',time())
-            );
-        if(M('teacher_info')->add($info))
-            return "教师账号添加成功，发送'2'尝试教师端功能";
-        else
-            return "添加失败";
+        );
+        //如果用户姓名存在于adminer里，说明是管理员添加的老师
+        if(M('adminer')->where(array('nickname'=>$userInfo['name']))->find()){
+            $result = M('teacher_info')->add($info);
+            if($result)
+                return "教师认证成功，发送'2'即可使用教师端功能";
+            else
+                return "认证失败";
+        }else{
+            return "您不是教师，请联系管理员。";
+        }
+
     }
 
     //添加为教师, 由社会上认识成为教师
