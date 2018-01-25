@@ -248,7 +248,7 @@ class UnitController extends CommonController {
                 /*================将图片上传至domain===============*/
                 $config = array(    
                     'rootPath'   =>    '/public/', // 设置附件上传目录// 上传文件 
-                    'savePath'   =>    './upload/'.$chapter.'/',  
+                    'savePath'   =>    './computernetwork/questionbank/'.$chapter.'/',  
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
@@ -270,9 +270,9 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => $chapter,
                                 'type' => 4,
-                                'contents' => 'http://testroom-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i]['savename'],
+                                'contents' => 'http://testroom-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://testroom-public.stor.sinaapp.com/upload/'.$chapter.'/'.$info[$i+count($info)/2]['savename'],
+                                'right_answer' => 'http://testroom-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),                                
                             );
                         }
