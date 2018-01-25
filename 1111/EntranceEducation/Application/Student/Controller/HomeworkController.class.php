@@ -155,7 +155,7 @@ class HomeworkController extends Controller{
         $id = session('homeworkoid');
         $HOMEWORK = M('homework_zg');
         // var_dump($id);die();
-        $time = $HOMEWORK->where(array('id'=>13))->getField("hpdead_time");
+        $time = $HOMEWORK->where(array('id'=>$id))->getField("hpdead_time");
         $now = date();
         $time = strtotime($time);
         if ($time>$now) {
