@@ -39,7 +39,7 @@ class QyhController extends Controller
             'maxSize' => 314572800,
             'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
             'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
-            'savePath'=>'./homework/'.$homeworkname.'/',
+            'savePath'=>'./computernetwork/homework/'.$$homeworkname.'/',
             'autoSub'=>false,
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
@@ -54,7 +54,7 @@ class QyhController extends Controller
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
-                $imgurl = 'http://testroom-public.stor.sinaapp.com/homework/'.$homeworkname.'/'.$file['savename'];
+                $imgurl = 'http://testroom-public.stor.sinaapp.com/computernetwork/homework'.$homeworkname.'/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
                 $map['number']          = $stuInfo['number'];
