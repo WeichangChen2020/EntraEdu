@@ -252,7 +252,8 @@ class UnitController extends CommonController {
                     'saveName'   =>    '',
                     'exts'       =>    array('jpg', 'gif', 'png', 'jpeg'),    
                     'autoSub'    =>    true,   
-                    'replace'    =>    true,          //支持相同文件名覆盖，否则上传不了
+                    'replace'    =>    true,   
+                    'subName'    =>    '',       //支持相同文件名覆盖，否则上传不了
                 );
                 $upload = new \Think\Upload($config,'sae');// 实例化上传类
                 $info   = $upload->upload();
