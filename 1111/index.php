@@ -88,7 +88,7 @@ class wechatCallbackapiTest
                         $contentStr = "
 						发送1：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/$postObj->FromUserName\">计算机网络</a> 
 				
-						发送地理位置信息：签到
+						发送rz：<a href=\"http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/teacherAdd/openId/$postObj->FromUserName\"> 教师认证</a>
 
 						发送？：平台使用菜单 
 						";        
