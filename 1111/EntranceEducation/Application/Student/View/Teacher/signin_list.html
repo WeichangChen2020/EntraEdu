@@ -15,7 +15,7 @@
                 <a href="{:U('signin_list_set')}/signinId/{$signinList.id}" class="weui_media_box weui_media_appmsg">
                     <div class="weui_media_bd">
                         <h4 class="weui_media_title">{$signinList.signinName| default="默认签到名称"}</h4>
-                        <p class="weui_media_desc">截止时间: {$signinList.deadtime|substr=0,14}</p>
+                        <p class="weui_media_desc">截止时间: {$signinList.deadtime|substr=5,14}</p>
                     </div>
                     <div class="weui_cell_ft alert">
                         <div><if condition="$signinList.state eq '开启'"><i class="weui_icon_success_circle"></i>状态:开启<else /> <i class="weui_icon_warn"></i>状态:关闭</if></div>
