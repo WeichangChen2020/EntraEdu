@@ -49,16 +49,16 @@
     var accuracy = '';
 
     wx.ready(function(){
-        $.showLoading('正在获取地理位置');
+        $('body').showLoading('正在获取地理位置');
         setTimeout(function(){
             wx.getLocation({
                 success:function(res){
                     latitude = res.latitude;
                     longitude = res.longitude;
                     accuracy = res.accuracy;
-                    $.hideLoading();
-               }
+                }
             });
+            $('body').hideLoading();
         },2000);
     });
 
