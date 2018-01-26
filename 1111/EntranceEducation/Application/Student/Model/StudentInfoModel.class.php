@@ -3,7 +3,7 @@ namespace Student\Model;
 use Think\Model;
 class StudentInfoModel extends Model {
 	// protected $tablePrefix = 'db_';
-
+ 
 	public function getName($openid){
 		return  $this->where('openId="'.$openid.'"')->getField('name');
 	}
@@ -70,7 +70,22 @@ class StudentInfoModel extends Model {
 		}
 		// dump($class);
 		return $class;
-
-
     }
+
+    /**
+     * getClassmate  获取某个班学生的数组
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright 2018-01-25T18:42:38+0800
+     * @var
+     * @param     string                   $class [description]
+     * @return    [type]                          [description]
+     */
+    public function getClassmate($class) {
+        if ($class == '') {
+            return false;
+        } else{
+            return $this->where(array('class'=>$class))->order('number asc')->select();
+        }
+    }
+        
 }
