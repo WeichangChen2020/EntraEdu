@@ -28,7 +28,8 @@
     </div>
     <div id="test"></div>
 </body>
-<include file="./Public/html/_foot.html"/>
+<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+<script src="__PUBLIC__/js/jquery-weui.js"></script>
 <include file="./Public/html/_refreshJs.html"/>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
@@ -44,9 +45,9 @@
     });
 
 
-    latitude = '';
-    longitude= '';
-    accuracy = '';
+    var latitude = '';
+    var longitude= '';
+    var accuracy = '';
 
     wx.ready(function(){
         $.showLoading('正在获取地理位置');
