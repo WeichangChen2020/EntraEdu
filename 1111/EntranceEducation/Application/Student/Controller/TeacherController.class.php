@@ -421,7 +421,7 @@ public function index(){
         $this->assign('teacherClass',$teacherClass);
         $this->assign('data',$data);
         $this->assign('signPackage',$signPackage);
-        $this->assign('time',date('m月d日签到',time()))->display();
+        $this->assign('time',date('m月d日',time()))->display();
     }
 
     /**
