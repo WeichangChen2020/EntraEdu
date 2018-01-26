@@ -19,7 +19,7 @@
               </div>
               <div class="weui_cell_ft alert">
                 <div><if condition="$signinList.state eq '开启'"><i class="weui_icon_success_circle"></i>状态:开启<else /> <i class="weui_icon_warn"></i>状态:关闭</if></div>
-                <div><i class="weui_icon_info"></i>签到人数:{$signinList.signinNum| default="0"}</div>
+                <div><i class="weui_icon_info"></i>签到人数:{$signinList.signinNum| default="0"}/{$signinList.count| default="0"}</div>
               </div>
             </a>
           </volist>
