@@ -596,12 +596,12 @@ public function index(){
         $result    = array();
         foreach ($unitArray as $key =>$value) {
            //$value  = 'unit'.$value ;
-           $cond   = array('chapter' => $value);
-           $result = array_merge($result,M('questionbank')->where($cond)->select());
-           p($result[$key]['type']);
-           $result[$key]['type'] = D('Questionbank')->getQuesType($result[$key]['type']);
-            // $quesItem = D('Questionbank')->getQuestion($value[$key]);
-            // $result = array_merge($result,);
+           // $cond   = array('chapter' => $value);
+           // $result = array_merge($result,M('questionbank')->where($cond)->select());
+           // p($result[$key]['type']);
+           // $result[$key]['type'] = D('Questionbank')->getQuesType($result[$key]['type']);
+            $quesItem = D('Questionbank')->getQuestion('',$value[$key],'');
+            $result = array_merge($result,$quesItem);
         }
         var_dump($result);
         die;
