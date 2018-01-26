@@ -26,10 +26,13 @@ class SigninController extends Controller{
         $openId = I('openId');
         session('openId',$openId);
         $SINGIN = D('studentSignin');
+        $studentInfo = M('StudentInfo')->where(array('openId'=>$openId))->find();
+        dump($studentInfo);die;
         $signinList = D('teacherSignin')->getSigninList($openId);
         foreach ($signinList as $key => $value) {
             $signinList[$key]['isSignin']  = $SINGIN->isSignin($openId,$signinList[$key]['id']);
             $signinList[$key]['signinNum'] = $SINGIN->getSigninNum($signinList[$key]['id']);
+            $signinList[$key]['signinName'] = $signinList[$key]['signinName'];
         }
 
         $this->assign('signinList',$signinList)->display();
