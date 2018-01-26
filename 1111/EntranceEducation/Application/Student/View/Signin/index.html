@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>签到列表</title>    
   <include file="./Public/html/_head.html"/>
  </head>
  <body ontouchstart="">
@@ -13,7 +11,7 @@
 
     <div class="weui_panel weui_panel_access">
       <div class="weui_panel_bd">
-          <volist name="signinList" id="signinList" empty="没有签到信息">
+          <volist name="signinList" id="signinList" empty="您所在班级没有签到">
             <a href="{:U('signinMenu')}/signinId/{$signinList.id}" class="weui_media_box weui_media_appmsg">
               <div class="weui_media_bd">
                 <h4 class="weui_media_title">{$signinList.signinName| default="签到名称"}</h4>
@@ -26,7 +24,7 @@
             </a>
           </volist>
       </div>
-    </div>
+    </div> 
 
   </body>
 </html>
