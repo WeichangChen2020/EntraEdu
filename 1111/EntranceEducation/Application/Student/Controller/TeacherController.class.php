@@ -600,7 +600,7 @@ public function index(){
            $result = array_merge($result,M('questionbank')->where($cond)->select());
            p($result);
         }
-        var_dump($result);
+        // var_dump($result);
         die;
         if($number != 0){   //用户自定义题目数量
             $numberResult = array(); 
