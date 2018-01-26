@@ -13,7 +13,7 @@
 namespace Student\Controller;
 use Think\Controller;
 use Think\Model;
-
+ 
 /**
  * 教师类
  */
@@ -398,31 +398,40 @@ class TeacherController extends Controller{
         $this->assign('time',date('m月d日签到',time()))->display();
     }
 
-    // public function test(){
-    //     $signin        = array(
-    //         'openId'    => 'qyhtesttest',
-    //         'name'      => 'qyh',
-    //         'signinName'=> '232sdf23sf',
-    //         'latitude'  => 'ddd',
-    //         'longitude' => 'ddd',
-    //         'accuracy'  => 'ddd',
-    //         'deadtime'  => date('Y-m-d H:i:s',time()),
-    //         'state'     => '开启',
-    //         'time'      => date('Y-m-d H:i:s',time())
-    //             );
-    //         M('teacher_signin')->add($signin);
-    //         $this->ajaxReturn('success');
-    // }
+    /**
+     * signin_chose_class  选择班级
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright 2018-01-25
+     * @var
+     * @return    
+     */
+    public function signin_chose_class(){
+        $data = I();
+        $openId =  session('openId');
+        $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        $this->assign('teacherClass',$teacherClass);
+        $this->assign('data',$data);
+        $this->assign('signPackage',$signPackage);
+        $this->assign('time',date('m月d日签到',time()))->display();
+    }
 
-    //教师端将签到信息存入数据库
+    /**
+     * signin_add  添加签到记录
+     * @author    陈伟昌<1339849378@qq.com>
+     * @copyright 2018-01-25
+     * @var
+     * @return    string
+     */
     public function signin_add(){
-        if(!IS_AJAX)
+        if(!IS_AJAX){
             $this->error('你访问的界面不存在');
+        }
         $openId        =  session('openId') ? session('openId') : $this->error('请重新获取改页面');
-        $name          = M('teacher_info')->where(array('openId' => $openId))->getField('name');
+        $name          = M('teacherInfo')->where(array('openId' => $openId))->getField('name');
         $signin        = array(
             'openId'    => $openId,
             'name'      => $name,
+            'class'     => I('class'),
             'signinName'=> trim(I('signinName')),
             'latitude'  => I('latitude'),
             'longitude' => I('longitude'),
@@ -430,7 +439,7 @@ class TeacherController extends Controller{
             'deadtime'  => I('deadtime'),
             'state'     => '开启',
             'time'      => date('Y-m-d H:i:s',time())
-                );
+        );
         if(M('teacher_signin')->add($signin))
             $this->ajaxReturn('success');
         else
@@ -439,16 +448,16 @@ class TeacherController extends Controller{
 
     //签到列表
     public function signin_list(){
-        $cond['accuracy']  = array('NEQ','');  //精度accurcy，是v3.0版本特加的变量，依次区别是新的版本
-        $signinList        = M('teacher_signin')->where($cond)->order('time desc')->select();
-        foreach ($signinList as $key => $value) {
-            $signinList[$key]['signinNum'] = $this->getSigninNum($signinList[$key]['id']);
+        $openId    = session('openId') ? session('openId') : $this->error('请重新获取改页面');
+        $list      = M('teacherSignin')->where(array('openId' => $openId))->select();
+        foreach ($list as $key => $value) {
+            $list[$key]['signinNum'] = $this->getSigninNum($value['id']);
         }
-        $this->assign('signinList',$signinList)->display();
+        $this->assign('signinList',$list)->display();
     }
 
     private function getSigninNum($signinId){
-        return M('student_signin')->where(array('signinId' => $signinId))->count();
+        return M('studentSignin')->where(array('signinId' => $signinId))->count();
     }
 
     //设置状态关闭，代签
@@ -465,7 +474,27 @@ class TeacherController extends Controller{
     //已签到名单
     public function signin_view(){
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
-        $signinList    =  M('student_signin')->where(array('signinId' => $signinId))->select();
+        $signinInfo    =  D('TeacherSignin')->getDetail($signinId);
+        $STUDENT       =  D('StudentInfo');
+        $SIGNIN        =  D('StudentSignin');
+        $signinList    =  array();
+        foreach ($signinInfo["class"] as $key => $value) {
+            if (empty($signinList)) {
+                $signinList = $STUDENT->getClassmate($value);
+            }else{
+                $temp = $STUDENT->getClassmate($value);
+                foreach ($temp as $key => $value) {
+                    array_push($signinList, $value);
+                }
+            }
+        }
+        foreach ($signinList as $key => $value) {
+            if ( $SIGNIN->isSignin($value['openId'],$signinId) ) {
+                $signinList[$key]['flag'] = 1;
+            }else{
+                $signinList[$key]['flag'] = 0;
+            }
+        }
         $this->assign('signinList',$signinList)->display();
     }
 
