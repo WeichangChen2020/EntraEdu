@@ -50,19 +50,18 @@
     wx.ready(function(){
         $.showLoading('正在获取地理位置');
         setTimeout(function(){
-            //上传
-            wx.getLocation({
-                // type: 'wgs84', 
-                success: function (res) {
-                    latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                    longitude = res.longitude ; // 经度，浮点数，范围为180 ~ -180。
-                    accuracy = res.accuracy; // 位置精度
-                }
-            });
-            $.hideLoading();
-        },2000);
+          //上传
+          wx.getLocation({
+            success:function(res){
+              latitude = res.latitude;
+              longitude = res.longitude;
+              accuracy = res.accuracy;
+          }
+      });
+          $.hideLoading();
+      },4000);
     });
-
+    
     $('#submit').click(function(){
         signinName = $('#signinName').html();
         deadtime   = $('#time').val();
