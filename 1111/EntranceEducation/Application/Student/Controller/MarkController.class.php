@@ -112,7 +112,7 @@ class MarkController extends Controller{
         header("Expires: 0");
         //导出xls 开始
         //数据库对应xls标题的定义
-        $title=array('id','openId','name','number','class','weixinMessageNum','comCommentNum','comReplyNum','ranCommentNum','ranReplyNum','doRanNum','doRanRightNum','registerNum','classTestNum','classTestRightNum','signinNum','lastMark');
+        $title=array('id','openid','name','number','class','weixinMessageNum','exerciseNum','exerciseRightNum','doRanNum','doRanRightNum','registerNum','classTestNum','classTestRightNum','signinNum','homeworkMark','lastMark');
         if (!empty($title)){
             foreach ($title as $k => $v) {
                 $title[$k]=iconv("UTF-8", "GB2312",$v);
