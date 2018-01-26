@@ -456,7 +456,7 @@ public function index(){
             $count = 0;
             $signinInfo = $SIGNIN->getDetail($value['id']);
             foreach ($signinInfo["class"] as $k => $v) {
-                $count += count($STUDENT->getClassmate($value));
+                $count += count($STUDENT->getClassmate($v));
             }
             $list[$key]['count']     = $count;
         }
