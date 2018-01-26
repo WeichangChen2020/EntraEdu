@@ -451,13 +451,14 @@ public function index(){
         $openId    = session('openId') ? session('openId') : $this->error('请重新获取改页面');
         $list      = M('teacherSignin')->where(array('openId' => $openId))->order('time desc')->select();
         $SIGNIN    = D('TeacherSignin');
+        $STUDENT   = D('StudentInfo');
         foreach ($list as $key => $value) {
             $list[$key]['signinNum'] = $this->getSigninNum($value['id']);
             $count = 0;
             $signinInfo = $SIGNIN->getDetail($value['id']);
             foreach ($signinInfo["class"] as $k => $v) {
                 // dump($v);die;
-                $count += count($SIGNIN->getClassmate($v));
+                $count += count($STUDENT->getClassmate($v));
             }
             $list[$key]['count']     = $count;
         }
