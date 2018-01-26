@@ -55,6 +55,6 @@ class TeacherSigninModel extends Model {
             $name         = date('m月d日',time())."(".$no.")";
             $no++;
         }
-        return $name
+        return $name;
     }
 }
