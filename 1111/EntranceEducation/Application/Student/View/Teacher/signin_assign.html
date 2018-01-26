@@ -3,7 +3,7 @@
 <head>
     <include file="./Public/html/_head.html"/>
 </head>
-<body ontouchstart>
+<body id="body" ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
         <h1 class="demos-title">发布签到</h1>
@@ -28,8 +28,7 @@
     </div>
     <div id="test"></div>
 </body>
-<script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
-<script src="__PUBLIC__/js/jquery-weui.js"></script>
+<include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
@@ -48,6 +47,8 @@
     var latitude = '';
     var longitude= '';
     var accuracy = '';
+    var body     = $('#body');
+    alert(body);
 
     wx.ready(function(){
         $.showLoading('正在获取地理位置');
