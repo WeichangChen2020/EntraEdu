@@ -594,10 +594,13 @@ public function index(){
         $unitArray = str_split($unit);
         p($unitArray);      
         $result    = array();
-        foreach ($unitArray as $value) {
+        foreach ($unitArray as $key =>$value) {
            //$value  = 'unit'.$value ;
            $cond   = array('chapter' => $value);
            $result = array_merge($result,M('questionbank')->where($cond)->select());
+           $result[$key]['type'] = D('Questionbank')->getQuesType($result[$key]['type']);
+            // $quesItem = D('Questionbank')->getQuestion($value[$key]);
+            // $result = array_merge($result,);
         }
         var_dump($result);
         die;
