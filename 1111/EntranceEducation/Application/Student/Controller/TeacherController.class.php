@@ -592,7 +592,7 @@ public function index(){
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
-        p($unitArray);      
+        // p($unitArray);      
         $result    = array();
         foreach ($unitArray as $key =>$value) {
            //$value  = 'unit'.$value ;
@@ -603,8 +603,8 @@ public function index(){
             $quesItem = D('Questionbank')->getQuestion('',$value[$key],'');
             $result[$key] = array_merge($result,$quesItem);
         }
-        var_dump($result);
-        die;
+        // var_dump($result);
+        // die;
         if($number != 0){   //用户自定义题目数量
             $numberResult = array(); 
             $rand = array_rand($result,$number);
