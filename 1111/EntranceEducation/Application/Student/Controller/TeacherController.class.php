@@ -20,11 +20,11 @@ use Think\Model;
 
 class TeacherController extends Controller{
     
-    public function index(){
-        $openId = session("openId");
+public function index(){
+        $openId = getOpenId();
+        session('openId',$openId);
         if(!$openId){
-            $openId = getOpenId();
-            session('openId',$openId);
+            $openId = session("openId");
         } 
 
         // $correcNumber = $this->getHomeCorrNum();

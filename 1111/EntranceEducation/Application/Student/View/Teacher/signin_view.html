@@ -91,7 +91,6 @@
             'openId': this.id , 
         }
         $.confirm("您确定要代签吗?", "确认代签?", function() {
-            alert(openId);
             $.post(url, data, function(res){
                 if (res == 'error') 
                     $.toast("学生ID获取失败!");
