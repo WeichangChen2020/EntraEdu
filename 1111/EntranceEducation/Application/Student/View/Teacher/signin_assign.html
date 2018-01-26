@@ -51,6 +51,7 @@
 
     $.showLoading('aaaa');
     wx.ready(function(){
+        $.showLoading('正在获取地理位置');
         setTimeout(function(){
             wx.getLocation({
                 success:function(res){
@@ -59,9 +60,10 @@
                     accuracy = res.accuracy;
                 }
             });
+            $.hideLoading();
         },2000);
     });
-    $.hideLoading();
+            alert('fk');
 
     $('#submit').click(function(){
         signinName = $('#signinName').html();
