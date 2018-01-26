@@ -66,10 +66,10 @@ class SigninController extends Controller{
         //已截止
         $deadtime = $signInfo['deadtime'];
         $now = time();
-        if($now > strtotime($deadtime))
-            $this->ajaxReturn('close');
         dump(strtotime($deadtime));
         dump(strtotime($now));die;
+        if($now > strtotime($deadtime))
+            $this->ajaxReturn('close');
         //已关闭
         if($signInfo['state'] != '开启')
             $this->ajaxReturn('close');
