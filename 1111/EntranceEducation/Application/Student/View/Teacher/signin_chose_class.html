@@ -1,0 +1,82 @@
+<!-- 试题列表 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="./Public/html/_head.html"/>
+    <meta charset="utf-8">
+    <title style="color:black">选择班级</title>
+    <include file="./Public/weui2.0/__head.html"/>
+    <script src="__PUBLIC__/font/iconfont.js"></script>
+
+    <style>
+    .cell_top{margin-top:0px;}
+    .banji{margin-right: 100px;}
+</style>
+</head>
+
+<body ontouchstart>
+    <include file="./Public/html/_refresh.html"/>
+    <header class='demos-header'>
+        <h1 class="demos-title">选择班级</h1>
+    </header>
+    <volist name="teacherClass" id="teacherClass" empty="没有班级信息">
+        <div class="weui_cells weui_cells_form cell_top">
+
+            <div class="weui_cell weui_cell_switch">
+                <div class="weui_cell_hd weui_cell_primary">{$i}.</div>
+                <div class="banji">{$teacherClass["class"]}</div>
+                <div class="weui_cell_ft">
+                    <input class="weui_switch" type="checkbox" >
+                    <div class="banji">{$teacherClass["class"]}</div>
+                </div>
+            </div>
+
+        </div>          
+
+    </volist>
+    <div style="margin-right: 14px;margin-top: 30px;margin-left: 14px;">
+        <a class="weui_btn weui_btn_primary" href="javascript:" id="submit">确定</a>
+    </div>  
+
+</body>
+</html>
+<include file="./Public/html/_foot.html"/>
+<include file="./Public/html/_refreshJs.html"/>
+<script>
+    $('#submit').click(function(){
+        var banji = '';
+        $(":checked").each(function(){
+            banji += $(this).siblings('.banji').html()+"_";
+        });
+        if(banji === '')
+            $.toptip('你没有选择班级','warning');
+        else{
+            $.confirm('您确定要发布签到吗?','确定发布',function(){
+                $.showLoading('签到发布中');
+                setTimeout(function(){
+                    url = "{:U('Teacher/signin_add')}";  
+                    data = {
+                        class:banji,
+                        signinName:'{$time}',
+                        deadtime:'{$data.deadtime}'.replace(/T/, " "),
+                        latitude:{$data.latitude},
+                        longitude:{$data.longitude},
+                        accuracy:{$data.accuracy}
+                    };
+                    $.hideLoading();
+                    $.post(url,data,function(res){
+                        if(res == 'success'){
+                            $.toast('签到发布成功!');
+                            $('#submit').hide();
+                            window.location.href="{:U('signin_list')}";
+                        }else if(res == 'failure'){
+                            $.toast('签到发布失败!','cancel');
+                        }
+                    });
+                },2000);
+            },function(){
+
+            })
+        }
+    })
+</script>

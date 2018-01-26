@@ -6,7 +6,7 @@
  <body ontouchstart="">
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-      <h1 class="demos-title">签到列表</h1>
+      <h1 class="demos-title">我发布的签到</h1>
     </header>
 
     <div class="weui_panel weui_panel_access">
@@ -19,7 +19,7 @@
               </div>
               <div class="weui_cell_ft alert">
                 <div><if condition="$signinList.state eq '开启'"><i class="weui_icon_success_circle"></i>状态:开启<else /> <i class="weui_icon_warn"></i>状态:关闭</if></div>
-                <div><i class="weui_icon_info"></i>签到人数:{$signinList.signinNum}</div>
+                <div><i class="weui_icon_info"></i>签到人数:{$signinList.signinNum| default="0"}</div>
               </div>
             </a>
           </volist>

@@ -1,37 +1,110 @@
 <!-- 已签到列表 -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <include file="./Public/html/_head.html"/>
-    <style>
-      [class*="weui-col-"] {
-        border: 1px solid #ccc;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-      }
-
+    <head>
+        <include file="./Public/html/_head.html"/>
+        <include file="./Public/weui2.0/__head.html"/>
+        <style>
+        [class*="weui-col-"] {
+            border: 1px solid #ccc;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .container:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #D9D9D9;
+            color: #D9D9D9;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+        .weui-grid {
+            position: relative;
+        }
+        .attend {
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            right: 0;
+            top: 0;
+            border-top: 40px solid  #30CE4A ;
+            border-left: 40px solid transparent ;
+        }
+        .absent {
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            right: 0;
+            top: 0;
+            border-top: 40px solid  #FF0000 ;
+            border-left: 40px solid transparent ;
+        }
+        .flag {
+            position: absolute;
+            top: -40px;
+            right:3px;
+            color: #fff;
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg);     /* IE 9 */
+            -moz-transform:rotate(45deg);    /* Firefox */
+            -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+            -o-transform:rotate(45deg);  /* Opera */
+        }
     </style>
-  </head>
-  <body ontouchstart>
-    <include file="./Public/html/_refresh.html"/>
-    <header class='demos-header'>
-      <h1 class="demos-title">签到记录</h1>
-    </header>
+    </head>
+        <body ontouchstart>
+            <include file="./Public/html/_refresh.html"/>
+            <header class='demos-header'>
+                <h1 class="demos-title">签到记录</h1>
+            </header>
 
-    <div class="weui-row weui-no-gutter">
-      <div class="weui-col-25">序号</div>
-      <div class="weui-col-25">姓名</div>
-      <div class="weui-col-50">签到时间</div>
-    </div>
-    <volist name="signinList" id="signinList" key="k" empty="没有签到信息">
-      <div class="weui-row weui-no-gutter">
-        <div class="weui-col-25">{$k}</div>
-        <div class="weui-col-25">{$signinList.name}</div>
-        <div class="weui-col-50">{$signinList.time}</div>
-      </div>
-    </volist>
-  </body>
+            <div class="container" id="container">
+                <volist name="signinList" id="signinList" key="k" empty="没有签到信息">
+                    <if condition="$signinList['flag'] eq 1"> 
+                        <a disable="true" class="weui-grid js_grid" id="{$signinList['openId']}">
+                            <div class="attend"><span class="flag">签</span></div>
+                            <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
+                        </a>
+                    <elseif condition="$signinList['flag'] eq 0"/>
+                        <a href="javascript:void(0);" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
+                            <div class="absent"><span class="flag">缺</span></div>
+                            <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
+                        </a>
+                    </if>
+                </volist>
+            </div>
+        </body>
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
+<include file="./Public/weui2.0/__foot.html"/>
+<script type="text/javascript">
+    $('.studentInfo').click(function(){
+        var url = "{:U('Teacher/daiqian')}";
+        var data = {
+            'openId': this.id , 
+        }
+        $.confirm("您确定要代签吗?", "确认代签?", function() {
+            $.post(url, data, function(res){
+                if (res == 'error') 
+                    $.toast("学生ID获取失败!");
+                else if (res == 'fail')
+                    $.toast("代签失败!");
+                else if (res == 'success'){
+                    window.location.reload(); 
+                    $.toast("代签成功!");
+                }
+                else
+                    $.toast("非法访问!");
+            });
+        }, function() {
+            //取消操作
+        });
+    })
+</script>
