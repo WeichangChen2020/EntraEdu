@@ -592,19 +592,16 @@ public function index(){
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
-        // p($unitArray);      
+            
         $result    = array();
-        foreach ($unitArray as $key =>$value) {
+        foreach ($unitArray as $value) {
            //$value  = 'unit'.$value ;
-           // $cond   = array('chapter' => $value);
-           // $result = array_merge($result,M('questionbank')->where($cond)->select());
-           // p($result[$key]['type']);
-           // $result[$key]['type'] = D('Questionbank')->getQuesType($result[$key]['type']);
-            $quesItem = D('Questionbank')->getQuestion('',$value[$key],'');
-            $result[$key] = array_merge($result,$quesItem);
+           $cond   = array('chapter' => $value);
+           $result = array_merge($result,M('questionbank')->where($cond)->select());
+           p($result);
         }
-        // var_dump($result);
-        // die;
+        var_dump($result);
+        die;
         if($number != 0){   //用户自定义题目数量
             $numberResult = array(); 
             $rand = array_rand($result,$number);
