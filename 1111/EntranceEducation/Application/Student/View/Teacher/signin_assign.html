@@ -47,7 +47,6 @@
     var latitude = '';
     var longitude= '';
     var accuracy = '';
-    var body     = $('#body');
 
     $.showLoading('正在获取地理位置');
     wx.ready(function(){
@@ -60,7 +59,7 @@
                     $.hideLoading();
                 }
             });
-        },2000);
+        },1000);
     });
 
     $('#submit').click(function(){
