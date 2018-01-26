@@ -166,13 +166,14 @@ class MarkController extends Controller{
             // p($markInfo);
             if($MARK->where(array('openid' => $value))->find()){
                 $MARK->where(array('openid' => $value))->save($markInfo);
-                echo $value."积分更新成功<br/>";
+                // echo $value."积分更新成功<br/>";
             }
             else{
                 $MARK->add($markInfo);
-                echo $value."积分插入成功<br/>";
+                // echo $value."积分插入成功<br/>";
             }
         }
+        $this->success('积分更新成功',U('Mark/markMenu'));
     }
 
     //积分详情，每个项目的值
