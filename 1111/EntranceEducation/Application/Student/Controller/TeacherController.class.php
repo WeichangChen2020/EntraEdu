@@ -594,18 +594,10 @@ public function index(){
         $unitArray = str_split($unit);
          
         $result    = array();
-        foreach ($unitArray as $key => $value) {
+        foreach ($unitArray as $value) {
            //$value  = 'unit'.$value ;
            $cond   = array('chapter' => $value);
            $result = array_merge($result,M('questionbank')->where($cond)->select());
-           if($result[$key]['type'] == 1){
-                $result[$key]['type'] = '单选题';
-           }elseif ($result[$key]['type'] == 2) {
-                $result[$key]['type'] = '判断题';
-           }else{
-                $result[$key]['type'] = '多选题';
-           }
-           
         }
         // var_dump($result);
         // die;
