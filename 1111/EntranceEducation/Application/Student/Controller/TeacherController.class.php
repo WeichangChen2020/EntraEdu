@@ -21,7 +21,8 @@ use Think\Model;
 class TeacherController extends Controller{
     
 public function index(){
-        $openId = getOpenId();
+        // $openId = getOpenId();
+        $openId =  session('openId');
         session('openId',$openId);
         if(!$openId){
             $openId = session("openId");
