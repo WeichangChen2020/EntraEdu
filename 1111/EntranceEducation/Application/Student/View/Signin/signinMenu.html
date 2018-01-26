@@ -71,7 +71,7 @@
                 else if(res == 'signined') $.toast('你已经签到过了','text');
                 else if(res == 'success'){
                     $.toast('签到成功');
-                    window.location.href="{:U('Signin/index')}";
+                    window.location.href="{:U('Signin/index', array('openId'=>session('openId')))}";
                 }
                 else $.toast('签到失败,请稍后重试','cancel');
             })
