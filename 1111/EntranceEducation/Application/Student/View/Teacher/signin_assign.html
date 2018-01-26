@@ -48,8 +48,8 @@
     var accuracy = '';
 
     wx.ready(function(){
-        $.showLoading('正在获取地理位置');
         setTimeout(function(){
+            $.showLoading('正在获取地理位置');
             //上传
             wx.getLocation({
                 type: 'wgs84', 
