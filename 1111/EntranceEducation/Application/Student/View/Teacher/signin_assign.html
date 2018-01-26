@@ -3,7 +3,7 @@
 <head>
     <include file="./Public/html/_head.html"/>
 </head>
-<body ontouchstart>
+<body  id="loading" ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
         <h1 class="demos-title">发布签到</h1>
@@ -48,8 +48,8 @@
     var longitude= '';
     var accuracy = '';
 
-    $('body').showLoading('正在获取地理位置');
     wx.ready(function(){
+        $('#loading').showLoading('正在获取地理位置');
         setTimeout(function(){
             wx.getLocation({
                 success:function(res){
@@ -58,7 +58,7 @@
                     accuracy = res.accuracy;
                 }
             });
-            $('body').hideLoading();
+            $('#loading').hideLoading();
         },2000);
     });
 
