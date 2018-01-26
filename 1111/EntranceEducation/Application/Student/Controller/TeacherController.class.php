@@ -601,7 +601,7 @@ public function index(){
            // p($result[$key]['type']);
            // $result[$key]['type'] = D('Questionbank')->getQuesType($result[$key]['type']);
             $quesItem = D('Questionbank')->getQuestion('',$value[$key],'');
-            $result = array_merge($result,$quesItem);
+            $result[$key] = array_merge($result,$quesItem);
         }
         var_dump($result);
         die;
