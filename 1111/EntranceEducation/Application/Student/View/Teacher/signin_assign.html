@@ -48,17 +48,15 @@
     var longitude= '';
     var accuracy = '';
 
-        // setTimeout(function(){
-        //     wx.getLocation({
-        //         success:function(res){
-        //             latitude = res.latitude;
-        //             longitude = res.longitude;
-        //             accuracy = res.accuracy;
-        //             $.hideLoading();
-        //         }
-        //     });
-        // },1000);
     $.showLoading('正在获取地理位置');
+    wx.getLocation({
+        success:function(res){
+            latitude = res.latitude;
+            longitude = res.longitude;
+            accuracy = res.accuracy;
+            $.hideLoading();
+        }
+    });
     setTimeout(function(){
         $.hideLoading();
     },2000);
