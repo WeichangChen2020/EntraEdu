@@ -592,7 +592,7 @@ public function index(){
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
-         
+        p($unitArray);die;        
         $result    = array();
         foreach ($unitArray as $value) {
            //$value  = 'unit'.$value ;
