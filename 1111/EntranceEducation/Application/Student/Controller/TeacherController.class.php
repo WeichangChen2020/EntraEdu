@@ -401,12 +401,9 @@ public function index(){
             $name         = date('m月d日',time())."(".$no.")";
             $no++;
         }
-        dump($TSIGNIN->where(array('signinName'=>$name))->find());
-        dump($TSIGNIN->getLastSql());
-        dump($name);die;
 
         $this->assign('signPackage',$signPackage);
-        $this->assign('time',date('m月d日',time()));
+        $this->assign('time',$name);
         $this->display();
     }
 
