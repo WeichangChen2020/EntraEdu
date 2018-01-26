@@ -67,6 +67,7 @@
             };
             //上传
             $.post(url,data,function(res){
+                alert(res);
                 if(res == 'close') $.toast('本次签到已经截止','cancel');
                 else if(res == 'signined') $.toast('你已经签到过了','text');
                 else if(res == 'success'){

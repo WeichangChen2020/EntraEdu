@@ -418,10 +418,18 @@ public function index(){
         $data = I();
         $openId =  session('openId');
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
+        $no           = 1;
+        $name         = date('m月d日',time())."(".$no.")";
+        $TSIGNIN    = M('TeacherSignin');
+        while (NULL != $TSIGNIN->where(array('signinName'=>$name))->find()) {
+            $name         = date('m月d日',time())."(".$no.")";
+            $no++;
+        }
         $this->assign('teacherClass',$teacherClass);
         $this->assign('data',$data);
         $this->assign('signPackage',$signPackage);
-        $this->assign('time',date('m月d日',time()))->display();
+        $this->assign('time',$name);
+        $this->display();
     }
 
     /**
