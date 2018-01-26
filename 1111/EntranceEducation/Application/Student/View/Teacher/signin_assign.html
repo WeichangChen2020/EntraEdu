@@ -47,7 +47,9 @@
     var latitude = '';
     var longitude= '';
     var accuracy = '';
+    var body     = $('#body');
 
+    body.showLoading('aaaa');
     wx.ready(function(){
         $.showLoading('正在获取地理位置');
         setTimeout(function(){
