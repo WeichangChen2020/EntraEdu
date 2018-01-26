@@ -20,8 +20,6 @@
     <style>
         .cell_top{margin-top:0px;}
         .quesId{display:none;}
-        .content {margin: 0 20px 20px 20px;padding-bottom: 0px;padding-top: 0rem;}
-        .weui-badge {display: initial;}        
     </style>
   </head>
 
@@ -34,17 +32,17 @@
       <div class="weui_cells weui_cells_form cell_top">
       <div class="content">
         <div class="weui_cell weui_cell_switch">
-          <!-- <div class="weui_cell_hd weui_cell_primary">{$i}.</div> -->
+          <div class="weui_cell_hd weui_cell_primary">{$i}.</div>
           <div class="weui_cell_ft">
               <input class="weui_switch" type="checkbox" >
               <div class="quesId">{$quesItem.id}</div>
           </div>
-        </div> 
+        </div>
 <!--         <div class="weui_cell weui_article" style="padding:0px 15px;">
           <img src="http://testet-public.stor.sinaapp.com{$result.questionPicPath|str_replace='/Public','',###}{$result.questionPicName}" alt="">
         </div> -->
         <div class="c-pic">
-          {$i}.<span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>
+          <span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>
           {$quesItem.contents|repleace_question_image=###}
         </div>
         <div class="c-table">
