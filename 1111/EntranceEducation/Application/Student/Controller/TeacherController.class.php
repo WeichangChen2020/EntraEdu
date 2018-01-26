@@ -395,7 +395,7 @@ public function index(){
         $weixin       = new WeichatController();
         $signPackage  = $weixin->getJssdkPackage();
         $no           = 1;
-        $name         = date('m月d日签到',time())."(".$no.")";
+        $name         = date('m月d日',time())."(".$no.")";
         $TSIGNIN    = M('TeacherSignin');
         while (NULL != $TSIGNIN->where(array('signinName'=>$name))->find()) {
             $name         = date('m月d日',time())."(".$no.")";
@@ -406,7 +406,7 @@ public function index(){
         dump($name);die;
 
         $this->assign('signPackage',$signPackage);
-        $this->assign('time',date('m月d日签到',time()));
+        $this->assign('time',date('m月d日',time()));
         $this->display();
     }
 
