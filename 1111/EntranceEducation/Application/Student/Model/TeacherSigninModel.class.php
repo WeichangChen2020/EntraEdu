@@ -16,7 +16,7 @@ class TeacherSigninModel extends Model {
             return false;
         } else {
             $map['class'] = array('like','%'.$class['class'].'%');
-            $list  = $this->where($map)->select();
+            $list  = $this->where($map)->order('time desc')->select();
             return $list;
         }
     }

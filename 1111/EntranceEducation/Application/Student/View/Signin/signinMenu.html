@@ -69,7 +69,10 @@
             $.post(url,data,function(res){
                 if(res == 'close') $.toast('本次签到已经截止','cancel');
                 else if(res == 'signined') $.toast('你已经签到过了','text');
-                else if(res == 'success') $.toast('签到成功');
+                else if(res == 'success'){
+                    $.toast('签到成功');
+                    window.location.href="{:U('Signin/index')}";
+                }
                 else $.toast('签到失败,请稍后重试','cancel');
             })
         }
