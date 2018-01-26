@@ -15,7 +15,7 @@
             <a href="{:U('signinMenu')}/signinId/{$signinList.id}" class="weui_media_box weui_media_appmsg">
               <div class="weui_media_bd">
                 <h4 class="weui_media_title">{$signinList.signinName| default="签到名称"}</h4>
-                <p class="weui_media_desc">签到时间:{$signinList.time|substr=11,5} -- {$signinList.deadtime|substr=11,5}</p>
+                <p class="weui_media_desc">截止时间: {$signinList.deadtime|substr=5,11}</p>
               </div>
               <div class="weui_cell_ft alert">
                 <div><if condition="$signinList.isSignin eq true"><i class="weui_icon_success"></i>已签到<else /> <i class="weui_icon_warn"></i>未签到</if></div>
