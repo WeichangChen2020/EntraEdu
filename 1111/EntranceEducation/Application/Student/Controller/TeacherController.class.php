@@ -393,9 +393,19 @@ public function index(){
     //教师端发布签到页面
     public function signin_assign(){
         $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage(); 
+        $signPackage  = $weixin->getJssdkPackage();
+        $no           = 1;
+        $name         = date('m月d日签到',time())."(".$no.")";
+        $TSIGNIN    = M('TeacherSignin');
+        while (NULL == $TSIGNIN->where(array('signinName'=>$name))) {
+            $name         = date('m月d日签到',time())."(".$no.")";
+            $no++;
+        }
+        dump($name);die;
+
         $this->assign('signPackage',$signPackage);
-        $this->assign('time',date('m月d日签到',time()))->display();
+        $this->assign('time',date('m月d日签到',time()));
+        $this->display();
     }
 
     /**
