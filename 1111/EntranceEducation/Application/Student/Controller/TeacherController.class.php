@@ -223,7 +223,7 @@ public function index(){
     public function homework_handAssign(){
         if(!IS_AJAX)
             $this->error('你访问的界面不存在');
-        $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $HOMEWORK = M('teacher_homework');
         $user     = new UserController();
         $userInfo = $user->getTeacherInfo($openId);
@@ -307,7 +307,7 @@ public function index(){
     public function homework_mark(){
         $STU_HOMEWORK = M('student_homework');
         $TEA = M('teacher_info');
-        $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $name = $TEA->where(array('openId' => $openId))->getField('name');
         $personWorkId = I('personWorkId');
         $mark = I('mark');
@@ -394,13 +394,7 @@ public function index(){
     public function signin_assign(){
         $weixin       = new WeichatController();
         $signPackage  = $weixin->getJssdkPackage();
-        $no           = 1;
-        $name         = date('m月d日',time())."(".$no.")";
-        $TSIGNIN    = M('TeacherSignin');
-        while (NULL != $TSIGNIN->where(array('signinName'=>$name))->find()) {
-            $name         = date('m月d日',time())."(".$no.")";
-            $no++;
-        }
+        $name    = D('TeacherSignin')->setSigninName(session('openId'));
 
         $this->assign('signPackage',$signPackage);
         $this->assign('time',$name);
@@ -418,13 +412,8 @@ public function index(){
         $data = I();
         $openId =  session('openId');
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
-        $no           = 1;
-        $name         = date('m月d日',time())."(".$no.")";
-        $TSIGNIN    = M('TeacherSignin');
-        while (NULL != $TSIGNIN->where(array('signinName'=>$name))->find()) {
-            $name         = date('m月d日',time())."(".$no.")";
-            $no++;
-        }
+        $name    = D('TeacherSignin')->setSigninName(session('openId'));
+
         $this->assign('teacherClass',$teacherClass);
         $this->assign('data',$data);
         $this->assign('signPackage',$signPackage);
@@ -443,7 +432,7 @@ public function index(){
         if(!IS_AJAX){
             $this->error('你访问的界面不存在');
         }
-        $openId        =  session('openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId        =  session('openId') ? session('openId') : $this->error('请重新获取该页面');
         $name          = M('teacherInfo')->where(array('openId' => $openId))->getField('name');
         $signin        = array(
             'openId'    => $openId,
@@ -465,7 +454,7 @@ public function index(){
 
     //签到列表
     public function signin_list(){
-        $openId    = session('openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId    = session('openId') ? session('openId') : $this->error('请重新获取该页面');
         $list      = M('teacherSignin')->where(array('openId' => $openId))->order('time desc')->select();
         $SIGNIN    = D('TeacherSignin');
         $STUDENT   = D('StudentInfo');
@@ -474,7 +463,6 @@ public function index(){
             $count = 0;
             $signinInfo = $SIGNIN->getDetail($value['id']);
             foreach ($signinInfo["class"] as $k => $v) {
-                // dump($v);die;
                 $count += count($STUDENT->getClassmate($v));
             }
             $list[$key]['count']     = $count;
@@ -668,7 +656,7 @@ public function index(){
     public function test_add(){
         if(!IS_AJAX)
             $this->error('你访问的界面不存在');
-        $openId      = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $openId      = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $classArray  = explode('_', I('testBanji'));//以_为分割,打成数组
         $quesIdArray = explode('_', I('testQuesId'));//题目id数组
         // var_dump($quesIdArray);die;
@@ -821,8 +809,8 @@ public function index(){
 
     // 测试管理->随堂测试列表->测试管理->题目解析
     public function test_analyze(){
-        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取改页面');
-        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+        $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
+        $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $quesList = M('test_questionbank')->where(array('testid' => $testid))->select();
         // var_dump($quesList);
         foreach ($quesList as $key => &$value) {

@@ -39,4 +39,22 @@ class TeacherSigninModel extends Model {
             return $info;
         }
     }
+
+    /**
+     * setSigninName  生成签到名称
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright 2018-01-26T17:01:41+0800
+     * @var
+     * @var openId [<description>]
+     * @return    string                   [description]
+     */
+    public function setSigninName($openId){
+        $no           = 1;
+        $name         = date('m月d日',time())."(".$no.")";
+        while (NULL != $this->where(array('signinName'=>$name,'openId'=>$openId))->find()) {
+            $name         = date('m月d日',time())."(".$no.")";
+            $no++;
+        }
+        return $name
+    }
 }
