@@ -48,8 +48,8 @@
     var longitude= '';
     var accuracy = '';
 
+    $('body').showLoading('正在获取地理位置');
     wx.ready(function(){
-        $('body').showLoading('正在获取地理位置');
         setTimeout(function(){
             wx.getLocation({
                 success:function(res){
