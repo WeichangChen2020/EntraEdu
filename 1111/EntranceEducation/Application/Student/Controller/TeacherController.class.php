@@ -449,9 +449,16 @@ public function index(){
     //签到列表
     public function signin_list(){
         $openId    = session('openId') ? session('openId') : $this->error('请重新获取改页面');
-        $list      = M('teacherSignin')->where(array('openId' => $openId))->select();
+        $list      = M('teacherSignin')->where(array('openId' => $openId))->order('time desc')->select();
+        $SIGNIN    = D('TeacherSignin');
         foreach ($list as $key => $value) {
             $list[$key]['signinNum'] = $this->getSigninNum($value['id']);
+            $count = 0;
+            $signinInfo = $SIGNIN->getDetail($value['id']);
+            foreach ($signinInfo["class"] as $k => $v) {
+                $count += count($STUDENT->getClassmate($value));
+            }
+            $list[$key]['count']     = $count;
         }
         $this->assign('signinList',$list)->display();
     }
