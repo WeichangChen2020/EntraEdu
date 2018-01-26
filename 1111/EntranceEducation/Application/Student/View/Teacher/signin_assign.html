@@ -52,7 +52,7 @@
     $.showLoading('正在获取地理位置');
     wx.ready(function(){
         setTimeout(function(){
-            $.hideLoading()
+            $.hideLoading();
             wx.getLocation({
                 success:function(res){
                     latitude = res.latitude;
