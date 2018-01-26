@@ -522,7 +522,43 @@ public function index(){
         else
             $this->ajaxReturn('failure');
     }
-
+    /**
+     * daiqian  老师帮学生代签
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright 2018-01-25T19:04:47+0800
+     * @var
+     * @return    string                   [description]
+     */
+    public function daiqian(){
+        if(IS_AJAX){
+            /*====获取该学生信息==*/
+            $openId = I('openId');
+            if (empty($openId)) {
+                $this->ajaxReturn('error');
+            }
+            $studentInfo = M('StudentInfo')->where(array('openId' => $openId))->find();
+            $teacherInfo = M('TeacherSignin')->where(array('openId'=>session('openId')))->find();
+            $studentInfo['signinId'] = session('signinId');
+            $signin        = array(
+                'openId'   => $studentInfo['openId'],
+                'name'     => $studentInfo['name'],
+                'class'    => $studentInfo['class'],
+                'number'   => $studentInfo['number'],
+                'signinId' => $studentInfo['signinId'],
+                //代签坐标与老师相同
+                'latitude' => $teacherInfo['latitude'],
+                'longitude'=> $teacherInfo['longitude'],
+                'accuracy' => $teacherInfo['accuracy'],
+                'location' => '老师代签',
+                'time'     => date('Y-m-d H:i:s',time()),
+            );
+            if(M('student_signin')->add($signin))
+                $this->ajaxReturn('success');
+            else
+                $this->ajaxReturn('fail');
+        }else 
+            $this->ajaxReturn('非法的请求方式');   
+    }
 
     //教师端随堂测试首页面,1.发布测试，2.测试管理
     public function test_index(){
