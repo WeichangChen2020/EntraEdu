@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | 计算机网络教学互动平台
+// | 大学物理教学互动平台
 // +----------------------------------------------------------------------
 // | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
 // +----------------------------------------------------------------------
@@ -22,33 +22,17 @@ class SigninController extends Controller{
     
     //学生端入口主页面
     public function index(){
-        // echo '2333';
-        // die();
         session('openId',null);
         $openId = I('openId');
         session('openId',$openId);
-
-        $cond['accuracy']  = array('NEQ','');  //精度accurcy，是v3.0版本特加的变量，依次区别是新的版本，不等于空
-        $signinList        = M('teacher_signin')->where($cond)->order('time desc')->select();
+        $SINGIN = D('studentSignin');
+        $signinList = D('teacherSignin')->getSigninList($openId);
         foreach ($signinList as $key => $value) {
-            $signinList[$key]['isSignin']  = $this->isSignin($openId,$signinList[$key]['id']);
-            $signinList[$key]['signinNum'] = $this->getSigninNum($signinList[$key]['id']);
+            $signinList[$key]['isSignin']  = $SINGIN->isSignin($openId,$signinList[$key]['id']);
+            $signinList[$key]['signinNum'] = $SINGIN->getSigninNum($signinList[$key]['id']);
         }
 
         $this->assign('signinList',$signinList)->display();
-    }
-
-    //判断是否签到
-    private function isSignin($openId,$signinId){
-        if(M('student_signin')->where(array('openId' => $openId,'signinId' => $signinId))->find())
-            return true;
-        else 
-            return false;
-    }
-
-    //签到人数
-    private function getSigninNum($signinId){
-        return M('student_signin')->where(array('signinId'=>$signinId))->count();
     }
 
     //签到菜单
@@ -60,9 +44,10 @@ class SigninController extends Controller{
 
         $weixin       = new WeichatController();
         $signPackage  = $weixin->getJssdkPackage(); 
+        $SINGIN = D('studentSignin');
 
-        $this->assign('state',$this->isSignin($openId,$signinId));
-        $this->assign('signinNum',$this->getSigninNum($signinId));
+        $this->assign('state',$SINGIN->isSignin($openId,$signinId));
+        $this->assign('signinNum',$SINGIN->getSigninNum($signinId));
         $this->assign('signPackage',$signPackage)->display();
 
     }
