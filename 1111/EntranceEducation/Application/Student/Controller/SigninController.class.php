@@ -63,7 +63,6 @@ class SigninController extends Controller{
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
         $SIGNIN = M('teacher_signin');
         $signInfo = $SIGNIN->where(array('id' => $signinId))->find();
-        dump($signInfo);die;
         //已截止
         $deadtime = $signInfo['deadtime'];
         $now = time();
