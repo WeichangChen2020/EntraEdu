@@ -401,6 +401,7 @@ public function index(){
             $name         = date('m月d日',time())."(".$no.")";
             $no++;
         }
+        dump($RSIGNIN->getLastSql());
         dump($name);die;
 
         $this->assign('signPackage',$signPackage);
