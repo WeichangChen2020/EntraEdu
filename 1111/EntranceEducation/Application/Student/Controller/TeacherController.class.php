@@ -397,8 +397,8 @@ public function index(){
         $no           = 1;
         $name         = date('m月d日签到',time())."(".$no.")";
         $TSIGNIN    = M('TeacherSignin');
-        while (NULL == $TSIGNIN->where(array('signinName'=>$name))) {
-            $name         = date('m月d日签到',time())."(".$no.")";
+        while (NULL == $TSIGNIN->where(array('signinName'=>$name))-》find()) {
+            $name         = date('m月d日',time())."(".$no.")";
             $no++;
         }
         dump($name);die;
