@@ -13,14 +13,14 @@
 namespace Student\Controller;
 use Think\Controller;
 use Think\Model;
- 
+
 /**
  * 教师类
  */
 
 class TeacherController extends Controller{
     
-public function index(){
+    public function index(){
         $openId = getOpenId();
         session('openId',$openId);
         if(!$openId){
@@ -75,25 +75,25 @@ public function index(){
 
 
     public function homework_assign_zg(){
-            $this->display();        
+        $this->display();        
 
     }
 
     public function homework_assign_zg2(){
-   
+       
             $unit   = intval(I('unit'));//章节
             session('unit',$unit);
             $number = intval(I('number'));//题数
             if($unit === 0)
                 $this->error('你选择的章节出错了');
             $unitArray = str_split($unit);
-             
+            
             $result    = array();
             foreach ($unitArray as $value) {
                //$value  = 'unit'.$value ;
                $cond   = array('chapter' => $value);
                $result = array_merge($result,M('image_questionbank')->where($cond)->select());
-            }
+           }
             // var_dump($result);die();
             if($number != ''){   //说明用户自定义选择了数量
                 // var_dump(23333);die();
@@ -108,19 +108,19 @@ public function index(){
                 $this->assign('random',0);
                 $this->assign('quesItem',$result)->display();
             }
-        
-    
-    }
+            
+            
+        }
 
-    public function homework_class_list(){
-        $openId =  session('openId');
-        $banji = I('get.banji');
-        $banji = explode('_', $banji);
+        public function homework_class_list(){
+            $openId =  session('openId');
+            $banji = I('get.banji');
+            $banji = explode('_', $banji);
         // var_dump($banji);die();
-        $quesId = I('get.quesId');
-        session('quesId',null);
-        session('quesId',$quesId);
-        
+            $quesId = I('get.quesId');
+            session('quesId',null);
+            session('quesId',$quesId);
+            
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
         $word = date("m月d日",time());
@@ -172,35 +172,35 @@ public function index(){
         $word = date("m月d日",time());
         foreach ($class as $key => $value) {
            if (!empty($value)) {
-                $map['homeworkname'] = array('like',$word.'%');
-                $map['class'] = $value;
-                $homeworkzg = M('homework_zg')->where($map)->count();
+            $map['homeworkname'] = array('like',$word.'%');
+            $map['class'] = $value;
+            $homeworkzg = M('homework_zg')->where($map)->count();
                 // var_dump($homeworkzg+2);die();
-                if ($homeworkzg == 0) {
-                    $name = date("m月d日",time());
-                }else
-                {
-                    $homeworkzg++;
-                    $name = date("m月d日第".$homeworkzg."次作业",time());
+            if ($homeworkzg == 0) {
+                $name = date("m月d日",time());
+            }else
+            {
+                $homeworkzg++;
+                $name = date("m月d日第".$homeworkzg."次作业",time());
                     // var_dump($name);die();
-                }
-                $map['homeworkname'] = $name;
-                $map['class'] = $value;
-                $map['dead_time'] = $data['deadtime'];
-                $map['hpdead_time'] = $data['hpdeadtime'];
-                $map['problem_id'] = session('quesId');
-                $map['bj'] = $data['bj'];
-                $res = $model->add($map);
-           }
+            }
+            $map['homeworkname'] = $name;
+            $map['class'] = $value;
+            $map['dead_time'] = $data['deadtime'];
+            $map['hpdead_time'] = $data['hpdeadtime'];
+            $map['problem_id'] = session('quesId');
+            $map['bj'] = $data['bj'];
+            $res = $model->add($map);
         }
-        $this->ajaxReturn();
-
     }
+    $this->ajaxReturn();
+
+}
 
 
-          
-    
-            
+
+
+
 
 
 
@@ -209,197 +209,197 @@ public function index(){
             // $problems = $homeworkzg['content'];
             // $proarr = explode(',', $problems);
 
-   
+
     // public function homework_assign_kg(){
     //     var_dump(3444);
     //         $chapternumber = M('questionbank')->distinct('chapter')->group('chapter')->select();
     //         $num = count($chapternumber);
     //         $this->assign('num',$num);
     //         $this->display();
-        
+
     // }
 
     //将上传的作业信息写入数据库
-    public function homework_handAssign(){
-        if(!IS_AJAX)
-            $this->error('你访问的界面不存在');
-        $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
-        $HOMEWORK = M('teacher_homework');
-        $user     = new UserController();
-        $userInfo = $user->getTeacherInfo($openId);
-        $name     = $userInfo['name']?$userInfo['name']:'null';
+public function homework_handAssign(){
+    if(!IS_AJAX)
+        $this->error('你访问的界面不存在');
+    $openId   =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+    $HOMEWORK = M('teacher_homework');
+    $user     = new UserController();
+    $userInfo = $user->getTeacherInfo($openId);
+    $name     = $userInfo['name']?$userInfo['name']:'null';
 
-        $homework = array(
-            'openId' => $openId, 
-            'name' => $name,
-            'homeworkName' => trim(I('homeworkName')),
-            'content' => I('content'),
-            'state' => '开启',
-            'deadtime' => I('deadtime'),
-            'time' => date('Y-m-d H:i:s',time()),
-            );
-        
-        $HOMEWORK->add($homework);
-    }
+    $homework = array(
+        'openId' => $openId, 
+        'name' => $name,
+        'homeworkName' => trim(I('homeworkName')),
+        'content' => I('content'),
+        'state' => '开启',
+        'deadtime' => I('deadtime'),
+        'time' => date('Y-m-d H:i:s',time()),
+    );
+    
+    $HOMEWORK->add($homework);
+}
 
     //批改申诉作业列表
-    public function homework_list_correct(){
-        $model = M('student_homework');
-        $model->correcter = '老师批改';
-        $model->where("complain=1")->save();
-        $homework = $model->where(array('complain'=>1))->order('time desc')->select();
-        $right = M('image_questionbank');
-        foreach ($homework as $key => $value) {
-            $problem = $right->where(array('id'=>$value['problemid']))->find();
-            $homework[$key]['right_answer'] = $problem['right_answer'];
-        }
-        
-
-        $this->assign('homework',$homework)->display();
+public function homework_list_correct(){
+    $model = M('student_homework');
+    $model->correcter = '老师批改';
+    $model->where("complain=1")->save();
+    $homework = $model->where(array('complain'=>1))->order('time desc')->select();
+    $right = M('image_questionbank');
+    foreach ($homework as $key => $value) {
+        $problem = $right->where(array('id'=>$value['problemid']))->find();
+        $homework[$key]['right_answer'] = $problem['right_answer'];
     }
+    
+
+    $this->assign('homework',$homework)->display();
+}
 
     //批改未批改作业列表
-    public function homework_list_correct2(){
-        $model = M('student_homework');
-        $model->correcter = '老师批改';
-        $model->where("correcter='未批改'")->save();
-        $homework = $model->where(array('correcter'=>'未批改'))->order('time desc')->select();
-        $right = M('image_questionbank');
-        foreach ($homework as $key => $value) {
-            $problem = $right->where(array('id'=>$value['problemid']))->find();
-            $homework['right_answer'] = $problem['right_answer'];
+public function homework_list_correct2(){
+    $model = M('student_homework');
+    $model->correcter = '老师批改';
+    $model->where("correcter='未批改'")->save();
+    $homework = $model->where(array('correcter'=>'未批改'))->order('time desc')->select();
+    $right = M('image_questionbank');
+    foreach ($homework as $key => $value) {
+        $problem = $right->where(array('id'=>$value['problemid']))->find();
+        $homework['right_answer'] = $problem['right_answer'];
 
-        }
-        
-
-        $this->assign('homework',$homework)->display();
     }
-
-    public function mark_score(){
-        $data = I('post.');
-        $id = session('homeworkoid');
-        $homeworkid = $data['homeworkid'];
-        $score = $data['score'];
-        $model = D('student_homework');
-        $res = $model->ssgive_score($homeworkid,$score,$id);
-        if ($res) {
-            $this->ajaxReturn(true);
-        } else {
-            $this->ajaxReturn(false);
-        }
     
+
+    $this->assign('homework',$homework)->display();
+}
+
+public function mark_score(){
+    $data = I('post.');
+    $id = session('homeworkoid');
+    $homeworkid = $data['homeworkid'];
+    $score = $data['score'];
+    $model = D('student_homework');
+    $res = $model->ssgive_score($homeworkid,$score,$id);
+    if ($res) {
+        $this->ajaxReturn(true);
+    } else {
+        $this->ajaxReturn(false);
     }
+    
+}
     //批改作业
-    public function homework_correct(){
-        $STU_HOMEWORK = M('student_homework');
-        $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage(); 
-        $this->assign('signPackage',$signPackage);
+public function homework_correct(){
+    $STU_HOMEWORK = M('student_homework');
+    $weixin       = new WeichatController();
+    $signPackage  = $weixin->getJssdkPackage(); 
+    $this->assign('signPackage',$signPackage);
 
-        $homeworkId   = I('homeworkId') ? I('homeworkId') : $this->error('你访问的界面不存在');
+    $homeworkId   = I('homeworkId') ? I('homeworkId') : $this->error('你访问的界面不存在');
 
-        $cond         = array('homeworkId' => $homeworkId,'correcter' => '未批改');
-        $homeworkList = $STU_HOMEWORK->where($cond)->order('time desc')->select();
-        $this->assign('homeworkList',$homeworkList)->display();
-    }
+    $cond         = array('homeworkId' => $homeworkId,'correcter' => '未批改');
+    $homeworkList = $STU_HOMEWORK->where($cond)->order('time desc')->select();
+    $this->assign('homeworkList',$homeworkList)->display();
+}
 
     //把教师打的分数添加到数据库
-    public function homework_mark(){
-        $STU_HOMEWORK = M('student_homework');
-        $TEA = M('teacher_info');
-        $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
-        $name = $TEA->where(array('openId' => $openId))->getField('name');
-        $personWorkId = I('personWorkId');
-        $mark = I('mark');
+public function homework_mark(){
+    $STU_HOMEWORK = M('student_homework');
+    $TEA = M('teacher_info');
+    $openId       =  session('?openId') ? session('openId') : $this->error('请重新获取该页面');
+    $name = $TEA->where(array('openId' => $openId))->getField('name');
+    $personWorkId = I('personWorkId');
+    $mark = I('mark');
 
-        $correctInfo = array(
-            'mark'        => $mark,
-            'correcter'   => $name,
-            'correctTime' => date('Y-m-d H:i:s',time()));
-        $STU_HOMEWORK->where(array('id' => $personWorkId))->save($correctInfo);
-    }
+    $correctInfo = array(
+        'mark'        => $mark,
+        'correcter'   => $name,
+        'correctTime' => date('Y-m-d H:i:s',time()));
+    $STU_HOMEWORK->where(array('id' => $personWorkId))->save($correctInfo);
+}
 
     //浏览已批改作业列表
-    public function homework_list_view(){
-        $class = I('get.class');
-        $now = date("Y-m-d H:i:s",time());
-        $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
-        $sum = M('student_info')->where("class='$class'")->count();
-        foreach ($homework as $key => $value) {
-            $bjnum = M('student_homework')->where(array('homeworkoid' => $value['id'],'bj'=>1))->count();
-            $homework[$key]['bjnum'] = $bjnum;
+public function homework_list_view(){
+    $class = I('get.class');
+    $now = date("Y-m-d H:i:s",time());
+    $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
+    $sum = M('student_info')->where("class='$class'")->count();
+    foreach ($homework as $key => $value) {
+        $bjnum = M('student_homework')->where(array('homeworkoid' => $value['id'],'bj'=>1))->count();
+        $homework[$key]['bjnum'] = $bjnum;
             //flag为1指还没截止作业提交
-            if ($value['dead_time'] > $now) {
-                $homework[$key]['flag'] = 1;
-                
-            }else{
-                $homework[$key]['flag'] = 0;
-            }
-
+        if ($value['dead_time'] > $now) {
+            $homework[$key]['flag'] = 1;
+            
+        }else{
+            $homework[$key]['flag'] = 0;
         }
-        $this->assign('homework',$homework);
-        $this->assign('sum',$sum);
-        $this->assign('now',$now);
-       
+
+    }
+    $this->assign('homework',$homework);
+    $this->assign('sum',$sum);
+    $this->assign('now',$now);
+    
 
         // var_dump($homework);die();
-        $this->display();
-    }
+    $this->display();
+}
 
     //获取教师端作业浏览量
-    private function getHomeViewNum($homeworkId){
-        $cond              = array('homeworkId' => $homeworkId);
-        return M('student_homework')->where($cond)->count();
-    }
+private function getHomeViewNum($homeworkId){
+    $cond              = array('homeworkId' => $homeworkId);
+    return M('student_homework')->where($cond)->count();
+}
 
     //批改作业
-    public function homework_view(){
-        $homeworkoid = I('get.id');
-        $class = M('homework_zg')->where(array('id'=>$homeworkoid))->getField("class");
-        $classmate = M('student_info')->where("class='$class'")->select();
+public function homework_view(){
+    $homeworkoid = I('get.id');
+    $class = M('homework_zg')->where(array('id'=>$homeworkoid))->getField("class");
+    $classmate = M('student_info')->where("class='$class'")->select();
         // var_dump($classmate);die();
-        foreach ($classmate as $key => $value) {
-            $doc = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$value['name']))->find();
-            if (!empty($doc)) {
-                $classmate[$key]['flag'] = 1;
-            }else{
-                $classmate[$key]['flag'] = 0;
-            }
+    foreach ($classmate as $key => $value) {
+        $doc = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$value['name']))->find();
+        if (!empty($doc)) {
+            $classmate[$key]['flag'] = 1;
+        }else{
+            $classmate[$key]['flag'] = 0;
         }
+    }
         // var_dump($classmate);die();
-        $this->assign('classmate',$classmate);
-        $this->assign('homeworkoid',$$homeworkoid);
-        $this->display();
-    }
-    public function homework_viewdetail()
-    {
-        $homeworkoid = I('get.homeworkoid');
-        $name = I('get.name');
+    $this->assign('classmate',$classmate);
+    $this->assign('homeworkoid',$$homeworkoid);
+    $this->display();
+}
+public function homework_viewdetail()
+{
+    $homeworkoid = I('get.homeworkoid');
+    $name = I('get.name');
         // var_dump($homeworkoid.'/'.$name);die();
-        $data = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$name))->select();
-        $this->assign('homeworkList',$data);
-        $this->display();
-    }
+    $data = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$name))->select();
+    $this->assign('homeworkList',$data);
+    $this->display();
+}
 
     //教师端签到主页面
-    public function signin_index(){
-        session('openId',null);
-        $openId = getOpenId();
-        session('openId',$openId);
+public function signin_index(){
+    session('openId',null);
+    $openId = getOpenId();
+    session('openId',$openId);
 
-        $this->display();
-    }
+    $this->display();
+}
 
     //教师端发布签到页面
-    public function signin_assign(){
-        $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage();
-        $name    = D('TeacherSignin')->setSigninName(session('openId'));
+public function signin_assign(){
+    $weixin       = new WeichatController();
+    $signPackage  = $weixin->getJssdkPackage();
+    $name    = D('TeacherSignin')->setSigninName(session('openId'));
 
-        $this->assign('signPackage',$signPackage);
-        $this->assign('time',$name);
-        $this->display();
-    }
+    $this->assign('signPackage',$signPackage);
+    $this->assign('time',$name);
+    $this->display();
+}
 
     /**
      * signin_chose_class  选择班级
@@ -552,31 +552,13 @@ public function index(){
         if(IS_AJAX){
             /*====获取该学生信息==*/
             $openId = I('openId');
-            if (empty($openId)) {
-                $this->ajaxReturn('error');
-            }
-            $studentInfo = M('StudentInfo')->where(array('openId' => $openId))->find();
-            $teacherInfo = M('TeacherSignin')->where(array('openId'=>session('openId')))->find();
-            $studentInfo['signinId'] = session('signinId');
-            $signin        = array(
-                'openId'   => $studentInfo['openId'],
-                'name'     => $studentInfo['name'],
-                'class'    => $studentInfo['class'],
-                'number'   => $studentInfo['number'],
-                'signinId' => $studentInfo['signinId'],
-                //代签坐标与老师相同
-                'latitude' => $teacherInfo['latitude'],
-                'longitude'=> $teacherInfo['longitude'],
-                'accuracy' => $teacherInfo['accuracy'],
-                'location' => '代',
-                'time'     => date('Y-m-d H:i:s',time()),
-            );
-            if(M('student_signin')->add($signin))
-                $this->ajaxReturn('success');
-            else
-                $this->ajaxReturn('fail');
+            $func   = I('func');
+
+            $res    = D('StudentSignin')->changeSignin($openId,$func);
+            $this->ajaxReturn($res);   
         }else 
-            $this->ajaxReturn('非法的请求方式');   
+        //非ajax访问
+        $this->ajaxReturn('非法的请求方式');   
     }
 
     //教师端随堂测试首页面,1.发布测试，2.测试管理
@@ -606,13 +588,13 @@ public function index(){
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
-         
+        
         $result    = array();
         foreach ($unitArray as $value) {
            //$value  = 'unit'.$value ;
            $cond   = array('chapter' => $value);
            $result = array_merge($result,M('questionbank')->where($cond)->select());
-        }
+       }
         // var_dump($result);
         // die;
         if($number != 0){   //用户自定义题目数量
@@ -644,7 +626,7 @@ public function index(){
         $this->assign('teacherClass',$teacherClass)->display();
 
     }
- 
+    
     //发布测试
     public function test_assign(){
         $openId =  session('openId');
@@ -740,7 +722,7 @@ public function index(){
             }
 
         }
-   
+        
         $this->ajaxReturn('success');
     }
 
@@ -814,9 +796,9 @@ public function index(){
         foreach ($arr as $value){         
            if(isset($res[$value[$key]])){ //查看有没有重复项
                  unset($value[$key]);//有：销毁
-           }else{
+             }else{
                 $res[$value[$key]] = $value;
-           }
+            }
         }
         return $res;
     }

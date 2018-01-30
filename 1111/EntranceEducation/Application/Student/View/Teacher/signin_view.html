@@ -27,32 +27,25 @@
     .weui-grid {
         position: relative;
     }
-    .attend {
+    .attend,.absent,.dai,.jia {
         position: absolute;
         width: 0px;
         height: 0px;
         right: 0;
         top: 0;
-        border-top: 40px solid  #30CE4A ;
         border-left: 40px solid transparent ;
+    }
+    .attend{
+        border-top: 40px solid  #30CE4A ;
     }
     .absent {
-        position: absolute;
-        width: 0px;
-        height: 0px;
-        right: 0;
-        top: 0;
         border-top: 40px solid  #FF0000 ;
-        border-left: 40px solid transparent ;
     }
     .dai {
-        position: absolute;
-        width: 0px;
-        height: 0px;
-        right: 0;
-        top: 0;
-        border-top: 40px solid  #00d0ff ;
-        border-left: 40px solid transparent ;
+        border-top: 40px solid  #09ffbb ;
+    }
+    .jia {
+        border-top: 40px solid  #f7f70c ;
     }
     .flag {
         position: absolute;
@@ -76,7 +69,7 @@
     <div class="container" id="container">
         <volist name="signinList" id="signinList" key="k" empty="没有签到信息">
             <if condition="$signinList['flag'] eq 1"> 
-                <a disable="true" class="weui-grid js_grid" id="{$signinList['openId']}">
+                <a href="javascript:void(0);" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
                     <div class="attend"><span class="flag">签</span></div>
                     <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
                 </a>
@@ -90,8 +83,29 @@
                     <div class="dai"><span class="flag">代</span></div>
                     <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
                 </a>
+                <elseif condition="$signinList['flag'] eq 3"/>
+                <a href="javascript:void(0);" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
+                    <div class="jia"><span class="flag">假</span></div>
+                    <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
+                </a>
             </if>
         </volist>
+    </div>
+    <div>
+        <div class="weui-popup__overlay" id="iosMask" style="opacity: 1;display: none;"></div>
+        <div class="weui-actionsheet" id="iosActionsheet">
+            <div class="weui-actionsheet__title">
+                <p class="weui-actionsheet__title-text"></p>
+            </div>
+            <div class="weui-actionsheet__menu">
+                <div class="weui-actionsheet__cell" id="dai">代签</div>
+                <div class="weui-actionsheet__cell" id="jia">请假</div>
+                <div class="weui-actionsheet__cell" id="que">缺席</div>
+            </div>
+            <div class="weui-actionsheet__action">
+                <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
@@ -99,26 +113,44 @@
 <include file="./Public/html/_refreshJs.html"/>
 <include file="./Public/weui2.0/__foot.html"/>
 <script type="text/javascript">
+    var openId;
+    //控制菜单隐藏与否
     $('.studentInfo').click(function(){
-        var url = "{:U('Teacher/daiqian')}";
-        var data = {
-            'openId': this.id , 
+        var $iosMask = $('#iosMask');
+        var $iosActionsheet = $('#iosActionsheet');
+        openId = this.id;
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
         }
-        $.confirm("您确定要代签吗?", "确认代签?", function() {
-            $.post(url, data, function(res){
-                if (res == 'error') 
-                    $.toast("学生ID获取失败!");
-                else if (res == 'fail')
-                    $.toast("代签失败!");
-                else if (res == 'success'){
-                    window.location.reload(); 
-                    $.toast("代签成功!");
-                }
-                else
-                    $.toast("非法访问!");
-            });
-        }, function() {
-            //取消操作
+        //第一次点击则显示
+        $iosActionsheet.addClass('weui-actionsheet_toggle');
+        $iosMask.fadeIn(200);
+        //点击mask则隐藏
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $(".studentInfo").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
         });
-    })
+
+    });
+    //按下按钮对应操作
+    $('.weui-actionsheet__cell').on('click', function(e){
+        var url = "{:U('Teacher/daiqian')}";
+        data = {
+            'openId': openId,
+            'func'  : this.id,
+        }
+        $.post(url, data, function(res){
+            if (res == 'error') {
+                $.toast("学生ID获取失败!",'cancel');
+            }else if (res == 'success'){
+                window.location.reload(); 
+                $.toast("修改成功!");
+            }else
+                $.toast("非法访问!",'cancel');
+        });
+
+    });
 </script>
