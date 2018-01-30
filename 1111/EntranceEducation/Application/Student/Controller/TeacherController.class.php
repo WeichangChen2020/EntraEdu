@@ -820,4 +820,9 @@ public function index(){
         // var_dump($quesItem);
         $this->assign('quesItem',$quesItem)->display('Test/testAnalyze');
     }
+    
+    //测试页面
+    public function test(){
+        $this->display();
+    }
 }
