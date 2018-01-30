@@ -76,7 +76,7 @@
     <div class="container" id="container">
         <volist name="signinList" id="signinList" key="k" empty="没有签到信息">
             <if condition="$signinList['flag'] eq 1"> 
-                <a disable="true" class="weui-grid js_grid" id="{$signinList['openId']}">
+                <a disable="true" class="weui-grid js_grid studentInfo" id="{$signinList['openId']}">
                     <div class="attend"><span class="flag">签</span></div>
                     <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}<br>{$signinList['class']}</p>
                 </a>
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <div class="weui-skin_android" id="weui-android-actionsheet" style="display: none">
+        <div class="weui-skin_android" id="weui-android-actionsheet" style="/*display: none*/">
             <div class="weui-mask"></div>
             <div class="weui-actionsheet">
                 <div class="weui-actionsheet__menu">
@@ -119,6 +119,8 @@
             </div>
         </div>
     </div>
+
+
 </body>
 </html>
 <include file="./Public/html/_foot.html"/>
@@ -147,7 +149,9 @@
             //取消操作
         });
     })
-
+</script>
+<script type="text/javascript" class="actionsheet js_show">
+    // ios
     $(function(){
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
@@ -165,4 +169,15 @@
         });
     });
 
-</script>
+    // android
+    $(function(){
+        var $androidActionSheet = $('#androidActionsheet');
+        var $androidMask = $androidActionSheet.find('.weui-mask');
+
+        $("#showAndroidActionSheet").on('click', function(){
+            $androidActionSheet.fadeIn(200);
+            $androidMask.on('click',function () {
+                $androidActionSheet.fadeOut(200);
+            });
+        });
+    });</script>
