@@ -503,16 +503,18 @@ public function index(){
             }
         }
         foreach ($signinList as $key => $value) {
-            //到席
-            if (!$SIGNIN->isSignin($value['openId'],$signinId) ) {
-                $signinList[$key]['flag'] = 0;
-                continue;
-            }
-            //代签
+            //默认缺席
+            $signinList[$key]['flag'] = 0;
+            //判断代签
             $map['location'] = array('like','%代%');
             $map['openId']= $value['openId'];
             if (NULL != $SIGNIN->where($map)->find()) {
                 $signinList[$key]['flag'] = 2;
+                continue;
+            }
+            //判断到席
+            if ($SIGNIN->isSignin($value['openId'],$signinId) ) {
+                $signinList[$key]['flag'] = 1;
                 continue;
             }
             //请假
@@ -521,8 +523,6 @@ public function index(){
             //     $signinList[$key]['flag'] = 3;
             //     continue;
             // }
-            //缺席
-            $signinList[$key]['flag'] = 1;
         }
         $this->assign('signinList',$signinList)->display();
     }
