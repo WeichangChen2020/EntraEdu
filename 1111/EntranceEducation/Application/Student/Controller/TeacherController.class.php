@@ -503,15 +503,29 @@ public function index(){
             }
         }
         foreach ($signinList as $key => $value) {
+            //到席
             if ( $SIGNIN->isSignin($value['openId'],$signinId) ) {
                 $signinList[$key]['flag'] = 1;
-            }else{
-                $signinList[$key]['flag'] = 0;
+                continue;
             }
+            //代签
+            $map['location'] = array('like','%代%');
+            $map['openId']= $value['openId'];
+            if (NULL != $SIGNIN->where($map)->find()) {
+                $signinList[$key]['flag'] = 2;
+                continue;
+            }
+            //请假
+            $map['location'] = array('like','%假%');
+            if (NULL != $SIGNIN->where($map)->find()) {
+                $signinList[$key]['flag'] = 3;
+                continue;
+            }
+            //缺席
+            $signinList[$key]['flag'] = 0;
         }
         $this->assign('signinList',$signinList)->display();
     }
-
     //未签到列表,未签到名单感觉没有必要做
     public function signin_allograph(){
         $this->display();
