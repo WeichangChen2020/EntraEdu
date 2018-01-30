@@ -512,17 +512,17 @@ public function signin_assign(){
                 $signinList[$key]['flag'] = 2;
                 continue;
             }
-            //判断到席
+            //请假
+            $map['location'] = array('like','%假%');
+            if (NULL != $SIGNIN->where($map)->find()) {
+                $signinList[$key]['flag'] = 3;
+                continue;
+            }            //判断到席
             if ($SIGNIN->isSignin($value['openId'],$signinId) ) {
                 $signinList[$key]['flag'] = 1;
                 continue;
             }
-            //请假
-            // $map['location'] = array('like','%假%');
-            // if (NULL != $SIGNIN->where($map)->find()) {
-            //     $signinList[$key]['flag'] = 3;
-            //     continue;
-            // }
+
         }
         $this->assign('signinList',$signinList)->display();
     }
