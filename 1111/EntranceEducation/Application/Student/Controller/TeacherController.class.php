@@ -568,7 +568,7 @@ public function index(){
                 'latitude' => $teacherInfo['latitude'],
                 'longitude'=> $teacherInfo['longitude'],
                 'accuracy' => $teacherInfo['accuracy'],
-                'location' => '老师代签',
+                'location' => '代',
                 'time'     => date('Y-m-d H:i:s',time()),
             );
             if(M('student_signin')->add($signin))
@@ -834,7 +834,7 @@ public function index(){
         // var_dump($quesItem);
         $this->assign('quesItem',$quesItem)->display('Test/testAnalyze');
     }
-    
+
     //测试页面
     public function test(){
         $this->display();
