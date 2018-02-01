@@ -91,7 +91,7 @@
                 },
                 
                 success:function(res){
-                  window.location.href="{:U('index')}";
+                  window.location.href="{:U('index',array('openId'=>session('openId')))}";
                 }
               });
             }else{
