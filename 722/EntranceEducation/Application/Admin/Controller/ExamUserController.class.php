@@ -204,7 +204,7 @@ class ExamUserController extends CommonController{
     //         dump($value);
     //     }
     // }
-    public function test(){
+    public function test($id = 0){
 
         $college = D('Adminer')->getCollege();
         $STUDENT = M('ExamSubmit');
@@ -213,7 +213,7 @@ class ExamUserController extends CommonController{
             $map['academy'] = $college;
         }
         $map['examid'] = $id;
-        $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
+        $submitList = $STUDENT->where($map)->select();
 
         $count = $STUDENT->where($map)->count();
         dump($submitList);die;
