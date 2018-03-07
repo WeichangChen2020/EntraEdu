@@ -205,25 +205,30 @@ class ExamUserController extends CommonController{
     //     }
     // }
     public function test(){
-        $HISTORY = M('MistakeHistory');
-        $mistake = $HISTORY->where(array('result'=>0))->limit('45000,5000')->select();
-        foreach ($mistake as $key => $value) {
-            $final = $HISTORY
-                ->where(
-                    array('result'=>1,
-                        'openid'=>$value['openid'],
-                        'quesid'=>$value['quesid']))
-                ->find();
-            // dump($final);
-            if($final != NULL)
-                $HISTORY->where(array('id'=>$value['id']))->delete();
+
+        $college = D('Adminer')->getCollege();
+        $STUDENT = M('ExamSubmit');
+        // $submitList = $STUDENT->getSubmitList($college,$id);
+        if (!is_null($college)) {
+            $map['academy'] = $college;
         }
-        dump($mistake['0']);
-        // $mistake = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>0))->find();
-        // $final = $HISTORY->where(array('openid'=>'ohd41tw4FlskmDIvtn9fIYnOpGf8','quesid'=>29,'result'=>1))->find();
-        // dump($mistake);
-        // dump($final == NULL);
-        // dump($mistake);
+        $map['examid'] = $id;
+        $submitList = $STUDENT->where($map)->page($_GET['p'].',20')->select();
+
+        $count = $STUDENT->where($map)->count();
+        dump($submitList);die;
+        $this->assign('submitList',$submitList);
+
+        // $Page       = new \Think\Page($count,20);
+        // $show       = $Page->show();
+        // $this->assign('page', $show);
+        
+        // $this->assign('export', 1);
+        // $map['score'] = array('lt','80');
+        // $this->assign('failNum',$STUDENT->where($map)->count());
+        // $this->assign('submitNum', $count);
+        // $this->assign('id',$id);
+        // $this->display();
         die;
 
     }
