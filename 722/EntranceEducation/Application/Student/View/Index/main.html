@@ -183,8 +183,9 @@
     function start_exam() {
 
         var progress = {$progress.progress};
+        var is_newer = {$stu_info.is_newer};
         //var sumNum = {$progress.sumNum};
-        if (progress < 0.6) {
+        if (is_newer == 1 && progress < 0.6) {
             $.alert('抱歉，你还没有获得考试资格！');
         } else {
             window.location.href = "{:U('Student/Exam/final_test')}";
