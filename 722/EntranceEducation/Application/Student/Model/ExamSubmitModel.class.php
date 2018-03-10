@@ -53,6 +53,30 @@ class ExamSubmitModel extends Model {
 		}
 	}
 
+	/**
+	 * getGrade() 获得第一次考试成绩
+	 * @author 蔡佳琪
+	 * @copyright  2018-3-10 14:44Authors
+	 * @param $openid, $examid  
+	 * @return array() submit
+	 */
+	public function getGrade1($openid){
+		$info = D('StudentInfo')->getInfo($openid);
+		$examidList = D('Admin/ExamSubmit')->makeup_examid;
+		$examid = $examidList[$info['academy']];
+		//p($examid);
+		if (empty($openid)) {
+			return 'getGrade($openid)传参错误';
+		}
+
+		$score = $this->where(array('openid'=>$openid,'examid'=>$examid))->getField('score');
+		if($score){
+			return $score;
+		}else{
+			$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
+			return $score;
+		}
+	}	
 }
 
  ?>
