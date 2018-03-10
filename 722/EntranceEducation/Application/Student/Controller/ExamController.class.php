@@ -79,11 +79,11 @@ class ExamController extends Controller{
         // $college = D('StudentInfo')->getCollege();
         // 
         
-        if (D('ExamSelect')->isPass($openid)) {
-            $this->error('你已通过正式考试！');
+        if (D('ExamSelect')->isPass($openid)) { 
+            $this->error('你已通过考试！');
         }
       
-
+        //29和30是第一次补考
         if (D('ExamCollege')->is_college($openid, 29))
         {
           $this->redirect('Exam/index', array('examid' => 29));
@@ -91,6 +91,10 @@ class ExamController extends Controller{
         else if (D('ExamCollege')->is_college($openid, 30))
         {
           $this->redirect('Exam/index', array('examid' => 30));
+        }
+        else if (D('ExamCollege')->is_college($openid, 33))
+        {
+          $this->redirect('Exam/index', array('examid' => 33));
         }
         
         else
