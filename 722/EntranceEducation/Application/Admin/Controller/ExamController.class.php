@@ -247,7 +247,7 @@ class ExamController extends CommonController{
             if ($again == 1) {
 
                 $list = $EXAM_SUBMIT->getUnPass($value);
-                p($list);
+                // p($list);
 
                 foreach ($list as $k => $v) {
                     $is_init = $EXAM->isInit($v['openId'], $examid);//判断学生用户的这次题目是否初始化
