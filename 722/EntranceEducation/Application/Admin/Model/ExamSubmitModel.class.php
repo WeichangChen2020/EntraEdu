@@ -49,7 +49,7 @@ class ExamSubmitModel extends Model {
         '马克思学院' => 30,
         '财会学院'   => 30,
         '信息学院'   => 30,
-    )
+    );
 
     /**
      * getSubmitNum 获取提交人数
