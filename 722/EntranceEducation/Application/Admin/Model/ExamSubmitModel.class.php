@@ -212,8 +212,24 @@ class ExamSubmitModel extends Model {
             $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
         }
 
-        return $openidArr;
-       
+        //return $openidArr;//过滤正式考试通过的人
+        
+        $examid1 = $this->makeup_examid[$college['academy']];
+        foreach ($openidArr as $k => &$v) {
+            $map = array(
+                'examid' => $examid1,
+                'openid' => $v['openId'],
+                'result' => 1,
+            );
+            $v['score'] = $EXAM->where($map)->count();
+            if ($v['score'] >= 80) {
+                unset($openidArr[$k]);
+                continue;
+            }
+            $v['is_pass'] = $v['score'] >= 80 ? '通过' : '不通过';
+        }        
+        
+        return $openidArr;//过滤第一次补考通过的人
     }
 
 
