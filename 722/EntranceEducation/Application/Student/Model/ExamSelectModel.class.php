@@ -237,11 +237,15 @@ class ExamSelectModel extends Model {
 			return 'isPass($openid)传参错误';
 		}
 		$info = D('StudentInfo')->getInfo($openid);
-		$examidList = D('Admin/ExamSubmit')->formal_examid;
-		$examid = $examidList[$info['academy']];
-		$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();
 
-		if($score >= 80)
+		$examidList = D('Admin/ExamSubmit')->formal_examid;//正式考试examid数组
+		$examid = $examidList[$info['academy']];//正式考试的examid
+		$score = M('ExamSelect')->where(array('examid'=>$examid,'openid'=>$openid,'result'=>1))->count();//正式考试成绩
+
+		$examidList1 = D('Admin/ExamSubmit')->makeup_examid;//第一次补考examid数组
+		$examid1 = $examidList1[$info['academy']];//第一次补考的examid
+		$score1 = M('ExamSelect')->where(array('examid'=>$examid1,'openid'=>$openid,'result'=>1))->count();//第一次补考成绩		
+		if($score >= 80 || $score1 >= 80)
 			return true;
 		else
 			return false;
