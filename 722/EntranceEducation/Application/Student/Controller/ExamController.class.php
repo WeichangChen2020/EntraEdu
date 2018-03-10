@@ -84,15 +84,15 @@ class ExamController extends Controller{
         }
       
         //29和30是第一次补考
-        if (D('ExamCollege')->is_college($openid, 29))
-        {
-          $this->redirect('Exam/index', array('examid' => 29));
-        } 
-        else if (D('ExamCollege')->is_college($openid, 30))
-        {
-          $this->redirect('Exam/index', array('examid' => 30));
-        }
-        else if (D('ExamCollege')->is_college($openid, 33))
+        // if (D('ExamCollege')->is_college($openid, 29))
+        // {
+        //   $this->redirect('Exam/index', array('examid' => 29));
+        // } 
+        // else if (D('ExamCollege')->is_college($openid, 30))
+        // {
+        //   $this->redirect('Exam/index', array('examid' => 30));
+        // }
+        if (D('ExamCollege')->is_college($openid, 33))
         {
           $this->redirect('Exam/index', array('examid' => 33));
         }
