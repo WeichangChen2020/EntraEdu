@@ -194,8 +194,8 @@ class TestController extends Controller{
         foreach ($openidArr as $key => $value) {
             $stuInfo = $STUDENT->getInfo($value);
             p($stuInfo);
-            $stuInfo[$key]['score'] = $SUBMIT->getGrade($value);
-            $stuInfo[$key]['score1'] = $SUBMIT->getGrade1($value);
+            $stuInfo['score'] = $SUBMIT->getGrade($value);
+            $stuInfo['score1'] = $SUBMIT->getGrade1($value);
             p($stuInfo);
             $info = array_merge($info,$stuInfo);
             p($info);die;
