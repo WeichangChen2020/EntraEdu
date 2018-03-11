@@ -239,7 +239,7 @@ class ExamUserController extends CommonController{
         $examidArr = array('11','12','18','16','17','19','20','21','22','23','24','25','26','27','29','30');
         $unPass = array();
         foreach ($examidArr as $key => $value) {
-            $college = D('Student/ExamCollege')->getCollege($examid);
+            $college = D('Student/ExamCollege')->getCollege($value);
             $unPass = array_merge($unPass,D('ExamSubmit')->getUnPass($college));
         }    
         p($unPass);die;
