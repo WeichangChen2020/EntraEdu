@@ -186,11 +186,7 @@ class TestController extends Controller{
         //     $unPass = array_merge($unPass,D('ExamSubmit')->getUnPass($college));
         // }
         // p($unPass);die;
-        p($openidArr);
-        echo $openidArr[0];
-        $SUBMIT = D('ExamSubmit');
-        $score = $SUBMIT->getGrade($openidArr[0]);
-        echo $score;die;
+        //p($openidArr);
         $info = array();
         foreach ($openidArr as $key => $value) {
             $stuInfo = $STUDENT->getInfo($value);
