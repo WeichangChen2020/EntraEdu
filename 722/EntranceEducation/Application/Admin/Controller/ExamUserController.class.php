@@ -236,10 +236,15 @@ class ExamUserController extends CommonController{
     public function getMakeupList(){
         $STUDENT = D('StudentInfo');
         $openidArr = $STUDENT->where(array('is_newer'=>1))->getField('openId',true);
-        p($openidArr);die;
+        // p($openidArr);die;//
+        $SUBMIT = D('Student/ExamSubmit');
+        $info = array();
         foreach ($openidArr as $key => $value) {
-            
+            $stuInfo = $STUDENT->getInfo($value);
+            $stuInfo['score'] = $SUBMIT->getGrade($value);
+            $stuInfo['score1'] = $SUBMIT->getGrade1($value);
+            $info = array_merge($info,$stuInfo);
         }
-        $stu = D('Student/ExamSubmit');
+        p($info);
     }
 }
