@@ -173,7 +173,7 @@ class TestController extends Controller{
 
     public function getMakeupList(){
         $STUDENT = D('StudentInfo');
-        $openidArr = $STUDENT->where(array('is_newer'=>1))->getField('openId',true);
+        $openidArr = $STUDENT->where(array('is_newer'=>1))->limit(0,1000)->getField('openId',true);
         // $examidArr = array('11','12','18','16','17','19','20','21','22','23','24','25','26','27','29','30');
         // $unPass = array();
         // foreach ($examidArr as $key => $value) {
@@ -197,9 +197,21 @@ class TestController extends Controller{
             $stuInfo['score'] = $SUBMIT->getGrade($value);
             $stuInfo['score1'] = $SUBMIT->getGrade1($value);
             // p($stuInfo);
-            $info = array_merge($info,$stuInfo);
+            // $info = array_merge($info,$stuInfo);
             // p($info);die;
+            $data = array(
+                'name'   => $stuInfo['name'],
+                'number' => $stuInfo['number'],
+                'academy'=> $stuInfo['academy'],
+                'class'  => $stuInfo['class'],
+                'score'  => $stuInfo['score'],
+                'score1' => $stuInfo['score1'],
+            );
+            if(M('makeup_list')->add($data)){
+                echo $stuInfo['name'].'插入成功';
+            }
+
         }
-        p($info);
+        // p($info);
     }    
 }
