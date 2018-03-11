@@ -244,6 +244,7 @@ class ExamUserController extends CommonController{
         // } 
         for($i=0;$i<16;$i++){
             $college = D('Student/ExamCollege')->getCollege($examidArr[$i]);
+            p($college);
             $unPass = array_merge($unPass,D('ExamSubmit')->getUnPass($college));
         }
         p($unPass);die;
