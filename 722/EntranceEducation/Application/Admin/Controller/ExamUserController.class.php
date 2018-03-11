@@ -238,10 +238,14 @@ class ExamUserController extends CommonController{
         // $openidArr = $STUDENT->where(array('is_newer'=>1))->getField('openId',true);
         $examidArr = array('11','12','18','16','17','19','20','21','22','23','24','25','26','27','29','30');
         $unPass = array();
-        foreach ($examidArr as $key => $value) {
-            $college = D('Student/ExamCollege')->getCollege($value);
+        // foreach ($examidArr as $key => $value) {
+        //     $college = D('Student/ExamCollege')->getCollege($value);
+        //     $unPass = array_merge($unPass,D('ExamSubmit')->getUnPass($college));
+        // } 
+        for($i=0;$i<16;$i++){
+            $college = D('Student/ExamCollege')->getCollege($examidArr[$i]);
             $unPass = array_merge($unPass,D('ExamSubmit')->getUnPass($college));
-        }    
+        }
         p($unPass);die;
         // p($openidArr);die;//
         $SUBMIT = D('Student/ExamSubmit');
