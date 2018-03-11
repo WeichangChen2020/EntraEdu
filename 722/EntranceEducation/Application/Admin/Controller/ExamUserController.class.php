@@ -249,7 +249,10 @@ class ExamUserController extends CommonController{
         // }
         // p($unPass);die;
         // p($openidArr);die;
+        
         $SUBMIT = D('Student/ExamSubmit');
+        $score = $SUBMIT->getGrade($openidArr[0]);
+        echo $score;die;
         $info = array();
         foreach ($openidArr as $key => $value) {
             $stuInfo = $STUDENT->getInfo($value);
