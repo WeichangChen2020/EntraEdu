@@ -241,8 +241,8 @@ class ExamUserController extends CommonController{
         $info = array();
         foreach ($openidArr as $key => $value) {
             $stuInfo = $STUDENT->getInfo($value);
-            $stuInfo['score'] = $SUBMIT->getGrade($value);
-            $stuInfo['score1'] = $SUBMIT->getGrade1($value);
+            $stuInfo[$key]['score'] = $SUBMIT->getGrade($value);
+            $stuInfo[$key]['score1'] = $SUBMIT->getGrade1($value);
             $info = array_merge($info,$stuInfo);
         }
         p($info);
