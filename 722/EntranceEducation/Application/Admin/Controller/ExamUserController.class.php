@@ -235,7 +235,7 @@ class ExamUserController extends CommonController{
 
     public function getMakeupList(){
         $STUDENT = D('StudentInfo');
-        $openidArr = $STUDENT->where(array('is_newer'=>1))->getField('openId');
+        $openidArr = $STUDENT->where(array('is_newer'=>1))->getField('openId',true);
         p($openidArr);die;
         foreach ($openidArr as $key => $value) {
             
