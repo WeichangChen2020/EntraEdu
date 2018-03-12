@@ -210,8 +210,9 @@ class TestController extends Controller{
         foreach ($repe as $key => $value) {
             $map['openId']  = array('EQ',$value['openId']);
             $map['academy']  = array('NEQ','重复注册');
-            $record = $exercise_rank->where($map)->find();
-            p($record);
+            if($record = $exercise_rank->where($map)->find()){
+                p($record);
+            }
         }
     }
 }
