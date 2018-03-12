@@ -211,7 +211,14 @@ class TestController extends Controller{
             $map['openId']  = array('EQ',$value['openId']);
             $map['academy']  = array('NEQ','重复注册');
             if($record = $exercise_rank->where($map)->find()){
-                p($record);
+                //p($record);
+                $data = array(
+                    'academy' => '重复注册',
+                    'calss'   => '',
+                );
+                if($exercise_rank->save($data)){
+                    echo $value['name'].'学院更新为重复注册<br/>';
+                }
             }
         }
     }
