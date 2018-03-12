@@ -173,9 +173,11 @@ class TestController extends Controller{
 
     public function getMakeupList(){
         $STUDENT = D('StudentInfo');
-        $openidArr = $STUDENT->where(array('is_newer'=>1))->limit(2000,2000)->getField('openId',true);
+        $openidArr = $STUDENT->where(array('is_newer'=>1))->limit(0,2000)->getField('openId',true);
 
         $SUBMIT = D('ExamSubmit');
+        $QUESTIONBANK = D('Questionbank');
+        $MAKEUP = M('makeup_list');
 
         $info = array();
         foreach ($openidArr as $key => $value) {
@@ -183,6 +185,7 @@ class TestController extends Controller{
             // p($stuInfo);
             $stuInfo['score'] = $SUBMIT->getGrade($value);
             $stuInfo['score1'] = $SUBMIT->getGrade1($value);
+            $progress = $QUESTIONBANK->getProgress($value);
             // p($stuInfo);
             // $info = array_merge($info,$stuInfo);
             // p($info);die;
@@ -194,10 +197,18 @@ class TestController extends Controller{
                 'score'  => $stuInfo['score'],
                 'score1' => $stuInfo['score1'],
             );
-            if(M('makeup_list')->add($data)){
-                echo $stuInfo['name'].'插入成功!<br/>';
+            // if(M('makeup_list')->add($data)){
+            //     echo $stuInfo['name'].'插入成功!<br/>';
+            // }
+            $data2 = array(
+                'right_num' => $progress['sumNum'],
+                'answer_num' => $progress['count'],
+            );
+            if($MAKEUP->where(array('number'=>$stuInfo['number']))->save($data2)){
+                echo $stuInfo['name'].'答对题数更新为:'.$progress['sumNum'].'题<br/>';
+            }else{
+                echo $stuInfo['name'].'答对题数更新失败！<br/>';
             }
-
         }
         // p($info);
     }
