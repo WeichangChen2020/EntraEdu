@@ -206,6 +206,10 @@ class TestController extends Controller{
         $STUDENT = D('StudentInfo');
         $exercise_rank = M('exercise_rank');
         $repe = $STUDENT->where(array('academy'=>'重复注册'))->select();
-        p($repe);
+        // p($repe);
+        foreach ($repe as $key => $value) {
+            $record = $exercise_rank->where(array('openId'=>$value['openId']))->find();
+            p($record);
+        }
     }
 }
