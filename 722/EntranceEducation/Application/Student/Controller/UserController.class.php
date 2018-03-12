@@ -110,6 +110,10 @@ class UserController extends Controller {
             $this->ajaxReturn('你已经注册过了');
         }
 
+        if($STU->where(array('number'=>$number))->find()){
+            $this->ajaxReturn('你已经注册过了');
+        }
+
         $registerInfo   = array(
             'openId'     => $openId,
             'name'       => $name,
