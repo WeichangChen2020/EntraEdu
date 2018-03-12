@@ -218,6 +218,8 @@ class TestController extends Controller{
                 );
                 if($exercise_rank->save($data)){
                     echo $value['name'].'学院更新为重复注册<br/>';
+                }else{
+                    echo $value['name'].'学院更新失败<br/>';
                 }
             }
         }
