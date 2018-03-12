@@ -208,7 +208,9 @@ class TestController extends Controller{
         $repe = $STUDENT->where(array('academy'=>'重复注册'))->select();
         // p($repe);
         foreach ($repe as $key => $value) {
-            $record = $exercise_rank->where(array('openId'=>$value['openId']))->find();
+            $map['openId']  = array('EQ',$value['openId']);
+            $map['academy']  = array('NEQ','重复注册');
+            $record = $exercise_rank->where($map)->find();
             p($record);
         }
     }
