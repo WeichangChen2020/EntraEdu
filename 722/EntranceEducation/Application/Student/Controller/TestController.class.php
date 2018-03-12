@@ -173,7 +173,7 @@ class TestController extends Controller{
 
     public function getMakeupList(){
         $STUDENT = D('StudentInfo');
-        $openidArr = $STUDENT->where(array('is_newer'=>1))->limit(1200,300)->getField('openId',true);
+        $openidArr = $STUDENT->where(array('is_newer'=>1))->limit(1448,500)->getField('openId',true);
 
         $SUBMIT = D('ExamSubmit');
         $QUESTIONBANK = D('Questionbank');
