@@ -216,7 +216,7 @@ class TestController extends Controller{
                     'academy' => '重复注册',
                     'calss'   => '',
                 );
-                if($exercise_rank->save($data)){
+                if($exercise_rank->where(array('openId'=>$value['openId']))->save($data)){
                     echo $value['name'].'学院更新为重复注册<br/>';
                 }else{
                     echo $value['name'].'学院更新失败<br/>';
