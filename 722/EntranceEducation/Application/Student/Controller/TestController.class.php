@@ -214,7 +214,7 @@ class TestController extends Controller{
                 //p($record);
                 $data = array(
                     'academy' => '重复注册',
-                    'calss'   => '',
+                    'class'   => '',
                 );
                 if($exercise_rank->where(array('openId'=>$value['openId']))->save($data)){
                     echo $value['name'].'学院更新为重复注册<br/>';
