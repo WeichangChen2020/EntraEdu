@@ -5,7 +5,7 @@ use Think\Controller;
 use Think\Model;
 
 /**
- * 统计
+ * 用来统计数据
  */
 class TestController extends Controller{
   
@@ -95,7 +95,13 @@ class TestController extends Controller{
                 'repeat_time'   => $repeat_time,
                 'collect_time'  => $collect_time,
             );
-            p($data);die;
+            // p($data);die;
+            $result = $STATISTIC->add($data);
+            if($result){
+                echo "第".$i."题统计数据插入成功<br/>";
+            }else{
+                echo "第".$i."题统计数据插入失败<br/>";
+            }
         }
     }    
 }
