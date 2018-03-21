@@ -77,14 +77,23 @@ class TestController extends Controller{
 
     public function exerciseTime(){//统计题目的被收藏次数
         $EXERCISE = D('Exercise');
+        $RANDOM = M('random_exercise');
+        $REPEAT = M('repeat');
+        $COLLECT = M('collect_record');
         $STATISTIC = M('statistics');
 
         for($i=1;$i<=1457;$i++){
             
             $exercise_time = $EXERCISE->where(array('quesid'=>$i))->count();
+            $random_time = $RANDOM->where(array('quesid'=>$i))->count();
+            $repeat_time = $REPEAT->where(array('quesid'=>$i))->count();
+            $collect_time = $COLLECT->where(array('quesid'=>$i))->count();
             $data = array(
                 'quesid' => $i,
                 'exercise_time' => $exercise_time,
+                'random_time'   => $random_time,
+                'repeat_time'   => $repeat_time,
+                'collect_time'  => $collect_time,
             );
             p($data);die;
         }
