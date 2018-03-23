@@ -1,3 +1,0 @@
-<appwizard><introduction><name></name><author>ailurus</author><icon></icon><homepage></homepage><description><![CDATA[微信开发框架]]></description></introduction><platform><services><service></service><service name="upload"  params="数据存储">Storage</service><service size="2M">Memcache</service><service>Mysql</service></services><appconfig><tpl><![CDATA[
-1
-]]></tpl></appconfig></platform><code><initScript>/sae/install.php</initScript></code></appwizard>
