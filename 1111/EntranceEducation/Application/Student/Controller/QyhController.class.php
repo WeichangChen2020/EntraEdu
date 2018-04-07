@@ -91,14 +91,14 @@ class QyhController extends Controller
         foreach ($ques_info as $key => $value) {
             // p($value);die;
             if($value['type']==1){
-                $data = $value['contents'].$value['option_a'].$value['option_b'].$value['option_c'].$value['option_d'];
-                echo $data; 
+                $data = $value['contents'].'A:'.$value['option_a'].'B:'.$value['option_b'].'C:'.$value['option_c'].'D:'.$value['option_d'];
+                echo $data.'<br/>'; 
             }elseif ($value['type']==2) {
                 $data = $value['contents'];
-                echo $data; 
+                echo $data.'<br/>'; 
             }else{
-                $data = $value['contents'].$value['option_a'].$value['option_b'].$value['option_c'].$value['option_d'];
-                echo $data; 
+                $data = $value['contents'].'A:'.$value['option_a'].'B:'.$value['option_b'].'C:'.$value['option_c'].'D:'.$value['option_d'];
+                echo $data.'<br/>'; 
             }
             // file_put_contents("def.txt",$data);
         }
