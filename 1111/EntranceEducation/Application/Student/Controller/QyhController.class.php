@@ -83,7 +83,27 @@ class QyhController extends Controller
 
 	}
 
-
+    public function read(){
+        $QUESTION = M('questionbank');
+        $ques_info = $QUESTION->select();
+        $data="";
+        // p($ques_info);die;
+        foreach ($ques_info as $key => $value) {
+            p($value);die;
+            if($value['type']==1){
+                $data = $value['contents'].$value['option_a'].$value['option_b'].$value['option_c'].$value['option_d'];
+                echo $data; 
+            }elseif ($value['type']==2) {
+                $data = $value['contents'];
+                echo $data; 
+            }else{
+                $data = $value['contents'].$value['option_a'].$value['option_b'].$value['option_c'].$value['option_d'];
+                echo $data; 
+            }
+            // file_put_contents("def.txt",$data);
+        }
+        
+    }  
 
 
 }
