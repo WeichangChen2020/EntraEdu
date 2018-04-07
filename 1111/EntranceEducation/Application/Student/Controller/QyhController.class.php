@@ -92,17 +92,17 @@ class QyhController extends Controller
             // p($value);die;
             if($value['type']==1){
                 if($value['option_d']){
-                    $data = $value['contents'].'  A:'.$value['option_a'].'  B:'.$value['option_b'].'  C:'.$value['option_c'].'  D:'.$value['option_d'];
+                    $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'].'\t'.$value['option_d'];
                     echo $data.'<br/>';
                 }else{
-                    $data = $value['contents'].'  A:'.$value['option_a'].'  B:'.$value['option_b'].'  C:'.$value['option_c'];
+                    $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'];
                     echo $data.'<br/>';                    
                 }    
             }elseif ($value['type']==2) {
                 $data = $value['contents'];
                 echo $data.'<br/>'; 
             }else{
-                $data = $value['contents'].'  A:'.$value['option_a'].'  B:'.$value['option_b'].'  C:'.$value['option_c'].'  D:'.$value['option_d'];
+                $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'].'\t'.$value['option_d'];
                 echo $data.'<br/>'; 
             }
             // file_put_contents("def.txt",$data);
