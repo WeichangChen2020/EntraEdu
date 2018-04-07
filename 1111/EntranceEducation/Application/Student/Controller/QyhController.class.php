@@ -89,7 +89,7 @@ class QyhController extends Controller
         $data="";
         // p($ques_info);die;
         foreach ($ques_info as $key => $value) {
-            p($value);die;
+            // p($value);die;
             if($value['type']==1){
                 $data = $value['contents'].$value['option_a'].$value['option_b'].$value['option_c'].$value['option_d'];
                 echo $data; 
