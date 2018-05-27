@@ -92,9 +92,9 @@ class ExamController extends Controller{
         // {
         //   $this->redirect('Exam/index', array('examid' => 30));
         // }
-        if (D('ExamCollege')->is_college($openid, 34))
+        if (D('ExamCollege')->is_college($openid, 37))
         {
-          $this->redirect('Exam/index', array('examid' => 34));
+          $this->redirect('Exam/index', array('examid' => 37));
         }
         
         else
