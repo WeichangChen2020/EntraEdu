@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+
+</head>
+<body>
+<script src="__PUBLIC__/js/jquery-1.11.1.min.js"> </script>	
+<script src="__PUBLIC__/js/bootstrap.js"></script>
+hahahahaaha
+<input type="text" id="test">
+<button id="tijiao">提交</button>
+<span hidden="hidden" id="neirong"></span>
+
+
+<script type="text/javascript">
+	$("#tijiao").click(function(event){
+		var content=$("#test").val();
+		$.ajax({
+			type:"POST",
+			url:"{:U('Game/test')}",   
+			data:{testcontent:content},
+			success:function(getelement){
+				$("#neirong").show();
+				$("#neirong").html(getelement);
+			}
+
+		});
+	});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

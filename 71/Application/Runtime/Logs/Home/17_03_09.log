@@ -1,0 +1,449 @@
+[ 2017-03-09T13:53:38+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0260s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-03-09T13:55:23+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0270s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T13:55:39+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0200s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-03-09T13:56:55+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0160s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2017-03-09T14:00:41+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0260s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:00:43+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0320s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:03:53+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0280s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:03:54+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0230s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:03:54+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0320s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:04:31+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0220s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:04:32+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0340s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:06:08+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0250s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:07:08+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0300s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:07:25+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0280s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:07:35+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0330s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2017-03-09T14:08:03+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0460s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-03-09T14:12:13+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0340s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-03-09T14:12:17+08:00 ] ::1 /71/index.php/Home/Game/gamehome/fangjianhao/7547.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `dijitian` [ RunTime:0.0190s ]
+SQL: SELECT * FROM `dijitian` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `dijitian` SET `day`='0' WHERE `fangjianhao` = 7547 [ RunTime:0.0390s ]
+SQL: SHOW COLUMNS FROM `langrensha` [ RunTime:0.0170s ]
+SQL: SELECT * FROM `langrensha` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Use of undefined constant rcunmin - assumed 'rcunmin' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 113 行.
+NOTIC: [8] Use of undefined constant rlangren - assumed 'rlangren' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 114 行.
+NOTIC: [8] Use of undefined constant rnvwu - assumed 'rnvwu' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 115 行.
+NOTIC: [8] Use of undefined constant ryyj - assumed 'ryyj' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 116 行.
+NOTIC: [8] Use of undefined constant rlieren - assumed 'rlieren' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 117 行.
+NOTIC: [8] Use of undefined constant rshouwei - assumed 'rshouwei' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 118 行.
+NOTIC: [8] Use of undefined constant rbaichi - assumed 'rbaichi' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 119 行.
+NOTIC: [8] Use of undefined constant rlieren - assumed 'rlieren' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 197 行.
+SQL: UPDATE `langrensha` SET `rlieren`='0' WHERE `fangjianhao` = 7547 [ RunTime:0.0280s ]
+NOTIC: [8] Use of undefined constant 号房 - assumed '号房' D:\WAMP\wamp\www\71\Application\Home\Controller\GameController.class.php 第 223 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.053003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-03-09T14:12:20+08:00 ] ::1 /71/index.php/Home/Game/shenfen.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `shenfen` WHERE ( fangjianhao='7547' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `shenfen` SET `[1]`='预言家',`[2]`='猎人',`[3]`='',`[4]`='',`[5]`='',`[6]`='',`[7]`='',`[8]`='',`[9]`='',`[10]`='',`[11]`='',`[12]`='' WHERE `fangjianhao` = 7547 [ RunTime:0.0530s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
