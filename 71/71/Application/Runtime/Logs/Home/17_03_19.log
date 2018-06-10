@@ -1,0 +1,62 @@
+[ 2017-03-19T20:19:40+08:00 ] ::1 /71/index.php/Home/Game/fangjiannum.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `langrensha` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `siren` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `meiyesiren` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `dijitian` [ RunTime:0.0040s ]
+SQL: INSERT INTO `langrensha` (`fangjianhao`,`cunmin`,`langren`,`nvwu`,`yyj`,`lieren`,`rcunmin`,`rlangren`,`rnvwu`,`ryyj`,`rlieren`) VALUES ('3602','2','1','1','1','1','2','1','1','1','1') [ RunTime:0.0360s ]
+SQL: INSERT INTO `shenfen` (`fangjianhao`) VALUES ('3602') [ RunTime:0.0190s ]
+SQL: INSERT INTO `siren` (`fangjianhao`) VALUES ('3602') [ RunTime:0.0170s ]
+SQL: INSERT INTO `meiyesiren` (`fangjianhao`) VALUES ('3602') [ RunTime:0.0400s ]
+SQL: INSERT INTO `dijitian` (`fangjianhao`) VALUES ('3602') [ RunTime:0.0220s ]
+SQL: SELECT * FROM `langrensha` WHERE ( fangjianhao='3602' ) LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-03-19T20:20:06+08:00 ] ::1 /71/index.php/Home/Game/fangjiannum.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `langrensha` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `shenfen` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `siren` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `meiyesiren` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `dijitian` [ RunTime:0.0040s ]
+SQL: INSERT INTO `langrensha` (`fangjianhao`,`cunmin`,`langren`,`nvwu`,`yyj`,`lieren`,`rcunmin`,`rlangren`,`rnvwu`,`ryyj`,`rlieren`) VALUES ('1989','2','1','1','1','1','2','1','1','1','1') [ RunTime:0.0470s ]
+SQL: INSERT INTO `shenfen` (`fangjianhao`) VALUES ('1989') [ RunTime:0.0630s ]
+SQL: INSERT INTO `siren` (`fangjianhao`) VALUES ('1989') [ RunTime:0.1330s ]
+SQL: INSERT INTO `meiyesiren` (`fangjianhao`) VALUES ('1989') [ RunTime:0.1550s ]
+SQL: INSERT INTO `dijitian` (`fangjianhao`) VALUES ('1989') [ RunTime:0.0470s ]
+SQL: SELECT * FROM `langrensha` WHERE ( fangjianhao='1989' ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
