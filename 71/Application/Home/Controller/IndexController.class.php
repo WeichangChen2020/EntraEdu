@@ -96,7 +96,7 @@ class IndexController extends Controller {
 
     public function testAcm2()
     {
-        print_r("34342344242")
+        print_r("34342344242");
         // $url='http://acm.gailvlunpt.com/submit.php';
         
 
