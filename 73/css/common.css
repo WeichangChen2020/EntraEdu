@@ -1,0 +1,56 @@
+body,html{
+  padding:0;
+  margin:0;
+  background-color: #f6f6f6;
+ }
+
+header{
+  height:60px;
+  background:#393D49;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+ }
+ .content{
+    width:90%;
+    margin:30px auto;
+ }
+ .logo{
+ 	color:#fff;
+ 	font-size:20px;
+ 	margin-left:20px;
+ }
+ .nav{
+ 	margin-right:20px;
+ }
+ .nav a,.nav span{
+ 	color:#fff!important;
+ }
+ .image{
+ 	width:100%;
+ 	height:100%;
+ }
+ .btn{
+ 	text-align: center;
+ 	margin-top:30px;
+ 	clear: both;
+ }
+.infolist{
+    display: flex;
+    padding-left:0;
+}
+.formMessage table tr td{
+    font-size:12px!important;
+    text-align: center;
+}
+.layui-table td, .layui-table th{
+  padding:6px;
+}
+.show{
+  border-left: 3px solid #5fb878;
+}
+.nav-title-link:hover{
+  border-left: 3px solid #5fb878;
+}
+

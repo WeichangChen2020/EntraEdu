@@ -1,0 +1,70 @@
+body,html{
+  padding:0;
+  margin:0;
+ }
+body{
+    /*background-image:url('../img/2017newyear_01.png');
+    height:100%;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;*/
+    background:#393D49;
+}
+header{
+  height:60px;
+  background:#393D49;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+ }
+ .content{
+ 	margin-bottom: 30px;
+    width:100%;
+ }
+ .content .layui-container{
+    margin-top:80px;
+ }
+ .logo{
+ 	color:#fff;
+ 	font-size:20px;
+ 	margin-left:20px;
+ }
+ .nav{
+ 	margin-right:20px;
+ }
+ .nav a,.nav span{
+ 	color:#fff!important;
+ }
+
+ .login{
+    width:100%;
+    background:#fff;
+    
+ }
+
+ .login_header{
+    height:50px;
+    padding-left:20px;
+    line-height:50px;
+    border-bottom: 1px solid #ddd;
+    color:#1E9FFF;
+ }
+
+ .login_form{
+     padding:35px 0;
+    width:90%;
+    margin:0 auto;
+ }
+ .login .layui-form-label{
+    width:50px;
+    padding: 10px 10px 10px 0;
+    text-align: center;
+ }
+ .login .layui-input-block{
+    margin-left:60px;
+ }
+ 
+ .login .layui-btn{
+    width:100%;
+ }

@@ -1,0 +1,335 @@
+﻿h3{
+    font-size: 15px;
+}
+.g-header{
+    margin-bottom: 20px;
+}
+.g-search{
+    width: 1220px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding-left: 36px;
+    background: #fff;
+    box-sizing: border-box;
+}
+.search-wrap{
+    float: left;
+    margin-top: 18px;
+    position: relative;
+}
+.search-ipt{
+    width: 620px;
+    display: block;
+    padding: 10px 20px 10px;
+    border-radius: 4px;
+    border:none;
+    font-size: 16px;
+    background: #e4e2e2;
+    line-height:100%;
+    position: relative;
+    behavior: url(../images/pie.htc);
+}
+
+.search-icon{
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 7px;
+    right: 17px;
+    background: url("../images/icon-search.png") no-repeat center;
+}
+.placeholder {
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    margin-top: -12px;
+    color: #999797;
+    font-size: 24px;
+}
+.m-btn{
+    float: left;
+    width: 330px;
+    height: 45px;
+    margin: 17px 0 0 100px;
+}
+.m-btn a:hover{
+    text-decoration: none;
+}
+.m-btn a{
+    float: left;
+    width: 162px;
+    height: 45px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 18px;
+    color: #333;
+    background:url("../images/recommend-btn.png") no-repeat center;
+}
+.m-btn .hot-btn{
+    background:url("../images/hot-btn.png") no-repeat center;
+}
+
+.icon-hot{
+    display: inline-block;
+    width: 18px;
+    height: 29px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+    background: url("../images/icon-hot-02.png") no-repeat center;
+}
+
+.icon-recommend{
+    display: inline-block;
+    width: 22px;
+    height: 29px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+    background: url("../images/icon-recommend-02.png") no-repeat center;
+}
+
+
+.icon-hand{
+    display: inline-block;
+    width: 26px;
+    height: 29px;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+    background: url("../images/icon-hot-00.png") no-repeat center;
+}
+.g-main {
+    width: 1220px;
+    min-height: 710px;
+    margin: 0 auto;
+}
+.main-nav {
+    float: left;
+    width: 290px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.title{
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 18px;
+    color: #1296db;
+    background: #fff;
+}
+.nav-title{
+    height: 745px;
+    margin-top: 3px;
+    padding-top: 15px;
+    background: #fff;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+}
+.nav-title-link{
+    display: block;
+    height: 40px;
+    padding-left: 47px;
+    line-height: 40px;
+    position: relative;
+}
+.nav-title-link:hover{
+    background: #eee;
+    border-left: 3px solid #1296db;
+}
+.nat-title-txt{
+    float: left;
+    max-width: 210px;
+    font-size: 15px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.nav-title-num{
+    float: left;
+    font-size: 14px ;
+    font-style: italic;
+    color: #1296db;
+}
+.icon-arrows{
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: url("../images/icon-arrows.png") no-repeat  center;
+}
+.icon{
+    display: none;
+    position: absolute;
+    top: 14px;
+    left: 28px;
+}
+
+.wrap{
+    position: absolute;
+}
+.nav-title-link.move .wrap{
+
+}
+.nav-title-link.show .icon{
+    background: #eee;
+    border-left: 3px solid #1296db;
+}
+.show{
+     background: #eee;
+    border-left: 3px solid #1296db;
+}
+.main-container{
+    width: 910px;
+    float: right;
+    height: 100%;
+}
+.m-sort{
+    padding: 0 20px 20px;
+    background: #fff;
+}
+.sort-wrap{
+    overflow: hidden;
+    margin-top: 10px;
+}
+.sort-title{
+    float: left;
+    font-size: 14px;
+    color: #333;
+}
+.link-wrap{
+    /* float: left; */
+    margin-left: 84px;
+    /* line-height: 15px; */
+}
+.link-wrap a{
+    display: inline-block;
+    margin-right: 2px;
+    margin-bottom: 10px;
+    padding: 2px 6px;
+    color: #1296db;
+}
+.link-wrap a:hover{
+    text-decoration: none;
+}
+.link-wrap a.activeTwo{
+    color: #fff;
+    background: #1296db;
+}
+.server-detail{
+    margin-top: 20px;
+}
+
+.server-detail li{
+    /* float: left; */
+    /* width: 420px; */
+    height: 80px;
+    padding-right: 20px;
+    background: #fff;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+.server-detail li.rt{
+    float: right;
+}
+.server-detail li:nth-child(even){
+    /* float: right; */
+}
+.u-data{
+    float: left;
+    margin-top: 10px;
+    color: #777;
+}
+.category{
+    /* width: 180px; */
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.home{
+    margin: 5px 0;
+    font-size: 14px;
+}
+.place{
+    font-size: 14px;
+}
+.server-img-box{
+    float: left;
+    width: 130px;
+    height: 70px;
+}
+.u-img{
+    width: 115px;
+    height: 80px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.u-collect{
+    height: 28px;
+    line-height: 28px;
+    float: right;
+    margin-top: 20px;
+    padding-left: 35px;
+    font-size: 14px;
+    color: #999;
+    background: url("../images/star_b.png") no-repeat 0 center;
+}
+.u-collect:hover{
+    cursor: pointer;
+}
+.star-a{
+    background: url("../images/star_a.png") no-repeat 0 center;
+}
+.search-label{
+    font-size: 15px;
+    color: #adabab;
+    z-index: 99;
+    position: absolute;
+    top: 12px;
+    left: 5%;
+}
+
+.more-btn{
+    margin-top: 20px;
+    padding: 4px 10px 2px;
+    font-size: 16px;
+}
+
+/**2017-11-17更改和提交的样式**/
+.m-screenAll{
+    display: inline-block;
+    color: #fff;
+    padding: 2px 5px;
+    background: #1296db;
+    float: left;
+    border: 1px solid transparent;
+}
+.m-screen{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding:2px 5px;
+    color: #666;
+    margin: 0 5px;
+}
+
+.btn-remove{
+    padding: 0 5px 0 0;
+    cursor: pointer;
+}
+.m-screen:hover{
+    border:1px solid #1296db;
+    color: #1296db;
+}
+#m-search{
+   float: left;
+}
+.link-wrap:after{
+    display: block;
+    content: "";
+    clear: both;
+}

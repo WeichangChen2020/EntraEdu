@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- 你的HTML代码 -->
+    <header>
+        <div class="logo">
+            三位一体报名系统
+        </div>
+        <div class="nav">
+            <span class="layui-breadcrumb" lay-separator="|">
+              <a>说明</a>
+              <a href="register.html">注册</a>
+              <a href="login.html">登录</a>
+            </span>
+        </div>
+    </header>
+    <div class="content">
+        <div class="layui-carousel" id="test1">
+            <div carousel-item>
+                <div>
+                    <img src="images/2.jpg" class="image">
+                </div>
+                <div>
+                    <img src="images/2.jpg" class="image">
+                </div>
+                <div>
+                    <img src="images/2.jpg" class="image">
+                </div>
+            </div>
+        </div>
+        <div class="">
+          <h3 class="step_tip">报名流程</h3>
+        </div>
+        <div class="step_con">
+            <div class="step ">
+              <div class="step-main">
+                  <div>
+                      <i class="layui-icon">&#xe612;</i>
+                      <br>
+                      <span>进入报名系统</span>
+                  </div>
+              </div>
+            </div>
+            <div class="step ">
+              <div class="step-main">
+                  <div>
+                      <i class="layui-icon">&#xe6b2;</i>
+                      <br>
+                      <span>填写基本信息初审</span>
+                  </div>
+              </div>
+            </div>
+            <div class="step ">
+              <div class="step-main">
+                  <div>
+                      <i class="layui-icon">&#xe609;</i>
+                      <br>
+                      <span>邮寄资料</span>
+                  </div>
+              </div>
+            </div>
+            <div class="step ">
+              <div class="step-main">
+                  <div>
+                      <i class="layui-icon">&#xe627;</i>
+                      <br>
+                      <span>最终审核</span>
+                  </div>
+              </div>
+            </div>
+            <div class="step ">
+              <div class="step-main">
+                  <div>
+                      <i class="layui-icon">&#xe610;</i>
+                      <br>
+                      <span>报名成功</span>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step ">
+                <div class="step-head">
+                    <div class="step-line"></div>
+                    <div class="step-icon num">
+                        1
+                    </div>
+                </div>
+                <div class="step-main">
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-head">
+                    <div class="step-line"></div>
+                    <div class="step-icon">
+                        2
+                    </div>
+                </div>
+                <div class="step-main">
+                    <div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-head">
+                    <div class="step-line"></div>
+                    <div class="step-icon">
+                        <!-- <div class="step-circle"></div> -->
+                        3
+                    </div>
+                </div>
+                <div class="step-main">
+                    <div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-head">
+                    <div class="step-line"></div>
+                    <div class="step-icon">
+                        4
+                    </div>
+                </div>
+                <div class="step-main">
+                    <div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-head">
+                    <div class="step-icon">
+                        5
+                    </div>
+                </div>
+                <div class="step-main">
+                </div>
+            </div>
+        </div>
+
+        <div class="btn">
+            <button class="layui-btn layui-btn-normal">进入报名系统</button>
+        </div>
+    </div>
+    <script src="layui/layui.js"></script>
+    <script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form', 'element', 'carousel','jquery'], function() {
+        var layer = layui.layer;
+        //layer.msg('Hello World');
+        var form = layui.form;
+        var element = layui.element;
+        var carousel = layui.carousel;
+         $ = layui.jquery;
+        ////建造实例
+        carousel.render({
+            elem: '#test1',
+            width: '100%',//设置容器宽度
+            height: '300px',
+            arrow: 'hover' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+    </script>
+</body>
+
+</html>

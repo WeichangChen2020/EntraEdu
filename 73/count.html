@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link href="css/city.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/transactionCenter.css">
+    <link rel="stylesheet" href="css/mycenter.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+    <!-- 你的HTML代码 -->
+    <header>
+        <div class="logo">
+            三位一体报名系统
+        </div>
+        <div class="nav">
+            <span class="layui-breadcrumb" lay-separator="|">
+              <a><span>欢迎您：XXX</span></a>
+              <a href="">退出</a>
+            </span>
+        </div>
+    </header>
+    <div class="content">
+        <div class="main-nav">
+            <h3 class="title">用户中心</h3>
+            <div>
+                <a href="home.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <span class="iconfont icon-gerenzhongxin left"></span>
+                            <span class="nat-title-txt">个人信息</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="joinTest.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <span class="iconfont icon-diban- left"></span>
+                            <span class="nat-title-txt">我要报考</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="progress.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe60e;</i>
+                            <span class="nat-title-txt">进度查询</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="print.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe639;</i>
+                            <span class="nat-title-txt">打印准考证</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="count.html">
+                    <div class="nav-title-link show">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe620;</i>
+                            <span class="nat-title-txt">账号管理</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="main-container" style="background-color: white;">
+            <div style="clear: both"></div>
+            <div class="layui-tab-content" style="font-size: 14px">
+                <div class="layui-tab-item layui-show" style="min-height: 600px; padding: 15px">
+                    <fieldset class="layui-elem-field layui-field-title site-title">
+                        <legend> <i class="layui-icon ">&#xe620;</i></span><span name="docend" style="font-size: 16px">修改密码</span></legend>
+                    </fieldset>
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                          <label class="layui-form-label">原始密码</label>
+                          <div class="layui-input-inline">
+                            <input type="password" name="title" required  lay-verify="required" placeholder="请输入原始密码" autocomplete="off" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <label class="layui-form-label">新密码</label>
+                          <div class="layui-input-inline">
+                            <input type="password" name="password" required lay-verify="required" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                          </div>
+                        </div>
+                        <div class="layui-form-item">
+                          <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">取消</button>
+                          </div>
+                        </div>
+                    </form>  
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/city.min.js"></script>
+    <script>
+
+    function addInput() {
+        var len = $(".experience").length;
+        console.log(len)
+        $(".study_experience").attr({
+            rowspan: len + 3,
+        });
+        $(".experience:last").after('<tr class="experience"><td> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td colspan="2"> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td colspan="2"> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td></tr>')
+    }
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form', 'element', 'laydate'], function() {
+        var layer = layui.layer;
+        //layer.msg('Hello World');
+        var form = layui.form;
+        var element = layui.element;
+        var carousel = layui.carousel;
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+
+
+    });
+    </script>
+</body>
+
+</html>

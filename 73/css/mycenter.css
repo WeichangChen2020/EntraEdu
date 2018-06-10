@@ -1,0 +1,104 @@
+
+@font-face {
+  font-family: 'iconfont';  /* project id 494179 */
+  src: url('//at.alicdn.com/t/font_494179_l9bc6m67n63tmx6r.eot');
+  src: url('//at.alicdn.com/t/font_494179_l9bc6m67n63tmx6r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_494179_l9bc6m67n63tmx6r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_494179_l9bc6m67n63tmx6r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_494179_l9bc6m67n63tmx6r.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wodeshoucang:before { content: "\e613"; }
+
+.icon-gerenzhongxin:before { content: "\e619"; }
+
+.icon-wodeshoucang1:before { content: "\e644"; }
+
+.icon-xinxiweihu:before { content: "\e62e"; }
+
+.icon-diban-:before { content: "\e612"; }
+
+.icon-wodejianyi:before { content: "\e60b"; }
+
+
+
+
+.g-main {
+    width: 95%;
+    min-height: 710px;
+    margin: 0 auto;
+}
+.main-nav {
+    float: left;
+    width: 17%;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+.main-container {
+    width: 81%;
+    float: right;
+    height: 100%;
+}
+.nav-title-link{
+	background:#fff;
+}
+.nav-title-link:hover {
+    background: #eee;
+    border-left: 3px solid #1296db;
+}
+.nat-title-txt {
+    float: left;
+    max-width: 210px;
+    font-size: 15px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 15px;
+}
+.show{
+	 background: #eee;
+    border-left: 3px solid #1296db;
+}
+
+.title {
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.left{
+	float:left;
+}
+.right{
+    float:right;
+}
+.nav-title-link { 
+    padding-left: 32px;
+}
+
+.info-list{
+    border-left: 3px solid #666 !important;
+    background-color: transparent;
+    padding: 3px 20px;
+    line-height:normal;
+    margin-bottom: 10px;
+    border-left: 5px solid #009688;
+    border-radius: 0 2px 2px 0;
+}
+.inof-item{
+    border-bottom:1px solid #d4d4d4;
+}
+    
+

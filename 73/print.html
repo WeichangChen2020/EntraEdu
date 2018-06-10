@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link href="css/city.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/transactionCenter.css">
+    <link rel="stylesheet" href="css/mycenter.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+    <!-- 你的HTML代码 -->
+    <header>
+        <div class="logo">
+            三位一体报名系统
+        </div>
+        <div class="nav">
+            <span class="layui-breadcrumb" lay-separator="|">
+              <a><span>欢迎您：XXX</span></a>
+              <a href="">退出</a>
+            </span>
+        </div>
+    </header>
+    <div class="content">
+        <div class="main-nav">
+            <h3 class="title">用户中心</h3>
+            <div>
+                <a href="home.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <span class="iconfont icon-gerenzhongxin left"></span>
+                            <span class="nat-title-txt">个人信息</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="joinTest.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <span class="iconfont icon-diban- left"></span>
+                            <span class="nat-title-txt">我要报考</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="progress.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe60e;</i>
+                            <span class="nat-title-txt">进度查询</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="print.html">
+                    <div class="nav-title-link show">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe639;</i>
+                            <span class="nat-title-txt">打印准考证</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="count.html">
+                    <div class="nav-title-link">
+                        <div class="wrap">
+                            <i class="layui-icon left">&#xe620;</i>
+                            <span class="nat-title-txt">账号管理</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="main-container" style="background-color: white;">
+            <div style="clear: both"></div>
+            <div class="layui-tab-content" style="font-size: 14px">
+                <div class="layui-tab-item layui-show" style="min-height: 600px; padding: 15px">
+                    <fieldset class="layui-elem-field layui-field-title site-title">
+                        <legend><i class="layui-icon ">&#xe639;</i></span><span name="docend" style="font-size: 16px">打印准考证</span></legend>
+                    </fieldset>
+                    <form class="layui-form personMessage" action="" >
+                        <table class="layui-table">
+                            <tbody>
+                                <th colspan="12" style="text-align: center">浙江工商大学“三位一体”综合评价招生测试通知单</th>
+                                <tr>
+                                    <td colspan="2">姓名</td>
+                                    <td >
+                                        张向军
+                                    </td>
+                                    <td colspan="2">性别</td>
+                                    <td colspan="2">男</td>
+                                    <td colspan="2">出生年月</td>
+                                    <td colspan="2">2001-12-10</td>
+                                    <td rowspan="5">
+                                        照片
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">政治面貌</td>
+                                    <td>
+                                        党员
+                                    </td>
+                                    <td colspan="2">民族</td>
+                                    <td colspan="2">
+                                        汉
+                                    </td>
+                                    <td colspan="2">是否专项生</td>
+                                    <td colspan="2">
+                                       否
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">所在地区</td>
+                                    <td colspan="9">
+                                        浙江省杭州市
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">所在中学</td>
+                                    <td colspan="4">
+                                        晨曦中学
+                                    </td>
+                                    <td colspan="2">测试类别</td>
+                                    <td colspan="3">
+                                        文法类
+                                    </td>
+                                </tr>                              
+                                <tr>
+                                    <td colspan="2">高中地址</td>
+                                    <td colspan="4">
+                                     <div class="infolist">
+                                        <div class="liststyle">
+                                            <span id="Province">
+                                              <i>省份</i>
+                                               <ul style="height:350px;overflow: auto;">
+                                                          <li><a href="javascript:void(0)" alt="省份">省份</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_Province" value="省份">
+                                                  </span>
+                                            <span id="City">
+                                                      <i>城市</i>
+                                                      <ul>
+                                                          <li><a href="javascript:void(0)" alt="城市">城市</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_City" value="城市">
+                                                  </span>
+                                            <span id="Area">
+                                                      <i>地区</i>
+                                                      <ul>
+                                                          <li><a href="javascript:void(0)" alt="地区">地区</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_Area" value="地区">
+                                                  </span>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td colspan="5">
+                                        <input type="text" name="title" placeholder="详细地址" class="layui-input">
+                                    </td>
+                                    <td >
+                                        <input type="text" name="title" placeholder="校区" class="layui-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">家庭地址</td>
+                                    <td colspan="4">
+                                   <div class="infolist">
+                                        <div class="liststyle">
+                                            <span id="Province">
+                                              <i>省份</i>
+                                               <ul style="height:350px;overflow: auto;">
+                                                          <li><a href="javascript:void(0)" alt="省份">省份</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_Province" value="省份">
+                                                  </span>
+                                            <span id="City">
+                                                      <i>城市</i>
+                                                      <ul>
+                                                          <li><a href="javascript:void(0)" alt="城市">城市</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_City" value="城市">
+                                                  </span>
+                                            <span id="Area">
+                                                      <i>地区</i>
+                                                      <ul>
+                                                          <li><a href="javascript:void(0)" alt="地区">地区</a></li>
+                                                      </ul>
+                                                      <input type="hidden" name="cho_Area" value="地区">
+                                                  </span>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td colspan="5">
+                                        <input type="text" name="title" placeholder="详细地址" class="layui-input">
+                                    </td>
+                                    <td >
+                                        <input type="text" name="title" placeholder="邮箱" class="layui-input">
+                                    </td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td class="members" rowspan="6" colspan="2">家庭成员及社会关系</td>
+                                    <td colspan="2">称谓</td>
+                                    <td colspan="2">姓名</td>
+                                    <td colspan="3">联系电话</td>
+                                    <td colspan="3">工作单位</td>
+                                </tr>
+                                <tr class="member">
+                                    <td colspan="2">
+                                        <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="2">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                </tr>
+                                 <tr class="member">
+                                    <td colspan="2">
+                                        <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="2">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                </tr>
+                                 <tr class="member">
+                                    <td colspan="2">
+                                        <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="2">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                </tr>
+                                 <tr class="member">
+                                    <td colspan="2">
+                                        <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="2">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                    <td colspan="3">
+                                       <input type="text" name="title" class="layui-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="11" align="center" onclick="addMerInput()">
+                                      <a class="layui-icon" href="javascript:;" onclick="addMerInput()">&#xe654;</a>
+                                  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="text-align: center;">                     
+                          <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                          <button type="reset" class="layui-btn layui-btn-primary">修改</button>                     
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/city.min.js"></script>
+    <script>
+
+    function addInput() {
+        var len = $(".experience").length;
+        console.log(len)
+        $(".study_experience").attr({
+            rowspan: len + 3,
+        });
+        $(".experience:last").after('<tr class="experience"><td> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td colspan="2"> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td colspan="2"> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td><td> <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"></td></tr>')
+    }
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form', 'element', 'laydate'], function() {
+        var layer = layui.layer;
+        //layer.msg('Hello World');
+        var form = layui.form;
+        var element = layui.element;
+        var carousel = layui.carousel;
+        var laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+
+
+    });
+    </script>
+</body>
+
+</html>
