@@ -100,10 +100,9 @@
               var img = new Image();  
               img.onload = function () {  
                     // 不要超出最大宽度  
-                    var originWidth = Math.min(maxWidth, img.width);  
-                    // 高度按比例计算  
-                    var originHeight = img.height * (w / img.width); 
-                        var maxWidth = 400, maxHeight = 400; 
+                    var originWidth = this.width;
+                    var originHeight = this.height;
+                    var maxWidth = 400, maxHeight = 400; 
                     var canvas = document.createElement('canvas');  
                     var context = canvas.getContext('2d');  
                     // 设置 canvas 的宽度和高度  
@@ -139,7 +138,7 @@
 
 
 
-                    var base64 = canvas.toDataURL('image/jpeg');  
+                    var base64 = canvas.toDataURL('image/jpeg',0.92);  
                     
                     // 插入到预览区  
                     var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
