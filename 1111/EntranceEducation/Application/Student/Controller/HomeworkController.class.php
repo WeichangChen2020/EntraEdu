@@ -391,7 +391,6 @@ class HomeworkController extends Controller{
         }
         //本次作业应有的数目
         $outproblem  = array_diff($outproblem,$do);
-        var_dump("$outproblem");die;
 
         if (empty($outproblem)) {
             $this->assign('flag',0);
