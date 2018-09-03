@@ -100,16 +100,46 @@
               var img = new Image();  
               img.onload = function () {  
                     // 不要超出最大宽度  
-                    var w = Math.min(maxWidth, img.width);  
+                    var originWidth = Math.min(maxWidth, img.width);  
                     // 高度按比例计算  
-                    var h = img.height * (w / img.width);  
+                    var originHeight = img.height * (w / img.width); 
+                        var maxWidth = 400, maxHeight = 400; 
                     var canvas = document.createElement('canvas');  
-                    var ctx = canvas.getContext('2d');  
+                    var context = canvas.getContext('2d');  
                     // 设置 canvas 的宽度和高度  
-                    canvas.width = w;  
-                    canvas.height = h;  
-                    ctx.drawImage(img, 0, 0, w, h);  
-                    var base64 = canvas.toDataURL('image/jpeg',0.8);  
+                    // canvas.width = w;  
+                    // canvas.height = h;  
+                    // ctx.drawImage(img, 0, 0, w, h);  
+
+    //                 var originWidth = this.width;
+    // var originHeight = this.height;
+    // 最大尺寸限制
+    var maxWidth = 400, maxHeight = 400;
+    // 目标尺寸
+    var targetWidth = originWidth, targetHeight = originHeight;
+    // 图片尺寸超过400x400的限制
+    if (originWidth > maxWidth || originHeight > maxHeight) {
+        if (originWidth / originHeight > maxWidth / maxHeight) {
+            // 更宽，按照宽度限定尺寸
+            targetWidth = maxWidth;
+            targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+        } else {
+            targetHeight = maxHeight;
+            targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+        }
+    }
+        
+    // canvas对图片进行缩放
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    // 清除画布
+    context.clearRect(0, 0, targetWidth, targetHeight);
+    // 图片压缩
+    context.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+
+
+                    var base64 = canvas.toDataURL('image/jpeg');  
                     
                     // 插入到预览区  
                     var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
@@ -131,6 +161,7 @@
                     var progress = 0;  
 
                     function uploading() {  
+                      var base64 = canvas.toDataURL('image/jpeg',0.8); 
                       $preview.find('.weui_uploader_status_content').text(++progress + '%');  
                       if (progress < 100) 
                       {  
