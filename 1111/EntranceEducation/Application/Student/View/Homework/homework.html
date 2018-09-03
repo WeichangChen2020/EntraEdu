@@ -104,7 +104,7 @@
                     var originHeight = this.height;
                     var maxWidth = 400, maxHeight = 400; 
                     var canvas = document.createElement('canvas');  
-                    var context = canvas.getContext('2d');  
+                    var ctx = canvas.getcontext('2d');  
                     // 设置 canvas 的宽度和高度  
                     // canvas.width = w;  
                     // canvas.height = h;  
@@ -132,22 +132,45 @@
     canvas.width = targetWidth;
     canvas.height = targetHeight;
     // 清除画布
-    context.clearRect(0, 0, targetWidth, targetHeight);
+    ctx.clearRect(0, 0, targetWidth, targetHeight);
     // 图片压缩
-    context.drawImage(img, 0, 0, targetWidth, targetHeight);
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    fileUpload();
+  };
+  reader.readAsDataURL(file);
 
+function fileUpload() {   
+     var data = canvas.toDataURL("image/jpeg", 0.92);   
+     //dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了   
+    datadata = data.split(',')[1];   
+    data = window.atob(data);   
+    var ia = new Uint8Array(data.length);   
+    for (var i = 0; i < data.length; i++) {   
+          ia[i] = data.charCodeAt(i);   
+    };   
+     //canvas.toDataURL 返回的默认格式就是 image/png   
+    var blob = new Blob([ia], {   
+     type: "image/jpeg"   
+    });   
+    var fd = new FormData();   
+        fd.append('myFile', blob);   
+    var xhr = new XMLHttpRequest();   
+    xhr.addEventListener("load", opts.success, false);   
+    xhr.addEventListener("error", opts.error, false);   
+    xhr.open("POST", opts.url);   
+    xhr.send(fd);   
+ }  
 
-
-                    var base64 = canvas.toDataURL('image/jpeg',0.92);  
+  //                   var base64 = canvas.toDataURL('image/jpeg',0.92);  
                     
-                    // 插入到预览区  
-                    var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
-                    $('.weui_uploader_files').append($preview);  
-                    var num = $('.weui_uploader_file').length;  
-                    $('.js_counter').text(num + '/' + maxCount);  
+  //                   // 插入到预览区  
+  //                   var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
+  //                   $('.weui_uploader_files').append($preview);  
+  //                   var num = $('.weui_uploader_file').length;  
+  //                   $('.js_counter').text(num + '/' + maxCount);  
                     
 
-                    //postbase64到后台upload
+  //                   //postbase64到后台upload
 
 
 
@@ -155,32 +178,31 @@
 
 
 
-                    // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
+  //                   // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
                     
-                    var progress = 0;  
+  //                   var progress = 0;  
 
-                    function uploading() {  
-                      var base64 = canvas.toDataURL('image/jpeg',0.8); 
-                      $preview.find('.weui_uploader_status_content').text(++progress + '%');  
-                      if (progress < 100) 
-                      {  
-                        setTimeout(uploading, 30);  
-                      }  
-                      else{  
-                            // 如果是失败，塞一个失败图标  
-                            //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
-                            $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
-                          }  
-                    }  
-                        setTimeout(uploading, 30);  
-                      };  
+  //                   function uploading() {  
+  //                     $preview.find('.weui_uploader_status_content').text(++progress + '%');  
+  //                     if (progress < 100) 
+  //                     {  
+  //                       setTimeout(uploading, 30);  
+  //                     }  
+  //                     else{  
+  //                           // 如果是失败，塞一个失败图标  
+  //                           //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
+  //                           $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
+  //                         }  
+  //                   }  
+  //                       setTimeout(uploading, 30);  
+  //                     };  
                       
-                      img.src = e.target.result;  
-                    };  
+  //                     img.src = e.target.result;  
+  //                   };  
 
-                    reader.readAsDataURL(file);  
-                  }  
-                });  
-  });  
+  //                   reader.readAsDataURL(file);  
+  //                 }  
+  //               });  
+  // });  
 //# sourceURL=pen.js  
 </script>
