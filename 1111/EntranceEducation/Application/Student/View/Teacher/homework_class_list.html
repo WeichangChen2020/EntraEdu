@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <include file="./Public/html/_head.html"/>
-</head>
-
-<body ontouchstart>
+  </head>
+  
+  <body ontouchstart>
 
     <header class='demos-header'>
       <h1 class="demos-title">主观出题</h1>
-  </header>
+    </header>
 
-  <div class="weui_cells weui_cells_form">
+    <div class="weui_cells weui_cells_form">
       <div class="weui_cell">
         <div class="weui_cell_hd"><label class="weui_label">作业名称</label></div>
         <div class="weui_cell_bd weui_cell_primary" id="homeworkName" style="margin-left:50px;">
           {$homeworkName|default="课后作业"}
+        </div>
       </div>
-  </div>
-  <div class="weui_cell">
-    <div class="weui_cell_hd"><label for="" class="weui_label">提交截止时间</label></div>
-    <div class="weui_cell_bd weui_cell_primary" style="margin-left:40px;">
-      <input id="deadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
-  </div>
-</div>
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">提交截止时间</label></div>
+        <div class="weui_cell_bd weui_cell_primary" style="margin-left:40px;">
+          <input id="deadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
+        </div>
+      </div>
 
-<div class="weui_cell">
-    <div class="weui_cell_hd"><label for="" class="weui_label">互评截止时间</label></div>
-    <div class="weui_cell_bd weui_cell_primary" style="margin-left: 40px;">
-      <input id="hpdeadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
-  </div>
-</div>
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">互评截止时间</label></div>
+        <div class="weui_cell_bd weui_cell_primary" style="margin-left: 40px;">
+          <input id="hpdeadtime" class="weui_input" type="datetime-local" value="" placeholder="请选择截止时间">
+        </div>
+      </div>
 
-<div class="weui_cell">
-    <div class="weui_cell_hd"><label for="" class="weui_label">是否允许补交</label></div>
-    <input class="weui_switch" id="bj" type="checkbox" name="bj" style="margin-left:50px;">
-</div>
+      <div class="weui_cell">
+        <div class="weui_cell_hd"><label for="" class="weui_label">是否允许补交</label></div>
+        <input class="weui_switch" id="bj" type="checkbox" name="bj" style="margin-left:50px;">
+      </div>
 
-<div class="weui_btn_area">
-    <a class="weui_btn weui_btn_primary" href="javascript:;" id="submit">确定</a>
-</div>
+      <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:;" id="submit">确定</a>
+      </div>
+      
+ 
+    
 
-
-
-
-</body>
+  </body>
 </html>
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-    var flag = true;
-    $("#submit").click(function(event){
+    <script type="text/javascript">
+
+      
+      // alert(deadtime);
+
+      $("#submit").click(function(event){
         var homeworkName = $("#homeworkName").val();
         var teacherClass = $("#sel").val();
         var deadtime = $("#deadtime").val();
@@ -56,11 +59,11 @@
         var bj;
         var myDate = new Date().getTime();//获取系统当前时间
 
-        if($('#bj').is(':checked')) {
+       if($('#bj').is(':checked')) {
           bj = 1;
-      }else{
+        }else{
           bj = 0;
-      }
+        }
         // alert(deadtime);
         var dead = new Date(deadtime).toJSON();  
         var dead = new Date(+new Date(dead)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');
@@ -71,10 +74,7 @@
         var hp = new Date(hpdeadtime).toJSON();  
         var hp = new Date(+new Date(hp)).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');  
         hp = new Date(hp.replace(/-/g,'/')).getTime();
-        if (!flag) {
-            return false;
-        }
-        flag = false;
+
         if(dead>myDate){
             if(hp>dead){ 
               $.ajax({
@@ -88,20 +88,18 @@
                   "deadtime":deadtime,
                   "hpdeadtime":hpdeadtime,
                   "bj":bj
-              },
-              success:function(res){
+                },
+                
+                success:function(res){
                   window.location.href="{:U('index',array('openId'=>session('openId')))}";
-              }
-          });
-                flag = true;
-          }else{
+                }
+              });
+            }else{
               alert('互评截止时间不能早于提交截止时间');
-              flag = true;
-          }
-      }else{
-        alert('当前时间已过提交截止时间');
-              flag = true;
-    }
-});
+            }
+        }else{
+            alert('当前时间已过提交截止时间');
+        }
+        });
 
-</script> 
+    </script> 

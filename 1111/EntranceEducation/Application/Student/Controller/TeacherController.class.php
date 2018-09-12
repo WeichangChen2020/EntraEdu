@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | 大学物理教学互动平台
+// | 计算机网络教学互动平台
 // +----------------------------------------------------------------------
 // | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
 // +----------------------------------------------------------------------
@@ -19,7 +19,7 @@ use Think\Model;
  */
 
 class TeacherController extends Controller{
-
+    
     public function index(){
         $openId = getOpenId();
         session('openId',$openId);
@@ -75,67 +75,52 @@ class TeacherController extends Controller{
 
 
     public function homework_assign_zg(){
-        if(IS_AJAX){
-            $unit = I('unit');
-            $count= 0;
-            $unitArray = str_split($unit);
-            foreach ($unitArray as $key => $value) {
-                $count += M('imageQuestionbank')->where(array('chapter'=>$value['id']))->count();
-            }
-            $this->ajaxReturn($count);
-        }
-        $chapterList = M('questionChapter')->select();
-        // foreach ($chapterList as $key => $value) {
-        //     $chapterList[$key]['count'] = M('imageQuestionbank')->where(array('chapter'=>$value['id']))->count();
-        // }
-        $this->assign('chapterList',$chapterList);
-        $this->display();    
+        $this->display();        
 
     }
 
     public function homework_assign_zg2(){
-        $unit   = I('unit');//章节
-        session('unit',$unit);
-        $number = intval(I('number'));//题数
-        if($unit === 0)
-            $this->error('你选择的章节出错了');
-        $unitArray = explode('_',substr($unit, 0,strlen($unit)-1));
-
-        $result    = array();
-        foreach ($unitArray as $value) {
-            $cond   = array('chapter' => $value);
-            $result = array_merge($result,M('image_questionbank')->where($cond)->select());
-        }
-        foreach ($result as $key => $value) {
-            $result[$key]['contents'] = C('COMMONPATH').C('HOMEWORKPATH').$value['chapter'].'_'.$value['type'].'_1_'.$value['id'].'.jpg';
-        }
-        if($number != ''){   //说明用户自定义选择了数量
-            $numberResult = array(); 
-            $rand = array_rand($result,$number);
-            foreach ($rand as $key => $value) {
-                $numberResult[] = $result[$value];
+       
+            $unit   = intval(I('unit'));//章节
+            session('unit',$unit);
+            $number = intval(I('number'));//题数
+            if($unit === 0)
+                $this->error('你选择的章节出错了');
+            $unitArray = str_split($unit);
+            
+            $result    = array();
+            foreach ($unitArray as $value) {
+               //$value  = 'unit'.$value ;
+               $cond   = array('chapter' => $value);
+               $result = array_merge($result,M('image_questionbank')->where($cond)->select());
+           }
+            // var_dump($result);die();
+            if($number != ''){   //说明用户自定义选择了数量
+                // var_dump(23333);die();
+                $numberResult = array(); 
+                $rand = array_rand($result,$number);
+                foreach ($rand as $key => $value) {
+                    $numberResult[] = $result[$value];
+                }
+                $this->assign('random',1);
+                $this->assign('quesItem',$numberResult)->display();
+            }else{
+                $this->assign('random',0);
+                $this->assign('quesItem',$result)->display();
             }
-            $this->assign('random',1);
-            $this->assign('quesItem',$numberResult);
-            $this->display();
-        }else{
-            $this->assign('random',0);
-            $this->assign('quesItem',$result);
-            $this->display();
+            
+            
         }
 
-
-    }
-
-    public function homework_class_list(){
-        $openId =  session('openId');
-        $banji = I('get.banji');
-        $banji = explode('_', $banji);
+        public function homework_class_list(){
+            $openId =  session('openId');
+            $banji = I('get.banji');
+            $banji = explode('_', $banji);
         // var_dump($banji);die();
-        $quesId = I('get.quesId');
-        session('quesId',null);
-        session('quesId',$quesId);
-
+            $quesId = I('get.quesId');
+            session('quesId',null);
+            session('quesId',$quesId);
+            
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
         // var_dump($teacherClass);die();
         $word = date("m月d日",time());
@@ -160,15 +145,18 @@ class TeacherController extends Controller{
     }
 
     public function chooseclass(){
-
+        
         $openId =  session('openId');
         // echo $openId;
         $quesId = I('get.quesId');
         session('quesId',$quesId);
         $teacherClass = D('TeacherClass')->getTeacherClass($openId);//某位老师带的班级
-        // dump($teacherClass);die;
+        // var_dump($teacherClass);
         $this->assign('teacherClass',$teacherClass);
         $this->assign('quesId',$quesId);
+
+
+        
 
         $this->assign('quesId',$quesId)->display();
 
@@ -183,7 +171,7 @@ class TeacherController extends Controller{
         // var_dump($data);die();
         $word = date("m月d日",time());
         foreach ($class as $key => $value) {
-         if (!empty($value)) {
+           if (!empty($value)) {
             $map['homeworkname'] = array('like',$word.'%');
             $map['class'] = $value;
             $homeworkzg = M('homework_zg')->where($map)->count();
@@ -250,52 +238,50 @@ public function homework_handAssign(){
         'deadtime' => I('deadtime'),
         'time' => date('Y-m-d H:i:s',time()),
     );
-
+    
     $HOMEWORK->add($homework);
 }
 
     //批改申诉作业列表
 public function homework_list_correct(){
-    $SUBMIT = M('student_homework');
-    $QUESTION = M('imageQuestionbank');
-    $list = $SUBMIT->where(array('openId'=>I('openId'),'homeworkoid'=>I('homeworkoid')))->select();
-    foreach ($list as $key => $value) {
-        $question = $QUESTION->where(array('id'=>$value['problemid']))->find();
-        $list[$key]['right_answer'] = C('COMMONPATH').C('HOMEWORKPATH').$question['chapter'].'_'.$question['type'].'_0_'.$question['id'].'.jpg';
+    $model = M('student_homework');
+    $model->correcter = '老师批改';
+    $model->where("complain=1")->save();
+    $homework = $model->where(array('complain'=>1))->order('time desc')->select();
+    $right = M('image_questionbank');
+    foreach ($homework as $key => $value) {
+        $problem = $right->where(array('id'=>$value['problemid']))->find();
+        $homework[$key]['right_answer'] = $problem['right_answer'];
     }
-    $this->assign('homework',$list)->display();
+    
+
+    $this->assign('homework',$homework)->display();
 }
 
     //批改未批改作业列表
 public function homework_list_correct2(){
-
-    $SUBMIT = M('student_homework');
-    $QUES   = M('imageQuestionbank');
-    $homework = $SUBMIT->where(array('mark'=>'no'))->order('time desc')->limit(10)->select();
+    $model = M('student_homework');
+    $model->correcter = '老师批改';
+    $model->where("correcter='未批改'")->save();
+    $homework = $model->where(array('correcter'=>'未批改'))->order('time desc')->select();
+    $right = M('image_questionbank');
     foreach ($homework as $key => $value) {
-        $question = $QUES->where(array('id'=>$value['problemid']))->find();
-        $homework[$key]['right_answer'] = C('COMMONPATH').C('HOMEWORKPATH').$question['chapter'].'_'.$question['type'].'_0_'.$question['id'].'.jpg';
+        $problem = $right->where(array('id'=>$value['problemid']))->find();
+        $homework['right_answer'] = $problem['right_answer'];
+
     }
+    
+
     $this->assign('homework',$homework)->display();
 }
 
 public function mark_score(){
-    if (!IS_AJAX) {
-        $this->error('你访问的界面不存在');
-    }
-    $score = I('score');
-    if (empty($score)) {
-        $this->ajaxReturn(false);
-    }
+    $data = I('post.');
+    $id = session('homeworkoid');
+    $homeworkid = $data['homeworkid'];
+    $score = $data['score'];
     $model = D('student_homework');
-    $data = array(
-        'correcter'   => '老师批改',
-        'mark'   =>  $score,
-        'complain'   =>  '0',
-        'correctTime' => date('Y-m-d H:i:s',time())
-    );
-    $res = $model->where(array('id'=>I('homeworkid')))->save($data);
-    // dump($model->getLastSql());die;
+    $res = $model->ssgive_score($homeworkid,$score,$id);
     if ($res) {
         $this->ajaxReturn(true);
     } else {
@@ -335,29 +321,29 @@ public function homework_mark(){
 
     //浏览已批改作业列表
 public function homework_list_view(){
-        $class = I('get.class');
-        $now = date("Y-m-d H:i:s",time());
-        $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
-        $SUBMIT =  M('student_homework');
-        $STINFO = M('student_info');
-        foreach ($homework as $key => $value) {
-            $submit = $SUBMIT->where(array('homeworkoid' => $value['id']))->field('openId')->group('openId')->select();
-            $homework[$key]['submit'] = count($submit);
-            //总人数
-            $homework[$key]['sum'] = $STINFO->where(array('class'=>$value['class']))->count();
+    $class = I('get.class');
+    $now = date("Y-m-d H:i:s",time());
+    $homework = M('homework_zg')->where(array('class'=>$class))->order("create_time desc")->select();
+    $sum = M('student_info')->where("class='$class'")->count();
+    foreach ($homework as $key => $value) {
+        $bjnum = M('student_homework')->where(array('homeworkoid' => $value['id'],'bj'=>1))->count();
+        $homework[$key]['bjnum'] = $bjnum;
             //flag为1指还没截止作业提交
-            if ($value['dead_time'] > $now) {
-                $homework[$key]['flag'] = 1;
-            }else{
-                $homework[$key]['flag'] = 0;
-                $homework[$key]['bjnum'] = count($SUBMIT->where(array('homeworkoid' => $value['id'],'bj'=>1))->field('openId','bj')->group('openId')->select());
-            }
+        if ($value['dead_time'] > $now) {
+            $homework[$key]['flag'] = 1;
+            
+        }else{
+            $homework[$key]['flag'] = 0;
         }
-        $this->assign('bjnum',$bjnum);
-        $this->assign('homework',$homework);
-        $this->assign('now',$now);
+
+    }
+    $this->assign('homework',$homework);
+    $this->assign('sum',$sum);
+    $this->assign('now',$now);
+    
+
         // var_dump($homework);die();
-        $this->display();
+    $this->display();
 }
 
     //获取教师端作业浏览量
@@ -370,39 +356,19 @@ private function getHomeViewNum($homeworkId){
 public function homework_view(){
     $homeworkoid = I('get.id');
     $class = M('homework_zg')->where(array('id'=>$homeworkoid))->getField("class");
-    $classmate = M('student_info')->where("class='$class'")->order('number')->select();
-    $SUBMIT = M('student_homework');
+    $classmate = M('student_info')->where("class='$class'")->select();
         // var_dump($classmate);die();
     foreach ($classmate as $key => $value) {
-        $doc = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId']))->find();
-        $submitList = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId']))->group('problemid')->select();
-        $huping = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'correcter'=>$value['name']))->find();
-        $complain = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId'],'complain'=>'1'))->find();
-        if (!empty($complain)) {
-            $classmate[$key]['complain'] = 'complain';
-        }
-        $classmate[$key]['score'] = 0;
-        foreach ($submitList as $k => $v) {
-            if ($v['mark'] == 'no') {
-                $classmate[$key]['score'] = '未批改';
-                break;
-            }
-            $classmate[$key]['score'] = $v['mark'] + $classmate[$key]['score'];
-        }
-        if (!empty($huping)) {
-            $classmate[$key]['hpflag'] = 1;
-        }
-        if (empty($doc)) {
-            $classmate[$key]['flag'] = 0;
-        }else if ($doc['bj'] == 1) {
-            $classmate[$key]['flag'] = 2;
-        }else{
+        $doc = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$value['name']))->find();
+        if (!empty($doc)) {
             $classmate[$key]['flag'] = 1;
+        }else{
+            $classmate[$key]['flag'] = 0;
         }
     }
-
+        // var_dump($classmate);die();
     $this->assign('classmate',$classmate);
-    $this->assign('homeworkoid',$homeworkoid);
+    $this->assign('homeworkoid',$$homeworkoid);
     $this->display();
 }
 public function homework_viewdetail()
@@ -411,7 +377,6 @@ public function homework_viewdetail()
     $name = I('get.name');
         // var_dump($homeworkoid.'/'.$name);die();
     $data = M('student_homework')->where(array('homeworkoid'=>$homeworkoid,'name'=>$name))->select();
-    $this->assign('homeworkoid',$homeworkoid);
     $this->assign('homeworkList',$data);
     $this->display();
 }
@@ -430,6 +395,7 @@ public function signin_assign(){
     $weixin       = new WeichatController();
     $signPackage  = $weixin->getJssdkPackage();
     $name    = D('TeacherSignin')->setSigninName(session('openId'));
+
     $this->assign('signPackage',$signPackage);
     $this->assign('time',$name);
     $this->display();
@@ -511,6 +477,7 @@ public function signin_assign(){
     //设置状态关闭，代签
     public function signin_list_set(){
         $signinId = I('signinId') ? I('signinId') : $this->error('你访问的界面不存在');
+        session('signinId',null);
         session('signinId',$signinId);
         $state = M('teacher_signin')->where(array('id' => $signinId))->getField('state');
         $signinNum = $this->getSigninNum($signinId);
@@ -521,9 +488,7 @@ public function signin_assign(){
     //已签到名单
     public function signin_view(){
         $signinId      =  session('?signinId') ? session('signinId') : $this->error('请重新获取该页面');
-        $SIGNIN        =  D('TeacherSignin');
-        $signinInfo    =  $SIGNIN->getDetail($signinId);
-        $location      =  $SIGNIN->where(array('id'=>$signinId))->find();
+        $signinInfo    =  D('TeacherSignin')->getDetail($signinId);
         $STUDENT       =  D('StudentInfo');
         $SIGNIN        =  D('StudentSignin');
         $signinList    =  array();
@@ -537,18 +502,12 @@ public function signin_assign(){
                 }
             }
         }
-
         foreach ($signinList as $key => $value) {
-            //计算距离
-            // $signinList[$key]['distance'] = $SIGNIN->getdistance($location['longitude'],$location['latitude'],$value['longitude'],$value['latitude']);
-            // dump($value);
-            // dump($signinList[$key]['distance']);die;
             //默认缺席
             $signinList[$key]['flag'] = 0;
             //判断代签
             $map['location'] = array('like','%代%');
             $map['openId']= $value['openId'];
-            $map['signinId']= $signinId;
             if (NULL != $SIGNIN->where($map)->find()) {
                 $signinList[$key]['flag'] = 2;
                 continue;
@@ -558,17 +517,15 @@ public function signin_assign(){
             if (NULL != $SIGNIN->where($map)->find()) {
                 $signinList[$key]['flag'] = 3;
                 continue;
-            }
-            //判断到席
+            }            //判断到席
             if ($SIGNIN->isSignin($value['openId'],$signinId) ) {
                 $signinList[$key]['flag'] = 1;
                 continue;
             }
+
         }
-        $this->assign('signinId',$signinId);
         $this->assign('signinList',$signinList)->display();
     }
-
     //未签到列表,未签到名单感觉没有必要做
     public function signin_allograph(){
         $this->display();
@@ -596,12 +553,11 @@ public function signin_assign(){
             /*====获取该学生信息==*/
             $openId = I('openId');
             $func   = I('func');
-            $signinId = I('signinId');
 
-            $res    = D('StudentSignin')->changeSignin($openId,$signinId,$func);
+            $res    = D('StudentSignin')->changeSignin($openId,$func);
             $this->ajaxReturn($res);   
         }else 
-            //非ajax访问
+        //非ajax访问
         $this->ajaxReturn('非法的请求方式');   
     }
 
@@ -616,28 +572,12 @@ public function signin_assign(){
 
     //发布测试->章节列表
     public function test_unit_list(){
-        // $chapArr = M('question_chapter')->select();
-        // // p($chapArr);
-        // foreach ($chapArr as $key => $value) {
-        //     $queNum[$key]['num'] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
-        // }
-        // $this->assign('queNum',$queNum);
-        if(IS_AJAX){
-            $unit = I('unit');
-            $count= 0;
-            $unitArray = str_split($unit);
-            foreach ($unitArray as $key => $value) {
-                $count += M('questionbank')->where(array('chapter'=>$value['id']))->count();
-            }
-            $this->ajaxReturn($count);
+        $chapArr = M('question_chapter')->select();
+        // p($chapArr);
+        foreach ($chapArr as $key => $value) {
+            $queNum[$key]['num'] = D('Questionbank')->getQuesChapterNum($chapArr[$key]['id']);
         }
-        $chapterList = M('question_chapter')->select();
-        foreach ($chapterList as $key => $value) {
-            $chapterList[$key]['num'] = D('Questionbank')->getQuesChapterNum($chapterList[$key]['id']);
-        }
-        // $this->assign('queNum',$queNum);
-        // p($chapterList);die;
-        $this->assign('chapterList',$chapterList);
+        $this->assign('queNum',$queNum);
         $this->display();
     }
 
@@ -648,22 +588,19 @@ public function signin_assign(){
         if($unit === 0)
             $this->error('你选择的章节出错了');
         $unitArray = str_split($unit);
-
+        
         $result    = array();
         foreach ($unitArray as $value) {
-            $cond   = array('chapter' => $value);
-            $result = array_merge($result,M('questionbank')->where($cond)->select());
-        }
-        // p($result);//某几章节的所有题目二维数组
-        foreach ($result as $key => $value) {
-            $result[$key]['contents'] = C('COMMONPATH').C('QUESTIONPATH').$value['chapter'].'_'.$value['type'].'_'.$value['right_answer'].'_'.$value['id'].'.jpg';
-        }
+           //$value  = 'unit'.$value ;
+           $cond   = array('chapter' => $value);
+           $result = array_merge($result,M('questionbank')->where($cond)->select());
+       }
         // var_dump($result);
         // die;
         if($number != 0){   //用户自定义题目数量
             $numberResult = array(); 
-            $rand = array_rand($result,$number);//当number=1的时候，$rand是个数字不是数组.(？)
-            // var_dump($rand);die;
+            $rand = array_rand($result,$number);
+            //var_dump($rand);die;
             foreach ($rand as $key => $value) {
                 $numberResult[] = $result[$value];
             }
@@ -674,7 +611,6 @@ public function signin_assign(){
             $this->assign('random',0);
             $this->assign('quesItem',$result)->display();
         }
-
     }
 
 
@@ -690,7 +626,7 @@ public function signin_assign(){
         $this->assign('teacherClass',$teacherClass)->display();
 
     }
-
+    
     //发布测试
     public function test_assign(){
         $openId =  session('openId');
@@ -786,7 +722,7 @@ public function signin_assign(){
             }
 
         }
-
+        
         $this->ajaxReturn('success');
     }
 
@@ -805,7 +741,7 @@ public function signin_assign(){
         $STUINFO = D('StudentInfo');
         foreach ($testList as $key => $value) {
             $testList[$key]['submitNum'] = $TEST->getSubmitNum($testList[$key]['id']);
-            $testList[$key]['stuNum'] = $STUINFO->getStuNumByClass($value['class']);
+            $testList[$key]['stuNum'] = $STUINFO->getStuNum($openId);
         }
         // p($testList);
         $this->assign('testList',$testList)->display();
@@ -871,78 +807,18 @@ public function signin_assign(){
     public function test_analyze(){
         $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
-        $TESTSELECT = D('TestSelect');
-        // $unitArray = str_split($unit);
-        $quesList = $TESTSELECT->getTestItems($openId, $testid);//某测试所有题目
-        $quesidList = array();
-        foreach ($quesList as $key => $value) {
-            $quesidList[$key] = $value['quesid'];
+        $quesList = M('test_questionbank')->where(array('testid' => $testid))->select();
+        // var_dump($quesList);
+        foreach ($quesList as $key => &$value) {
+            $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
+            $quesItem[$key]['answer'] = D('TestSelect')->getUserAnswer($openId,$testid,$value['quesid']);
         }
-        // p($quesidList);
-        $result    = array();
-        foreach ($quesidList as $value) {
-            $cond   = array('id' => $value);
-            $result = array_merge($result,M('questionbank')->where($cond)->select());
-        }
-        // p($result);//某几章节的所有题目二维数组
-             
-        foreach ($result as $key => $value) {
-            $result[$key]['contents'] = C('COMMONPATH').C('QUESTIONPATH').$value['chapter'].'_'.$value['type'].'_'.$value['right_answer'].'_'.$value['id'].'.jpg';
-            $result[$key]['answer'] = $TESTSELECT->getUserAnswer($openId,$testid,$value['id']);
-        }
-        // p($result);die;
-        
-        $this->assign('quesItem',$result)->display();
+        // var_dump($quesItem);
+        $this->assign('quesItem',$quesItem)->display('Test/testAnalyze');
     }
 
-    public function signin_map($signinId){
-        $weixin       = new WeichatController();
-        $signPackage  = $weixin->getJssdkPackage();
-        $signinList   = M('StudentSignin')->where(array('signinId'=>$signinId))->select();
-        $teacherLocation = M('TeacherSignin')->where(array('id'=>$signinId))->find();
-        $this->assign('teacherLocation',$teacherLocation);
-        $this->assign('signinList',$signinList);
-        $this->assign('signPackage',$signPackage);
+    //测试页面
+    public function test(){
         $this->display();
     }
-    public function test(){
-
-        $homeworkoid = I('get.id');
-        $class = M('homework_zg')->where(array('id'=>$homeworkoid))->getField("class");
-        $classmate = M('student_info')->where("class='$class'")->order('number')->select();
-        $SUBMIT = M('student_homework');
-        // var_dump($classmate);die();
-        foreach ($classmate as $key => $value) {
-            $doc = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId']))->find();
-            $submitList = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId']))->group('problemid')->select();
-            $huping = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'correcter'=>$value['name']))->find();
-            $complain = $SUBMIT->where(array('homeworkoid'=>$homeworkoid,'openId'=>$value['openId'],'complain'=>'1'))->find();
-            if (!empty($complain)) {
-                $classmate[$key]['complain'] = 'complain';
-            }
-            $classmate[$key]['score'] = 0;
-            foreach ($submitList as $k => $v) {
-                if ($v['mark'] == 'no') {
-                    $classmate[$key]['score'] = '未批改';
-                    break;
-                }
-                $classmate[$key]['score'] = $v['mark'] + $classmate[$key]['score'];
-            }
-            if (!empty($huping)) {
-                $classmate[$key]['hpflag'] = 1;
-            }
-            if (empty($doc)) {
-                $classmate[$key]['flag'] = 0;
-            }else if ($doc['bj'] == 1) {
-                $classmate[$key]['flag'] = 2;
-            }else{
-                $classmate[$key]['flag'] = 1;
-            }
-        }
-        dump($classmate);die;
-        $this->assign('classmate',$classmate);
-        $this->assign('homeworkoid',$homeworkoid);
-        $this->display('homework_view');
-    }
-
 }

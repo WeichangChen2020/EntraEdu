@@ -17,58 +17,102 @@
     <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
     <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
 
-        <volist name="homeworkList" id="data">
-            <div>
-                <img src="{$data.right_answer}" style="display:block;margin: auto;"> 
+    <volist name="homeworkList" id="homeworkList" empty="没有作业可供浏览">
+        <div class="weui_cells weui_cells_form" id="{$homeworkList.id}">
+          <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+              <div class="weui_uploader">
+                <div class="weui_uploader_hd weui_cell">
+                  <div class="weui_cell_bd weui_cell_primary">{$homeworkList.name}</div>
+                </div>
+                <div class="weui_uploader_bd">
+                
+                  <ul class="weui_uploader_files">
+                    
+                    
+                    
+                    <notempty name="homeworkList.imgurl">
+                    <!-- <a href="{$homeworkList.pic6Url}"> -->
+                      <li class="weui_uploader_file" style="background-image:url({$homeworkList.imgurl})"></li>
+                    </notempty>
+                    <!-- </a> -->
+                    
+                  </ul>
+                
+                </div>
+                <a href="javascript:;" class="weui-btn weui-btn_primary" id="tom{$key}">浏览图片</a>
                 <br>
-                <if condition="$data.imgurl neq ''" >
-                    <img src="{$data.imgurl}" style="display:block;max-width:100%;margin: auto;" id="tom{$key}"> 
-                <else />
-                    他没有提交该题
-                </if> 
                 <script>
-                    $(function() {
-                        FastClick.attach(document.body);
-                    });
+                  $(function() {
+                  FastClick.attach(document.body);
+                  });
                 </script>
                 <script src="http://jqweui.com/dist/js/swiper.js"></script>
                 <script>
                     var tom{$key} = $.photoBrowser({
-                        items: [
-                        "{$data.imgurl}",
-                        ],
-                        onSlideChange: function(index) {
+                          items: [
+                              "{$homeworkList.imgurl}",
+                              
+                          ],
+
+                          onSlideChange: function(index) {
                             console.log(this, index);
-                        },
-                        onOpen: function() {
+                          },
+
+                          onOpen: function() {
                             console.log("onOpen", this);
-                        },
-                        onClose: function() {
+                          },
+                          onClose: function() {
                             console.log("onClose", this);
-                        }
-                    });
-                    $("#tom{$key}").click(function() {
-                        tom{$key}.open();
-                    });
+                          }
+                        });
+                        $("#tom{$key}").click(function() {
+                          tom{$key}.open();
+                        });
                 </script>
 
-                  <!-- <script src="http://jqweui.com/dist/lib/fastclick.js"></script> -->
+                 <div class="weui-photo-browser-modal" style="display: none;">            
+                  <div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
+                    <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(0px, 0px, 0px);">                                
+                      <div class="swiper-slide swiper-slide-active">                  
+                        <div class="photo-container">                    
+                          <img src="{$homeworkList.imgurl}">                  
+                        </div>                
+                      </div>                                
+                    </div>   
+
+
+                      <div class="caption">                                
+                       <div class="caption-item caption-item-0 active"></div>
+                      
+                      </div>
+
+                     <div class="swiper-pagination swiper-pagination-bullets">
+                       <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>           
+                     </div> 
+
+                  </div>
+                 </div> 
+             
+                  <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
+                 
+                
+
                 <div class="weui_media_box weui_media_text" style="padding:0; position:inherit">
-                  <p class="weui_media_desc">作业得分：{$data.mark}</p>
+                  <p class="weui_media_desc">作业得分：{$homeworkList.mark}</p>
                   <ul class="weui_media_info">
                     <li class="weui_media_info_meta">批改人</li>
-                    <li class="weui_media_info_meta">{$data.correcter}</li>
-                    <li class="weui_media_info_meta weui_media_info_meta_extra"><if condition="$data.correcter eq '未批改'">提交时间：{$data.time}<else/>批改时间：{$data.correctTime}</if></li>
+                    <li class="weui_media_info_meta">{$homeworkList.correcter}</li>
+                    <li class="weui_media_info_meta weui_media_info_meta_extra"><if condition="$homeworkList.correcter eq '未批改'">提交时间：{$homeworkList.time}<else/>批改时间：{$homeworkList.correctTime}</if></li>
                   </ul>
                 </div>
+              </div>
             </div>
-            <br>
-            <hr>
-        </volist>
-    </empty> 
-    <a href="{:U('homework_list_correct')}?homeworkoid={$homeworkoid}&openId={$homeworkList['0']['openId']}" class="weui_btn weui_btn_primary">重新批改</a> 
-    <include file="./Public/html/_foot.html"/>
+          </div>
+        </div>
+    </volist>
 
+    <include file="./Public/html/_refreshJs.html"/>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
      </body>

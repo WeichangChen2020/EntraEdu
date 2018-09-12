@@ -19,7 +19,8 @@ class ExerciseController extends Controller{
 		$quesTypeArr    = $QUES->getQuesAllType($openid);
 		$quesChapterArr = $QUES->getQuesAllChapter($openid);
 		$randomArr = $RANDOM->getExerciseRecord($openid);
-        $icon = array('bodygood', 'notebook', 'shenghuo', 'sate_edu', 'notebook', 'heartword', 'consciousness','mistakebook','tiku','minge-xuanzhong','icon-test','peixunkaoshi-copy','shijian--lansefangkuaidi');
+		$icon = array('bodygood', 'notebook', 'shenghuo', 'sate_edu', 'notebook', 'heartword', 'consciousness');
+
 
 		$this->assign('quesTypeArr', $quesTypeArr);
 		$this->assign('quesChapterArr', $quesChapterArr);
@@ -69,7 +70,7 @@ class ExerciseController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid, $chapid,$typeid);
 		$quesList  = D('Questionbank')->getQuesList($quesid);
-		$quesItem['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesItem['chapter'].'_'.$quesItem['type'].'_'.$quesItem['right_answer'].'_'.$quesItem['id'].'.jpg';
+		// p($quesList);//二维数组
 
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
@@ -78,11 +79,11 @@ class ExerciseController extends Controller{
 			$this->assign('quesList', $quesList);
 
 			// 对题目类型判断 不同类型进入不同的页面
-			if ($quesItem['type'] == '1') {
+			if ($quesItem['type'] == '单选题') {
 				$this->display('index');
-			} else if ($quesItem['type'] == '2') {
+			} else if ($quesItem['type'] == '判断题') {
 				$this->display('judge');
-			} else if ($quesItem['type'] == '3') {
+			} else if ($quesItem['type'] == '多选题') {
 				$this->display('mutil');
 			}
 				 
@@ -120,6 +121,10 @@ class ExerciseController extends Controller{
             );
 
             D('Exercise')->add($data);//自由练习
+
+            if($option != $right_answer){
+            	D('MistakeHistory')->add($data);//错题表
+            }
 
             $this->ajaxReturn($right_answer, 'json');
         }else{ //如果已存在
@@ -182,11 +187,6 @@ class ExerciseController extends Controller{
 
 	public function test11() {
 		echo $_SERVER['HTTP_HOST'];
-		$st =   new \SaeStorage();
-	    dump($st->getUrl('public', '/computernetwork/homework/02月02日/'));
-	    dump(opendir($st->getUrl('public', '/computernetwork/homework/02月02日')));
-	    // dump($st);
-		die;
 	}
 
 	

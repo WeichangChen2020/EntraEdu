@@ -22,17 +22,12 @@
         </div>
     </div>
 
+
     <div class="weui_cells_title">签到信息</div>
     <div class="weui_cells weui_cells_access">
         <a class="weui_cell" href="{:U('signin_view')}">
             <div class="weui_cell_bd weui_cell_primary">
                 <p>签到记录</p>
-            </div>
-            <div class="weui_cell_ft"><span class="demos-badge">{$signinNum|default='0'}</span></div>
-        </a>
-        <a class="weui_cell" href="{:U('signin_map',array('signinId'=>session('signinId')))}">
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>签到视图</p>
             </div>
             <div class="weui_cell_ft"><span class="demos-badge">{$signinNum|default='0'}</span></div>
         </a>

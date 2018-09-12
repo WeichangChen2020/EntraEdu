@@ -1,147 +1,180 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title></title>
     <include file="./Public/html/_head.html"/>
-</head>
+  </head>
 
-<body ontouchstart>
+  <body ontouchstart>
 
-    <empty name="homework">
-        <h1 class="demos-title">批改作业</h1>
-        <h2 style="text-align:center">没有需要批改的作业</h2>
-        <else /> 
-        <header class='demos-header'>
-            <h1 class="demos-title">批改作业</h1>
-            <h2 style="text-align:center">上为标准答案，下为同学答案</h2>
-        </header>
-        <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
-        <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
-        <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-
-        <volist name="homework" id="data">
+  <empty name="homework">
+    <h1 class="demos-title">批改申诉作业</h1>
+    <h2 style="text-align:center">没有需要批改的作业</h2>
+  <else /> 
+    <header class='demos-header'>
+      <h1 class="demos-title">批改申诉作业</h1>
+      <h2 style="text-align:center">上为标准答案，下为同学答案</h2>
+    </header>
+    <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
+    <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
+    <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
+      
+          <volist name="homework" id="data">
             <div>
                 <img src="{$data.right_answer}" style="display:block;margin: auto;">
                 <br>
-                <img src="{$data.imgurl}" style="display:block;max-width:100%;margin: auto;" id="tom{$key}"> 
+                <img src="{$data.imgurl}" style="display:block;width:100px;height:150px;margin: auto;" id="tom{$key}"> 
 
                 <script>
-                    $(function() {
-                        FastClick.attach(document.body);
-                    });
+                  $(function() {
+                  FastClick.attach(document.body);
+                  });
                 </script>
                 <script src="http://jqweui.com/dist/js/swiper.js"></script>
                 <script>
                     var tom{$key} = $.photoBrowser({
-                        items: [
-                        "{$data.imgurl}",
+                          items: [
+                              "{$data.imgurl}",
+                              
+                          ],
 
-                        ],
-
-                        onSlideChange: function(index) {
+                          onSlideChange: function(index) {
                             console.log(this, index);
-                        },
+                          },
 
-                        onOpen: function() {
+                          onOpen: function() {
                             console.log("onOpen", this);
-                        },
-                        onClose: function() {
+                          },
+                          onClose: function() {
                             console.log("onClose", this);
-                        }
-                    });
-                    $("#tom{$key}").click(function() {
-                        tom{$key}.open();
-                    });
+                          }
+                        });
+                        $("#tom{$key}").click(function() {
+                          tom{$key}.open();
+                        });
                 </script>
 
-                <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-                <div style="text-align: center;"><span>原先得分：{$data.mark }</span></div>
+                 <div class="weui-photo-browser-modal" style="display: none;">            
+                  <div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
+                    <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(0px, 0px, 0px);">                                
+                      <div class="swiper-slide swiper-slide-active">                  
+                        <div class="photo-container">                    
+                          <img src="{$homeworkList.imgurl}">                  
+                        </div>                
+                      </div>                                
+                    </div>   
+
+
+                      <div class="caption">                                
+                       <div class="caption-item caption-item-0 active"></div>
+                      
+                      </div>
+
+                     <div class="swiper-pagination swiper-pagination-bullets">
+                       <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>           
+                     </div> 
+
+                  </div>
+                 </div> 
+             
+                  <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
+
+
+
+
+
+
                 <div style="text-align:center;margin:auto;">
-                    <div id="rad" value="2333" style="display:inline">
-                        <input type="radio" name="score{$i}" value="5" />5 
-                        <input type="radio" name="score{$i}" value="4" />4
-                        <input type="radio" name="score{$i}" value="3" />3
-                        <input type="radio" name="score{$i}" value="2" />2
-                        <input type="radio" name="score{$i}" value="1" />1
-                        <input id="problemid{$i}" value="{$data}" style="display:none">
-                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
+                  <div id="rad" value="2333" style="display:inline">
+                    <input type="radio" name="score{$i}" value="5" checked="checked" />5 
+                    <input type="radio" name="score{$i}" value="4" />4
+                    <input type="radio" name="score{$i}" value="3" />3
+                    <input type="radio" name="score{$i}" value="2" />2
+                    <input type="radio" name="score{$i}" value="1" />1
+                    <input id="problemid{$i}" value="{$data}" style="display:none">
+                  </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a id="submit{$i}" href="javascript:insertscore({$data.id},{$i});" class="weui_btn weui_btn_primary" style="width: 58px;display: inline;">确定</a>
                 </div>
             </div>
             <br>
-        </volist>
-    </empty> 
+          </volist>
+  </empty> 
 
-    <!--  <a href="{:U('homeworkMenu')}?homeworkname={$homeworkname}&status=1" class="weui_btn weui_btn_primary">返回</a> -->    
-    <a href="{:U('homework_index',array('openId'=>session('openId')))}" class="weui_btn weui_btn_primary">返回</a> 
-
-
+ <!--  <a href="{:U('homeworkMenu')}?homeworkname={$homeworkname}&status=1" class="weui_btn weui_btn_primary">返回</a> -->    
+ <a href="{:U('index')}" class="weui_btn weui_btn_primary">返回</a> 
+          
+            
 
     <include file="./Public/html/_foot.html"/>
 
 
     <script>
+      // $(document).ready(function(){
+        
+          
+      // });
 
-        function insertscore(i,number){
+      function insertscore(i,number){
         var homeworkid = i;//作业提交的id
-
+       
         var score;//此作业的分数
-        var radio = document.getElementsByName("score"+number);  
+        var radio = document.getElementsByName("score"+{$i});  
         for (i=0; i<radio.length; i++) {  
             if (radio[i].checked) {  
                 score = radio[i].value;
             }  
         }
-        var url = "{:U('mark_score')}";
-        var data = {
-            'homeworkid' : homeworkid,
-            'score'      : score,
-        }
-        $.post(url, data, function(res){
-            // alert(res);
-            if(res){  
-                document.getElementById("submit"+number).innerHTML = '已打分';
-                $("#submit"+number).attr('href','javascript:;');
-            }
+        $.ajax({
+          type:"POST",
+          url:"{:U('mark_score')}",
+          data:{homeworkid:homeworkid,score:score},
+          success:function(){
+            // alert("submit"+number);
+            document.getElementById("submit"+number).innerHTML = '已打分';
+            
+            $("#submit"+number).attr('href','javascript:;');
+
+          }
         });
-    }
+
+      }
+      
 
 
 
-
-    $(document).on("open", ".weui-popup-modal", function() {
-        console.log("open popup");
-    }).on("close", ".weui-popup-modal", function() {
-        console.log("close popup");
-    });
-
-
-    function getHomeworkPerson(person){
-        homeworkInfo = new Array();
-        homeworkInfo = person.split('_');  //字符串分割函数
-        personName   = homeworkInfo[1];
-        personWorkId = homeworkInfo[0];
-    }
-
-    // function getMark(mark){
-    //     $.confirm("您确定要给"+personName+"本次作业评"+mark+"分吗?", "确认评分?", function(){
-    //       url = "{:U('homework_mark')}";
-    //       data = {
-    //         personWorkId : personWorkId,
-    //         mark:mark,
-    //         personId:{$person.openId}
-    //       };
-    //       $.post(url,data,function(res){
-    //         $.toast("评分成功!");
-    //       });
-    //       $('#'+personWorkId).hide();
-    //     }, function() {
-    //       //取消操作
-    //     });
-    // }
+       $(document).on("open", ".weui-popup-modal", function() {
+          console.log("open popup");
+        }).on("close", ".weui-popup-modal", function() {
+          console.log("close popup");
+        });
 
 
-</script>
+        function getHomeworkPerson(person){
+          homeworkInfo = new Array();
+          homeworkInfo = person.split('_');  //字符串分割函数
+          personName   = homeworkInfo[1];
+          personWorkId = homeworkInfo[0];
+        }
 
-</body>
+        // function getMark(mark){
+        //     $.confirm("您确定要给"+personName+"本次作业评"+mark+"分吗?", "确认评分?", function(){
+        //       url = "{:U('homework_mark')}";
+        //       data = {
+        //         personWorkId : personWorkId,
+        //         mark:mark,
+        //         personId:{$person.openId}
+        //       };
+        //       $.post(url,data,function(res){
+        //         $.toast("评分成功!");
+        //       });
+        //       $('#'+personWorkId).hide();
+        //     }, function() {
+        //       //取消操作
+        //     });
+        // }
+
+
+    </script>
+    
+  </body>
 </html>

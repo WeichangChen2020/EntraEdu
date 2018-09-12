@@ -33,7 +33,7 @@ class CollectController extends Controller {
 	    $COLLECT = D('CollectRecord');
 	    $cancelResult = $COLLECT->cancel($openId,$quesId);
 	    // die();
-	    //dump($cancelResult);
+	    //var_dump($cancelResult);
 	    if($cancelResult){	    	
 	    	$this->ajaxReturn('success');
 		}
@@ -46,17 +46,18 @@ class CollectController extends Controller {
 		$QUESTION = D('Questionbank');
 		$EXERCISE = D('Exercise');
 		$record = $EXERCISE->getExerciseRecord($openId);
-		// dump($record);die;
+		//var_dump($record);
 		$collectNum = $RECORD->getCollectNum($openId);//收藏题数
-		// dump($collectNum);
+		//var_dump($collectNum);
 		//$quesIdArr = $RECORD->where(array('openid'=>$openId))->getfield('quesid',$collectNum);
-		//dump($quesIdArr);
+		//var_dump($quesIdArr);
 		$quesList = $RECORD->where(array('openid'=>$openId))->order('quesid asc')->field('quesid')->select();
-		// dump($quesList);//所有收藏的题目的id，二维数组
+		//var_dump($quesList);//所有收藏的题目的id，二维数组
 		$quesIdArr = array();  
 		$quesIdArr = array_map('array_shift', $quesList);
 		//$quesIdArr = array_column($quesList, 'quesid');  //不知道为什么不能用
-		// dump($quesIdArr);//所有收藏的题目的id，一维数组
+		//var_dump($quesIdArr);//所有收藏的题目的id，一维数组
+		
 		if (I('nextid')) {
 			$nextid = I('nextid');
 			if ($nextid<$collectNum) {
@@ -81,7 +82,7 @@ class CollectController extends Controller {
 				$nextid = 1;
 			}
 		}
-		//dump($quesId);
+		//var_dump($quesId);
 		//die();
 		session('quesid', $quesId);
 		session('nextid',$nextid);
@@ -93,9 +94,8 @@ class CollectController extends Controller {
 		}
 		//getQuestion方法当$quesId为空时，返回第一题
 		$quesList  = $RECORD->getCollectList($openId);
-		// dump($quesList);
+		// var_dump($quesList);
 		$rightAns = trim($QUESTION->getRightAnswer($quesId));
-		//如果收藏的题目未做过，则recoedArr为NULL
 		$recordArr = $EXERCISE->where(array('openid'=>$openId,'quesid'=>$quesId))->find();
 
 		$this->assign('record', $record);
@@ -103,13 +103,13 @@ class CollectController extends Controller {
 		$this->assign('quesList', $quesList);
 		$this->assign('rightAns',$rightAns);
 		$this->assign('recordArr',$recordArr);
-		
+
 		// 对题目类型判断 不同类型进入不同的页面
-		if ($quesItem['type'] == '1') {
+		if ($quesItem['type'] == '单选题') {
 			$this->display('index');
-		} else if ($quesItem['type'] == '2') {
+		} else if ($quesItem['type'] == '判断题') {
 			$this->display('judge');
-		} else if ($quesItem['type'] == '3') {
+		} else if ($quesItem['type'] == '多选题') {
 
 			$this->display('mutil');
 		}

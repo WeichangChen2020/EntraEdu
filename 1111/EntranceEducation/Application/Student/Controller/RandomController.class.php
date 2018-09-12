@@ -25,8 +25,8 @@ class RandomController extends Controller{
 		session('quesid', $quesid);
 		$quesItem  = D('Questionbank')->getQuestion($quesid);
 		$quesList  = D('Questionbank')->getQuesList($openid);
-		$quesItem['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesItem['chapter'].'_'.$quesItem['type'].'_'.$quesItem['right_answer'].'_'.$quesItem['id'].'.jpg';
-		// dump($quesItem);
+		// p($quesList);
+
 		// 判断是否已经做完了最后一道题目
 		if ($quesItem) {
 			$this->assign('record', $record);
@@ -34,11 +34,11 @@ class RandomController extends Controller{
 			$this->assign('quesList', $quesList);
 
 			// 对题目类型判断 不同类型进入不同的页面
-			if ($quesItem['type'] == '1') {
+			if ($quesItem['type'] == '单选题') {
 				$this->display('index');
-			} else if ($quesItem['type'] == '2') {
+			} else if ($quesItem['type'] == '判断题') {
 				$this->display('judge');
-			} else if ($quesItem['type'] == '3') {
+			} else if ($quesItem['type'] == '多选题') {
 				$this->display('mutil');
 			}
 				 

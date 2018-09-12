@@ -43,6 +43,7 @@
         ]
     });
 
+
     var latitude = '';
     var longitude= '';
     var accuracy = '';
@@ -50,7 +51,6 @@
     $.showLoading('正在获取地理位置');
     wx.ready(function(){
         wx.getLocation({
-            type: 'gcj02',//平台地理位置加密方法统一使用火星地址
             success:function(res){
                 latitude = res.latitude;
                 longitude = res.longitude;

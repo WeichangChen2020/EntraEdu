@@ -1,154 +1,127 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <include file="./Public/html/_head.html"/>
-</head>
+  </head>
 
-<body ontouchstart>
+  <body ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-        <h1 class="demos-title">{$homeworkname}</h1>
+      <h1 class="demos-title">{$homeworkname}</h1>
     </header>
     <div class="weui_cells_title">(截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['dead_time']));?>)</div>
     <div class="weui_cells_title">互评截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['hpdead_time']));?></div>
     <div class="bd">
-        <div class="weui_cells weui_cells_access">
-            <a class="weui_cell" id="submit">
-                <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>去完成作业</p>
-                </div>
-                <div class="weui_cell_ft">
-                    <if condition="$state eq '未提交'">
-                        <i class="weui_icon_warn"></i>
-                        <else />
-                        <i class="weui_icon_success"></i>
-                    </if>
-                </div>
+      <div class="weui_cells weui_cells_access">
+        <a class="weui_cell" href="{:U('Homework/homework')}?status={$status}&mark={$mark}">
+          <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_dialog.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>去完成作业</p>
+          </div>
+          <div class="weui_cell_ft"><if condition="$state eq '未提交'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
+        </a>
+          
+
+        
+          <a class="weui_cell" id="hphomework">
+            <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+            <div class="weui_cell_bd weui_cell_primary">
+              <p>互评作业</p>
+            </div>
+            <div class="weui_cell_ft"><if condition="$state2 eq '未批改'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
+          </a>
+
+
+          <if condition="($status eq 0) AND ($mark eq '未提交') ">
+            <a class="weui_cell" id="hphomework" href="{:U('Homework/homework')}?bj=1">
+              <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                <p>补交作业</p>
+              </div>
+              <div class="weui_cell_ft"><if condition="$state2 eq '未批改'"> <i class="weui_icon_warn"></i><else /> <i class="weui_icon_success"></i></if></div>
             </a>
+          </if>
 
-            <if condition="$corrected eq 0">
-                <a class="weui_cell" id="hphomework">
-                    <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>互评作业</p>
-                    </div>
-                    <div class="weui_cell_ft">
-                        <i class="weui_icon_warn"></i>
-                    </div>
-                </a>
-                <elseif condition="$corrected eq 1" />
-                <a class="weui_cell">
-                    <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>已互评</p>
-                    </div>
-                    <div class="weui_cell_ft">
-                        <i class="weui_icon_success"></i>
-                    </div>
-                </a>
-            </if>
-            <if condition="($status eq 0) AND ($mark eq '未提交') ">
-                <a class="weui_cell" href="{:U('Homework/homework')}?bj=1">
-                    <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_toast.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block">
-                    </div>
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>补交作业</p>
-                    </div>
-                    <div class="weui_cell_ft">
-                        <if condition="$state2 eq '未批改'">
-                            <i class="weui_icon_warn"></i>
-                            <else />
-                            <i class="weui_icon_success"></i>
-                        </if>
-                    </div>
-                </a>
-            </if>
-            <if condition="$state neq '未提交'">
-                <a class="weui_cell" id="llhomework" href="{:U('Homework/homeworkview')}?homework={$homeworkname}&id={$homeworkoid}">
-                    <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <p>浏览作业</p>
-                    </div>
-                </a>
-                <if condition="$complain eq 'NULL'">
-                    <a class="weui_cell" id="sshomework">
-                        <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                        <div class="weui_cell_bd weui_cell_primary">
-                            <p>作业申诉</p>
-                        </div>
-                    </a>
-                    <elseif condition="$complain eq '1'" />
-                    <a class="weui_cell">
-                        <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                        <div class="weui_cell_bd weui_cell_primary">
-                            <p>申诉中，请等待</p>
-                        </div>
-                    </a>
-                    <elseif condition="$complain eq '0'" />
-                    <a class="weui_cell" >
-                        <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
-                        <div class="weui_cell_bd weui_cell_primary">
-                            <p>教师已批改</p>
-                        </div>
-                    </a>
-                </if>
+        
 
-            </if>
-        </div>
+
+        <if condition="$state neq '未提交'">
+          <a class="weui_cell" id="llhomework" href="{:U('Homework/homeworkview')}?homework={$homeworkname}&id={$homeworkoid}">
+          <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+            <div class="weui_cell_bd weui_cell_primary">
+              <p>浏览作业</p>
+            </div>
+          </a>
+          <if condition="$state2 neq '未批改'">
+            <a class="weui_cell" id="sshomework">
+            <div class="weui_cell_hd"><img src="__PUBLIC__/images/exam.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+            <div class="weui_cell_bd weui_cell_primary">
+              <p>作业申诉</p>
+            </div>
+          </a>
+          </if>
+          
+        </if>
+
+          
+        
+
+        
+        <!-- <a class="weui_cell" href="{:U('Teacher/homework_view')}/homeworkId/{$homeworkId}">
+          <div class="weui_cell_hd"><img src="__PUBLIC__/images/icon_nav_search_bar.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>浏览作业</p>
+          </div>
+          <div class="weui_cell_ft"><span class="demos-badge">{$number|default='0'}</span></div>
+        </a> -->
+      </div>
     </div>
-    <a href="{:U('Homework/index',array('openId'=>session('openId')))}" class="weui_btn weui_btn_primary">返回</a>
-</body>
+     <a href="{:U('index')}/openId/<?php echo session('openId');?>" class="weui_btn weui_btn_primary">返回</a>
+  </body>
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>
 <script type="text/javascript">
-    var data = '{$state}';
-    $("#hphomework").click(function(event){
-        if (data == '未提交') {
-            alert('你还没提交作业，不能批改别人作业');
-        }else{
-            if ({$hp}== 1) {
-                window.location.href = "{:U('homeworkmark')}"+'?id={$homeworkoid}';
-            }else if ({$hp} == 0){
-                alert('互评已经截止了');
-            }else if ({$hp} == 2){
-                alert('提交截止后开放互评');
-            }
+  var data = '{$state}';
+  $("#hphomework").click(function(event){
+    if (data == '未提交') {
+      alert('你还没提交作业，不能批改别人作业');
+    }else{
+      if ({$hp}) {
+        window.location.href = '{:U('homeworkmark')}'+'?id={$homeworkoid}';
+      }else{
+        alert('互评已经截止了');
+      }
+    
+    }
+  });
+  
 
-        }
-    });
-    $("#sshomework").click(function(event){
-        $.modal({
-            title: "同学",
-            text: "你觉得别人批改的分数有问题要申诉么？",
-            buttons: [
-            { 
-                text: "是", onClick: function(){ 
-                    alert('申诉成功,等待教师批改');
-                    setTimeout(function(){
-                        window.location.href="{:U('Homework/complain')}?homeworkoid={$homeworkoid}&openId={$openId}"
-                    },1000);
 
-                } 
-            },
-            { 
-                text: "否", 
-                className: "default"
-            },
-            ]
-        });
-    });
-    $("#submit").click(function(event){
-        let whether = '{$whetherSubmit}';
-        if (whether == 'false') {
-            window.location.href="{:U('Homework/homework')}?status={$status}&mark={$mark}";
-        } else {
-            $.confirm("删除原先记录以重新提交?", "确认删除", function() {
-                window.location.href="{:U('Homework/homework')}?status={$status}&mark={$mark}";
-            }, function() {
-            });
-        }
+  $("#sshomework").click(function(event){
 
+    $.modal({
+      title: "同学",
+      text: "你觉得别人批改的分数有问题要申诉么？",
+      buttons: [
+        { 
+          text: "是", onClick: function(){ 
+            alert('申诉成功,等待教师批改');
+            setTimeout(function(){
+              window.location.href="{:U('Homework/complain')}?homeworkoid={$homeworkoid}&openId={$openId}"
+            },1000);
+            
+          } 
+        },
+        { 
+          text: "否", 
+          className: "default"
+        },
+      ]
     });
+  });
+  
+
+
+
 </script>

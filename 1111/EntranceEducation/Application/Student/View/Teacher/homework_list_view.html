@@ -8,6 +8,7 @@
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
       <h1 class="demos-title">浏览作业</h1>
+      <h3 class="demos-title">总人数：{$sum}</h3>
     </header>
 
     <div class="weui_panel weui_panel_access">
@@ -22,16 +23,19 @@
                   
                 <div class="weui_cell_ft alert">
    
-                    <div><i class="weui_icon_info"></i>已提交:{$homework.submit}/{$homework.sum}</div>
+                    <div><i class="weui_icon_info"></i>已提交:{$homework.submit}</div>
                     <div> 
                     <if condition="$homework.flag eq 1">
-                        <i class="weui_icon_success_circle"></i>未提交:{$homework.sum-$homework.submit}
+                        <i class="weui_icon_success_circle"></i>未提交:{$sum-$homework.submit}
                     <else/>
                         <i class="weui_icon_warn"></i>补交:{$homework.bjnum}
                     </if>
                     </div>
                 </div>
-            </a>
+            </a>        
+
+           
+
         </volist>
       </div>
     </div>

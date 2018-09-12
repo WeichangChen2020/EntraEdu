@@ -1,103 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <include file="./Public/html/_head.html"/>
+  <include file="./Public/html/_head.html"/>
 </head>
 <style type="text/css">
-span{
+  span{
     text-align: center;
     margin: auto;
-} 
+  } 
 </style>
+
 <body ontouchstart>
-    <header class='demos-header'>
-        <h1 class="demos-title">浏览作业</h1>
-    </header>
-    <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
+  
+  <header class='demos-header'>
+      <h1 class="demos-title">浏览作业</h1>
+  </header>
+  <script src="http://jqweui.com/dist/lib/jquery-2.1.4.js"></script>
     <script src="http://jqweui.com/dist/js/jquery-weui.js"></script>
     <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-    <h2 style="text-align:center">上为标准答案，下为你的答案</h2>
-    <div class="container">
+  <h2 style="text-align:center">上为标准答案，下为你的答案</h2>
+  <div class="container">
 
-        <volist name="quesInfo" id="vo">
-            <if condition="$vo['submit'] neq NULL">
-                <div>
-                    <if condition="$end eq 0">
-                        <div style="text-align:center">
-                            <span>答案将在提交截止后显示</span>
-                        </div>
-                    <else />
-                        <img src="{$vo['right_answer']}" style="display:block;margin: auto;">
-                    </if>
-                    <br>
-                    <img src="{$vo['submit']['imgurl']}" style="display:block;max-width: 100%;margin: auto;" id="tom{$key}">
-                    <br>
-                    <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
-                    <script>
-                        $(function() {
-                            FastClick.attach(document.body);
-                        });
-                    </script>
-                    <script src="http://jqweui.com/dist/js/swiper.js"></script>
-                    <script>
-                        var tom{$key} = $.photoBrowser({
-                            items: [
-                            "{$vo['submit']['imgurl']}",
-                            ],
+    <volist name="homework" id="vo">
+      <div>
+        
+        <img src="{$vo['right_answer']}" style="display:block;margin: auto;">
+        <br>
+        <img src="{$vo.imgurl}" style="display:block;width:100px;height:150px;margin: auto;" id="tom{$key}">
+        <br>
+        <script>
+                  $(function() {
+                  FastClick.attach(document.body);
+                  });
+                </script>
+                <script src="http://jqweui.com/dist/js/swiper.js"></script>
+                <script>
+                    var tom{$key} = $.photoBrowser({
+                          items: [
+                              "{$vo.imgurl}",
+                              
+                          ],
 
-                            onSlideChange: function(index) {
-                                console.log(this, index);
-                            },
+                          onSlideChange: function(index) {
+                            console.log(this, index);
+                          },
 
-                            onOpen: function() {
-                                console.log("onOpen", this);
-                            },
-                            onClose: function() {
-                                console.log("onClose", this);
-                            }
+                          onOpen: function() {
+                            console.log("onOpen", this);
+                          },
+                          onClose: function() {
+                            console.log("onClose", this);
+                          }
                         });
                         $("#tom{$key}").click(function() {
-                            tom{$key}.open();
+                          tom{$key}.open();
                         });
-                    </script>
+                </script>
 
-                    <div style="text-align:center">
-                        <if condition="$vo['submit']['mark'] neq 'no'">
-                            <span>得分：{$vo['submit']['mark']}</span>
-                            <else />
-                            <span>未被批改</span>
-                        </if>
-
-                    </div>
-                </div>
-                <br>
-                <hr>
-            </if>
-        </volist>
-
-        <if condition="($flag eq 1) AND ($end eq 1)">
-            <h2 style="text-align:center">以下是你没答题目的答案</h2>
-            <hr>
-            <volist name="quesInfo" id="vo">
-                <if condition="$vo['submit'] eq NULL">
-                    <div>
-                        <img src="{$vo['question']}" style="display:block;max-width: 100%;margin: auto;" id="tom{$key}">
-                        <br>
-                        <img src="{$vo['right_answer']}" style="display:block;margin: auto;">
-                        <br>
-                    </div>
-                    <br>
-                    <hr>
-                </if>
-            </volist>
-        </if>
-
-    </div>
-
-    <a href="{:U('User/index',array('openId'=>session('openId')))}" class="weui_btn weui_btn_primary">返回</a>
+                 <div class="weui-photo-browser-modal" style="display: none;">            
+                  <div class="swiper-container" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"> 
+                    <div class="swiper-wrapper" style="transition-duration: 200ms; transform: translate3d(0px, 0px, 0px);">                                
+                      <div class="swiper-slide swiper-slide-active">                  
+                        <div class="photo-container">                    
+                          <img src="{$homeworkList.imgurl}">                  
+                        </div>                
+                      </div>                                
+                    </div>   
 
 
+                      <div class="caption">                                
+                       <div class="caption-item caption-item-0 active"></div>
+                      
+                      </div>
 
-    <include file="./Public/html/_foot.html"/>
+                     <div class="swiper-pagination swiper-pagination-bullets">
+                       <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>           
+                     </div> 
+
+                  </div>
+                 </div> 
+             
+                  <script src="http://jqweui.com/dist/lib/fastclick.js"></script>
+        <div style="text-align:center">
+          <if condition="$vo.mark neq 'no'">
+            <span>得分：{$vo.mark}</span>
+          <else />
+            <span>未被批改</span>
+          </if>
+        </div>
+
+      </div>
+      <br>
+      <br>
+      <br>
+    </volist>
+
+      <if condition="$flag eq 1">
+      <h2 style="text-align:center">以下是你没答题目的答案</h2>
+      <volist name="outproblem" id="vo">
+        <img src="{$vo}" style="display:block;margin: auto;">
+        <br>
+        <br>
+      </volist>
+      
+      </if>
+
+
+
+
+  </div>
+
+<a href="{:U('index')}/openId/<?php echo session('openId');?>" class="weui_btn weui_btn_primary">返回</a>
+
+
+
+  <include file="./Public/html/_foot.html"/>
 </body>
 </html>

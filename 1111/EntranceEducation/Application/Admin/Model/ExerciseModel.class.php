@@ -14,7 +14,7 @@ class ExerciseModel extends Model {
 		if (empty($id)) {
 			return 0;
 		}
-		$sql = " SELECT COUNT(*)  FROM cp_exercise WHERE quesid = $id";
+		$sql = " SELECT COUNT(*)  FROM ee_exercise WHERE quesid = $id";
 		
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
@@ -32,7 +32,7 @@ class ExerciseModel extends Model {
 		if (empty($id)) {
 			return 0;
 		}
-		$sql = "SELECT ROUND( SUM( result ) / COUNT( * ) , 2 ) FROM  cp_exercise WHERE  quesid = $id ";
+		$sql = "SELECT ROUND( SUM( result ) / COUNT( * ) , 2 ) FROM  ee_exercise WHERE  quesid = $id ";
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);

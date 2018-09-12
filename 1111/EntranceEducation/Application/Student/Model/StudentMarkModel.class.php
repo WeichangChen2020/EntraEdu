@@ -5,7 +5,7 @@ use Think\Model;
 
 
 class StudentMarkModel extends Model {
-    protected $tablePrefix = 'cp_';
+    protected $tablePrefix = 'cn_';
     /**
 	 * getLastMark($openid) 获取积分
 	 * @author 
@@ -47,7 +47,7 @@ class StudentMarkModel extends Model {
 	 */
 	public function getRankList($start = 0) { 
 
-		$sql = "SELECT * FROM cp_student_mark GROUP BY openid ORDER BY lastMark desc,openid desc LIMIT $start,20";
+		$sql = "SELECT * FROM cn_student_mark GROUP BY openid ORDER BY lastMark desc,openid desc LIMIT $start,20";
 		// dump($sql);	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);

@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | 大学物理教学互动平台
+// | 计算机网络教学互动平台
 // +----------------------------------------------------------------------
 // | Copyright (c) 2006-2014 http://23.testet.sinaapp.com All rights reserved.
 // +----------------------------------------------------------------------
@@ -16,45 +16,69 @@ use Think\Model;
 use Think\Upload;   
 use Com\WechatAuth;   
 
+
+
+/**
+ * 课后作业类
+ */
+
 class HomeworkController extends Controller{
+
 
     public function index(){
         //+++++++++++++++++++处理访问界面的openId
         $openId = session("openId");
         if(!$openId){
             $openId = I('openId');
-            session('openId',$openId);//将用户的$openid存入session中
+            session('openId',$openId);
         } 
-        $STUDENT = M('student_info');
-        $stuclass    = $STUDENT->where("openId='$openId'")->find();
+        // var_dump($openId);echo "<br>";
+        $studentInfo = M('student_info');
+        $stuclass    = $studentInfo->where("openId='$openId'")->find();
+        // var_dump($stuclass);echo "<br>";
 
         $HOMEWORK = M('homework_zg');
+        $count    = $HOMEWORK->count();
 
-        $where['class'] = array('like','%'.$stuclass['class'].'%');
-        $homework = $HOMEWORK->where($where)->order('create_time desc')->select();        
+     
 
-        //+++++++++++++++++++把是否提交和人数也加到数组里
+        $Page       = new \Think\Page($count,$count);
+        $show       = $Page->show();
+        $con['class']  =  $stuclass['class'];
+        $allnum = M('StudentInfo')->where(array('class'=>$stuclass['class']))->count();
+        $homework = $HOMEWORK->where($con)->order('create_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        // var_dump($homework);die();
+        
+
+        //+++++++++++++++++++把是否提交和访问人数也加到数组里
         foreach ($homework as $key => $value) {
+
             $homework[$key]['isSubmit']  = $this->isSubmit($openId,$homework[$key]['homeworkname'],$homework[$key]['id']);
             $homework[$key]['submit']    = $this->getSubmitNum($homework[$key]['homeworkname'],$homework[$key]['id']);
-            $count = 0;
-            $count += $STUDENT->where(array('class'=>$value['class']))->count();
-            $homework[$key]['count']    = $count;
-            //已过提交截止时间status为0
             if (strtotime($homework[$key]['dead_time']) > strtotime(date("Y-m-d H:i:s"))) {
                   $homework[$key]['status'] = 1;
+                  // var_dump($homework[$key]);die();
             } else {
                   $homework[$key]['status'] = 0;
+                  // var_dump($homework[$key]['status']);die();
             }
+            
+                 
         }
+        // var_dump($homework);die();
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('allnum',$allnum);
-        // dump($homework);die();
+        // var_dump($homework);die();
         $this->assign('homework',$homework)->display();
     }
 
     private function isSubmit($openId,$homeworkname,$id){
         $submitInfo = M('student_homework')->where(array('openId' => $openId,'homeworkname' => $homeworkname,'homeworkoid' => $id))->select();
+
+        // var_dump($openId);
+        // var_dump($homeworkname);
+        // var_dump($id);
+        // var_dump($submitInfo);die();
         if(empty($submitInfo)){
             return '未提交';
         }
@@ -62,18 +86,35 @@ class HomeworkController extends Controller{
 
         $submitInfo2 = M('homework_zg')->where(array('homeworkname' => $homeworkname,'id' => $id))->find();
         $putnumber =sizeof(explode('_', $submitInfo2['problem_id']))-1;
+        // var_dump($homeworkname);
+        // var_dump($id);
+        // var_dump($donumber);
+        // var_dump($putnumber);
+
+        // if($donumber < $putnumber)
+        // {
+        //     // var_dump('未提交');
+        //     // die();
+        //     return '未提交';
+        // }
+        // var_dump('已提交');
+        // die();
         $mark = 0;
         foreach ($submitInfo as $key => $value) {
             if($value['correcter'] == '未批改' || $value['mark'] == 'no')
             {
+                
                 return '未批改';
             }
+
             $mark += $value['mark'];
         }
-        return $mark;
+
+            return $mark;
     }
     private function isMark($name,$homeworkname,$id){
         $markInfo = M('student_homework')->where(array('correcter' => $name,'homeworkname' => $homeworkname,'homeworkoid'=>$id))->select();
+        // var_dump($submitInfo);die();
         if(empty($markInfo))
         {
             return '未批改';
@@ -83,16 +124,15 @@ class HomeworkController extends Controller{
             if($value['mark'] == 'no')
                 return '未批改';
         }
-        return '已批改';
+            return '已批改';
     }
 
     //提交人数,最好写在model里
-    //你还说！TM写的真乱，看得我头痛死了
     private function getSubmitNum($homeworkname,$id){
         $number = M('student_homework')->group('name')->where(array('homeworkname' => $homeworkname ,'homeworkoid' => $id))->select();
-        // dump($number);
+        // var_dump($number);
         // echo "<pre>";
-        // dump(sizeof($number));die();
+        // var_dump(sizeof($number));die();
         return sizeof($number);
     }
 
@@ -100,26 +140,25 @@ class HomeworkController extends Controller{
     public function homeworkMenu(){
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $homeworkname = I('homeworkname')?I('homeworkname'):$this->error('你访问的界面不存在');
+        session('homeworkname',null);
         session('homeworkname',$homeworkname);
+
         
-        $SUBMIT = D('studentHomework');
+        // var_dump(session('homeworkname'));die();
+
         $status = I('get.status');
         $mark   = I('get.mark');
+        // var_dump($mark);die();
         $id     = I('get.id');
+        session('homeworkoid',null);
         session('homeworkoid',$id);
         $id = session('homeworkoid');
         $HOMEWORK = M('homework_zg');
-        $hpStop = $HOMEWORK->where(array('id'=>$id))->getField("hpdead_time");
-        $submitStop = $HOMEWORK->where(array('id'=>$id))->getField("dead_time");
-        $now = time();
-        $hpStop = strtotime($hpStop);
-        $submitStop = strtotime($submitStop);
-
-        // ---------$submitStop--------$hpStop--------
-        //   $hp=2               $hp=1         $hp=0
-        if ($now < $submitStop) {
-            $hp = 2;
-        }else if ($now < $hpStop) {
+        // var_dump($id);die();
+        $time = $HOMEWORK->where(array('id'=>$id))->getField("hpdead_time");
+        $now = date();
+        $time = strtotime($time);
+        if ($time>$now) {
             $hp = 1;
         }else{
             $hp = 0;
@@ -128,27 +167,26 @@ class HomeworkController extends Controller{
         $cond2 = array('homeworkname' => $homeworkname,'id'=>$id);
 
         $homework     = $HOMEWORK->where($cond2)->find();
-        $whetherSubmit = M('student_homework')->where(array(
-            'openId' => $openId,
-            'homeworkoid'=> session('homeworkoid')
-        ))->find();
+
         $model = D('StudentInfo');
         $myname = $model->getName($openId);
+// var_dump($myname);die();
         $state  = $this->isSubmit($openId,$homeworkname,$id);
         $number = $this->getSubmitNum($homeworkname,$id);
-        $complain = $SUBMIT->getComplainState($openId,$homeworkname);
-        $homeworkoid = $id;
-        $corrected = $SUBMIT->where(array('correcter'=>$myname,'homeworkoid'=>$id))->find();
-        // dump($SUBMIT->getLastSql());
-        // dump($complain);die;
-        $this->assign('whetherSubmit',!empty($whetherSubmit) ? 'true' : 'false');
-        $this->assign('corrected',!empty($corrected) ? '1' : '0');
+        $state2 = $this->isMark($myname,$homeworkname,$id);
+        
         $this->assign('state',$state);
         $this->assign('status',$status);
         $this->assign('mark',$mark);
-        $this->assign('complain',$complain);
+        $this->assign('state2',$state2);
         $this->assign('homework',$homework);
         $this->assign('hp',$hp);
+        $homeworkoid = $id;
+        // var_dump($state);
+        // var_dump($state2);die();
+        // var_dump($homeworkname);
+        // var_dump($number);
+        // die();
         $this->assign('homeworkoid',$homeworkoid);
         $this->assign('openId',$openId);
         $this->assign('homeworkname',$homeworkname);
@@ -159,74 +197,93 @@ class HomeworkController extends Controller{
     public function homework(){
         $status = I('get.status');
         $mark   = I('get.mark');
-        $bj     = I('get.bj');//补交
+        $bj     = I('get.bj');
         if ($status == 0 && $mark == '未提交') {
-            $this->error('已过提交时间',U('index'));
+            $this->error('已过提交时间，等死吧',U('index'));
         }
+
+
+
+
         $openId       = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         $homeworkname   = session('?homeworkname') ? session('homeworkname') : $this->error('请重新获取改页面');
         $homeworkoid = session('homeworkoid');
+        // var_dump($homeworkname);die();
         /*======================判断不可重复提交===================================*/
-        $cond = array('openId' => $openId,'homeworkoid'=>$homeworkoid);
-        if(M('student_homework')->where($cond)->find()){
-            M('student_homework')->where($cond)->delete();
-        }
+        $cond = array('homeworkname' => $homeworkname,'openId' => $openId,'homeworkoid'=>$homeworkoid);
+        if(M('student_homework')->where($cond)->find())
+            $this->error('你已经提交过了，不可重复提交');
         $HOMEWORK     = M('homework_zg');
-        $QUESTIONBANK = M('image_questionbank');
-        // dump(session('homeworkoid'));die();
+        $questionbank = M('image_questionbank');
+        // var_dump(session('homeworkoid'));die();
 
         $cond2 = array('homeworkname' => $homeworkname,'id'=>$homeworkoid);
 
         $homework     = $HOMEWORK->where($cond2)->find();
-        // dump($homework);die();
+        // var_dump($homework);die();
         $quesarr      = explode('_', $homework['problem_id']);
-        // dump($quesarr);die();
+        // var_dump($quesarr);die();
         $outproblem   = array();
         foreach ($quesarr as $value) {
             if (!empty($value)) {
-                $qu = $QUESTIONBANK->find($value);
-                array_push($outproblem, C('COMMONPATH').C('HOMEWORKPATH').$qu['chapter'].'_'.$qu['type'].'_1_'.$qu['id'].'.jpg');
-                // dump($outproblem);die();
+                $qu = $questionbank->find($value);
+
+                array_push($outproblem, $qu['contents']);
+                // var_dump($outproblem);die();
             }
         }
-        // dump($outproblem);die();
+        // var_dump($outproblem);die();
         $this->assign('outproblem',$outproblem);//输出N和题目的url
+        // var_dump($outproblem);die();
         
         session('quesarr',$quesarr);
-        if ($status == 0) {
+        if ($bj == 1) {
             $this->assign('bj',1);
         }else
         {
             $this->assign('bj',0);
         }
+        // var_dump($outproblem);die();
         $this->assign('homework',$homework)->display();
     }
 
     public function homeworkmark()
     {
         /*======================在别人表中标记是自己批改的===========================*/
+      
         $id = I('get.id');
+        // var_dump($id);die();
         session('homeworkoid',null);
         session('homeworkoid',$id);
+        // var_dump($state);die();
         $homeworkname             = session('homeworkname');
         $me = M('student_info')->where(array('openId'=>session('openId')))->find();
+        // var_dump($me);
+        // die();
         $myname = $me['name'];
+        // var_dump(session('openId'));die();
+        // var_dump($homeworkname);die();
+        $condi['homeworkname']    = $homeworkname;
         $condi['homeworkoid']    = $id;
 
         $condi['openId']        = array('NEQ',session('openId'));
+        // $condi['correcter']     = array('EQ','未批改');
         $condi['mark']          = "no";
         $strange = M('student_homework')->group('name')->where($condi)->select();
+        // var_dump($strange);die();
         $others = $strange[rand(0,sizeof($strange)-1)];
         $map['correcter'] = $myname;
 
         $map['correctTime'] = date('Y-m-d H:i:s',time());
-        // M('student_homework')->where(array('openId'=>$others['openId'],'homeworkoid'=>$id))->save($map);
+        M('student_homework')->where(array('openId'=>$others['openId'],'homeworkoid'=>$id))->save($map);
         /*======================查找别人此时的所有作业===========================*/
+        $cond2['homeworkname']    = $homeworkname;
         $cond2['homeworkoid']    = $id;
         $cond2['openId']        = $others['openId'];
+        $cond2['correcter']     = array('EQ',$myname);
         $cond2['mark']          = "no";
         $problem = M('student_homework')->where($cond2)->select();
-        // dump($problem);die();
+        // var_dump($problem);die();
         /*======================获取正确答案=====================================*/
         $homework_zg            =          M('homework_zg');
         $image_questionbank     =          M('image_questionbank');
@@ -242,17 +299,26 @@ class HomeworkController extends Controller{
             }
         }
 
-        foreach ($problem as $k => $v) {
-            $temp = $image_questionbank->where(array('id'=>$v['problemid']))->find();
-            $right_answer = C('COMMONPATH').C('HOMEWORKPATH').$temp['chapter'].'_'.$temp['type'].'_0_'.$temp['id'].'.jpg';
-            $problem[$k]['right_answer'] = $right_answer;
+        foreach ($problemarr2 as $key => $value) {
+            $answer = $image_questionbank->where(array('id' => $value))->find();
+            array_push($right_answer,$answer);
         }
-            // dump($problem);die;
+
+
+        for ($key=0; $key < sizeof($problem); $key++) { 
+           $problem[$key]['right_answer'] = $right_answer[$key]['right_answer'];
+        }
+
+
+        // var_dump($problem);s
+
         $this->assign('problem',$problem);//别人的作业+正确答案url
         $this->assign('size',sizeof($problem));
 
         $this->assign('me',$me);
         $this->assign('homeworkname',$homeworkname);
+
+        // var_dump($problem);die();
         return $this->display();
     }
 
@@ -268,8 +334,8 @@ class HomeworkController extends Controller{
 
         $correctInfo = array(
             'mark'        => $mark,
-            'correctTime' => date('Y-m-d H:i:s',time())
-        );
+
+            'correctTime' => date('Y-m-d H:i:s',time()));
         $res = $STU_HOMEWORK->where(array('id' => $personWorkId,'openId' => $personId,'homeworkoid'=>$id))->save($correctInfo);
 
         
@@ -294,129 +360,79 @@ class HomeworkController extends Controller{
 
         $openId = session('openId');
         $id = session('homeworkoid');
+        // var_dump($id);die();
         $homework_zg = M('homework_zg')->where("id='$id'")->getField('problem_id');
-        $submitStop = strtotime(M('homework_zg')->where("id='$id'")->getField('dead_time'));
+        // var_dump($homework_zg);die();
         $quesarr      = explode('_', $homework_zg);
-        $SUBMIT = M('studentHomework');
-        $flag = 0;
+        // var_dump($quesarr);
 
-        if ($submitStop > time()) {
-            $end = 0;
-        }else{
-            $end = 1;
-        }
-
-        $QUESTIONBANK = M('image_questionbank');
-        $quesInfo = array();
-        foreach ($quesarr as $key => $value) {
+        $questionbank = M('image_questionbank');
+        //应该有的提交url
+        $outproblem   = array();
+        foreach ($quesarr as $value) {
             if (!empty($value)) {
-                array_push($quesInfo, $QUESTIONBANK->where(array('id'=>$value))->field('id,chapter,type')->find());
+                $qu = $questionbank->find($value);
+                array_push($outproblem, $qu['right_answer']);
+                
             }
         }
-        foreach ($quesInfo as $key => $value) {
-            $submit = $SUBMIT
-                ->where(array(
-                    'homeworkname' => $homeworkname,
-                    'openId' => $openId,
-                    'homeworkoid'=>$id,
-                    'problemid'=>$value['id']))
-                ->field('imgurl,mark')
-                ->find();
-            if ($submit == NULL) {
-                $flag = 1;
-            }
-            $quesInfo[$key]['right_answer']   = C('COMMONPATH').C('HOMEWORKPATH').$value['chapter'].'_'.$value['type'].'_0_'.$value['id'].'.jpg';
-            $quesInfo[$key]['question']   = C('COMMONPATH').C('HOMEWORKPATH').$value['chapter'].'_'.$value['type'].'_1_'.$value['id'].'.jpg';
-            $quesInfo[$key]['submit'] = $submit;
+        // var_dump($outproblem);
+        $model = M('student_homework');
+        $homework = $model->where(array('homeworkname' => $homeworkname, 'openId' => $openId,'homeworkoid'=>$id))->select();
+
+        $right = M('image_questionbank');
+        //同学提交的数目
+
+        $do = array();
+        foreach ($homework as $key => $value) {
+            $problem = $right->where(array('id'=>$value['problemid']))->find();
+            $homework[$key]['right_answer'] = $problem['right_answer'];
+            array_push($do, $problem['right_answer']);
         }
-        $this->assign('flag',$flag);
-        $this->assign('end',$end);
-        $this->assign('quesInfo',$quesInfo);
+        //本次作业应有的数目
+        $outproblem  = array_diff($outproblem,$do);
+
+        if (empty($outproblem)) {
+            $this->assign('flag',0);
+        }else{
+            $this->assign('flag',1);
+        }
+        $this->assign('homework',$homework);
         $this->assign('homeworkname',$homeworkname);
-        $this->display();
+        $this->assign('outproblem',$outproblem);
+
+
+        return $this->display();
+
+
+
+
+
+
+
+        
+        
+        
+        
+
+        $this->assign('homework',$homework)->display();
 
     }
 
     public function complain()
     {
+        
         $homeworkoid = I('get.homeworkoid');
         $openId = I('get.openId');
         $model = M('student_homework');
-        $homework = $model->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId,'mark'=>array('NEQ','no')))->select();
+        $homework = $model->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->select();
 
         foreach ($homework as $key => $value) {
             $data['complain'] = 1;
-            $model->where($value)->save($data);
+            $model->where(array('homeworkoid'=>$homeworkoid,'openId'=>$openId))->save($data);
         }
+
         $this->redirect('index');
-    }
-    public function test(){
-        $homeworkname = I('get.homework');
-
-        $openId = session('openId');
-        $id = session('homeworkoid');
-        $homework_zg = M('homework_zg')->where("id='$id'")->getField('problem_id');
-        $submitStop = strtotime(M('homework_zg')->where("id='$id'")->getField('dead_time'));
-        $quesarr      = explode('_', $homework_zg);
-        $SUBMIT = M('studentHomework');
-        $flag = 0;
-
-        if ($submitStop > time()) {
-            $end = 0;
-        }else{
-            $end = 1;
-        }
-
-        $QUESTIONBANK = M('image_questionbank');
-        $quesInfo = array();
-        foreach ($quesarr as $key => $value) {
-            if (!empty($value)) {
-                array_push($quesInfo, $QUESTIONBANK->where(array('id'=>$value))->field('id,chapter,type')->find());
-            }
-        }
-        foreach ($quesInfo as $key => $value) {
-            $submit = $SUBMIT
-                ->where(array(
-                    'homeworkname' => $homeworkname,
-                    'openId' => $openId,
-                    'homeworkoid'=>$id,
-                    'problemid'=>$value['id']))
-                ->field('imgurl,mark')
-                ->find();
-            if ($submit == NULL) {
-                $flag = 1;
-            }
-            $quesInfo[$key]['right_answer']   = C('COMMONPATH').C('HOMEWORKPATH').$value['chapter'].'_'.$value['type'].'_0_'.$value['id'].'.jpg';
-            $quesInfo[$key]['question']   = C('COMMONPATH').C('HOMEWORKPATH').$value['chapter'].'_'.$value['type'].'_1_'.$value['id'].'.jpg';
-            $quesInfo[$key]['submit'] = $submit;
-        }
-        $this->assign('flag',$flag);
-        $this->assign('end',$end);
-        $this->assign('quesInfo',$quesInfo);
-        dump($quesInfo);die;
-        $this->assign('homeworkname',$homeworkname);
-        $this->display('homeworkview');
-
-    }
-
-    public function correctTime(){
-        $INFO = M('student_info');
-        $HOMEWORK = M('student_homework');
-        // $where['class']  = array('EQ', '环境类1701、1702');
-        // $where['class']  = array('EQ', '环境类1703、1704');
-        // $where['class']  = array('EQ', '环境类1705、1706');
-        // $where['_logic'] = 'or';
-        // $map['_complex'] = $where;
-        $map['academy'] = array('EQ', '马海珠');
-        $student_info = $INFO->where($map)->select();
-        // p($student_info);
-        foreach ($student_info as $key => $value) {
-            $number = $value['number'];
-            $name = $value['name'];
-            $correct_time = $HOMEWORK->where(array('correcter'=>$name))->count();
-            echo $name."：".$number."：".$correct_time."<br/>";
-        }
-        // $HOMEWORK->
     }
 }
 

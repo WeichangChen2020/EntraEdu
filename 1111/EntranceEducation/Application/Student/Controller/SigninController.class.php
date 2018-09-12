@@ -71,12 +71,10 @@ class SigninController extends Controller{
         //已关闭
         if($signInfo['state'] != '开启')
             $this->ajaxReturn('close');
+
         //已签到
         if(M('student_signin')->where(array('openId' => $openId,'signinId' => $signinId))->find())
             $this->ajaxReturn('signined');
-        //无地理数据
-        if(I('latitude')=='' || I('longitude')=='')
-            $this->ajaxReturn('empty');
 
         $STU           = D('StudentInfo');
         $signin        = array(

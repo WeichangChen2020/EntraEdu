@@ -21,18 +21,83 @@
     <div class="bd">
       <div class="weui_cells_title">请选择章节</div>
       <div class="weui_cells weui_cells_checkbox">
-        <volist name="chapterList" id="chapterList" key="k" empty="没有查到章节信息">
-            <label class="weui_cell weui_check_label" for="{$k}">
-                <div class="weui_cell_hd">
-                    <input type="checkbox" class="weui_check" name="checkbox1" id="{$k}">
-                    <i class="weui_icon_checked"></i>
-                    <div id="unit">{$k}</div>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>第{$k}章 {$chapterList['chapter']} （{$chapterList['num']}题）</p>
-                </div>
-            </label>
-        </volist>
+        <label class="weui_cell weui_check_label" for="s11">
+          <div class="weui_cell_hd">
+            <input type="checkbox" class="weui_check" name="checkbox1" id="s11">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">1</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第一章 计算机网络基本概念 （{$queNum[0]['num']}道题）</p> 
+          </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s12">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s12">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">2</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第二章 物理层 （{$queNum[1]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s13">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s13">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">3</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第三章 数据链路层 （{$queNum[2]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s14">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s14">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">4</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第四章 介质访问控制子层 （{$queNum[3]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s15">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s15">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">5</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第五章 网络层 （{$queNum[4]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s16">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s16">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">6</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第六章 传输层 （{$queNum[5]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        <label class="weui_cell weui_check_label" for="s17">
+          <div class="weui_cell_hd">
+            <input type="checkbox" name="checkbox1" class="weui_check" id="s17">
+            <i class="weui_icon_checked"></i>
+            <div id="unit">7</div>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary">
+            <p>第七章 应用层 （{$queNum[6]['num']}道题）</p>
+          </div>
+          <div class="weui_cell_ft"></div>
+        </label>
+        </a>
       </div>
     </div>
     <div class="weui_btn_area">
@@ -45,18 +110,11 @@
 <script>
 $('#submit').click(function(){
   var unit = '';
-  var count= 0;
   $(":checked").each(function(){
     unit += $(this).siblings('#unit').html();
   });
 
   if(unit === '') {$.toptip('你还没有选择章节','warning');return false;}
-
-  //获取题目总数用作规定上限
-  var url = "{:U('Teacher/test_unit_list')}";
-  $.post(url, {'unit':unit,}, function(res){
-      count = res;
-  });
 
   $.modal({
     title: "提示",
@@ -64,17 +122,11 @@ $('#submit').click(function(){
     buttons: [
       { 
         text: "是", onClick: function(){ 
-          $.prompt("请输入2-"+count, "输入题目数量", function(text) {
-              //alert(text);
-              //if(text.length >= 3) $.toptip('题目数量非法','warning');
-              if(text <= 1) 
-                $.toptip('题目数量不能小于2','warning');
-              else if(parseInt(text)>count) 
-                $.toptip('题目数量不能超过'+count,'warning');
-              else if(isNaN(text)) 
-                $.toptip('题目内容非法','warning');
-              else 
-                window.location.href="test_ques_list/unit/"+unit+"/number/"+text;
+          $.prompt("不得出现非法数量", "输入题目数量", function(text) {
+              if(text.length >= 3) $.toptip('题目数量非法','warning');
+              else if(text == 1) $.toptip('题目数量必须超过1','warning');
+              else if(isNaN(text)) $.toptip('题目内容非法','warning');
+              else window.location.href="test_ques_list/unit/"+unit+"/number/"+text;
           }, function() {
             //取消操作
           });  

@@ -64,7 +64,7 @@ class TestSelectModel extends Model {
 			// 如果找不到指定题目 
 			if (empty($quesItem)) {
 				unset($map['id']);
-				$ques = $this->where($map)->order('id asc')->limit(1)->select();
+				$ques = $this->where($map)->order('id desc')->limit(1)->select();
 				$quesItem = $ques[0];
 			}
 
@@ -76,7 +76,7 @@ class TestSelectModel extends Model {
 			// 所有题目都做完了
 			if (empty($ques)) {
 				unset($map['result']);
-				$ques = $this->where($map)->order('id asc')->limit(1)->select();
+				$ques = $this->where($map)->order('id desc')->limit(1)->select();
 			}
 			$quesItem = $ques[0];
 			

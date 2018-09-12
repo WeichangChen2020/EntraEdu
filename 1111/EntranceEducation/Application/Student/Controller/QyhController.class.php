@@ -38,8 +38,8 @@ class QyhController extends Controller
 		$config = array(
             'maxSize' => 314572800,
             'exts'=>array('jpg', 'gif', 'png', 'jpeg'),
-            'rootPath'=>'./collegephysics2/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
-            'savePath'=>'.'.C('SUBMITPATH').$homeworkname.'/',
+            'rootPath'=>'/public/', //文件在本地调试时上传的目录，其实也等同于public的domain下的Uploads文件夹
+            'savePath'=>'./computernetwork/homework/'.$homeworkname.'/',
             'autoSub'=>false,
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
@@ -54,7 +54,7 @@ class QyhController extends Controller
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
-                $imgurl = C('COMMONPATH').C('SUBMITPATH').$homeworkname.'/'.$file['savename'];
+                $imgurl = 'http://testroom-public.stor.sinaapp.com/computernetwork/homework/'.$homeworkname.'/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
                 $map['number']          = $stuInfo['number'];
@@ -66,19 +66,49 @@ class QyhController extends Controller
                 $map['homeworkoid']     = session('homeworkoid');
                 $map['bj']              = $bj;
                 $res = $HOMEWORK->add($map);
+                // var_dump($res);die();
             }
+
             $homework_zg = M('homework_zg');
             $map2 = array('homeworkname'=>$homeworkname,'id'=>session('homeworkoid'));
             $c = $homework_zg->where($map2)->find();
             $c['submit'] += 1;
             $homework_zg->where($map2)->save($c);
+
+
+
 			$this->success('上传成功！',U('Homework/index'));
 		}
 
 
 	}
 
-
+    public function read(){
+        $QUESTION = M('questionbank');
+        $ques_info = $QUESTION->select();
+        $data="";
+        // p($ques_info);die;
+        foreach ($ques_info as $key => $value) {
+            // p($value);die;
+            if($value['type']==1){
+                if($value['option_d']){
+                    $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'].'\t'.$value['option_d'];
+                    echo $data.'<br/>';
+                }else{
+                    $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'];
+                    echo $data.'<br/>';                    
+                }    
+            }elseif ($value['type']==2) {
+                $data = $value['contents'];
+                echo $data.'<br/>'; 
+            }else{
+                $data = $value['contents'].'\t'.$value['option_a'].'\t'.$value['option_b'].'\t'.$value['option_c'].'\t'.$value['option_d'];
+                echo $data.'<br/>'; 
+            }
+            // file_put_contents("def.txt",$data);
+        }
+        
+    }  
 
 
 }

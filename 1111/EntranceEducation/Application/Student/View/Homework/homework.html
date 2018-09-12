@@ -1,153 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <include file="./Public/html/_head.html"/>
+  <include file="./Public/html/_head.html"/>
 </head>
 
 
 <body ontouchstart>
+  
+  <header class='demos-header'>
+      <h1 class="demos-title">提交作业</h1>
+  </header>
+  <div class="container">
+    <div class="weui_cells_title">(截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['dead_time']));?>)</div>
+    <div class="weui_cells_title">互评截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['hpdead_time']));?></div>
+    <div class="bd">
+    <div class="weui_cells weui_cells_form">
+      <div class="weui_cell">
+        <div class="weui_cell_bd weui_cell_primary">
+          <div class="weui_textarea">{$homework.content}</div>
+          <form action="{:U('Qyh/upload')}?bj={$bj}" method="post" enctype="multipart/form-data">
+            <volist name="outproblem" id="outproblem">
+            
+              <div class="weui_cell">
+                <span id="problem">{$i}</span>
+              </div>
+              <input style="display:none" name="quesarr" value="{$quesarr}">
+              <div class="weui_cell">
+                <img src="{$outproblem}">
+              </div>  
+              <div class="weui_cell">
+                <input type="file" name="photo[]">
+              </div>
+              <input type="text" style="display:none" value="{$homework.homeworkname}" name="homeworkname">
+            </volist>
+<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer></script>
 
-    <header class='demos-header'>
-        <h1 class="demos-title">提交作业</h1>
-    </header>
-    <div class="container">
-        <div class="weui_cells_title">(截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['dead_time']));?>)</div>
-        <div class="weui_cells_title">互评截止时间:<?php echo date("Y-m-d H:i:s",strtotime($homework['hpdead_time']));?></div>
-        <div class="bd">
-            <div class="weui_cells weui_cells_form">
-                <div class="weui_cell">
-                    <div class="weui_cell_bd weui_cell_primary">
-                        <div class="weui_textarea">{$homework.content}</div>
-                        <form action="{:U('Qyh/upload')}?bj={$bj}" method="post" enctype="multipart/form-data">
-                            <volist name="outproblem" id="outproblem">
+            <button type="submit" class="weui_btn weui_btn_primary">提交</button>
+          </form> 
 
-                                <div class="weui_cell">
-                                    <span id="problem">{$i}</span>
-                                </div>
-                                <input style="display:none" name="quesarr" value="{$quesarr}">
-                                <div class="weui_cell">
-                                    <img src="{$outproblem}">
-                                </div>  
-                                <div class="weui_cell">
-                                    <input type="file" name="photo[]">
-                                </div>
-                                <input type="text" style="display:none" value="{$homework.homeworkname}" name="homeworkname">
-                            </volist>
+  </div>
+  <!--<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+  <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+  <script src="__PUBLIC__/js/jquery-weui.js"></script> -->
 
-
-                            <button type="submit" class="weui_btn weui_btn_primary">提交</button>
-                        </form> 
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
-    <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
-    <script src="__PUBLIC__/js/jquery-weui.js"></script> -->
-
-    <include file="./Public/html/_foot.html"/>
+  <include file="./Public/html/_foot.html"/>
 </body>
 </html>
 <script>  
-    $.weui = {};  
-    $.weui.alert = function(options){  
-        options = $.extend({title: '警告', text: '警告内容'}, options);  
-        var $alert = $('.weui_dialog_alert');  
-        $alert.find('.weui_dialog_title').text(options.title);  
-        $alert.find('.weui_dialog_bd').text(options.text);  
-        $alert.on('touchend click', '.weui_btn_dialog', function(){  
-            $alert.hide();  
-        });  
-        $alert.show();  
-    };  
-
-    $(function () {  
-        // 允许上传的图片类型  
-        var allowTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];  
-        // 1024KB，也就是 1MB  
-        var maxSize = 10240 * 10240;  
-        // 图片最大宽度  
-        var maxWidth = 300;  
-        // 最大上传图片数量  
-        var maxCount = 6;
-        $('.js_file').on('change', function (event) {
-            var files = event.target.files;  
-
-            // 如果没有选中文件，直接返回  
-            if (files.length === 0) {  
-                return;  
-            }
-
-            for (var i = 0, len = files.length; i < len; i++) {  
-                var file = files[i];  
-                var reader = new FileReader();  
-
-                // 如果类型不在允许的类型范围内  
-                if (allowTypes.indexOf(file.type) === -1) {  
-                    $.weui.alert({text: '该类型不允许上传'});  
-                    continue;  
-                }
-
-                if (file.size > maxSize) {  
-                    $.weui.alert({text: '图片太大，不允许上传'});  
-                    continue;  
-                }  
-
-                if ($('.weui_uploader_file').length >= maxCount) {
-                    $.weui.alert({text: '最多只能上传' + maxCount + '张图片'});  
-                    return;
-                }  
-
-                reader.onload = function (e) {  
-                    var img = new Image();  
-                    img.onload = function () {  
-                        // 不要超出最大宽度  
-                        var w = Math.min(maxWidth, img.width);  
-                        // 高度按比例计算  
-                        var h = img.height * (w / img.width);  
-                        var canvas = document.createElement('canvas');  
-                        var ctx = canvas.getContext('2d');  
-                        // 设置 canvas 的宽度和高度  
-                        canvas.width = w;  
-                        canvas.height = h;  
-                        ctx.drawImage(img, 0, 0, w, h);  
-                        var base64 = canvas.toDataURL('image/png');  
-
-                        // 插入到预览区  
-                        var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
-                        $('.weui_uploader_files').append($preview);  
-                        var num = $('.weui_uploader_file').length;  
-                        $('.js_counter').text(num + '/' + maxCount);  
-
-                        //postbase64到后台upload
-
-                        // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
-
-                        var progress = 0;  
-
-                        function uploading() {  
-                            $preview.find('.weui_uploader_status_content').text(++progress + '%');  
-                            if (progress < 100) 
-                            {  
-                                setTimeout(uploading, 30);  
-                            }  
-                            else{  
-                                // 如果是失败，塞一个失败图标  
-                                //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
-                                $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
-                            }  
-                        }
-                        setTimeout(uploading, 30);  
-                    };  
-
-                    img.src = e.target.result;  
-                };  
-
-                reader.readAsDataURL(file);  
-            }  
-        });  
+  $.weui = {};  
+  $.weui.alert = function(options){  
+    options = $.extend({title: '警告', text: '警告内容'}, options);  
+    var $alert = $('.weui_dialog_alert');  
+    $alert.find('.weui_dialog_title').text(options.title);  
+    $alert.find('.weui_dialog_bd').text(options.text);  
+    $alert.on('touchend click', '.weui_btn_dialog', function(){  
+      $alert.hide();  
     });  
-    //# sourceURL=pen.js  
+    $alert.show();   
+  };  
+  
+  $(function () {  
+    // 允许上传的图片类型  
+    var allowTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];  
+    // 1024KB，也就是 1MB  
+    var maxSize = 10240 * 10240;  
+    // 图片最大宽度  
+    var maxWidth = 300;  
+    // 最大上传图片数量  
+    var maxCount = 6;  
+    $('.js_file').on('change', function (event) {  
+      var files = event.target.files;  
+      
+        // 如果没有选中文件，直接返回  
+        if (files.length === 0) {  
+          return;  
+        }  
+        
+        for (var i = 0, len = files.length; i < len; i++) {  
+          var file = files[i];  
+          var reader = new FileReader();  
+          
+            // 如果类型不在允许的类型范围内  
+            if (allowTypes.indexOf(file.type) === -1) {  
+              $.weui.alert({text: '该类型不允许上传'});  
+              continue;  
+            }  
+            
+            if (file.size > maxSize) {  
+              $.weui.alert({text: '图片太大，不允许上传'});  
+              continue;  
+            }  
+            
+            if ($('.weui_uploader_file').length >= maxCount) {  
+              $.weui.alert({text: '最多只能上传' + maxCount + '张图片'});  
+              return;  
+            }  
+            
+            reader.onload = function (e) {  
+              var img = new Image();  
+              img.onload = function () {  
+                    // 不要超出最大宽度  
+                    var originWidth = this.width;
+                    var originHeight = this.height;
+                    var maxWidth = 400, maxHeight = 400; 
+                    var canvas = document.createElement('canvas');  
+                    var ctx = canvas.getcontext('2d');  
+                    // 设置 canvas 的宽度和高度  
+                    // canvas.width = w;  
+                    // canvas.height = h;  
+                    // ctx.drawImage(img, 0, 0, w, h);  
+
+    //                 var originWidth = this.width;
+    // var originHeight = this.height;
+    // 最大尺寸限制
+    var maxWidth = 400, maxHeight = 400;
+    // 目标尺寸
+    var targetWidth = originWidth, targetHeight = originHeight;
+    // 图片尺寸超过400x400的限制
+    if (originWidth > maxWidth || originHeight > maxHeight) {
+        if (originWidth / originHeight > maxWidth / maxHeight) {
+            // 更宽，按照宽度限定尺寸
+            targetWidth = maxWidth;
+            targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+        } else {
+            targetHeight = maxHeight;
+            targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+        }
+    }
+        
+    // canvas对图片进行缩放
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    // 清除画布
+    ctx.clearRect(0, 0, targetWidth, targetHeight);
+    // 图片压缩
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    fileUpload();
+  };
+  reader.readAsDataURL(file);
+
+function fileUpload() {   
+     var data = canvas.toDataURL("image/jpeg", 0.92);   
+     //dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了   
+    datadata = data.split(',')[1];   
+    data = window.atob(data);   
+    var ia = new Uint8Array(data.length);   
+    for (var i = 0; i < data.length; i++) {   
+          ia[i] = data.charCodeAt(i);   
+    };   
+     //canvas.toDataURL 返回的默认格式就是 image/png   
+    var blob = new Blob([ia], {   
+     type: "image/jpeg"   
+    });   
+    var fd = new FormData();   
+        fd.append('myFile', blob);   
+    var xhr = new XMLHttpRequest();   
+    xhr.addEventListener("load", opts.success, false);   
+    xhr.addEventListener("error", opts.error, false);   
+    xhr.open("POST", opts.url);   
+    xhr.send(fd);   
+ }  
+
+  //                   var base64 = canvas.toDataURL('image/jpeg',0.92);  
+                    
+  //                   // 插入到预览区  
+  //                   var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
+  //                   $('.weui_uploader_files').append($preview);  
+  //                   var num = $('.weui_uploader_file').length;  
+  //                   $('.js_counter').text(num + '/' + maxCount);  
+                    
+
+  //                   //postbase64到后台upload
+
+
+
+
+
+
+
+  //                   // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
+                    
+  //                   var progress = 0;  
+
+  //                   function uploading() {  
+  //                     $preview.find('.weui_uploader_status_content').text(++progress + '%');  
+  //                     if (progress < 100) 
+  //                     {  
+  //                       setTimeout(uploading, 30);  
+  //                     }  
+  //                     else{  
+  //                           // 如果是失败，塞一个失败图标  
+  //                           //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
+  //                           $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
+  //                         }  
+  //                   }  
+  //                       setTimeout(uploading, 30);  
+  //                     };  
+                      
+  //                     img.src = e.target.result;  
+  //                   };  
+
+  //                   reader.readAsDataURL(file);  
+  //                 }  
+  //               });  
+  // });  
+//# sourceURL=pen.js  
 </script>

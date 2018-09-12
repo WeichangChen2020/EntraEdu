@@ -239,7 +239,7 @@ class ClassController extends CommonController {
         } else {
             $map['type'] = 0;
             $list = M('StudentList')->where($map)->field('id,academy,class,number,name')->select();
-            $filename .= '大学物理学习平台未注册用户';
+            $filename .= '计算机网络学习平台未注册用户';
         }
 
         $this->excel($list, $title, $filename);

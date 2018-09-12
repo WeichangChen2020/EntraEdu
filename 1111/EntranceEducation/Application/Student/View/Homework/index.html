@@ -34,11 +34,11 @@
                     <div><i class="weui_icon_success"></i>已提交|得分:{$homework.isSubmit}</div>
                   </if>
 
-                <div><i class="weui_icon_info"></i>提交人数：&nbsp;&nbsp;{$homework.submit}/{$homework.count}</div>
+                <div><i class="weui_icon_info"></i>提交人数：&nbsp&nbsp{$homework.submit}/{$allnum}</div>
               </div>
             </a>            
         </volist>
-         <a href="{:U('User/index', array('openId'=>session('openId')))}" class="weui_btn weui_btn_primary">返回主页</a>
+         <a href="http://1111.testroom.applinzi.com/EntranceEducation/index.php/User/index/openId/<?php echo session('openId');?>" class="weui_btn weui_btn_primary">返回主页</a>
       </div>
     </div>
   <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
