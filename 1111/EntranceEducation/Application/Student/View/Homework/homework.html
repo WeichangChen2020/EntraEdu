@@ -35,17 +35,7 @@
             </volist>
 <script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer></script>
 
-            <button type="submit" class="weui_btn weui_btn_primary">提交</button>
-          </form> 
 
-  </div>
-  <!--<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
-  <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
-  <script src="__PUBLIC__/js/jquery-weui.js"></script> -->
-
-  <include file="./Public/html/_foot.html"/>
-</body>
-</html>
 <script>  
   $.weui = {};  
   $.weui.alert = function(options){  
@@ -161,48 +151,19 @@ function fileUpload() {
     xhr.send(fd);   
  }  
 
-  //                   var base64 = canvas.toDataURL('image/jpeg',0.92);  
-                    
-  //                   // 插入到预览区  
-  //                   var $preview = $('<li class="weui_uploader_file weui_uploader_status" style="background-image:url(' + base64 + ')"><div class="weui_uploader_status_content">0%</div></li>');  
-  //                   $('.weui_uploader_files').append($preview);  
-  //                   var num = $('.weui_uploader_file').length;  
-  //                   $('.js_counter').text(num + '/' + maxCount);  
-                    
-
-  //                   //postbase64到后台upload
-
-
-
-
-
-
-
-  //                   // 然后假装在上传，可以post base64格式，也可以构造blob对象上传，也可以用微信JSSDK上传  
-                    
-  //                   var progress = 0;  
-
-  //                   function uploading() {  
-  //                     $preview.find('.weui_uploader_status_content').text(++progress + '%');  
-  //                     if (progress < 100) 
-  //                     {  
-  //                       setTimeout(uploading, 30);  
-  //                     }  
-  //                     else{  
-  //                           // 如果是失败，塞一个失败图标  
-  //                           //$preview.find('.weui_uploader_status_content').html('<i class="weui_icon_warn"></i>');  
-  //                           $preview.removeClass('weui_uploader_status').find('.weui_uploader_status_content').remove();  
-  //                         }  
-  //                   }  
-  //                       setTimeout(uploading, 30);  
-  //                     };  
-                      
-  //                     img.src = e.target.result;  
-  //                   };  
-
-  //                   reader.readAsDataURL(file);  
-  //                 }  
-  //               });  
-  // });  
-//# sourceURL=pen.js  
+ 
 </script>
+
+
+
+            <button type="submit" class="weui_btn weui_btn_primary">提交</button>
+          </form> 
+
+  </div>
+  <!--<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+  <script src="__PUBLIC__/lib/jquery-2.1.4.js"></script>
+  <script src="__PUBLIC__/js/jquery-weui.js"></script> -->
+
+  <include file="./Public/html/_foot.html"/>
+</body>
+</html>
