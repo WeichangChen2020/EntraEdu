@@ -89,7 +89,7 @@
               $.toast("注册成功");
               $('#submit').hide(); //隐藏确定键
             }, 1000)
-             window.location.href="{:U('User/index')}/openId/{$openId}";//注册成功后跳转到首页，如果直接Index/index，就没有学生信息数组，首页就没有学生信息，所以跳转到User/index
+             window.location.href="{:U('User/index',array('openId'=>session('openId')))}";//注册成功后跳转到首页，如果直接Index/index，就没有学生信息数组，首页就没有学生信息，所以跳转到User/index
           });
         }
       });

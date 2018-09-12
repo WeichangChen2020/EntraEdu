@@ -50,6 +50,7 @@
             setTimeout(function(){
                 //上传
                 wx.getLocation({
+                type: 'gcj02',//平台地理位置加密方法统一使用火星地址
                     success:function(res){
                         upload(res);
                     }
@@ -67,13 +68,18 @@
             };
             //上传
             $.post(url,data,function(res){
-                if(res == 'close') $.toast('本次签到已经截止','cancel');
-                else if(res == 'signined') $.toast('你已经签到过了','text');
-                else if(res == 'success'){
+                if(res == 'close'){
+                    $.toast('本次签到已经截止','cancel');
+                } else if(res == 'signined'){
+                    $.toast('你已经签到过了','text');
+                } else if(res == 'empty'){
+                    $.toast('无法获取地理信息','cancel');
+                } else if(res == 'success'){
                     $.toast('签到成功');
                     window.location.href="{:U('Signin/index', array('openId'=>session('openId')))}";
+                } else{
+                    $.toast('签到失败,请稍后重试','cancel');
                 }
-                else $.toast('签到失败,请稍后重试','cancel');
             })
         }
     }

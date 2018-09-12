@@ -270,9 +270,9 @@ class UnitController extends CommonController {
                             $uploadExercise[$i] = array(
                                 'chapter' => $chapter,
                                 'type' => 4,
-                                'contents' => 'http://testroom-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i]['savename'],
+                                'contents' => 'http://dataplatform-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i]['savename'],
                                 //'rightAnswer' => substr(I('right_answer'), $i,1) ,   //get each answer of input
-                                'right_answer' => 'http://testroom-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i+count($info)/2]['savename'],
+                                'right_answer' => 'http://dataplatform-public.stor.sinaapp.com/computernetwork/questionbank/'.$chapter.'/'.$info[$i+count($info)/2]['savename'],
                                 'time' => date('Y-m-d H:i:s'),                                
                             );
                         }
@@ -440,7 +440,7 @@ class UnitController extends CommonController {
             $info   =   $upload->upload();
 			if(!$info)  $this->error($upload->getErrorMsg());
             
-            $file_name =  'http://classtest-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
+            $file_name =  'http://dataplatform-public.stor.sinaapp.com/'.$info[0]['savepath'].$info[0]['savename'];
            
             $exl = $this->import_exl($info[0]['savepath'].$info[0]['savename']);
 

@@ -35,7 +35,7 @@ function get_exsercise_index_css($quesid) {
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	);
+	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
@@ -56,7 +56,7 @@ function get_exercise_url_css($quesid) {
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	);
+	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
@@ -77,7 +77,7 @@ function get_record_index_css($quesid) {
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	);
+	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
@@ -106,7 +106,7 @@ function get_collect_index_css($quesid) {
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	);
+	);
 	
 	$result =  M('exercise')->where($map)->getField('result');
 
@@ -135,7 +135,7 @@ function get_repeat_index_css($quesid) {
 	$map = array(
 		'openid' => $openid,
 		'quesid' => $quesid,
- 	);
+	);
 	
 	$result =  M('repeat')->where($map)->getField('result');
 
@@ -162,9 +162,9 @@ function get_repeat_url_css($quesid) {
 
 
 	//if(!isset($result)) {
-		return U('Repeat/repeat_chap', array('quesid'=>$quesid));
+	return U('Repeat/repeat_chap', array('quesid'=>$quesid));
 	//} else {
-		return 'javascript:;' ;		
+	return 'javascript:;' ;		
 	//}
 
 }
@@ -199,6 +199,29 @@ function is_on_college($examid) {
 	}
 
 }
+// 获取某id的名字
+function getChatName($id) {
+	$data = M('ChatData')->where(array('id'=>$id))->field('name')->find();
+	return $data['name'];
+}
+// 获取章节名
+function getChapterName($id) {
+	$data = M('QuestionChapter')->where(array('id'=>$id))->field('chapter')->find();
+	return $data['chapter'];
+}
+// 获取题目类型
+function getQuestionType($type) {
+	if ($type == 1) {
+		return '单选题';
+	} else if ($type == 2) {
+		return '判断题';
+	} else if ($type == 3) {
+		return '多选题';
+	} else if ($type == 4) {
+		return '计算题';
+	}
+	return false;
+}
 
 
- ?>
+?>

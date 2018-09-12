@@ -32,8 +32,8 @@
 		                	<span>{$stu_info.class|default='浙江'}</span>
 		                	<span>{$stu_info.number|default='杭州'}</span>
                             <br/>
-                            <span>积分：{$stu_info.lastMark}</span>&nbsp;
-                            <span>排名：{$stu_info.ranking}/{$stu_info.stuNum}</span>
+                            <span>积分：{$stu_info.lastMark|default='0'}</span>&nbsp;
+                            <!-- <span>排名：{$stu_info.ranking}/{$stu_info.stuNum}</span> -->
                         </li>
 		            </ul>
 		            
@@ -47,7 +47,7 @@
 		<div class="weui-cells__title">课前</div>
 
         <div class="weui-grids">
-            <a href="https://pan.baidu.com/s/1nvgPajB" class="weui-grid js_grid">
+            <a href="http://18.dataplatform.applinzi.com/EntranceEducation/Application/Student/View/Index/download_list.php" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
 <!--                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon_nav_city"></use></svg> -->
                     <img src="__PUBLIC__/images/download.png">
@@ -76,12 +76,18 @@
                     <img src="__PUBLIC__/images/icon_nav_city.png">
                 </div>
                 <p class="weui-grid__label">在线签到</p>
-            </a>             
+            </a>
             <a href="{:U('Test/testList')}" class="weui-grid js_grid">
                 <div class="weui-grid__icon">
                     <svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-simulation"></use></svg>
                 </div>
                 <p class="weui-grid__label">随堂测试</p>
+            </a>
+            <a href="{:U('Chat/index')}" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="__PUBLIC__/images/chat.png">
+                </div>
+                <p class="weui-grid__label">平台互动</p>
             </a>
         </div>
 
@@ -131,8 +137,8 @@
         
         <div class="weui-footer">
             <p class="weui-footer__links">
-                <a href="" class="weui-footer__link">计算机网络在线学习平台 首页</a></p>
-            <p class="weui-footer__text">Copyright © 2017 浙江工商大学信电学院“私人订制”</p>
+                <a href="" class="weui-footer__link">大学物理在线学习平台 首页</a></p>
+            <p class="weui-footer__text">Copyright © 2017 浙江工商大学信电学院“私人定制”</p>
         </div>
         
         

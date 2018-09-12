@@ -24,6 +24,18 @@ class StudentInfoModel extends Model {
 		return $stuNum;
 	}
 
+	/**
+	 * getStuNumByClass  通过班级名获取班级人数
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright 2018-03-25T13:35:43+0800
+	 * @var
+	 * @param     string                   $class [description]
+	 * @return    int                          [description]
+	 */
+	public function getStuNumByClass($class){
+		$stuNum = $this->where(array('class'=>$class))->count();
+		return $stuNum;
+	}
 	//判断是否注册
 	public function isRegister($openId){
 		$condition['openId'] = $openId;                //查询条件

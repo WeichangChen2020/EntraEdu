@@ -49,12 +49,14 @@ class TestController extends Controller{
     //随堂测试列表->随堂测试（在线测试，题目解析，测试统计，测试详情）
     public function testMenu(){
         $testid = I('testid')?I('testid'):$this->error('你访问的页面不存在');
+        $testName = I('testName')?I('testName'):$this->error('你访问的页面不存在');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         session('testid',null);
         session('testid',$testid);
         $TESTSUBMIT = D('TestSubmit');
         $this->assign('state',$TESTSUBMIT->isSubmit($openId,$testid));//是否提交
         $this->assign('testid',$testid);
+        $this->assign('testName',$testName);
         $this->assign('number',$TESTSUBMIT->getSubmitNum($testid))->display();
     }
 
@@ -66,10 +68,17 @@ class TestController extends Controller{
         $TESTSUBMIT = D('TestSubmit');
         $TESTSET = D('TestSet');
         $TESTSELECT = D('TestSelect');
-        if($TESTSUBMIT->isSubmit($openId,$testid))
+        $info = $TESTSET->beforeInitTest($openId,$testid);
+        if($info['is_end'] == 1){
+            $this->error('测试已结束！');
+        }
+        if($info['is_on'] == 0){
+            $this->error('测试已关闭！');
+        }            
+        if($info['is_submit'] == 1){
             $this->error('你已提交！');
-        if(!$TESTSET->isEnd($testid))
-            $this->error('测试已经结束！');
+        }
+
         //$quesList = M('test_questionbank')->where(array('testid' => $testid))->order('time desc')->select();
         //p($quesList);
         //$this->assign('quesList',$quesList)->display();
@@ -78,7 +87,8 @@ class TestController extends Controller{
         //p($testItem);
         //p($testItem['quesid']);
         $quesItem = D('Questionbank')->getQuestion($testItem['quesid']);//某一道题目的信息
-        //p($quesItem);
+        $quesItem['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesItem['chapter'].'_'.$quesItem['type'].'_'.$quesItem['right_answer'].'_'.$quesItem['id'].'.jpg';
+        // p($quesItem);
         $this->assign('testItem', $testItem);        
         $this->assign('quesItem', $quesItem);
 
@@ -97,11 +107,11 @@ class TestController extends Controller{
         $this->assign('end_time', $end_time);    
 
         //根据题型显示
-        if ($quesItem['type'] == '单选题') {
+        if ($quesItem['type'] == '1') {
             $this->display('radio');
-        } else if ($quesItem['type'] == '判断题') {
+        } else if ($quesItem['type'] == '2') {
             $this->display('judge');
-        } else if ($quesItem['type'] == '多选题') {
+        } else if ($quesItem['type'] == '3') {
             $this->display('mutil');
         }        
     }
@@ -177,28 +187,49 @@ class TestController extends Controller{
     }
 
     //题目解析
-    public function testAnalyze(){
+    public function testAnalyze($selectid = 0){
         $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
         $TESTSUBMIT = D('TestSubmit');
         $TESTSELECT = D('TestSelect');
         if(!$TESTSUBMIT->isSubmit($openId,$testid))
             $this->error('请完成测试再查看解析');
-        $quesList = M('test_questionbank')->where(array('testid' => $testid,'openId'=>$openId))->select();
-        // var_dump($quesList);
-        foreach ($quesList as $key => &$value) {
-            $quesItem[$key] = D('Questionbank')->getQuestion($value['quesid']);
-            $quesItem[$key]['answer'] = $TESTSELECT->getUserAnswer($openId,$testid,$value['quesid']);
-        }    
-        // var_dump($quesItem);
-        $this->assign('quesItem',$quesItem)->display();
+
+        $quesList = $TESTSELECT->getTestItems($openId, $testid);//某测试所有题目
+        $quesidList = array();
+        foreach ($quesList as $key => $value) {
+            $quesidList[$key] = $value['quesid'];
+        }
+        // p($quesidList);
+        $result    = array();
+        foreach ($quesidList as $value) {
+            $cond   = array('id' => $value);
+            $result = array_merge($result,M('questionbank')->where($cond)->select());
+        }
+        // p($result);//某几章节的所有题目二维数组
+             
+        foreach ($result as $key => $value) {
+            $result[$key]['contents'] = C('COMMONPATH').C('QUESTIONPATH').$value['chapter'].'_'.$value['type'].'_'.$value['right_answer'].'_'.$value['id'].'.jpg';
+            $result[$key]['answer'] = $TESTSELECT->getUserAnswer($openId,$testid,$value['id']);
+        }
+        // p($result);die;
+        
+        $this->assign('quesItem',$result)->display();
     }
 
     //测试统计(教师端和学生端共用)
     public function testDetails(){
         $testid   = session('?testid') ? session('testid') : $this->error('请重新获取该页面');
         $openId   = session('?openId') ? session('openId') : $this->error('请重新获取该页面');
-
+        $user = new UserController();
+        $isTeacher = $user->isTeacher($openId);
+        if(!$isTeacher){
+            $TESTSET = D('TestSet');
+            $info = $TESTSET->beforeInitTest($openId,$testid);
+            if($info['is_end'] == 0 && $info['is_submit'] == 0){
+                $this->error('请完成测试再查看统计情况！');
+            }
+        }
         $TESTBANK    = M('test_questionbank');
         $TESTSELECT  = M('test_select');
 
@@ -213,11 +244,12 @@ class TestController extends Controller{
             //$quesList = array_merge($quesList[$key],$quesItem);
             //var_dump($quesList);die;
             $quesList[$key]['type'] = $quesItem['type'];
-            $quesList[$key]['contents'] = $quesItem['contents'];
+            $quesList[$key]['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesItem['chapter'].'_'.$quesItem['type'].'_'.$quesItem['right_answer'].'_'.$quesItem['id'].'.jpg';
             $quesList[$key]['option_a'] = $quesItem['option_a'];
             $quesList[$key]['option_b'] = $quesItem['option_b'];
             $quesList[$key]['option_c'] = $quesItem['option_c'];
             $quesList[$key]['option_d'] = $quesItem['option_d'];
+            $quesList[$key]['answer'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'openid' => $openId))->getField('answer');
             $quesList[$key]['optionA'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'A'))->count();
             $quesList[$key]['optionB'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'B'))->count();
             $quesList[$key]['optionC'] = $TESTSELECT->where(array('testid' => $testid,'quesid' => $quesId,'answer' => 'C'))->count();

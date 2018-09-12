@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>点名记录情况</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+
+    <script src="http://webapi.amap.com/maps?v=1.3&key=f5d1d7ee5d3716d16ed26a968adcbcaf"></script>
+    <include file="./Public/html/_foot.html"/>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        //高德地图地理位置使用的是火星地址，即gcj02加密方法
+        var teacher = eval(<?php echo json_encode($teacherLocation);?>);
+        var Tcenter = [teacher['longitude'],teacher['latitude']];
+        var map = new AMap.Map('container', {
+            mapStyle: 'amap://styles/5f066e4d183083b3aa1dc08648dfbfe3',
+            resizeEnable: true,
+            zoom:16,
+            center: Tcenter,
+        });
+
+        var marker = new AMap.Marker({
+            position: Tcenter,
+            iconLabel: '1',
+            icon: 'http://vdata.amap.com/icons/b18/1/2.png',
+            offset : new AMap.Pixel(-12,-12),
+        });
+        marker.setMap(map);
+        var circle = new AMap.Circle({
+            center: Tcenter,
+            radius: 200,
+            fillOpacity:0.2,
+            strokeWeight:1
+        })
+        circle.setMap(map);
+        map.setFitView();
+        var info = new AMap.InfoWindow({
+            content:teacher['class'].split('_')+teacher['signinName']+"<br>以"+teacher['name']+"老师为圆心半径200M内",
+            offset:new AMap.Pixel(0,-28),
+        })
+        info.open(map,marker.getPosition())
+        var markers = [];
+        var signinList =eval('<?php echo json_encode($signinList);?>');
+        for (var i = signinList.length - 1; i >= 0; i--) {
+            var a = new AMap.Marker({
+                position: [signinList[i]['longitude'], signinList[i]['latitude']],
+                title: signinList[i]['name'],
+                map: map,
+            });
+            markers.push(a);
+        };
+        $.each(markers, function (k, v) {
+            markers[k].on('click', function () {
+                var info = new AMap.InfoWindow({
+                    content:markers[k].getTitle(),
+                    offset:new AMap.Pixel(0,-28),
+                })
+                info.open(map,markers[k].getPosition())
+            });
+
+        })
+
+    </script>
+</body>
+</html>
+

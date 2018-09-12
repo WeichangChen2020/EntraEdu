@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>平台互动</title>
+    <include file="./Public/html/_head.html"/>
+    <include file="./Public/weui2.0/__head.html"/>
+    <link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    <style type="text/css">.a{ position: absolute; } .title {background-color:#fbf9fe; color: #476777;border-bottom: 1px solid #d9d9d9;left:10px;} .icon { width: 20px; height: 20px; float: left; margin-top: 0; margin-right: 5px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; } .bar .icon { font-size: 0.9rem; color: #12b7f5; } .bar{ background-color:#fbf9fe; }</style>
+    <script src="__PUBLIC__/font/iconfont.js"></script>
+</head>
+<body ontouchstart>
+    <header class="bar bar-nav">
+        <div class="title">写帖子</div>
+        <a href="{:U('Chat/index')}" class="pull-left">
+            <svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg>
+        </a>
+        <a href="javascript:;" class="pull-right" id="submit">
+            <div class="icon" style="width: 60px;text-align: right;">提交</div>
+        </a>
+    </header>
+    <div class="weui-cells" style="margin-top:58px">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input id="title" class="weui-input" type="text" placeholder="标题2-30字">
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea id="contents" class="weui-textarea" placeholder="请输入内容" rows="6"></textarea>
+                <div class="weui-textarea-counter"><span id="length">0</span>/300</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<include file="./Public/weui2.0/__foot.html"/>
+<include file="./Public/html/_foot.html"/>
+<script type="text/javascript">
+    var flag = true;
+    $('#contents').bind('input propertychange','textarea', function(){  
+        $('#length').text($("#contents").val().length);
+    });
+    $("#submit").click(function(){
+        var title = $("#title").val();
+        var contents= $("#contents").val();
+        data = {
+            'title'   : title,
+            'contents': contents,
+        }
+        if (title.length <2 || title.length >30) {
+            $.toptip('标题2-30字');
+            return false;
+        }
+        if (contents.length >300) {
+            $.toptip('正文300字以内');
+            return false;
+        }
+        if (!flag) { return false; }
+        flag = false;
+        var url = "{:U('Chat/create')}";
+        $.post(url, data, function(res){
+            if(res == 'success'){  //如果没做过
+                window.location.href="{:U('Chat/index')}";
+            }else{
+                $.toptip('创建失败，请稍后再试');   
+            }
+            flag = true;
+        });
+    });
+
+</script>

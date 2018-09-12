@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>平台互动</title>
+    <include file="./Public/weui2.0/__head.html"/>
+    <link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    <style type="text/css">.icon { width: 20px; height: 20px; float: left; margin-top: 0; margin-right: 5px; vertical-align: -0.15em; fill: currentColor; overflow: hidden; } .bar {position:relative;padding: 0; padding: 0 15px; background-color:#fbf9fe; color: #476777; } .title {background-color:#fbf9fe; color: #476777;border-bottom: 1px solid #d9d9d9;left:10px;} .bar .icon {margin: 10px 0; padding: 0; } .weui-cells { margin-top: 6px; } .weui_media_desc { color: #999; font-size: 13px; } .c-button { position: fixed; bottom: 1px; width: 100%; font-size: 20px; } .replyl,.replylzl { display: inline; position: absolute; right: 11px; top: 12px; color: #398ffd; font-size: 15px; } .weui_media_title{ font-weight: 500; font-size: 14px; } .replyContents{ word-break: break-all; } .lzl{ margin-left: 30px; } .author{ width: 19%; overflow: visible!important; } .time{ width: 45%; text-align: right; } .weui-media-box__info__meta{ float: right; padding-right: 0; } .weui-media-box__desc{ color: #6d6d6d; height: auto; } .bot{ height: 47px; } .list_contents{ font-size: 13px; line-height: 1.2; /*text-overflow: ellipsis;*/ display: -webkit-box; -webkit-box-orient: vertical; height: auto; } .list_title{ font-weight: 400; font-size: 17px; width: auto; overflow: hidden; word-wrap: break-word; } .wtf:after{ content: &quot; &quot;; display: block; } .submit{ position: relative; } .deleteIn{ color: #f73b3b; right: 76px; display: inline; position: absolute; top: 12px; font-size: 15px; } </style>
+    <script src="__PUBLIC__/font/iconfont.js"></script>    
+</head>
+<body ontouchstart>
+
+
+    <header class="bar bar-nav">
+        <div class="title">详情</div>
+        <a href="{:U('Chat/index')}" class="pull-left">
+            <svg class="icon icon-left .icon-title" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-fanhui"></use></svg>
+        </a>
+        <if condition="$isTeacher eq true">
+            <a href="javascript:;" class="pull-right delete" id="{$info['0']['id']}">
+                <div class="icon" style="width: 60px;text-align: right;font-size: 19px;line-height: 20px;color: #f73b3b;">删除</div>
+            </a>
+        </if>
+    </header>
+    <div class="weui-panel__bd" style="height: auto;">
+        <div class="weui-media-box weui-media-box_text" style="height: auto;">
+            <h4 class="list_title" style="word-break: break-all;">{$info['0']['title']}</h4>
+            <p class="list_contents">{$info['0']['contents']}</p>
+            <div class="wtf"></div>
+            <ul class="weui-media-box__info">
+                <li class="weui-media-box__info__meta author">{$info['0']['name']}</li>
+                <li class="weui-media-box__info__meta time">{$info['0']['time']}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="bd">
+        <div class="page__bd">
+            <!-- 以下回帖 -->
+            <volist name="list" id="list" key="k" empty="">
+                <if condition="$list.delete neq 1">
+                    <div class="weui-cells">
+                        <div class="weui-cell weui-cell_access">
+                            <div class="weui_media_bd" style="width:100%">
+                                <h4 class="weui_media_title">{$list.name}</h4>
+                                <p class="weui_media_desc">{$k}#&nbsp;&nbsp;{$list.time}</p>
+                                <p class="replyContents">{$list.contents}</p>
+                            </div>
+                            <a id="{$list.id}" class="replyl">回复</a>
+                            <if condition="$isTeacher eq true">
+                                <a id="{$list.id}" href="javascript:;" class="deleteIn" >删除</a>
+                            </if>
+                        </div>
+                        <!-- 以下楼中楼 -->
+                        <volist name="list['child']" id="list['child']" key="j" empty="">
+                            <if condition="$list['child']['delete'] neq 1">
+                                <div class="weui-cell">
+                                    <div class="lzl" >
+                                        <div class="weui_media_bd" style="width:100%">
+                                            <if condition="$list['child']['belongFloor'] neq $list['child']['replyTo']">
+                                                <h4 class="weui_media_title">{$list['child']['name']} 回复 {$list['child']['replyTo']|getChatName=###}:</h4>
+                                                <else />
+                                                <h4 class="weui_media_title">{$list['child']['name']}:</h4>
+                                            </if>
+                                            <p class="weui_media_desc">{$list['child']['time']}&nbsp;&nbsp;</p>
+                                            <p class="replyContents">{$list['child']['contents']}</p>
+                                            <a id="{$list.id}-{$list['child']['id']}" class="replylzl">回复</a>
+                                            <if condition="$isTeacher eq true">
+                                                <a id="{$list['child']['id']}" href="javascript:;" class="deleteIn"">删除</a>
+                                            </if>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </if>
+                        </volist>
+                        <!-- 楼中楼结束 -->
+                    </div>
+                </if>
+            </volist>
+            <!-- 回帖结束 -->
+        </div>
+        <!-- 下面div是为了防止按钮挡住文字 -->
+        <div class="bot"></div>
+        <!-- 输入框 -->
+        <div class="weui-popup__overlay" id="iosMask" style="opacity: 1;display: none;"></div>
+        <div class="weui-actionsheet" id="iosActionsheet">
+            <div class="weui-cells">
+                <div class="weui-cell weui-cell_vcode">
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" placeholder="回复">
+                    </div>
+                    <div class="weui-cell__ft">
+                        <button class="weui-vcode-btn">回复</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a id="reply" class="c-button" href="javascript:;">回帖</a>
+</div>
+</body>
+</html>
+<include file="./Public/weui2.0/__foot.html"/>
+<include file="./Public/html/_foot.html"/>
+<script>
+    var replyTo;
+    var belongFloor = 0;
+    var flag = true;
+    //点击回帖的动作
+    $('#reply').click(function(){
+        var $iosMask = $('#iosMask');
+        var $iosActionsheet = $('#iosActionsheet');
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+            replyTo = "";
+            belongFloor = "";
+            flag = true;
+        }
+        //第一次点击则显示
+        $iosActionsheet.addClass('weui-actionsheet_toggle');
+        $iosMask.fadeIn(200);
+        $('.weui-input').focus();
+        replyTo = {$id};
+        //点击mask则隐藏
+        $iosMask.on('click', hideActionSheet);
+    });
+    //回复楼层的动作
+    $('.replyl').click(function(){
+        var $iosMask = $('#iosMask');
+        var $iosActionsheet = $('#iosActionsheet');
+        replyTo = this.id;
+        belongFloor = this.id;
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+            replyTo = "";
+            belongFloor = "";
+            flag = true;
+        }
+        //第一次点击则显示
+        $iosActionsheet.addClass('weui-actionsheet_toggle');
+        $iosMask.fadeIn(200);
+        $('.weui-input').focus();
+        replyTo = this.id;
+        belongFloor = this.id;
+        //点击mask则隐藏
+        $iosMask.on('click', hideActionSheet);
+        $("#reply").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+            $('#replyText').focus();
+            replyTo = this.id;
+            belongFloor = this.id;
+        });
+    });
+    //回复楼中楼的动作
+    $('.replylzl').click(function(){
+        var $iosMask = $('#iosMask');
+        var $iosActionsheet = $('#iosActionsheet');
+        var data = this.id.split("-");
+        replyTo = data['1'];
+        belongFloor = data['0'];
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+            replyTo = "";
+            belongFloor = "";
+            flag = true;
+        }
+        //第一次点击则显示
+        $iosActionsheet.addClass('weui-actionsheet_toggle');
+        $iosMask.fadeIn(200);
+        $('.weui-input').focus();
+        //点击mask则隐藏
+        $iosMask.on('click', hideActionSheet);
+        $("#reply").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+            $('#replyText').focus();
+        });
+    });
+    //提交
+    $('.weui-vcode-btn').click(function(){
+        var inputText = $('.weui-input').val();
+        if (inputText.length >300) {
+            $.toptip('正文300字以内');
+            return false;
+        }else if (inputText.length <= 0) {
+            return false;
+        }
+        data = {
+            'contents' : inputText,
+            'belongTo' : {$id},
+            'belongFloor' : belongFloor,
+            'replyTo' : replyTo,
+        }
+        var url = "{:U('Chat/detail')}";
+        if (!flag) { return false; }
+        flag = false;
+        $.post(url, data, function(res){
+            if(res == 'success'){
+                window.location.reload();
+            }else{
+                alert(res); 
+            }
+        });
+    });
+</script>
+<script>
+    $('.delete').click(function(){
+        if (confirm("确定删除该数据？该按钮仅教师可见")) {
+            var url = "{:U('Chat/delete')}";
+            var data = {
+                'id' : this.id,
+            }
+            $.post(url, data, function(res){
+                if(res == 'success'){
+                    window.location.href="{:U('Chat/index')}";
+                }else{
+                    alert(res); 
+                }
+            });
+        }
+    });
+    $('.deleteIn').click(function(){
+        if (confirm("确定删除该数据？该按钮仅教师可见")) {
+            var url = "{:U('Chat/delete')}";
+            var data = {
+                'id' : this.id,
+            }
+            $.post(url, data, function(res){
+                if(res == 'success'){
+                    window.location.reload();
+                }else{
+                    alert(res); 
+                }
+            });
+        }
+    });
+</script>

@@ -1,10 +1,10 @@
 <!-- 已签到列表 -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <include file="./Public/html/_head.html"/>
-        <include file="./Public/weui2.0/__head.html"/>
-        <style>
+<head>
+    <include file="./Public/html/_head.html"/>
+    <include file="./Public/weui2.0/__head.html"/>
+    <style>
         [class*="weui-col-"] {
             border: 1px solid #ccc;
             height: 40px;
@@ -27,23 +27,31 @@
         .weui-grid {
             position: relative;
         }
-        .attend {
+        .attend,.absent,.dai,.jia {
             position: absolute;
             width: 0px;
             height: 0px;
             right: 0;
             top: 0;
-            border-top: 40px solid  #30CE4A ;
             border-left: 40px solid transparent ;
         }
+        .attend{
+            border-top: 40px solid  #30CE4A ;
+        }
         .absent {
-            position: absolute;
-            width: 0px;
-            height: 0px;
-            right: 0;
-            top: 0;
             border-top: 40px solid  #FF0000 ;
-            border-left: 40px solid transparent ;
+        }
+        .dai {
+            border-top: 40px solid  #09ffbb ;
+        }
+        .jia {
+            border-top: 40px solid  #f7f70c ;
+        }
+        .noscore {
+            color: #1d00ff ;
+        }
+        .hpnone {
+            color: #fbc2c2 ;
         }
         .flag {
             position: absolute;
@@ -56,30 +64,54 @@
             -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
             -o-transform:rotate(45deg);  /* Opera */
         }
+        .complain {
+            background-color: #a7fbff;
+        }
+        .box {
+            text-align: center;
+        }
     </style>
-    </head>
-        <body ontouchstart>
-            <include file="./Public/html/_refresh.html"/>
-            <header class='demos-header'>
-                <h1 class="demos-title">作业浏览</h1>
-            </header>
+</head>
+<body ontouchstart>
+    <include file="./Public/html/_refresh.html"/>
+    <header class='demos-header'>
+        <h1 class="demos-title">作业浏览</h1>
+        <div class="box">
+          <ul>
+            <li>蓝底表示申诉中</li>
+          </ul>
+      </div>
+    </header>
 
-            <div class="container" id="container">
-                <volist name="classmate" id="signinList" key="k" empty="没有签到信息">
-                    <if condition="$signinList['flag'] eq 1"> 
-                        <a href="{:U('homework_viewdetail')}?homeworkoid={$homeworkoid}&name={$signinList['name']}" class="weui-grid js_grid studentInfo">
-                            <div class="attend"><span class="flag">交</span></div>
-                            <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['class']}</p>
-                        </a>
-                    <elseif condition="$signinList['flag'] eq 0"/>
-                        <a href="javascript:;" class="weui-grid js_grid studentInfo">
-                            <div class="absent"><span class="flag">缺</span></div>
-                            <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['class']}</p>
-                        </a>
-                    </if>
-                </volist>
-            </div>
-        </body>
+    <div class="container" id="container">
+        <volist name="classmate" id="signinList" key="k" empty="没有签到信息">
+            <if condition="$signinList['flag'] eq 1"> 
+                <a href="{:U('homework_viewdetail')}?homeworkoid={$homeworkoid}&name={$signinList['name']}" class="weui-grid js_grid studentInfo {$signinList['complain']}">
+                    <div class="attend"><span class="flag">交</span></div>
+                    <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}
+            <elseif condition="$signinList['flag'] eq 0"/>
+                <a href="javascript:;" class="weui-grid js_grid studentInfo">
+                    <div class="absent"><span class="flag">缺</span></div>
+                    <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}
+            <elseif condition="$signinList['flag'] eq 2"/>
+                <a href="{:U('homework_viewdetail')}?homeworkoid={$homeworkoid}&name={$signinList['name']}" class="weui-grid js_grid studentInfo {$signinList['complain']}">
+                    <div class="jia"><span class="flag">补</span></div>
+                    <p class="weui-grid__label">{$signinList['name']}<br>{$signinList['number']}
+            </if>
+            <if condition="$signinList['hpflag'] eq 1">
+                <br><span >已互评</span>
+                <else />
+                <br><span class="hpnone">未互评</span>
+            </if>
+            <if condition="$signinList['score'] eq '未批改'">
+                <br><span class="noscore">得分:{$signinList['score']}</span>
+                <else />
+                <br><span class="score">得分:{$signinList['score']}</span>
+            </if>
+                </p></a>
+        </volist>
+    </div>
+</body>
 </html>
 <include file="./Public/html/_foot.html"/>
 <include file="./Public/html/_refreshJs.html"/>

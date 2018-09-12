@@ -9,7 +9,7 @@
   <body ontouchstart>
     <include file="./Public/html/_refresh.html"/>
     <header class='demos-header'>
-      <h1 class="demos-title">随堂测试</h1>
+      <h1 class="demos-title">{$testName}</h1>
     </header>
 
     <div class="bd">
@@ -38,7 +38,7 @@
         <a class="weui_cell" href="{:U('Teacher/test_view')}/quizId/{$quizId}">
           <div class="weui_cell_hd"><img src="__PUBLIC__/images/detail.png" class="icon_nav" alt="" style="width:28px;height:28px;margin-right:5px;display:block"></div>
           <div class="weui_cell_bd weui_cell_primary">
-            <p>测试详情</p>
+            <p>提交列表</p>
           </div>
           <div class="weui_cell_ft"><span class="demos-badge">{$number|default='0'}</span></div>
         </a>

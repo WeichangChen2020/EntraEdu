@@ -88,6 +88,7 @@ class MarkController extends Controller{
         $WEIGHT = M('student_mark_weight');
         $weight['openId'] = session('openId');
         $weight['name'] = M('teacher_info')->where(array('openId'=>$openId))->getField('name');
+        $weight['time'] = date('Y-m-d H:i:s',time());
         // $weight['comComment'] = $weight['ranReply'] = $weight['ranComment'] = $weight['comReply'];
         // $weight['doran'] = I('doran');
         // p($weight);die;
@@ -102,7 +103,7 @@ class MarkController extends Controller{
     }
 
     //教师端->积分管理->导出成绩
-    public function exportExcel($arr=array(),$title=array(),$filename='计算机网络成绩统计表'){
+    public function exportExcel($arr=array(),$title=array(),$filename='大学物理成绩统计表'){
         $MARK = M('student_mark');
         header("Content-type:application/octet-stream");
         header("Accept-Ranges:bytes");
@@ -112,7 +113,7 @@ class MarkController extends Controller{
         header("Expires: 0");
         //导出xls 开始
         //数据库对应xls标题的定义
-        $title=array('id','openid','name','number','class','weixinMessageNum','exerciseNum','exerciseRightNum','doRanNum','doRanRightNum','registerNum','classTestNum','classTestRightNum','signinNum','homeworkMark','lastMark');
+        $title=array('id','openid','name'=>'姓名','number'=>'学号','class'=>'班级','weixinMessageNum','exerciseNum'=>'自由练习','exerciseRightNum'=>'自由练习正确','doRanNum'=>'随机练习','doRanRightNum'=>'随机练习正确','registerNum','classTestNum'=>'随堂测试','classTestRightNum'=>'随堂测试正确','signinNum'=>'在线签到','homeworkMark'=>'课后作业得分','lastMark'=>'最终成绩');
         if (!empty($title)){
             foreach ($title as $k => $v) {
                 $title[$k]=iconv("UTF-8", "GB2312",$v);
@@ -132,6 +133,8 @@ class MarkController extends Controller{
             }
             echo implode("\n",$arr);
         }
+        die;
+        // 使用die是为了避免输出多余的模板html代码
     }
 
     //积分详情
@@ -149,13 +152,13 @@ class MarkController extends Controller{
         $openId=session('openId');//教师id
         // $classList = D('TeacherClass')->getTeacherClass($openId);
         $classList = M('teacher_class')->where(array('openId'=>$openId))->getField('class',true);
-        // p($classList);
+        // p($classList);//老师所带的班级，一维数组
         $STU = array();
         foreach ($classList as $key => $value) {
             $stuidArr  = M('student_info')->where(array('class'=>$value))->getField('openId', true); // 获取openId数组
             $STU = array_merge($STU,$stuidArr);
         } 
-
+        // p($STU);//所带的所有学生的openid数组
         $MARK = M('student_mark');
         foreach ($STU as $value) {
             // p($value);
@@ -207,19 +210,30 @@ class MarkController extends Controller{
             $mark['homeworkMark'] = $HOMEWORK->where(array('openId' => $openId))->sum('mark');
 
         return $mark;
+        // p($mark);
     }
 
     //获取某位学生的积分 = 项目的值 * 项目的权重
     public function getMark($openId){
         $markInfo = $this->getDetails($openId);//传入的是学生id
-
+        // p($markInfo);
         //获取学生班级->教师openid->教师设置的积分权重
         $class = D('StudentInfo')->getClass($openId);
         $teacherid = M('teacher_class')->where(array('class'=>$class))->getField('openId');
+        // p($teacherid);
         $markWeight = M('student_mark_weight')->where(array('openId'=>$teacherid))->find();
         // p($markWeight);
-        $mark = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage']+ $markInfo['exerciseNum'] * $markWeight['exerciseNum']+ $markInfo['exerciseRightNum'] * $markWeight['exerciseRightNum'] + $markInfo['doRanNum'] * $markWeight['doRan'] + $markInfo['doRanRightNum'] * $markWeight['doRanRight'] + $markInfo['registerNum'] * $markWeight['register'] + $markInfo['classTestNum'] * $markWeight['classTest'] + $markInfo['classTestRightNum'] * $markWeight['classTestRight'] + $markInfo['signinNum'] * $markWeight['signin'] + $markInfo['homeworkMark'] * $markWeight['homework'];
-
+        $mark_weixinMessage = $markInfo['weixinMessageNum'] * $markWeight['weixinMessage'];
+        $mark_exer = $markInfo['exerciseNum'] * $markWeight['exerciseNum'];
+        $mark_exer_right = $markInfo['exerciseRightNum'] * $markWeight['exerciseRightNum'];
+        $mark_random = $markInfo['doRanNum'] * $markWeight['doRan'];
+        $mark_ran_right = $markInfo['doRanRightNum'] * $markWeight['doRanRight'];
+        $mark_register = $markInfo['registerNum'] * $markWeight['register'];
+        $mark_test = $markInfo['classTestNum'] * $markWeight['classTest'];
+        $mark_class_right = $markInfo['classTestRightNum'] * $markWeight['classTestRight'];
+        $mark_sign = $markInfo['signinNum'] * $markWeight['signin'];
+        $mark_homework = $markInfo['homeworkMark'] * $markWeight['homework'];
+        $mark = $mark_exer + $mark_exer_right + $mark_random + $mark_ran_right + $mark_register + $mark_test + $mark_class_right + $mark_sign + $mark_homework;
         return ($mark);
         // p($mark);
     }

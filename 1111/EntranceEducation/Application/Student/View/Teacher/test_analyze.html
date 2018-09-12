@@ -1,0 +1,69 @@
+<!-- 试题分析 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>题目解析</title>
+    <include file="./Public/html/_head.html"/>
+    <link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/pages.css">
+    <script src="__PUBLIC__/font/iconfont.js"></script>
+    <style type="text/css">
+      .bar {padding: 0; padding: 0 20px; background-color:#fbf9fe; color: #476777; }
+      .title {background-color:#fbf9fe; color: #476777;}
+      .bar .icon {margin: 10px 0; padding: 0; }
+      .picker-button {font-size: 14px; color: #3d4145;}
+      .opt {display: block;margin-left: 36%;}
+    </style>
+    <style>
+        .cell_top{margin-top:0px;}
+        .quesId{display:none;}
+        .content {margin: 0 20px 20px 20px;padding-bottom: 0px;padding-top: 0rem;}
+        .weui-badge {display: initial;}
+    </style>
+  </head>
+
+  <body ontouchstart>
+    <include file="./Public/html/_refresh.html"/>
+    <header class='demos-header'>
+      <h1 class="demos-title">题目解析</h1>
+    </header>
+    <volist name="quesItem" id="quesItem" empty="没有试题信息">
+      <div class="weui_cells weui_cells_form cell_top">
+        <div class="content">
+          <div class="weui_cell weui_cell_switch">
+            <!-- <div class="weui_cell_hd weui_cell_primary">{$i}.</div> -->
+            <div class="weui_cell_ft">
+                <!-- <input class="weui_switch" type="checkbox" > -->
+                <div class="quesId">{$quesItem.id}</div>
+            </div>
+          </div>
+
+          <div class="c-pic">
+            <span class="weui-badge" style="margin-right: 5px;">{$quesItem['type']|getQuestionType=###}</span><br>
+            <img src="{$quesItem.contents}" style="width: 100%;">
+          </div>
+          <div class="c-table">
+            <!-- option exit -->
+          
+            <div class="weui_cells weui_article cell_top" align="center" style="padding:0px;">
+              <div>
+                标准答案：{$quesItem.right_answer}&nbsp;&nbsp;&nbsp;
+                你的答案：{$quesItem.answer|default="未作答"}
+              </div>
+            </div> 
+
+            <if condition="$quesItem.analysis neq ''">
+              解析:{$quesItem.analysis}
+            </if>
+
+          </div>
+        </div>        
+      </div>
+    </volist>
+        <a class="c-button" href="{:U('Teacher/test_list', array('openId'=>session('openId')))}">返回</a>
+  </body> 
+</html>
+<include file="./Public/html/_foot.html"/>
+<include file="./Public/html/_refreshJs.html"/>

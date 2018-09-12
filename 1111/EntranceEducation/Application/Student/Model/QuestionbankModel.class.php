@@ -36,7 +36,7 @@ class QuestionbankModel extends Model{
 	 */
 	protected function getQuesChapter($cp_id = 1) {
 
-		$Chapter = M('question_chapter', 'cn_', $this->database_con);
+		$Chapter = M('question_chapter', 'cp_', $this->database_con);
 		$chapter = $Chapter->where(array('id' => $cp_id))->getField('chapter');
 
 		return $chapter;
@@ -57,14 +57,20 @@ class QuestionbankModel extends Model{
 		if($tp_id   != 0) $param['type']    = $tp_id;
 
 		$quesArr = $this->where($param)->find();
+		if ($tp_id == 4) {
+			$quesArr['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesArr['chapter'].'_'.$quesArr['type'].'_1_'.$quesArr['id'].'.jpg';	
+			$quesArr['answer'] = C('COMMONPATH').C('QUESTIONPATH').$quesArr['chapter'].'_'.$quesArr['type'].'_0_'.$quesArr['id'].'.jpg';	
+		}else{
+			$quesArr['contents'] = C('COMMONPATH').C('QUESTIONPATH').$quesArr['chapter'].'_'.$quesArr['type'].'_'.$quesArr['right_answer'].'_'.$quesArr['id'].'.jpg';	
+		}
 
 		// 当用户做完了所有的题目
 		if (empty($quesArr)) {
 			return false;
 		}
 
-		$quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
-		$quesArr['type']    = $this->getQuesType($quesArr['type']);
+		// $quesArr['chapter'] = $this->getQuesChapter($quesArr['chapter']);
+		// $quesArr['type']    = $this->getQuesType($quesArr['type']);
 		
 		return $quesArr;
 	}
@@ -195,10 +201,10 @@ class QuestionbankModel extends Model{
 	public function getUnfishRecord($openid) { 
 
 		// 原来写的sql
-		// $sql = "SELECT * FROM cn_questionbank where NOT EXISTS (SELECT * FROM cn_exercise where openid = '$openid' AND cn_exercise.quesid = cn_questionbank.id GROUP BY quesid)";
+		// $sql = "SELECT * FROM cp_questionbank where NOT EXISTS (SELECT * FROM cp_exercise where openid = '$openid' AND cp_exercise.quesid = cp_questionbank.id GROUP BY quesid)";
 
 
-		$sql = "SELECT id FROM cn_questionbank where NOT EXISTS (SELECT quesid FROM cn_exercise where openid = '$openid' AND cn_exercise.quesid = cn_questionbank.id) limit 1" ;
+		$sql = "SELECT id FROM cp_questionbank where NOT EXISTS (SELECT quesid FROM cp_exercise where openid = '$openid' AND cp_exercise.quesid = cp_questionbank.id) limit 1" ;
 
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
@@ -208,7 +214,7 @@ class QuestionbankModel extends Model{
 
 	}
 
-// SELECT * FROM cn_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0' AND NOT EXISTS (SELECT * FROM cn_mistake_history where cn_exercise.quesid = cn_mistake_history.id AND cn_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw');
+// SELECT * FROM cp_exercise where openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw' AND result = '0' AND NOT EXISTS (SELECT * FROM cp_mistake_history where cp_exercise.quesid = cp_mistake_history.id AND cp_mistake_history.result = '1' AND openid = 'ohd41t3hENwHiNZTFBlbsUaB-gGw');
 
 
 	/**

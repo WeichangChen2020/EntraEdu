@@ -52,7 +52,7 @@ class ExerciseModel extends Model {
 		// 此时用户按章节选择题目
 		if($chapid != 0) {
 
-			$sql = "SELECT id FROM cn_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT quesid FROM cn_exercise where openid = '$openid' AND cn_exercise.quesid = cn_questionbank.id) limit 1";
+			$sql = "SELECT id FROM cp_questionbank where chapter = '$chapid' AND NOT EXISTS (SELECT quesid FROM cp_exercise where openid = '$openid' AND cp_exercise.quesid = cp_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
@@ -67,7 +67,7 @@ class ExerciseModel extends Model {
 		 
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
-			$sql = "SELECT id FROM cn_questionbank where type = '$typeid' AND NOT EXISTS (SELECT quesid FROM cn_exercise where openid = '$openid' AND cn_exercise.quesid = cn_questionbank.id) limit 1";
+			$sql = "SELECT id FROM cp_questionbank where type = '$typeid' AND NOT EXISTS (SELECT quesid FROM cp_exercise where openid = '$openid' AND cp_exercise.quesid = cp_questionbank.id) limit 1";
 
 			$res = $Model->query($sql);
 
@@ -105,7 +105,7 @@ class ExerciseModel extends Model {
 		if($chapid != 0) {
 
 			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.chapter=$chapid")
-					->table(array('cn_exercise'=>'exer','cn_questionbank'=>'bank'))
+					->table(array('cp_exercise'=>'exer','cp_questionbank'=>'bank'))
 					->group("exer.quesid") 
 					->select();
 			
@@ -115,7 +115,7 @@ class ExerciseModel extends Model {
 		// 此时用户按类型选择题目
 		if($typeid   != 0) {
 			$finish_Arr = $Model->where("exer.openid='$openid' && bank.id = exer.quesid && bank.type=$typeid")
-					->table(array('cn_exercise'=>'exer','cn_questionbank'=>'bank'))
+					->table(array('cp_exercise'=>'exer','cp_questionbank'=>'bank'))
 					->group("exer.quesid") 
 					->select();
 
@@ -144,7 +144,7 @@ class ExerciseModel extends Model {
 	 */
 	public function getRankList($start = 0) { 
 
-		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM cn_exercise) P GROUP BY openid ORDER BY SUM(result) desc,openid desc LIMIT  $start,20";
+		$sql = "SELECT openid, sum(result) FROM (SELECT DISTINCT openid,quesid,result FROM cp_exercise) P GROUP BY openid ORDER BY SUM(result) desc,openid desc LIMIT  $start,20";
 		// dump($sql);	
 		$Model = new \Think\Model();
 		$res = $Model->query($sql);
@@ -165,8 +165,8 @@ class ExerciseModel extends Model {
 	 */
 	public function getPerRankList($start = 0) { 
 
-		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM cn_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
-		$sql = "SELECT openid, ROUND(SUM(result)/COUNT(*),2) FROM (SELECT DISTINCT openid,quesid,result FROM cn_exercise) P GROUP BY openid ORDER BY ROUND(SUM(result)/COUNT(*),2) DESC LIMIT  $start,20";
+		// $sql = "SELECT openid,COUNT(result) FROM (SELECT DISTINCT openid,quesid,result FROM cp_exercise) P GROUP BY openid having COUNT(result) ORDER BY COUNT(result) desc";
+		$sql = "SELECT openid, ROUND(SUM(result)/COUNT(*),2) FROM (SELECT DISTINCT openid,quesid,result FROM cp_exercise) P GROUP BY openid ORDER BY ROUND(SUM(result)/COUNT(*),2) DESC LIMIT  $start,20";
 
 		// dump($sql);	
 		$Model = new \Think\Model();
@@ -178,4 +178,44 @@ class ExerciseModel extends Model {
 		return $res;
 	}
 
+	/**
+	 * getMistakeData  得到错题的id
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright 2018-02-23T14:58:17+0800
+	 * @var
+	 * @param     string                   $openid [description]
+	 * @return    string                           quesid
+	 */
+	public function getMistakeData($openid = '') { 
+
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
+		$data = $this->where($map)->find();
+
+		return $data['quesid'];
+	}
+
+	/**
+	 * getNumberOfMistake  获取错题总数
+	 * @author 陈伟昌<1339849378@qq.com>
+	 * @copyright 2018-02-23T14:57:29+0800
+	 * @var
+	 * @param     string                   $openid [description]
+	 * @return    int                           总数
+	 */
+	public function getNumberOfMistake($openid = ''){
+		$map = array(
+			'openid'    => $openid,
+			'result'    => 0,
+			'is_rework' => 0,
+		);
+
+		$data = M('exercise')->where($map)->count();
+
+		return $data;
+
+	}
 }

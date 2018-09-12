@@ -79,16 +79,16 @@ class ExamSubmitModel extends Model {
         return $total-$submitNum;
         // if (!is_null($college)) {
         //     $map['academy'] = $college;
-        //     $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+        //     $sql = "SELECT  openId FROM cp_student_info, cp_student_list WHERE cp_student_list.number = cp_student_info.number AND cp_student_list.academy = $college AND openId NOT IN (SELECT openid FROM cp_exam_submit WHERE examid = $id)";
         //     $count = $Student->where($map)->count();
         // } else {
-        //     $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+        //     $sql = "SELECT  openId FROM cp_student_info, cp_student_list WHERE cp_student_list.number = cp_student_info.number AND openId NOT IN (SELECT openid FROM cp_exam_submit WHERE examid = $id)";
         //     $count = $Student->count();
         // }
 
 
 
-        // $sql = "SELECT COUNT(*) FROM ee_exam_submit WHERE examid = '$id' ";
+        // $sql = "SELECT COUNT(*) FROM cp_exam_submit WHERE examid = '$id' ";
 
         // $Model = new \Think\Model();
         // $res = $Model->query($sql);
@@ -112,9 +112,9 @@ class ExamSubmitModel extends Model {
         $map = array();
 
         if (!is_null($college)) {
-            $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND ee_student_list.academy = $college AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+            $sql = "SELECT  openId FROM cp_student_info, cp_student_list WHERE cp_student_list.number = cp_student_info.number AND cp_student_list.academy = $college AND openId NOT IN (SELECT openid FROM cp_exam_submit WHERE examid = $id)";
         } else {
-            $sql = "SELECT  openId FROM ee_student_info, ee_student_list WHERE ee_student_list.number = ee_student_info.number AND openId NOT IN (SELECT openid FROM ee_exam_submit WHERE examid = $id)";
+            $sql = "SELECT  openId FROM cp_student_info, cp_student_list WHERE cp_student_list.number = cp_student_info.number AND openId NOT IN (SELECT openid FROM cp_exam_submit WHERE examid = $id)";
         }
 
         $Model = new \Think\Model('student_info');

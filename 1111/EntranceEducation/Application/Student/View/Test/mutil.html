@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>随堂测试</title>
         <include file="./Public/weui2.0/__head.html"/>
         <link href="__PUBLIC__/css/exercise.css" type="text/css" rel="stylesheet"/>
         <link rel="stylesheet" href="__PUBLIC__/css/style.css">
@@ -12,9 +12,9 @@
             .bar {padding: 0; padding: 0 20px; background-color:#fbf9fe; color: #476777; }
             .title {background-color:#fbf9fe; color: #476777;}
             .bar .icon {margin: 10px 0; padding: 0; }
-            .weui-dialog__btn {color: #4bc2ff;}
-            /*.icon {width: 20px; height: 20px}*/
+            .picker-button {font-size: 14px; color: #476777;}
             .weui-badge{background-color: #cc99cc;}
+            .opt {display: block;margin-left: 36%;}
         </style>
     </head>
     <body>
@@ -25,52 +25,50 @@
         </header>
     
         <div class="content">
-            <div class="c-pic"><span class="weui-badge" style="margin-right: 5px;">{$quesItem.type}</span>{$quesItem.contents}</div>
+            <div class="c-pic">
+                <span class="weui-badge" style="margin-right: 5px;">{$quesItem['type']|getQuestionType=###}</span><br>
+                <img src="{$quesItem.contents}" style="width: 100%;">
+            </div>
             <!-- <img class="c-pic" src="__PUBLIC__/images/pic.jpg"> -->
             <div class="c-table">
-                <!-- option exit -->
-                <if condition="$quesItem.option_a neq ''">
-                    <a href="javascript:;">
-                        <div class="option-area" id="option-a">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
-                            <lable class="option-contents">{$quesItem.option_a}</lable>
-                        </div>
-                    </a>
-                </if>
-
-                <if condition="$quesItem.option_b neq ''">
-                    <a href="javascript:;">
-                        <div class="option-area" id="option-b">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
-                            <lable class="option-contents">{$quesItem.option_b}</lable>
-                        </div>
-                    </a>
-                </if>
-
-                <if condition="$quesItem.option_c neq ''">
-                    <a href="javascript:;">
-                        <div class="option-area" id="option-c">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
-                            <lable class="option-contents">{$quesItem.option_c}</lable>
-                        </div>
-                    </a>
-                </if>
-
-                <if condition="$quesItem.option_d neq ''">
-                    <a href="javascript:;">
-                        <div class="option-area" id="option-d">
-                            <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
-                            <lable class="option-contents">{$quesItem.option_d}</lable>
-                        </div>
-                    </a>
-                </if>
+                <!-- option exit --> 
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <a href="javascript:;" class="opt">
+                            <div class="option-area" id="option-a">
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-a"></use></svg></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <a href="javascript:;" class="opt">
+                            <div class="option-area" id="option-b">
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-b"></use></svg></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <a href="javascript:;" class="opt">
+                            <div class="option-area" id="option-c">
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-c"></use></svg></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <a href="javascript:;" class="opt">
+                            <div class="option-area" id="option-d">
+                                <span><svg class="icon" aria-hidden="true"><use xmlns:xlink="" xlink:href="#icon-option-d"></use></svg></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 
             </div>
                 
             <if condition="$testItem['seqid'] eq count($quesList)">
                 <a class="c-button" id="submit">提交</a>
             <else /> 
-                <a class="c-button" id="next_ques" href="javascript:;">下一题</a>
+                <a class="c-button" id="next_ques" href="{:U('Test/test', array('selectid'=>$selectidArr[$testItem['seqid']+1]))}">下一题</a>
             </if>
         </div>
 
@@ -165,19 +163,19 @@
             $.post(url, data, function(res){
                 // returnInfo(res);
                 if(res.is_on == 0) {
-                    $.alert("本次考试还未开启！", "提示");
+                    $.alert("本次测试还未开启！", "提示");
                     return;
                 }
                 
                 // 已开启，已提交，已结束
                 if(res.is_submit == 1 && res.is_end == 1) {
-                    $.alert("本次考试已经结束，你成功提交！", "提示");
+                    $.alert("本次测试已经结束，你成功提交！", "提示");
                     return;
                 }
 
                 // 已开启，未提交，已结束
                 if(res.is_submit == 0 && res.is_end == 1) {
-                    alert("本次考试已经结束！！");
+                    alert("本次测试已经结束！！");
                     window.location.href="{:U('Test/tip')}";
                     return;
                 }
@@ -214,9 +212,9 @@
 
     });
 
-    // 离开考试页面
+    // 离开测试页面
     function leave_test() {
-        $.confirm("您确定要中途离开本次考试嘛?", "确认离开?", function() {
+        $.confirm("您确定要中途离开本次测试嘛?", "确认离开?", function() {
             window.location.href="{:U('Test/testList')}";
         }, function() {
           //取消操作

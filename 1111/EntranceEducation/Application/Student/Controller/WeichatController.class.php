@@ -17,10 +17,10 @@ class WeichatController extends Controller{
     public function index($id = ''){
         //调试
         try{
-            $appid     = 'wx913b2486f97088cb';
-            $appsecret = '635f5e327e4c8c2f70744690d9a1e02a';
-            $crypt = 'IFw7tLUcSrbyksiIJUUGEkyL2snSaiXL2arnGzGhXQj'; //消息加密KEY（EncodingAESKey）
-            $token = 'weixin';
+            $appid     = C('APP_ID');
+            $appsecret = C('APP_SECRET');
+            $crypt = C('CRYPT'); //消息加密KEY（EncodingAESKey）
+            $token = C('TOKEN');
             
             /* 加载微信SDK */
             $wechat = new Wechat($token, $appid, $crypt);
@@ -32,7 +32,7 @@ class WeichatController extends Controller{
                 'openId' => $data['FromUserName'],
                 'messageType' => 'formUser',
                 'time'  => date('Y-m-d H:i:s',time()),
-                );
+            );
             if(!empty($data['Content']))  $record['messageContent'] = $data['Content'];
             if(!empty($userInfo['name'])) $record['name'] = $userInfo['name'];
             if(!empty($userInfo['class'])) $record['class'] = $userInfo['class'];
@@ -61,70 +61,70 @@ class WeichatController extends Controller{
      * @param  array  $data   接受到微信推送的消息，用户
      */
     private function user($wechat, $data){
-        define('URL_ROOT', 'http://1111.classtest.sinaapp.com/index.php');
-        define('PICURL_ROOT', 'http://classtest.sinaapp.com/Public/images/qqface/');
+        define('URL_ROOT', 'http://18.dataplatfrom.sinaapp.com/index.php');
+        define('PICURL_ROOT', 'http://dataplatfrom.sinaapp.com/Public/images/qqface/');
         $user             = new UserController();
         
         
         $userInfo         = $user->getUserInfo($data['FromUserName']);
-        $welcome          = array("欢迎".$userInfo['name']."关注计算机网络平台",'',URL_ROOT."/Index/help",PICURL_ROOT."100.gif");
+        $welcome          = array("欢迎".$userInfo['name']."关注大学物理平台",'',URL_ROOT."/Index/help",PICURL_ROOT."100.gif");
         //$connect          = array("联系我", "点击查看很多关于我的信息","http://www.sohu.com","");
         //$more             = array("教学信息","如果你想查看更多关于教学信息，请点击这里","http://mp.weixin.qq.com/s/pvVmTLOqqSarRs0Ou8ngKA","");
         //$myInfo           = array('发送1：我的信息','', URL_ROOT."/User/index/openId/".$data['FromUserName'],PICURL_ROOT.'myInfo.jpg');
         //$fileDownload     = array('发送2：资料下载','', "http://pan.baidu.com/s/1i4TeukX",PICURL_ROOT.'fileDownload.jpg');
         //$homework         = array('发送3：课后作业','', URL_ROOT."/Homework/index/openId/".$data['FromUserName'],PICURL_ROOT.'homework.jpg');
         //$signin           = array('发送4：在线签到','',URL_ROOT."/Signin/index/openId/".$data['FromUserName'],PICURL_ROOT.'signin.jpg');
-        //$test             = array('发送5：随堂测试','',URL_ROOT."/Test/testList/openId/".$data['FromUserName'],PICURL_ROOT.'classtest.jpg');
-        //$random           = array('发送6：自由练习','',"http://classtest.sinaapp.com/index.php/Random/index/openId/".$data['FromUserName'],PICURL_ROOT.'random.jpg');
-        //$interation       = array('发送7：平台互动','', "http://classtest.sinaapp.com/index.php/Community/index/openId/".$data['FromUserName'],PICURL_ROOT.'interation.jpg');
+        //$test             = array('发送5：随堂测试','',URL_ROOT."/Test/testList/openId/".$data['FromUserName'],PICURL_ROOT.'dataplatfrom.jpg');
+        //$random           = array('发送6：自由练习','',"http://dataplatfrom.sinaapp.com/index.php/Random/index/openId/".$data['FromUserName'],PICURL_ROOT.'random.jpg');
+        //$interation       = array('发送7：平台互动','', "http://dataplatfrom.sinaapp.com/index.php/Community/index/openId/".$data['FromUserName'],PICURL_ROOT.'interation.jpg');
         $teacher          = array('教师端入口', '点击进入教师端', URL_ROOT.'/Teacher/index/openId/'.$data['FromUserName'],'');
         
-       
+
         switch ($data['MsgType']) {
             case Wechat::MSG_TYPE_EVENT:
-                switch ($data['Event']) {
-                    case Wechat::MSG_EVENT_SUBSCRIBE:
-                        $wechat->replyNews($welcome,$myInfo);
-                        break;
-                    case Wechat::MSG_EVENT_UNSUBSCRIBE:
-                        //取消关注，记录日志
-                        break;
-                    default:
-                        $wechat->replyText("欢迎访问计算机网络教学在线平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
-                        break;
-                }
+            switch ($data['Event']) {
+                case Wechat::MSG_EVENT_SUBSCRIBE:
+                $wechat->replyNews($welcome,$myInfo);
                 break;
+                case Wechat::MSG_EVENT_UNSUBSCRIBE:
+                        //取消关注，记录日志
+                break;
+                default:
+                $wechat->replyText("欢迎访问大学物理教学在线平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
+                break;
+            }
+            break;
 
             case Wechat::MSG_TYPE_TEXT:
-                $schedule  = new EduController();
-                $isTeacher = $user->isTeacher($data['FromUserName']);
-                $mark      = M('student_mark')->where(array('openId' => $data['FromUserName']))->getField('lastMark');
-                switch ($data['Content']) {
-                    case '好吧':
-                        $wechat->replyText(json_encode($data));
-                        break;
-                    case '我':
-                       $wechat->replyNewsOnce('我的信息：','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n积分：".$mark, URL_ROOT."/User/index/openId/".$data['FromUserName']); 
-                        break;
-                    case '1':
-                       $wechat->replyNewsOnce('发送1：计算机网络',"计算机网络在线学习平台，让同学们更加方便愉快得学习。计算机爱网络，我们爱计算机网络。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
-                        break;
-                    case '?':
-                    case '？':
-                        if($isTeacher)
-                            // $wechat->replyNews($teacher,$more,$myInfo,$fileDownload,$homework,$signin,$test,$random,$interation);
-                            $wechat->replyNews($myInfo, $teacher);
-                        else
-                            $wechat->replyNews($myInfo);
-                        break;
-                    default:
-                        
-                }
+            $schedule  = new EduController();
+            $isTeacher = $user->isTeacher($data['FromUserName']);
+            $mark      = M('student_mark')->where(array('openId' => $data['FromUserName']))->getField('lastMark');
+            switch ($data['Content']) {
+                case '好吧':
+                $wechat->replyText(json_encode($data));
                 break;
+                case '我':
+                $wechat->replyNewsOnce('我的信息：','姓名：'.$userInfo['name']."\n班级：".$userInfo['class']."\n学号：".$userInfo['number']."\n积分：".$mark, URL_ROOT."/User/index/openId/".$data['FromUserName']); 
+                break;
+                case '1':
+                $wechat->replyNewsOnce('发送1：大学物理',"大学物理在线学习平台，让同学们更加方便愉快得学习。", "http://pan.baidu.com/s/1i4TeukX","http://dataplatfrom.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
+                break;
+                case '?':
+                case '？':
+                if($isTeacher)
+                            // $wechat->replyNews($teacher,$more,$myInfo,$fileDownload,$homework,$signin,$test,$random,$interation);
+                    $wechat->replyNews($myInfo, $teacher);
+                else
+                    $wechat->replyNews($myInfo);
+                break;
+                default:
+
+            }
+            break;
             
             default:
                 # code...
-                break;
+            break;
         }
         $data_contents = $data['Content'];
         if (substr($data_contents, 0, 4) === 'lsdh') {
@@ -137,55 +137,55 @@ class WeichatController extends Controller{
      * 未注册处理函数,路人
      */
     private function passer($wechat, $data){
-        define('URL_ROOT', 'http://1111.classtest.sinaapp.com/index.php');
-        define('PICURL_ROOT', 'http://classtest.sinaapp.com/Public/images/weixin/');
+        define('URL_ROOT', 'http://18.dataplatfrom.sinaapp.com/index.php');
+        define('PICURL_ROOT', 'http://dataplatfrom.sinaapp.com/Public/images/weixin/');
         
-        $welcome      = array("欢迎关注计算机网络教学互动平台","计算机网络教学互动平台是一款便利于师生教学计算机网络科目的产品。提供：课后作业、课堂签到、自由练习等功能。");
+        $welcome      = array("欢迎关注大学物理教学互动平台","大学物理教学互动平台是一款便利于师生教学大学物理科目的产品。提供：课后作业、课堂签到、自由练习等功能。");
 
         $schedule     = new EduController();
         $user         = new UserController();
         switch ($data['MsgType']) {
             case Wechat::MSG_TYPE_EVENT:
-                switch ($data['Event']) {
-                    case Wechat::MSG_EVENT_SUBSCRIBE:
-                        $wechat->replyNews($welcome);
-                        break;
-                    case Wechat::MSG_EVENT_UNSUBSCRIBE:
-                        //取消关注，记录日志
-                        break;
-
-                    default:
-                        $wechat->replyText("欢迎访问计算机网络教学互动平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
-                        break;
-                }
+            switch ($data['Event']) {
+                case Wechat::MSG_EVENT_SUBSCRIBE:
+                $wechat->replyNews($welcome);
                 break;
+                case Wechat::MSG_EVENT_UNSUBSCRIBE:
+                        //取消关注，记录日志
+                break;
+
+                default:
+                $wechat->replyText("欢迎访问大学物理教学互动平台！您的事件类型：{$data['Event']}，EventKey：{$data['EventKey']}");
+                break;
+            }
+            break;
 
             case Wechat::MSG_TYPE_TEXT:
-                switch ($data['Content']) {
-                    case '0' :
-                        $wechat->replyText("ss".$data['FromUserName']);
-                        break;
-                    case 't' :
-                    case 'T' :
-                        $wechat->replyText($user->teacherAddFromPasser($data['FromUserName']));
-                        break;
-                    case '1':
-                    case '1':
-                       $wechat->replyNewsOnce('发送1：计算机网络',"计算机网络在线学习平台，让同学们更加方便愉快得学习。计算机爱网络，我们爱计算机网络。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
-                        break;
-                    case '2':
-                       $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学计算机网络期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://classtest.sinaapp.com/Public/images/weixin/fileDownload.jpg");
-                        break;
-                    case '?':
-                    default:       
-                        $wechat->replyNews();
-                        break;
-                }
+            switch ($data['Content']) {
+                case '0' :
+                $wechat->replyText("ss".$data['FromUserName']);
                 break;
+                case 't' :
+                case 'T' :
+                $wechat->replyText($user->teacherAddFromPasser($data['FromUserName']));
+                break;
+                case '1':
+                case '1':
+                $wechat->replyNewsOnce('发送1：大学物理',"大学物理在线学习平台，让同学们更加方便愉快得学习。。", "http://pan.baidu.com/s/1i4TeukX","http://dataplatfrom.sinaapp.com/Public/images/weixin/fileDownload.jpg"); 
+                break;
+                case '2':
+                $wechat->replyNewsOnce("发送2：资料下载","这里有历年浙江工商大学大学物理期末考试真题、历年数学考研真题资源下载、任课教师上课课件、课后习题答案等海量资源等你预览下载。", "http://pan.baidu.com/s/1i4TeukX","http://dataplatfrom.sinaapp.com/Public/images/weixin/fileDownload.jpg");
+                break;
+                case '?':
+                default:       
+                $wechat->replyNews();
+                break;
+            }
+            break;
             
             default:
                 # code...
-                break;
+            break;
         }
     }
 
@@ -198,9 +198,9 @@ class WeichatController extends Controller{
      * @return string       媒体资源ID
      */
     private function upload($type){
-        $appid     = 'wxb0c98aa1d0019242';
+        $appid     = C('APP_ID');
 
-        $appsecret = '906e2e3803f51e05adbb382afb4e8176';
+        $appsecret = C('APP_SECRET');
 
         $token = session("token");
 
@@ -216,28 +216,28 @@ class WeichatController extends Controller{
 
         switch ($type) {
             case 'image':
-                $filename = './Public/image.jpg';
-                $media    = $auth->materialAddMaterial($filename, $type);
-                break;
+            $filename = './Public/image.jpg';
+            $media    = $auth->materialAddMaterial($filename, $type);
+            break;
 
             case 'voice':
-                $filename = './Public/voice.mp3';
-                $media    = $auth->materialAddMaterial($filename, $type);
-                break;
+            $filename = './Public/voice.mp3';
+            $media    = $auth->materialAddMaterial($filename, $type);
+            break;
 
             case 'video':
-                $filename    = './Public/video.mp4';
-                $discription = array('title' => '视频标题', 'introduction' => '视频描述');
-                $media       = $auth->materialAddMaterial($filename, $type, $discription);
-                break;
+            $filename    = './Public/video.mp4';
+            $discription = array('title' => '视频标题', 'introduction' => '视频描述');
+            $media       = $auth->materialAddMaterial($filename, $type, $discription);
+            break;
 
             case 'thumb':
-                $filename = './Public/music.jpg';
-                $media    = $auth->materialAddMaterial($filename, $type);
-                break;
+            $filename = './Public/music.jpg';
+            $media    = $auth->materialAddMaterial($filename, $type);
+            break;
             
             default:
-                return '';
+            return '';
         }
 
         if($media["errcode"] == 42001){ //access_token expired
@@ -250,10 +250,10 @@ class WeichatController extends Controller{
 
 
     public function getAccessToken(){
-        $appid     = 'wxb0c98aa1d0019242';
-        $appsecret = '906e2e3803f51e05adbb382afb4e8176';
+        $appid     = C('APP_ID');
+        $appsecret = C('APP_SECRET');
 
-        // $token = session("token");
+        $token = session("token");
 
         if($token){
             $auth = new WechatAuth($appid, $appsecret, $token);
@@ -267,9 +267,26 @@ class WeichatController extends Controller{
     }
 
     public function getJssdkPackage(){
-        $appid     = 'wx913b2486f97088cb';
-        $appsecret = '635f5e327e4c8c2f70744690d9a1e02a';
-
+        $appid     = C('APP_ID');
+        $appsecret = C('APP_SECRET');
+        //检查access_token是否过期并更新
+        $accessTokenArr = M('access_token')->find(1);
+        $access_token   = $accessTokenArr['access_token'];
+        $now_time = time();
+        if ($now_time - $accessTokenArr['time'] > 7000) {
+            $appid        = C('APP_ID');
+            $appsecret    = C('APP_SECRET');
+            $wechatOauth  = new WechatAuth($appid, $appsecret);
+            $tokenArray   = $wechatOauth->getAccessToken();
+            $access_token = $tokenArray['access_token'];
+            $data = array('access_token' =>$access_token, 'time' => time(), 'id' => 1);
+            if (empty($accessTokenArr)) {
+                M('access_token')->add($data);
+            }else{
+                M('access_token')->where('id=1')->save($data);
+            }
+            session('access_token',$access_token);
+        }
         $jssdk = new Jssdk($appid, $appsecret);
         return $jssdk->GetSignPackage();
     }
@@ -288,14 +305,18 @@ class WeichatController extends Controller{
 
         // 判断 access_token 是否过期
 
-       if ($now_time - $accessTokenArr['time'] > 7000) {
-            $appid        = 'wx1530ad1155dda9ad';
-            $appsecret    = '3fea03b8dd35b465c31b1c37e659cb66';
+        if ($now_time - $accessTokenArr['time'] > 7000) {
+            $appid        = C('APP_ID');
+            $appsecret    = C('APP_SECRET');
             $wechatOauth  = new WechatAuth($appid, $appsecret);
             $tokenArray   = $wechatOauth->getAccessToken();
             $access_token = $tokenArray['access_token'];
             $data = array('access_token' =>$access_token, 'time' => time(), 'id' => 1);
-            M('access_token')->where('id=1')->save($data);
+            if (empty($accessTokenArr)) {
+                M('access_token')->add($data);
+            }else{
+                M('access_token')->where('id=1')->save($data);
+            }
         }
 
 
@@ -330,7 +351,7 @@ class WeichatController extends Controller{
             }
         }
 
-       
+
     }
 
     /**

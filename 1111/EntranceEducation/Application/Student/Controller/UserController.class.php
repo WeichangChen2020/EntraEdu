@@ -41,23 +41,66 @@ class UserController extends Controller {
     public function teacherAdd($openId){
         session('openId',$openId);
         if($this->isTeacher($openId))
-            $this->error('您已是教师',U('Teacher/index'));
+            $this->error('您已是教师',U("Teacher/index",array('openId'=>session('openId'))));
         $userInfo = $this->getUserInfo($openId);
         $info     = array(
             'openId' => $openId,
             'name'   => $userInfo['name'],
+            'telphoneNum' => $userInfo['number'],
             'time'   => date('Y-m-d H:i:s',time())
         );
         //如果用户姓名存在于adminer里，说明是管理员添加的老师
         if(M('adminer')->where(array('nickname'=>$userInfo['name']))->find()){
+
+            //1.教师《-》班级的对应关系暂时是手动导入，所以这里更新openid
+            $data = array();
+            if(M('teacher_class')->where(array('name'=>$userInfo['name']))->find()){
+                $data['openId'] = $openId;
+                M('teacher_class')->where(array('name'=>$userInfo['name']))->save($data);
+            }
+            else{  //给测试员分配路人班级
+                $data = array(
+                    'openId' => $openId,
+                    'name'   => $userInfo['name'],
+                    'class'  => '测试1班、测试2班',
+                    'classid'=> 0
+                );
+                M('teacher_class')->add($data);
+            }
+
+            //2.设置默认积分权重。（这个判断条件可以删除）
+            $WEIGHT = M('student_mark_weight');
+            if(!$WEIGHT->where(array('openId' => $openId))->find()){
+                $weight = array(
+                    'openId' => $openId,
+                    'name'   => $userInfo['name'],
+                    'register' => '1',
+                    'weixinMessage' => '0.1',
+                    'exerciseNum' => '1',
+                    'exerciseRightNum' => '2',
+                    'doRan' => '1',
+                    'doRanRight' => '2',
+                    'classTest' => '1',
+                    'classTestRight' => '2',
+                    'signin' => '1',
+                    'homework' => '2',
+                    'homeworkMark' => '2',
+                    'homeworkhp' => '2',
+                    'homeworkComplain' => '-1',
+                    'time' => date('Y-m-d H:i:s',time())
+                );
+                $WEIGHT->add($weight);
+            }
+            
+            //3.增加教师信息
             $result = M('teacher_info')->add($info);
             if($result)
-                $this->success('教师认证成功，将跳转到教师端',U('Teacher/index'));
+                $this->success('教师认证成功，将跳转到教师端',U("Teacher/index",array('openId'=>session('openId')))); 
                 //return "教师认证成功，发送'2'即可使用教师端功能";
             else
-                $this->error('认证失败',U('User/index'));
+                $this->error('认证失败',U('User/index',array('openId'=>session('openId'))));
         }else{
-            return "您不是教师，请联系管理员。";
+            $this->error('您不是教师，请联系管理员',U('User/index',array('openId'=>session('openId'))));
         }
 
     }
@@ -89,37 +132,77 @@ class UserController extends Controller {
     }
 
 
+    /**
+     * index  平台主界面，同时处理注册函数
+     * @author 陈伟昌<1339849378@qq.com>
+     * @copyright 2018-03-13T10:19:07+0800
+     * @var
+     * @return  
+     */
     public function index(){
-        $openId = getOpenId();       
+        $STU              = D('StudentInfo');
+        $WeChat    = new WeichatController();
+        $openId = I('openId');
         session('openId',$openId);
+        //非AJAX用于正常访问，ajax用于注册
+        if(!IS_AJAX) {
+            if($this->isRegister($openId)){
+                $MARK             = D('StudentMark');
 
-		if($this->isRegister($openId)){
+                $con['openId']    = $openId;
+                $stu_info         = $STU->where($con)->find();
+                $stu_info['lastMark'] = $MARK->getLastMark($openId); //积分
+                $signPackage  = $WeChat->getJssdkPackage();
 
-            $STU              = D('StudentInfo');
-            $MARK             = D('StudentMark');
+                $Profile = M('Profile');
+                $attributes = $Profile->select();;
 
-            $con['openId']    = $openId;
-            $stu_info         = $STU->where($con)->find();
-            $stu_info['lastMark'] = $MARK->getLastMark($openId); //积分
-            $stu_info['ranking'] = $MARK->getRank($openId);//所在积分排名
-            $stu_info['stuNum'] = $STU->getStuNum($openId);//所在班级人数
+                $this->assign('signPackage',$signPackage);
+                $this->assign('openId',$openId);
+                $this->assign('attributes',$attributes);
+                $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
+            }else{
+                $this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
+            }
+        } else {
+            //注册时接收数据
+            $openId    = I('openId');
+            if (empty($openId)) {
+                $openId    = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
+            }
+            //注册页面传递过来的参数
+            $name      = I('name');
+            $number    = I('number');
+            $college   = I('college');
+            $banji     = I('banji'); 
+            $isNewer   = 0;
+            // 用户注册的头像
+            $headimgurl    = $WeChat->getHeadimgurl($openId);
+            if(empty($headimgurl)) $headimgurl = '';
 
-            $weixin       = new WeichatController();
-            $signPackage  = $weixin->getJssdkPackage();
-           
-            $Profile = M('Profile');
-        	$attributes = $Profile->select();;
-           
-            // var_dump($signPackage);
-            // die();
-            $this->assign('signPackage',$signPackage);
-            $this->assign('openId',$openId);
-			
-            $this->assign('attributes',$attributes);
-            $this->assign('stu_info',$stu_info)->display('Index/main');//如果已经注册，直接跳转到欢迎界面
-		}else{
-			$this->assign('openId',$openId)->display('register_new');//否则就到注册页面填写信息
-		}
+            //已注册：
+            //1.openid已存在。
+            //2.用户使用其他微信账户注册，以学号判断，或者以list表中的type判断
+            // $isRegister = $STU->where(array('number'=>$number))->find();
+            // if(true === $STU->isRegister($openId) || $isRegister) {
+            //     $this->ajaxReturn('你已注册');
+            // }
+
+            $registerInfo   = array(
+                'openId'     => $openId,
+                'name'       => $name,
+                'number'     => $number,
+                'academy'    => $college,//学院
+                'class'      => $banji,//班级
+                'is_newer'   => $isNewer,
+                'headimgurl' => $headimgurl,
+                'time'       => date('Y-m-d H:i:s'),
+            );
+
+            if ($STU->add($registerInfo)) {
+                $this->ajaxReturn('success');
+            } 
+        }
     }
 
         
@@ -132,8 +215,9 @@ class UserController extends Controller {
     public function register(){
         if(!IS_AJAX) 
             $this->error('你访问的页面不存在');
+        // dump(I());die;
     	$STU       = D('StudentInfo');
-        $WeChat    = new WeichatController();
+        // $WeChat    = new WeichatController();
         $openId    = session('?openId') ? session('openId') : $this->error('请重新获取改页面');
         //注册页面传递过来的参数
         $name      = I('name');
@@ -141,26 +225,10 @@ class UserController extends Controller {
         $college   = I('college');
         $banji     = I('banji')?I('banji'):'路人'; 
         $isNewer   = 0;
-
         // 用户注册的头像
-        $headimgurl    = $WeChat->getHeadimgurl($openId);
+        // $headimgurl    = $WeChat->getHeadimgurl($openId);
         if(empty($headimgurl)) $headimgurl = '';
 
-        // 新生信息
-        if (!empty($college) && !empty($banji)) {
-            
-            $isNewer = 1;
-
-            $newerInfo = $STU->newerInfo($number);
-            if(false === $newerInfo) {
-                $this->ajaxReturn('请检查您的信息或从非新生入口注册');
-            }
-
-            if(!($newerInfo['name'] == $name && $newerInfo['academy'] == $college && $newerInfo['class'] == $banji)) {
-                $this->ajaxReturn('姓名班级学号信息不一致！请正确输入您的信息！');
-            }
-
-        } 
         //已注册：
         //1.openid已存在。
         //2.用户使用其他微信账户注册，以学号判断，或者以list表中的type判断
@@ -181,13 +249,11 @@ class UserController extends Controller {
         );
 
         if ($STU->add($registerInfo)) {
-
-            // 将StudentList里的type置1
-            M('StudentList')-> where(array('number'=>$number))->setField('type', 1);
             $this->ajaxReturn('success');
         } 
        
     }
+
 
     public function getUserInfo($openId){
         $STU           = D('StudentInfo');       //实例化
@@ -197,4 +263,13 @@ class UserController extends Controller {
     public function getTeacherInfo($openId){
         return M('teacher_info')->where(array('openId' => $openId))->find();
     }
+    public function test(){
+        dump(M('studentInfo')->select());die;
+
+    }
+    //资料下载
+        public function download_list(){
+        $this->display("Index/download_list");
+    }
+
 }
