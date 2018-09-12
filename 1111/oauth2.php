@@ -18,7 +18,7 @@ if (isset($_GET['code'])){
 	//setcookie("openId",$openid, time()+3600);
     echo $openid;
     die;
-    header("Location: http://18.dataplatform.applinzi.com/EntranceEducation/index.php/User/index?openId=$openid"); 
+    header("Location: http://722.testroom.applinzi.com/EntranceEducation/index.php/User/index?openId=$openid"); 
 
 }else{
     echo "NO CODE";
