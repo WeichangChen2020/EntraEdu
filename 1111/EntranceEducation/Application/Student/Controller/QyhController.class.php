@@ -50,18 +50,20 @@ $data_file = array();
         if ($_FILES) {
             foreach ($_FILES as $key => $value) {
                 $file = array();
+                 var_dump($file);die;
                 $file['name'] = $value('name');
                 $file['type'] = $value('type');
                 $file['size'] = $value('size');
                 $file['tmp_name'] = $value('tmp_name');
                 $file['error'] = $value('error');
-                var_dump($file);die;
+               
               $info = $upload->uploadOne($file);
               
             }
         }
 
 
+exit;
 		// 上传文件
 		
         
