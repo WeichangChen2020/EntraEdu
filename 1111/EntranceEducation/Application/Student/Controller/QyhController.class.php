@@ -44,7 +44,7 @@ class QyhController extends Controller
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
-		
+		var_dump($_FILES);die;
 
 		// 上传文件
 		$info = $upload->upload();
@@ -71,12 +71,6 @@ class QyhController extends Controller
                 $map['bj']              = $bj;
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
-                                $name = 'http://testroom-public.stor.sinaapp.com/computernetwork/homework/'.$homeworkname.'/'.$file['savename'];
-                $image = new \Think\Image();
-            $image->open("{$name}");
-                        // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
-                        $image->thumb(800, 800)->save("{$name}");//直接把缩略图覆盖原图
-            }
 
             $homework_zg = M('homework_zg');
             $map2 = array('homeworkname'=>$homeworkname,'id'=>session('homeworkoid'));
