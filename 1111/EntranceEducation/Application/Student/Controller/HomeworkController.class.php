@@ -219,7 +219,7 @@ class HomeworkController extends Controller{
 
         $cond2 = array('homeworkname' => $homeworkname,'id'=>$homeworkoid);
 
-        $homework     = $HOMEWORK->where($cond2)->find();
+        $homework     = $HOMEWORK->where($cond2)->find();//找到第几次布置的什么日期的作业
         // var_dump($homework);die();
         $quesarr      = explode('_', $homework['problem_id']);
         // var_dump($quesarr);die();

@@ -17,7 +17,7 @@ class QyhController extends Controller
 
 	public function upload()
 	{
-        var_dump($_FILES);die;
+        // var_dump($_FILES);die;
         $bj = I('get.bj');
 		
       	//上传图片的张数
@@ -45,10 +45,11 @@ class QyhController extends Controller
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
-		var_dump($_FILES);die;
+		// var_dump($_FILES);die;
 
 		// 上传文件
 		$info = $upload->upload();
+        var_dump($info);die
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
