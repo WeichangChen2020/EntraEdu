@@ -57,6 +57,8 @@ $data_file = array();
                 $file = $_FILES['photo']['error'][$key];
                 $file = $_FILES['photo']['size'][$key];
                 $info = $upload->uploadOne($file);
+                var_dump($file);
+                var_dump($info);exit;
                 $data_file[$key] =$info['url']; 
             }
         }
