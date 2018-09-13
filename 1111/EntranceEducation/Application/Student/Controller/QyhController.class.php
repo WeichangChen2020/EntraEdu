@@ -54,11 +54,7 @@ class QyhController extends Controller
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
-                $name = $file['savepath'].$file['savename'];
-                $image = new \Think\Image();
-            $image->open("./Uploads{$name}");
-                        // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
-                        $image->thumb(800, 800)->save("./Uploads{$name}");//直接把缩略图覆盖原图
+
             
 
 
@@ -75,6 +71,11 @@ class QyhController extends Controller
                 $map['bj']              = $bj;
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
+                                $name = $file['savepath'].$file['savename'];
+                $image = new \Think\Image();
+            $image->open("./Uploads{$name}");
+                        // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
+                        $image->thumb(800, 800)->save("./Uploads{$name}");//直接把缩略图覆盖原图
             }
 
             $homework_zg = M('homework_zg');
