@@ -86,6 +86,7 @@ class QyhController extends Controller
 
 
 	}
+}
 
     public function read(){
         $QUESTION = M('questionbank');
