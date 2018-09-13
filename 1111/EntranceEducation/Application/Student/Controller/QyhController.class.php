@@ -31,7 +31,7 @@ class QyhController extends Controller
         $stuInfo      = $STU->where($cond)->find();
         $homeworkname = I('post.homeworkname');
         $quesarr      = session('quesarr');
-        var_dump($quesarr);die();
+        // var_dump($quesarr);die();//题目的题号，当前布置的作业的题号。
         
 
 
@@ -48,6 +48,7 @@ class QyhController extends Controller
 
 		// 上传文件
 		$info = $upload->upload();
+        var_dump("$info");die;
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
