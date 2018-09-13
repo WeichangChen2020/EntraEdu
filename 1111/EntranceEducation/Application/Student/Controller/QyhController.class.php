@@ -51,11 +51,11 @@ $data_file = array();
                  
                  foreach ($_FILES['photo']["error"] as $key => $error) {
                     $file = array();
-                $file = $_FILES['photo']['name'][$key];
-                $file = $_FILES['photo']['type'][$key];
-                $file = $_FILES['photo']['tmp_name'][$key];
-                $file = $_FILES['photo']['error'][$key];
-                $file = $_FILES['photo']['size'][$key];
+                $file['name'] = $_FILES['photo']['name'][$key];
+                $file['type'] = $_FILES['photo']['type'][$key];
+                $file['tmp_name'] = $_FILES['photo']['tmp_name'][$key];
+                $file['error'] = $_FILES['photo']['error'][$key];
+                $file['size'] = $_FILES['photo']['size'][$key];
                 $info = $upload->uploadOne($file);
                 var_dump($file);
                 var_dump($info);exit;
