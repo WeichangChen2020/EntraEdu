@@ -44,7 +44,7 @@ class QyhController extends Controller
             'autoSub'=>false,
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
-		$info = $upload->upload($file)
+		$info = $upload->upload($file);
 		// var_dump($_FILES);die;
 // $data_file = array();
 //         if ($_FILES) {
