@@ -51,7 +51,7 @@ $data_file = array();
         if ($_FILES['photo']) {
                  $file = array();
             foreach ($_FILES['photo']['name'] as $key => $value) {
-                $file[$key]['name'] = $value('name')
+                // $file[$key]['name'] = $value('name')
             }
         }
   
