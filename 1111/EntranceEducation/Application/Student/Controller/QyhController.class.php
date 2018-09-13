@@ -44,22 +44,23 @@ class QyhController extends Controller
             'autoSub'=>false,
         );
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
-		$info = $upload->upload();
+		// $info = $upload->upload();
 		// var_dump($_FILES);die;
-// $data_file = array();
-//         if ($_FILES) {
-//             foreach ($_FILES as $key => $value) {
-//                 $file = array();
-//                 $file['name'] = $value('name');
-//                 $file['type'] = $value('type');
-//                 $file['size'] = $value('size ');
-//                 $file['tmp_name'] = $value('tmp_name');
-//                 $file['error'] = $value('error');
-//               $data_file[$key] = $info = $upload->upload($file);
-//             }
-//         }
+$data_file = array();
+        if ($_FILES) {
+            foreach ($_FILES as $key => $value) {
+                $file = array();
+                $file['name'] = $value('name');
+                $file['type'] = $value('type');
+                $file['size'] = $value('size ');
+                $file['tmp_name'] = $value('tmp_name');
+                $file['error'] = $value('error');
+              $info = $upload->uploadOne($file);
+              var_dump($info);die;
+            }
+        }
 
-var_dump($info);die;
+
 		// 上传文件
 		
         
