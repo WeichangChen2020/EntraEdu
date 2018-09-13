@@ -55,7 +55,7 @@ $data_file = array();
                 $file['size'] = $value('size ');
                 $file['tmp_name'] = $value('tmp_name');
                 $file['error'] = $value('error');
-              $data_file[$key] = $info = $upload->upload();
+              $data_file[$key] = $info = $upload->upload($file);
             }
         }
 
