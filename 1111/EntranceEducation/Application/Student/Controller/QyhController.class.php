@@ -53,7 +53,7 @@ $data_file = array();
                  foreach ($_FILES['photo']["error"] as $key => $error) {
                 
                $res =  $image->open($_FILES['photo']['tmp_name'][$key])->thumb(150, 150)->save('./thumb.jpg');
-              echo "<img src="./thumb.jpg" alt="">";
+              // echo "<img src="./thumb.jpg" alt="">";
                 $info = $upload->uploadOne("./thumb.jpg");
  var_dump($res);die;
 
