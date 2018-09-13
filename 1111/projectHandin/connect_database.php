@@ -4,7 +4,7 @@
 //$mysql_password ="";
 //$mysql_database = "app_cprogramplatform";
 $mysql_database = "app_".$_SERVER['HTTP_APPNAME'];
-$link=mysql_connect(w.rdc.sae.sina.com.cn:3306,lzyoo3jx2o,ik221mylmw4h1x0kyi51j32k01150hx0j4jk30xi);//连接数据
+$link=mysql_connect(w.rdc.sae.sina.com.cn,lzyoo3jx2o,ik221mylmw4h1x0kyi51j32k01150hx0j4jk30xi);//连接数据
 //$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
 mysql_select_db("$mysql_database",$link);//选择数据库
 mysql_query("set names 'utf-8'");
