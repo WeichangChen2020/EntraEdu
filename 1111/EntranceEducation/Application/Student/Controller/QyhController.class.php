@@ -46,10 +46,10 @@ class QyhController extends Controller
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		
 		// var_dump($_FILES);die;
-$data_file = [];
+$data_file = array();
         if ($_FILES) {
             foreach ($_FILES as $key => $value) {
-                $file = [];
+                $file = array();
                 $file['name'] = $value('name');
                 $file['type'] = $value('type');
                 $file['size'] = $value('size ');
