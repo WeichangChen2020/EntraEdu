@@ -48,13 +48,20 @@ class QyhController extends Controller
 
 		// 上传文件
 		$info = $upload->upload();
-        var_dump("$info");die;
 		if(!$info) 
 		{// 上传错误提示错误信息
 			$this->error($upload->getError());
 		}else{
             foreach($info as $key => $file){
                 // var_dump($key);die();
+                $name = $file['savepath'].$file['savename'];
+                $image = new \Think\Image();
+            $image->open("./Uploads{$name}");
+                        // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
+                        $image->thumb(800, 800)->save("./Uploads{$name}");//直接把缩略图覆盖原图
+            
+
+
                 $imgurl = 'http://testroom-public.stor.sinaapp.com/computernetwork/homework/'.$homeworkname.'/'.$file['savename'];
                 $map['openId']          = $openId;
                 $map['name']            = $stuInfo['name'];
