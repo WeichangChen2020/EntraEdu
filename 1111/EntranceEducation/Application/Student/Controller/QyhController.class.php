@@ -17,7 +17,7 @@ class QyhController extends Controller
 
 	public function upload()
 	{
-         var_dump($_FILES);die;
+        // var_dump($_FILES);die;
         $bj = I('get.bj');
 		
       	//上传图片的张数
