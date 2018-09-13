@@ -31,7 +31,7 @@ class QyhController extends Controller
         $stuInfo      = $STU->where($cond)->find();
         $homeworkname = I('post.homeworkname');
         $quesarr      = session('quesarr');
-        // var_dump($quesarr);die();
+        var_dump($quesarr);die();
         
 
 
