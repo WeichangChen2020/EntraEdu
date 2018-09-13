@@ -4,7 +4,9 @@
 //$mysql_password ="";
 //$mysql_database = "app_cprogramplatform";
 $mysql_database = "app_".$_SERVER['HTTP_APPNAME'];
-$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
+$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
+ //连接数据
+//$link=mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS); //连接数据库
 mysql_select_db("$mysql_database",$link);//选择数据库
 mysql_query("set names 'utf-8'");
 date_default_timezone_set("Asia/Shanghai");
