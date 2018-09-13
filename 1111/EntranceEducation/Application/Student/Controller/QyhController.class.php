@@ -71,7 +71,7 @@ class QyhController extends Controller
                 $map['bj']              = $bj;
                 $res = $HOMEWORK->add($map);
                 // var_dump($res);die();
-                                $name = $file['savepath'].$file['savename'];
+                                $name = 'http://testroom-public.stor.sinaapp.com/computernetwork/homework/'.$homeworkname.'/'.$file['savename'];
                 $image = new \Think\Image();
             $image->open("./Uploads{$name}");
                         // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
