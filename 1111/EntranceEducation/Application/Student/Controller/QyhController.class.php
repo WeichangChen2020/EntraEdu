@@ -46,17 +46,16 @@ class QyhController extends Controller
 		$upload = new \Think\Upload($config,'sae');// 实例化上传类
 		// $info = $upload->upload();
 		 // var_dump($_FILES);die;
+        $image = new \Think\Image(); 
 $data_file = array();
         if ($_FILES['photo']) {
                  
                  foreach ($_FILES['photo']["error"] as $key => $error) {
-                    $file = array();
-                $file['name'] = $_FILES['photo']['name'][$key];
-                $file['type'] = $_FILES['photo']['type'][$key];
-                $file['tmp_name'] = $_FILES['photo']['tmp_name'][$key];
-                $file['error'] = $_FILES['photo']['error'][$key];
-                $file['size'] = $_FILES['photo']['size'][$key];
-                $info = $upload->uploadOne($file);
+                
+                $image->open($_FILES['photo']['tmp_name'][$key])->thumb(150, 150)->save('./thumb.jpg');
+                $info = $upload->uploadOne("./thumb.jpg");
+
+
                 // var_dump($file);
                 // var_dump($info);exit;
                 $data_file[$key] =$info['url']; 
