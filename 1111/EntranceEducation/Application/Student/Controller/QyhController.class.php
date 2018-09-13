@@ -55,7 +55,7 @@ $data_file = array();
                $res =  $image->open($_FILES['photo']['tmp_name'][$key])->thumb(150, 150)->save('./thumb.jpg');
               // echo "<img src="./thumb.jpg" alt="">";
                 $info = $upload->uploadOne("./thumb.jpg");
- var_dump($res);die;
+ var_dump($info);die;
 
                 // var_dump($file);
                 // var_dump($info);exit;
