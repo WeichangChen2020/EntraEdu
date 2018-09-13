@@ -52,11 +52,12 @@ $data_file = array();
                 $file = array();
                 $file['name'] = $value('name');
                 $file['type'] = $value('type');
-                $file['size'] = $value('size ');
+                $file['size'] = $value('size');
                 $file['tmp_name'] = $value('tmp_name');
                 $file['error'] = $value('error');
+                var_dump($file);die;
               $info = $upload->uploadOne($file);
-              var_dump($info);die;
+              
             }
         }
 
