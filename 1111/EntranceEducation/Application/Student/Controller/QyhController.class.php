@@ -50,8 +50,9 @@ $data_file = array();
         if ($_FILES) {
             foreach ($_FILES as $key => $value) {
                 $file = array();
-                 var_dump($file);die;
+
                 $file['name'] = $value('name');
+                   var_dump($file);die;
                 $file['type'] = $value('type');
                 $file['size'] = $value('size');
                 $file['tmp_name'] = $value('tmp_name');
