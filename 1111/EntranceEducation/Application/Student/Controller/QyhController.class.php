@@ -48,15 +48,16 @@ class QyhController extends Controller
 		 // var_dump($_FILES);die;
 $data_file = array();
         if ($_FILES['photo']) {
-                 $files = array();
+                 
                  foreach ($_FILES['photo']["error"] as $key => $error) {
-                $files[$key]['name'] = $_FILES['photo']['name'][$key];
-                $files[$key]['type'] = $_FILES['photo']['type'][$key];
-                $files[$key]['tmp_name'] = $_FILES['photo']['tmp_name'][$key];
-                $files[$key]['error'] = $_FILES['photo']['error'][$key];
-                $files[$key]['size'] = $_FILES['photo']['size'][$key];
+                    $file = array();
+                $file = $_FILES['photo']['name'][$key];
+                $file = $_FILES['photo']['type'][$key];
+                $file = $_FILES['photo']['tmp_name'][$key];
+                $file = $_FILES['photo']['error'][$key];
+                $file = $_FILES['photo']['size'][$key];
                 $info = $upload->uploadOne($file);
-                $data_file =$info['url']; 
+                $data_file[$key] =$info['url']; 
             }
         }
   
