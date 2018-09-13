@@ -52,9 +52,9 @@ $data_file = array();
                  
                  foreach ($_FILES['photo']["error"] as $key => $error) {
                 
-               $res =  $image->open($_FILES['photo']['tmp_name'][$key])->thumb(150, 150)->save('./thumb.jpg');
+               $res =  $image->open($_FILES['photo']['tmp_name'][$key])->thumb(150, 150)->save($_FILES['photo']['tmp_name'][$key]);
               // echo "<img src="./thumb.jpg" alt="">";
-                $info = $upload->uploadOne("./thumb.jpg");
+                $info = $upload->uploadOne($_FILES['photo']['tmp_name'][$key]);
  var_dump($info);die;
 
                 // var_dump($file);
