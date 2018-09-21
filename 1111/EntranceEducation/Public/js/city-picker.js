@@ -58,7 +58,7 @@
 
 + function($) {
   "use strict";
-
+  console.log('cityPicker');
   var defaults;
   var raw = $.rawCitiesData;
 
