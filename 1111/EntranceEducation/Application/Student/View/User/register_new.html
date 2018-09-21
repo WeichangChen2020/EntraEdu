@@ -159,7 +159,7 @@ console.log('click')
         $("#home-city").click(function(){
             $("#home-city").cityPicker({
                 title: "请选择学院班级",
-                showDistrict: false,
+                showDistrict: true,
                 onChange: function(picker, values, displayValues) {
                     college = displayValues[0];
                     banji = displayValues[1];
