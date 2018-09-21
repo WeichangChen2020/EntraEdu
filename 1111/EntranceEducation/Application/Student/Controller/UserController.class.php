@@ -152,13 +152,13 @@ class UserController extends Controller {
             $isNewer = 1;
 
             $newerInfo = $STU->newerInfo($number);
-            if(false === $newerInfo) {
-                $this->ajaxReturn('请检查您的信息或从非新生入口注册');
-            }
+            // if(false === $newerInfo) {
+            //     $this->ajaxReturn('请检查您的信息或从非新生入口注册');
+            // }
 
-            if(!($newerInfo['name'] == $name && $newerInfo['academy'] == $college && $newerInfo['class'] == $banji)) {
-                $this->ajaxReturn('姓名班级学号信息不一致！请正确输入您的信息！');
-            }
+            // if(!($newerInfo['name'] == $name && $newerInfo['academy'] == $college && $newerInfo['class'] == $banji)) {
+            //     $this->ajaxReturn('姓名班级学号信息不一致！请正确输入您的信息！');
+            // }
 
         } 
         //已注册：
