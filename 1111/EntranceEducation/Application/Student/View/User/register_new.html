@@ -127,21 +127,14 @@
 
              
     </div>
-    <script src="__PUBLIC__/weui2.0/lib/jquery-2.1.4.js"></script>
-    <script src="__PUBLIC__/weui2.0/lib/fastclick.js"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
+    <include file="./Public/weui2.0/__foot.html" />
+    <script src="__PUBLIC__/js/city-picker.js">
+console.log('city-picker')
     </script>
-    <script src="__PUBLIC__/weui2.0/lib/jquery-weui.js"></script>
-
-    <script src="__PUBLIC__/js/city-picker.js"></script>
-
 
     <script>
-        $(document).ready(function (){
-            var data = {};
+    var data = {};
+console.log('click')
 
         var title=document.getElementById("title");
         var submit=document.getElementById("submit");
@@ -253,8 +246,6 @@
 
 
         });
-        })
-    
 
     </script>
 </body>
