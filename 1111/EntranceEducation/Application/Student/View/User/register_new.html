@@ -2,7 +2,6 @@
     
     <head>
         <include file="./Public/weui2.0/__head.html" />
-        <script src="__PUBLIC__/js/city-picker.js"></script>
         <style>
             .weui-cells {
                 margin-top: 0;
@@ -128,8 +127,17 @@
 
              
     </div>
-    <include file="./Public/weui2.0/__foot.html" />
-    <!-- <include file="./Public/js/city-picker.js" /> -->
+    <script src="__PUBLIC__/weui2.0/lib/jquery-2.1.4.js"></script>
+    <script src="__PUBLIC__/weui2.0/lib/fastclick.js"></script>
+    <script>
+      $(function() {
+        FastClick.attach(document.body);
+      });
+    </script>
+    <script src="__PUBLIC__/weui2.0/lib/jquery-weui.js"></script>
+
+    <script src="__PUBLIC__/js/city-picker.js"></script>
+
 
     <script>
     var data = {};
