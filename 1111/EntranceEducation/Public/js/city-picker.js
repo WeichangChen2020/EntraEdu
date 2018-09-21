@@ -2,7 +2,7 @@
 +function($){
 
   $.rawCitiesData = [
-  {
+  {  {
     "name":"信电学院",
     "code":"110000",
     "sub": [
