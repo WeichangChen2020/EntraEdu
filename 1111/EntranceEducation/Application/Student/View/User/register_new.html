@@ -128,9 +128,9 @@
              
     </div>
     <include file="./Public/weui2.0/__foot.html" />
-    <script defer src="__PUBLIC__/js/city-picker.js"></script>
+    <script src="__PUBLIC__/js/city-picker.js"></script>
 
-    <script async>
+    <script>
     var data = {};
 console.log('click')
 
@@ -156,16 +156,17 @@ console.log('click')
 
         var college,banji;//定义全局变量
 
-        $("#home-city").cityPicker({
-            title: "请选择学院班级",
-            showDistrict: false,
-            onChange: function(picker, values, displayValues) {
-                college = displayValues[0];
-                banji = displayValues[1];
-                // console.log(displayValues);
-            }
-        });
-
+        $("#home-city").click(function(){
+            $("#home-city").cityPicker({
+                title: "请选择学院班级",
+                showDistrict: false,
+                onChange: function(picker, values, displayValues) {
+                    college = displayValues[0];
+                    banji = displayValues[1];
+                    // console.log(displayValues);
+                }
+            });
+        }
         $('#submit').click(function(){
             // alert("message?: DOMString");
             url  = "{:U('User/register')}";
